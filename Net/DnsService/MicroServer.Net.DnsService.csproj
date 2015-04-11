@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <AssemblyName>MicroServer.Net.Dns</AssemblyName>
+    <OutputType>Library</OutputType>
+    <RootNamespace>MicroServer.Net.Dns</RootNamespace>
+    <ProjectTypeGuids>{b69e3092-b931-443c-abe7-7e7b65f2a37f};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A3DE42C9-B837-462F-BBAE-7D38A30595D6}</ProjectGuid>
+    <TargetFrameworkVersion>v4.3</TargetFrameworkVersion>
+    <NetMfTargetsBaseDir Condition="'$(NetMfTargetsBaseDir)'==''">$(MSBuildExtensionsPath32)\Microsoft\.NET Micro Framework\</NetMfTargetsBaseDir>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\MicroServer.Net.Dns.XML</DocumentationFile>
+  </PropertyGroup>
+  <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
+  <ItemGroup>
+    <Compile Include="Constants.cs" />
+    <Compile Include="DnsMessageEventArgs.cs" />
+    <Compile Include="DnsService\DnsService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DnsMessageEventHandler.cs" />
+    <Compile Include="DnsMessage\DnsMessage.cs" />
+    <Compile Include="DnsMessage\Header.cs" />
+    <Compile Include="DnsMessage\RecordClass.cs" />
+    <Compile Include="DnsMessage\RecordType.cs" />
+    <Compile Include="DnsMessage\OperationCode.cs" />
+    <Compile Include="DnsMessage\ReturnCode.cs" />
+    <Compile Include="DnsService\DnsReader.cs" />
+    <Compile Include="DnsService\DnsWriter.cs" />
+    <Compile Include="DnsMessage\Question.cs" />
+    <Compile Include="DnsMessage\ResourceRecords\Additional.cs" />
+    <Compile Include="DnsMessage\ResourceRecords\Answer.cs" />
+    <Compile Include="DnsMessage\ResourceRecords\Authority.cs" />
+    <Compile Include="DnsMessage\Records\ARecord.cs" />
+    <Compile Include="DnsMessage\Records\CNAMERecord.cs" />
+    <Compile Include="DnsMessage\Records\MXRecord.cs" />
+    <Compile Include="DnsMessage\Records\NBRecord.cs" />
+    <Compile Include="DnsMessage\Records\NSRecord.cs" />
+    <Compile Include="DnsMessage\Records\PTRRecord.cs" />
+    <Compile Include="DnsMessage\Records\RecordBase.cs" />
+    <Compile Include="DnsMessage\Records\SOARecord.cs" />
+    <Compile Include="DnsMessage\Records\TXTRecord.cs" />
+    <Compile Include="DnsMessage\ResourceRecords\ResourceRecord.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.SPOT.Native">
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.IO" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\MicroServer.Core.csproj">
+      <Project>{54255905-096C-42A5-B800-010C3673E820}</Project>
+      <Name>MicroServer.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MicroServer.Net.DnsService.nuspec" />
+  </ItemGroup>
+</Project>

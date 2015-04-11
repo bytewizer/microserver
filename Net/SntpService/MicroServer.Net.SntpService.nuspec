@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0.txt</licenseUrl>
+    <projectUrl>https://github.com/microcompiler/microserver</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes></releaseNotes>
+    <copyright>$copyright$</copyright>
+    <tags>NETMF Micro Framework SNTP Server Service</tags>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="Microsoft.SPOT.IO" targetFramework=".NETMicroFramework4.3" />
+    </frameworkAssemblies>
+    <dependencies>
+      <dependency id="MicroServer.Core" version="1.0.0.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\$configuration$\$id$.XML" target="lib\netmf43\$id$.XML" />
+    <file src="bin\$configuration$\be\$id$.dll" target="lib\netmf43\be\$id$.dll" />
+    <file src="bin\$configuration$\be\$id$.pe" target="lib\netmf43\be\$id$.pe" />
+    <file src="bin\$configuration$\be\$id$.pdbx" target="lib\netmf43\be\$id$.pdbx" />
+    <file src="bin\$configuration$\le\$id$.dll" target="lib\netmf43\le\$id$.dll" />
+    <file src="bin\$configuration$\le\$id$.pe" target="lib\netmf43\le\$id$.pe" />
+    <file src="bin\$configuration$\le\$id$.pdbx" target="lib\netmf43\le\$id$.pdbx" />
+  </files>
+</package>
