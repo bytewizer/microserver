@@ -2,7 +2,7 @@ using System;
 
 using MicroServer.Net.Http.Mvc.Controllers;
 
-namespace MicroServer.Net.Http.Mvc
+namespace MicroServer.Net.Http.Mvc.ActionResults
 {
     /// <summary>
     /// Sends a result that doesn't do anything (like a controller action returning null) to the client.

@@ -16,6 +16,14 @@ namespace MicroServer.Net.Http.Files
         bool GetFile(FileContext context);
 
         /// <summary>
+        /// Get a file
+        /// </summary>
+        /// <param name="context">Context used to return files</param>
+        /// <param name="fullPath">Full path used to locate files</param>
+        /// <remarks><c>true</c> if the file was attached to the response; otherwise false;</remarks>
+        bool GetFile(FileContext context, string fullPath);
+
+        /// <summary>
         /// Gets if the specified url corresponds to a directory serving files
         /// </summary>
         /// <param name="uri">Uri</param>

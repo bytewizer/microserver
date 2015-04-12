@@ -18,6 +18,19 @@ namespace MicroServer.Net.Http.Messages
         public void Dispose()
         {
             File.Delete(TempFileName);
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        /// <summary>
+        /// Handles object cleanup
+        /// </summary>
+        /// <param name="disposing">True if called from Dispose(); false if called from GC finalization.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+
+            }
         }
 
         #endregion

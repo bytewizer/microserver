@@ -298,7 +298,7 @@ namespace MicroServer.Service
                 if (StorageRoot != null)
                 {
                     // Create disk file service for the root storage
-                    DiskFileService fileService = new DiskFileService("/", StorageRoot + @"\WebRoot\");
+                    DiskFileService fileService = new DiskFileService("/", StorageRoot + @"\"+ MicroServer.Net.Http.Constants.HTTP_WEB_ROOT_FOLDER + @"\");
 
                     // Add the file module to pipeline
                     _moduleManager.Add(new FileModule(fileService) { AllowListing = _allowListing });

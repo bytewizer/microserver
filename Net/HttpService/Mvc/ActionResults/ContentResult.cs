@@ -7,7 +7,7 @@ using MicroServer.Net.Http.Files;
 using MicroServer.Net.Http.Mvc.Controllers;
 using System.IO;
 
-namespace MicroServer.Net.Http.Mvc
+namespace MicroServer.Net.Http.Mvc.ActionResults
 { 
     /// <summary>
     /// Send binary content to the client. 

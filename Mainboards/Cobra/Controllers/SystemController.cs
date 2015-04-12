@@ -38,34 +38,34 @@ namespace MicroServer.CobraII
             jdom.Add("httpEnabled", ServiceManager.Current.HttpEnabled);
             jdom.Add("loglevel", ServiceManager.Current.LogLevel.ToString());
 
-            return new JsonResult(jdom);
+            return JsonResult(jdom);
         }
 
         public ActionResult Start(ControllerContext context)
         {
             ServiceManager.Current.StartAll();
             
-            return new EmptyResult();
+            return EmptyResult();
         }
 
         public ActionResult Stop(ControllerContext context)
         {
             ServiceManager.Current.StopAll();
 
-            return new EmptyResult();
+            return EmptyResult();
         }
 
         public ActionResult Restart(ControllerContext context)
         {
             ServiceManager.Current.RestartAll();
 
-            return new EmptyResult();
+            return EmptyResult();
         }
 
         public ActionResult Reboot(ControllerContext context)
         {
 
-            return new EmptyResult();
+            return EmptyResult();
         }
 
         public ActionResult Settings(ControllerContext context)
@@ -95,7 +95,7 @@ namespace MicroServer.CobraII
                 }
             }
 
-            return new JsonResult(jdom);
+            return JsonResult(jdom);
         }
     }
 }

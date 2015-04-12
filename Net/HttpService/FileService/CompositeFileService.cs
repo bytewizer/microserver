@@ -38,6 +38,23 @@ namespace MicroServer.Net.Http.Files
         }
 
         /// <summary>
+        /// Loops through all services and returns the first matching file.
+        /// </summary>
+        /// <param name="context">Context used to return files</param>
+        /// <param name="fullPath">Full path used to locate files</param>
+        public virtual bool GetFile(FileContext context, string fullPath)
+        {
+            foreach (IFileService fileService in _fileServices)
+            {
+                fileService.GetFile(context);
+                if (context.IsFound)
+                    return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// Gets if the specified url corresponds to a directory serving files
         /// </summary>
         /// <param name="uri">Uri</param>

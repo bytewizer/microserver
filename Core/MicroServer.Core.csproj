@@ -43,8 +43,6 @@
     <Compile Include="Net\Sockets\TcpListener.cs" />
     <Compile Include="Security\MD5.cs" />
     <Compile Include="Serializers\Json\JsonParser.cs" />
-    <Compile Include="Serializers\Token\TokenCollection.cs" />
-    <Compile Include="Serializers\Token\TokenParser.cs" />
     <Compile Include="Storage\FileStorage.cs" />
     <Compile Include="Storage\FlashStorage.cs" />
     <Compile Include="Storage\IStorage.cs" />

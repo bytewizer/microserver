@@ -6,6 +6,7 @@ using System.Text;
 using Microsoft.SPOT;
 
 using MicroServer.Net.Http.Mvc.Resolver;
+using MicroServer.Net.Http.Mvc.ActionResults;
 
 
 namespace MicroServer.Net.Http.Mvc.Controllers

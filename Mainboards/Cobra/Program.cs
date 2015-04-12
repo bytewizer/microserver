@@ -91,16 +91,6 @@ namespace MicroServer.CobraII
             netWifi.EnableStaticIP("192.168.50.1", "255.255.255.0", "192.168.50.1");
             netWifi.EnableStaticDns(new string[] { "192.168.50.1" });
 
-
-            //netWifi.EnableStaticIP("192.168.10.6", "255.255.255.0", "192.168.10.1");
-            //netWifi.EnableStaticDns(new string[] { "192.168.10.1" });
-
-            //netWifi.NetworkInterface.EnableDhcp();
-            //netWifi.NetworkInterface.EnableDynamicDns();
-
-            //netWifi.Join("crytek","cd5gtefrd9976jgytfhto");
-            //netWifi.NetworkInterface.Join("crytek-guest", "ricerice");
-
             if (!netWifi.LinkConnected)
             {
                 while (netWifi.NetworkInterface.IPAddress == "0.0.0.0")

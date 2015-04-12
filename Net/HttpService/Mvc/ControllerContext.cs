@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MicroServer.Net.Http.Mvc.Views;
+using System;
 
 namespace MicroServer.Net.Http.Mvc
 {
@@ -11,12 +12,14 @@ namespace MicroServer.Net.Http.Mvc
     /// that should be exposed to the developer.</remarks>
     public class ControllerContext : IControllerContext
     {
+        private IViewData _viewData;
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="ControllerContext"/> class.
         /// </summary>
         public ControllerContext()
         {
-
+            ViewData = new ViewData();
         }
         
         /// <summary>
@@ -25,6 +28,7 @@ namespace MicroServer.Net.Http.Mvc
         /// <param name="context">Request context.</param>
         public ControllerContext(IHttpContext context)
         {
+            ViewData = new ViewData();
             HttpContext = context;
             Uri = context.Request.Uri;
             UriRewrite = context.Request.Uri;
@@ -82,6 +86,15 @@ namespace MicroServer.Net.Http.Mvc
         /// Will be filled in by controller director if empty (i.e. default action).
         /// </remarks>
         public string ActionName { get; set; }
+
+        /// <summary>
+        /// View data used when rendering a view.
+        /// </summary>
+        public IViewData ViewData
+        {
+            get { return _viewData; }
+            set { _viewData = value; }
+        }
 
         /// <summary>
         /// Get a parameter.

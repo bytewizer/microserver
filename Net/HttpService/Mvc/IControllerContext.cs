@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MicroServer.Net.Http.Mvc.Views;
+using System;
 
 namespace MicroServer.Net.Http.Mvc
 {
@@ -52,6 +53,11 @@ namespace MicroServer.Net.Http.Mvc
         /// </para>
         /// </remarks>
         string ActionName { get; set; }
+
+        /// <summary>
+        /// View data used when rendering a view.
+        /// </summary>
+        IViewData ViewData { get; set; }
 
         /// <summary>
         /// Get a parameter.

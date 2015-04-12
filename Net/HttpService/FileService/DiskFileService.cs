@@ -3,6 +3,7 @@ using System.Collections;
 using System.IO;
 
 using MicroServer.Extensions;
+using MicroServer.Logging;
 
 namespace MicroServer.Net.Http.Files
 {
@@ -21,7 +22,7 @@ namespace MicroServer.Net.Http.Files
         /// <param name="rootUri">Serve all files which are located under this URI</param>
         /// <example>
         /// <code>
-        /// var diskFiles = new DiskFileService("/public/", @"C:\www\public\");
+        /// var diskFiles = new DiskFileService("/public/", @"\sd\www\public\");
         /// var module = new FileModule(diskFiles);
         /// 
         /// var moduleManager = new ModuleManager();
@@ -33,7 +34,26 @@ namespace MicroServer.Net.Http.Files
             if (rootUri == null) throw new ArgumentNullException("rootUri");
             if (rootFilePath == null) throw new ArgumentNullException("rootFilePath");
             if (!Directory.Exists(rootFilePath))
-                throw new ArgumentOutOfRangeException("rootFilePath", "Failed to find path " + rootFilePath);
+            {
+                try
+                {
+                    Directory.CreateDirectory(rootFilePath);
+                }
+                catch
+                {
+                    Logger.WriteInfo(this, "Error creating directory: " + rootFilePath);
+                }
+
+                if (!Directory.Exists(rootFilePath))
+                {
+                    throw new ArgumentOutOfRangeException("rootFilePath", "Failed to find path " + rootFilePath);
+                }
+                else
+                {
+                    Logger.WriteInfo(this, "Created directory: " + rootFilePath);
+                }
+
+            }
 
             _rootUri = rootUri;
             _basePath = rootFilePath;
@@ -47,11 +67,22 @@ namespace MicroServer.Net.Http.Files
         /// <param name="context">Context used to locate and return files</param>
         public virtual bool GetFile(FileContext context)
         {
-            
             //  URL RAWRITE *****************
             var fullPath = GetFullPath(context.Request.UriRewrite);
+            return GetFile(context, fullPath);
+        }
+
+        /// <summary>
+        /// Get a file
+        /// </summary>
+        /// <param name="context">Context used to locate and return files</param>
+        /// <param name="fullPath">Full path used to locate files</param>
+        public virtual bool GetFile(FileContext context, string fullPath)
+        {
             if (fullPath == null || !File.Exists(fullPath))
                 return false;
+
+            // TODO:  Need to find a way to get file proprites in .netmf
 
             //var date = File.GetLastWriteTimeUtc(fullPath);
             var date = DateTime.Now;
@@ -85,7 +116,7 @@ namespace MicroServer.Net.Http.Files
             {
                 return Path.Combine(_basePath, relativeUri.Replace("/", Path.DirectorySeparatorChar.ToString()));
             }
-            
+
             ////string relativeUri = new Uri(uri.AbsolutePath).ToString();
             //return _basePath;
             ////return Path.Combine(_basePath ); , relativeUri.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
@@ -121,7 +152,7 @@ namespace MicroServer.Net.Http.Files
                 var mimeType = MimeTypeProvider.Instance.Get(Path.GetFileName(file));
                 if (mimeType == null)
                     continue;
-                
+
                 FileInfo info = new FileInfo(file);
                 results.Add(new FileInformation
                 {
@@ -185,7 +216,7 @@ namespace MicroServer.Net.Http.Files
                     Parent = info.Parent,
                     LastModifiedAtUtc = info.LastWriteTimeUtc,
                     Name = Path.GetFileName(directory),
-                    
+
                 });
 
                 //results.Add(directory.Replace(path, string.Empty));

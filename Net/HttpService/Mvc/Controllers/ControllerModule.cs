@@ -8,6 +8,7 @@ using Microsoft.SPOT;
 using MicroServer.Logging;
 using MicroServer.Net.Http.Modules;
 using MicroServer.Net.Http.Messages;
+using MicroServer.Net.Http.Mvc.ActionResults;
 
 namespace MicroServer.Net.Http.Mvc.Controllers
 {

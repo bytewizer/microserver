@@ -1,12 +1,10 @@
-﻿
-using System;
+﻿using System;
 using System.Collections;
 using System.Reflection;
 using System.Text;
 
 using MicroServer.Extensions;
-using Microsoft.SPOT;
-
+using MicroServer.Net.Http.Mvc.ActionResults;
 
 namespace MicroServer.Net.Http.Mvc.Controllers
 {
@@ -32,7 +30,7 @@ namespace MicroServer.Net.Http.Mvc.Controllers
             Type controllerType = typeof(Controller);
             foreach (Type type in assembly.GetTypes())
             {
-                if (type.IsAbstract || type.IsInterface)
+                if (type.IsAbstract || type.IsInterface || type.IsNotPublic)
                     continue;
 
                 if (type.IsSubclassOf(controllerType))
@@ -45,13 +43,12 @@ namespace MicroServer.Net.Http.Mvc.Controllers
             ControllerMapping mapping = new ControllerMapping(type);
             mapping.Uri = type.Name.Replace("Controller", string.Empty);
 
-            Type resultType = typeof(ActionResult);
             foreach (MethodInfo method in type.GetMethods())
             {
-                if (type.IsAbstract || type.IsInterface)
+                if (type.IsAbstract || type.IsNotPublic)
                     continue;
 
-                if (method.ReturnType.IsSubclassOf(resultType)  || method.ReturnType.Equals(resultType))
+                if (method.ReturnType.Equals(typeof(IActionResult)))
                     mapping.Add(method);
             }
             _controllers.Add(mapping);

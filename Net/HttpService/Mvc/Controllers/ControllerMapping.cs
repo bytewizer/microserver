@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections;
-using System.Reflection;
 using System.Text;
+using System.Reflection;
+using System.Collections;
 
-using Microsoft.SPOT;
+using MicroServer.Net.Http.Mvc.ActionResults;
 
 namespace MicroServer.Net.Http.Mvc.Controllers
 {
@@ -66,6 +66,7 @@ namespace MicroServer.Net.Http.Mvc.Controllers
         public void Add(MethodInfo method)
         {
             _actions.Add(method.Name.ToLower(), method);
+
         }
 
         /// <summary>

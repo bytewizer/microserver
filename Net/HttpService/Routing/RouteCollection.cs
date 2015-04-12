@@ -76,7 +76,7 @@ namespace MicroServer.Net.Http.Routing
             // Process ingored routes
             foreach (string pattern in _ingoredRoutes)
             {
-                regex = new Regex(pattern);
+                regex = new Regex(pattern, RegexOptions.IgnoreCase);
 
                 match = regex.Match(context.Request.Uri.AbsolutePath);
                 if (match.Success)

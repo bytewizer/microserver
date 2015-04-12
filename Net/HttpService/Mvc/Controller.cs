@@ -1,9 +1,14 @@
 using System;
+using System.IO;
 using System.Reflection;
 
 using MicroServer.Extensions;
+using MicroServer.Net.Http.Mvc;
+using MicroServer.Net.Http.Mvc.Views;
 using MicroServer.Net.Http.Mvc.Controllers;
-
+using MicroServer.Net.Http.Mvc.ActionResults;
+using MicroServer.Net.Http.Files;
+using MicroServer.Serializers.Json;
 
 namespace MicroServer.Net.Http.Mvc
 {
@@ -13,7 +18,6 @@ namespace MicroServer.Net.Http.Mvc
     public abstract class Controller : IController
     {
         private IControllerContext _context;
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Controller"/> class.
@@ -96,7 +100,7 @@ namespace MicroServer.Net.Http.Mvc
 
                 if (_context.Uri.AbsolutePath.Length <= prefixLength)
                     return string.Empty;
-                
+
                 var myUri = _context.Uri.AbsolutePath.Substring(prefixLength);
                 int pos = myUri.IndexOf("/");
 
@@ -115,10 +119,85 @@ namespace MicroServer.Net.Http.Mvc
             _context = context;
         }
 
-        public virtual void OnToken(string token, ref string replacement)
+        /// <summary>
+        /// View data used when rendering a view.
+        /// </summary>
+        public IViewData ViewData
         {
-
+            get { return _context.ViewData; }
+            set { _context.ViewData = value; }
         }
+
+        #region ActionResults Members
+
+        public virtual ViewResult View()
+        {
+            return new ViewResult();
+        }
+
+        public virtual ContentResult ContentResult(Stream content, string contentType)
+        {
+            return new ContentResult(content, contentType);
+        }
+
+        public virtual ContentResult ContentResult(byte[] buffer, string contentType)
+        {
+            return new ContentResult(buffer, contentType);
+        }
+
+        public virtual ContentResult ContentResult(string content, string contentType)
+        {
+            return new ContentResult(content, contentType);
+        }
+
+        public virtual EmptyResult EmptyResult()
+        {
+            return new EmptyResult();
+        }
+
+        public virtual FileResult FileResult(string rootFilePath, string fileNamePath)
+        {
+            return new FileResult(rootFilePath, fileNamePath);
+        }
+
+        public virtual FileResult FileResult(string rootUri, string rootFilePath, string fileNamePath)
+        {
+            return new FileResult(rootUri, rootFilePath, fileNamePath);
+        }
+
+        public virtual FileResult FileResult(IFileService fileService, string fullFilePath)
+        {
+            return new FileResult(fileService, fullFilePath);
+        }
+
+        public virtual JsonResult JsonResult(JObject jdom)
+        {
+            return new JsonResult(jdom);
+        }
+
+        public virtual JsonResult JsonResult(JObject jdom, string contentType)
+        {
+            return new JsonResult(jdom, contentType);
+        }
+
+        public virtual RedirectResult RedirectResult(string url)
+        {
+            return new RedirectResult(url);
+        }
+
+        public virtual RedirectResult RedirectResult(string controllerName, string actionName)
+        {
+            return new RedirectResult(controllerName, actionName);
+        }
+
+        public virtual ActionResult TriggerOnException(Exception ex)
+        {
+            return null;
+        }
+
+        #endregion ActionResults  Members
+
+        #region  ControllerFactory  Members
 
         public virtual void OnActionExecuting(ActionExecutingContext context)
         {
@@ -134,15 +213,6 @@ namespace MicroServer.Net.Http.Mvc
 
         }
 
-        public virtual ActionResult TriggerOnException(Exception ex)
-        {
-            return OnException(ex);
-        }
-
-        protected virtual ActionResult OnException(Exception ex)
-        {
-            return null;
-        }
-
+        #endregion  ControllerFactory  Members
     }
 }

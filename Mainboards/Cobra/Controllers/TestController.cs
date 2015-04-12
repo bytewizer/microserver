@@ -6,9 +6,7 @@ using Microsoft.SPOT;
 using Microsoft.SPOT.IO;
 
 using MicroServer.Net.Http.Mvc;
-
 using MicroServer.Serializers.Json;
-using MicroServer.Serializers.Token;
 
 
 namespace MicroServer.CobraII
@@ -20,7 +18,7 @@ namespace MicroServer.CobraII
             Debug.Print("Emulator => OnActionExecuting");
 
             if (!filterContext.HttpContext.Request.HttpMethod.ToUpper().Equals("GET"))
-                filterContext.Result = new EmptyResult();
+                filterContext.Result = EmptyResult();
 
             base.OnActionExecuting(filterContext);
         }
@@ -51,7 +49,7 @@ namespace MicroServer.CobraII
             
             Debug.Print("Emulator => GetEmpty");
 
-            return new EmptyResult();
+            return EmptyResult();
         }
 
         public ActionResult GetHello(ControllerContext context)
@@ -63,7 +61,7 @@ namespace MicroServer.CobraII
                 "h1 { font-size:3cm; text-align: center; color: white;}</style></head>" +
                 "<body><h1>" + DateTime.Now.ToString() + "</h1></body></html>\r\n";
 
-            return new ContentResult(response, "text/html");
+            return ContentResult(response, "text/html");
         }
 
         public ActionResult GetJson(ControllerContext context)
@@ -97,77 +95,19 @@ namespace MicroServer.CobraII
             jdom.Add("data-role", "update");
             jdom.Add("style", jar);
 
-            return new JsonResult(jdom);
-        }
-
-        public ActionResult GetFile(ControllerContext context)
-        {
-            Debug.Print("Emulator => GetFile");
-
-            string filePath = @"\winfs\settings.txt";
-
-            using (var fileStream = new FileStream(filePath, FileMode.Open))
-            {
-                byte[] data = new byte[65000];
-
-                try
-                {
-                    int bytes = fileStream.Read(data, 0, data.Length);
-                    fileStream.Close();
-
-                    if (bytes != 0)
-                    {
-                        return new FileResult(data, filePath);
-                    }
-                }
-                finally
-                {
-                    fileStream.Close();
-                }
-
-                return new HttpStatusCodeResult(404, "File Not Found");
-            }
-        }
-
-        public ActionResult GetToken(ControllerContext context)
-        {
-            Debug.Print("Emulator => GetFile");
-
-            string filePath = @"\winfs\settings.txt";
-
-            using (TextReader fileStream = new StreamReader(filePath))
-            {
-                try
-                {
-                    string text = fileStream.ReadToEnd();
-                    fileStream.Close();
-
-                    TokenResult result = new TokenResult(text, "text/html");
-                    result.Tokens.Add("TESTME", "I hit it");
-
-                    return result;
-                }
-                catch
-                {
-                    return new HttpStatusCodeResult(404, "File Not Found");
-                }
-                finally
-                {
-                    fileStream.Close();
-                }
-            }
+            return JsonResult(jdom);
         }
 
         public ActionResult GetRedirect(ControllerContext context)
         {
-            return new RedirectResult("test", "getjson");
+            return RedirectResult("test", "getjson");
         }
 
         public ActionResult GetGoogle(ControllerContext context)
         {
             Debug.Print("Emulator => GetGoogle");
 
-            return new RedirectResult("http://www.google.com/");
+            return RedirectResult("http://www.google.com/");
         }
 
         public ActionResult GetExecption(ControllerContext context)

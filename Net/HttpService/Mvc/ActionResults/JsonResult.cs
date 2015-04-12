@@ -6,7 +6,7 @@ using MicroServer.Utilities;
 using MicroServer.Serializers.Json;
 using MicroServer.Net.Http.Mvc.Controllers;
 
-namespace MicroServer.Net.Http.Mvc
+namespace MicroServer.Net.Http.Mvc.ActionResults
 {
     /// <summary>
     /// Send JSON formated content to the client. 

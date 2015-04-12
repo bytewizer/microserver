@@ -14,6 +14,7 @@
     <copyright>$copyright$</copyright>
     <tags>NETMF Micro Framework Server</tags>
     <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System" targetFramework=".NETMicroFramework4.3" />
     </frameworkAssemblies>
   </metadata>
   <files>

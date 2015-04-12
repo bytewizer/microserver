@@ -10,13 +10,13 @@ namespace MicroServer.Example
         public override void RegisterRoutes(RouteCollection routes)
         {
             // block access to the 'Deny' folder.
-            routes.IgnoreRoute(@"^.*Deny.*$");  
+            routes.IgnoreRoute(@"^.*deny.*$");  
             
             // maps the root folder specificly to 'index.html'.
             routes.MapRoute(
                 name: "Default",
                 regex: @"^[/]{1}$",
-                defaults: new DefaultRoute { controller = "", action = "index.html", id = "" }
+                defaults: new DefaultRoute { controller = "Home", action = "Index", id = "" }
             );
 
             // allows access to all other folders and files not explicitly ingored.

@@ -3,22 +3,20 @@ MicroServer
 
 MicroServer is a moduler server built for Microsoft .NET Micro Framework (NETMF).
 
-# Current Features
-
 ## HTTP Web Service (MVC style)
 
-Based on jgauffin's <a href="https://github.com/jgauffin/Griffin.WebServer"> MVC Webserver framework. 
+Based on jgauffin's <a href="https://github.com/jgauffin/Griffin.WebServer"> MVC Webserver framework </a>.
 
 * Regex Routing Module
-* Custom Controller Handling
-* Custom ActionResults (JSON and Dynamic Tokens)
-* Custom Modules
-* Basic Authentication (coming soon)
 * Model Binding (coming soon)
-* Views (coming soon)
+* Views with Token Replacement
+* Controller Handling
+* Action Results (JSON, Content, Files)
+* Basic Authentication (coming soon)
+* Extendable Modules
 * Form/File Handling
-* Static File Handling with file listing
-* Body decoding (multipart & UrlEncoded)
+* Static File Handling with File Listing
+* Body Decoding (Multipart and UrlEncoded)
 * Header Decoding
 
 ## DHCP Service
@@ -43,7 +41,9 @@ Based on jgauffin's <a href="https://github.com/jgauffin/Griffin.WebServer"> MVC
 
 Requirements
 ------------
-Microsoft .NET Micro Framework 4.3 or higher.  
+Software: Microsoft .NET Micro Framework 4.3 or higher.  
+Hardware: In addition to the emulator console application example projects, this project was developed 
+using<a href="https://www.ghielectronics.com/"> GHI Electronics</a> Raptor and CobraII mainboards.  
 
 Nuget (coming soon)
 -------------------
@@ -51,18 +51,23 @@ Nuget (coming soon)
 Available through Nuget (http://www.nuget.org/)
 
 ```
-PM> Install-Package MicroServer.ServiceManager (coming soon)
+PM> Install-Package MicroServer.ServiceManager
 ```
 
 Example Micro Framework Console Application
 -------------------------------------------
 
-Create a RouteConfig.cs file with the following source code:
+This project contains the following simple example (see 'example' folder) project 
+demonstrating how to implement a basic server with all modules enabled.
+
+Start a new emulator console application, install MicroServer Service Manager package and create a Program.cs file
+with the following source code:
 
 ```csharp
 using System;
-using Microsoft.SPOT;
 
+using MicroServer.Service;
+using MicroServer.Net.Http.Mvc;
 using MicroServer.Net.Http.Routing;
 
 namespace MicroServer.Example
@@ -74,7 +79,7 @@ namespace MicroServer.Example
             routes.MapRoute(
                 name: "Default",
                 regex: @"^[/]{1}$",
-                defaults: new DefaultRoute { controller = "", action = "index.html", id = "" }
+                defaults: new DefaultRoute { controller = "example", action = "gethello", id = "" }
             );
 
             routes.MapRoute(
@@ -84,71 +89,53 @@ namespace MicroServer.Example
             );
         }
     }
-}
-```
 
-Create a ExampleController.cs file with the following source code:
-
-```csharp
-using System;
-
-using MicroServer.Net.Http.Mvc;
-
-namespace MicroServer.Example
-{
     public class ExampleController : Controller
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-
             base.OnActionExecuting(filterContext);
         }
 
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-
             base.OnActionExecuted(filterContext);
         }
 
         public override void OnException(ExceptionContext filterContext)
         {
-
             base.OnException(filterContext);
         }
 
-        public ActionResult GetHello(ControllerContext context)
+        public IActionResult GetHello(ControllerContext context)
         {
             string response = "<doctype !html><html><head><title>Hello, world!</title>" +
                 "<style>body { background-color: #111 }" +
                 "h1 { font-size:3cm; text-align: center; color: white;}</style></head>" +
                 "<body><h1>" + DateTime.Now.ToString() + "</h1></body></html>\r\n";
 
-            return new ContentResult(response, "text/html");
+            return ContentResult(response, "text/html");
         }
     }
-}
-```
-Create a program.cs file with the following source code:
 
-```csharp
-using System;
-using System.Net;
-using Microsoft.SPOT;
-
-using MicroServer.Service;
-
-namespace MicroServer.Example
-{
     public class Program
     {
         public static void Main()
         {
             using (ServiceManager Server = new ServiceManager(LogType.Output, LogLevel.Debug, @"\winfs"))
-            {  
+            {
                 //INITIALIZING : Server Services
                 Server.InterfaceAddress = System.Net.IPAddress.GetDefaultLocalAddress().ToString();
                 Server.ServerName = "example";
                 Server.DnsSuffix = "iot.local";
+
+                // SERVICES:  Enable / disable additional services
+                Server.DhcpEnabled = false; // disabled by default as this could be disruptive to existing dhcp servers on the network.
+                Server.DnsEnabled = true;
+                Server.SntpEnabled = true;
+
+                //SERVICE:  Enable / disable directory browsing
+                Server.AllowListing = false;
 
                 //SERVICE: DHCP
                 Server.DhcpService.PoolRange("172.16.10.100", "172.16.10.254");
@@ -157,12 +144,14 @@ namespace MicroServer.Example
 
                 //SERVICES: Start all serivces
                 Server.StartAll();
-            } 
+            }
         }
     }
 }
 ```
-Access the controller endpoint by launching a web browser using http://[emulator ipaddress]/example/gethello
+
+Access the controller endpoint by launching a web browser using:
+http://[emulator ipaddress]/example/gethello
 
 Contributions
 ------------
@@ -173,4 +162,4 @@ License
 Licensed under Apache License 2.0
 
 In the case where this code is a modification of existing code under a separate license, the separate license
-terms remain in effect. The modifications to the code are licensed under the Apache License 2.0.
+terms remain in effect. The modifications to the code are licensed under the Apache license.

@@ -27,24 +27,18 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\MicroServer.Example.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\ExampleController.cs" />
+    <None Include="App_Start\RouteConfig.cs" />
+    <None Include="Controllers\HomeController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
-    <Content Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\Allow\action-black.png" />
-    <Content Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\Allow\action-white.png" />
-    <Content Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\Allow\alert-black.png" />
-    <Content Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\Deny\audio-black.svg" />
-    <Content Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\Deny\audio-white.svg" />
-    <Content Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\Deny\back-black.svg" />
-    <Content Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\index.html" />
-    <Content Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\Style.css" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.SPOT.Native" />
     <Reference Include="System" />
+    <Reference Include="System.Http" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\MicroServer.Core.csproj">
@@ -73,9 +67,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="DOTNETMF_FS_EMULATION\WINFS\dhcp.dat" />
+    <None Include="MicroServer.Example.nuspec">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\Content\Css\Style.css" />
+    <Content Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\Deny\river.jpg" />
+    <Content Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\Deny\trees.png" />
+    <Content Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\Images\bay.jpg" />
+    <Content Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\Images\favicon.ico" />
+    <Content Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\Images\path.png" />
+    <Content Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\Views\Home\index.html" />
+  </ItemGroup>
   <Import Condition="EXISTS('$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets')" Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <Import Condition="!EXISTS('$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets')" Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

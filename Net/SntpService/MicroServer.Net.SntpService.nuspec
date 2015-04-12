@@ -14,7 +14,7 @@
     <copyright>$copyright$</copyright>
     <tags>NETMF Micro Framework SNTP Server Service</tags>
     <frameworkAssemblies>
-      <frameworkAssembly assemblyName="Microsoft.SPOT.IO" targetFramework=".NETMicroFramework4.3" />
+      <frameworkAssembly assemblyName="System" targetFramework=".NETMicroFramework4.3" />
     </frameworkAssemblies>
     <dependencies>
       <dependency id="MicroServer.Core" version="1.0.0.0" />

@@ -5,93 +5,50 @@ using MicroServer.Logging;
 using MicroServer.Utilities;
 using MicroServer.Net.Http.Files;
 using MicroServer.Net.Http.Mvc.Controllers;
+using System.Net;
 
-namespace MicroServer.Net.Http.Mvc
+namespace MicroServer.Net.Http.Mvc.ActionResults
 {
     /// <summary>
     /// Sends a binary file to the client.
     /// </summary>
-    /// <remarks>Content length must be correct in order for this action to work properly.</remarks>
     public class FileResult : ActionResult
     {
-        private MimeTypeProvider mimeProvider = new MimeTypeProvider();
-
-        private string _contentDisposition;
-        private string _contentType;
+        private readonly IFileService _fileService;
+        private readonly string _fullFilePath; 
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FileResult"/> class.
+        /// Initializes a new instance of the <see cref="FileResult" /> class.
         /// </summary>
-        /// <param name="content">The body content.</param>
-        /// <param name="fileName">The binary file name.</param>
-        public FileResult(Stream content, string fileName)
+        /// <param name="fileNamePath">Path to serve files from.</param>
+        public FileResult(string rootFilePath, string fileNamePath)
         {
-            if (content == null)
-            {
-                throw new NullReferenceException("content");
-            }
-
-            if (StringUtility.IsNullOrEmpty(fileName))
-            {
-                throw new ArgumentException("filename");
-            }
-            
-            Stream = content;
-            ContentDisposition = fileName;
-            _contentType = mimeProvider.Get(Path.GetFileName(fileName));
+            _fileService = new DiskFileService("/", rootFilePath);
+            _fullFilePath = rootFilePath + fileNamePath;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FileResult"/> class.
+        /// Initializes a new instance of the <see cref="FileResult" /> class.
         /// </summary>
-        /// <param name="buffer">The body content</param>
-        /// <param name="fileName">The binary file name.</param>
-        public FileResult(byte[] buffer, string fileName)
+        /// <param name="rootUri">Serve all files which are located under this URI</param>
+        /// <param name="rootFilePath">Path to serve files from.</param>
+        /// <param name="fileNamePath">Path and file name used to locate files</param>
+        public FileResult(string rootUri, string rootFilePath, string fileNamePath)
         {
-            if (buffer == null)
-            {
-                throw new NullReferenceException("buffer");
-            }
-
-            if (buffer.Length == 0)
-            {
-                throw new ArgumentOutOfRangeException("buffer");
-            }
-
-            if (StringUtility.IsNullOrEmpty(fileName))
-            {
-                throw new ArgumentException("filename");
-            }
-            
-            Stream =new MemoryStream(buffer);
-            ContentDisposition = fileName;
-            _contentType = mimeProvider.Get(Path.GetFileName(fileName));
+            _fileService = new DiskFileService(rootUri, rootFilePath);
+            _fullFilePath = rootFilePath + fileNamePath;
         }
 
         /// <summary>
-        /// Gets stream to send
+        /// Initializes a new instance of the <see cref="FileResult" /> class.
         /// </summary>
-        public Stream Stream { get; private set; }
-
-        /// <summary>
-        /// Gets content disposition file name.
-        /// </summary>
-        public string ContentDisposition 
+        /// <param name="fileService">Used to locate file.</param>
+        /// <param name="context">Context used to locate and return files</param>
+        /// <param name="fullFilePath">Full path used to locate files</param>
+        public FileResult(IFileService fileService, string fullFilePath)
         {
-            get { return _contentDisposition; }
-            set
-            {
-                _contentDisposition = "attachment; filename=\"" + Path.GetFileName(value) + "\"";
-            }
-        }
-
-        /// <summary>
-        /// Gets content type.
-        /// </summary>
-        public string ContentType 
-        { 
-            get { return _contentType; }
-            set {  _contentType = value; }
+            _fileService = fileService;
+            _fullFilePath = fullFilePath;
         }
 
         /// <summary>
@@ -108,19 +65,51 @@ namespace MicroServer.Net.Http.Mvc
                 throw new ArgumentNullException("context");
             }
             
-            if (!StringUtility.IsNullOrEmpty(_contentType))
+            // only handle GET and HEAD
+            if (!context.HttpContext.Request.HttpMethod.ToUpper().Equals("GET")
+                && !context.HttpContext.Request.HttpMethod.ToUpper().Equals("HEAD"))
+                return;
+            
+            var header = context.HttpContext.Request.Headers["If-Modified-Since"];
+
+            // TODO: Build reliable date parser
+            var time = DateTime.MinValue;
+            //var time = header != null
+            //               ? ParseUtility.TryParseDateTime(header)
+            //               : DateTime.MinValue;
+
+            var fileContext = new FileContext(context.HttpContext.Request, time);
+            _fileService.GetFile(fileContext,_fullFilePath);
+            if (!fileContext.IsFound)
+                return;
+
+            if (!fileContext.IsModified)
             {
-                context.HttpContext.Response.ContentType = _contentType;
+                context.HttpContext.Response.StatusCode = (int)HttpStatusCode.NotModified;
+                context.HttpContext.Response.StatusDescription = "Was last modified " + fileContext.LastModifiedAtUtc.ToString("R");
+                return;
             }
 
-            if (!StringUtility.IsNullOrEmpty(_contentDisposition))
+            var mimeType = MimeTypeProvider.Instance.Get(fileContext.Filename);
+            if (mimeType == null)
             {
-                context.HttpContext.Response.AddHeader("Content-Disposition", ContentDisposition);
+                context.HttpContext.Response.StatusCode = (int)HttpStatusCode.UnsupportedMediaType;
+                context.HttpContext.Response.StatusDescription = string.Concat("File type '", Path.GetExtension(fileContext.Filename), "' is not supported.");
+                return;
             }
 
-            if (Stream != null)
+            context.HttpContext.Response.AddHeader("Last-Modified", fileContext.LastModifiedAtUtc.ToString("R"));
+            context.HttpContext.Response.AddHeader("Accept-Ranges", "bytes");
+            context.HttpContext.Response.AddHeader("Content-Disposition", "inline;filename=\"" + Path.GetFileName(fileContext.Filename) + "\"");
+            context.HttpContext.Response.ContentType = mimeType;
+            context.HttpContext.Response.ContentLength = (int)fileContext.FileStream.Length;
+            context.HttpContext.Response.Body = fileContext.FileStream;
+
+            // Do not include a body when the client only want's to get content information.
+            if (context.HttpContext.Request.HttpMethod.ToUpper().Equals("HEAD") && context.HttpContext.Response.Body != null)
             {
-                context.HttpContext.Response.Body = Stream;
+                context.HttpContext.Response.Body.Dispose();
+                context.HttpContext.Response.Body = null;
             }
         }
     }

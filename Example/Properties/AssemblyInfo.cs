@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MicroServer.Example")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("MicroServer Sample Project")]
+[assembly: AssemblyDescription("Microsoft .NET Micro Framework Sample Project")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MicroServer.Example")]
+[assembly: AssemblyCompany("Microcompiler.com")]
+[assembly: AssemblyProduct("MicroServer for Micro Framework")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

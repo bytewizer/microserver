@@ -40,7 +40,7 @@ namespace MicroServer.Net.Sockets
         ///     You can use port <c>0</c> in <see cref="LocalPort" /> to let the OS assign a port. This method will then give you the
         ///     assigned port.
         /// </remarks>
-        public int LocalPort
+        public int ActivePort
         {
             get
             {

@@ -58,6 +58,13 @@ namespace MicroServer.Net.Http
         }
 
         /// <summary>
+        ///     Gets port that the server is listening on.
+        /// </summary>
+        public int ActivePort
+        {
+            get { return _listener.ActivePort; }
+        }
+        /// <summary>
         /// Gets current server.
         /// </summary>
         /// <remarks>
@@ -89,7 +96,7 @@ namespace MicroServer.Net.Http
         #region Constructors / Deconstructors
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="HttpServer" /> class.
+        ///     Initializes a new instance of the <see cref="HttpService" /> class.
         /// </summary>
         public HttpService(IModuleManager moduleManager)
         {

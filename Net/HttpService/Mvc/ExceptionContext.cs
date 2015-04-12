@@ -1,5 +1,7 @@
 using System;
 
+using MicroServer.Net.Http.Mvc.ActionResults;
+
 namespace MicroServer.Net.Http.Mvc
 {
     public class ExceptionContext

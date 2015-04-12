@@ -32,13 +32,12 @@
   <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <ItemGroup>
     <Compile Include="FileService\DirectoryInformation.cs" />
-    <Compile Include="FileService\FileDisposition.cs" />
     <Compile Include="IServiceResolver.cs" />
     <Compile Include="Mvc\ActionResults\ContentResult.cs" />
-    <Compile Include="Mvc\ActionResults\ActionResult.cs" />
-    <Compile Include="Mvc\ActionResults\TokenResult.cs" />
+    <Compile Include="Mvc\ActionResult.cs" />
     <Compile Include="Mvc\ActionResults\EmptyResult.cs" />
-    <Compile Include="Mvc\ActionResults\HttpStatusCodeResult.cs" />
+    <Compile Include="Mvc\HttpStatusCodeResult.cs" />
+    <Compile Include="Mvc\IActionResult.cs" />
     <Compile Include="Mvc\ActionResults\JsonResult.cs" />
     <Compile Include="Mvc\ActionResults\RedirectResult.cs" />
     <Compile Include="Mvc\ActionResults\FileResult.cs" />
@@ -91,11 +90,11 @@
     <Compile Include="Mvc\Binders %28furture%29\IModelBinderContext.cs" />
     <Compile Include="Mvc\Binders %28furture%29\IValueProvider.cs" />
     <Compile Include="Mvc\Binders %28furture%29\RequestValueProvider.cs" />
-    <Compile Include="Mvc\Views %28future%29\IViewEngine.cs" />
-    <Compile Include="Mvc\Views %28future%29\ViewContext.cs" />
-    <Compile Include="Mvc\Views %28future%29\ViewEngineContext.cs" />
-    <Compile Include="Mvc\Views %28future%29\ViewNotFoundException.cs" />
-    <Compile Include="Mvc\Views %28future%29\ViewService.cs" />
+    <Compile Include="Mvc\Views\IViewData.cs" />
+    <Compile Include="Mvc\ActionResults\ViewResult .cs" />
+    <Compile Include="Mvc\Views\TokenEngine.cs" />
+    <Compile Include="Mvc\ViewData.cs" />
+    <Compile Include="Mvc\Views\ViewDataCollection.cs" />
     <Compile Include="Routing\MappedRoute.cs" />
     <Compile Include="Routing\HttpApplication.cs" />
     <Compile Include="Routing\MatchResult.cs" />

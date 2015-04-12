@@ -148,7 +148,6 @@ namespace MicroServer.Net.Sockets
         /// </summary>
         ~SocketChannel()
         {
-            Logger.WriteDebug("Hit Dispose");
             this.Dispose(false);
         }
 
@@ -156,9 +155,7 @@ namespace MicroServer.Net.Sockets
         /// Handles object cleanup.
         /// </summary>
         public void Dispose()
-        {
-            Logger.WriteDebug("Hit Dispose");
-            
+        {          
             Dispose(true);
             GC.SuppressFinalize(this);
         }
@@ -169,7 +166,6 @@ namespace MicroServer.Net.Sockets
         /// <param name="disposing">True if called from Dispose(); false if called from GC finalization.</param>
         protected virtual void Dispose(bool disposing)
         {
-            Logger.WriteDebug("Hit Dispose");
             if (disposing)
             {
                 _socket.Close();
