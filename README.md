@@ -43,7 +43,7 @@ Requirements
 ------------
 Software: Microsoft .NET Micro Framework 4.3 or higher.  
 Hardware: In addition to the emulator console application example projects, this project was developed 
-using<a href="https://www.ghielectronics.com/"> GHI Electronics</a> Raptor and CobraII mainboards.  
+using<a href="https://www.ghielectronics.com/"> GHI Electronics</a> Raptor and Cobra II mainboards.  
 
 Nuget (coming soon)
 -------------------

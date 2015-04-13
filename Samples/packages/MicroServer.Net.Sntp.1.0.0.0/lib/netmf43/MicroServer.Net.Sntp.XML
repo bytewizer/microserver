@@ -1,0 +1,602 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MicroServer.Net.Sntp</name>
+    </assembly>
+    <members>
+        <member name="T:MicroServer.Net.Sntp.SntpMessageEventHandler">
+            <summary>
+            Subscribe to this event to receive request messages.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Sntp.SntpMessageEventArgs.#ctor(MicroServer.Net.Sockets.SocketChannel,MicroServer.Net.Sockets.SocketBuffer)">
+            <summary>
+                Initializes a new instance of the <see cref="T:MicroServer.Net.Sntp.SntpMessageEventArgs"/> class.
+            </summary>
+            <param name="channel">Socket channel request is recived on.</param>
+            <param name="data">Raw data received from socket.</param>
+        </member>
+        <member name="P:MicroServer.Net.Sntp.SntpMessageEventArgs.Channel">
+            <summary>
+                Channel for the connected client.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Sntp.SntpMessageEventArgs.ChannelBuffer">
+            <summary>
+                Buffer for the connected client.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Sntp.SntpMessageEventArgs.RequestMessage">
+            <summary>
+                Requested message for the connected client.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Sntp.SntpMessageEventArgs.ResponseMessage">
+            <summary>
+                Response message for the connected client.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Sntp.TimeChangedEventHandler">
+            <summary>
+            Subscribe to this event to receive the time acquired by the sntp requests.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Sntp.TimeChangedEventArgs">
+            <summary>
+                Used by <see cref="!:TimeChanged.OnTimeChanged"/>.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Sntp.TimeChangedEventArgs.#ctor(MicroServer.Net.Sntp.SntpMessage)">
+            <summary>
+                Initializes a new instance of the <see cref="T:MicroServer.Net.Sntp.TimeChangedEventArgs"/> class.
+            </summary>
+            <param name="message">Response Message.</param>
+        </member>
+        <member name="T:MicroServer.Net.Sntp.Constants">
+            <summary>
+            Contains global variables for project.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Sntp.SntpService">
+            <summary>
+            A class that serves SNTP packet requests from remote clients.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Sntp.SntpService.Start">
+            <summary>
+             Starts the service listener if in a stopped state.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Sntp.SntpService.Stop">
+            <summary>
+             Stops the service listener if in started state.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Sntp.SntpService.OnClientConnect(System.Object,MicroServer.Net.Sockets.ClientConnectedEventArgs)">
+            <summary>
+             Remote client connects and makes a request.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Sntp.SntpService.OnClientDisconnect(System.Object,MicroServer.Net.Sockets.ClientDisconnectedEventArgs)">
+            <summary>
+             Remote client is disconnected.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Sntp.SntpService.ProcessRequest(System.Object)">
+            <summary>
+             Process request and send reply back to rempte client.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Sntp.SntpService.SendReply(MicroServer.Net.Sntp.SntpMessageEventArgs)">
+            <summary>
+            A message is processsed and reply is sent back. 
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Sntp.SntpService.SendRequest(MicroServer.Net.Sntp.SntpMessageEventArgs)">
+            <summary>
+            A message was recived then forwared onto a remote time server.  
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Sntp.SntpService.InterfaceAddress">
+            <summary>
+            Interface IP address.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Sntp.SntpService.UseLocalTimeSource">
+            <summary>
+            Use local hardware as time source.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Sntp.SntpService.PrimaryServer">
+            <summary>
+            Primary SNTP Server address.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Sntp.SntpService.AlternateServer">
+            <summary>
+             Alternate SNTP server is used if communication with primary server failed.
+            </summary>
+        </member>
+        <member name="E:MicroServer.Net.Sntp.SntpService.OnSntpMessageReceived">
+            <summary>
+                A sntp message was recived and processed.
+            </summary>
+        </member>
+        <member name="E:MicroServer.Net.Sntp.SntpService.OnSntpMessageSent">
+            <summary>
+                A sntp message was recived and processed and sent to an sntp address.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Sntp.LeapIndicator">
+            <summary>
+            Warns of an impending leap second to be inserted/deleted in the last minute of the current day.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.LeapIndicator.NoWarning">
+            <summary>
+            No warning.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.LeapIndicator.LastMinute61Seconds">
+            <summary>
+            Last minute has 61 seconds.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.LeapIndicator.LastMinute59Seconds">
+            <summary>
+            Last minute has 59 seconds.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.LeapIndicator.Alarm">
+            <summary>
+            Alarm condition (clock not synchronized).
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Sntp.LeapIndicatorString">
+            <summary>
+            A class that gets the name of the leap Indicator.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Sntp.Mode">
+            <summary>
+            Indicator of the mode of operation.
+            In unicast and anycast modes, the client sets this field to 3 (client) in the request
+            and the server sets it to 4 (server) in the reply.
+            In multicast mode, the server sets this field to 5 (broadcast).
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.Mode.Reserved">
+            <summary>
+            Reserved.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.Mode.SymmetricActive">
+            <summary>
+            Symmetric active.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.Mode.SymmetricPassive">
+            <summary>
+            Symmetric passive.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.Mode.Client">
+            <summary>
+            Client.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.Mode.Server">
+            <summary>
+            Server.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.Mode.Broadcast">
+            <summary>
+            Broadcast.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.Mode.ReservedNTPControl">
+            <summary>
+            Reserved for NTP control message.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.Mode.ReservedPrivate">
+            <summary>
+            Reserved for private use.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Sntp.ModeString">
+            <summary>
+            A class that gets the name of the mode.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Sntp.ReferenceIdentifier">
+            <summary>
+            Identifier of the reference source.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.ReferenceIdentifier.LOCL">
+            <summary>
+            Uncalibrated local clock used as a primary reference for a subnet without external means of synchronization.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.ReferenceIdentifier.PPS">
+            <summary>
+            Atomic clock or other pulse-per-second source individually calibrated to national standards.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.ReferenceIdentifier.ACTS">
+            <summary>
+            NIST dialup modem service.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.ReferenceIdentifier.USNO">
+            <summary>
+            U.S. Naval Observatory modem service.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.ReferenceIdentifier.PTB">
+            <summary>
+            PTB (Germany) modem service.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.ReferenceIdentifier.TDF">
+            <summary>
+            Allouis (France) Radio 164 kHz.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.ReferenceIdentifier.DCF">
+            <summary>
+            Mainflingen (Germany) Radio 77.5 kHz.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.ReferenceIdentifier.MSF">
+            <summary>
+            Rugby (UK) Radio 60 kHz.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.ReferenceIdentifier.WWV">
+            <summary>
+            Ft. Collins (US) Radio 2.5, 5, 10, 15, 20 MHz.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.ReferenceIdentifier.WWVB">
+            <summary>
+            Boulder (US) Radio 60 kHz.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.ReferenceIdentifier.WWVH">
+            <summary>
+            Kaui Hawaii (US) Radio 2.5, 5, 10, 15 MHz.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.ReferenceIdentifier.CHU">
+            <summary>
+            Ottawa (Canada) Radio 3330, 7335, 14670 kHz.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.ReferenceIdentifier.LORC">
+            <summary>
+            LORAN-C radionavigation system.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.ReferenceIdentifier.OMEG">
+            <summary>
+            OMEGA radionavigation system.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.ReferenceIdentifier.GPS">
+            <summary>
+            Global Positioning Service.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.ReferenceIdentifier.GOES">
+            <summary>
+            Geostationary Orbit Environment Satellite.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Sntp.ReferenceIdentifierString">
+            <summary>
+            A class that gets the name or ip of the leap Indicator.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Sntp.SntpMessage">
+            <summary>
+            A class that represents a SNTP packet.
+            See http://www.faqs.org/rfcs/rfc2030.html for full details of protocol.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.SntpMessage.TicksPerSecond">
+            <summary>
+            Represents the number of ticks in 1 second.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.SntpMessage.Epoch">
+            <summary>
+            Represents the EPOCH date in DateTime format.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Sntp.SntpMessage.#ctor(System.Byte[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Sntp.SntpMessage"/> class.
+            /// <param name="data">Array containing the data to decode.</param>
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Sntp.SntpMessage.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Sntp.SntpMessage"/> class.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Sntp.SntpMessage.DateTimeToTimestamp(System.DateTime,System.Byte[])">
+            <summary>
+            Converts a DateTime into a byte array and stores it message.
+            </summary>
+            <param name="dateTime">The DateTime to convert.</param>
+            <param name="data">The data at which to convert.</param>
+            <returns>A double that represents the value in seconds</returns>
+        </member>
+        <member name="M:MicroServer.Net.Sntp.SntpMessage.SecondsStampToSeconds(System.Byte[])">
+            <summary>
+            Converts a 32bit seconds (16 integer part, 16 fractional part) into a double that represents the value in seconds.
+            </summary>
+            <param name="data">The data at which to convert.</param>
+            <returns>A double that represents the value in seconds</returns>
+        </member>
+        <member name="M:MicroServer.Net.Sntp.SntpMessage.TimestampToDateTime(System.Byte[])">
+            <summary>
+            Converts a byte array starting at the position specified into a DateTime.
+            </summary>
+            <param name="data">The data at which to convert.</param>
+            <returns>A DateTime converted from a byte array starting at the position specified.</returns>
+        </member>
+        <member name="M:MicroServer.Net.Sntp.SntpMessage.ReferenceToIPAddress(System.Byte[])">
+            <summary>
+            Converts a byte array into a IPAddress.
+            </summary>
+            <param name="data">The data at which to convert.</param>
+            <returns>A IPAddress converted from a byte array.</returns>
+        </member>
+        <member name="M:MicroServer.Net.Sntp.SntpMessage.IPAddressToReference(System.Net.IPAddress)">
+            <summary>
+            Converts a IPAddress into a byte array .
+            </summary>
+            <param name="data">The data at which to convert.</param>
+            <returns>A IPAddress converted from a byte array.</returns>
+        </member>
+        <member name="M:MicroServer.Net.Sntp.SntpMessage.ToArray">
+            <summary>
+            Converts sntp message into a byte array.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Sntp.SntpMessage.ToString">
+            <summary>
+            Converts sntp message into string object.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Sntp.SntpMessage.Timestamp">
+            <summary>
+            Gets timestamp when cached
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Sntp.SntpMessage.LeapIndicator">
+            <summary>
+            Gets a warning of an impending leap second to be inserted/deleted in the last minute of the current day.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Sntp.SntpMessage.VersionNumber">
+            <summary>
+            Gets the NTP/SNTP version number.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Sntp.SntpMessage.Mode">
+            <summary>
+            Gets the operating mode of whatever last altered the packet.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Sntp.SntpMessage.Stratum">
+            <summary>
+            Gets the stratum level of the clock.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Sntp.SntpMessage.PollInterval">
+            <summary>
+            Gets the maximum interval between successive messages in seconds.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Sntp.SntpMessage.Precision">
+            <summary>
+            Gets the precision of the clock in seconds.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Sntp.SntpMessage.RootDelay">
+            <summary>
+            Gets the total delay to the primary reference source in seconds.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Sntp.SntpMessage.RootDispersion">
+            <summary>
+            Gets the nominal error relative to the primary reference source in seconds.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Sntp.SntpMessage.ReferenceIdentifier">
+            <summary>
+            Gets the identifier of the reference source.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Sntp.SntpMessage.ReferenceIPAddress">
+            <summary>
+            Gets the ip address of the reference source when present.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Sntp.SntpMessage.ReferenceDateTime">
+            <summary>
+            Gets the DateTime (UTC) at which the clock was last set or corrected.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Sntp.SntpMessage.OriginateDateTime">
+            <summary>
+            Gets the DateTime (UTC) at which the request departed the client for the server.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Sntp.SntpMessage.ReceiveDateTime">
+            <summary>
+            Gets the DateTime (UTC) at which the request arrived at the server.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Sntp.SntpMessage.TransmitDateTime">
+            <summary>
+            Gets the DateTime (UTC) at which the reply departed the server for the client.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Sntp.SntpMessage.DestinationDateTime">
+            <summary>
+            Gets the DateTime (UTC) when the data arrived from the server.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Sntp.SntpMessage.LocalDateTime">
+            <summary>
+            Gets the local DateTime (UTC) form the device.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Sntp.SntpMessage.LocalClockOffset">
+            <summary>
+            Gets the difference in seconds between the local time and the time retrieved from the server.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Sntp.SntpMessage.RoundTripDelay">
+            <summary>
+            Gets the total roundtrip delay in seconds.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Sntp.Stratum">
+            <summary>
+            Indicator of the stratum level of a server clock.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.Stratum.Unspecified">
+            <summary>
+            Unspecified or unavailable.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.Stratum.Primary">
+            <summary>
+            Primary reference (e.g. radio clock).
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.Stratum.Secondary">
+            <summary>
+            Secondary reference (via NTP or SNTP).
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.Stratum.Secondary3">
+            <summary>
+            Secondary reference (via NTP or SNTP).
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.Stratum.Secondary4">
+            <summary>
+            Secondary reference (via NTP or SNTP).
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.Stratum.Secondary5">
+            <summary>
+            Secondary reference (via NTP or SNTP).
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.Stratum.Secondary6">
+            <summary>
+            Secondary reference (via NTP or SNTP).
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.Stratum.Secondary7">
+            <summary>
+            Secondary reference (via NTP or SNTP).
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.Stratum.Secondary8">
+            <summary>
+            Secondary reference (via NTP or SNTP).
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.Stratum.Secondary9">
+            <summary>
+            Secondary reference (via NTP or SNTP).
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.Stratum.Secondary10">
+            <summary>
+            Secondary reference (via NTP or SNTP).
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.Stratum.Secondary11">
+            <summary>
+            Secondary reference (via NTP or SNTP).
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.Stratum.Secondary12">
+            <summary>
+            Secondary reference (via NTP or SNTP).
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.Stratum.Secondary13">
+            <summary>
+            Secondary reference (via NTP or SNTP).
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.Stratum.Secondary14">
+            <summary>
+            Secondary reference (via NTP or SNTP).
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.Stratum.Secondary15">
+            <summary>
+            Secondary reference (via NTP or SNTP).
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Sntp.StratumString">
+            <summary>
+            A class that gets the name of the stratum.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Sntp.VersionNumber">
+            <summary>
+            Indicator of the NTP/SNTP version number.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.VersionNumber.Version3">
+            <summary>
+            Version 3 (IPv4 only).
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Sntp.VersionNumber.Version4">
+            <summary>
+            Version 4 (IPv4, IPv6 and OSI).
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Sntp.VersionNumberString">
+            <summary>
+            A class that gets the name of the version number.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Sntp.SntpClient.ReceiveTimeout">
+            <summary>
+              Gets or sets the timeout for receiving data
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Sntp.SntpClient.SendTimeout">
+            <summary>
+              Gets or sets the timeout for sending data
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Sntp.SntpClient.PrimaryServer">
+            <summary>
+            Primary SNTP Server address.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Sntp.SntpClient.AlternateServer">
+            <summary>
+             Alternate SNTP server is used if communication with primary server failed.
+            </summary>
+        </member>
+    </members>
+</doc>

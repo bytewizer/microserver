@@ -1,0 +1,3692 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MicroServer.Net.Http</name>
+    </assembly>
+    <members>
+        <member name="T:MicroServer.Net.Http.Files.DirectoryInformation">
+            <summary>
+            Small DTO for Directories
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Files.DirectoryInformation.Name">
+            <summary>
+            Gets directory name
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Files.DirectoryInformation.LastModifiedAtUtc">
+            <summary>
+            Gets when the directory was modified
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Files.DirectoryInformation.Parent">
+            <summary>
+            Gets when the directory was modified
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Files.DirectoryInformation.Root">
+            <summary>
+            Gets when the directory was modified
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.IServiceResolver">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Mvc.ActionResults.ContentResult">
+            <summary>
+            Send binary content to the client. 
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.ActionResults.ContentResult.#ctor(System.IO.Stream,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Mvc.ActionResults.ContentResult"/> class.
+            </summary>
+            <param name="content">The body content.</param>
+            <param name="contentType">The content type header.</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.ActionResults.ContentResult.#ctor(System.Byte[],System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Mvc.ActionResults.ContentResult"/> class.
+            </summary>
+            <param name="buffer">The body content.</param>
+            <param name="contentType">The content type header.</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.ActionResults.ContentResult.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Mvc.ActionResults.ContentResult"/> class.
+            </summary>
+            <param name="content">The body content.</param>
+            <param name="contentType">The content type header.</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.ActionResults.ContentResult.ExecuteResult(MicroServer.Net.Http.Mvc.IControllerContext)">
+            <summary>
+            Execute the response result.
+            </summary>
+            <param name="context">HTTP controller context</param>
+            <remarks>Invoked by <see cref="T:MicroServer.Net.Http.Mvc.Controllers.ControllerFactory"/> to process the response.</remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.ActionResults.ContentResult.Stream">
+            <summary>
+            Gets stream to send
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.ActionResults.ContentResult.ContentType">
+            <summary>
+            Gets or sets content type.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Mvc.ActionResults.EmptyResult">
+            <summary>
+            Sends a result that doesn't do anything (like a controller action returning null) to the client.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.ActionResults.EmptyResult.ExecuteResult(MicroServer.Net.Http.Mvc.IControllerContext)">
+            <summary>
+            Execute the response result.
+            </summary>
+            <param name="context">HTTP controller context</param>
+            <remarks>Invoked by <see cref="T:MicroServer.Net.Http.Mvc.Controllers.ControllerFactory"/> to process the response.</remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.ActionResults.EmptyResult.Instance">
+            <summary>
+            Gets singleton instance
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Mvc.HttpStatusCodeResult">
+            <summary>
+            Sends an Http error status to the client.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.HttpStatusCodeResult.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Mvc.HttpStatusCodeResult"/> class.
+            </summary>
+            <param name="statusCode">The status code.</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.HttpStatusCodeResult.#ctor(System.Net.HttpStatusCode)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Mvc.HttpStatusCodeResult"/> class.
+            </summary>
+            <param name="statusCode">The status code.</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.HttpStatusCodeResult.#ctor(System.Net.HttpStatusCode,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Mvc.HttpStatusCodeResult"/> class.
+            </summary>
+            <param name="statusCode">The status code.</param>
+            <param name="statusDescription">The status description/reason.</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.HttpStatusCodeResult.#ctor(System.Int32,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Mvc.HttpStatusCodeResult"/> class.
+            </summary>
+            <param name="statusCode">The status code.</param>
+            <param name="statusDescription">The status description/reason.</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.HttpStatusCodeResult.ExecuteResult(MicroServer.Net.Http.Mvc.IControllerContext)">
+            <summary>
+            Execute the response result.
+            </summary>
+            <param name="context">HTTP controller context</param>
+            <remarks>Invoked by <see cref="T:MicroServer.Net.Http.Mvc.Controllers.ControllerFactory"/> to process the response.</remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.HttpStatusCodeResult.StatusCode">
+            <summary>
+            Gets Http status code.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.HttpStatusCodeResult.StatusDescription">
+            <summary>
+            Gets Http status description.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Mvc.ActionResults.JsonResult">
+            <summary>
+            Send JSON formated content to the client. 
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.ActionResults.JsonResult.#ctor(MicroServer.Serializers.Json.JObject)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Mvc.ActionResults.JsonResult"/> class.
+            </summary>
+            <param name="jdom">The JSON object body content.</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.ActionResults.JsonResult.#ctor(MicroServer.Serializers.Json.JObject,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Mvc.ActionResults.JsonResult"/> class.
+            </summary>
+            <param name="jdom">The JSON object body content.</param>
+            <param name="contentType">The content type header.</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.ActionResults.JsonResult.ExecuteResult(MicroServer.Net.Http.Mvc.IControllerContext)">
+            <summary>
+            Execute the response result.
+            </summary>
+            <param name="context">HTTP controller context</param>
+            <remarks>Invoked by <see cref="T:MicroServer.Net.Http.Mvc.Controllers.ControllerFactory"/> to process the response.</remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.ActionResults.JsonResult.ContentType">
+            <summary>
+            Gets content type.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.ActionResults.JsonResult.Data">
+            <summary>
+            Gets JSON data object.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Mvc.ActionResults.RedirectResult">
+            <summary>
+            Redirect to another url or controller/action.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.ActionResults.RedirectResult.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Mvc.ActionResults.RedirectResult"/> class.
+            </summary>
+            <param name="url">Uri to redirect to.</param>
+            <remarks>
+            Include "http(s)://" in Uri to redirect to another site.
+            </remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.ActionResults.RedirectResult.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Mvc.ActionResults.RedirectResult"/> class.
+            </summary>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.ActionResults.RedirectResult.ExecuteResult(MicroServer.Net.Http.Mvc.IControllerContext)">
+            <summary>
+            Execute the response result.
+            </summary>
+            <param name="context">HTTP controller context</param>
+            <remarks>Invoked by <see cref="T:MicroServer.Net.Http.Mvc.Controllers.ControllerFactory"/> to process the response.</remarks>
+        </member>
+        <member name="T:MicroServer.Net.Http.Mvc.ActionResults.FileResult">
+            <summary>
+            Sends a binary file to the client.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.ActionResults.FileResult.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Mvc.ActionResults.FileResult"/> class.
+            </summary>
+            <param name="fileNamePath">Path to serve files from.</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.ActionResults.FileResult.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Mvc.ActionResults.FileResult"/> class.
+            </summary>
+            <param name="rootUri">Serve all files which are located under this URI</param>
+            <param name="rootFilePath">Path to serve files from.</param>
+            <param name="fileNamePath">Path and file name used to locate files</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.ActionResults.FileResult.#ctor(MicroServer.Net.Http.Files.IFileService,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Mvc.ActionResults.FileResult"/> class.
+            </summary>
+            <param name="fileService">Used to locate file.</param>
+            <param name="context">Context used to locate and return files</param>
+            <param name="fullFilePath">Full path used to locate files</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.ActionResults.FileResult.ExecuteResult(MicroServer.Net.Http.Mvc.IControllerContext)">
+            <summary>
+            Execute the response result.
+            </summary>
+            <param name="context">HTTP controller context</param>
+            <remarks>Invoked by <see cref="T:MicroServer.Net.Http.Mvc.Controllers.ControllerFactory"/> to process the response.</remarks>
+        </member>
+        <member name="T:MicroServer.Net.Http.AsyncModuleHandler">
+            <summary>
+            <see cref="!:ITcpChannel"/> have sent or received a message.
+            </summary>
+            <param name="channel">Channel that did the work</param>
+            <param name="message">Message. depends on which encoder/decoder was used.</param>
+            <remarks>We uses delegates instead of regular events to make sure that there are only one subscriber and that it's configured once.</remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.ActionExecutedContext.HttpContext">
+            <summary>
+            Gets the request context.
+            </summary>
+            <value>The request context.</value>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.ActionExecutingContext.HttpContext">
+            <summary>
+            Gets the request context.
+            </summary>
+            <value>The request context.</value>
+        </member>
+        <member name="T:MicroServer.Net.Http.Binders.ClassBinder">
+            <summary>
+            Can bind classes which are not abstract or generic.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Binders.IModelBinder">
+            <summary>
+            Used to bind the string values (in the request) to a model of some sorts.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Binders.IModelBinder.CanBind(MicroServer.Net.Http.Binders.IModelBinderContext)">
+            <summary>
+            Determines whether this instance can bind the specified model.
+            </summary>
+            <param name="context">Context infromation.</param>
+            <returns>
+              <c>true</c> if this instance can handle the model; otherwise <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:MicroServer.Net.Http.Binders.IModelBinder.Bind(MicroServer.Net.Http.Binders.IModelBinderContext)">
+            <summary>
+            Bind the model
+            </summary>
+            <param name="context">Context information</param>
+            <returns>An object of the specified type (<seealso cref="!:IModelBinderContext.ModelType)"/></returns>
+        </member>
+        <member name="M:MicroServer.Net.Http.Binders.ClassBinder.CanBind(MicroServer.Net.Http.Binders.IModelBinderContext)">
+            <summary>
+            Determines whether this instance can bind the specified model.
+            </summary>
+            <param name="context">Context infromation.</param>
+            <returns>
+              <c>true</c> if this instance can handle the model; otherwise <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:MicroServer.Net.Http.Binders.ClassBinder.Bind(MicroServer.Net.Http.Binders.IModelBinderContext)">
+            <summary>
+            Bind the model
+            </summary>
+            <param name="context">Context information</param>
+            <returns>
+            An object of the specified type (<seealso cref="!:IModelBinderContext.ModelType)"/>
+            </returns>
+        </member>
+        <member name="T:MicroServer.Net.Http.Binders.ModelBinderContext">
+            <summary>
+            Default implementation
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Binders.IModelBinderContext">
+            <summary>
+            Context information for <seealso cref="T:MicroServer.Net.Http.Binders.IModelBinder"/>.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Binders.IModelBinderContext.Execute(System.Type,System.String,System.String)">
+            <summary>
+            Execute another binder
+            </summary>
+            <param name="modelType">Type that we want to get</param>
+            <param name="prefix">Prefix (if this is a nested get)</param>
+            <param name="modelName">Property/argument name</param>
+            <returns>Created model</returns>
+        </member>
+        <member name="P:MicroServer.Net.Http.Binders.IModelBinderContext.Prefix">
+            <summary>
+            Gets or sets prefix for this model in the list
+            </summary>
+            <remarks>Prefixes are used to be albe to load items which are deeper down in the graph.</remarks>
+            <example>User[0].</example>
+        </member>
+        <member name="P:MicroServer.Net.Http.Binders.IModelBinderContext.ModelType">
+            <summary>
+            Gets type of model which we are currently mapping (i.e. view model type)
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Binders.IModelBinderContext.ModelName">
+            <summary>
+            Gets name of the model. Corresponds to the property or argument name
+            </summary>
+            <remarks>Empty =  root, otherwise the property to load.</remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.Binders.IModelBinderContext.ValueProvider">
+            <summary>
+            Gets provider used to load values (for instance from HTTP forms)
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Binders.ModelBinderContext.#ctor(System.Type,System.String,System.String,MicroServer.Net.Http.Binders.IValueProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Binders.ModelBinderContext"/> class.
+            </summary>
+            <param name="modelType">Type of the model (view model type).</param>
+            <param name="modelName">Name of the model (i.e. property or argument name).</param>
+            <param name="prefix">The prefix (if this is a nested field like "User.FirstName", prefix = "User.").</param>
+            <param name="valueProvider">The value provider.</param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:MicroServer.Net.Http.Binders.ModelBinderContext.Execute(System.Type,System.String,System.String)">
+            <summary>
+            Execute a child binding
+            </summary>
+            <param name="modelType">Child model type</param>
+            <param name="prefix"></param>
+            <param name="modelName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MicroServer.Net.Http.Binders.ModelBinderContext.CreateForChild(System.Type,System.String,System.String)">
+            <summary>
+            Create a scope for a child model
+            </summary>
+            <param name="type">The type.</param>
+            <param name="prefix">The prefix.</param>
+            <param name="modelName">Name of the model.</param>
+            <returns></returns>
+        </member>
+        <member name="P:MicroServer.Net.Http.Binders.ModelBinderContext.Prefix">
+            <summary>
+            Gets or sets prefix for this model in the list
+            </summary>
+            <remarks>Prefixes are used to be albe to load items which are deeper down in the graph.</remarks>
+            <example>User[0].</example>
+        </member>
+        <member name="P:MicroServer.Net.Http.Binders.ModelBinderContext.ModelType">
+            <summary>
+            Gets type of model which we are currently mapping (i.e. view model type)
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Binders.ModelBinderContext.ModelName">
+            <summary>
+            Gets name of the model. Corresponds to the property name
+            </summary>
+            <remarks>
+            Empty =  root, otherwise the property to load.
+            </remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.Binders.ModelBinderContext.ValueProvider">
+            <summary>
+            Gets provider used to load values (for instance from HTTP forms)
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Binders.ModelBinderContext.RootBinder">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Binders.ModelBindingException.Message">
+            <summary>
+            Gets a message that describes the current exception.
+            </summary>
+            <returns>The error message that explains the reason for the exception, or an empty string("").</returns>
+        </member>
+        <member name="M:MicroServer.Net.Http.Binders.ModelMapper.Clear">
+            <summary>
+            Remove all binders
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Mvc.ControllerContext">
+            <summary>
+            Context used in controllers.
+            </summary>
+            <remarks>A context is used in the controller instead of having to set a lot
+            of controller properties each time a new request is about to be processed.
+            In this way it's up to the controller creator do decide with which parameters
+            that should be exposed to the developer.</remarks>
+        </member>
+        <member name="T:MicroServer.Net.Http.Mvc.IControllerContext">
+            <summary>
+            Context used during action invocation and rendering.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.IControllerContext.HttpContext">
+            <summary>
+            Gets current request context
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.IControllerContext.Uri">
+            <summary>
+            Gets or sets requested URI.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.IControllerContext.Controller">
+            <summary>
+            Gets or sets executing controller
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.IControllerContext.ControllerUri">
+            <summary>
+            Gets or sets controller uri.
+            </summary>
+            <remarks>
+            A controller doesn't necessarily have to use the "/controllerName/" uri,
+            but can exist in sub folders like "/area/area2/controllerName". This feature
+            is controlled by the <see cref="!:ControllerUriAttribute"/>.
+            </remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.IControllerContext.ControllerName">
+            <summary>
+            Gets name of controller
+            </summary>
+            <remarks>
+            Might include slashes if the controller is a nested controller.
+            </remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.IControllerContext.ActionName">
+            <summary>
+            Gets or sets action name.
+            </summary>
+            <remarks>
+            <para>
+            Will be filled in by controller director if empty (i.e. default action).
+            </para>
+            <para>
+            Controller can change it if any other action should be rendered.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.IControllerContext.ViewData">
+            <summary>
+            View data used when rendering a view.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.IControllerContext.Item(System.String)">
+            <summary>
+            Get a parameter.
+            </summary>
+            <param name="name">Parameter name</param>
+            <returns>Parameter value if found; otherwise <c>null</c>.</returns>
+            <remarks>
+            Wrapper around query string and form values.
+            </remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.ControllerContext.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Mvc.ControllerContext"/> class.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.ControllerContext.#ctor(MicroServer.Net.Http.IHttpContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Mvc.ControllerContext"/> class.
+            </summary>
+            <param name="context">Request context.</param>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.ControllerContext.HttpContext">
+            <summary>
+            Gets the request context.
+            </summary>
+            <value>The request context.</value>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.ControllerContext.Uri">
+            <summary>
+            Gets or sets requested URI.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.ControllerContext.UriRewrite">
+            <summary>
+            Gets or sets requested URI rewriten by routing defaults.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.ControllerContext.Controller">
+            <summary>
+            Gets or sets executing controller
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.ControllerContext.ControllerUri">
+            <summary>
+            Gets or sets controller uri.
+            </summary>
+            <value></value>
+            <remarks>
+            A controller doesn't necessarily have to use the "/controllerName/" uri,
+            but can exist in sub folders like "/area/area2/controllerName". This feature
+            is controlled by the <see cref="!:ControllerUriAttribute"/>.
+            </remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.ControllerContext.ControllerName">
+            <summary>
+            Gets name of controller
+            </summary>
+            <remarks>
+            Might include slashes if the controller is a nested controller.
+            </remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.ControllerContext.ActionName">
+            <summary>
+            Gets or sets action name.
+            </summary>
+            <remarks>
+            Will be filled in by controller director if empty (i.e. default action).
+            </remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.ControllerContext.ViewData">
+            <summary>
+            View data used when rendering a view.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.ControllerContext.Item(System.String)">
+            <summary>
+            Get a parameter.
+            </summary>
+            <param name="name">Parameter name</param>
+            <returns>Parameter value if found; otherwise <c>null</c>.</returns>
+            <remarks>
+            Wrapper around query string and form values.
+            </remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.Controllers.ControllerFactory.Load">
+            <summary>
+            Loads Uri mappings for all controllers and their actions
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Mvc.Controllers.ControllerMapping">
+            <summary>
+            Contains uri to action method mappings for a controller
+            </summary>
+            <remarks>
+            Mappings are made on action name in combination with argument count. This means that
+            the same action can have multiple methods as long as they got different number of arguments.
+            </remarks>
+        </member>
+        <member name="F:MicroServer.Net.Http.Mvc.Controllers.ControllerMapping._actions">
+            <summary>
+            Key is "action".
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.Controllers.ControllerMapping.#ctor(System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Mvc.Controllers.ControllerMapping"/> class.
+            </summary>
+            <param name="controllerType">Type of the controller.</param>
+            <param name="uri">Uri to controller.</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.Controllers.ControllerMapping.Invoke(MicroServer.Net.Http.Mvc.Controller,System.String,System.Object[])">
+            <summary>
+            Invoke an action method.
+            </summary>
+            <param name="instance">The instance.</param>
+            <param name="action">The action.</param>
+            <param name="arguments">Action arguments.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.Controllers.ControllerMapping.Add(System.Reflection.MethodInfo)">
+            <summary>
+            Add a action method.
+            </summary>
+            <param name="method">The method.</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.Controllers.ControllerMapping.FindAction(System.String)">
+            <summary>
+            Find a action method.
+            </summary>
+            <param name="actionName">The action name.</param>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.Controllers.ControllerMapping.Uri">
+            <summary>
+            Gets or sets URI to reach this route.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.Controllers.ControllerMapping.ControllerType">
+            <summary>
+            Gets or sets type of controller to invoke
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Modules.IWorkerModule">
+            <summary>
+            A HTTP module which do something useful with the request.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Modules.IHttpModule">
+            <summary>
+            A http module
+            </summary>
+            <remarks>
+            Each method will be invoked in all methods before continuing. i.e. the <c>BegingRequest</c> method will be invoked in
+            all modules before the next method is invoked (which typically is <c>RouteRequest</c>).
+            <para>Abort
+            means only that the current method will be aborted for the modules. (EndRequest will still be invoked if you trigger
+            abort in any of the methods</para></remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Modules.IHttpModule.BeginRequest(MicroServer.Net.Http.IHttpContext)">
+            <summary>
+            Invoked before anything else
+            </summary>
+            <param name="context">HTTP context</param>
+            <remarks>
+            <para>The first method that is exeucted in the pipeline.</para>
+            Try to avoid throwing exceptions if you can. Let all modules have a chance to handle this method. You may break the processing in any other method than the Begin/EndRequest methods.
+            <para>If you are going to handle the request, implement <see cref="T:MicroServer.Net.Http.Modules.IWorkerModule"/> and do it in the <see cref="!:IWorkerModule.HandleRequest"/> method.</para>
+            </remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Modules.IHttpModule.EndRequest(MicroServer.Net.Http.IHttpContext)">
+            <summary>
+            End request is typically used for post processing. The response should already contain everything required.
+            </summary>
+            <param name="context">HTTP context</param>
+            <remarks>
+            <para>The last method that is executed in the pipeline.</para>
+            Try to avoid throwing exceptions if you can. Let all modules have a chance to handle this method. You may break the processing in any other method than the Begin/EndRequest methods.</remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Modules.IWorkerModule.HandleRequestAsync(MicroServer.Net.Http.IHttpContext,MicroServer.Net.Http.AsyncModuleHandler)">
+            <summary>
+            Handle the request.
+            </summary>
+            <param name="context">HTTP context</param>
+            <param name="callback">Invoked when the module has completed.</param>
+            <returns><see cref="F:MicroServer.Net.Http.Modules.ModuleResult.Stop"/> will stop all processing except <see cref="M:MicroServer.Net.Http.Modules.IHttpModule.EndRequest(MicroServer.Net.Http.IHttpContext)"/>.</returns>
+            <remarks>Invoked in turn for all modules unless you return <see cref="F:MicroServer.Net.Http.Modules.ModuleResult.Stop"/>.</remarks>
+        </member>
+        <member name="F:MicroServer.Net.Http.Mvc.Controllers.ControllerModule._controllers">
+            <summary>
+            Key is complete uri to action
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.Controllers.ControllerModule.BeginRequest(MicroServer.Net.Http.IHttpContext)">
+            <summary>
+            Invoked before anything else
+            </summary>
+            <param name="context">HTTP context</param>
+            <remarks>
+            <para>The first method that is exeucted in the pipeline.</para>
+            Try to avoid throwing exceptions if you can. Let all modules have a chance to handle this method. You may break the processing in any other method than the Begin/EndRequest methods.
+            <para>If you are going to handle the request, implement <see cref="T:MicroServer.Net.Http.Modules.IWorkerModule"/> and do it in the <see cref="!:IWorkerModule.HandleRequest"/> method.</para>
+            </remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.Controllers.ControllerModule.HandleRequestAsync(MicroServer.Net.Http.IHttpContext,MicroServer.Net.Http.AsyncModuleHandler)">
+            <summary>
+            Handle the request asynchronously.
+            </summary>
+            <param name="context">HTTP context</param>
+            <param name="callback">callback</param>
+            <returns><see cref="F:MicroServer.Net.Http.Modules.ModuleResult.Stop"/> will stop all processing except <see cref="M:MicroServer.Net.Http.Modules.IHttpModule.EndRequest(MicroServer.Net.Http.IHttpContext)"/>.</returns>
+            <remarks>Invoked in turn for all modules unless you return <see cref="F:MicroServer.Net.Http.Modules.ModuleResult.Stop"/>.</remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.Controllers.ControllerModule.HandleRequest(MicroServer.Net.Http.IHttpContext)">
+            <summary>
+            Handle the request.
+            </summary>
+            <param name="context">HTTP context</param>
+            <returns><see cref="F:MicroServer.Net.Http.Modules.ModuleResult.Stop"/> will stop all processing except <see cref="M:MicroServer.Net.Http.Modules.IHttpModule.EndRequest(MicroServer.Net.Http.IHttpContext)"/>.</returns>
+            <remarks>Invoked in turn for all modules unless you return <see cref="F:MicroServer.Net.Http.Modules.ModuleResult.Stop"/>.</remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.Controllers.ControllerModule.EndRequest(MicroServer.Net.Http.IHttpContext)">
+            <summary>
+            End request is typically used for post processing. The response should already contain everything required.
+            </summary>
+            <param name="context">HTTP context</param>
+            <remarks>
+            <para>The last method that is executed in the pipeline.</para>
+            Try to avoid throwing exceptions if you can. Let all modules have a chance to handle this method. You may break the processing in any other method than the Begin/EndRequest methods.</remarks>
+        </member>
+        <member name="T:MicroServer.Net.Http.Mvc.Controller">
+            <summary>
+            MVC controller.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.Controller.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Mvc.Controller"/> class.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.Controller.SetContext(MicroServer.Net.Http.Mvc.IControllerContext)">
+            <summary>
+            Sets controller context 
+            </summary>
+            <remarks>
+            Context contains information about the current request.
+            </remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.Controller.ActionName">
+            <summary>
+            Gets name of requested action.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.Controller.ControllerUri">
+            <summary>
+            Gets controller uri
+            </summary>
+            <remarks>
+            Can be "/controllerName/" or "/section/controllerName/" depending on the <see cref="!:ControllerUriAttribute"/>.
+            </remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.Controller.ControllerName">
+            <summary>
+            Gets or sets name of controller.
+            </summary>
+            <remarks>
+            Can be "controllerName" or "section/controllerName" depending on the <see cref="!:ControllerUriAttribute"/>.
+            </remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.Controller.Request">
+            <summary>
+            Gets HTTP request
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.Controller.Response">
+            <summary>
+            Gets HTTP response.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.Controller.Form">
+            <summary>
+            Gets form parameters
+            </summary>
+            <remarks>Form parameters</remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.Controller.Id">
+            <summary>
+            Gets or sets id
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.Controller.ViewData">
+            <summary>
+            View data used when rendering a view.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Exceptions.DecoderFailureException">
+            <summary>
+                A decoder failed to decode request/response body
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Exceptions.DecoderFailureException.#ctor(System.String)">
+            <summary>
+                Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Exceptions.DecoderFailureException"/> class.
+            </summary>
+            <param name="errorMessage">The error message.</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Exceptions.DecoderFailureException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Exceptions.DecoderFailureException"/> class.
+            </summary>
+            <param name="errorMessage">The error message.</param>
+            <param name="inner">The inner.</param>
+        </member>
+        <member name="T:MicroServer.Net.Http.Files.CompositeFileService">
+            <summary>
+            Can serve files from multiple services.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Files.IFileService">
+            <summary>
+            Serves files
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Files.IFileService.GetFile(MicroServer.Net.Http.Files.FileContext)">
+            <summary>
+            Get a file
+            </summary>
+            <param name="context">Context used to locate and return files</param>
+            <remarks><c>true</c> if the file was attached to the response; otherwise false;</remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Files.IFileService.GetFile(MicroServer.Net.Http.Files.FileContext,System.String)">
+            <summary>
+            Get a file
+            </summary>
+            <param name="context">Context used to return files</param>
+            <param name="fullPath">Full path used to locate files</param>
+            <remarks><c>true</c> if the file was attached to the response; otherwise false;</remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Files.IFileService.IsDirectory(System.Uri)">
+            <summary>
+            Gets if the specified url corresponds to a directory serving files
+            </summary>
+            <param name="uri">Uri</param>
+            <returns></returns>
+        </member>
+        <member name="M:MicroServer.Net.Http.Files.IFileService.GetFiles(System.Uri)">
+            <summary>
+            Get all files that exists in the specified directory
+            </summary>
+            <param name="uri">Uri</param>
+            <returns></returns>
+        </member>
+        <member name="M:MicroServer.Net.Http.Files.IFileService.GetDirectories(System.Uri)">
+            <summary>
+            Gets a list of all sub directores 
+            </summary>
+            <param name="uri">URI (as requested by the HTTP client) which should correspond to a directory.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MicroServer.Net.Http.Files.CompositeFileService.#ctor(MicroServer.Net.Http.Files.IFileService[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Files.CompositeFileService"/> class.
+            </summary>
+            <param name="fileServices">One or more file services.</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Files.CompositeFileService.GetFile(MicroServer.Net.Http.Files.FileContext)">
+            <summary>
+            Loops through all services and returns the first matching file.
+            </summary>
+            <param name="context">Context used to locate and return files</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Files.CompositeFileService.GetFile(MicroServer.Net.Http.Files.FileContext,System.String)">
+            <summary>
+            Loops through all services and returns the first matching file.
+            </summary>
+            <param name="context">Context used to return files</param>
+            <param name="fullPath">Full path used to locate files</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Files.CompositeFileService.IsDirectory(System.Uri)">
+            <summary>
+            Gets if the specified url corresponds to a directory serving files
+            </summary>
+            <param name="uri">Uri</param>
+            <returns></returns>
+        </member>
+        <member name="M:MicroServer.Net.Http.Files.CompositeFileService.GetFiles(System.Uri)">
+            <summary>
+            Get all files that exists in the specified directory
+            </summary>
+            <param name="uri">Uri</param>
+            <returns></returns>
+            <remarks>Will return all matching files from all services.</remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Files.CompositeFileService.GetDirectories(System.Uri)">
+            <summary>
+            Gets a list of all sub directores
+            </summary>
+            <param name="uri">URI (as requested by the HTTP client) which should correspond to a directory.</param>
+            <returns></returns>
+            <remarks>Will return all matching directories from all inner services.</remarks>
+        </member>
+        <member name="T:MicroServer.Net.Http.Files.DiskFileService">
+            <summary>
+            Serves files from the hard drive.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Files.DiskFileService.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Files.CompositeFileService"/> class.
+            </summary>
+            <param name="rootFilePath">Path to serve files from.</param>
+            <param name="rootUri">Serve all files which are located under this URI</param>
+            <example>
+            <code>
+            var diskFiles = new DiskFileService("/public/", @"\sd\www\public\");
+            var module = new FileModule(diskFiles);
+            
+            var moduleManager = new ModuleManager();
+            moduleManager.Add(module);
+            </code>
+            </example>
+        </member>
+        <member name="M:MicroServer.Net.Http.Files.DiskFileService.GetFile(MicroServer.Net.Http.Files.FileContext)">
+            <summary>
+            Get a file
+            </summary>
+            <param name="context">Context used to locate and return files</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Files.DiskFileService.GetFile(MicroServer.Net.Http.Files.FileContext,System.String)">
+            <summary>
+            Get a file
+            </summary>
+            <param name="context">Context used to locate and return files</param>
+            <param name="fullPath">Full path used to locate files</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Files.DiskFileService.IsDirectory(System.Uri)">
+            <summary>
+            Gets if the specified url corresponds to a directory serving files
+            </summary>
+            <param name="uri">Uri</param>
+            <returns></returns>
+        </member>
+        <member name="M:MicroServer.Net.Http.Files.DiskFileService.GetFiles(System.Uri)">
+            <summary>
+            Get all files that exists in the specified directory
+            </summary>
+            <param name="uri">Uri</param>
+            <returns></returns>
+        </member>
+        <member name="M:MicroServer.Net.Http.Files.DiskFileService.GetDirectories(System.Uri)">
+            <summary>
+            Gets a list of all sub directores
+            </summary>
+            <param name="uri">URI (as requested by the HTTP client) which should correspond to a directory.</param>
+            <returns></returns>
+        </member>
+        <member name="T:MicroServer.Net.Http.Files.FileContext">
+            <summary>
+            Context used by <see cref="T:MicroServer.Net.Http.Files.IFileService"/> when locating files.
+            </summary>
+            <remarks>
+            There are three scenarios for files:
+            <list type="table">
+            <item>
+            <term>Not found</term>
+            <description>Simply do not change the context, just return from the method.</description>
+            </item>
+            <item>
+            <term>Found but not modified.</term>
+            <description>The file UTC date/time is less or equal to <see cref="P:MicroServer.Net.Http.Files.FileContext.BrowserCacheDate"/>. Use <see cref="M:MicroServer.Net.Http.Files.FileContext.SetNotModified(System.String,System.DateTime)"/> and return</description>
+            </item>
+            <item>
+            <term>Found and newer</term>
+            <description>The file UTC date/time is newer than <see cref="P:MicroServer.Net.Http.Files.FileContext.BrowserCacheDate"/>. Use <see cref="M:MicroServer.Net.Http.Files.FileContext.SetFile(System.String,System.IO.Stream,System.DateTime)"/> and return.</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Files.FileContext.#ctor(MicroServer.Net.Http.IHttpRequest,System.DateTime)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Files.FileContext"/> class.
+            </summary>
+            <param name="request">The request.</param>
+            <param name="browserCacheDate">Usually the header "If-Modified-Since"</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Files.FileContext.SetFile(System.String,System.IO.Stream,System.DateTime)">
+            <summary>
+            Set file that should be returned.
+            </summary>
+            <param name="fileName">File name</param>
+            <param name="stream">File stream</param>
+            <param name="lastModifiedAtUtc">When the file was modified (UTC time).</param>
+            <remarks>
+            <para>The stream will be disposed by the server after it's being sent</para>
+            <para>Use <see cref="M:MicroServer.Net.Http.Files.FileContext.SetNotModified(System.String,System.DateTime)"/> if the file has not been modified</para>
+            </remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Files.FileContext.SetNotModified(System.String,System.DateTime)">
+            <summary>
+            File has not been modified.
+            </summary>
+            <param name="fileName">File name including extension.</param>
+            <param name="date"></param>
+        </member>
+        <member name="P:MicroServer.Net.Http.Files.FileContext.IsFound">
+            <summary>
+            Gets if file was found;
+            </summary>
+            <remarks>The stream is not set if the file was found but not modified.</remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.Files.FileContext.IsModified">
+            <summary>
+            Gets if file was modified since it was last requested;
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Files.FileContext.Request">
+            <summary>
+            Gets the request (the Uri specifies the wanted file)
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Files.FileContext.BrowserCacheDate">
+            <summary>
+            Gets date when file was cached in the browser.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Files.FileContext.LastModifiedAtUtc">
+            <summary>
+            Gets the date when the file was modified (UTC time)
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Files.FileContext.FileStream">
+            <summary>
+            Gets file stream
+            </summary>
+            <remarks>The server will own the stream</remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.Files.FileContext.Filename">
+            <summary>
+            Gets filename
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Files.FileInformation">
+            <summary>
+            Small DTO for files
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Files.FileInformation.Name">
+            <summary>
+            Gets file name including extension but no path
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Files.FileInformation.LastModifiedAtUtc">
+            <summary>
+            Gets when the file was modified
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Files.FileInformation.Size">
+            <summary>
+            Gets file size in bytes.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Files.FileModule">
+            <summary>
+            Will serve static files
+            </summary>
+            <example>
+            <code>
+            // One of the available file services.
+            var diskFiles = new DiskFileService("/public/", @"C:\www\public\");
+            var module = new FileModule(diskFiles);
+            
+            // the module manager is added to the HttpServer.
+            var moduleManager = new ModuleManager();
+            moduleManager.Add(module);
+            </code>
+            </example>
+        </member>
+        <member name="M:MicroServer.Net.Http.Files.FileModule.#ctor(MicroServer.Net.Http.Files.IFileService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Files.FileModule"/> class.
+            </summary>
+            <param name="fileService">The file service.</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Files.FileModule.BeginRequest(MicroServer.Net.Http.IHttpContext)">
+            <summary>
+            Invoked before anything else
+            </summary>
+            <param name="context">HTTP context</param>
+            <remarks>
+            <para>The first method that is exeucted in the pipeline.</para>
+            Try to avoid throwing exceptions if you can. Let all modules have a chance to handle this method. You may break the processing in any other method than the Begin/EndRequest methods.
+            <para>If you are going to handle the request, implement <see cref="T:MicroServer.Net.Http.Modules.IWorkerModule"/> and do it in the <see cref="!:IWorkerModule.HandleRequest"/> method.</para>
+            </remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Files.FileModule.EndRequest(MicroServer.Net.Http.IHttpContext)">
+            <summary>
+            End request is typically used for post processing. The response should already contain everything required.
+            </summary>
+            <param name="context">HTTP context</param>
+            <remarks>
+            <para>The last method that is executed in the pipeline.</para>
+            Try to avoid throwing exceptions if you can. Let all modules have a chance to handle this method. You may break the processing in any other method than the Begin/EndRequest methods.</remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Files.FileModule.HandleRequestAsync(MicroServer.Net.Http.IHttpContext,MicroServer.Net.Http.AsyncModuleHandler)">
+            <summary>
+            Handle the request asynchronously.
+            </summary>
+            <param name="context">HTTP context</param>
+            <param name="callback">callback</param>
+            <returns><see cref="F:MicroServer.Net.Http.Modules.ModuleResult.Stop"/> will stop all processing except <see cref="M:MicroServer.Net.Http.Modules.IHttpModule.EndRequest(MicroServer.Net.Http.IHttpContext)"/>.</returns>
+            <remarks>Invoked in turn for all modules unless you return <see cref="F:MicroServer.Net.Http.Modules.ModuleResult.Stop"/>.</remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Files.FileModule.HandleRequest(MicroServer.Net.Http.IHttpContext)">
+            <summary>
+            Handle the request.
+            </summary>
+            <param name="context">HTTP context</param>
+            <returns><see cref="F:MicroServer.Net.Http.Modules.ModuleResult.Stop"/> will stop all processing except <see cref="M:MicroServer.Net.Http.Modules.IHttpModule.EndRequest(MicroServer.Net.Http.IHttpContext)"/>.</returns>
+            <remarks>Invoked in turn for all modules unless you return <see cref="F:MicroServer.Net.Http.Modules.ModuleResult.Stop"/>.</remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Files.FileModule.TryGenerateDirectoryPage(MicroServer.Net.Http.IHttpContext)">
+            <summary>
+            Creates an Html directory listing including files and directories  
+            </summary>
+            <param name="context">Context used to locate and return files</param>
+        </member>
+        <member name="P:MicroServer.Net.Http.Files.FileModule.AllowListing">
+            <summary>
+            Gets or sets if we should allow file listing
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Files.FileModule.ListingHtml">
+            <summary>
+            Template which is used to list files. Should be a complete HTML page where <c>{{Files}}</c> will be replaced with a number of table rows.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Files.MimeTypeProvider">
+            <summary>
+            All available mime types
+            </summary>
+            <remarks>All mime types in here can be served by the file modules. All other files are ignored.</remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Files.MimeTypeProvider.#ctor">
+            <summary>
+            Prevents a default instance of the <see cref="T:MicroServer.Net.Http.Files.MimeTypeProvider"/> class from being created.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Files.MimeTypeProvider.Add(System.String,System.String)">
+            <summary>
+            Add a mimn type
+            </summary>
+            <param name="extension">Extension without dot</param>
+            <param name="mimeType">The mime type</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Files.MimeTypeProvider.Remove(System.String)">
+            <summary>
+            Remove a mime type
+            </summary>
+            <param name="extension">extension without dot</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Files.MimeTypeProvider.Get(System.String)">
+            <summary>
+            Get mime type for the specified file
+            </summary>
+            <param name="filename">Full path to file</param>
+            <returns>Mime type</returns>
+        </member>
+        <member name="P:MicroServer.Net.Http.Files.MimeTypeProvider.Instance">
+            <summary>
+            Gets singleton
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Messages.HttpFile">
+            <summary>
+            A HTTP file in a request.
+            </summary>
+            <remarks>The temporary file will be deleted when the request/response ends.</remarks>
+        </member>
+        <member name="T:MicroServer.Net.Http.IHttpFile">
+            <summary>
+            A file included in a HTTP request.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.IHttpFile.Move(System.String)">
+            <summary>
+            Move the file
+            </summary>
+            <param name="destination">Destination (path and file name)</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.IHttpFile.Delete">
+            <summary>
+            Delete file
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHttpFile.ContentType">
+            <summary>
+            Gets or sets content type.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHttpFile.Name">
+            <summary>
+            Gets or sets name in form.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHttpFile.OriginalFileName">
+            <summary>
+            Gets or sets name original file name
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHttpFile.TempFileName">
+            <summary>
+            Gets or sets filename for locally stored file.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpFile.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+            <filterpriority>2</filterpriority>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpFile.Dispose(System.Boolean)">
+            <summary>
+            Handles object cleanup
+            </summary>
+            <param name="disposing">True if called from Dispose(); false if called from GC finalization.</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpFile.Move(System.String)">
+            <summary>
+            Move the file
+            </summary>
+            <param name="destination">Destination (path and file name)</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpFile.Delete">
+            <summary>
+            Delete file
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpFile.Name">
+            <summary>
+            Gets or sets form element name
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpFile.OriginalFileName">
+            <summary>
+            Gets or sets client side file name
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpFile.ContentType">
+            <summary>
+            Gets or sets mime content type
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpFile.TempFileName">
+            <summary>
+            Gets or sets full path to local file
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Messages.HttpFileCollection">
+            <summary>
+            Collection of files in a HTTP request.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.IHttpFileCollection">
+            <summary>
+            Collection of files
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.IHttpFileCollection.Contains(System.String)">
+            <summary>
+            Checks if a file exists.
+            </summary>
+            <param name="name">Name of the file (form item name)</param>
+            <returns></returns>
+        </member>
+        <member name="M:MicroServer.Net.Http.IHttpFileCollection.Add(MicroServer.Net.Http.IHttpFile)">
+            <summary>
+            Add a new file.
+            </summary>
+            <param name="file">File to add.</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.IHttpFileCollection.Clear">
+            <summary>
+            Remove all files from disk.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHttpFileCollection.Item(System.String)">
+            <summary>
+            Get a file
+            </summary>
+            <param name="name">Name in the HTTP form.</param>
+            <returns>File if found; otherwise <c>null</c>.</returns>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHttpFileCollection.Count">
+            <summary>
+            Gets number of files
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpFileCollection.Contains(System.String)">
+            <summary>
+            Checks if a file exists.
+            </summary>
+            <param name="name">Name of the file (form item name)</param>
+            <returns></returns>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpFileCollection.Add(MicroServer.Net.Http.IHttpFile)">
+            <summary>
+            Add a new file.
+            </summary>
+            <param name="file">File to add.</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpFileCollection.Clear">
+            <summary>
+            Remove all files from disk.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpFileCollection.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+                Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>
+                An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpFileCollection.Item(System.String)">
+            <summary>
+            Get a file
+            </summary>
+            <param name="name">Name in form</param>
+            <returns>File if found; otherwise <c>null</c>.</returns>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpFileCollection.Count">
+            <summary>
+            Gets number of files
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.ErrorEventArgs">
+            <summary>
+                Used by <see cref="!:ChannelTcpListener.ClientConnected"/>.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.ErrorEventArgs.#ctor(System.Exception)">
+            <summary>
+                Initializes a new instance of the <see cref="T:MicroServer.Net.Http.ErrorEventArgs"/> class.
+            </summary>
+            <param name="exception">The execption.</param>
+        </member>
+        <member name="T:MicroServer.Net.Http.Messages.HttpResponseCookie">
+            <summary>
+            Response cookies also have an expiration and the path that they are valid for.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Messages.HttpCookie">
+            <summary>
+            Create a new HTTP cookie
+            </summary>
+            <remarks>Typically a request cookie, since response cookies need more information.</remarks>
+            <seealso cref="T:MicroServer.Net.Http.Messages.HttpResponseCookie"/>
+        </member>
+        <member name="T:MicroServer.Net.Http.IHttpCookie">
+            <summary>
+            A cookie
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHttpCookie.Name">
+            <summary>
+            Gets the cookie identifier.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHttpCookie.Value">
+            <summary>
+            Gets value. 
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpCookie.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Messages.HttpCookie"/> class.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpCookie.Name">
+            <summary>
+            Gets the cookie identifier.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpCookie.Value">
+            <summary>
+            Gets value. 
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.IResponseCookie">
+            <summary>
+            Response cookies have to specify where and when they are valid.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.IResponseCookie.Domain">
+            <summary>
+            Gets domain that the cookie is valid under
+            </summary>
+            <remarks><c>null</c> means not specified</remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.IResponseCookie.ExpiresUtc">
+            <summary>
+            Gets when the cookie expires.
+            </summary>
+            <remarks><see cref="F:System.DateTime.MinValue"/> means that the cookie expires when the session do so.</remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.IResponseCookie.Path">
+            <summary>
+            Gets path that the cookie is valid under.
+            </summary>
+            <remarks><c>null</c> means not specified</remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpResponseCookie.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Messages.HttpResponseCookie"/> class.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpResponseCookie.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>
+            A string that represents the current object.
+            </returns>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpResponseCookie.Domain">
+            <summary>
+            Gets domain that the cookie is valid under
+            </summary>
+            <remarks><c>null</c> means not specified</remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpResponseCookie.ExpiresUtc">
+            <summary>
+            Gets when the cookie expires.
+            </summary>
+            <remarks><see cref="F:System.DateTime.MinValue"/> means that the cookie expires when the session do so.</remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpResponseCookie.Path">
+            <summary>
+            Gets path that the cookie is valid under.
+            </summary>
+            <remarks><c>null</c> means not specified.</remarks>
+        </member>
+        <member name="T:MicroServer.Net.Http.IModuleManager">
+            <summary>
+            Takes care of the module execution.
+            </summary>
+            <remarks>Will catch all exceptions and also log them including the request information. 
+            
+            It will however not do anything with the exception. You either have to have an error module which checks <see cref="P:MicroServer.Net.Http.IHttpContext.LastException"/>
+            in <c>EndRequest()</c> or override the server to handle the error in it.
+            <para>Modules are invoked in the following order
+            <list type="number">
+            <item><see cref="M:MicroServer.Net.Http.Modules.IHttpModule.BeginRequest(MicroServer.Net.Http.IHttpContext)"/></item>
+            <item><see cref="T:MicroServer.Net.Http.Modules.IRoutingModule"/></item>
+            <item><see cref="T:MicroServer.Net.Http.Modules.IAuthenticationModule"/></item>
+            <item><see cref="T:MicroServer.Net.Http.Modules.IAuthorizationModule"/></item>
+            <item><see cref="T:MicroServer.Net.Http.Modules.IWorkerModule"/></item>
+            <item><see cref="M:MicroServer.Net.Http.Modules.IHttpModule.EndRequest(MicroServer.Net.Http.IHttpContext)"/></item>
+            </list>
+            </para>
+            </remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.IModuleManager.Add(MicroServer.Net.Http.Modules.IHttpModule)">
+            <summary>
+            Add a HTTP module
+            </summary>
+            <param name="module">Module to include</param>
+            <remarks>Modules are executed in the order they are added.</remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.IModuleManager.InvokeAsync(MicroServer.Net.Http.IHttpContext,MicroServer.Net.Http.AsyncModuleHandler)">
+            <summary>
+            Handle the request asynchronously.
+            </summary>
+            <param name="context">HTTP context</param>
+            <param name="callback">Callback to invoke when the processing is complete </param>
+        </member>
+        <member name="T:MicroServer.Net.Http.HttpContext">
+            <summary>
+            Request context
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.IHttpContext">
+            <summary>
+            Request context information
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHttpContext.Request">
+            <summary>
+            Incoming request
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHttpContext.Response">
+            <summary>
+            Response to send back
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHttpContext.Items">
+            <summary>
+            Can be used to store items through this request
+            </summary>
+            <remarks>Items which are stored for the current request only</remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHttpContext.Application">
+            <summary>
+            Used to store items for the entire application.
+            </summary>
+            <remarks>These items are shared between all requests and users</remarks>
+            <seealso cref="!:HttpServer.ApplicationInfo"/>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHttpContext.LastException">
+            <summary>
+            All exceptions will be logged by the system, but we generally do only keep track of the last one.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHttpContext.RouteData">
+            <summary>
+            Gets information stored for the route.
+            </summary>
+            <remarks>For instance used to convert the URI into parameters.</remarks>
+            <seealso cref="!:IRequestRouter"/>
+        </member>
+        <member name="M:MicroServer.Net.Http.HttpContext.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.HttpContext"/> class.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.HttpContext.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.HttpContext.Dispose(System.Boolean)">
+            <summary>
+            Handles object cleanup
+            </summary>
+            <param name="disposing">True if called from Dispose(); false if called from GC finalization.</param>
+        </member>
+        <member name="P:MicroServer.Net.Http.HttpContext.Request">
+            <summary>
+            Incoming request
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.HttpContext.Response">
+            <summary>
+            Response to send back
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.HttpContext.Items">
+            <summary>
+            Can be used to store items through this request
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.HttpContext.Application">
+            <summary>
+            Used to store items for the entire application.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.HttpContext.LastException">
+            <summary>
+            All exceptions will be logged by the system, but we generally do only keep track of the last one.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.HttpContext.Channel">
+            <summary>
+            Channel connected
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.HttpContext.RouteData">
+            <summary>
+            Gets information stored for the route.
+            </summary>
+            <remarks>For instance used to convert the URI into parameters.</remarks>
+            <seealso cref="!:IRequestRouter"/>
+        </member>
+        <member name="T:MicroServer.Net.Http.IItemStorage">
+            <summary>
+            Abstraction used for different storages.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.IItemStorage.Item(System.String)">
+            <summary>
+            Get or set an item
+            </summary>
+            <param name="name">Case insensitive name</param>
+            <returns>Item if found; otherwise <c>null</c>.</returns>
+        </member>
+        <member name="T:MicroServer.Net.Http.MemoryItemStorage">
+            <summary>
+            Uses a Hashtable to store all items
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.MemoryItemStorage.Item(System.String)">
+            <summary>
+            Get or set an item
+            </summary>
+            <param name="name">Item name</param>
+            <returns>Item if found; otherwise <c>null</c>.</returns>
+        </member>
+        <member name="T:MicroServer.Net.Http.MessageReceivedHandler">
+            <summary>
+            <see cref="!:ITcpChannel"/> have sent or received a message.
+            </summary>
+            <param name="channel">Channel that did the work</param>
+            <param name="message">Message. depends on which encoder/decoder was used.</param>
+            <remarks>We uses delegates instead of regular events to make sure that there are only one subscriber and that it's configured once.</remarks>
+        </member>
+        <member name="T:MicroServer.Net.Http.ModuleManager">
+            <summary>
+            Takes care of the module execution.
+            </summary>
+            <remarks><para>Important! The module manager will catch all exceptions, the last one is always attached to <see cref="P:MicroServer.Net.Http.IHttpContext.LastException"/>.</para>
+            <para>
+            It will however not do anything with the exception. You either have to have an error module which checks <see cref="P:MicroServer.Net.Http.IHttpContext.LastException"/>
+            in <c>EndRequest()</c> or override the server to handle the error in it.
+            </para>
+            <para>Modules are invoked in the following order
+            <list type="number">
+            <item><see cref="M:MicroServer.Net.Http.Modules.IHttpModule.BeginRequest(MicroServer.Net.Http.IHttpContext)"/></item>
+            <item><see cref="T:MicroServer.Net.Http.Modules.IRoutingModule"/></item>
+            <item><see cref="T:MicroServer.Net.Http.Modules.IAuthenticationModule"/></item>
+            <item><see cref="T:MicroServer.Net.Http.Modules.IAuthorizationModule"/></item>
+            <item><see cref="T:MicroServer.Net.Http.Modules.IWorkerModule"/></item>
+            <item><see cref="M:MicroServer.Net.Http.Modules.IHttpModule.EndRequest(MicroServer.Net.Http.IHttpContext)"/></item>
+            </list>
+            </para>
+            </remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.ModuleManager.Add(MicroServer.Net.Http.Modules.IHttpModule)">
+            <summary>
+            Add a HTTP module
+            </summary>
+            <param name="module">Module to include</param>
+            <remarks>Modules are executed in the order they are added.</remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.ModuleManager.InvokeAsync(MicroServer.Net.Http.IHttpContext,MicroServer.Net.Http.AsyncModuleHandler)">
+            <summary>
+            Invoke all modules
+            </summary>
+            <param name="context"></param>
+            <returns><c>true</c> if no modules have aborted the handling. Any module throwing an exception is also considered to be abort.</returns>
+        </member>
+        <member name="T:MicroServer.Net.Http.ModuleManager.InvokeAuthorizeHandler">
+            <summary>
+                Invoke the module handler
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Modules.AsyncModuleResult">
+            <summary>
+            Implementation of <see cref="T:MicroServer.Net.Http.Modules.IAsyncModuleResult"/>
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Modules.IAsyncModuleResult">
+            <summary>
+            Response from modules for async operations.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Modules.IAsyncModuleResult.Context">
+            <summary>
+            Gets HTTP context which the reply is for.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Modules.IAsyncModuleResult.Result">
+            <summary>
+            Gets how the module thinks that the processing went.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Modules.IAsyncModuleResult.Exception">
+            <summary>
+            Gets any exception which was caught during the async operation
+            </summary>
+            <remarks>It's prefered that the async op itself uses a try/catch to set this exception</remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Modules.AsyncModuleResult.#ctor(MicroServer.Net.Http.IHttpContext,MicroServer.Net.Http.Modules.ModuleResult)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Modules.AsyncModuleResult"/> class.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="result">The result.</param>
+        </member>
+        <member name="P:MicroServer.Net.Http.Modules.AsyncModuleResult.Context">
+            <summary>
+            Gets HTTP context which the reply is for.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Modules.AsyncModuleResult.Result">
+            <summary>
+            Gets how the module thinks that the processing went.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Modules.AsyncModuleResult.Exception">
+            <summary>
+            Gets any exception which was caught during the async operation
+            </summary>
+            <remarks>It's prefered that the async op itself uses a try/catch to set this exception</remarks>
+        </member>
+        <member name="T:MicroServer.Net.Http.Modules.ErrorModule">
+            <summary>
+            Reports errors to different sources.
+            </summary>
+            <example>
+            <code>
+            <![CDATA[
+            var module = new ErrorModule();
+            ]]>
+            </code>
+            </example>
+        </member>
+        <member name="M:MicroServer.Net.Http.Modules.ErrorModule.BeginRequest(MicroServer.Net.Http.IHttpContext)">
+            <summary>
+            Invoked before anything else
+            </summary>
+            <param name="context">HTTP context</param>
+            <remarks>
+            <para>The first method that is exeucted in the pipeline.</para>
+            Try to avoid throwing exceptions if you can. Let all modules have a chance to handle this method. You may break the processing in any other method than the Begin/EndRequest methods.</remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Modules.ErrorModule.EndRequest(MicroServer.Net.Http.IHttpContext)">
+            <summary>
+            End request is typically used for post processing. The response should already contain everything required.
+            </summary>
+            <param name="context">HTTP context</param>
+            <remarks>
+            <para>The last method that is executed in the pipeline.</para>
+            Try to avoid throwing exceptions if you can. Let all modules have a chance to handle this method. You may break the processing in any other method than the Begin/EndRequest methods.</remarks>
+        </member>
+        <member name="T:MicroServer.Net.Http.Modules.IAuthenticationModule">
+            <summary>
+            The HTTP module is used to authenticate the request (i.e. login the user)
+            </summary>
+            <remarks>Invoked directly after <see cref="M:MicroServer.Net.Http.Modules.IHttpModule.BeginRequest(MicroServer.Net.Http.IHttpContext)"/></remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Modules.IAuthenticationModule.Authenticate(MicroServer.Net.Http.IHttpContext)">
+            <summary>
+            Authorize the request.
+            </summary>
+            <param name="context">HTTP context</param>
+            <returns><see cref="F:MicroServer.Net.Http.Modules.ModuleResult.Stop"/> will stop all processing including <see cref="M:MicroServer.Net.Http.Modules.IHttpModule.EndRequest(MicroServer.Net.Http.IHttpContext)"/>.</returns>
+        </member>
+        <member name="T:MicroServer.Net.Http.Modules.IAuthorizationModule">
+            <summary>
+            Authorize the request (i.e. check the user permissions)
+            </summary>
+            <remarks>Invoked after <see cref="T:MicroServer.Net.Http.Modules.IAuthenticationModule"/> and before <see cref="!:IHttpModule.HandleRequest"/>.</remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Modules.IAuthorizationModule.Authorize(MicroServer.Net.Http.IHttpContext)">
+            <summary>
+            Authorize the user.
+            </summary>
+            <param name="context">HTTP context</param>
+            <returns><see cref="F:MicroServer.Net.Http.Modules.ModuleResult.Stop"/> will stop all processing including <see cref="M:MicroServer.Net.Http.Modules.IHttpModule.EndRequest(MicroServer.Net.Http.IHttpContext)"/>.</returns>
+        </member>
+        <member name="T:MicroServer.Net.Http.Modules.IRoutingModule">
+            <summary>
+            Used to route requests..
+            </summary>
+            <remarks>Invoked after <see cref="T:MicroServer.Net.Http.Modules.IAuthenticationModule"/> but before <see cref="T:MicroServer.Net.Http.Modules.IAuthorizationModule"/>.</remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Modules.IRoutingModule.Route(MicroServer.Net.Http.IHttpContext)">
+            <summary>
+            Route the request.
+            </summary>
+            <param name="context">HTTP context</param>
+            <returns><see cref="F:MicroServer.Net.Http.Modules.ModuleResult.Stop"/> will stop all processing including <see cref="M:MicroServer.Net.Http.Modules.IHttpModule.EndRequest(MicroServer.Net.Http.IHttpContext)"/>.</returns>
+            <remarks>Simply change the request URI to something else.</remarks>
+        </member>
+        <member name="T:MicroServer.Net.Http.Modules.ModuleResult">
+            <summary>
+            Used to control module behaviour
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Http.Modules.ModuleResult.Continue">
+            <summary>
+            Continue with the next module
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Http.Modules.ModuleResult.Stop">
+            <summary>
+            Stop processing more modules
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Binders.IValueProvider">
+            <summary>
+            Used to load values from the data source
+            </summary>
+            <remarks>Fields with exact form name should all be pushed to the same parameter (so that it got several values)</remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Binders.IValueProvider.Get(System.String)">
+            <summary>
+            Get a parameter
+            </summary>
+            <param name="fieldName">Field name</param>
+            <returns>Parameter if found; otherwise <c>null</c>.</returns>
+        </member>
+        <member name="M:MicroServer.Net.Http.Binders.IValueProvider.Find(System.String)">
+            <summary>
+            Find all parameters which starts with the specified argument.
+            </summary>
+            <param name="prefix">Beginning of the field name</param>
+            <returns>All matching parameters.</returns>
+        </member>
+        <member name="T:MicroServer.Net.Http.Binders.RequestValueProvider">
+            <summary>
+            Can provide values from HTTP requests.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Binders.RequestValueProvider.#ctor(MicroServer.Net.Http.IHttpMessage)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Binders.RequestValueProvider"/> class.
+            </summary>
+            <param name="request">The request.</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Binders.RequestValueProvider.Get(System.String)">
+            <summary>
+            Get a parameter
+            </summary>
+            <param name="fieldName">Field name</param>
+            <returns>
+            Parameter if found; otherwise <c>null</c>.
+            </returns>
+        </member>
+        <member name="M:MicroServer.Net.Http.Binders.RequestValueProvider.Find(System.String)">
+            <summary>
+            Find all parameters which starts with the specified argument.
+            </summary>
+            <param name="prefix">Beginning of the field name</param>
+            <returns>
+            All matching parameters.
+            </returns>
+        </member>
+        <member name="T:MicroServer.Net.Http.Mvc.Views.IViewData">
+            <summary>
+            Return data to a view.
+            </summary>
+            <remarks>
+            Override GetHashCode and calculate the hash code for each
+            parameter type. This is necessary to let the view engines
+            cache strongly typed views (and be able to create new versions
+            of a view if the types do not match).
+            </remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.Views.IViewData.Contains(System.String)">
+            <summary>
+            Checks if view data contains a parameter.
+            </summary>
+            <param name="key">Parameter key</param>
+            <returns><c>true</c> if found; otherwise <c>false</c>.</returns>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.Views.IViewData.TryGetValue(System.String,System.Object@)">
+            <summary>
+            Try get a value from the dictionary.
+            </summary>
+            <param name="name">Name of parameter</param>
+            <param name="value">Value if any.</param>
+            <returns><c>true</c> if found; otherwise <c>false</c>.</returns>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.Views.IViewData.Count">
+            <summary>
+            Gets dictionary count.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.Views.IViewData.Item(System.String)">
+            <summary>
+            Gets or sets a view data parameter.
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MicroServer.Net.Http.Mvc.ActionResults.ViewResult">
+            <summary>
+            Sends a binary file to the client.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.ActionResults.ViewResult.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Mvc.ActionResults.ViewResult"/> class.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.ActionResults.ViewResult.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Mvc.ActionResults.ViewResult"/> class.
+            </summary>
+            <param name="rootUri">Serve all files which are located under this URI</param>
+            <param name="rootFilePath">Path to serve files from.</param>
+            <param name="fileNamePath">Path and file name used to locate files</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.ActionResults.ViewResult.#ctor(MicroServer.Net.Http.Files.IFileService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Mvc.ActionResults.ViewResult"/> class.
+            </summary>
+            <param name="fileService">Used to locate file.</param>
+            <param name="context">Context used to locate and return files</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.ActionResults.ViewResult.ExecuteResult(MicroServer.Net.Http.Mvc.IControllerContext)">
+            <summary>
+            Execute the response result.
+            </summary>
+            <param name="context">HTTP controller context</param>
+            <remarks>Invoked by <see cref="T:MicroServer.Net.Http.Mvc.Controllers.ControllerFactory"/> to process the response.</remarks>
+        </member>
+        <member name="T:MicroServer.Net.Http.Mvc.Views.TokenEngine">
+            <summary>
+                TokenParser is a class which implements a simple token replacement parser.
+            </summary>
+            <remarks>
+                TokenParser is used by the calling code by implementing an event handler for
+                the delegate TokenHandler(string strToken, ref string strReplacement)
+            </remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.Views.TokenEngine.ExtractToken(System.String)">
+            <summary>
+                ExtractToken parses a token in the format "[%TOKENNAME%]". 
+            </summary>
+            <param name="token" type="string">
+                <para>
+                    This is a token parsed from a text file in the format "[%TOKENNAME%]".
+                </para>
+            </param>
+            <returns>
+                It returns the string between the tokens "[%" and "%]"
+            </returns>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.Views.TokenEngine.Parse">
+            <summary>
+                Parse() iterates through each character of the class variable "inputText"
+            </summary>
+            <returns>
+                Parse() returns a string representing inputText with its tokens exchanged
+                for the callking code's values.
+            </returns>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.Views.TokenEngine.ToString">
+            <summary>
+                This is called to return the parsed text file.
+            </summary>
+            <returns>
+                A string representing the text file with all its tokens replaced by data
+                supplied by the calling code through the Tokenhandler delegate
+            </returns>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.Views.TokenEngine.OnToken(System.String,System.String@)">
+            <summary>
+            Subscribe to this event to receive request messages.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.Views.TokenEngine.Tokens">
+            <summary>
+            Gets token collection used for matching.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.Views.TokenEngine.Content">
+            <summary>
+            Gets the unparsed text.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.Views.TokenEngine.Default">
+            <summary>
+            Gets and sets the default replacement value.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Mvc.Views.TokenEngine.TokenHandler">
+            <summary>
+            Subscribe to this event to receive request messages.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Mvc.ViewData">
+            <summary>
+            View data implementation.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.ViewData.Clear">
+            <summary>
+            Remove everything from the dictionary.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.ViewData.Count">
+            <summary>
+            Gets dictionary count.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.ViewData.GetHashCode">
+            <summary>
+            Serves as a hash function for a particular type.
+            </summary>
+            <returns>
+            A hash code for the current <see cref="T:System.Object"/>.
+            </returns>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.ViewData.Contains(System.String)">
+            <summary>
+            Checks if view data contains a parameter.
+            </summary>
+            <param name="key">Parameter key</param>
+            <returns><c>true</c> if found; otherwise <c>false</c>.</returns>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.ViewData.TryGetValue(System.String,System.Object@)">
+            <summary>
+            Try get a value from the dictionary.
+            </summary>
+            <param name="name">Name of parameter</param>
+            <param name="value">Value if any.</param>
+            <returns>
+            	<c>true</c> if found; otherwise <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.ViewData.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>
+            A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
+            </returns>
+            <filterpriority>1</filterpriority>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.ViewData.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>
+            An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.
+            </returns>
+            <filterpriority>2</filterpriority>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.ViewData.Parameters">
+            <summary>
+            Get all parameters for the view.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.ViewData.Item(System.String)">
+            <summary>
+            Gets or sets a view data parameter.
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MicroServer.Net.Http.Mvc.Views.ViewDataCollection">
+            <summary>
+            Collection containing view data information
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.Views.ViewDataCollection.Add(System.String,System.Object)">
+            <summary>
+            Add an item
+            </summary>
+            <param name="name">Name of item</param>
+            <param name="value">Item</param>
+            <remarks>
+            Another item with the same name must not exist in the collection.
+            </remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.Views.ViewDataCollection.TryGetValue(System.String,System.Object@)">
+            <summary>
+            Try get an item
+            </summary>
+            <param name="name">Name of item</param>
+            <param name="value">Item</param>
+            <returns><c>true</c> if found; otherwise <c>false</c>.</returns>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.Views.ViewDataCollection.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>
+            A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
+            </returns>
+            <filterpriority>1</filterpriority>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.Views.ViewDataCollection.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>
+            An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.
+            </returns>
+            <filterpriority>2</filterpriority>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.Views.ViewDataCollection.Clear">
+            <summary>
+            Remove everything from the dictionary.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.Views.ViewDataCollection.Count">
+            <summary>
+            get dictionary count.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.Views.ViewDataCollection.Contains(System.String)">
+            <summary>
+            Checks if view data contains a parameter.
+            </summary>
+            <param name="key">Parameter key</param>
+            <returns><c>true</c> if found; otherwise <c>false</c>.</returns>        
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.Views.ViewDataCollection.Item(System.String)">
+            <summary>
+            Gets or sets an item in the view data.
+            </summary>
+            <param name="name">Name of item</param>
+            <returns>Item if found; otherwise <c>null</c>.</returns>
+        </member>
+        <member name="T:MicroServer.Net.Http.Routing.MappedRoute">
+            <summary>
+            Implementation of <see cref="T:MicroServer.Net.Http.Routing.MappedRoute"/>
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Routing.MappedRoute.name">
+            <summary>
+            Gets mapped route name.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Routing.MappedRoute.regex">
+            <summary>
+            Gets regex pattern.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Routing.MappedRoute.defaults">
+            <summary>
+            Gets the rewrite default path.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Routing.HttpApplication">
+            <summary>
+            Implementation base for <see cref="!:RouteConfig"/>
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Routing.MatchResult">
+            <summary>
+            Implementation of <see cref="T:MicroServer.Net.Http.Routing.MatchResult"/>
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Routing.MatchResult.#ctor(System.Text.RegularExpressions.Match,MicroServer.Net.Http.Routing.MappedRoute)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Routing.MatchResult"/> class.
+            </summary>
+            <param name="matchStatus"></param>
+            <param name="mappedRoute"></param>
+        </member>
+        <member name="P:MicroServer.Net.Http.Routing.MatchResult.MatchStatus">
+            <summary>
+            Gets match status resulting from <see cref="M:MicroServer.Net.Http.Routing.RouteCollection.Match(MicroServer.Net.Http.IHttpContext)"/>.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Routing.MatchResult.MappedRoute">
+            <summary>
+            Gets match status resulting from <see cref="M:MicroServer.Net.Http.Routing.RouteCollection.Match(MicroServer.Net.Http.IHttpContext)"/>.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Mvc.Resolver.ServiceResolver">
+            <summary>
+            Implement the IServiceResolver interface to get support for IoC.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Mvc.Resolver.ServiceResolver.Assign(MicroServer.Net.Http.IServiceResolver)">
+            <summary>
+            Assign your own implementation
+            </summary>
+            <param name="factory">Factory to use</param>
+        </member>
+        <member name="P:MicroServer.Net.Http.Mvc.Resolver.ServiceResolver.Current">
+            <summary>
+            Gets current implementation
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Mvc.Resolver.FactoryResolver">
+            <summary>
+            Use this get constructor info.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Routing.DefaultRoute">
+            <summary>
+            Implementation of <see cref="T:MicroServer.Net.Http.Routing.DefaultRoute"/> class.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Routing.DefaultRoute.controller">
+            <summary>
+            Gets the default controller.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Routing.DefaultRoute.action">
+            <summary>
+            Gets the default action.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Routing.DefaultRoute.id">
+            <summary>
+            Gets the default action.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Routing.RouteCollection">
+            <summary>
+            Collection of route rules
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Routing.RouteCollection.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Routing.RouteCollection"/> class.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Routing.RouteCollection.IgnoreRoute(System.String)">
+            <summary>
+            Add ingored routes.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Routing.RouteCollection.MapRoute(System.String,System.String,MicroServer.Net.Http.Routing.DefaultRoute)">
+            <summary>
+            Add mapped routes.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Routing.RouteCollection.Match(MicroServer.Net.Http.IHttpContext)">
+            <summary>
+            Match the route and apply the context
+            </summary>
+            <param name="context"></param>
+            <returns>The match results for ingored and mapped routes (<c>null</c> if not existing)</returns>
+        </member>
+        <member name="P:MicroServer.Net.Http.Routing.RouteCollection.IngoredRoutes">
+            <summary>
+            Gets the ingored routes.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Routing.RouteCollection.MappedRoutes">
+            <summary>
+            Gets the mapped routes.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Routing.RouterModule">
+            <summary>
+            Used to route the request based on <see cref="!:Regex"/> patterns.
+            </summary>
+            <remarks>Rewrites the request URI based on the <see cref="!:RouteConfig"/>.</remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Routing.RouterModule.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Routing.RouterModule"/> class.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Routing.RouterModule.LogRoutes">
+            <summary>
+            Log the loaded routes.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Routing.RouterModule.Invoke(MicroServer.Net.Http.Routing.RouteCollection)">
+            <summary>
+            Invoke the <see cref="!:RegisterRoutes"/> method in <see cref="!:RouteConfig"/>.
+            </summary>
+            <param name="routes">Routes.</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Routing.RouterModule.Find(System.Type)">
+            <summary>
+            Find the type in the current domain assemblies.
+            </summary>
+            <param name="configType">Routes</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Routing.RouterModule.BeginRequest(MicroServer.Net.Http.IHttpContext)">
+            <summary>
+            Invoked before anything else
+            </summary>
+            <param name="context">HTTP context</param>
+            <remarks>
+            <para>The first method that is exeucted in the pipeline.</para>
+            Try to avoid throwing exceptions if you can. Let all modules have a chance to handle this method. You may break the processing in any other method than the Begin/EndRequest methods.</remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Routing.RouterModule.Route(MicroServer.Net.Http.IHttpContext)">
+            <summary>
+            Route the request.
+            </summary>
+            <param name="context">HTTP context</param>
+            <returns><see cref="F:MicroServer.Net.Http.Modules.ModuleResult.Stop"/> will stop all processing including <see cref="M:MicroServer.Net.Http.Modules.IHttpModule.EndRequest(MicroServer.Net.Http.IHttpContext)"/>.</returns>
+            <remarks>Simply change the request URI to something else.</remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Routing.RouterModule.EndRequest(MicroServer.Net.Http.IHttpContext)">
+            <summary>
+            End request is typically used for post processing. The response should already contain everything required.
+            </summary>
+            <param name="context">HTTP context</param>
+            <remarks>
+            <para>The last method that is executed in the pipeline.</para>
+            Try to avoid throwing exceptions if you can. Let all modules have a chance to handle this method. You may break the processing in any other method than the Begin/EndRequest methods.</remarks>
+        </member>
+        <member name="T:MicroServer.Net.Http.Serializers.CompositeSerializer">
+            <summary>
+                Can provide one or more decoders.
+            </summary>
+            <remarks>
+                The default implementation constructor uses <see cref="T:MicroServer.Net.Http.Serializers.UrlFormattedMessageSerializer"/> and
+                <see cref="!:MultipartSerializer"/>
+            </remarks>
+        </member>
+        <member name="T:MicroServer.Net.Http.Serializers.IMessageSerializer">
+            <summary>
+                Serialize or deserialize messages.
+            </summary>
+            <remarks>
+                <para>
+                    A suggestions is that you use the <c>Type.AssemblyQualifiedName</c> as the content name of your application
+                    is .NET only.
+                </para>
+                <para>The methods must be isolated (i.e. should be able to call the same instance them from several threads).</para>
+                <para>
+                    The content type should follow the format defined by the HTTP specification (RFC2616) where the media type can
+                    be followed by a semicolon and then commaseparated key-value pairs. However, we might want to include the .NET
+                    type in the message which contains a colon between the FullName and the Assembly. In the content type
+                    we therefore need to replace it with a hypen. See example below
+                </para>
+                <code>
+            application/json;type=Your.App.Namespace.SomeType-YourApp
+            </code>
+                <para>
+                    That allows us to support media types which are used by HTTP and other protocols where other parameters are
+                    included, for example:
+                </para>
+                <code>
+            application/x-www-form-urlencoded;charset=windows-1250;type=Your.App.Namespace.SomeType-YourApp
+            </code>
+            <para>
+            You can use <see cref="!:HttpHeaderValue"/> if you want to extract the actual content type and it's parameters.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Serializers.IMessageSerializer.Deserialize(System.String,System.IO.Stream)">
+            <summary>
+                Deserialize the content from the stream.
+            </summary>
+            <param name="contentType">
+                Used to identify the object which is about to be deserialized. Specified by the
+                <c>Serialize()</c> method when invoked in the other end point.
+            </param>
+            <param name="source">Stream that contains the object to deserialize.</param>
+            <returns>Created object</returns>
+            <exception cref="!:SerializationException">Deserialization failed</exception>
+        </member>
+        <member name="P:MicroServer.Net.Http.Serializers.IMessageSerializer.SupportedContentTypes">
+            <summary>
+                Content types that this serializer supports.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Serializers.CompositeSerializer.#ctor">
+            <summary>
+                Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Serializers.CompositeSerializer"/> class.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Serializers.CompositeSerializer.Serialize(System.Object,System.IO.Stream,System.String@)">
+            <summary>
+                Serialize an object to the stream.
+            </summary>
+            <param name="source">Object to serialize</param>
+            <param name="destination">Stream that the serialized version will be written to</param>
+            <param name="contentType">
+                If you include the type name to it after the format name, for instance
+                <c>json;YourApp.DTO.User,YourApp</c>
+            </param>
+            <returns>Content name (will be passed to the <see cref="M:MicroServer.Net.Http.Serializers.IMessageSerializer.Deserialize(System.String,System.IO.Stream)"/> method in the other end)</returns>
+            <exception cref="!:SerializationException">Deserialization failed</exception>
+        </member>
+        <member name="M:MicroServer.Net.Http.Serializers.CompositeSerializer.Deserialize(System.String,System.IO.Stream)">
+            <summary>
+                Deserialize the content from the stream.
+            </summary>
+            <param name="contentType">
+                Used to identify the object which is about to be deserialized. Specified by the
+                <c>Serialize()</c> method when invoked in the other end point.
+            </param>
+            <param name="source">Stream that contains the object to deserialize.</param>
+            <returns>Created object</returns>
+            <exception cref="!:SerializationException">Deserialization failed</exception>
+        </member>
+        <member name="M:MicroServer.Net.Http.Serializers.CompositeSerializer.Add(System.String,MicroServer.Net.Http.Serializers.IMessageSerializer)">
+            <summary>
+                Add another handlers.
+            </summary>
+            <param name="mimeType">Mime type</param>
+            <param name="decoder">The decoder implementation. Must be thread safe.</param>
+        </member>
+        <member name="P:MicroServer.Net.Http.Serializers.CompositeSerializer.DefaultEncoding">
+            <summary>
+                Encoding to use if not specified in the HTTP request.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Serializers.CompositeSerializer.SupportedContentTypes">
+            <summary>
+                Content types that this serializer supports.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Serializers.UrlFormattedMessageSerializer">
+            <summary>
+            Serializer for <c>application/x-www-form-urlencoded</c>
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Http.Serializers.UrlFormattedMessageSerializer.MimeType">
+            <summary>
+            The mimetype that this decoder is for.
+            </summary>
+            <value>application/x-www-form-urlencoded</value>
+        </member>
+        <member name="M:MicroServer.Net.Http.Serializers.UrlFormattedMessageSerializer.Deserialize(System.String,System.IO.Stream)">
+            <summary>
+            Deserialize the content from the stream.
+            </summary>
+            <param name="contentType">Used to identify the object which is about to be deserialized. Specified by the <c>Serialize()</c> method when invoked in the other end point.</param>
+            <param name="source">Stream that contains the object to deserialize.</param>
+            <returns>Created object</returns>
+            <exception cref="!:SerializationException">Deserialization failed</exception>
+        </member>
+        <member name="P:MicroServer.Net.Http.Serializers.UrlFormattedMessageSerializer.SupportedContentTypes">
+            <summary>
+                Content types that this serializer supports.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Exceptions.BadRequestException">
+            <summary>
+                The request was malformed.
+            </summary>
+            <remarks>
+                <para>Uses 400 as status code</para>
+            </remarks>
+        </member>
+        <member name="T:MicroServer.Net.Http.Exceptions.HttpException">
+            <summary>
+                A HTTP exception
+            </summary>
+            <remarks>
+                HTTP exceptions will automatically generate a custom error page with the specified status code,
+                opposed to all other exceptions which will generate a Internal Server Error.
+            </remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Exceptions.HttpException.#ctor(System.Net.HttpStatusCode,System.String)">
+            <summary>
+                Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Exceptions.HttpException"/> class.
+            </summary>
+            <param name="statusCode">The status code.</param>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Exceptions.HttpException.#ctor(System.Int32,System.String)">
+            <summary>
+                Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Exceptions.HttpException"/> class.
+            </summary>
+            <param name="code">The code.</param>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Exceptions.HttpException.#ctor(System.Net.HttpStatusCode,System.String,System.Exception)">
+            <summary>
+                Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Exceptions.HttpException"/> class.
+            </summary>
+            <param name="statusCode">The status code.</param>
+            <param name="errorMessage">The error message.</param>
+            <param name="inner">The inner exception.</param>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:MicroServer.Net.Http.Exceptions.BadRequestException.#ctor(System.String)">
+            <summary>
+                Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Exceptions.BadRequestException"/> class.
+            </summary>
+            <param name="errorMessage">The error message.</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Exceptions.BadRequestException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Exceptions.BadRequestException"/> class.
+            </summary>
+            <param name="errorMessage">The error message.</param>
+            <param name="inner">Inner exception.</param>
+        </member>
+        <member name="T:MicroServer.Net.Http.Messages.HttpMessage">
+            <summary>
+            Base class for HTTP requests and responses.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.IHttpMessage">
+            <summary>
+                Represents a request or resposne.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.IHttpMessage.AddHeader(System.String,System.String)">
+            <summary>
+                Adds the specified name.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="value">The value.</param>
+            <exception cref="T:System.ArgumentNullException">name</exception>
+            <exception cref="!:System.FormatException">
+                Header name may not contain colon, CR or LF.
+                or
+                Header value may not contain colon, CR or LF.
+            </exception>
+            <remarks>
+                <para>
+                    If a client or a server receives repeated frame header entries, only the first header entry SHOULD be used as
+                    the value of header entry. Subsequent values are only used to maintain a history of state changes of the header
+                    and MAY be ignored. This implementation will IGNORE all subsequent headers
+                </para>
+            </remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHttpMessage.StatusLine">
+            <summary>
+                First line in a HTTP message divided into parts (array with three items).
+            </summary>
+            <remarks>
+                <para>The content of the line depends on if this is a HTTP request </para>
+            </remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHttpMessage.HttpVersion">
+            <summary>
+                Version of the HTTP protocol
+            </summary>
+            <remarks>
+                <para>
+                    Typically <c>HTTP/1.1</c> but can also be the old version <c>HTTP/1.0</c> or the new draft <c>HTTP/2.0</c>
+                    (aka SPDY)
+                </para>
+            </remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHttpMessage.Headers">
+            <summary>
+                All HTTP headers.
+            </summary>
+            <remarks>
+                <para>Missing headers will return <c>null</c> as value</para>
+            </remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHttpMessage.Body">
+            <summary>
+                Body in the HTTP message
+            </summary>
+            <remarks>
+                <para>
+                    The body has not been modified or parsed in any way. The actual stream is either a <c>MemoryStream</c> or
+                    <c>FileStream</c> depending on the
+                    size of the body.
+                </para>
+                <para>
+                    The implementation of this interface should have the control over the specified stream. That is, the stream
+                    will always be disposed by this library when the message has been processed.
+                    Hence you have to make sure that we can take control over the stream that you've specified.
+                </para>
+            </remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHttpMessage.ContentLength">
+            <summary>
+                Length of the body in bytes.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHttpMessage.ContentType">
+            <summary>
+                Content type without any parameters.
+            </summary>
+            <remarks>
+                <para>
+                    If you need to get the boundry etc, then use <c>request.Headers["Content-Type"]</c>.
+                </para>
+            </remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHttpMessage.ContentCharset">
+            <summary>
+                The encoding used in the document (if it's text of some sort)
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Http.Messages.HttpMessage.utf8">
+            <summary>
+            utf8 encoding
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpMessage.#ctor(System.String)">
+            <summary>
+            </summary>
+            <param name="httpVersion">Version like <c>HTTP/1.1</c></param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpMessage.AddHeader(System.String,System.String)">
+            <summary>
+                Adds the specified name.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="value">The value.</param>
+            <exception cref="T:System.ArgumentNullException">name</exception>
+            <exception cref="!:System.FormatException">
+                Header name may not contain colon, CR or LF.
+                or
+                Header value may not contain colon, CR or LF.
+            </exception>
+            <remarks>
+                <para>
+                    If a client or a server receives repeated frame header entries, only the first header entry SHOULD be used as
+                    the value of header entry. Subsequent values are only used to maintain a history of state changes of the header
+                    and MAY be ignored. This implementation will IGNORE all subsequent headers
+                </para>
+            </remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpMessage.OnHeaderSet(System.String,System.String)">
+            <summary>
+                Invoked every time a HTTP header is modified.
+            </summary>
+            <param name="name">Header name</param>
+            <param name="value">Value</param>
+            <remarks>
+                <para>Allows you to validate headers or modify the request when a specific header is set.</para>
+            </remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpMessage.StatusLine">
+            <summary>
+                Status line in a HTTP message divided into parts (array with three items).
+            </summary>
+            <remarks>
+                <para>The content of the line depends on if this is a HTTP request </para>
+            </remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpMessage.HttpVersion">
+            <summary>
+                Version of the HTTP protocol
+            </summary>
+            <remarks>
+                <para>
+                    Typically <c>HTTP/1.1</c> but can also be the old version <c>HTTP/1.0</c> or the new draft <c>HTTP/2.0</c>
+                    (aka SPDY)
+                </para>
+            </remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpMessage.Headers">
+            <summary>
+            All HTTP headers.
+            </summary>
+            <remarks>
+            Missing headers will return <c>null</c> as value
+            </remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpMessage.Body">
+            <summary>
+                Body in the HTTP message
+            </summary>
+            <remarks>
+                <para>
+                    The body has not been modified or parsed in any way. The actual stream is either a <c>MemoryStream</c> or
+                    <c>FileStream</c> depending on the
+                    size of the body.
+                </para>
+            </remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpMessage.ContentLength">
+            <summary>
+                Length of the body in bytes.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpMessage.ContentType">
+            <summary>
+                Content type without encoding
+            </summary>
+            <remarks>
+                <para>
+                    To set encoding you have to use <c>httpMessage.Headers["content-type"] = "text/html; charset=utf8"</c> or
+                    similar.
+                </para>
+            </remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpMessage.ContentCharset">
+            <summary>
+                The encoding used in the document (if it's text of some sort)
+            </summary>
+            <remarks>
+                <para>
+                    To set encoding you have to use <c>httpMessage.Headers["content-type"] = "text/html; charset=utf8"</c> or
+                    similar.
+                </para>
+            </remarks>
+        </member>
+        <member name="T:MicroServer.Net.Http.Messages.HttpMessageDecoder">
+            <summary>
+                Decodes HTTP messages
+            </summary>
+            <remarks>
+                <para>
+                    Per default the body is not decoded. To change that behavior you should use the constructor that takes
+                    a message serializer.
+                </para>
+            </remarks>
+        </member>
+        <member name="T:MicroServer.Net.Http.IMessageDecoder">
+            <summary>
+                Decodes incoming bytes into something more useful
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.IMessageDecoder.Clear">
+            <summary>
+                Clear state to allow this decoder to be reused.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.IMessageDecoder.ProcessReadBytes(MicroServer.Net.Sockets.SocketChannel,MicroServer.Net.Sockets.SocketBuffer)">
+            <summary>
+                We've received bytes from the socket. Build a message out of them.
+            </summary>
+            <param name="buffer">Buffer</param>
+            <remarks></remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.IMessageDecoder.MessageReceived">
+            <summary>
+                A message have been received.
+            </summary>
+            <remarks>
+                Do note that streams are being reused by the decoder, so don't try to close it.
+            </remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpMessageDecoder.#ctor">
+            <summary>
+                Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Messages.HttpMessageDecoder"/> class.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpMessageDecoder.#ctor(MicroServer.Net.Http.Serializers.IMessageSerializer)">
+            <summary>
+                Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Messages.HttpMessageDecoder"/> class.
+            </summary>
+            <param name="messageSerializer">The message serializer.</param>
+            <exception cref="T:System.ArgumentNullException">messageSerializer</exception>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpMessageDecoder.ProcessReadBytes(MicroServer.Net.Sockets.SocketChannel,MicroServer.Net.Sockets.SocketBuffer)">
+            <summary>
+                We've received bytes from the socket. Build a message out of them.
+            </summary>
+            <param name="buffer">Buffer</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpMessageDecoder.Clear">
+            <summary>
+                Reset decoder state so that we can decode a new message
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpMessageDecoder.MessageReceived">
+            <summary>
+                A message have been received.
+            </summary>
+            <remarks>
+                Do note that streams are being reused by the decoder, so don't try to close it.
+            </remarks>
+        </member>
+        <member name="T:MicroServer.Net.Http.Messages.HttpMessageEncoder">
+            <summary>
+                Used to encode request/response into a byte stream.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.IMessageEncoder">
+            <summary>
+                Message encoders are used to convert objects into binary form so that they can be transferred over a socket.
+            </summary>
+            <remarks>
+                The format itself is determined by the protocol which is implemented. See all implementations.
+            </remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.IMessageEncoder.Prepare(System.Object)">
+            <summary>
+                Prepare the encoder so that the specified object can be encoded next.
+            </summary>
+            <param name="message">Message to send</param>
+            <remarks>
+                Can be used to prepare the next message. for instance serialize it etc.
+            </remarks>
+            <exception cref="T:System.NotSupportedException">Message is of a type that the encoder cannot handle.</exception>
+        </member>
+        <member name="M:MicroServer.Net.Http.IMessageEncoder.SendCompleted(System.Int32)">
+            <summary>
+                The previous <see cref="!:Send"/> has just completed.
+            </summary>
+            <param name="bytesTransferred"></param>
+            <remarks><c>true</c> if the message have been sent successfully; otherwise <c>false</c>.</remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.IMessageEncoder.Clear">
+            <summary>
+                Remove everything used for the last message
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpMessageEncoder.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Messages.HttpMessageEncoder"/> class.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpMessageEncoder.Prepare(System.Object)">
+            <summary>
+                Are about to send a new message
+            </summary>
+            <param name="message">Message to send</param>
+            <remarks>
+                Can be used to prepare the next message. for instance serialize it etc.
+            </remarks>
+            <exception cref="T:System.NotSupportedException">Message is of a type that the encoder cannot handle.</exception>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpMessageEncoder.SendCompleted(System.Int32)">
+            <summary>
+                The previous <see cref="!:IMessageEncoder.Send"/> has just completed.
+            </summary>
+            <param name="bytesTransferred"></param>
+            <remarks><c>true</c> if the message have been sent successfully; otherwise <c>false</c>.</remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpMessageEncoder.Clear">
+            <summary>
+                Remove everything used for the last message
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Messages.HttpCookieCollection">
+            <summary>
+            A collection of HTTP cookies
+            </summary>
+            <typeparam name="T">Type of cookie</typeparam>
+        </member>
+        <member name="T:MicroServer.Net.Http.IHttpCookieCollection">
+            <summary>
+            Collection of cookies
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.IHttpCookieCollection.Add(MicroServer.Net.Http.IHttpCookie)">
+            <summary>
+            Add a cookie.
+            </summary>
+            <param name="cookie">Cookie to add</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.IHttpCookieCollection.Clear">
+            <summary>
+            Remove all cookies.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.IHttpCookieCollection.Remove(System.String)">
+            <summary>
+            Remove a cookie from the collection.
+            </summary>
+            <param name="cookieName">Name of cookie.</param>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHttpCookieCollection.Count">
+            <summary>
+            Gets the count of cookies in the collection.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHttpCookieCollection.Item(System.String)">
+            <summary>
+            Gets the cookie of a given identifier (<c>null</c> if not existing).
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpCookieCollection.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>
+            An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpCookieCollection.Add(MicroServer.Net.Http.IHttpCookie)">
+            <summary>
+            Adds the specified cookie.
+            </summary>
+            <param name="cookie">The cookie.</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpCookieCollection.Clear">
+            <summary>
+            Remove all cookies.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpCookieCollection.Remove(System.String)">
+            <summary>
+            Remove a cookie from the collection.
+            </summary>
+            <param name="cookieName">Name of cookie.</param>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpCookieCollection.Count">
+            <summary>
+            Gets the count of cookies in the collection.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpCookieCollection.Item(System.String)">
+            <summary>
+            Gets the cookie of a given identifier (<c>null</c> if not existing).
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Messages.HeaderCollection">
+            <summary>
+                Collection of HTTP headers
+            </summary>
+            <remarks>The values are not encoded, you must encode them when serializing the message.</remarks>
+        </member>
+        <member name="T:MicroServer.Net.Http.IHeaderCollection">
+            <summary>
+            Represents all headers that are being sent/received in a HTTP message
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.IHeaderCollection.Contains(System.String)">
+            <summary>
+            Checks if the specified header exists in the collection
+            </summary>
+            <param name="name">Name, case insensitive</param>
+            <returns><c>true</c> if found; otherwise <c>false</c>.</returns>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHeaderCollection.Count">
+            <summary>
+            Number of headers
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHeaderCollection.Item(System.String)">
+            <summary>
+            Get or set an header
+            </summary>
+            <param name="name">Name, case insensitive</param>
+            <returns>
+            Header if found; otherwise <c>null</c>.
+            </returns>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HeaderCollection.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Messages.HeaderCollection"/> class.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HeaderCollection.Add(System.String,System.String)">
+            <summary>
+                Adds the specified name.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="value">The value.</param>
+            <exception cref="T:System.ArgumentNullException">name</exception>
+            <exception cref="!:System.FormatException">
+                Header name may not contain colon, CR or LF.
+                or
+                Header value may not contain colon, CR or LF.
+            </exception>
+            <remarks>
+                <para>If a client or a server receives repeated frame header entries, only the first header entry SHOULD be used as the value of header entry. Subsequent values are only used to maintain a history of state changes of the header and MAY be ignored. This implementation will IGNORE all subsequent headers</para>
+            </remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HeaderCollection.Contains(System.String)">
+            <summary>
+            Checks if the specified header exists in the collection
+            </summary>
+            <param name="name">Name, case insensitive</param>
+            <returns>
+              <c>true</c> if found; otherwise <c>false</c>.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">name</exception>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HeaderCollection.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>
+            An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HeaderCollection.Count">
+            <summary>
+            Number of headers
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HeaderCollection.Item(System.String)">
+            <summary>
+            Used to fetch headers
+            </summary>
+            <param name="name">Lower case name</param>
+            <returns>header if found; otherwise <c>null</c>.</returns>
+        </member>
+        <member name="T:MicroServer.Net.Http.Messages.HeaderParser">
+            <summary>
+                Used to parse the HTTP header.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HeaderParser.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Messages.HeaderParser"/> class.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HeaderParser.Parse(MicroServer.Net.Sockets.SocketBuffer,System.Int32)">
+            <summary>
+                Will try to parse everything in the buffer
+            </summary>
+            <param name="buffer">Buffer to read from.</param>
+            <param name="offset">Where to start parsing in the buffer.</param>
+            <returns>offset where the parser ended.</returns>
+            <remarks>
+                <para>
+                    Do note that the parser is for the header only. The <see cref="F:MicroServer.Net.Http.Messages.HeaderParser.Completed"/> event will
+                    indicate that there might be body bytes left in the buffer. You have to handle them by yourself.
+                </para>
+            </remarks>
+        </member>
+        <member name="F:MicroServer.Net.Http.Messages.HeaderParser.Completed">
+            <summary>
+            The header part of the request/response has been parsed successfully. The remaining bytes is for the body.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Http.Messages.HeaderParser.HeaderParsed">
+            <summary>
+            We've parsed a header and it's value.
+            </summary>
+        </member>
+        <member name="F:MicroServer.Net.Http.Messages.HeaderParser.RequestLineParsed">
+            <summary>
+            We've parsed a request line, meaning that all headers is for a HTTP Request.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HeaderParser.Reset">
+            <summary>
+            Reset parser state
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HeaderParser.ResetLineParsing">
+            <summary>
+            Resets the line parsing so that a new header can be parsed.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Messages.HeaderParser.ParserMethod">
+            <summary>
+            Used to be able to quickly swap parser method.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:MicroServer.Net.Http.Messages.MessageHeaderHandler">
+            <summary>
+            Callback for <see cref="T:MicroServer.Net.Http.Messages.HeaderParser"/>
+            </summary>
+            <param name="name">The name.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="T:MicroServer.Net.Http.Messages.MessageNameHandler">
+            <summary>
+            Callback for <see cref="T:MicroServer.Net.Http.Messages.HeaderParser"/> when a HTTP status line have been received.
+            </summary>
+            <param name="part1">HttpVerb or HttpVersion depending on if it's a request or a response</param>
+            <param name="part2">PathAndQuery or StatusCode depending on if it's a request or a response.</param>
+            <param name="part3">HttpVersion or StatusDescription depending on if it's a request or a response</param>
+        </member>
+        <member name="T:MicroServer.Net.Http.Messages.CompletedHandler">
+            <summary>
+            The header part of the request/response has been parsed successfully.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Messages.HttpCookieParser">
+            <summary>
+            Parses a request cookie header value.
+            </summary>
+            <remarks>This class is not thread safe.</remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpCookieParser.Name_Before">
+            <summary>
+            Parse state method, remove all white spaces before the cookie name
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpCookieParser.Name">
+            <summary>
+            Read cookie name until white space or equals are found
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpCookieParser.Name_After">
+            <summary>
+            Remove all white spaces until colon is found
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpCookieParser.Value_Before">
+            <summary>
+            Determine if the cookie value is quoted or regular.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpCookieParser.Value">
+            <summary>
+            Read cookie value
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpCookieParser.Value_Qouted">
+            <summary>
+            Read cookie value qouted
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpCookieParser.Parse(System.String)">
+            <summary>
+            Parse cookie string
+            </summary>
+            <returns>A generated cookie collection.</returns>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpCookieParser.IsEOF">
+            <summary>
+            end of cookie string?
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Messages.HttpCookieParser.ParserMethod">
+            <summary>
+            Used to be able to quickly swap parser method.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:MicroServer.Net.Http.Messages.HttpHeaderValue">
+            <summary>
+                Value for a http header
+            </summary>
+            <remarks>
+                <para>
+                    Created to take care of optional value parameters.
+                </para>
+            </remarks>
+            <example>
+            <code>
+            var str =  "application/x-www-form-urlencoded;charset=windows-1250;type=Your.App.Namespace.SomeType-YourApp";
+            var header = new HttpHeaderValue(str);
+            var contentType = header.Value;                 // application/x-www-form-urlencoded
+            var charset = header.Parameters["charset"];     // windows-1250
+            var type = header.Parameters["type"];           // Your.App.Namespace.SomeType-YourApp
+            </code>
+            </example>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpHeaderValue.#ctor(System.String)">
+            <summary>
+                Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Messages.HttpHeaderValue"/> class.
+            </summary>
+            <param name="value">The value.</param>
+            <exception cref="T:System.ArgumentNullException">value</exception>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpHeaderValue.ToString">
+            <summary>
+                Returns a string that represents the current object.
+            </summary>
+            <returns>
+                A string that represents the current object.
+            </returns>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpHeaderValue.Value">
+            <summary>
+                Gets value (parameters after semicolon is excluded)
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpHeaderValue.Parameters">
+            <summary>
+                All parameters after the semi colon (if any).
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.HttpRequest">
+            <summary>
+            A HTTP request where the included body have been parsed
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Messages.HttpRequestBase">
+            <summary>
+            HTTP request, but without any operations done of the body.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.IHttpRequest">
+            <summary>
+            Represents a HTTP request
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.IHttpRequest.CreateResponse">
+            <summary>
+            Create a response for this request.
+            </summary>
+            <returns>Response</returns>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHttpRequest.HttpMethod">
+            <summary>
+                Method which was invoked.
+            </summary>
+            <remarks>
+                <para>Typically <c>GET</c>, <c>POST</c>, <c>PUT</c>, <c>DELETE</c> or <c>HEAD</c>.</para>
+            </remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHttpRequest.Uri">
+            <summary>
+                Request UrI
+            </summary>
+            <remarks>
+                <para>Is built using the <c>server</c> header and the path + query which is included in the request line</para>
+                <para>If no <c>server</c> header is included "127.0.0.1" will be used as server.</para>
+            </remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHttpRequest.UriRewrite">
+            <summary>
+            Gets or sets requested URI rewriten by routing defaults.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHttpRequest.RemoteEndPoint">
+            <summary>
+            Address to the remote end point
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHttpRequest.Form">
+            <summary>
+            Submitted form items
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHttpRequest.Files">
+            <summary>
+            Submitted files
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHttpRequest.Cookies">
+            <summary>
+            Included cookies.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpRequestBase.#ctor(System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="httpMethod">Method like <c>POST</c>.</param>
+            <param name="pathAndQuery">Absolute path and query string (if one exist)</param>
+            <param name="httpVersion">HTTP version like <c>HTTP/1.1</c></param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpRequestBase.CreateResponse">
+            <summary>
+            Create a response for this request.
+            </summary>
+            <returns>Response</returns>
+            <remarks>
+            <para>
+            If you override this method you have to copy the PipelineIndexKey header like this:
+            <code>
+             var pipeline = Headers[PipelineIndexKey];
+             if (pipeline != null)
+             {
+                response.Headers[PipelineIndexKey] = pipeline;
+             }        
+            </code>
+            </para>
+            </remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpRequestBase.OnHeaderSet(System.String,System.String)">
+            <summary>
+            Invoked every time a HTTP header is modified.
+            </summary>
+            <param name="name">Header name</param>
+            <param name="value">Value</param>
+            <remarks>
+            Used to build the URI when the HOST header comes.
+            </remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpRequestBase.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>
+            A string that represents the current object.
+            </returns>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpRequestBase.HttpMethod">
+            <summary>
+                Method which was invoked.
+            </summary>
+            <remarks>
+                <para>Typically <c>GET</c>, <c>POST</c>, <c>PUT</c>, <c>DELETE</c> or <c>HEAD</c>.</para>
+            </remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpRequestBase.Uri">
+            <summary>
+                Request UrI
+            </summary>
+            <remarks>
+                <para>Is built using the <c>server</c> header and the path + query which is included in the request line</para>
+                <para>If no <c>server</c> header is included "localhost" will be used as server.</para>
+            </remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpRequestBase.UriRewrite">
+            <summary>
+            Gets or sets requested URI rewriten by routing defaults.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpRequestBase.RemoteEndPoint">
+            <summary>
+            Address to the remote end point
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpRequestBase.Form">
+            <summary>
+            Submitted form items
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpRequestBase.Files">
+            <summary>
+            Submitted files
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpRequestBase.Cookies">
+            <summary>
+            Included cookies.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpRequestBase.StatusLine">
+            <summary>
+            Status line for requests is "HttpMethod PathAndQuery HttpVersion"
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.HttpRequest.#ctor(System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="httpMethod">Method like <c>POST</c>.</param>
+            <param name="pathAndQuery">Absolute path and query string (if one exist)</param>
+            <param name="httpVersion">HTTP version like <c>HTTP/1.1</c></param>
+        </member>
+        <member name="M:MicroServer.Net.Http.HttpRequest.CreateResponse">
+            <summary>
+            Create a response for this request.
+            </summary>
+            <returns>Response</returns>
+        </member>
+        <member name="T:MicroServer.Net.Http.HttpResponse">
+            <summary>
+            Complete HTTP resposne.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Messages.HttpResponseBase">
+            <summary>
+            A HTTP response with minimal parsing.
+            </summary>
+            <remarks>
+            <para>The purpose of this class is to do as little as possible with the response to make the processing more straightforward and without
+            any unnessacary steps.</para>
+            </remarks>
+        </member>
+        <member name="T:MicroServer.Net.Http.IHttpResponse">
+            <summary>
+                A http response.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHttpResponse.StatusCode">
+            <summary>
+                HTTP status code. You typically choose one of <see cref="T:System.Net.HttpStatusCode"/>.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.IHttpResponse.StatusDescription">
+            <summary>
+                Why the specified <see cref="P:MicroServer.Net.Http.IHttpResponse.StatusCode"/> was set.
+            </summary>
+            <remarks>
+                <para>
+                    The goal with the reason is to help the remote endpoint to understand why the specific code was chosen. i.e. it
+                    allows you
+                    to help the programmer to understand why a specific error code was set.
+                </para>
+            </remarks>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpResponseBase.#ctor(System.Int32,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Messages.HttpResponseBase"/> class.
+            </summary>
+            <param name="statusCode">The status code.</param>
+            <param name="reasonPhrase">The reason phrase.</param>
+            <param name="httpVersion">The HTTP version.</param>
+            <exception cref="T:System.ArgumentNullException">reasonPhrase</exception>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.HttpResponseBase.#ctor(System.Net.HttpStatusCode,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Messages.HttpResponseBase"/> class.
+            </summary>
+            <param name="statusCode">The status code.</param>
+            <param name="reasonPhrase">The reason phrase.</param>
+            <param name="httpVersion">The HTTP version.</param>
+            <exception cref="T:System.ArgumentNullException">reasonPhrase</exception>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpResponseBase.StatusCode">
+            <summary>
+                HTTP status code. You typically choose one of <see cref="T:System.Net.HttpStatusCode"/>.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpResponseBase.StatusDescription">
+            <summary>
+                Why the specified <see cref="P:MicroServer.Net.Http.Messages.HttpResponseBase.StatusCode"/> was set.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.HttpResponseBase.StatusLine">
+            <summary>
+            Status line for HTTP responses is "HttpVersion StatusCode ReasonPhrase"
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.HttpResponse.#ctor(System.Int32,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.HttpResponse"/> class.
+            </summary>
+            <param name="statusCode">The status code.</param>
+            <param name="reasonPhrase">The reason phrase.</param>
+            <param name="httpVersion">The HTTP version.</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.HttpResponse.#ctor(System.Net.HttpStatusCode,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.HttpResponse"/> class.
+            </summary>
+            <param name="statusCode">The status code.</param>
+            <param name="reasonPhrase">The reason phrase.</param>
+            <param name="httpVersion">The HTTP version.</param>
+        </member>
+        <member name="P:MicroServer.Net.Http.HttpResponse.Cookies">
+            <summary>
+            Cookies to send to the server side
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Messages.Parameter">
+            <summary>
+                A parameter in a HTTP header field.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.IParameter">
+            <summary>
+            Parameter in <see cref="T:MicroServer.Net.Http.IParameterCollection"/>
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.IParameter.Add(System.String)">
+            <summary>
+            Add a new parameter value
+            </summary>
+            <param name="value">Value to add</param>
+        </member>
+        <member name="P:MicroServer.Net.Http.IParameter.Value">
+            <summary>
+            Gets *last* value.
+            </summary>
+            <remarks>
+            Parameters can have multiple values. This property will always get the last value in the list.
+            </remarks>
+            <value>String if any value exist; otherwise <c>null</c>.</value>
+        </member>
+        <member name="P:MicroServer.Net.Http.IParameter.Name">
+            <summary>
+            Gets or sets name.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.IParameter.Item(System.Int32)">
+            <summary>
+            Get one of the values.
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="P:MicroServer.Net.Http.IParameter.Count">
+            <summary>
+            Get number of values
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.Parameter.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Messages.Parameter"/> class.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="value">The value.</param>
+            <exception cref="T:System.ArgumentNullException">
+            name
+            or
+            value
+            </exception>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.Parameter.Add(System.String)">
+            <summary>
+                Add a new parameter value
+            </summary>
+            <param name="value">Value to add</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.Parameter.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+                Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>
+                An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.Parameter.Values">
+            <summary>
+                Gets a list of all values.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.Parameter.Value">
+            <summary>
+                Gets *last* value.
+            </summary>
+            <remarks>
+                Parameters can have multiple values. This property will always get the last value in the list.
+            </remarks>
+            <value>String if any value exist; otherwise <c>null</c>.</value>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.Parameter.Name">
+            <summary>
+                Gets or sets name.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.Parameter.Item(System.Int32)">
+            <summary>
+                Get one of the values.
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.Parameter.Count">
+            <summary>
+                Get number of values
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Messages.ParameterCollection">
+            <summary>
+                Collection of parameters in a HTTP header.
+            </summary>
+            <remarks>
+                <para>
+                    Most of the HTTP headers can have parameters in the header value. typically they are stored as
+                    <code>TheHeaderValue;and=some,parameters=true</code>
+                </para>
+            </remarks>
+        </member>
+        <member name="T:MicroServer.Net.Http.IParameterCollection">
+            <summary>
+            Collection of parameters
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.IParameterCollection.Get(System.String)">
+            <summary>
+            Get a parameter.
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MicroServer.Net.Http.IParameterCollection.Add(System.String,System.String)">
+            <summary>
+            Add a query string parameter.
+            </summary>
+            <param name="name">Parameter name</param>
+            <param name="value">Value</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.IParameterCollection.Exists(System.String)">
+            <summary>
+            Checks if the specified parameter exists
+            </summary>
+            <param name="name">Parameter name.</param>
+            <returns><c>true</c> if found; otherwise <c>false</c>;</returns>
+        </member>
+        <member name="P:MicroServer.Net.Http.IParameterCollection.Count">
+            <summary>
+            Gets number of parameters.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.IParameterCollection.Item(System.String)">
+            <summary>
+            Gets last value of an parameter.
+            </summary>
+            <param name="name">Parameter name</param>
+            <returns>String if found; otherwise <c>null</c>.</returns>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.ParameterCollection.Parse(System.String)">
+            <summary>
+            Parse string
+            </summary>
+            <param name="value">contains "a=b,c=d" etc</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.ParameterCollection.Parse(System.String,MicroServer.Net.Http.Messages.ParameterCollection)">
+            <summary>
+            Parse string
+            </summary>
+            <param name="value">contains "a=b,c=d" etc</param>
+            <param name="target">Collection to fill with the values</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.ParameterCollection.Add(System.String,System.String)">
+            <summary>
+                Add a query string parameter.
+            </summary>
+            <param name="name">Parameter name</param>
+            <param name="value">Value</param>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.ParameterCollection.Exists(System.String)">
+            <summary>
+                Checks if the specified parameter exists
+            </summary>
+            <param name="name">Parameter name.</param>
+            <returns><c>true</c> if found; otherwise <c>false</c>;</returns>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.ParameterCollection.Get(System.String)">
+            <summary>
+                Get a parameter.
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.ParameterCollection.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+                Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>
+                An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.ParameterCollection.Clear">
+            <summary>
+                Remove all item
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.ParameterCollection.Count">
+            <summary>
+                Gets number of parameters.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.ParameterCollection.Item(System.String)">
+            <summary>
+                Gets last value of an parameter.
+            </summary>
+            <param name="name">Parameter name</param>
+            <returns>String if found; otherwise <c>null</c>.</returns>
+        </member>
+        <member name="T:MicroServer.Net.Http.Messages.ReaderResult">
+            <summary>
+            Result from <see cref="M:MicroServer.Net.Http.Messages.TextReaderExtensions.ReadToEnd(System.IO.TextReader,System.String)"/>
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.ReaderResult.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MicroServer.Net.Http.Messages.ReaderResult"/> class.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.ReaderResult.Value">
+            <summary>
+            Value read
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Messages.ReaderResult.Delimiter">
+            <summary>
+            Found delimiter
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Http.Messages.TextReaderExtensions">
+            <summary>
+            Extensions for the standard text reader
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.TextReaderExtensions.ReadToEnd(System.IO.TextReader,System.String)">
+            <summary>
+            </summary>
+            <param name="reader"></param>
+            <param name="delimiters"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MicroServer.Net.Http.Messages.UrlDecoder">
+            <summary>
+            Parses query string
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.UrlDecoder.Parse(System.IO.TextReader,MicroServer.Net.Http.IParameterCollection)">
+            <summary>
+            Parse a query string
+            </summary>
+            <param name="reader">string to parse</param>
+            <param name="parameters">Parameter collection to fill</param>
+            <returns>A collection</returns>
+            <exception cref="T:System.ArgumentNullException"><c>reader</c> is <c>null</c>.</exception>
+        </member>
+        <member name="M:MicroServer.Net.Http.Messages.UrlDecoder.Parse(System.String)">
+            <summary>
+            Parse a query string
+            </summary>
+            <param name="queryString">string to parse</param>
+            <returns>A collection</returns>
+            <exception cref="T:System.ArgumentNullException"><c>queryString</c> is <c>null</c>.</exception>
+        </member>
+        <member name="T:MicroServer.Net.Http.Serializers.FormAndFilesResult">
+            <summary>
+            Result from decoders.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Serializers.FormAndFilesResult.Files">
+            <summary>
+            Collection of files (or an empty collection)
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.Serializers.FormAndFilesResult.Form">
+            <summary>
+            HTTP form items (or an empty form)
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.HttpService.#ctor(MicroServer.Net.Http.IModuleManager)">
+            <summary>
+                Initializes a new instance of the <see cref="T:MicroServer.Net.Http.HttpService"/> class.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.HttpService.Stop">
+            <summary>
+             Stops the service listener if in started state.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Http.HttpService.Add(MicroServer.Net.Http.Modules.IHttpModule)">
+            <summary>
+                Add a HTTP module
+            </summary>
+            <param name="module">Module to include</param>
+            <remarks>Modules are executed in the order they are added.</remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.HttpService.InterfaceAddress">
+            <summary>
+              Gets or sets the ip address for reciving data
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.HttpService.ServicePort">
+            <summary>
+              Gets or sets the port for reciving data
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.HttpService.ActivePort">
+            <summary>
+                Gets port that the server is listening on.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Http.HttpService.Current">
+            <summary>
+            Gets current server.
+            </summary>
+            <remarks>
+            Only valid when a request have been received and is being processed.
+            </remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.HttpService.BodyDecoder">
+            <summary>
+            if set, the body decoder will be used and the server will produce <see cref="T:MicroServer.Net.Http.HttpRequest"/> instead of <see cref="T:MicroServer.Net.Http.Messages.HttpRequestBase"/>.
+            </summary>
+            <remarks>
+            <para>Specified per default</para>
+            </remarks>
+        </member>
+        <member name="P:MicroServer.Net.Http.HttpService.ApplicationInfo">
+            <summary>
+                You can fill this item with application specific information
+            </summary>
+            <remarks>
+                It will be supplied for every request in the <see cref="T:MicroServer.Net.Http.IHttpContext"/>.
+            </remarks>
+        </member>
+    </members>
+</doc>
