@@ -58,6 +58,30 @@
     <Reference Include="GHI.Usb, Version=4.3.6.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="GHIElectronics.Gadgeteer.FEZCobraIIEco, Version=4.3.6.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="GTM.GHIElectronics.CharacterDisplay, Version=4.3.6.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="MicroServer.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MicroServer.Core.1.0.0.0\lib\netmf43\MicroServer.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MicroServer.Net.Dhcp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MicroServer.Net.Dhcp.1.0.0.0\lib\netmf43\MicroServer.Net.Dhcp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MicroServer.Net.Dns, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MicroServer.Net.Dns.1.0.0.0\lib\netmf43\MicroServer.Net.Dns.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MicroServer.Net.Http, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MicroServer.Net.Http.1.0.0.0\lib\netmf43\MicroServer.Net.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MicroServer.Net.Sntp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MicroServer.Net.Sntp.1.0.0.0\lib\netmf43\MicroServer.Net.Sntp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MicroServer.ServiceManager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MicroServer.ServiceManager.1.0.0.0\lib\netmf43\MicroServer.ServiceManager.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.SPOT.Hardware" />
     <Reference Include="Microsoft.SPOT.IO" />
     <Reference Include="Microsoft.SPOT.Native" />
@@ -69,29 +93,6 @@
     <Reference Include="System.IO" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\MicroServer.Core.csproj">
-      <Project>{54255905-096C-42A5-B800-010C3673E820}</Project>
-      <Name>MicroServer.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Net\DhcpService\MicroServer.Net.DhcpService.csproj">
-      <Project>{9FFED0C6-5B64-406D-8B99-ED5474A0A1CB}</Project>
-      <Name>MicroServer.Net.DhcpService</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Net\DnsService\MicroServer.Net.DnsService.csproj">
-      <Project>{A3DE42C9-B837-462F-BBAE-7D38A30595D6}</Project>
-      <Name>MicroServer.Net.DnsService</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Net\HttpService\MicroServer.Net.HttpService.csproj">
-      <Project>{9A23BE8A-19F0-4384-9FF8-6E4B38E088A2}</Project>
-      <Name>MicroServer.Net.HttpService</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Net\SntpService\MicroServer.Net.SntpService.csproj">
-      <Project>{32A7A0DF-0B5E-4337-BD60-EAF2DDBD6E54}</Project>
-      <Name>MicroServer.Net.SntpService</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ServiceManager\MicroServer.ServiceManager.csproj">
-      <Project>{BE3F9F99-C0A7-4120-A6AE-6816CCBF16C0}</Project>
-      <Name>MicroServer.ServiceManager</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
