@@ -90,7 +90,7 @@ namespace MicroServer.Net.Http.Routing
                 }
                 else
                 {
-                    Logger.WriteDebug(" route pattern:'" + pattern +
+                    Logger.WriteDebug("  route pattern:'" + pattern +
                         "' regex:'" + pattern +
                         "' => uri:'" + context.Request.Uri.AbsolutePath +
                         "' = false");

@@ -83,9 +83,9 @@ namespace MicroServer.Net.Http.Mvc
         /// <param name="action">Action to invoke</param>
         /// <param name="arguments">Parameters used by the controller.</param>
         /// <returns></returns>
-        //public static object Invoke(string controllerName, string actionName, params object[] arguments)
+        ////public static object Invoke(string controllerName, string actionName, params object[] arguments)
         //{
-        //    return HttpService.Current.Invoke(controllerName, actionName, arguments);
+        //    return    Current.Invoke(controllerName, actionName, arguments);
 
         //}
 
