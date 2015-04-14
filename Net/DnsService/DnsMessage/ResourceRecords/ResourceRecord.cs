@@ -22,19 +22,19 @@ namespace MicroServer.Net.Dns
         public string Domain
         {
             get { return _domain; }
-            internal set { _domain = value; }
+            set { _domain = value; }
         }
         
         public RecordType Type 
         { 
             get { return _qtype; }
-            internal set { _qtype = value; }
+            set { _qtype = value; }
         }
         
         public RecordClass Class 
         { 
             get { return _qclass; }
-            internal set { _qclass = value; }
+            set { _qclass = value; }
         }
         
         /// <summary>
@@ -47,7 +47,7 @@ namespace MicroServer.Net.Dns
         public int Ttl 
         { 
             get { return _ttl; }
-            internal set { _ttl = value; }
+            set { _ttl = value; }
         }
 
         /// <summary>
@@ -56,16 +56,16 @@ namespace MicroServer.Net.Dns
         public RecordBase Record 
         { 
             get { return _record; }
-            internal set { _record = value; }
+            set { _record = value; }
         }
 
         #endregion
 
-        internal ResourceRecord()
+        public ResourceRecord()
         {
         }
 
-        internal ResourceRecord(DnsReader br)
+        public ResourceRecord(DnsReader br)
         {
             _domain = br.ReadDomain();
             _qtype = (RecordType)br.ReadInt16();

@@ -86,7 +86,7 @@ namespace MicroServer.Net.Dns
 
         #endregion
 
-        internal SOARecord(DnsReader br)
+        public SOARecord(DnsReader br)
         {
             _mname = br.ReadDomain();
             _rname = br.ReadDomain();
@@ -97,7 +97,7 @@ namespace MicroServer.Net.Dns
             _minimumTtl = br.ReadInt32();
         }
 
-        internal string GetDuration(int d)
+        public string GetDuration(int d)
         {
             return d.ToString();
         }

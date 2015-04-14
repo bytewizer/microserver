@@ -23,7 +23,7 @@ namespace MicroServer.Net.Dns
 
         #endregion
 
-		internal PTRERecord(DnsReader br)
+        public PTRERecord(DnsReader br)
         {
             _domain = br.ReadDomain();
         }

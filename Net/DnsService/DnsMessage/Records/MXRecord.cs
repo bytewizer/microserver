@@ -35,7 +35,7 @@ namespace MicroServer.Net.Dns
 
         #endregion
 
-        internal MXRecord(DnsReader br)
+        public MXRecord(DnsReader br)
         {
             _preference = br.ReadInt16();
             _domainName = br.ReadDomain();

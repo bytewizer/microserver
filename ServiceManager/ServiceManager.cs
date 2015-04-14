@@ -18,6 +18,7 @@ using MicroServer.Net.Http.Files;
 using MicroServer.Net.Http.Mvc.Controllers;
 using MicroServer.Net.Http.Routing;
 using MicroServer.Net.Http.Modules;
+using MicroServer.Utilities;
 
 namespace MicroServer.Service
 {
@@ -29,15 +30,15 @@ namespace MicroServer.Service
         private static ServiceManager _service;
 
         private DhcpService _dhcpService = new DhcpService();
-        private bool _dhcpEnabled = true;
+        private bool _dhcpEnabled = false;
 
         private DnsService _dnsService = new DnsService();
-        private bool _dnsEnabled = true;
+        private bool _dnsEnabled = false;
 
         private SntpService _sntpService = new SntpService();
-        private bool _sntpEnabled = true;
+        private bool _sntpEnabled = false;
 
-        private HttpService _httpService;
+        private HttpService _httpService = new HttpService(null);
         private bool _httpEnabled = true;
         private bool _allowListing = false; 
 
@@ -263,6 +264,7 @@ namespace MicroServer.Service
                 _dhcpService.ServerName = _serverName;
                 _dhcpService.DnsSuffix = _dnsSuffix;
                 _dhcpService.StorageRoot = _storageRoot;
+
                 if (_sntpEnabled == true)
                 {
                     _dhcpService.RemoveOption(DhcpOption.NTPServer);
@@ -277,6 +279,21 @@ namespace MicroServer.Service
                 _dnsService.InterfaceAddress = _interfaceAddress;
                 _dnsService.ServerName = _serverName;
                 _dnsService.DnsSuffix = _dnsSuffix;
+
+                if (!StringUtility.IsNullOrEmpty(_serverName) || !StringUtility.IsNullOrEmpty(_dnsSuffix))
+                {
+                    Answer record = new Answer();
+                    record.Domain = string.Concat(_serverName, ".", _dnsSuffix);
+                    record.Class = RecordClass.IN;
+                    record.Type = RecordType.A;
+                    record.Ttl = 60;
+                    record.Record = new ARecord(_interfaceAddress.GetAddressBytes());
+
+                    _service.DnsService.ZoneFile.Add(record);
+
+                    Logger.WriteInfo(this, "Device registered with dns:  " + record.Domain);
+                }
+
                 _dnsService.Start();
             }
 

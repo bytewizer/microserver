@@ -28,9 +28,19 @@ namespace MicroServer.Net.Dns
 
         #endregion
 
-        internal ARecord(DnsReader br)
+        public ARecord(DnsReader br)
         {
             _ipAddress = new IPAddress(br.ReadBytes(4));
+        }
+
+        public ARecord(byte[] bytes)
+        {
+            _ipAddress = new IPAddress(bytes);
+        }
+
+        public ARecord(string ipAddress)
+        {
+            _ipAddress = IPAddress.Parse(ipAddress);
         }
 
         public override string ToString()
@@ -38,7 +48,7 @@ namespace MicroServer.Net.Dns
             return _ipAddress.ToString();
         }
 
-        internal override byte[] GetBytes()
+        public override byte[] GetBytes()
         {
             DnsWriter bw = new DnsWriter();
             bw.Write(_ipAddress.GetAddressBytes());

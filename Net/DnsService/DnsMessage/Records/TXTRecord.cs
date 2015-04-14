@@ -21,7 +21,7 @@ namespace MicroServer.Net.Dns
 
         #endregion
 
-        internal TXTRecord(DnsReader br)
+        public TXTRecord(DnsReader br)
         {
             _txtData = br.ReadString();
         }

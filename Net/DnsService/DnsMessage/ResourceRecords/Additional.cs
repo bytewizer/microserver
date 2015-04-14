@@ -8,7 +8,7 @@ namespace MicroServer.Net.Dns
     [Serializable]
     public class Additional : ResourceRecord
     {
-        internal Additional() : base() { }
-        internal Additional(DnsReader br) : base(br) { }
+        public Additional() : base() { }
+        public Additional(DnsReader br) : base(br) { }
     }
 }

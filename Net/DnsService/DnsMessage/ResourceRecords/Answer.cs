@@ -8,7 +8,8 @@ namespace MicroServer.Net.Dns
     [Serializable]
     public class Answer : ResourceRecord
     {
-        internal Answer() : base() { }
-        internal Answer(DnsReader br) : base(br) { }
+        public Answer() : base() { }
+        public Answer(DnsReader br) : base(br) { }
+        public Answer(byte[] bytes) : base(new DnsReader(bytes)) { }
     }
 }

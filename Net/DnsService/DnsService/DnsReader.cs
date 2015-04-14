@@ -33,7 +33,7 @@ using MicroServer.IO;
 
 namespace MicroServer.Net.Dns
 {
-    internal class DnsReader : ByteReader
+    public class DnsReader : ByteReader
     {
         public DnsReader(byte[] message)
             : base(message)

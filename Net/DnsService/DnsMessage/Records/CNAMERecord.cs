@@ -23,7 +23,7 @@ namespace MicroServer.Net.Dns
 
         #endregion
 
-        internal CNAMERecord(DnsReader br)
+        public CNAMERecord(DnsReader br)
         {
             _domain = br.ReadDomain();
         }

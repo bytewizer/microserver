@@ -8,7 +8,7 @@ namespace MicroServer.Net.Dns
     [Serializable]
     public class Authority : ResourceRecord
     {
-        internal Authority() : base() { }
-        internal Authority(DnsReader br) : base(br) { }
+        public Authority() : base() { }
+        public Authority(DnsReader br) : base(br) { }
     }
 }

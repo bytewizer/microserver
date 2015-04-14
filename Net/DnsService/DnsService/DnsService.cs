@@ -25,12 +25,17 @@ namespace MicroServer.Net.Dns
         #region Private Properties
 
         private UdpListener _listener;
+        private ZoneCollection _zoneFile = new ZoneCollection();
+
+        private IPAddress _primaryServer = Constants.DNS_DEFAULT_PRIMARY_SERVER;
+        private IPAddress _alternateServer = Constants.DNS_DEFAULT_ALTERNATE_SERVER;
 
         private IPAddress _interfaceAddress = IPAddress.Any;
         private int _receiveTimeout = Constants.DNS_RECEIVE_TIMEOUT;
         private int _sendTimeout = Constants.DNS_SEND_TIMEOUT;
         private string _dnsSuffix;
         private string _serverName;
+        private bool _isProxy = true;
 
         #endregion Private Properties
 
@@ -61,6 +66,42 @@ namespace MicroServer.Net.Dns
         {
             get { return this._serverName; }
             set { this._serverName = value; }
+        }
+
+        /// <summary>
+        /// The DNS hostname part.
+        /// </summary>
+        public ZoneCollection ZoneFile
+        {
+            get { return _zoneFile; }
+            set { _zoneFile = value; }
+        }
+
+        /// <summary>
+        /// Capture domain name resolution requests and route them to other DNS servers
+        /// </summary>
+        public bool IsProxy
+        {
+            get { return _isProxy; }
+            set { _isProxy = value; }
+        }
+
+        /// <summary>
+        /// Primary SNTP Server address.
+        /// </summary>
+        public string PrimaryServer
+        {
+            get { return _primaryServer.ToString(); }
+            set { _primaryServer = IPAddress.Parse(value); }
+        }
+
+        /// <summary>
+        ///  Alternate SNTP server is used if communication with primary server failed.
+        /// </summary>
+        public string AlternateServer
+        {
+            get { return _alternateServer.ToString(); }
+            set { _alternateServer = IPAddress.Parse(value); }
         }
 
         #endregion Public Properties
@@ -181,29 +222,28 @@ namespace MicroServer.Net.Dns
         /// A query is performed and a response is created. 
         /// </summary>
         private void DnsQuery(DnsMessageEventArgs args)
-        {
-            DnsReader address = new DnsReader(_interfaceAddress.GetAddressBytes());
-
-            string serverFqdn = ServerName + "." + DnsSuffix;
-
+        { 
             foreach (Question question in args.RequestMessage.Questions)
-            {
-                if (serverFqdn == question.Domain.ToString())
+            {          
+                Answer answers = _zoneFile.Get(question);
+
+                if (answers != null)
                 {
-
-                    Answer newAnswer = new Answer();
-                    newAnswer.Domain = question.Domain.ToString();
-                    newAnswer.Class = RecordClass.IN;
-                    newAnswer.Type = RecordType.A;
-                    newAnswer.Ttl = 60;
-
-                    ARecord record = new ARecord(address);
-                    newAnswer.Record = record;
-
-                    args.ResponseMessage.Answers = new Answer[] { newAnswer };
+                    // resolve locally
+                    args.ResponseMessage.Answers = new Answer[] { answers };
                     args.ResponseMessage.AnswerRecordCount += 1;
 
                     this.SendReply(args);
+                }
+                else
+                {
+                    // resolve remotely
+
+                    if (IsProxy)
+                    {
+                        this.SendRequest(args);
+                        this.SendReply(args);
+                    }
                 }
             }
         }
@@ -241,6 +281,67 @@ namespace MicroServer.Net.Dns
 
                 OnDnsMessageSent(this, args);
 
+            }
+            catch (SocketException ex)
+            {
+                Logger.WriteError(this, ex.Message + "Socket Error Code: " + ex.ErrorCode.ToString(), ex);
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteError(this, "Error Message:" + ex.Message.ToString(), ex);
+            }
+        }
+
+        /// <summary>
+        /// A message was recived then forwared onto a remote name server.  
+        /// </summary>
+        private void SendRequest(DnsMessageEventArgs args)
+        {
+            try
+            {
+                using (Socket _sendSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp))
+                {
+                    Byte[] messageBuffer = new Byte[Constants.DNS_MAX_MESSAGE_SIZE];
+
+                    IPEndPoint remoteEndPoint = null;
+
+                    try
+                    {
+                        remoteEndPoint = new IPEndPoint(_primaryServer, Constants.DNS_CLIENT_PORT);
+                        _sendSocket.Connect(remoteEndPoint);
+                    }
+
+                    catch
+                    {
+                        Logger.WriteInfo(this, "Failed to contact primary server " + _primaryServer + " failed.  Trying again using alternate server " + _alternateServer
+                            + " endpoint " + remoteEndPoint.ToString());
+
+                        remoteEndPoint = new IPEndPoint(_alternateServer, Constants.DNS_CLIENT_PORT);
+                        _sendSocket.Connect(remoteEndPoint);
+                    }
+
+                    if (remoteEndPoint != null)
+                    {
+                        _sendSocket.ReceiveTimeout = Constants.DNS_RECEIVE_TIMEOUT;
+                        _sendSocket.SendTimeout = Constants.DNS_SEND_TIMEOUT;
+
+                        // send message
+                        _sendSocket.Connect(remoteEndPoint);
+                        _sendSocket.Send(args.RequestMessage.ToArray());
+                        Logger.WriteDebug(this, "PACKET successfully sent to client endpoint " +
+                                        remoteEndPoint.ToString());
+                        Logger.WriteDebug(args.RequestMessage.ToString());
+
+                        // receive message
+                        _sendSocket.Receive(messageBuffer);
+                        _sendSocket.Close();
+
+                        args.ResponseMessage = new DnsMessage(messageBuffer);
+                        Logger.WriteDebug(this, "PACKET successfully received from client endpoint " +
+                                        remoteEndPoint.ToString());
+                        Logger.WriteDebug(args.ResponseMessage.ToString());
+                    }
+                }
             }
             catch (SocketException ex)
             {

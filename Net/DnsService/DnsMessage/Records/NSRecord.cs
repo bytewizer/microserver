@@ -23,7 +23,7 @@ namespace MicroServer.Net.Dns
 
         #endregion
 
-        internal NSRecord(DnsReader br)
+        public NSRecord(DnsReader br)
         {
             _domainName = br.ReadDomain();
         }

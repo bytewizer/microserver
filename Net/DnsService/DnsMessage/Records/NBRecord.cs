@@ -34,12 +34,12 @@ namespace MicroServer.Net.Dns
 
         #endregion
 
-        internal NBRecord(IPAddress address)
+        public NBRecord(IPAddress address)
         {
             _ipAddress = address;
         }
 
-        internal NBRecord(DnsReader br)
+        public NBRecord(DnsReader br)
         {
             _flags = br.ReadUInt16();
             _ipAddress = new IPAddress(br.ReadBytes(4));
@@ -50,7 +50,7 @@ namespace MicroServer.Net.Dns
             return "    " + _ipAddress.ToString();
         }
 
-        internal override byte[] GetBytes()
+        public override byte[] GetBytes()
         {
             DnsWriter bw = new DnsWriter();
 
