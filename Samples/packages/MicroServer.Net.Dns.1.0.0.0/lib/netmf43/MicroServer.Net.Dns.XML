@@ -81,6 +81,11 @@
             A message is processsed and reply is sent back to remote client. 
             </summary>
         </member>
+        <member name="M:MicroServer.Net.Dns.DnsService.SendRequest(MicroServer.Net.Dns.DnsMessageEventArgs)">
+            <summary>
+            A message was recived then forwared onto a remote name server.  
+            </summary>
+        </member>
         <member name="P:MicroServer.Net.Dns.DnsService.InterfaceAddress">
             <summary>
             Interface IP address.
@@ -96,6 +101,26 @@
             The DNS hostname part.
             </summary>
         </member>
+        <member name="P:MicroServer.Net.Dns.DnsService.ZoneFile">
+            <summary>
+            The DNS hostname part.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Dns.DnsService.IsProxy">
+            <summary>
+            Capture domain name resolution requests and route them to other DNS servers
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Dns.DnsService.PrimaryServer">
+            <summary>
+            Primary SNTP Server address.
+            </summary>
+        </member>
+        <member name="P:MicroServer.Net.Dns.DnsService.AlternateServer">
+            <summary>
+             Alternate SNTP server is used if communication with primary server failed.
+            </summary>
+        </member>
         <member name="E:MicroServer.Net.Dns.DnsService.OnDnsMessageReceived">
             <summary>
                 A sntp message was recived and processed.
@@ -104,6 +129,55 @@
         <member name="E:MicroServer.Net.Dns.DnsService.OnDnsMessageSent">
             <summary>
                 A sntp message was recived and processed and sent to an sntp address.
+            </summary>
+        </member>
+        <member name="T:MicroServer.Net.Dns.ZoneCollection">
+            <summary>
+                Collection of parameters in a HTTP header.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Dns.ZoneCollection.Add(MicroServer.Net.Dns.ResourceRecord)">
+            <summary>
+                Add a resource record.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Dns.ZoneCollection.Exists(MicroServer.Net.Dns.ResourceRecord)">
+            <summary>
+                Checks if the specified resource record exists
+            </summary>
+            <param name="name">The resource record.</param>
+            <returns><c>true</c> if found; otherwise <c>false</c>;</returns>
+        </member>
+        <member name="M:MicroServer.Net.Dns.ZoneCollection.Get(MicroServer.Net.Dns.ResourceRecord)">
+            <summary>
+                Get a resource record.
+            </summary>
+            <param name="record"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MicroServer.Net.Dns.ZoneCollection.Get(MicroServer.Net.Dns.Question)">
+            <summary>
+                Get a resource record
+            </summary>
+            <param name="record"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MicroServer.Net.Dns.ZoneCollection.Clear">
+            <summary>
+                Remove all resource records.
+            </summary>
+        </member>
+        <member name="M:MicroServer.Net.Dns.ZoneCollection.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+                Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>
+                An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="P:MicroServer.Net.Dns.ZoneCollection.Count">
+            <summary>
+                Gets number of resource records.
             </summary>
         </member>
         <member name="T:MicroServer.Net.Dns.DnsMessageEventHandler">

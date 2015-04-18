@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <AssemblyName>MicroServer.TestHarness</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>MicroServer.TestHarness</RootNamespace>
+    <ProjectTypeGuids>{b69e3092-b931-443c-abe7-7e7b65f2a37f};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{890B9530-CD9D-4E93-AEF7-1F2A060E8B8E}</ProjectGuid>
+    <TargetFrameworkVersion>v4.3</TargetFrameworkVersion>
+    <NetMfTargetsBaseDir Condition="'$(NetMfTargetsBaseDir)'==''">$(MSBuildExtensionsPath32)\Microsoft\.NET Micro Framework\</NetMfTargetsBaseDir>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Test.Harness.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SystemController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Program.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.SPOT.Native" />
+    <Reference Include="System" />
+    <Reference Include="System.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\MicroServer.Core.csproj">
+      <Project>{54255905-096C-42A5-B800-010C3673E820}</Project>
+      <Name>MicroServer.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Net\DhcpService\MicroServer.Net.DhcpService.csproj">
+      <Project>{9FFED0C6-5B64-406D-8B99-ED5474A0A1CB}</Project>
+      <Name>MicroServer.Net.DhcpService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Net\DnsService\MicroServer.Net.DnsService.csproj">
+      <Project>{A3DE42C9-B837-462F-BBAE-7D38A30595D6}</Project>
+      <Name>MicroServer.Net.DnsService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Net\HttpService\MicroServer.Net.HttpService.csproj">
+      <Project>{9A23BE8A-19F0-4384-9FF8-6E4B38E088A2}</Project>
+      <Name>MicroServer.Net.HttpService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Net\SntpService\MicroServer.Net.SntpService.csproj">
+      <Project>{32A7A0DF-0B5E-4337-BD60-EAF2DDBD6E54}</Project>
+      <Name>MicroServer.Net.SntpService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiceManager\MicroServer.ServiceManager.csproj">
+      <Project>{BE3F9F99-C0A7-4120-A6AE-6816CCBF16C0}</Project>
+      <Name>MicroServer.ServiceManager</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\Content\Css\Style.css" />
+    <Content Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\Deny\river.jpg" />
+    <Content Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\Deny\trees.png" />
+    <Content Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\Images\bay.jpg" />
+    <Content Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\Images\favicon.ico" />
+    <Content Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\Images\path.png" />
+    <Content Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\Views\Home\index.html" />
+  </ItemGroup>
+  <Import Condition="EXISTS('$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets')" Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
+  <Import Condition="!EXISTS('$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets')" Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

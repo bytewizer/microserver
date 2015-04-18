@@ -22,8 +22,8 @@ namespace MicroServer.Sample
 
             // SERVICES:  Enable / disable additional services
             Server.DhcpEnabled = false;
-            Server.DnsEnabled = false;
-            Server.SntpEnabled = false;
+            Server.DnsEnabled = true;
+            Server.SntpEnabled = true;
 
             //SERVICE:  Enable / disable directory browsing
             Server.AllowListing = false;

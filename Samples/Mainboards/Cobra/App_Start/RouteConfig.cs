@@ -11,8 +11,8 @@ namespace MicroServer.CobraII
         {
             routes.MapRoute(
                 name: "Default",
-                regex: @"\/$",
-                defaults: new DefaultRoute { controller = "", action = "index.html", id = "" }
+                regex: @"^[/]{1}$",
+                defaults: new DefaultRoute { controller = "home", action = "gethello", id = "" }
             );
 
             routes.MapRoute(
@@ -20,7 +20,6 @@ namespace MicroServer.CobraII
                 regex: @".*",
                 defaults: new DefaultRoute { controller = "", action = "", id = "" }
             );
-
         }
     }
 }
