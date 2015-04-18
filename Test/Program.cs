@@ -33,10 +33,10 @@ namespace Test.Harness
             DnsInit();
             //SntpInit();
 
-            // SERVICES: Start all serivces
+            // SERVICES: Start all services
             Server.StartAll();
 
-            // Test Harness: Set loacal time
+            // Test Harness: Set local time
             SntpClient TimeService = new SntpClient();
             TimeService.Synchronize();
 
@@ -108,7 +108,7 @@ namespace Test.Harness
 
         static void DhcpService_OnLeaseAcknowledged(object sender, DhcpLeaseEventArgs args)
         {
-            Debug.Print("Test Harness: DHCP Lease Acknowleged " + args.Lease.ToString());
+            Debug.Print("Test Harness: DHCP Lease Acknowledged " + args.Lease.ToString());
         }
 
         static void DhcpService_OnLeaseDeclined(object sender, DhcpLeaseEventArgs args)

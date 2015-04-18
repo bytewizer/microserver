@@ -6,6 +6,11 @@
 *.user
 *.sln.docstates
 
+
+# NETMF specific files
+OnBoardFlash.dat
+OnBoardFlash.dat.smd
+
 # Build results
 
 [Dd]ebug/
