@@ -34,19 +34,19 @@ namespace MicroServer.Net.Http.Routing
         /// </summary>
         private void LogRoutes()
         {
-            Logger.WriteDebug(this, "Ingored routes loaded from RouteConfig (HttpApplication) class:");
+            Logger.WriteInfo(this, "Ignored routes loaded from RouteConfig (HttpApplication) class:");
             foreach (string pattern in _routes.IngoredRoutes)
             {
-               Logger.WriteDebug("  route regex: '" + pattern + "'");
+               Logger.WriteInfo("  route regex: '" + pattern + "'");
             }
 
-            Logger.WriteDebug(this, "Mapped routes loaded from RouteConfig (HttpApplication) class:");
+            Logger.WriteInfo(this, "Mapped routes loaded from RouteConfig (HttpApplication) class:");
             foreach (MappedRoute items in _routes.MappedRoutes)
             {
                 MappedRoute item = items;
                 DefaultRoute route = item.defaults;
 
-                Logger.WriteDebug("  route name: '" + item.name +
+                Logger.WriteInfo("  route name: '" + item.name +
                     "' regex: '" + item.regex + 
                     "' => default: {controller='" + route.controller + "' action='" + route.action + "' id='" + route.id + "'}" 
                     ) ;
@@ -101,7 +101,7 @@ namespace MicroServer.Net.Http.Routing
         /// </summary>
         /// <param name="context">HTTP context</param>
         /// <remarks>
-        /// <para>The first method that is exeucted in the pipeline.</para>
+        /// <para>The first method that is executed in the pipeline.</para>
         /// Try to avoid throwing exceptions if you can. Let all modules have a chance to handle this method. You may break the processing in any other method than the Begin/EndRequest methods.</remarks>
         public void BeginRequest(IHttpContext context)
         {

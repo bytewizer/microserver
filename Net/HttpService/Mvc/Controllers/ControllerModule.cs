@@ -20,10 +20,10 @@ namespace MicroServer.Net.Http.Mvc.Controllers
         {
             _controllerFactory.Load();
 
-            Logger.WriteDebug(this, "Controller Url(s) Loaded:");
+            Logger.WriteInfo(this, "Controller Url(s) Loaded:");
             foreach (DictionaryEntry controller in _controllerFactory.Controllers)
             {
-                Logger.WriteDebug("  route url: /" + controller.Key.ToString());
+                Logger.WriteInfo("  route url: /" + controller.Key.ToString());
             }
         }
 
@@ -44,7 +44,7 @@ namespace MicroServer.Net.Http.Mvc.Controllers
         /// </summary>
         /// <param name="context">HTTP context</param>
         /// <remarks>
-        /// <para>The first method that is exeucted in the pipeline.</para>
+        /// <para>The first method that is executed in the pipeline.</para>
         /// Try to avoid throwing exceptions if you can. Let all modules have a chance to handle this method. You may break the processing in any other method than the Begin/EndRequest methods.
         /// <para>If you are going to handle the request, implement <see cref="IWorkerModule"/> and do it in the <see cref="IWorkerModule.HandleRequest"/> method.</para>
         /// </remarks>

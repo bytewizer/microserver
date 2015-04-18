@@ -1,7 +1,7 @@
 namespace MicroServer.Net.Http.Modules
 {
     /// <summary>
-    /// Used to control module behaviour
+    /// Used to control module behavior
     /// </summary>
     public enum ModuleResult
     {

@@ -61,7 +61,7 @@ namespace MicroServer.Net.Http.Mvc.Views
         /// </summary>
         /// <returns>
         ///     Parse() returns a string representing inputText with its tokens exchanged
-        ///     for the callking code's values.
+        ///     for the calling code's values.
         /// </returns>
         private String Parse()
         {
@@ -112,7 +112,7 @@ namespace MicroServer.Net.Http.Mvc.Views
         /// </summary>
         /// <returns>
         ///     A string representing the text file with all its tokens replaced by data
-        ///     supplied by the calling code through the Tokenhandler delegate
+        ///     supplied by the calling code through the Token handler delegate
         /// </returns>
         public override string ToString()
         {

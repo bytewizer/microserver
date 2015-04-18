@@ -3,7 +3,7 @@ using Microsoft.SPOT;
 
 using MicroServer.Net.Http.Routing;
 
-namespace MicroServer.Sample
+namespace Test.Harness
 {
     public class RouteConfig : HttpApplication
     {
@@ -12,14 +12,14 @@ namespace MicroServer.Sample
             // block access to the 'Deny' folder.
             routes.IgnoreRoute(@"^.*deny.*$");  
             
-            // maps the root folder specificly to 'index.html'.
+            // maps the root folder specifically to 'index.html'.
             routes.MapRoute(
                 name: "Default",
                 regex: @"^[/]{1}$",
                 defaults: new DefaultRoute { controller = "Home", action = "Index", id = "" }
             );
 
-            // allows access to all other folders and files not explicitly ingored.
+            // allows access to all other folders and files not explicitly ignored.
             routes.MapRoute(
                 name: "Allow All",
                 regex: @".*",

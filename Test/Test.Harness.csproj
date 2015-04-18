@@ -33,11 +33,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\AccountService.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SystemController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Startup\DhcpServer.cs" />
+    <Compile Include="Startup\DnsServer.cs" />
+    <Compile Include="Startup\HttpServer.cs" />
+    <Compile Include="Startup\SntpServer.cs" />
+    <Compile Include="Startup\WebServer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.SPOT.Native" />

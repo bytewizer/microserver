@@ -31,7 +31,7 @@ namespace MicroServer.Net.Http.Modules
         /// <summary>
         /// Gets any exception which was caught during the async operation
         /// </summary>
-        /// <remarks>It's prefered that the async op itself uses a try/catch to set this exception</remarks>
+        /// <remarks>It's preferred that the async op itself uses a try/catch to set this exception</remarks>
         public Exception Exception { get; set; }
     }
 }

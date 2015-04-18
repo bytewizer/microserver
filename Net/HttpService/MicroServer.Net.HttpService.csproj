@@ -31,8 +31,13 @@
   </PropertyGroup>
   <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <ItemGroup>
+    <Compile Include="Authentication\BasicAuthentication.cs" />
+    <Compile Include="Authentication\IAccountService.cs" />
+    <Compile Include="Authentication\IAuthenticationUser.cs" />
+    <Compile Include="Authentication\IAuthenticator.cs" />
     <Compile Include="FileService\DirectoryInformation.cs" />
     <Compile Include="IServiceResolver.cs" />
+    <Compile Include="Authentication\AuthenticationModule.cs" />
     <Compile Include="Mvc\ActionResults\ContentResult.cs" />
     <Compile Include="Mvc\ActionResult.cs" />
     <Compile Include="Mvc\ActionResults\EmptyResult.cs" />

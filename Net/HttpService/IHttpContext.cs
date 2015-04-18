@@ -45,7 +45,7 @@ namespace MicroServer.Net.Http
         /// <summary>
         /// Gets or sets currently logged in user.
         /// </summary>
-        //IPrincipal User { get; set; }
+        string User { get; set; }
 
         /// <summary>
         /// Gets information stored for the route.

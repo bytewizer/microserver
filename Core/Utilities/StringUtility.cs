@@ -8,7 +8,7 @@ namespace MicroServer.Utilities
     /// Provides additional string operations
     /// </summary>
     public static class StringUtility
-    {
+    {          
         /// <summary>
         /// Check if the provided string is either null or empty
         /// </summary>

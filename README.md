@@ -12,7 +12,7 @@ Based on jgauffin's <a href="https://github.com/jgauffin/Griffin.WebServer"> MVC
 * Views with Token Replacement
 * Controller Handling
 * Action Results (JSON, Content, Files)
-* Basic Authentication (coming soon)
+* Basic Authentication
 * Extendable Modules
 * Form/File Handling
 * Static File Handling with File Listing

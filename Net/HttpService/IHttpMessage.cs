@@ -4,7 +4,7 @@ using System.Text;
 namespace MicroServer.Net.Http
 {
     /// <summary>
-    ///     Represents a request or resposne.
+    ///     Represents a request or response.
     /// </summary>
     public interface IHttpMessage
     {

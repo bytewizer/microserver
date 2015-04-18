@@ -7,6 +7,7 @@ using Microsoft.SPOT;
 
 using MicroServer.Logging;
 using MicroServer.Threading;
+using MicroServer.Utilities;
 using MicroServer.Extensions;
 
 using MicroServer.Net.Sockets;
@@ -18,7 +19,6 @@ using MicroServer.Net.Http.Files;
 using MicroServer.Net.Http.Mvc.Controllers;
 using MicroServer.Net.Http.Routing;
 using MicroServer.Net.Http.Modules;
-using MicroServer.Utilities;
 
 namespace MicroServer.Service
 {
@@ -297,14 +297,14 @@ namespace MicroServer.Service
                 _dnsService.Start();
             }
 
-            // SNTP Serivce
+            // SNTP Service
             if (_sntpEnabled == true)
             {
                 _sntpService.InterfaceAddress = _interfaceAddress;
                 _sntpService.Start();
             }
 
-            // HTTP Serivce
+            // HTTP Service
             if (_httpEnabled == true)
             {
                 ModuleManager _moduleManager = new ModuleManager();
@@ -327,7 +327,7 @@ namespace MicroServer.Service
                 // Add the error module as the last module to pipeline
                 _moduleManager.Add(new ErrorModule());
                 
-                //  Create the http service
+                //  Create the Http service
                 _httpService = new HttpService(_moduleManager);
 
                 _httpService.InterfaceAddress = _interfaceAddress;

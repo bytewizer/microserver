@@ -120,7 +120,7 @@ namespace MicroServer.Logging
 
 		public void WriteInfo(object source, string message)
 		{
-            this.WriteToLog(string.Concat("[", DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss"), "] ", source.ToString(), " | Info  | ", message));
+            this.WriteToLog(string.Concat("[", DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss"), "] ", source.ToString(), " | Info | ", message));
 		}
 
         public void WriteDebug(string message)

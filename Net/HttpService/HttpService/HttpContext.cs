@@ -70,6 +70,11 @@ namespace MicroServer.Net.Http
         public IItemStorage RouteData { get; private set; }
 
         /// <summary>
+        /// Gets or sets currently logged in user.
+        /// </summary>
+        public string User { get; set; }
+
+        /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
         public void Dispose()

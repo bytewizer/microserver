@@ -8,6 +8,7 @@ using MicroServer.Net.Http;
 using MicroServer.Net.Dhcp;
 using MicroServer.Net.Dns;
 using MicroServer.Net.Sntp;
+using MicroServer.Net.Http.Authentication;
 
 namespace Test.Harness
 {
@@ -17,7 +18,7 @@ namespace Test.Harness
 
         public static void Main()
         {
-            Server = new ServiceManager(LogType.Output, LogLevel.Debug, @"\winfs");
+            Server = new ServiceManager(LogType.Output, LogLevel.Info, @"\winfs");
      
             //INITIALIZING : Server Services
             Server.InterfaceAddress = System.Net.IPAddress.GetDefaultLocalAddress().ToString();
@@ -28,9 +29,9 @@ namespace Test.Harness
             Server.HttpEnabled = false;
 
             // SERVICES INIT: quickly enable/disable services
-            //HttpInit();
+            HttpInit();
             //DhcpInit();
-            DnsInit();
+            //DnsInit();
             //SntpInit();
 
             // SERVICES: Start all services
@@ -39,6 +40,9 @@ namespace Test.Harness
             // Test Harness: Set local time
             SntpClient TimeService = new SntpClient();
             TimeService.Synchronize();
+            
+            // enables basic authentication on server using AccountService class for user name and password
+            Server.HttpService.Add(new AuthenticationModule(new BasicAuthentication(new AccountService(), "MicroServer")));
 
         }
 
