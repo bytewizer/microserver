@@ -60,11 +60,13 @@ Example Micro Framework Console Application
 -------------------------------------------
 
 This project contains the following simple example (see 'example' folder) project 
-demonstrating how to implement a basic server with all modules enabled.
+demonstrating how to implement a basic server with all modules loaded.  Modules can be
+enabled or disabled.
 
 Start a new emulator console application, install MicroServer Service Manager package and create a Program.cs file
 with the following source code:
 
+# Using Service Manager to Manage Protocols
 ```csharp
 using System;
 
@@ -155,7 +157,7 @@ namespace MicroServer.Example
 Access the controller endpoint by launching a web browser using:
 http://[emulator ipaddress]/example/gethello
 
-# Using Protocols Modules Individually
+# Using Protocol Modules Individually
 If your project only needs to support one or two of the protocols, each protocol service can be loaded without using the service manager.
 
 ## Http File Service
@@ -204,7 +206,7 @@ namespace HttpServer
 }
  ```
 
- ## MVC Web Service
+## MVC Web Service
  
  ```csharp
 using System;
@@ -332,7 +334,7 @@ namespace DhcpServer
 }
  ```
  
- ## DNS File Service
+## DNS Service
  
 ```csharp
 using System;
@@ -381,7 +383,7 @@ namespace DnsServer
 }
  ```
  
- ## SNTP File Service
+## SNTP Service
  
  ```csharp
 using System;
