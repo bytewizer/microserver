@@ -7,10 +7,9 @@ namespace MicroServer.Net.Http.Messages
     /// <summary>
     /// A collection of HTTP cookies
     /// </summary>
-    /// <typeparam name="T">Type of cookie</typeparam>
     public class HttpCookieCollection : IHttpCookieCollection
     {
-        private readonly ArrayList _items = new ArrayList();
+        private readonly Hashtable _items = new Hashtable();
 
         #region IHttpCookieCollection Members
 
@@ -35,7 +34,7 @@ namespace MicroServer.Net.Http.Messages
             if (cookie == null)
                 throw new ArgumentNullException("cookie");
 
-            _items.Add(cookie);
+            _items.Add(cookie.Name, cookie);
         }
 
         /// <summary>
@@ -49,14 +48,13 @@ namespace MicroServer.Net.Http.Messages
         /// <summary>
         /// Gets the cookie of a given identifier (<c>null</c> if not existing).
         /// </summary>
-        public IHttpCookie this[string id]
+        public IHttpCookie this[string cookieName]
         {
             get
             {
-                if (id == null) throw new ArgumentNullException("id");
-                return _items.Contains(id) ? (IHttpCookie)_items[int.Parse(id)] : null;
+                if (cookieName == null) throw new ArgumentNullException("cookieName");
 
-                //return _items.FirstOrDefault(x => x.Name.Equals(id, StringComparison.OrdinalIgnoreCase));
+                return _items.Contains(cookieName) ? (IHttpCookie)_items[cookieName] : null;
             }
         }
 
@@ -82,7 +80,6 @@ namespace MicroServer.Net.Http.Messages
 
                 _items.Remove(cookieName);
             }
-            //_items.RemoveAll(x => x.Name.Equals(cookieName, StringComparison.OrdinalIgnoreCase));
         }
 
         #endregion

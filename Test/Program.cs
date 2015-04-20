@@ -42,8 +42,7 @@ namespace Test.Harness
             TimeService.Synchronize();
             
             // enables basic authentication on server using AccountService class for user name and password
-            Server.HttpService.Add(new AuthenticationModule(new BasicAuthentication(new AccountService(), "MicroServer")));
-
+            //Server.HttpService.Add(new AuthenticationModule(new BasicAuthentication(new AccountService(), Server.ServerName)));
         }
 
         #region Protocol Initialization

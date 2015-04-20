@@ -38,7 +38,7 @@ namespace MicroServer.Sample
             string rootFilePath = string.Concat(ServiceManager.Current.StorageRoot, @"\",
                                         MicroServer.Net.Http.Constants.HTTP_WEB_ROOT_FOLDER, @"\");
 
-            string fileNamePath = @"\images\bay.jpg";
+            string fileNamePath = @"\content\images\bay.jpg";
 
             return FileResult(rootFilePath, fileNamePath);
         }

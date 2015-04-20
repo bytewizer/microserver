@@ -424,7 +424,7 @@ namespace SntpServer
 
 Contributions
 -------------
-Any contribution are welcomed
+Any contribution are welcome
 
 License
 -------

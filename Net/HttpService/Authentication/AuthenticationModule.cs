@@ -4,6 +4,7 @@ using System.Net;
 using MicroServer.Net.Http;
 using MicroServer.Net.Http.Modules;
 using MicroServer.Net.Http.Exceptions;
+using Microsoft.SPOT;
 
 namespace MicroServer.Net.Http.Authentication
 {
@@ -56,13 +57,10 @@ namespace MicroServer.Net.Http.Authentication
         /// <returns><see cref="ModuleResult.Stop"/> will stop all processing including <see cref="IHttpModule.EndRequest"/>.</returns>
         public ModuleResult Authenticate(IHttpContext context)
         {
-            var user = _authenticator.Authenticate(context.Request);
+            var user = _authenticator.Authenticate(context);
             if (user == null)
             {
-                _authenticator.CreateChallenge(context.Request, context.Response);
-
-                context.Response.StatusCode = 401;
-                context.Response.StatusDescription = "Authentication Failed";
+                _authenticator.CreateChallenge(context);
                 return ModuleResult.Stop;
             }
 

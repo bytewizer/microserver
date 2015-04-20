@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections;
 
 using MicroServer.Net.Sockets;
+using Microsoft.SPOT;
 
 namespace MicroServer.Net.Http.Messages
 {
@@ -11,7 +12,8 @@ namespace MicroServer.Net.Http.Messages
     /// </summary>
     public class HttpMessageEncoder : IMessageEncoder
     {
-        private HttpMessage _message;
+        private HttpContext _message;
+        private HttpResponse _response;
         private readonly MemoryStream _stream;
         private readonly StreamWriter _writer;
 
@@ -35,41 +37,60 @@ namespace MicroServer.Net.Http.Messages
         /// <exception cref="NotSupportedException">Message is of a type that the encoder cannot handle.</exception>
         public Stream Prepare(object message)
         {
-            if (!(message is HttpMessage))
+            if (!(message is HttpContext))
                 throw new InvalidOperationException("This encoder only supports messages deriving from 'HttpMessage'");
 
-            _message = (HttpMessage)message;
+            _message = (HttpContext)message;
+            _response = (HttpResponse)_message.Response;
 
-            if (_message.Body == null || _message.Body.Length == 0)
+            if (_response.Body == null || _response.Body.Length == 0)
             {
-                _message.Headers["Content-Length"] = "0";
+                _response.Headers["Content-Length"] = "0";
             }
             else
             {
-                _message.ContentLength = (int)_message.Body.Length;
+                _response.ContentLength = (int)_response.Body.Length;
             }
 
-            _writer.WriteLine(_message.StatusLine);
+            _writer.WriteLine(_response.StatusLine);
 
-            foreach (DictionaryEntry header in _message.Headers)
+            if (_response.Headers != null && _response.Headers.Count > 0)
             {
-                _writer.Write(string.Concat(header.Key, ": ", header.Value, "\r\n"));
+                foreach (DictionaryEntry header in _response.Headers)
+                {
+                    _writer.Write(string.Concat(header.Key, ": ", header.Value, "\r\n"));
+                }
             }
+
+            if (_response.Cookies != null && _response.Cookies.Count > 0)
+            {
+                //Set-Cookie: <name>=<value>[; <name>=<value>][; expires=<date>][; domain=<domain_name>][; path=<some_path>][; secure][; httponly]
+                foreach (DictionaryEntry item in _response.Cookies)
+                {
+                    HttpResponseCookie cookie = (HttpResponseCookie)item.Value;
+                    _writer.Write(string.Concat(
+                                "Set-Cookie: ",
+                                cookie.ToString(),
+                                "\r\n")
+                                );
+                }
+            }
+
             _writer.Write("\r\n");
             _writer.Flush();
 
-            if (_message.Body == null || _message.ContentLength == 0)
+            if (_response.Body == null || _response.ContentLength == 0)
             {                
                 return _stream;
             }
             else
             {
-                byte[] bodyBuffer = new byte[(int)_message.Body.Length];
-                _message.Body.Read(bodyBuffer, 0, (int)_message.Body.Length);
+                byte[] bodyBuffer = new byte[(int)_response.Body.Length];
+                _response.Body.Read(bodyBuffer, 0, (int)_response.Body.Length);
                 _stream.Write(bodyBuffer, 0, bodyBuffer.Length);
                 _writer.Flush();
             }
- 
+
             return _stream;
         }
 
@@ -95,8 +116,8 @@ namespace MicroServer.Net.Http.Messages
         /// </summary>
         public void Clear()
         {
-            if (_message != null && _message.Body != null)
-                _message.Body.Dispose();
+            if (_message != null && _response.Body != null)
+                _response.Body.Dispose();
 
             _message = null;
             _stream.SetLength(0);

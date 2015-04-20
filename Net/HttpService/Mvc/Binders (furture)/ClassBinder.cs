@@ -13,7 +13,7 @@ namespace MicroServer.Net.Http.Binders
         /// <summary>
         /// Determines whether this instance can bind the specified model.
         /// </summary>
-        /// <param name="context">Context infromation.</param>
+        /// <param name="context">Context information.</param>
         /// <returns>
         ///   <c>true</c> if this instance can handle the model; otherwise <c>false</c>.
         /// </returns>

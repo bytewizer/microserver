@@ -1,5 +1,7 @@
 using System;
 
+using MicroServer.Net.Http.Authentication;
+
 namespace MicroServer.Net.Http
 {
     /// <summary>

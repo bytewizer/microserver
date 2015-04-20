@@ -80,9 +80,9 @@
     <Content Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\Content\Css\Style.css" />
     <Content Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\Deny\river.jpg" />
     <Content Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\Deny\trees.png" />
-    <Content Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\Images\bay.jpg" />
-    <Content Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\Images\favicon.ico" />
-    <Content Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\Images\path.png" />
+    <Content Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\Content\Images\bay.jpg" />
+    <Content Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\Content\Images\favicon.ico" />
+    <Content Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\Content\Images\path.png" />
     <Content Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\Views\Home\index.html" />
   </ItemGroup>
   <Import Condition="EXISTS('$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets')" Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />

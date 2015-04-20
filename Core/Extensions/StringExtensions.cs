@@ -55,7 +55,7 @@ namespace MicroServer.Extensions
         }
         
         /// <summary>
-        /// Replace all occurances of the 'find' string with the 'replace' string.
+        /// Replace all occurrences of the 'find' string with the 'replace' string.
         /// </summary>
         /// <param name="source">Original string</param>
         /// <param name="find">String to find within the original string</param>

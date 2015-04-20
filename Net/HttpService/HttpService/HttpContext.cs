@@ -2,6 +2,7 @@
 using System.Collections;
 
 using MicroServer.Net.Sockets;
+using MicroServer.Net.Http.Authentication;
 
 namespace MicroServer.Net.Http
 {
@@ -10,7 +11,6 @@ namespace MicroServer.Net.Http
     /// </summary>
     public class HttpContext : IHttpContext
     {
-
         /// <summary>
         /// Initializes a new instance of the <see cref="HttpContext" /> class.
         /// </summary>

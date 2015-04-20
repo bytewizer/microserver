@@ -16,7 +16,7 @@ namespace MicroServer.Net.Http.Authentication
         /// <summary>
         /// Create a WWW-Authenticate header
         /// </summary>
-        void CreateChallenge(IHttpRequest httpRequest, IHttpResponse response);
+        void CreateChallenge(IHttpContext context);
 
         /// <summary>
         /// Authorize a request.
@@ -24,6 +24,6 @@ namespace MicroServer.Net.Http.Authentication
         /// <param name="request">Request being authenticated</param>
         /// <returns>UserName if successful; otherwise null.</returns>
         /// <exception cref="HttpException">403 Forbidden if the nonce is incorrect.</exception>
-        string Authenticate(IHttpRequest request);
+        string Authenticate(IHttpContext context);
     }
 }

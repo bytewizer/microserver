@@ -41,6 +41,7 @@
     <Compile Include="Mvc\ActionResults\ContentResult.cs" />
     <Compile Include="Mvc\ActionResult.cs" />
     <Compile Include="Mvc\ActionResults\EmptyResult.cs" />
+    <Compile Include="Mvc\Binders %28furture%29\PrimitiveModelBinder.cs" />
     <Compile Include="Mvc\HttpStatusCodeResult.cs" />
     <Compile Include="Mvc\IActionResult.cs" />
     <Compile Include="Mvc\ActionResults\JsonResult.cs" />
@@ -154,6 +155,7 @@
     <Reference Include="Microsoft.SPOT.IO" />
     <Reference Include="Microsoft.SPOT.Native">
     </Reference>
+    <Reference Include="Microsoft.SPOT.Security.PKCS11" />
     <Reference Include="Microsoft.SPOT.TinyCore" />
     <Reference Include="System" />
     <Reference Include="System.Http" />

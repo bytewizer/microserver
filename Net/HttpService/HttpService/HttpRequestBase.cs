@@ -87,7 +87,7 @@ namespace MicroServer.Net.Http.Messages
         public IHttpFileCollection Files { get; set; }
 
         /// <summary>
-        /// Included cookies.
+        /// Included cookies
         /// </summary>
         public IHttpCookieCollection Cookies { get; set; }
 

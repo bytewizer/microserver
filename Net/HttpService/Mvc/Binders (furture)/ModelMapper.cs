@@ -11,11 +11,11 @@ namespace MicroServer.Net.Http.Binders
 
         public ModelMapper()
         {
-            //_binders.Add(new PrimitiveModelBinder());
+            _binders.Add(new PrimitiveModelBinder());
             //_binders.Add(new EnumModelBinder());
             //_binders.Add(new ArrayModelBinder());
             //_binders.Add(new DictionaryModelBinder());
-            _binders.Add(new ClassBinder());
+            //_binders.Add(new ClassBinder());
         }
 
         /// <summary>
@@ -32,14 +32,15 @@ namespace MicroServer.Net.Http.Binders
         }
 
 
-        //public Type Bind(object typeBinder, IHttpRequest request, string name)
+        //public Type Bind(Type typeBinder, IHttpRequest request, string name)
         //{
         //    var provider = new RequestValueProvider(request as IHttpMessage);
 
         //    if (!StringUtility.IsNullOrEmpty(name))
         //    {
-        //        var context = new ModelBinderContext(typeof(typeBinder), name, "", provider);
+        //        var context = new ModelBinderContext(typeBinder, name, "", provider);
         //        context.RootBinder = this;
+
         //        foreach (IModelBinder modelBinder in _binders)
         //        {
         //            if (modelBinder.CanBind(context))
@@ -48,13 +49,13 @@ namespace MicroServer.Net.Http.Binders
         //            }
         //        }
 
-        //        return default (typeBinder);
+        //        return default(typeBinder);
         //    }
-        //    if (typeof(IEnumerable).IsInstanceOfType(typeof(typeBinder)))
-        //        throw new InvalidOperationException("did not expect IEnumerable implementations without a name in the binder.");
+        //    //if (IEnumerable).IsInstanceOfTypetypeBinder)
+        //    //    throw new InvalidOperationException("did not expect IEnumerable implementations without a name in the binder.");
 
         //    //var model = Activator.CreateInstance(typeof(typeBinder));
-        //    var model = ServiceResolver.Current.Resolve(typeof(typeBinder));
+        //    var model = ServiceResolver.Current.Resolve(typeBinder);
 
         //    foreach (var property in model.GetType().GetProperties())
         //    {

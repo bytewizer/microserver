@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Text;
-
-using Microsoft.SPOT.Cryptography;
+using System.Security.Cryptography;
 
 using MicroServer.Extensions;
 using MicroServer.Net.Http;
@@ -52,16 +51,28 @@ namespace MicroServer.Net.Http.Authentication
             get { return "basic"; }
         }
 
-        #region IAuthenticator Members
-
         /// <summary>
-        /// Create a WWW-Authenticate header
+        /// Generate a HA1 hash
         /// </summary>
-        public void CreateChallenge(IHttpRequest httpRequest, IHttpResponse response)
+        /// <param name="realm">Realm that the user want to authenticate in</param>
+        /// <param name="userName">User Name</param>
+        /// <param name="password">Password</param>
+        /// /// <para>
+        /// A HA1 hash is simply a Md5 encoded string: "UserName:Realm:Password". The quotes should
+        /// not be included. Realm is the currently requested Host (as in <c>Request.Headers["host"]</c>).
+        /// </para>
+        /// <returns></returns>
+        private string Encode(string realm, string userName, string password)
         {
-            response.AddHeader("WWW-Authenticate", "Basic realm=\"" + _realm + "\"");
-            response.StatusCode = 401;
+            string toHash = String.Concat(userName, ":", realm, ":", password);
+
+            KeyedHashAlgorithm crypto = new KeyedHashAlgorithm(KeyedHashAlgorithmType.HMACMD5);
+            byte[] value = crypto.ComputeHash(Encoding.UTF8.GetBytes(toHash));
+
+            return ByteUtility.GetString(value);
         }
+
+        #region IAuthenticator Members
 
         /// <summary>
         /// Gets name of the authentication scheme
@@ -73,34 +84,49 @@ namespace MicroServer.Net.Http.Authentication
         }
 
         /// <summary>
+        /// Create a WWW-Authenticate header
+        /// </summary>
+        public void CreateChallenge(IHttpContext context)
+        {
+            context.Response.AddHeader("WWW-Authenticate", "Basic realm=\"" + _realm + "\"");
+            context.Response.StatusCode = 401;
+            context.Response.StatusDescription = "Authentication Failed";
+        }
+
+        /// <summary>
         /// Authorize a request.
         /// </summary>
         /// <param name="request">Request being authenticated</param>
         /// <returns>Authenticated user if successful; otherwise null.</returns>
-        public string Authenticate(IHttpRequest request)
+        public string Authenticate(IHttpContext context)
         {
-            string authHeader = request.Headers["Authorization"];
+            string authHeader = context.Request.Headers["Authorization"];
             if (authHeader == null)
                 return null;
 
-            authHeader = authHeader.Replace("Basic ",string.Empty);
+            authHeader = authHeader.Replace("Basic ", string.Empty);
 
             string decoded = ByteUtility.GetString(Convert.FromBase64String(authHeader));
 
-            var pos = decoded.IndexOf(':');
+            int pos = decoded.IndexOf(':');
             if (pos == -1)
+            {
                 Logger.WriteDebug(this, "Invalid basic authentication header, failed to find colon. Header: " + authHeader);
+                return null;
+            }
 
-            var password = decoded.Substring(pos + 1, decoded.Length - pos - 1);
-            var userName = decoded.Substring(0, pos);
+            string password = decoded.Substring(pos + 1, decoded.Length - pos - 1);
+            string userName = decoded.Substring(0, pos);
 
-            var user = _userService.Lookup(userName, request.Uri);
+            var user = _userService.Lookup(userName, context.Request.Uri);
+
             if (user == null)
                 return null;
 
             if (user.Password == null)
             {
-                var ha1 = GetHa1(request.Uri.Host, userName, password);
+                string ha1 = Encode(context.Request.Uri.Host, userName, password);
+
                 if (ha1 != user.HA1)
                 {
                     Logger.WriteInfo(this, "Incorrect user name or password. User Name: " + user.Username);
@@ -109,7 +135,7 @@ namespace MicroServer.Net.Http.Authentication
             }
             else
             {
-                if (password != user.Password)
+                if (userName != user.Username || password != user.Password)
                 {
                     Logger.WriteInfo(this, "Incorrect user name or password. User Name: " + user.Username);
                     return null;
@@ -117,39 +143,6 @@ namespace MicroServer.Net.Http.Authentication
             }
 
             return user.Username;
-        }
-
-        /// <summary>
-        /// Generate a HA1 hash
-        /// </summary>
-        /// <param name="realm">Realm that the user want to authenticate in</param>
-        /// <param name="userName">User Name</param>
-        /// <param name="password">Password</param>
-        /// <returns></returns>
-        public static string GetHa1(string realm, string userName, string password)
-        {
-            return GetMd5HashBinHex(String.Concat(userName, ":", realm, ":", password));
-        }
-
-        /// <summary>
-        /// Gets the Md5 hash bin hex2.
-        /// </summary>
-        /// <param name="toBeHashed">To be hashed.</param>
-        /// <returns></returns>
-        public static string GetMd5HashBinHex(string toBeHashed)
-        {
-            MD5 hashAlgorithm = new MD5();
-            hashAlgorithm.HashCore(Encoding.UTF8.GetBytes(toBeHashed), 0, toBeHashed.Length);
-            byte[] buffer = hashAlgorithm.HashFinal();
-
-            char[] output = new char[buffer.Length * 2];
-            for (int i = 0; i < buffer.Length; i++)
-            {
-                output[(i << 1) + 0] = (buffer[i] >> 4) <= 9 ? (char)((buffer[i] >> 4) + '0') : (char)((buffer[i] >> 4) - 10 + 'A');
-                output[(i << 1) + 1] = (buffer[i] & 15) <= 9 ? (char)((buffer[i] & 15) + '0') : (char)((buffer[i] & 15) - 10 + 'A');
-            }
-
-            return output.ToString();
         }
 
         #endregion

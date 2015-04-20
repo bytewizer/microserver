@@ -40,7 +40,7 @@ namespace MicroServer.Net.Http
         #region Public Properties
 
         /// <summary>
-        ///   Gets or sets the ip address for reciving data
+        ///   Gets or sets the ip address for receiving data
         /// </summary>
         public new IPAddress InterfaceAddress
         {
@@ -49,7 +49,7 @@ namespace MicroServer.Net.Http
         }
 
         /// <summary>
-        ///   Gets or sets the port for reciving data
+        ///   Gets or sets the port for receiving data
         /// </summary>
         public new int ServicePort
         {
@@ -197,6 +197,7 @@ namespace MicroServer.Net.Http
                 
             };
 
+            context.Request.RemoteEndPoint = channel.RemoteEndpoint;
             context.Response.AddHeader("X-Powered-By", "MicroServer");
             _moduleManager.InvokeAsync(context, SendResponse);
         }
@@ -206,7 +207,7 @@ namespace MicroServer.Net.Http
             Logger.WriteDebug(this, "Pipeline => SendResponse");
 
             var context = (HttpContext)obj.Context;
-            SendChannel(context.Channel, context.Response);
+            SendChannel(context.Channel, context);
         }
 
         private void SendChannel(SocketChannel channel, object message)

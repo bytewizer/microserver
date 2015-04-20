@@ -41,7 +41,6 @@
     <Compile Include="Extensions\IntegerExtensions.cs" />
     <Compile Include="Net\Sockets\UdpListener.cs" />
     <Compile Include="Net\Sockets\TcpListener.cs" />
-    <Compile Include="Security\MD5.cs" />
     <Compile Include="Serializers\Json\JsonParser.cs" />
     <Compile Include="Storage\FileStorage.cs" />
     <Compile Include="Storage\FlashStorage.cs" />

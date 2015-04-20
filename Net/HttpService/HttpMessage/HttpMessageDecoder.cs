@@ -186,7 +186,6 @@ namespace MicroServer.Net.Http.Messages
                 if (message.Body != null && message.Body.Length > 0)
                 {
                     var result = _messageSerializer.Deserialize(message.Headers["Content-Type"], message.Body);
-                    //Debug.Print(message.Headers["Content-Type"]);
 
                     if (result == null)
                         throw new BadRequestException("Unsupported content-type: " + message.ContentType);

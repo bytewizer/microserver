@@ -10,7 +10,7 @@ namespace MicroServer.Net.Http.Binders
         /// <summary>
         /// Gets or sets prefix for this model in the list
         /// </summary>
-        /// <remarks>Prefixes are used to be albe to load items which are deeper down in the graph.</remarks>
+        /// <remarks>Prefixes are used to be able to load items which are deeper down in the graph.</remarks>
         /// <example>User[0].</example>
         string Prefix { get; }
 
