@@ -74,5 +74,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="MicroServer.Net.DnsService.nuspec" />
+    <None Include="README.md" />
   </ItemGroup>
 </Project>

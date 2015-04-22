@@ -61,5 +61,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="MicroServer.Net.SntpService.nuspec" />
+    <None Include="README.md" />
   </ItemGroup>
 </Project>
