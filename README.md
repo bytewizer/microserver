@@ -56,7 +56,7 @@ enabled or disabled.
 
 Nuget
 -------------------
-Available through <a href="https://www.nuget.org/packages/MicroServer.ServiceManager/1.0.5589.34185">Nuget</a> 
+Available through <a href="https://www.nuget.org/packages/MicroServer.ServiceManager">Nuget</a> 
 
 ```
 PM> Install-Package MicroServer.ServiceManager
