@@ -1,22 +1,15 @@
-
-MicroServer
-===========
+Example Micro Framework Console Application
+-------------------------------------------
+Start a new emulator console application, install Microsoft .NET Micro Framework DHCP Service and create a Program.cs file
+with the following source code:
 
 Nuget
 -----
-
 ```
 PM> Install-Package MicroServer.Net.Dhcp
 ```
 
-Example Micro Framework Console Application
--------------------------------------------
-
-Start a new emulator console application, install Microsoft .NET Micro Framework DHCP Service and create a Program.cs file
-with the following source code:
-
 ## DHCP Service
-
 ```csharp
 using System;
 using System.Net;

@@ -1,22 +1,15 @@
-
-MicroServer
-===========
+Example Micro Framework Console Application
+-------------------------------------------
+Start a new emulator console application, install Microsoft .NET Micro Framework SNTP Service and create a Program.cs file
+with the following source code:
 
 Nuget
 -----
-
 ```
 PM> Install-Package MicroServer.Net.Sntp
 ```
 
-Example Micro Framework Console Application
--------------------------------------------
-
-Start a new emulator console application, install Microsoft .NET Micro Framework SNTP Service and create a Program.cs file
-with the following source code:
-
 ## SNTP Service
- 
  ```csharp
 using System;
 using System.Net;
