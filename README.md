@@ -11,7 +11,7 @@ Based on jgauffin's <a href="https://github.com/jgauffin/Griffin.WebServer"> MVC
 * Model Binding (coming soon)
 * Views with Token Replacement
 * Controller Handling
-* Action Results (JSON, Content, Files)
+* Action Results (View, JSON, Content, Files, Redirects and Errors)
 * Basic Authentication
 * Extendable Modules
 * Form/File Handling
@@ -48,26 +48,24 @@ Hardware: In addition to the emulator console application example projects, this
 using<a href="https://www.ghielectronics.com/"> GHI Electronics</a> Raptor and Cobra II mainboards.  
 
 
-Nuget (coming soon)
--------------------
+Example Micro Framework Console Application
+-------------------------------------------
+This project contains the following simple example (see 'example' folder) project 
+demonstrating how to implement a basic server with all modules loaded.  Modules can be
+enabled or disabled.
 
-Available through Nuget (http://www.nuget.org/)
+Nuget
+-------------------
+Available through <a href="https://www.nuget.org/packages/MicroServer.ServiceManager/1.0.5589.34185">Nuget</a> 
 
 ```
 PM> Install-Package MicroServer.ServiceManager
 ```
 
-Example Micro Framework Console Application
--------------------------------------------
-
-This project contains the following simple example (see 'example' folder) project 
-demonstrating how to implement a basic server with all modules loaded.  Modules can be
-enabled or disabled.
-
 Start a new emulator console application, install MicroServer Service Manager package and create a Program.cs file
 with the following source code:
 
-# Using Service Manager to Manage Protocols
+# Using Service Manager
 ```csharp
 using System;
 
@@ -160,7 +158,6 @@ http://[emulator ipaddress]/example/gethello
 
 # Using Protocol Modules Individually
 If your project only needs to support one or two of the protocols, each protocol service can be loaded without using the service manager.
-
 <a href="https://github.com/microcompiler/microserver/tree/master/Net/HttpService">Http Service</a>
 
 <a href="https://github.com/microcompiler/microserver/tree/master/Net/DhcpService">Dhcp Service</a>
@@ -169,10 +166,9 @@ If your project only needs to support one or two of the protocols, each protocol
 
 <a href="https://github.com/microcompiler/microserver/tree/master/Net/SntpService">Sntp Service</a>
 
-
 Contributions
 -------------
-Any contribution are welcome
+Any contribution to this project are welcome.
 
 License
 -------

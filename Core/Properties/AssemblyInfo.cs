@@ -5,10 +5,10 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MicroServer Core")]
-[assembly: AssemblyDescription("MicroServer Framework Core")]
+[assembly: AssemblyTitle("MicroServer Core Library")]
+[assembly: AssemblyDescription("MicroServer Framework Core Library")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microcode")]
+[assembly: AssemblyCompany("MicroCompiler.com")]
 [assembly: AssemblyProduct("MicroServer for Micro Framework")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
@@ -21,5 +21,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.*")]
+//[assembly: AssemblyFileVersion("1.0.*")]
