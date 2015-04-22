@@ -44,23 +44,29 @@
     <Compile Include="App_Start\RouteConfig.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MicroServer.Core">
-      <HintPath>..\packages\MicroServer.Core.1.0.0.0\lib\netmf43\MicroServer.Core.dll</HintPath>
+    <Reference Include="MicroServer.Core, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MicroServer.Core.1.1.0.0\lib\netmf43\MicroServer.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="MicroServer.Net.Dhcp">
-      <HintPath>..\packages\MicroServer.Net.Dhcp.1.0.0.0\lib\netmf43\MicroServer.Net.Dhcp.dll</HintPath>
+    <Reference Include="MicroServer.Net.Dhcp, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MicroServer.Net.Dhcp.1.1.0.0\lib\netmf43\MicroServer.Net.Dhcp.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="MicroServer.Net.Dns">
-      <HintPath>..\packages\MicroServer.Net.Dns.1.0.0.0\lib\netmf43\MicroServer.Net.Dns.dll</HintPath>
+    <Reference Include="MicroServer.Net.Dns, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MicroServer.Net.Dns.1.1.0.0\lib\netmf43\MicroServer.Net.Dns.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="MicroServer.Net.Http">
-      <HintPath>..\packages\MicroServer.Net.Http.1.0.0.0\lib\netmf43\MicroServer.Net.Http.dll</HintPath>
+    <Reference Include="MicroServer.Net.Http, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MicroServer.Net.Http.1.1.0.0\lib\netmf43\MicroServer.Net.Http.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="MicroServer.Net.Sntp">
-      <HintPath>..\packages\MicroServer.Net.Sntp.1.0.0.0\lib\netmf43\MicroServer.Net.Sntp.dll</HintPath>
+    <Reference Include="MicroServer.Net.Sntp, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MicroServer.Net.Sntp.1.1.0.0\lib\netmf43\MicroServer.Net.Sntp.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="MicroServer.ServiceManager">
-      <HintPath>..\packages\MicroServer.ServiceManager.1.0.0.0\lib\netmf43\MicroServer.ServiceManager.dll</HintPath>
+    <Reference Include="MicroServer.ServiceManager, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MicroServer.ServiceManager.1.1.0.0\lib\netmf43\MicroServer.ServiceManager.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.SPOT.IO" />
     <Reference Include="Microsoft.SPOT.Native">

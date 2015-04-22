@@ -17,7 +17,7 @@
       <frameworkAssembly assemblyName="System" targetFramework=".NETMicroFramework4.3" />
     </frameworkAssemblies>
     <dependencies>
-      <dependency id="MicroServer.Core" version="1.0.0.0" />
+      <dependency id="MicroServer.Core" version="1.1.0.0" />
     </dependencies>
   </metadata>
   <files>

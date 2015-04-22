@@ -54,7 +54,6 @@
     <Compile Include="Types\MessageOptions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.SPOT.IO" />
     <Reference Include="Microsoft.SPOT.Native" />
     <Reference Include="System" />
     <Reference Include="System.IO" />

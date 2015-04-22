@@ -33,7 +33,7 @@ namespace MicroServer.Sample
             Server.DhcpService.GatewayAddress = "172.16.10.1";
             Server.DhcpService.SubnetMask = "255.255.255.0";
 
-            //SERVICES: Start all serivces
+            //SERVICES: Start all services
             Server.StartAll();
 
             string url = string.Concat("http://", Server.HttpService.InterfaceAddress, ":", "81");

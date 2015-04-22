@@ -158,13 +158,14 @@ http://[emulator ipaddress]/example/gethello
 
 # Using Protocol Modules Individually
 If your project only needs to support one or two of the protocols, each protocol service can be loaded without using the service manager.
-<a href="https://github.com/microcompiler/microserver/tree/master/Net/HttpService">Http Service</a>
 
-<a href="https://github.com/microcompiler/microserver/tree/master/Net/DhcpService">Dhcp Service</a>
+<a href="https://github.com/microcompiler/microserver/tree/master/Net/HttpService">*Http Service</a>
 
-<a href="https://github.com/microcompiler/microserver/tree/master/Net/DnsService">Dns Service</a>
+<a href="https://github.com/microcompiler/microserver/tree/master/Net/DhcpService">*Dhcp Service</a>
 
-<a href="https://github.com/microcompiler/microserver/tree/master/Net/SntpService">Sntp Service</a>
+<a href="https://github.com/microcompiler/microserver/tree/master/Net/DnsService">*Dns Service</a>
+
+<a href="https://github.com/microcompiler/microserver/tree/master/Net/SntpService">*Sntp Service</a>
 
 Contributions
 -------------

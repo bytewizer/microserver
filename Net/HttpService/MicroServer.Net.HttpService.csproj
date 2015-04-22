@@ -152,15 +152,12 @@
     <Compile Include="HttpService\HttpService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.SPOT.IO" />
     <Reference Include="Microsoft.SPOT.Native">
     </Reference>
     <Reference Include="Microsoft.SPOT.Security.PKCS11" />
-    <Reference Include="Microsoft.SPOT.TinyCore" />
     <Reference Include="System" />
     <Reference Include="System.Http" />
     <Reference Include="System.IO" />
-    <Reference Include="System.Net.Security" />
     <Reference Include="System.Security" />
     <Reference Include="System.Text.RegularExpressions" />
   </ItemGroup>

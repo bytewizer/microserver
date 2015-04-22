@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections;
 using System.Text;
 using System.Threading;
@@ -6,8 +7,6 @@ using System.Net;
 using System.Net.Sockets;
 
 using Microsoft.SPOT;
-using Microsoft.SPOT.IO;
-using System.IO;
 
 using MicroServer.Net.Sockets;
 using MicroServer.Threading;

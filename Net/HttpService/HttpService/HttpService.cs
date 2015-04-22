@@ -7,7 +7,6 @@ using System.Net;
 using System.Net.Sockets;
 
 using Microsoft.SPOT;
-using Microsoft.SPOT.IO;
 
 using MicroServer.Threading;
 using MicroServer.Utilities;

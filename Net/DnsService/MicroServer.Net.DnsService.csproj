@@ -64,7 +64,6 @@
     <Reference Include="Microsoft.SPOT.Native">
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.IO" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\MicroServer.Core.csproj">
