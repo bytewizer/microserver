@@ -143,7 +143,7 @@ namespace WebServer
     }
 }
 ```
-Create the following index.html page in the following path \DOTNETMF_FS_EMULATION\WINFS\WebRoot\Views\Home
+Create the following index.html page in '\DOTNETMF_FS_EMULATION\WINFS\WebRoot\Views\Home' directory:
 
 ```html
 <!DOCTYPE html>
@@ -158,7 +158,7 @@ Create the following index.html page in the following path \DOTNETMF_FS_EMULATIO
         <div>
             <h2>Welcome</h2>
             <p>
-                This is a MicroServer web page built for Micro Framework (NETMF). Here is an example controller endpoints:          
+                 Here is an example controller endpoint:          
             </p>
             <div>
                 <ul>
