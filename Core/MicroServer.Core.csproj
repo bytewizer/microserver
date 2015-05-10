@@ -45,6 +45,7 @@
     <Compile Include="Storage\FileStorage.cs" />
     <Compile Include="Storage\FlashStorage.cs" />
     <Compile Include="Storage\IStorage.cs" />
+    <Compile Include="Utilities\DateUtility.cs" />
     <Compile Include="Utilities\ParseUtility.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="IO\ByteOrder.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Utilities\ByteUtility.cs" />
     <Compile Include="Utilities\StringUtility.cs" />
     <Compile Include="Utilities\HttpUtility.cs" />
+    <Compile Include="Utilities\TypeUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.SPOT.Native" />

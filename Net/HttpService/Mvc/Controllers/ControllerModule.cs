@@ -50,7 +50,7 @@ namespace MicroServer.Net.Http.Mvc.Controllers
         /// </remarks>
         public void BeginRequest(IHttpContext context)
         {
-            Logger.WriteDebug(this, "Pipeline => BeginRequest");
+            //Logger.WriteDebug(this, "Pipeline => BeginRequest");
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace MicroServer.Net.Http.Mvc.Controllers
         /// <remarks>Invoked in turn for all modules unless you return <see cref="ModuleResult.Stop"/>.</remarks>
         public void HandleRequestAsync(IHttpContext context, AsyncModuleHandler callback)
         {
-            Logger.WriteDebug(this, "Pipeline => HandleRequestAsync");
+            //Logger.WriteDebug(this, "Pipeline => HandleRequestAsync");
             callback(new AsyncModuleResult(context, HandleRequest(context)));
         }
 
@@ -74,7 +74,7 @@ namespace MicroServer.Net.Http.Mvc.Controllers
         /// <remarks>Invoked in turn for all modules unless you return <see cref="ModuleResult.Stop"/>.</remarks>
         public ModuleResult HandleRequest(IHttpContext context)
         {
-            Logger.WriteDebug(this, "Pipeline => HandleRequest");
+            //Logger.WriteDebug(this, "Pipeline => HandleRequest");
 
             ControllerMapping mapping;
             string uri = context.Request.UriRewrite.AbsolutePath.TrimStart('/').TrimEnd('/').ToLower();
@@ -103,7 +103,7 @@ namespace MicroServer.Net.Http.Mvc.Controllers
         /// Try to avoid throwing exceptions if you can. Let all modules have a chance to handle this method. You may break the processing in any other method than the Begin/EndRequest methods.</remarks>
         public void EndRequest(IHttpContext context)
         {
-            Logger.WriteDebug(this, "Pipeline => EndRequest");
+            //Logger.WriteDebug(this, "Pipeline => EndRequest");
         }
 
         #endregion IWorkerModule Members

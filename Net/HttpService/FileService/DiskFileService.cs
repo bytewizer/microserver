@@ -4,6 +4,7 @@ using System.IO;
 
 using MicroServer.Extensions;
 using MicroServer.Logging;
+using Microsoft.SPOT;
 
 namespace MicroServer.Net.Http.Files
 {
@@ -52,7 +53,6 @@ namespace MicroServer.Net.Http.Files
                 {
                     Logger.WriteInfo(this, "Created directory: " + rootFilePath);
                 }
-
             }
 
             _rootUri = rootUri;
@@ -67,7 +67,6 @@ namespace MicroServer.Net.Http.Files
         /// <param name="context">Context used to locate and return files</param>
         public virtual bool GetFile(FileContext context)
         {
-            //  URL RAWRITE *****************
             var fullPath = GetFullPath(context.Request.UriRewrite);
             return GetFile(context, fullPath);
         }
@@ -82,12 +81,10 @@ namespace MicroServer.Net.Http.Files
             if (fullPath == null || !File.Exists(fullPath))
                 return false;
 
-            // TODO:  Need to find a way to get file proprites in .netmf
+            FileInfo fi = new FileInfo(fullPath);
+            var date = fi.LastWriteTimeUtc;
 
-            //var date = File.GetLastWriteTimeUtc(fullPath);
-            var date = DateTime.Now;
-
-            // browser ignores second fractions.
+            // browser ignores second fractions
             date = date.AddTicks(-(date.Ticks % TimeSpan.TicksPerSecond));
 
             if (date <= context.BrowserCacheDate)
@@ -96,17 +93,23 @@ namespace MicroServer.Net.Http.Files
                 return true;
             }
 
-            var stream = new FileStream(fullPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-            context.SetFile(fullPath, stream, date);
-            return true;
+            try
+            {
+                var stream = new FileStream(fullPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                context.SetFile(fullPath, stream, date);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         private string GetFullPath(Uri uri)
-        {
+        {       
             if (!uri.AbsolutePath.StartsWith(_rootUri))
                 return string.Empty;
 
-            //var relativeUri = Uri(uri..AbsolutePath.Remove(0, _rootUri.Length));
             string relativeUri = uri.AbsolutePath.TrimStart(_rootUri.ToCharArray());
             if (relativeUri == null || relativeUri == string.Empty)
             {
@@ -114,13 +117,8 @@ namespace MicroServer.Net.Http.Files
             }
             else
             {
-                return Path.Combine(_basePath, relativeUri.Replace("/", Path.DirectorySeparatorChar.ToString()));
+                return Path.Combine(_basePath, relativeUri.Replace("/", Path.DirectorySeparatorChar.ToString()).Split('?')[0]);
             }
-
-            ////string relativeUri = new Uri(uri.AbsolutePath).ToString();
-            //return _basePath;
-            ////return Path.Combine(_basePath ); , relativeUri.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
-            ////return Path.Combine(_basePath, relativeUri.Replace("/", Path.DirectorySeparatorChar.ToString()));
         }
 
         /// <summary>
@@ -132,7 +130,6 @@ namespace MicroServer.Net.Http.Files
         {
             string path = GetFullPath(uri);
             return path != null && Directory.Exists(path);
-
         }
 
         /// <summary>
@@ -165,34 +162,7 @@ namespace MicroServer.Net.Http.Files
         }
 
         /// <summary>
-        /// Get all files that exists in the specified directory
-        /// </summary>
-        /// <param name="uri">Uri</param>
-        /// <returns></returns>
-        //public IEnumerable<FileInformation> GetFiles(Uri uri)
-        //{
-        //    var path = GetFullPath(uri);
-        //    if (path == null || !Directory.Exists(path))
-        //        yield break;
-
-        //    foreach (var file in Directory.GetFiles(path, "*.*"))
-        //    {
-        //        var mimeType = MimeTypeProvider.Instance.Get(Path.GetFileName(file));
-        //        if (mimeType == null)
-        //            continue;
-
-        //        var info = new FileInfo(file);
-        //        yield return new FileInformation
-        //        {
-        //            LastModifiedAtUtc = info.LastWriteTimeUtc,
-        //            Name = Path.GetFileName(file),
-        //            Size = (int)info.Length
-        //        };
-        //    }
-        //}
-
-        /// <summary>
-        /// Gets a list of all sub directores
+        /// Gets a list of all sub directories
         /// </summary>
         /// <param name="uri">URI (as requested by the HTTP client) which should correspond to a directory.</param>
         /// <returns></returns>
@@ -218,33 +188,10 @@ namespace MicroServer.Net.Http.Files
                     Name = Path.GetFileName(directory),
 
                 });
-
-                //results.Add(directory.Replace(path, string.Empty));
             }
 
             return results;
         }
-
-        /// <summary>
-        /// Gets a list of all sub directores
-        /// </summary>
-        /// <param name="uri">URI (as requested by the HTTP client) which should correspond to a directory.</param>
-        /// <returns></returns>
-        //public IEnumerable<string> GetDirectories(Uri uri)
-        //{
-        //    var path = GetFullPath(uri);
-        //    if (path == null || !Directory.Exists(path))
-        //        yield break;
-
-        //    yield return "..";
-        //    foreach (var directory in Directory.GetDirectories(path))
-        //    {
-        //        if (directory.StartsWith("."))
-        //            continue;
-
-        //        yield return directory.Remove(0, path.Length);
-        //    }
-        //}
 
         #endregion
     }

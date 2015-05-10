@@ -5,6 +5,7 @@ using MicroServer.Logging;
 using MicroServer.Net.Http;
 using MicroServer.Net.Http.Files;
 using MicroServer.Net.Http.Modules;
+using MicroServer.Net.Sntp;
 
 namespace HttpServer
 {
@@ -20,7 +21,7 @@ namespace HttpServer
             ModuleManager ModuleManager = new ModuleManager();
 
             // Create file/disk service for storage
-            DiskFileService fileService = new DiskFileService(@"/", @"\WINFS\");
+            DiskFileService fileService = new DiskFileService(@"/", @"\WINFS\WebSite");
 
             // Add the file module to pipeline and enable the file listing feature
             ModuleManager.Add(new FileModule(fileService) { AllowListing = true });
@@ -36,6 +37,10 @@ namespace HttpServer
 
             // Starts Http service
             HttpServer.Start();
+
+            // Set local time
+            SntpClient TimeService = new SntpClient();
+            TimeService.Synchronize();
         }
     }
 }

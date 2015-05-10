@@ -9,9 +9,27 @@ using MicroServer.Net.Dhcp;
 using MicroServer.Net.Dns;
 using MicroServer.Net.Sntp;
 using MicroServer.Net.Http.Authentication;
+using MicroServer.Utilities;
+using System.Collections;
 
 namespace Test.Harness
 {
+
+    public class TestMe
+    {
+        public int prop1 { set; get; }
+        public string prop2 { set; get; }
+        public bool prop3 { set; get; }
+        public TestMe2 prop4 { set; get; }
+    }
+
+    public class TestMe2
+    {
+        public int prop10 { set; get; }
+        public string prop20 { set; get; }
+        public bool prop30 { set; get; }
+    }
+    
     public class Program
     {
         public static ServiceManager Server;
@@ -29,13 +47,13 @@ namespace Test.Harness
             Server.HttpEnabled = false;
 
             // SERVICES INIT: quickly enable/disable services
-            HttpInit();
+            //HttpInit();
             //DhcpInit();
             //DnsInit();
             //SntpInit();
 
             // SERVICES: Start all services
-            Server.StartAll();
+            //Server.StartAll();
 
             // Test Harness: Set local time
             SntpClient TimeService = new SntpClient();
@@ -43,7 +61,21 @@ namespace Test.Harness
             
             // enables basic authentication on server using AccountService class for user name and password
             //Server.HttpService.Add(new AuthenticationModule(new BasicAuthentication(new AccountService(), Server.ServerName)));
-        }
+
+            //Type[] myTypes = new Type[2](typeof(TestMe), typeof(TestMe2));
+
+            //Type[] myTypes = new Type[2];
+            //myTypes[0] = typeof(TestMe);
+            //myTypes[1] = typeof(TestMe2);
+            
+            foreach (DictionaryEntry properties in TypeUtility.GetProperties(typeof(TestMe2)))
+            {
+                string propName = (string)properties.Key;
+                Type propType = (Type)properties.Value;
+
+                Debug.Print("name: " + propName + " type: " + propType.ToString());
+            };
+        } 
 
         #region Protocol Initialization
 

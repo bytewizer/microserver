@@ -95,7 +95,7 @@ namespace MicroServer.Net.Http.Mvc.ActionResults
         public override void ExecuteResult(IControllerContext context)
         {
 
-            Logger.WriteDebug(this, "Pipeline => ExecuteResult");
+            //Logger.WriteDebug(this, "Pipeline => ExecuteResult");
             
             if (context == null)
             {

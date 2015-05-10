@@ -10,11 +10,11 @@ namespace MicroServer.Emulator
         public override void RegisterRoutes(RouteCollection routes)
         {
             //routes.IgnoreRoute(@".*");  // Block all routes
-            routes.IgnoreRoute(@"\css$");  // Block all routes to the css folder
+            routes.IgnoreRoute(@"^.*css.*$");  // Block all routes to the css folder
 
             routes.MapRoute(
                 name: "Default",
-                regex: @"\/$",
+                regex: @"^[/]{1}$",
                 defaults: new DefaultRoute { controller = "", action = "index.html", id = "" }
             );
 

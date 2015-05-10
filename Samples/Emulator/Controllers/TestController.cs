@@ -8,7 +8,6 @@ using Microsoft.SPOT.IO;
 using MicroServer.Net.Http.Mvc;
 using MicroServer.Serializers.Json;
 
-
 namespace MicroServer.Emulator
 {
     public class TestController : Controller

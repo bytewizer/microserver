@@ -81,8 +81,6 @@
     <None Include="DOTNETMF_FS_EMULATION\WINFS\dhcp.dat" />
     <None Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\js\jquery-2_1_3_min.map" />
     <None Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\js\jquery.mobile-1.4.5.min.map" />
-    <None Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\Web.config" />
-    <None Include="DOTNETMF_FS_EMULATION\WINFS\WebRoot\Web.Debug.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

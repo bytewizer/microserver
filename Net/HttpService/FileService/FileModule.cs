@@ -9,6 +9,7 @@ using MicroServer.Utilities;
 using MicroServer.Extensions;
 using System.Collections;
 using Microsoft.SPOT;
+using MicroServer.Logging;
 
 namespace MicroServer.Net.Http.Files
 {
@@ -64,7 +65,7 @@ namespace MicroServer.Net.Http.Files
         /// </summary>
         /// <param name="context">HTTP context</param>
         /// <remarks>
-        /// <para>The first method that is exeucted in the pipeline.</para>
+        /// <para>The first method that is executed in the pipeline.</para>
         /// Try to avoid throwing exceptions if you can. Let all modules have a chance to handle this method. You may break the processing in any other method than the Begin/EndRequest methods.
         /// <para>If you are going to handle the request, implement <see cref="IWorkerModule"/> and do it in the <see cref="IWorkerModule.HandleRequest"/> method.</para>
         /// </remarks>
@@ -116,12 +117,10 @@ namespace MicroServer.Net.Http.Files
             }
 
             var header = context.Request.Headers["If-Modified-Since"];
-            
-            // TODO: Build reliable date parser
-            var time = DateTime.MinValue;
-            //var time = header != null
-            //               ? ParseUtility.TryParseDateTime(header)
-            //               : DateTime.MinValue;
+           
+            var time = header != null
+                           ? DateUtility.Parse(header)
+                           : DateTime.MinValue;
            
             var fileContext = new FileContext(context.Request, time);
             _fileService.GetFile(fileContext);
@@ -135,7 +134,7 @@ namespace MicroServer.Net.Http.Files
                 return ModuleResult.Stop;
             }
 
-            var mimeType = MimeTypeProvider.Instance.Get(fileContext.Filename);
+            string mimeType = MimeTypeProvider.Instance.Get(fileContext.Filename);
             if (mimeType == null)
             {
                 context.Response.StatusCode = (int)HttpStatusCode.UnsupportedMediaType;
@@ -149,6 +148,8 @@ namespace MicroServer.Net.Http.Files
             context.Response.ContentType = mimeType;
             context.Response.ContentLength = (int)fileContext.FileStream.Length;
             context.Response.Body = fileContext.FileStream;
+
+            Logger.WriteDebug(this, "Sent File: " + fileContext.Filename);
 
             // Do not include a body when the client only want's to get content information.
             if (context.Request.HttpMethod.ToUpper().Equals("HEAD") && context.Response.Body != null)

@@ -33,8 +33,8 @@ namespace MicroServer.Net.Sockets
 
             if (InterfaceAddress == null)
             {
-                Logger.WriteDebug(this, "Unabled to set interface address");
-                throw new InvalidOperationException("Unabled to set interface address");
+                Logger.WriteDebug(this, "Unable to set interface address");
+                throw new InvalidOperationException("Unable to set interface address");
             }
 
             try

@@ -1,7 +1,10 @@
 ﻿using System;
 
 using MicroServer.Utilities;
+using MicroServer.Extensions;
 using MicroServer.Net.Http.Mvc.Resolver;
+using System.Collections;
+using System.Reflection;
 
 namespace MicroServer.Net.Http.Binders
 {
@@ -39,9 +42,10 @@ namespace MicroServer.Net.Http.Binders
             //var model = Activator.CreateInstance(context.ModelType);
             var model = ServiceResolver.Current.Resolve(context.ModelType);
             var prefix = StringUtility.IsNullOrEmpty(context.Prefix) ? context.ModelName : context.Prefix + "." + context.ModelName;
-            
-            //foreach (Type property in context.ModelType.GetProperties())
+
+            //foreach (Type property in TypeUtility.GetProperties(context.ModelType))
             //{
+
             //    if (!property.CanWrite)
             //        continue;
 

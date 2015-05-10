@@ -163,12 +163,12 @@ namespace MicroServer.Net.Http
 
         private void OnClientDisconnect(object sender, ClientDisconnectedEventArgs args)
         {
-            Logger.WriteDebug(this, "Pipeline => OnClientDisconnect");
+            //Logger.WriteDebug(this, "Pipeline => OnClientDisconnect");
         }
 
         private void OnClientConnected(object sender, ClientConnectedEventArgs args)
         {
-            Logger.WriteDebug(this, "Pipeline => OnClientRequest");
+            //Logger.WriteDebug(this, "Pipeline => OnClientRequest");
 
             try
             {
@@ -182,7 +182,7 @@ namespace MicroServer.Net.Http
 
         private void OnMessageReceived(SocketChannel channel, HttpMessage message)
         {
-            Logger.WriteDebug(this, "Pipeline => OnMessageReceived");
+            //Logger.WriteDebug(this, "Pipeline => OnMessageReceived");
 
             _service = this;
 
@@ -203,7 +203,7 @@ namespace MicroServer.Net.Http
 
         private void SendResponse(IAsyncModuleResult obj)
         {
-            Logger.WriteDebug(this, "Pipeline => SendResponse");
+            //Logger.WriteDebug(this, "Pipeline => SendResponse");
 
             var context = (HttpContext)obj.Context;
             SendChannel(context.Channel, context);
@@ -211,7 +211,7 @@ namespace MicroServer.Net.Http
 
         private void SendChannel(SocketChannel channel, object message)
         {
-            Logger.WriteDebug(this, "Pipeline => SendChannel");
+            //Logger.WriteDebug(this, "Pipeline => SendChannel");
 
             try
             {
@@ -227,7 +227,7 @@ namespace MicroServer.Net.Http
 
         private void SendCompleted(int bytesTransferred)
         {
-            Logger.WriteDebug("Pipeline => SendCompleted");
+            //Logger.WriteDebug(this, "Pipeline => SendCompleted");
             
             bool isComplete = _encoder.SendCompleted(bytesTransferred);
             if (!isComplete)
@@ -238,7 +238,7 @@ namespace MicroServer.Net.Http
 
         private void SendFailure(SocketChannel channel, Exception ex)
         {
-            Logger.WriteDebug("Pipeline => MessageFailure");
+            //Logger.WriteDebug("this, Pipeline => MessageFailure");
 
             var pos = ex.Message.IndexOfAny(new[] { '\r', '\n' });
             var descr = pos == -1 ? ex.Message : ex.Message.Substring(0, pos);

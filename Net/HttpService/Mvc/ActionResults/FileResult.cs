@@ -58,7 +58,7 @@ namespace MicroServer.Net.Http.Mvc.ActionResults
         /// <remarks>Invoked by <see cref="ControllerFactory"/> to process the response.</remarks>
         public override void ExecuteResult(IControllerContext context)
         {
-            Logger.WriteDebug(this, "Pipeline => ExecuteResult");
+            //Logger.WriteDebug(this, "Pipeline => ExecuteResult");
             
             if (context == null)
             {

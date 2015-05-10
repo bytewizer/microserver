@@ -28,20 +28,20 @@ namespace SntpServer
             Logger.Initialize(new DebugLogger(), LoggerLevel.Debug);
 
             //  Create the Sntp server
-            SntpService DnsServer = new SntpService();
+            SntpService SntpServer = new SntpService();
 
             // Enable Sntp server to use local device for it's time reference.
-            //DnsServer.UseLocalTimeSource = true;
+            //SntpServer.UseLocalTimeSource = true;
 
             // enable Sntp server to relay requests to another Sntp server.
-            DnsServer.UseLocalTimeSource = false;
-            DnsServer.PrimaryServer = "0.pool.ntp.org";
+            SntpServer.UseLocalTimeSource = false;
+            SntpServer.PrimaryServer = "0.pool.ntp.org";
 
             // Sets interface ip address
-            DnsServer.InterfaceAddress = IPAddress.GetDefaultLocalAddress();
+            SntpServer.InterfaceAddress = IPAddress.GetDefaultLocalAddress();
 
             // Starts Sntp service
-            DnsServer.Start();
+            SntpServer.Start();
         }
     }
 }
