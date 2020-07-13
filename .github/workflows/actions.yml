@@ -52,7 +52,7 @@ jobs:
     - name: Pack libraries (${{ matrix.dotnet }})
       working-directory: ./src
       run: >- 
-        dotnet pack Bytewizer.TinyCLR.Microserver.sln -p:Copyright="${{ steps.info.outputs.copyright }}"
+        dotnet pack Bytewizer.TinyCLR.Microserver.sln -p:BuildNumber="${{ steps.info.outputs.build }}" -p:Copyright="${{ steps.info.outputs.copyright }}"
         --version-suffix ${{ steps.info.outputs.build }}
         --include-symbols 
         --verbosity ${env:VERBOSITY} 
