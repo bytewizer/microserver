@@ -8,5 +8,6 @@
   <ItemGroup>
     <PackageReference Include="GHIElectronics.TinyCLR.Core" Version="2.0.0-rc1" PrivateAssets="all" />
     <PackageReference Include="GHIElectronics.TinyCLR.Networking" Version="2.0.0-rc1" PrivateAssets="all" />
+	<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="all" />
   </ItemGroup>
 </Project>

@@ -2,7 +2,7 @@
 
 Microserver is a modular server built for TinyCLR OS.
 
-[![Build Status](https://img.shields.io/github/workflow/status/microcompiler/microserver/Actions%20CI?style=flat-square&logo=github)](https://github.com/microcompiler/microserver.tinyclr/actions)
+[![Build Status](https://img.shields.io/github/workflow/status/microcompiler/microserver/Actions%20CI?style=flat-square&logo=github)](https://github.com/microcompiler/microserver/actions)
 
 ## Microsoft .NET Micro Framework (NETMF)
 Have a look <a href="https://github.com/microcompiler/microserver/releases/tag/v1.1.0"> here </a> if your looking for the orginal MicroServer built for Microsoft .NET Micro Framework (NETMF).
