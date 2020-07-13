@@ -2,7 +2,7 @@
 
 Microserver is a modular server built for TinyCLR OS.
 
-[![Build Status](https://img.shields.io/github/workflow/status/microcompiler/microserver.tinyclr/Actions%20CI?style=flat-square&logo=github)](https://github.com/microcompiler/microserver.tinyclr/actions)
+[![Build Status](https://img.shields.io/github/workflow/status/microcompiler/microserver/Actions%20CI?style=flat-square&logo=github)](https://github.com/microcompiler/microserver.tinyclr/actions)
 
 ## Disclaimer
 
