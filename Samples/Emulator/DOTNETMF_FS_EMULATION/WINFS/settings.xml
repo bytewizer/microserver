@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<Configuration>
-	<Settings>
-		<add key="dnsEnabled" value="false" />
-		<add key="dhcpEnabled" value="false" />
-		<add key="sntpEnabled" value="false" />
-		<add key="ipAddress" value="192.168.10.8" />
-	</Settings>
-</Configuration>

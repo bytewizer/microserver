@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net452</TargetFramework>
+    <!-- <FrameworkPathOverride>$(PkgGHIElectronics_TinyCLR_Core)</FrameworkPathOverride> -->
+    <FrameworkPathOverride>$(NugetPackagesPath)\.nuget\packages\ghielectronics.tinyclr.core\2.0.0-rc1\</FrameworkPathOverride> 
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="GHIElectronics.TinyCLR.Core" Version="2.0.0-rc1" PrivateAssets="all" />
+    <PackageReference Include="GHIElectronics.TinyCLR.Networking" Version="2.0.0-rc1" PrivateAssets="all" />
+  </ItemGroup>
+</Project>
