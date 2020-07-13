@@ -3,11 +3,12 @@
     <TargetFramework>net452</TargetFramework>
     <!-- <FrameworkPathOverride>$(PkgGHIElectronics_TinyCLR_Core)</FrameworkPathOverride> -->
     <FrameworkPathOverride>$(NugetPackagesPath)\.nuget\packages\ghielectronics.tinyclr.core\2.0.0-rc1\</FrameworkPathOverride> 
-    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences> 
+    <Description>SocketServer is a modular socket server built for TinyCLR OS.</Description>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="GHIElectronics.TinyCLR.Core" Version="2.0.0-rc1" PrivateAssets="all" />
     <PackageReference Include="GHIElectronics.TinyCLR.Networking" Version="2.0.0-rc1" PrivateAssets="all" />
-	<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="all" />
   </ItemGroup>
 </Project>
