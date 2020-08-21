@@ -3,7 +3,7 @@ using System.Threading;
 using System.Collections;
 using System.Diagnostics;
 
-namespace Bytewizer.Sockets
+namespace Bytewizer.TinyCLR.Threading
 {
     public delegate void WaitCallback(object state);
 

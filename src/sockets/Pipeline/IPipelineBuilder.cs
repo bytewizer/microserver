@@ -1,8 +1,8 @@
-﻿namespace Bytewizer.Sockets
+﻿namespace Bytewizer.TinyCLR.Sockets
 {
     public interface IPipelineBuilder
     {
         PipelineBuilder Register(FilterDelegate filter);
-        PipelineBuilder Register(IMiddleware filter);
+        PipelineBuilder Register(IPipelineFilter filter);
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Bytewizer.Sockets
+﻿namespace Bytewizer.TinyCLR.Sockets
 {
     public static class FilterExtensions
     {

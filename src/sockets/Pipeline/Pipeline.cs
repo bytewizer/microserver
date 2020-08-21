@@ -1,10 +1,10 @@
-﻿namespace Bytewizer.Sockets
+﻿namespace Bytewizer.TinyCLR.Sockets
 {
     public class Pipeline
     {
-        private IMiddleware root;
+        private IPipelineFilter root;
 
-        public Pipeline Register(IMiddleware filter)
+        public Pipeline Register(IPipelineFilter filter)
         {
             if (root == null)
             {
@@ -18,9 +18,9 @@
             return this;
         }
 
-        public void Execute(Context context)
+        public void Execute(IContext context)
         {
-            root.Execute(context);
+            root.Invoke(context);
         }
     }
 }

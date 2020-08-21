@@ -1,83 +1,34 @@
-﻿using System.Net;
-using System.Threading;
+﻿using System;
+using System.Net;
+using System.Diagnostics;
+using System.Net.Sockets;
 
-namespace Bytewizer.Sockets
+namespace Bytewizer.TinyCLR.Sockets
 {
-    public class SocketServer
+    public class SocketServer : SocketService
     {
-        private Thread thread;
-        private SocketListener listener;
-
-        private readonly ServerOptions _options;
-
         public SocketServer()
-            : this(_ => { }) { }
+        {
+        }
 
         public SocketServer(IPipelineBuilder pipeline)
-            : this(options =>
-            {
-                options.Pipeline = pipeline;
-            })
-        { }
+            : base(pipeline)
+        {
+        }
 
         public SocketServer(int port)
-            : this(options => 
-            { 
-                options.Listen(IPAddress.Any, port); 
-            })
-        { }
-
-        public SocketServer(IPAddress address, int port, IPipelineBuilder pipeline)
-            : this(options =>
-            {
-                options.Pipeline = pipeline;
-                options.Listen(address, port);
-            })
-        { }
+            : base(port)
+        {
+        }
 
         public SocketServer(ServerOptionsDelegate configure)
+            : base(configure)
         {
-            var options = new ServerOptions();
-            configure(options);
-            _options = options;
         }
 
-        public bool Start()
+        public SocketServer(IPAddress address, int port, IPipelineBuilder pipeline)
+            : base(address, port, pipeline)
         {
-            try
-            {
-                var options = _options.Listener;
-                var pipeline = ((PipelineBuilder)_options.Pipeline).Build();
-
-                listener = new SocketListener(options, pipeline);
-                var status = listener.Start();
-
-                thread = new Thread(() =>
-                {
-                    if (listener != null)
-                    {
-                        listener.AcceptConnections();
-                    }
-                });
-                thread.Priority = _options.ThreadPriority;
-                thread.Start();
-
-                return status;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public bool Stop()
-        {
-            if (listener != null)
-            {
-                return listener.Stop();
-            }
-
-            return true;
         }
     }
 }

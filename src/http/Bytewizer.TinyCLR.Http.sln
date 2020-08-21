@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Sockets", "Bytewizer.TinyCLR.Sockets.csproj", "{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http", "Bytewizer.TinyCLR.Http.csproj", "{EB778176-633A-4997-A683-2C891C5DB435}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Sockets", "..\..\tinyclr-sockets\src\Bytewizer.TinyCLR.Sockets.csproj", "{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,6 +13,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EB778176-633A-4997-A683-2C891C5DB435}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB778176-633A-4997-A683-2C891C5DB435}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB778176-633A-4997-A683-2C891C5DB435}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB778176-633A-4997-A683-2C891C5DB435}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}.Release|Any CPU.ActiveCfg = Release|Any CPU

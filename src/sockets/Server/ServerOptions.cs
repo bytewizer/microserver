@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Net;
-using System.Threading;
 
-namespace Bytewizer.Sockets
+namespace Bytewizer.TinyCLR.Sockets
 {
     public class ServerOptions
     {
-        internal SocketListenerOptions Listener { get; private set; } = new SocketListenerOptions();
+        public SocketListenerOptions Listener { get; private set; } = new SocketListenerOptions();
 
         internal IPipelineBuilder Pipeline { get; set; } = new PipelineBuilder();
 
-        public ThreadPriority ThreadPriority { get; set; } = ThreadPriority.AboveNormal;
-
-        public void Register(IMiddleware filter)
+        public void Register(IPipelineFilter filter)
         {
             Pipeline.Register(filter);
         }

@@ -1,5 +1,7 @@
-﻿namespace Bytewizer.Sockets
+﻿namespace Bytewizer.TinyCLR.Sockets
 {
+    public delegate IPipelineFilter FilterDelegate();
+
     public class PipelineBuilder : IPipelineBuilder
     {
         private FilterDelegate[] filters = new FilterDelegate[0];
@@ -10,13 +12,13 @@
             return this;
         }
 
-        public PipelineBuilder Register(IMiddleware filter)
+        public PipelineBuilder Register(IPipelineFilter filter)
         {
             filters = filters.Append(() => filter);
             return this;
         }
 
-        public IMiddleware Build()
+        public IPipelineFilter Build()
         {
             var root = filters[0].Invoke();
 
