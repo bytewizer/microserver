@@ -47,12 +47,7 @@ jobs:
       working-directory: src/sockets
       run: >- 
         nuget restore Bytewizer.TinyCLR.Sockets.sln
-    
-    - name: Restore http project
-      working-directory: src/http
-      run: >- 
-        nuget restore Bytewizer.TinyCLR.Http.sln
-    
+        
     - name: Setup build
       uses: microsoft/setup-msbuild@v1.0.0
       with:
@@ -67,15 +62,6 @@ jobs:
         -p:VersionSuffix=prebuild.${{ steps.info.outputs.build }} 
         -p:Configuration=${env:CONFIGURATION}
         
-    - name: Build http libraries
-      working-directory: src/http
-      run: >- 
-        msbuild Bytewizer.TinyCLR.Http.csproj
-        -p:BuildNumber="${{ steps.info.outputs.build }}" 
-        -p:Copyright="${{ steps.info.outputs.copyright }}" 
-        -p:VersionSuffix=prebuild.${{ steps.info.outputs.build }} 
-        -p:Configuration=${env:CONFIGURATION} 
-    
     - name: Pack libraries
       working-directory: src/socket
       run: >- 
