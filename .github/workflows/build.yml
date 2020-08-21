@@ -43,18 +43,23 @@ jobs:
       with:
         nuget-version: 'latest' 
 
-    - name: Restore project
-      working-directory: src/socket
+    - name: Restore sockets project
+      working-directory: src/sockets
       run: >- 
-        nuget restore Bytewizer.Socket.sln
+        nuget restore Bytewizer.Sockets.sln
+    
+    - name: Restore http project
+      working-directory: src/http
+      run: >- 
+        nuget restore Bytewizer.Http.sln
     
     - name: Setup build
       uses: microsoft/setup-msbuild@v1.0.0
       with:
         vs-version: ${{ matrix.vs-version }}       
     
-    - name: Build socket libraries
-      working-directory: src/socket
+    - name: Build sockets libraries
+      working-directory: src/sockets
       run: >- 
         msbuild Bytewizer.TinyCLR.Sockets.csproj
         -p:BuildNumber="${{ steps.info.outputs.build }}" 
