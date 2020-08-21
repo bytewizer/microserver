@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Bytewizer SocketServer")]
+[assembly: AssemblyTitle("Bytewizer Socket Server")]
 [assembly: AssemblyDescription("SocketServer is a modular socket server built for TinyCLR OS.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Bytewizer Inc.")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Bytewizer Socket Server")]
-[assembly: AssemblyCopyright("Copyright ©  2020")]
+[assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

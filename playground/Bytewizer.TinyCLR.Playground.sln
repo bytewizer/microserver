@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.WebServer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.TinyServer", "tinyserver\Bytewizer.TinyCLR.TinyServer.csproj", "{91CC8551-13E4-4FF0-90A3-E6AE1FE1F1B5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.StaticFiles", "..\src\staticfiles\Bytewizer.TinyCLR.Http.StaticFiles.csproj", "{2DD3D5AB-D849-4898-B6E9-1A49683955B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{91CC8551-13E4-4FF0-90A3-E6AE1FE1F1B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91CC8551-13E4-4FF0-90A3-E6AE1FE1F1B5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{91CC8551-13E4-4FF0-90A3-E6AE1FE1F1B5}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{2DD3D5AB-D849-4898-B6E9-1A49683955B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DD3D5AB-D849-4898-B6E9-1A49683955B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DD3D5AB-D849-4898-B6E9-1A49683955B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DD3D5AB-D849-4898-B6E9-1A49683955B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
