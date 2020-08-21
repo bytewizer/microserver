@@ -53,10 +53,19 @@ jobs:
       with:
         vs-version: ${{ matrix.vs-version }}       
     
-    - name: Build libraries
+    - name: Build socket libraries
       working-directory: src/socket
       run: >- 
         msbuild Bytewizer.TinyCLR.Sockets.csproj
+        -p:BuildNumber="${{ steps.info.outputs.build }}" 
+        -p:Copyright="${{ steps.info.outputs.copyright }}" 
+        -p:VersionSuffix=prebuild.${{ steps.info.outputs.build }} 
+        -p:Configuration=${env:CONFIGURATION}
+        
+    - name: Build http libraries
+      working-directory: src/http
+      run: >- 
+        msbuild Bytewizer.TinyCLR.Http.csproj
         -p:BuildNumber="${{ steps.info.outputs.build }}" 
         -p:Copyright="${{ steps.info.outputs.copyright }}" 
         -p:VersionSuffix=prebuild.${{ steps.info.outputs.build }} 
