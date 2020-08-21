@@ -46,12 +46,12 @@ jobs:
     - name: Restore sockets project
       working-directory: src/sockets
       run: >- 
-        nuget restore Bytewizer.Sockets.sln
+        nuget restore Bytewizer.TinyCLR.Sockets.sln
     
     - name: Restore http project
       working-directory: src/http
       run: >- 
-        nuget restore Bytewizer.Http.sln
+        nuget restore Bytewizer.TinyCLR.Http.sln
     
     - name: Setup build
       uses: microsoft/setup-msbuild@v1.0.0
