@@ -63,7 +63,7 @@ jobs:
         -p:Configuration=${env:CONFIGURATION}
         
     - name: Pack libraries
-      working-directory: src/socket
+      working-directory: src/sockets
       run: >- 
         nuget pack Bytewizer.TinyCLR.Sockets.csproj
         -Verbosity ${env:VERBOSITY}
