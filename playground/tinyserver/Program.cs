@@ -8,10 +8,6 @@ using GHIElectronics.TinyCLR.Devices.Storage;
 
 using Bytewizer.TinyCLR.Sockets;
 using Bytewizer.TinyCLR.TinyServer.Properties;
-using Bytewizer.TinyCLR.Threading;
-using System.Collections;
-using System.Threading;
-using System.Diagnostics;
 
 namespace Bytewizer.TinyCLR.TinyServer
 {

@@ -10,13 +10,12 @@ namespace Bytewizer.TinyCLR.TinyServer
     {
         protected override void Invoke(IContext context, RequestDelegate next)
         {
-            var ctx = context as Context;
             try
             {
-                if (ctx.Session.InputStream == null)
+                if (context.Session.InputStream == null)
                     return;
                 
-                var reader = new StreamReader(ctx.Session.InputStream);
+                var reader = new StreamReader(context.Session.InputStream);
 
                 // read the context input stream (required or browser will stall the request)
                 while (reader.Peek() != -1)
@@ -27,12 +26,11 @@ namespace Bytewizer.TinyCLR.TinyServer
 
                 string response = "HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n" +
                                   "<doctype !html><html><head><meta http-equiv='refresh' content='5'><title>Hello, world!</title>" +
-                                  "<style>body { background-color: #111 }" +
-                                  "h1 { font-size:2cm; text-align: center; color: white;}</style></head>" +
+                                  "<style>body { background-color: #111 } h1 { font-size:2cm; text-align: center; color: white;}</style></head>" +
                                   "<body><h1>" + DateTime.Now.Ticks.ToString() + "</h1></body></html>";
 
                 // send the response to browser
-                ctx.Session.Write(response);           
+                context.Session.Write(response);           
             }
             catch (Exception ex)
             {
@@ -42,7 +40,7 @@ namespace Bytewizer.TinyCLR.TinyServer
             finally
             {
                 // close the connection once all data is sent (only after the last send)
-                ctx.Session.Clear();
+                context.Session.Clear();
             }
         }
     }

@@ -5,6 +5,11 @@ namespace Bytewizer.TinyCLR.Http
 {
     public static class HttpResponseExtensions
     {
+        public static void Write(this HttpResponse response, string text)
+        {
+            Write(response, text, "text/html; charset=UTF-8", StatusCodes.Status200OK, Encoding.UTF8);
+        }
+
         public static void Write(this HttpResponse response, string text, string contentType)
         {
             Write(response, text, contentType, StatusCodes.Status200OK, Encoding.UTF8);

@@ -2,7 +2,6 @@
 using System.IO;
 using System.Text;
 using System.Collections;
-using System.Diagnostics;
 
 using Bytewizer.TinyCLR.Http.Header;
 
@@ -62,7 +61,7 @@ namespace Bytewizer.TinyCLR.Http
                         }
                         else
                         {
-                            context.Request.Protocol = "HTTP/1.1";
+                            context.Request.Protocol = HttpProtocol.Http11;
                         }
 
                         mode = ParserMode.Headers;

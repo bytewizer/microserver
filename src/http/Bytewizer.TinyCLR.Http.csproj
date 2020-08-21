@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="packages\GHIElectronics.TinyCLR.Core.2.0.0-rc1\build\net452\GHIElectronics.TinyCLR.Core.props" Condition="Exists('packages\GHIElectronics.TinyCLR.Core.2.0.0-rc1\build\net452\GHIElectronics.TinyCLR.Core.props')" />
+  <Import Project="packages\GHIElectronics.TinyCLR.Core.2.0.0-rc2\build\net452\GHIElectronics.TinyCLR.Core.props" Condition="Exists('packages\GHIElectronics.TinyCLR.Core.2.0.0-rc2\build\net452\GHIElectronics.TinyCLR.Core.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -68,42 +68,27 @@
     <Compile Include="Server\HttpServer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="GHIElectronics.TinyCLR.Devices.Gpio, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\tinyclr-playground\src\httpserver\packages\GHIElectronics.TinyCLR.Devices.Gpio.2.0.0-rc1\lib\net452\GHIElectronics.TinyCLR.Devices.Gpio.dll</HintPath>
-    </Reference>
-    <Reference Include="GHIElectronics.TinyCLR.Devices.Network, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\tinyclr-playground\src\httpserver\packages\GHIElectronics.TinyCLR.Devices.Network.2.0.0-rc1\lib\net452\GHIElectronics.TinyCLR.Devices.Network.dll</HintPath>
-    </Reference>
-    <Reference Include="GHIElectronics.TinyCLR.Devices.Spi, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\tinyclr-playground\src\httpserver\packages\GHIElectronics.TinyCLR.Devices.Spi.2.0.0-rc1\lib\net452\GHIElectronics.TinyCLR.Devices.Spi.dll</HintPath>
-    </Reference>
-    <Reference Include="GHIElectronics.TinyCLR.Devices.Uart, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\tinyclr-playground\src\httpserver\packages\GHIElectronics.TinyCLR.Devices.Uart.2.0.0-rc1\lib\net452\GHIElectronics.TinyCLR.Devices.Uart.dll</HintPath>
-    </Reference>
-    <Reference Include="GHIElectronics.TinyCLR.IO, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\tinyclr-playground\src\httpserver\packages\GHIElectronics.TinyCLR.IO.2.0.0-rc1\lib\net452\GHIElectronics.TinyCLR.IO.dll</HintPath>
-    </Reference>
-    <Reference Include="GHIElectronics.TinyCLR.Native, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\tinyclr-playground\src\httpserver\packages\GHIElectronics.TinyCLR.Native.2.0.0-rc1\lib\net452\GHIElectronics.TinyCLR.Native.dll</HintPath>
-    </Reference>
-    <Reference Include="GHIElectronics.TinyCLR.Networking, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\tinyclr-playground\src\httpserver\packages\GHIElectronics.TinyCLR.Networking.2.0.0-rc1\lib\net452\GHIElectronics.TinyCLR.Networking.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\sockets\Bytewizer.TinyCLR.Sockets.csproj">
       <Project>{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}</Project>
       <Name>Bytewizer.TinyCLR.Sockets</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="GHIElectronics.TinyCLR.IO, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\playground\packages\GHIElectronics.TinyCLR.IO.2.0.0-rc2\lib\net452\GHIElectronics.TinyCLR.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="GHIElectronics.TinyCLR.Networking, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\GHIElectronics.TinyCLR.Networking.2.0.0-rc2\lib\net452\GHIElectronics.TinyCLR.Networking.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('packages\GHIElectronics.TinyCLR.Core.2.0.0-rc1\build\net452\GHIElectronics.TinyCLR.Core.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\GHIElectronics.TinyCLR.Core.2.0.0-rc1\build\net452\GHIElectronics.TinyCLR.Core.props'))" />
+    <Error Condition="!Exists('packages\GHIElectronics.TinyCLR.Core.2.0.0-rc2\build\net452\GHIElectronics.TinyCLR.Core.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\GHIElectronics.TinyCLR.Core.2.0.0-rc2\build\net452\GHIElectronics.TinyCLR.Core.props'))" />
   </Target>
 </Project>

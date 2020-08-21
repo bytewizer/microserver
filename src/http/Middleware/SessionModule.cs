@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
+
 using Bytewizer.TinyCLR.Sockets;
 
 namespace Bytewizer.TinyCLR.Http
@@ -12,7 +12,7 @@ namespace Bytewizer.TinyCLR.Http
             try
             {
                 // TODO: empty context
-                context.Response.Body = new MemoryStream() ;
+                context.Response.Body = new MemoryStream();
                 
                 HttpMessageParser.Decode(context);
 
