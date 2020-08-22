@@ -36,6 +36,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Authentication\UserService.cs" />
     <Compile Include="Middleware\HttpResponse.cs" />
     <Compile Include="Networking.cs" />
     <Compile Include="Program.cs" />
@@ -58,6 +59,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\authentication\Bytewizer.TinyCLR.Http.Authentication.csproj">
+      <Project>{A94B42E0-7FCC-448F-9645-6732ABA96F28}</Project>
+      <Name>Bytewizer.TinyCLR.Http.Authentication</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\http\Bytewizer.TinyCLR.Http.csproj">
       <Project>{EB778176-633A-4997-A683-2C891C5DB436}</Project>
       <Name>Bytewizer.TinyCLR.Http</Name>
@@ -65,6 +70,10 @@
     <ProjectReference Include="..\..\src\sockets\Bytewizer.TinyCLR.Sockets.csproj">
       <Project>{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}</Project>
       <Name>Bytewizer.TinyCLR.Sockets</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\staticfiles\Bytewizer.TinyCLR.Http.StaticFiles.csproj">
+      <Project>{2DD3D5AB-D849-4898-B6E9-1A49683955B2}</Project>
+      <Name>Bytewizer.TinyCLR.Http.StaticFiles</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

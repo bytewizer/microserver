@@ -16,7 +16,7 @@ namespace Bytewizer.TinyCLR.Sockets
 
         public Stream InputStream { get; internal set; }
 
-        public Stream OutputStream { get; set; }
+        //public Stream OutputStream { get; set; }
 
         public void Assign(Socket channel)
         {
@@ -61,19 +61,19 @@ namespace Bytewizer.TinyCLR.Sockets
                 InputStream = null;
             }
 
-            if (OutputStream != null)
-            {
-                OutputStream.Close();
-                OutputStream = null;
-            }
+            //if (OutputStream != null)
+            //{
+            //    OutputStream.Close();
+            //    OutputStream = null;
+            //}
 
             Socket = null;
         }
 
-        public void Write()
-        {
-            Write(OutputStream);
-        }
+        //public void Write()
+        //{
+        //    Write(OutputStream);
+        //}
 
         public void Write(string text)
         {

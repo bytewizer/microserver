@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\CharExtensions.cs" />
+    <Compile Include="Extensions\StreamExtensions.cs" />
     <Compile Include="Http\Header\HeaderDictionary.cs" />
     <Compile Include="Http\Header\HeaderEnumerator.cs" />
     <Compile Include="Http\HeaderNames.cs" />
@@ -83,7 +84,7 @@
     <Compile Include="Http\Query\QueryValue.cs" />
     <Compile Include="Http\StatusCodes.cs" />
     <Compile Include="Middleware\Middleware.cs" />
-    <Compile Include="Middleware\SessionModule.cs" />
+    <Compile Include="Middleware\SessionMiddleware.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Http\Routes\RouteDictionary.cs" />
     <Compile Include="Http\Routes\RouteEnumerator.cs" />

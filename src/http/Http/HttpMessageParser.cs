@@ -4,6 +4,7 @@ using System.Text;
 using System.Collections;
 
 using Bytewizer.TinyCLR.Http.Header;
+using Bytewizer.TinyCLR.Http.Extensions;
 
 namespace Bytewizer.TinyCLR.Http
 {
@@ -76,12 +77,12 @@ namespace Bytewizer.TinyCLR.Http
                             continue;
                         }
 
-                        int split = line.IndexOf(": ");
+                        int seperatorIndex = line.IndexOf(": ");
 
-                        if (split > 1)
+                        if (seperatorIndex > 1)
                         {
-                            var name = line.Substring(0, split);
-                            var value = line.Substring(split + 1);
+                            var name = line.Substring(0, seperatorIndex);
+                            var value = line.Substring(seperatorIndex + 2);
 
                             context.Request.Headers.Add(name, value);
                         }
@@ -121,8 +122,8 @@ namespace Bytewizer.TinyCLR.Http
 
         public static void Encode(HttpContext context)
         {
-            context.Session.OutputStream = new MemoryStream();
-            var outputWriter = new StreamWriter(context.Session.OutputStream);
+            //context.Session.OutputStream = new MemoryStream();
+            var outputWriter = new StreamWriter(context.Session.InputStream);
 
             var response = context.Response;
 
@@ -130,7 +131,7 @@ namespace Bytewizer.TinyCLR.Http
             var protocol = context.Request.Protocol;
             var statusCode = context.Response.StatusCode;
             var reasonPhrase = HttpReasonPhrase.Get(statusCode);
-            
+
             outputWriter.Write($"{protocol} {statusCode} {reasonPhrase}\r\n");
 
             // set zero content length
@@ -153,23 +154,12 @@ namespace Bytewizer.TinyCLR.Http
             outputWriter.Write("\r\n");
             outputWriter.Flush();
 
-            // copy message body to output stream
+            // copy message body to input stream
             if (response.Body != null && response.Body.Length > -1)
             {
-                CopyBody(context, 1024);
-            }
-        }
-
-        internal static void CopyBody(HttpContext context, int bufferSize)
-        {
-            var buffer = new byte[bufferSize];
-
-            context.Response.Body.Position = 0;
-
-            int count;
-            while ((count = context.Response.Body.Read(buffer, 0, buffer.Length)) != 0)
-            {
-                context.Session.OutputStream.Write(buffer, 0, count);
+                context.Response.Body.Position = 0;
+                context.Response.Body.CopyTo(context.Session.InputStream);
+                context.Response.Body.Dispose();
             }
         }
 

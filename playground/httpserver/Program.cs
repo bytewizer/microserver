@@ -25,9 +25,16 @@ namespace Bytewizer.TinyCLR.WebServer
 
         static void SetupHttpServer()
         {
+            var sd = StorageController.FromName(SC20100.StorageController.SdCard);
+            var drive = FileSystem.Mount(sd.Hdc);
+
+            var authOpitons = new AuthenticationOptions(new UserService(), "device.bytewizer.local");
+
             var server = new HttpServer(options =>
             {
-                options.Register(new SessionModule());
+                options.Register(new SessionMiddleware());
+                options.Register(new AuthenticationMiddleware(authOpitons));
+                options.Register(new StaticFilesMiddleware(drive));
                 options.Register(new HttpResponse());
             });
             server.Start();
@@ -41,12 +48,16 @@ namespace Bytewizer.TinyCLR.WebServer
             // Read certificate from SD card
             //var X509cert = ReadCertFromSdCard();
 
+            var authOpitons = new AuthenticationOptions(new UserService(), "device.bytewizer.local");
+
             var sslserver = new HttpServer(options =>
             {
                 options.Listen(IPAddress.Any, 443, listener =>
                 {
                     listener.UseHttps(X509cert);
                 });
+                options.Register(new SessionMiddleware());
+                options.Register(new AuthenticationMiddleware(authOpitons));
                 options.Register(new HttpResponse());
             });
 

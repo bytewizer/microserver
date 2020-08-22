@@ -26,7 +26,7 @@ namespace Bytewizer.TinyCLR.Http
             _items.Add("bmp", "image/bmp");
             _items.Add("gif", "image/gif");
             _items.Add("png", "image/png");
-            _items.Add("ico", "image/vnd.microsoft.icon");
+            _items.Add("ico", "image/x-icon");
             _items.Add("css", "text/css");
             _items.Add("gzip", "application/x-gzip");
             _items.Add("zip", "multipart/x-zip");

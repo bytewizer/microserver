@@ -51,6 +51,33 @@ namespace Bytewizer.TinyCLR.Http
         public string PathBase { get; set; }
 
         /// <summary>
+        /// Gets or sets the value for the Content-Length response header.
+        /// </summary>
+        public long ContentLength
+        {
+            get { return Headers.ContentLength; }
+            set { Headers.ContentLength = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the value for the Content-Type response header.
+        /// </summary>
+        public string ContentType
+        {
+            get { return Headers.ContentType; }
+            set { Headers.ContentType = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the value for the Host response header.
+        /// </summary>
+        public string Host
+        {
+            get { return Headers.Host; }
+            set { Headers.Host = value; }
+        }
+
+        /// <summary>
         /// Gets the collection of route values for this request.
         /// </summary>
         public RouteDictionary RouteValues { get; set; }

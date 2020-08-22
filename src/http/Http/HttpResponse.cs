@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-
+﻿using System.IO;
 using Bytewizer.TinyCLR.Http.Header;
 
 namespace Bytewizer.TinyCLR.Http
@@ -33,12 +31,20 @@ namespace Bytewizer.TinyCLR.Http
         /// <summary>
         /// Gets or sets the value for the Content-Length response header.
         /// </summary>
-        public long ContentLength { get; set; }
+        public long ContentLength
+        {
+            get { return Headers.ContentLength; }
+            set { Headers.ContentLength = value; }
+        }
 
         /// <summary>
         /// Gets or sets the value for the Content-Type response header.
         /// </summary>
-        public string ContentType { get; set; }
+        public string ContentType
+        {
+            get { return Headers.ContentType; }
+            set { Headers.ContentType = value; }
+        }
 
         /// <summary>
         /// Gets or sets the HTTP response code.

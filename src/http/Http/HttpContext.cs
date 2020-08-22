@@ -44,6 +44,11 @@ namespace Bytewizer.TinyCLR.Http
         public SocketSession Session { get; set; } = new SocketSession();
 
         /// <summary>
+        /// Gets or sets security information for the current HTTP request.
+        /// </summary>
+        public string User { get; set; }
+
+        /// <summary>
         /// Aborts the connection underlying this request.
         /// </summary>
         public void Abort()
