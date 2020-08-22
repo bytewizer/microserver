@@ -1,4 +1,4 @@
-# Microserver for TinyCLR v2.0 OS for FEZ Duino 
+# Microserver for TinyCLR v2.0rc2 OS for FEZ Duino 
 
 Microserver is a modular server built for TinyCLR OS.
 
