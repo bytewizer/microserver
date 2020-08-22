@@ -1,10 +1,16 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Net;
+using System.Threading;
+using System.Diagnostics;
 using System.Security.Cryptography.X509Certificates;
 
+using GHIElectronics.TinyCLR.Devices.Rtc;
 using GHIElectronics.TinyCLR.IO;
 using GHIElectronics.TinyCLR.Pins;
+using GHIElectronics.TinyCLR.Devices.Gpio;
 using GHIElectronics.TinyCLR.Devices.Storage;
+using GHIElectronics.TinyCLR.Native;
 
 using Bytewizer.TinyCLR.Http;
 using Bytewizer.TinyCLR.Sockets;
@@ -17,10 +23,33 @@ namespace Bytewizer.TinyCLR.WebServer
     {
         static void Main()
         {
-            Networking.SetupEthernet();
+            Thread thread = new Thread(new ThreadStart(new NetworkingDuino().SetupEthernet));
+            thread.Start();
 
-            SetupHttpServer();
+            //Setup RTC
+            var rtc = RtcController.GetDefault();
+            //Start Charging battery
+            rtc.SetChargeMode(BatteryChargeMode.Slow);
+            //Check if time is already valid
+            if (rtc.IsValid)
+            {
+                Debug.WriteLine("RTC is Valid");
+                SystemTime.SetTime(rtc.Now);
+            }
+
+            //Http Server setup
+            //Thread httpthread = new Thread(new ThreadStart(SetupHttpServer));
+            //httpthread.Start();
+
             //SetupSecureServer();  // Install self signed browser certs from the certificate folder before running secure server
+            Thread httpsthread = new Thread(new ThreadStart(SetupSecureServer));
+            httpsthread.Start();
+
+            var t = new Thread(StatusBlink);
+            t.Start();
+
+
+            Thread.Sleep(Timeout.Infinite);
         }
 
         static void SetupHttpServer()
@@ -41,16 +70,23 @@ namespace Bytewizer.TinyCLR.WebServer
             // Read certificate from SD card
             //var X509cert = ReadCertFromSdCard();
 
-            var sslserver = new HttpServer(options =>
+            try
             {
-                options.Listen(IPAddress.Any, 443, listener =>
+                var sslserver = new HttpServer(options =>
                 {
-                    listener.UseHttps(X509cert);
+                    options.Listen(IPAddress.Any, 443, listener =>
+                    {
+                        listener.UseHttps(X509cert);
+                    });
+                    options.Register(new HttpResponse());
                 });
-                options.Register(new HttpResponse());
-            });
 
-            sslserver.Start();
+                sslserver.Start();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+            }
         }
 
         static X509Certificate ReadCertFromResources()
@@ -65,7 +101,7 @@ namespace Bytewizer.TinyCLR.WebServer
 
         static X509Certificate ReadCertFromSdCard()
         {
-            var storageController = StorageController.FromName(SC20260.StorageController.SdCard);
+            var storageController = StorageController.FromName(SC20100.StorageController.SdCard);
             var drive = FileSystem.Mount(storageController.Hdc);
 
             var certFilename = drive.Name + "\\bytewizer.local.pem";
@@ -86,6 +122,20 @@ namespace Bytewizer.TinyCLR.WebServer
             };
 
             return X509cert;
+        }
+        static void StatusBlink()
+        {
+            var gpioController = GpioController.GetDefault();
+
+            var led = gpioController.OpenPin(SC20100.GpioPin.PE11);
+            led.SetDriveMode(GpioPinDriveMode.Output);
+
+            while (true)
+            {
+                led.Write(led.Read() == GpioPinValue.High ? GpioPinValue.Low : GpioPinValue.High);
+                Thread.Sleep(1000);
+
+            }
         }
     }
 }
