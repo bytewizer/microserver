@@ -36,15 +36,19 @@ namespace Bytewizer.TinyCLR.WebServer
                 Debug.WriteLine("RTC is Valid");
                 SystemTime.SetTime(rtc.Now);
             }
+            // Needs code to handle properly if no RTC time is stored.
 
-            //Http Server setup
-            //Thread httpthread = new Thread(new ThreadStart(SetupHttpServer));
-            //httpthread.Start();
+            //HTTP Server setup (Works)
+            Thread httpthread = new Thread(new ThreadStart(SetupHttpServer));
+            httpthread.Start();
 
             //SetupSecureServer();  // Install self signed browser certs from the certificate folder before running secure server
-            Thread httpsthread = new Thread(new ThreadStart(SetupSecureServer));
-            httpsthread.Start();
+            //Causes Execption in Bytewizer code. No page displayed.
+            //Wireshare shows connection is made via TLS 1.2 but fails to return page.
+            //Thread httpsthread = new Thread(new ThreadStart(SetupSecureServer));
+            //httpsthread.Start();
 
+            //Starts a status blink for FEZ Duino
             var t = new Thread(StatusBlink);
             t.Start();
 
