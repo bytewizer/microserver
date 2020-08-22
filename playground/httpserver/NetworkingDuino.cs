@@ -15,7 +15,7 @@ namespace Bytewizer.TinyCLR
 
         public void SetupEthernet()
         {
-            // SC20100 development board using ETH Click in slot 1
+            // SC20100 Wifi Module for FEZ Duino
 
             var enablePin = GpioController.GetDefault().OpenPin(SC20100.GpioPin.PA8);
             enablePin.SetDriveMode(GpioPinDriveMode.Output);
