@@ -59,8 +59,11 @@
     <None Include="..\..\images\package-logo.png" Pack="true" PackagePath="\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Http\MimeTypeProvider.cs" />
-    <Compile Include="Middleware\StaticFilesMiddleware.cs" />
+    <Compile Include="Http\DefaultContentTypeProvider.cs" />
+    <Compile Include="Http\IContentTypeProvider.cs" />
+    <Compile Include="Middleware\StaticFileMiddleware.cs" />
+    <Compile Include="Middleware\StaticFileExtensions.cs" />
+    <Compile Include="Middleware\StaticFileOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

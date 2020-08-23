@@ -29,12 +29,14 @@ namespace Bytewizer.TinyCLR.WebServer
             var drive = FileSystem.Mount(sd.Hdc);
 
             var authOpitons = new AuthenticationOptions(new UserService(), "device.bytewizer.local");
+            var filesOptions = new StaticFileOptions(drive);
 
             var server = new HttpServer(options =>
             {
-                options.Register(new SessionMiddleware());
-                options.Register(new AuthenticationMiddleware(authOpitons));
-                options.Register(new StaticFilesMiddleware(drive));
+                options.Register(new HttpSessionMiddleware());
+                options.Register(new DeveloperExceptionPageMiddleware());
+                //options.Register(new AuthenticationMiddleware(authOpitons));
+                options.Register(new StaticFileMiddleware(filesOptions));
                 options.Register(new HttpResponse());
             });
             server.Start();
@@ -56,7 +58,7 @@ namespace Bytewizer.TinyCLR.WebServer
                 {
                     listener.UseHttps(X509cert);
                 });
-                options.Register(new SessionMiddleware());
+                options.Register(new HttpSessionMiddleware());
                 options.Register(new AuthenticationMiddleware(authOpitons));
                 options.Register(new HttpResponse());
             });

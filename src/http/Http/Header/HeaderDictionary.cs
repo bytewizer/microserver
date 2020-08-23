@@ -139,6 +139,36 @@ namespace Bytewizer.TinyCLR.Http.Header
         }
 
         /// <summary>
+        /// Strongly typed access to the If-Modified-Since header. Implementations must keep this in sync with the string representation.
+        /// </summary>
+        public DateTime IfModifiedSince
+        {
+            get
+            {
+                var rawValue = this[HeaderNames.IfModifiedSince];
+
+                if (!string.IsNullOrEmpty(rawValue) &&
+                    DateTimeHelper.TryParse(rawValue.Trim(), out DateTime value))
+                {
+                    return value;
+                }
+
+                return DateTime.MinValue;
+            }
+            set
+            {
+                if (value <= DateTime.MinValue)
+                {
+                    Remove(HeaderNames.IfModifiedSince);
+                }
+                else
+                {
+                    this[HeaderNames.IfModifiedSince] = value.ToString();
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets an <see cref="ICollection"/> containing the keys in the collection.
         /// </summary>
         public ICollection Keys
@@ -405,6 +435,13 @@ namespace Bytewizer.TinyCLR.Http.Header
         }
 
         #endregion
+
+        /// <inheritdoc/>
+        public string LastModified
+        {
+            get { return this[HeaderNames.LastModified]; }
+            set { this[HeaderNames.LastModified] = value; }
+        }
 
         /// <inheritdoc/>
         public string Accept

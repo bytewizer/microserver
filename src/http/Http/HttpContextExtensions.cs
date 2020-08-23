@@ -1,27 +1,37 @@
 ﻿using System;
+using System.Net;
 
 namespace Bytewizer.TinyCLR.Http
 {
     public static class HttpContextExtensions
     {
-        public static RouteDictionary GetRouteData(this HttpContext httpContext)
+        public static RouteDictionary GetRouteData(this HttpContext context)
         {
-            if (httpContext == null)
+            if (context == null)
             {
-                throw new ArgumentNullException(nameof(httpContext));
+                throw new ArgumentNullException(nameof(context));
             }
 
-            return httpContext.Request.RouteValues;
+            return context.Request.RouteValues;
         }
 
-        public static string[] GetRouteValue(this HttpContext httpContext, string key)
+        public static string[] GetRouteValue(this HttpContext context, string key)
         {
-            if (httpContext == null)
+            if (context == null)
             {
-                throw new ArgumentNullException(nameof(httpContext));
+                throw new ArgumentNullException(nameof(context));
             }
 
-            return httpContext.Request.RouteValues[key];
+            return context.Request.RouteValues[key];
+        }
+
+        public static EndPoint GetEndpoint(this HttpContext context) 
+        {
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+            return context.Session.Socket.RemoteEndPoint;
         }
     }
 }
