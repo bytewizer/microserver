@@ -1,30 +1,69 @@
 ﻿using Bytewizer.TinyCLR.Sockets;
 
 using Bytewizer.TinyCLR.Http.Authentication;
+using System.Diagnostics;
 
 namespace Bytewizer.TinyCLR.Http
 {
     public class AuthenticationMiddleware : Middleware
     {
-        private readonly IAuthenticator authenticator;
+        private readonly AuthenticationOptions _options;
+        private readonly IAuthenticator _authenticator;
 
         public AuthenticationMiddleware(AuthenticationOptions options)
         {
-            authenticator = options.Authenticator;
+            _options = options;
+            _authenticator = options.Authenticator;
         }
 
         protected override void Invoke(HttpContext context, RequestDelegate next)
-        {
-            var user = authenticator.Authenticate(context);
-            if (user == null)
+        {            
+            if (!ValidateScheme(context, _authenticator))
             {
-                authenticator.CreateChallenge(context);
+                Debug.WriteLine("The request contained an invalid authentication scheme");
+                
+                _authenticator.CreateChallenge(context);
                 return;
             }
+            else if (!ValidateAuthentication(context, _authenticator, out var user))
+            {
+                var authorization = context.Request.Headers.Authorization;
+                Debug.WriteLine($"The request failed to authenticate authorization header {authorization}");
 
-            context.User = user;
+                _authenticator.CreateChallenge(context);
+                return;
+            }
+            else
+            {
+                // If we get here we can set authentication user
+                context.User = user;
+            }
 
             next(context);
+        }
+
+        private static bool ValidateScheme(HttpContext context, IAuthenticator authenticator)
+        {
+            var authorization = context.Request.Headers.Authorization;
+
+            if (string.IsNullOrEmpty(authorization) ||
+                    !authorization.StartsWith(authenticator.AuthenticationScheme))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private static bool ValidateAuthentication(HttpContext context, IAuthenticator authenticator, out string user)
+        {
+            user = authenticator.Authenticate(context);
+            if (user == null)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

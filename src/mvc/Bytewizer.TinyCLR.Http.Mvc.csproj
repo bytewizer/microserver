@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{15C6A7FC-1C29-471B-B57A-08D61C58FA08}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Bytewizer.TinyCLR.Http.Mvc</RootNamespace>
+    <AssemblyName>Bytewizer.TinyCLR.Http.Mvc</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A1948822-69DD-4150-919B-F3F42EFB71CC};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <!-- Github Properties -->
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+  <!-- Nuget Pack Properties -->
+  <PropertyGroup>
+    <VersionPrefix>2.0.0</VersionPrefix>
+    <Version Condition=" '$(Version)' == '' and '$(VersionSuffix)' != '' ">$(VersionPrefix)-$(VersionSuffix)</Version>
+    <Version Condition=" '$(Version)' == '' ">$(VersionPrefix)</Version>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <Authors>Microcompiler</Authors>
+    <Company>Bytewizer Inc.</Company>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <BuildNumber Condition=" '$(BuildNumber)' == '' ">0</BuildNumber>
+    <AssemblyVersion>$(VersionPrefix).$(BuildNumber)</AssemblyVersion>
+    <FileVersion>$(VersionPrefix).$(BuildNumber)</FileVersion>
+    <PackageId>$(AssemblyName)</PackageId>
+    <PackageTags>TinyCLR TinyCLROS</PackageTags>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageIcon>package-logo.png</PackageIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\..\LICENSE.md" Pack="true" PackagePath="$(PackageLicenseFile)" />
+    <None Include="..\..\images\package-logo.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionContext.cs" />
+    <Compile Include="ActionResult.cs" />
+    <Compile Include="ActionResults\ContentResult.cs" />
+    <Compile Include="Controller.cs" />
+    <Compile Include="ControllerBase.cs" />
+    <Compile Include="ControllerContext.cs" />
+    <Compile Include="Middleware\ControllerFactory.cs" />
+    <Compile Include="Middleware\ControllerIndexer.cs" />
+    <Compile Include="Middleware\ControllerMapping.cs" />
+    <Compile Include="ActionResults\EmptyResult.cs" />
+    <Compile Include="Filters\ActionExecutedContext.cs" />
+    <Compile Include="Filters\ActionExecutingContext.cs" />
+    <Compile Include="Filters\ExceptionContext.cs" />
+    <Compile Include="IActionResult.cs" />
+    <Compile Include="IController.cs" />
+    <Compile Include="IServiceResolver.cs" />
+    <Compile Include="ActionResults\JsonResult.cs" />
+    <Compile Include="Middleware\ControllerExtensions.cs" />
+    <Compile Include="Middleware\ControllerMiddleware.cs" />
+    <Compile Include="Middleware\ControllerOptions.cs" />
+    <Compile Include="ModelBinding\ArrayModelBinder.cs" />
+    <Compile Include="ModelBinding\ClassModelBinder.cs" />
+    <Compile Include="ModelBinding\EnumModelBinder.cs" />
+    <Compile Include="ModelBinding\IModelBinder.cs" />
+    <Compile Include="ModelBinding\IModelBinderContext.cs" />
+    <Compile Include="ModelBinding\IValueProvider.cs" />
+    <Compile Include="ModelBinding\ModelBinderContext.cs" />
+    <Compile Include="ModelBinding\ModelBindingException.cs" />
+    <Compile Include="ModelBinding\ModelMapper.cs" />
+    <Compile Include="ModelBinding\PrimitiveModelBinder.cs" />
+    <Compile Include="ModelBinding\RequestValueProvider.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ActionResults\RedirectResult.cs" />
+    <Compile Include="Resolver\Activator.cs" />
+    <Compile Include="Resolver\FactoryResolver.cs" />
+    <Compile Include="Resolver\ServiceResolver.cs" />
+    <Compile Include="ActionResults\StatusCodeResult.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\http\Bytewizer.TinyCLR.Http.csproj">
+      <Project>{EB778176-633A-4997-A683-2C891C5DB436}</Project>
+      <Name>Bytewizer.TinyCLR.Http</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\sockets\Bytewizer.TinyCLR.Sockets.csproj">
+      <Project>{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}</Project>
+      <Name>Bytewizer.TinyCLR.Sockets</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="GHIElectronics.TinyCLR.Data.Json">
+      <Version>2.0.0-rc2</Version>
+    </PackageReference>
+    <PackageReference Include="GHIElectronics.TinyCLR.IO">
+      <Version>2.0.0-rc2</Version>
+    </PackageReference>
+    <PackageReference Include="GHIElectronics.TinyCLR.Networking">
+      <Version>2.0.0-rc2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.SourceLink.GitHub">
+      <Version>1.0.0</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="NuGet.Build.Tasks.Pack">
+      <Version>5.7.0</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewEngine\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

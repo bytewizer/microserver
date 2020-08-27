@@ -63,6 +63,7 @@
     <Compile Include="Authentication\IAccountService.cs" />
     <Compile Include="Authentication\IAuthenticationUser.cs" />
     <Compile Include="Authentication\IAuthenticator.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Middleware\AuthenticationMiddleware.cs" />
     <Compile Include="Middleware\AuthenticationMiddlewareExtensions.cs" />
     <Compile Include="Middleware\AuthenticationOptions.cs" />

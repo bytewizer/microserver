@@ -10,7 +10,6 @@ using Bytewizer.TinyCLR.Http;
 using Bytewizer.TinyCLR.Sockets;
 using Bytewizer.TinyCLR.WebServer.Properties;
 
-
 namespace Bytewizer.TinyCLR.WebServer
 {
     class Program
@@ -29,14 +28,14 @@ namespace Bytewizer.TinyCLR.WebServer
             var drive = FileSystem.Mount(sd.Hdc);
 
             var authOpitons = new AuthenticationOptions(new UserService(), "device.bytewizer.local");
-            var filesOptions = new StaticFileOptions(drive);
 
             var server = new HttpServer(options =>
             {
                 options.Register(new HttpSessionMiddleware());
-                options.Register(new DeveloperExceptionPageMiddleware());
                 //options.Register(new AuthenticationMiddleware(authOpitons));
-                options.Register(new StaticFileMiddleware(filesOptions));
+                options.Register(new RoutingMiddleware());
+                options.Register(new ControllerMiddleware());
+                options.Register(new StaticFileMiddleware());
                 options.Register(new HttpResponse());
             });
             server.Start();

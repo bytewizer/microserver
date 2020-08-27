@@ -14,6 +14,12 @@ namespace Bytewizer.TinyCLR.Http
         private readonly IDriveProvider _driveProvider;
         private readonly IContentTypeProvider _contentTypeProvider;
 
+        public StaticFileMiddleware()
+            : this (new StaticFileOptions())
+        {
+
+        }
+
         public StaticFileMiddleware(StaticFileOptions options)
         {
             if (options == null)
@@ -79,9 +85,10 @@ namespace Bytewizer.TinyCLR.Http
 
             if (modifiedSince < lastModified)
             {
-                var fullPath = $@"{_driveProvider.Name}{subPath}";
+                var driveName = _driveProvider?.Name ?? string.Empty;
+
+                var fullPath = $@"{driveName}{subPath}";
                 var filename = Path.GetFileName(subPath);
-                
                 var stream = new FileStream(fullPath, FileMode.Open, FileAccess.Read, FileShare.Read);
                 
                 context.Response.Headers.LastModified = lastModified.ToString("R");

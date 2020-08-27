@@ -437,13 +437,45 @@ namespace Bytewizer.TinyCLR.Http.Header
         #endregion
 
         /// <inheritdoc/>
+        public string Connection
+        {
+            get { return this[HeaderNames.Connection]; }
+            set { this[HeaderNames.Connection] = value; }
+        }
+
+        /// <inheritdoc/>
+        public string Upgrade
+        {
+            get { return this[HeaderNames.Upgrade]; }
+            set { this[HeaderNames.Upgrade] = value; }
+        }
+
+        public string SecWebSocketAccept
+        {
+            get { return this[HeaderNames.SecWebSocketAccept]; }
+            set { this[HeaderNames.SecWebSocketAccept] = value; }
+        }
+
+        /// <inheritdoc/>
         public string LastModified
         {
             get { return this[HeaderNames.LastModified]; }
             set { this[HeaderNames.LastModified] = value; }
         }
 
-        /// <inheritdoc/>
+        public string WWWAuthenticate
+        {
+            get { return this[HeaderNames.WWWAuthenticate]; }
+            set { this[HeaderNames.WWWAuthenticate] = value; }
+        }
+
+        public string Authorization
+        {
+            get { return this[HeaderNames.Authorization]; }
+            set { this[HeaderNames.Authorization] = value; }
+        }
+
+        /// <inheritdoc/>  
         public string Accept
         {
             get { return this[HeaderNames.Accept]; }

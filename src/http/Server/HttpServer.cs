@@ -1,10 +1,11 @@
 ﻿using System.Net;
 
+using Bytewizer.TinyCLR.Hosting;
 using Bytewizer.TinyCLR.Sockets;
 
 namespace Bytewizer.TinyCLR.Http
 {
-    public class HttpServer : SocketService
+    public class HttpServer : SocketService, IServer
     {
         public HttpServer()
         {

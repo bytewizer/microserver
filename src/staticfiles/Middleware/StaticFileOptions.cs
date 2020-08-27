@@ -11,15 +11,9 @@ namespace Bytewizer.TinyCLR.Http
         /// <summary>
         /// Create an instance with the default options settings.
         /// </summary>
-        public StaticFileOptions(IDriveProvider driveProvider)
-        {
-            if (driveProvider == null)
-                throw new ArgumentNullException(nameof(driveProvider));
+        public StaticFileOptions() { }
 
-            DriveProvider = driveProvider;
-        }
-
-        public IDriveProvider DriveProvider { get; private set; }
+        public IDriveProvider DriveProvider { get; set; }
 
         /// <summary>
         /// Used to map files to content-types.

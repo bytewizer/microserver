@@ -77,6 +77,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="GHIElectronics.TinyCLR.Devices.Storage">
+      <Version>2.0.0-rc2</Version>
+    </PackageReference>
     <PackageReference Include="GHIElectronics.TinyCLR.IO">
       <Version>2.0.0-rc2</Version>
     </PackageReference>

@@ -59,6 +59,10 @@
     <None Include="..\..\images\package-logo.png" Pack="true" PackagePath="\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builder\ApplicationBuilder.cs" />
+    <Compile Include="Hosting\UseHttpServerExtensions.cs" />
+    <Compile Include="Builder\IApplicationBuilder.cs" />
+    <Compile Include="Builder\UseMiddlewareExtensions.cs" />
     <Compile Include="Http\Header\DateTimeHelper.cs" />
     <Compile Include="Middleware\HttpSessionExtensions.cs" />
     <Compile Include="Middleware\StatusCodePageExtensions.cs" />
@@ -103,6 +107,10 @@
     <Compile Include="Server\HttpServer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\hosting\Bytewizer.TinyCLR.Hosting.csproj">
+      <Project>{CB4E0F56-F666-4091-B5DA-0AA1C8FC7CCE}</Project>
+      <Name>Bytewizer.TinyCLR.Hosting</Name>
+    </ProjectReference>
     <ProjectReference Include="..\sockets\Bytewizer.TinyCLR.Sockets.csproj">
       <Project>{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}</Project>
       <Name>Bytewizer.TinyCLR.Sockets</Name>
@@ -126,5 +134,6 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

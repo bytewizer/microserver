@@ -5,10 +5,6 @@ using Bytewizer.TinyCLR.Http;
 using Bytewizer.TinyCLR.Sockets;
 using Bytewizer.TinyCLR.Http.Header;
 
-using GHIElectronics.TinyCLR.IO;
-using GHIElectronics.TinyCLR.Pins;
-using GHIElectronics.TinyCLR.Devices.Storage;
-
 namespace Bytewizer.TinyCLR.WebServer
 {
     public class HttpResponse : Middleware
