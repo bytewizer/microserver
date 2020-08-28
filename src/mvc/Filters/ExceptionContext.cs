@@ -14,7 +14,6 @@ namespace Bytewizer.TinyCLR.Http.Mvc.Filters
         public ExceptionContext(ActionContext actionContext, Exception exception)
         {
             HttpContext = actionContext.HttpContext;
-            //HttpContext.LastException = exception;
             Canceled = true;
             Exception = exception;
         }

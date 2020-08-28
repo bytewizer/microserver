@@ -13,9 +13,9 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ModelBinding
         public ModelMapper()
         {
             _binders.Add(new PrimitiveModelBinder());
-            _binders.Add(new ArrayModelBinder());
-            _binders.Add(new EnumModelBinder());
-            _binders.Add(new ClassModelBinder());
+            //_binders.Add(new ArrayModelBinder());
+            //_binders.Add(new EnumModelBinder());
+            //_binders.Add(new ClassModelBinder());
         }
 
         public void Clear()
@@ -46,7 +46,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ModelBinding
             var x = 0;
             object[] results = new object[parameters.Length];
             
-            foreach (DictionaryEntry item in binders)
+            foreach (QueryValue item in binders)
             {
                 var context = new ModelBinderContext(parameters[x].ParameterType, (string)item.Key, provider);
                 foreach (IModelBinder modelBinder in _binders)

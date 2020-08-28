@@ -21,17 +21,5 @@ namespace Bytewizer.TinyCLR.Http
         public IAccountService UserService { get; }
 
         public string Realm { get; }
-
-        //public class Builder
-        //{
-        //    public Builder()
-        //    {
-        //    }
-
-        //    public AuthenticationOptions Build()
-        //    {
-        //        return new AuthenticationOptions();
-        //    }
-        //}
     }
 }

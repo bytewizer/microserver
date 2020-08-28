@@ -60,11 +60,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionContext.cs" />
-    <Compile Include="ActionResult.cs" />
+    <Compile Include="ActionDescriptor.cs" />
+    <Compile Include="ActionResults\ActionResult.cs" />
+    <Compile Include="ActionResults\BadRequestResult.cs" />
     <Compile Include="ActionResults\ContentResult.cs" />
+    <Compile Include="ActionResults\FileResult.cs" />
+    <Compile Include="ActionResults\FileStreamResult.cs" />
+    <Compile Include="ActionResults\NotFoundResult.cs" />
+    <Compile Include="ActionResults\OkResult.cs" />
     <Compile Include="Controller.cs" />
+    <Compile Include="ControllerActionDescriptor.cs" />
     <Compile Include="ControllerBase.cs" />
     <Compile Include="ControllerContext.cs" />
+    <Compile Include="Filters\FilterContext.cs" />
     <Compile Include="Middleware\ControllerFactory.cs" />
     <Compile Include="Middleware\ControllerIndexer.cs" />
     <Compile Include="Middleware\ControllerMapping.cs" />
@@ -74,7 +82,7 @@
     <Compile Include="Filters\ExceptionContext.cs" />
     <Compile Include="IActionResult.cs" />
     <Compile Include="IController.cs" />
-    <Compile Include="IServiceResolver.cs" />
+    <Compile Include="Resolver\IServiceResolver.cs" />
     <Compile Include="ActionResults\JsonResult.cs" />
     <Compile Include="Middleware\ControllerExtensions.cs" />
     <Compile Include="Middleware\ControllerMiddleware.cs" />

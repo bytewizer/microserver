@@ -1,27 +1,13 @@
 ﻿using System;
-
+using Bytewizer.TinyCLR.Http;
 using Bytewizer.TinyCLR.Http.Mvc;
 using Bytewizer.TinyCLR.Http.Mvc.Filters;
+using GHIElectronics.TinyCLR.Data.Json;
 
 namespace Bytewizer.TinyCLR.WebServer.Controllers
 {
-    public class ExampleController : Controller
+    public class TestController : Controller
     {
-        public override void OnActionExecuting(ActionExecutingContext filterContext)
-        {            
-            base.OnActionExecuting(filterContext);
-        }
-
-        public override void OnActionExecuted(ActionExecutedContext filterContext)
-        {
-            base.OnActionExecuted(filterContext);
-        }
-
-        public override void OnException(ExceptionContext filterContext)
-        {
-            base.OnException(filterContext);
-        }
-
         // Any public IActionResult method inherited from Controller is made available as an endpoint
         public IActionResult GetById(long id)
         {
@@ -48,9 +34,43 @@ namespace Bytewizer.TinyCLR.WebServer.Controllers
             return Ok();
         }
 
-        public IActionResult GetBadRequest()
+        public IActionResult GetRequest()
         {
             return BadRequest();
         }
+
+        public IActionResult GetNotFound()
+        {
+            return NotFound();
+        }
+
+        public IActionResult GetStatusCode()
+        {
+            return StatusCode(StatusCodes.Status207MultiStatus);
+        }
+
+        public IActionResult GetRedirect()
+        {
+            return Redirect("http://www.google.com");
+        }
+
+        public IActionResult GetJson()
+        {
+            var jsonObject = new JsonData();
+
+            return Json(jsonObject);
+        }
+    }
+
+    public class JsonData
+    {
+        public JsonData()
+        {
+            Name = "Bob Smith";
+            Address = "103 Main Street, Burbank, CA 92607";
+        }
+
+        public string Name { get; set;}
+        public string Address { get; set; }
     }
 }

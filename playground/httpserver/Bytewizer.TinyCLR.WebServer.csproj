@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Authentication\UserService.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\ExampleController.cs" />
     <Compile Include="Hosting.cs" />
     <Compile Include="Middleware\HttpResponse.cs" />
@@ -91,6 +92,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="GHIElectronics.TinyCLR.Data.Json, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GHIElectronics.TinyCLR.Data.Json.2.0.0-rc2\lib\net452\GHIElectronics.TinyCLR.Data.Json.dll</HintPath>
+    </Reference>
     <Reference Include="GHIElectronics.TinyCLR.Devices.Gpio, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GHIElectronics.TinyCLR.Devices.Gpio.2.0.0-rc2\lib\net452\GHIElectronics.TinyCLR.Devices.Gpio.dll</HintPath>
       <Private>True</Private>

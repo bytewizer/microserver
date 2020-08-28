@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bytewizer.TinyCLR.Http.Mvc.ActionResults
+namespace Bytewizer.TinyCLR.Http.Mvc
 {
     /// <summary>
     /// An action result which redirect to another url or controller/action.
@@ -20,6 +20,8 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ActionResults
             {
                 throw new ArgumentNullException(nameof(url));
             }
+
+            _url = url;
         }
 
         /// <summary>
@@ -70,6 +72,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ActionResults
             if (!string.IsNullOrEmpty(_url))
             {
                 string content = $"<!DOCTYPE html><html><head><META http-equiv='refresh' content='0;URL= {_url}'</head><body></body></html>";
+                context.HttpContext.Response.StatusCode = StatusCodes.Status302Found;
                 context.HttpContext.Response.Write(content, "text/html");
             }
         }

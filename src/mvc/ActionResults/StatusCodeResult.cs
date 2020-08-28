@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bytewizer.TinyCLR.Http.Mvc.ActionResults
+namespace Bytewizer.TinyCLR.Http.Mvc
 {
     /// <summary>
     /// Represents an <see cref="ActionResult"/> that when executed will

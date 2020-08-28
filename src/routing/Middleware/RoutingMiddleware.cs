@@ -26,8 +26,6 @@ namespace Bytewizer.TinyCLR.Http
             {
                 { "default", new string[] { context.Request.Path } }
             };
-            //var values = context.GetRouteData();
-            //var path = context.GetRouteValue("default");
             
             next(context);
         }

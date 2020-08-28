@@ -4,7 +4,7 @@ namespace Bytewizer.TinyCLR.Http
 {
     public static class RoutingExtensions
     {
-        public static IApplicationBuilder UseStaticFiles(this IApplicationBuilder app)
+        public static IApplicationBuilder UseRouting(this IApplicationBuilder app)
         {
             if (app == null)
             {
@@ -14,7 +14,7 @@ namespace Bytewizer.TinyCLR.Http
             return app.UseMiddleware(typeof(RoutingMiddleware));
         }
 
-        public static IApplicationBuilder UseStaticFiles(this IApplicationBuilder app, RoutingOptions options)
+        public static IApplicationBuilder UseRouting(this IApplicationBuilder app, RoutingOptions options)
         {
             if (app == null)
             {

@@ -17,14 +17,14 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ModelBinding
             return _request.Query[name];
         }
 
-        public DictionaryEntry[] GetValues()
-        {
+        public QueryValue[] GetValues()
+        {            
             IEnumerator enumerator = _request.Query.GetEnumerator();
-            DictionaryEntry[] list = new DictionaryEntry[_request.Query.Count];
+            QueryValue[] list = new QueryValue[_request.Query.Count];
             int x = 0;
             while (enumerator.MoveNext())
             {
-                list[x] = (DictionaryEntry)enumerator.Current;
+                list[x] = (QueryValue)enumerator.Current;
                 x++;
             }
             return list;

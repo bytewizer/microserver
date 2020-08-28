@@ -1,6 +1,8 @@
 using System;
 
-namespace Bytewizer.TinyCLR.Http.Mvc.ActionResults
+using GHIElectronics.TinyCLR.Data.Json;
+
+namespace Bytewizer.TinyCLR.Http.Mvc
 {
     /// <summary>
     /// An action result which formats the given object as JSON and sends to the client.
@@ -13,6 +15,8 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ActionResults
         /// <param name="value">The value to format as JSON.</param>
         public JsonResult(object value)
         {
+            ContentType = "application/json";
+            StatusCode = StatusCodes.Status200OK;
             Value = value;
         }
 
@@ -38,6 +42,8 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ActionResults
             {
                 throw new ArgumentNullException(nameof(context));
             }
+            var json = JsonConverter.Serialize(Value).ToString();
+            context.HttpContext.Response.Write(json, "application/json");
         }
     }
 }

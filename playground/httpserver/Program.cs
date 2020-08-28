@@ -33,6 +33,7 @@ namespace Bytewizer.TinyCLR.WebServer
             {
                 options.Register(new HttpSessionMiddleware());
                 //options.Register(new AuthenticationMiddleware(authOpitons));
+                options.Register(new DeveloperExceptionPageMiddleware());
                 options.Register(new RoutingMiddleware());
                 options.Register(new ControllerMiddleware());
                 options.Register(new StaticFileMiddleware());
