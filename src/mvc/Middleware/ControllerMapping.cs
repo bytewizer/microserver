@@ -13,10 +13,6 @@ namespace Bytewizer.TinyCLR.Http.Mvc.Middleware
     /// </remarks>
     public class ControllerMapping
     {
-        /// <summary>
-        /// Key is "action".
-        /// </summary>
-        private readonly Hashtable _actions = new Hashtable();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ControllerMapping"/> class.
@@ -38,10 +34,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc.Middleware
         /// </summary>
         public Type ControllerType { get; set; }
 
-        public Hashtable Mappings
-        {
-            get { return _actions; }
-        }
+        public Hashtable Mappings { get; } = new Hashtable();
 
         /// <summary>
         /// Invoke an action method.
@@ -49,10 +42,9 @@ namespace Bytewizer.TinyCLR.Http.Mvc.Middleware
         /// <param name="instance">The instance.</param>
         /// <param name="action">The action.</param>
         /// <param name="arguments">Action arguments.</param>
-        /// <returns></returns>
         internal ActionResult Invoke(Controller instance, string action, object[] arguments)
         {
-            MethodBase methodAction = (MethodBase)_actions[action];
+            MethodBase methodAction = (MethodBase)Mappings[action];
             return (ActionResult)methodAction.Invoke(instance, arguments);
         }
 
@@ -62,8 +54,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc.Middleware
         /// <param name="method">The method.</param>
         public void Add(MethodInfo method)
         {
-            _actions.Add(method.Name.ToLower(), method);
-
+            Mappings.Add(method.Name.ToLower(), method);
         }
 
         /// <summary>
@@ -72,10 +63,11 @@ namespace Bytewizer.TinyCLR.Http.Mvc.Middleware
         /// <param name="actionName">The action name.</param>
         public virtual MethodInfo FindAction(string actionName)
         {
-            if (_actions.Contains(actionName.ToLower()))
+            if (Mappings.Contains(actionName.ToLower()))
             {
-                return (MethodInfo)_actions[actionName.ToLower()];
+                return (MethodInfo)Mappings[actionName.ToLower()];
             }
+
             return null;
         }
     }

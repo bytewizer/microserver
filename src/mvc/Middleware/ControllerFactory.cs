@@ -48,6 +48,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc.Middleware
                 mapping = (ControllerMapping)_controllers[uri];
                 return true;
             }
+
             return false;
         }
 
@@ -62,61 +63,57 @@ namespace Bytewizer.TinyCLR.Http.Mvc.Middleware
 
             var actionContext = new ActionContext(context, descriptor);
             var controllerContext = new ControllerContext(actionContext);
-
             var controller = (Controller)ServiceResolver.Current.Resolve(controllerType);
-            var newController = controller as IController;
+
+            if (controller == null)
+            {
+                throw new NullReferenceException(nameof(controller));
+            }
 
             try
             {
-
-           
                 controller.ControllerContext = controllerContext;
-
-                if (newController != null)
+                
+                // TODO: filters and hashtable for arguments
+                var executingContext = new ActionExecutingContext(actionContext, new ArrayList(), new Hashtable(), controllerContext);
+                controller.OnActionExecuting(executingContext);
+                if (executingContext.Result != null)
                 {
-
-                    var executingContext = new ActionExecutingContext(actionContext, new ArrayList(), new Hashtable(), controllerContext);
-                    newController.OnActionExecuting(executingContext);
-                    if (executingContext.Result != null)
-                        return executingContext.Result;
+                    return executingContext.Result;
                 }
 
                 object[] args = null;
-                //object[] args = new object[] { 10 };
-
-                // TODO: ModelBinding
                 var parameters = action.GetParameters();
                 if (parameters.Length > 0)
                 {
                     var httpRequest = controllerContext.HttpContext.Request;
-                    args = _modelMapper.Bind(httpRequest, parameters);
+                    args = _modelMapper.Bind(httpRequest, parameters);            
                 }
+                
+                var tom = typeof(Controller).GetConstructor(new Type[1]);
+
                 ActionResult result = (ActionResult)action.Invoke(controller, args);
                 result.ExecuteResult(controllerContext);
 
-                if (newController != null)
+                var executedContext = new ActionExecutedContext(actionContext, new ArrayList(), controllerContext);
+                controller.OnActionExecuted(executedContext);
+                if (executedContext.Result != null)
                 {
-                    var executedContext = new ActionExecutedContext(actionContext, new ArrayList(), controllerContext);
-                    newController.OnActionExecuted(executedContext);
-                    if (executedContext.Result != null)
-                        return executedContext.Result;
+                    return executedContext.Result;
                 }
 
                 return result;
             }
             catch (Exception ex)
             {
-                if (newController != null)
+                var exceptionContext = new ExceptionContext(controllerContext, ex);
+                controller.OnException(exceptionContext);
+                if (exceptionContext.Result != null)
                 {
-                    var exceptionContext = new ExceptionContext(controllerContext, ex);
-                    newController.OnException(exceptionContext);
-                    if (exceptionContext.Result != null)
-                        return exceptionContext.Result;
+                    return exceptionContext.Result;
                 }
 
-                ActionResult result = controller.TriggerOnException(ex);
-
-                return result;
+                throw ex;
             }
         }
     }

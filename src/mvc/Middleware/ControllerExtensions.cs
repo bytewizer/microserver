@@ -4,7 +4,7 @@ namespace Bytewizer.TinyCLR.Http
 {
     public static class ControllerExtensions
     {
-        public static IApplicationBuilder UseStaticFiles(this IApplicationBuilder app)
+        public static IApplicationBuilder UseMvc(this IApplicationBuilder app)
         {
             if (app == null)
             {
@@ -14,7 +14,7 @@ namespace Bytewizer.TinyCLR.Http
             return app.UseMiddleware(typeof(ControllerMiddleware));
         }
 
-        public static IApplicationBuilder UseStaticFiles(this IApplicationBuilder app, ControllerOptions options)
+        public static IApplicationBuilder UseMvc(this IApplicationBuilder app, ControllerOptions options)
         {
             if (app == null)
             {

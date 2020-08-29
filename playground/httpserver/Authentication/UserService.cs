@@ -9,7 +9,6 @@ namespace Bytewizer.TinyCLR.WebServer
         public IAuthenticationUser Lookup(string userName, string host)
         {
             // perform user lookup and return an IAuthenticationUser or null
-
             return new AdminUser();
         }
     }

@@ -2,8 +2,6 @@
 using System.Collections;
 using System.Reflection;
 
-using Bytewizer.TinyCLR.Http.Extensions;
-
 namespace Bytewizer.TinyCLR.Http.Mvc.Middleware
 {
     public class ControllerIndexer

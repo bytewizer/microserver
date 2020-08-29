@@ -81,7 +81,6 @@
     <Compile Include="Filters\ActionExecutingContext.cs" />
     <Compile Include="Filters\ExceptionContext.cs" />
     <Compile Include="IActionResult.cs" />
-    <Compile Include="IController.cs" />
     <Compile Include="Resolver\IServiceResolver.cs" />
     <Compile Include="ActionResults\JsonResult.cs" />
     <Compile Include="Middleware\ControllerExtensions.cs" />
@@ -117,13 +116,13 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="GHIElectronics.TinyCLR.Data.Json">
-      <Version>2.0.0-rc2</Version>
+      <Version>2.0.0</Version>
     </PackageReference>
     <PackageReference Include="GHIElectronics.TinyCLR.IO">
-      <Version>2.0.0-rc2</Version>
+      <Version>2.0.0</Version>
     </PackageReference>
     <PackageReference Include="GHIElectronics.TinyCLR.Networking">
-      <Version>2.0.0-rc2</Version>
+      <Version>2.0.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.SourceLink.GitHub">
       <Version>1.0.0</Version>

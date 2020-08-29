@@ -1,20 +1,19 @@
-﻿using System;
+﻿using System.IO;
+
 using Bytewizer.TinyCLR.Http;
 using Bytewizer.TinyCLR.Http.Mvc;
-using Bytewizer.TinyCLR.Http.Mvc.Filters;
-using GHIElectronics.TinyCLR.Data.Json;
 
-namespace Bytewizer.TinyCLR.WebServer.Controllers
+namespace Bytewizer.TinyCLR.WebServer
 {
+    // Any public IActionResult method inherited from Controller is made available as an endpoint
     public class TestController : Controller
     {
-        // Any public IActionResult method inherited from Controller is made available as an endpoint
-        public IActionResult GetById(long id)
+        public IActionResult GetById(int id)
         {
             string response = "<doctype !html><html><head><title>Hello, world!</title>" +
                 "<style>body { background-color: #111 }" +
                 "h1 { font-size:3cm; text-align: center; color: white;}</style></head>" +
-                "<body><h1>" + $"{id}" + "</h1></body></html>\r\n";
+                "<body><h1>" + $"{id}" + "</h1></body></html>";
 
             return Content(response, "text/html");
         }
@@ -24,7 +23,7 @@ namespace Bytewizer.TinyCLR.WebServer.Controllers
             string response = "<doctype !html><html><head><title>Hello, world!</title>" +
                 "<style>body { background-color: #111 }" +
                 "h1 { font-size:3cm; text-align: center; color: white;}</style></head>" +
-                "<body><h1>" + $"{name}" + "</h1></body></html>\r\n";
+                "<body><h1>" + $"{name}" + "</h1></body></html>";
 
             return Content(response, "text/html");
         }
@@ -34,7 +33,7 @@ namespace Bytewizer.TinyCLR.WebServer.Controllers
             return Ok();
         }
 
-        public IActionResult GetRequest()
+        public IActionResult GetBadRequest()
         {
             return BadRequest();
         }
@@ -60,6 +59,15 @@ namespace Bytewizer.TinyCLR.WebServer.Controllers
 
             return Json(jsonObject);
         }
+
+        public IActionResult GetFile()
+        {
+            var fullPath = @"ocean.jpg";
+            var stream = new FileStream(fullPath, FileMode.Open, FileAccess.Read, FileShare.Read);
+
+            return File(stream, "image/jpeg", "ocean.jpeg");
+        }
+
     }
 
     public class JsonData

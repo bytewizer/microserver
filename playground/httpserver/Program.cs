@@ -32,12 +32,12 @@ namespace Bytewizer.TinyCLR.WebServer
             var server = new HttpServer(options =>
             {
                 options.Register(new HttpSessionMiddleware());
-                //options.Register(new AuthenticationMiddleware(authOpitons));
+                options.Register(new AuthenticationMiddleware(authOpitons));
                 options.Register(new DeveloperExceptionPageMiddleware());
                 options.Register(new RoutingMiddleware());
                 options.Register(new ControllerMiddleware());
                 options.Register(new StaticFileMiddleware());
-                options.Register(new HttpResponse());
+                options.Register(new CustomMiddleware());
             });
             server.Start();
         }
@@ -60,7 +60,7 @@ namespace Bytewizer.TinyCLR.WebServer
                 });
                 options.Register(new HttpSessionMiddleware());
                 options.Register(new AuthenticationMiddleware(authOpitons));
-                options.Register(new HttpResponse());
+                options.Register(new CustomMiddleware());
             });
 
             sslserver.Start();

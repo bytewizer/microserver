@@ -7,7 +7,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc
     /// <summary>
     /// A base class for an MVC controller.
     /// </summary>
-    public abstract class Controller : ControllerBase, IController
+    public abstract class Controller : ControllerBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Controller"/> class.
@@ -41,11 +41,6 @@ namespace Bytewizer.TinyCLR.Http.Mvc
         /// <inheritdoc />
         public virtual void OnException(ExceptionContext context) 
         { 
-        }
-
-        internal virtual ActionResult TriggerOnException(Exception ex)
-        {
-            return null;
         }
     }
 }

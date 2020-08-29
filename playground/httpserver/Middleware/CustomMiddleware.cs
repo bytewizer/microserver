@@ -7,7 +7,7 @@ using Bytewizer.TinyCLR.Http.Header;
 
 namespace Bytewizer.TinyCLR.WebServer
 {
-    public class HttpResponse : Middleware
+    public class CustomMiddleware : Middleware
     {
         protected override void Invoke(HttpContext context, RequestDelegate next)
         {

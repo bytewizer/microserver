@@ -12,6 +12,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ModelBinding
 
         public ModelMapper()
         {
+            // TODO: Additional Model Binders
             _binders.Add(new PrimitiveModelBinder());
             //_binders.Add(new ArrayModelBinder());
             //_binders.Add(new EnumModelBinder());
