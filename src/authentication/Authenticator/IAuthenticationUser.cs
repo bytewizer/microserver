@@ -1,4 +1,4 @@
-﻿namespace Bytewizer.TinyCLR.Http.Authentication
+﻿namespace Bytewizer.TinyCLR.Http.Authenticator
 {
     public interface IAuthenticationUser
     {

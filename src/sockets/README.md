@@ -2,8 +2,6 @@
 
 SocketServer is a modular socket server built for TinyCLR OS.
 
-
-
 ## Simple Http Response Example
 
 ```CSharp
@@ -173,11 +171,3 @@ Module B: Skipping module C in pipeline and turning back
 Module B: Code executed after 'next'
 Module A: Code executed after 'next'
 ```
-
-## Disclaimer
-
-All source, documentation, instructions and products of this project are provided as-is without warranty. No liability is accepted for any damages, data loss or costs incurred by its use.
-
-## Contributions
-
-Contributions to this project are always welcome. Please consider forking this project on GitHub and sending a pull request to get your improvements added to the original project.

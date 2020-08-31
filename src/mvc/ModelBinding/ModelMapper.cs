@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Reflection;
+using System.Collections;
 
 using Bytewizer.TinyCLR.Http.Mvc.Resolver;
 
@@ -14,6 +14,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ModelBinding
         {
             // TODO: Additional Model Binders
             _binders.Add(new PrimitiveModelBinder());
+            //_binders.Add(new DateTimeModelBinder());
             //_binders.Add(new ArrayModelBinder());
             //_binders.Add(new EnumModelBinder());
             //_binders.Add(new ClassModelBinder());

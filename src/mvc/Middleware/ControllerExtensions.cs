@@ -1,20 +1,22 @@
 ﻿using System;
 
+using Bytewizer.TinyCLR.Sockets;
+
 namespace Bytewizer.TinyCLR.Http
 {
     public static class ControllerExtensions
     {
-        public static IApplicationBuilder UseMvc(this IApplicationBuilder app)
+        public static void UseMvc(this ServerOptions app)
         {
             if (app == null)
             {
                 throw new ArgumentNullException(nameof(app));
             }
 
-            return app.UseMiddleware(typeof(ControllerMiddleware));
+            app.UseMiddleware(new ControllerMiddleware());
         }
 
-        public static IApplicationBuilder UseMvc(this IApplicationBuilder app, ControllerOptions options)
+        public static void UseMvc(this ServerOptions app, ControllerOptions options)
         {
             if (app == null)
             {
@@ -25,7 +27,7 @@ namespace Bytewizer.TinyCLR.Http
                 throw new ArgumentNullException(nameof(options));
             }
 
-            return app.UseMiddleware(typeof(ControllerMiddleware), options);
+            app.UseMiddleware(new ControllerMiddleware(options));
         }
     }
 }

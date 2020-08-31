@@ -1,6 +1,6 @@
 ﻿using System;
 
-using Bytewizer.TinyCLR.Http.Authentication;
+using Bytewizer.TinyCLR.Http.Authenticator;
 
 namespace Bytewizer.TinyCLR.WebServer
 {

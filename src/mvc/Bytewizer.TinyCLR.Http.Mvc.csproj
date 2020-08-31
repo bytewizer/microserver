@@ -81,6 +81,7 @@
     <Compile Include="Filters\ActionExecutingContext.cs" />
     <Compile Include="Filters\ExceptionContext.cs" />
     <Compile Include="IActionResult.cs" />
+    <Compile Include="ModelBinding\DateTimeModelBinder.cs" />
     <Compile Include="Resolver\IServiceResolver.cs" />
     <Compile Include="ActionResults\JsonResult.cs" />
     <Compile Include="Middleware\ControllerExtensions.cs" />

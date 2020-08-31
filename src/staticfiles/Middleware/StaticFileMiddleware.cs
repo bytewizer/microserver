@@ -2,24 +2,33 @@
 using System.IO;
 using System.Diagnostics;
 
-using Bytewizer.TinyCLR.Sockets;
-
 using GHIElectronics.TinyCLR.IO;
+
+using Bytewizer.TinyCLR.Sockets;
 
 namespace Bytewizer.TinyCLR.Http
 {
+    /// <summary>
+    /// Enables serving static files for a given request path.
+    /// </summary>
     public class StaticFileMiddleware : Middleware
     {
         private readonly StaticFileOptions _options;
         private readonly IDriveProvider _driveProvider;
         private readonly IContentTypeProvider _contentTypeProvider;
 
+        /// <summary>
+        /// Initializes a default instance of the <see cref="StaticFileMiddleware"/> class.
+        /// </summary>
         public StaticFileMiddleware()
             : this (new StaticFileOptions())
         {
-
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StaticFileMiddleware"/> class.
+        /// </summary>
+        /// <param name="options">The <see cref="StaticFileOptions"/> used to configure the middleware.</param>
         public StaticFileMiddleware(StaticFileOptions options)
         {
             if (options == null)
@@ -30,6 +39,10 @@ namespace Bytewizer.TinyCLR.Http
             _contentTypeProvider = _options.ContentTypeProvider ?? new DefaultContentTypeProvider();
         }
 
+        /// <summary>
+        /// Processes a request to determine if it matches a known file and if so serves it.
+        /// </summary>
+        /// <param name="context">The <see cref="HttpContext"/> that encapsulates all HTTP-specific information about an individual HTTP request.</param>
         protected override void Invoke(HttpContext context, RequestDelegate next)
         {
             var matchUrl = context.Request.Path;
@@ -86,7 +99,6 @@ namespace Bytewizer.TinyCLR.Http
             if (modifiedSince < lastModified)
             {
                 var driveName = _driveProvider?.Name ?? string.Empty;
-
                 var fullPath = $@"{driveName}{subPath}";
                 var filename = Path.GetFileName(subPath);
                 var stream = new FileStream(fullPath, FileMode.Open, FileAccess.Read, FileShare.Read);

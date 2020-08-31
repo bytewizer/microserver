@@ -39,7 +39,6 @@
     <Compile Include="Authentication\UserService.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\ExampleController.cs" />
-    <Compile Include="Hosting.cs" />
     <Compile Include="Middleware\CustomMiddleware.cs" />
     <Compile Include="Networking.cs" />
     <Compile Include="Program.cs" />
@@ -65,10 +64,6 @@
     <ProjectReference Include="..\..\src\authentication\Bytewizer.TinyCLR.Http.Authentication.csproj">
       <Project>{A94B42E0-7FCC-448F-9645-6732ABA96F28}</Project>
       <Name>Bytewizer.TinyCLR.Http.Authentication</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\hosting\Bytewizer.TinyCLR.Hosting.csproj">
-      <Project>{CB4E0F56-F666-4091-B5DA-0AA1C8FC7CCE}</Project>
-      <Name>Bytewizer.TinyCLR.Hosting</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\http\Bytewizer.TinyCLR.Http.csproj">
       <Project>{EB778176-633A-4997-A683-2C891C5DB436}</Project>

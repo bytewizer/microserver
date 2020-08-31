@@ -59,11 +59,12 @@
     <None Include="..\..\images\package-logo.png" Pack="true" PackagePath="\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Authentication\BasicAuthentication.cs" />
-    <Compile Include="Authentication\IAccountService.cs" />
-    <Compile Include="Authentication\IAuthenticationUser.cs" />
-    <Compile Include="Authentication\IAuthenticator.cs" />
-    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Authenticator\Authentication.cs" />
+    <Compile Include="Authenticator\DigestAuthentication.cs" />
+    <Compile Include="Authenticator\DigestChallenge.cs" />
+    <Compile Include="Authenticator\IAccountService.cs" />
+    <Compile Include="Authenticator\IAuthenticationUser.cs" />
+    <Compile Include="Authenticator\IAuthenticator.cs" />
     <Compile Include="Middleware\AuthenticationMiddleware.cs" />
     <Compile Include="Middleware\AuthenticationMiddlewareExtensions.cs" />
     <Compile Include="Middleware\AuthenticationOptions.cs" />

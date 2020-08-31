@@ -1,25 +1,53 @@
 # Microserver for TinyCLR OS
 
-Microserver is a modular server built for TinyCLR OS.
+Microserver is a modular server built for TinyCLR OS IoT devices.
 
 [![Build Status](https://img.shields.io/github/workflow/status/microcompiler/microserver/Actions%20CI?style=flat-square&logo=github)](https://github.com/microcompiler/microserver/actions)
 
-## HTTP Web Service (MVC style)
+Microserver is a simple MVC style http server with the following features:
+
+## HTTP Web Service
 
 * Controller Handling
-* Action Results (JSON, Content, Files, Redirects and Errors)
+* Action Results (Content, Json, Files, Redirects)
 * Model Binding
 * Header Decoding
-* Basic Authentication
+* Digest/Basic Authentication
 * Extendable Pipeline Middleware
 * Static File Handling
+* Ssl Transport Support
+
+## Requirements
+
+**Software:**  <a href="https://visualstudio.microsoft.com/downloads/">Visual Studio 2019</a> and <a href="https://www.ghielectronics.com/">GHI Electronics TinyCLR OS 2.0</a> or higher.  
+**Hardware:** Project was tested 
+using SC20100S development board.  
+
+## Getting Started
+
+**Work in Progress!** As we encourage users to play with the samples and test programs, this project has not yet reached a stable state. See the [Playground Project](https://github.com/microcompiler/microserver/tree/master/playground) for an example of how to use these packages.
+
+### Getting Started
+
+```CSharp
+static void Main()
+{
+    Networking.SetupEthernet();
+
+    var server = new HttpServer(options =>
+    {
+        options.UseMiddleware(new HttpSessionMiddleware());
+        options.UseDeveloperExceptionPage();
+        options.UseStaticFiles();
+        options.UseMvc();
+    });
+    server.Start();
+}
+```
 
 ## Microsoft .NET Micro Framework (NETMF)
+
 Have a look <a href="https://github.com/microcompiler/microserver/releases/tag/v1.1.0"> here </a> if your looking for the orginal MicroServer built for Microsoft .NET Micro Framework (NETMF).
-
-## Disclaimer
-
-All source, documentation, instructions and products of this project are provided as-is without warranty. No liability is accepted for any damages, data loss or costs incurred by its use.
 
 ## Branches
 
@@ -30,3 +58,7 @@ All source, documentation, instructions and products of this project are provide
 ## Contributions
 
 Contributions to this project are always welcome. Please consider forking this project on GitHub and sending a pull request to get your improvements added to the original project.
+
+## Disclaimer
+
+All source, documentation, instructions and products of this project are provided as-is without warranty. No liability is accepted for any damages, data loss or costs incurred by its use.

@@ -27,17 +27,35 @@ namespace Bytewizer.TinyCLR.WebServer
             var sd = StorageController.FromName(SC20100.StorageController.SdCard);
             var drive = FileSystem.Mount(sd.Hdc);
 
-            var authOpitons = new AuthenticationOptions(new UserService(), "device.bytewizer.local");
+            var authOpitons = new AuthenticationOptions(new UserService()) { Realm = "device.bytewizer.local" };
 
             var server = new HttpServer(options =>
             {
-                options.Register(new HttpSessionMiddleware());
-                options.Register(new AuthenticationMiddleware(authOpitons));
-                options.Register(new DeveloperExceptionPageMiddleware());
-                options.Register(new RoutingMiddleware());
-                options.Register(new ControllerMiddleware());
-                options.Register(new StaticFileMiddleware());
-                options.Register(new CustomMiddleware());
+                //TODO: Build into server so that it is always in the pipeline
+                options.UseMiddleware(new HttpSessionMiddleware());
+
+                options.UseStatusCodePages(new StatusCodePagesOptions
+                {
+                    Handle = context =>
+                    {
+                        var response = context.Response;
+                        if (response.StatusCode < 500)
+                        {
+                            response.Write($"Client error ({response.StatusCode})");
+                        }
+                        else
+                        {
+                            response.Write($"Server error ({response.StatusCode})");
+                        }
+                    }
+                });
+
+                //options.UseDeveloperExceptionPage();
+                options.UseRouting();
+                options.UseStaticFiles();
+                options.UseMvc();
+                options.UseMiddleware(new CustomMiddleware());
+                
             });
             server.Start();
         }
@@ -50,7 +68,7 @@ namespace Bytewizer.TinyCLR.WebServer
             // Read certificate from SD card
             //var X509cert = ReadCertFromSdCard();
 
-            var authOpitons = new AuthenticationOptions(new UserService(), "device.bytewizer.local");
+            var authOpitons = new AuthenticationOptions(new UserService()) { Realm = "device.bytewizer.local" };
 
             var sslserver = new HttpServer(options =>
             {

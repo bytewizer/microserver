@@ -1,5 +1,4 @@
 ﻿using GHIElectronics.TinyCLR.IO;
-using System;
 
 namespace Bytewizer.TinyCLR.Http
 {
@@ -11,7 +10,9 @@ namespace Bytewizer.TinyCLR.Http
         /// <summary>
         /// Create an instance with the default options settings.
         /// </summary>
-        public StaticFileOptions() { }
+        public StaticFileOptions() 
+        { 
+        }
 
         public IDriveProvider DriveProvider { get; set; }
 

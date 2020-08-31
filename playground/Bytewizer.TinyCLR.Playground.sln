@@ -17,8 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Stat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Authentication", "..\src\authentication\Bytewizer.TinyCLR.Http.Authentication.csproj", "{A94B42E0-7FCC-448F-9645-6732ABA96F28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Hosting", "..\src\hosting\Bytewizer.TinyCLR.Hosting.csproj", "{CB4E0F56-F666-4091-B5DA-0AA1C8FC7CCE}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Mvc", "..\src\mvc\Bytewizer.TinyCLR.Http.Mvc.csproj", "{15C6A7FC-1C29-471B-B57A-08D61C58FA08}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Routing", "..\src\routing\Bytewizer.TinyCLR.Http.Routing.csproj", "{C57CD6AF-268A-46E1-BDD4-073A6B69B5A5}"
@@ -57,10 +55,6 @@ Global
 		{A94B42E0-7FCC-448F-9645-6732ABA96F28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A94B42E0-7FCC-448F-9645-6732ABA96F28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A94B42E0-7FCC-448F-9645-6732ABA96F28}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CB4E0F56-F666-4091-B5DA-0AA1C8FC7CCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CB4E0F56-F666-4091-B5DA-0AA1C8FC7CCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CB4E0F56-F666-4091-B5DA-0AA1C8FC7CCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CB4E0F56-F666-4091-B5DA-0AA1C8FC7CCE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{15C6A7FC-1C29-471B-B57A-08D61C58FA08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{15C6A7FC-1C29-471B-B57A-08D61C58FA08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15C6A7FC-1C29-471B-B57A-08D61C58FA08}.Release|Any CPU.ActiveCfg = Release|Any CPU

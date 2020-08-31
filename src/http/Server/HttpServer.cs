@@ -1,11 +1,10 @@
 ﻿using System.Net;
 
-using Bytewizer.TinyCLR.Hosting;
 using Bytewizer.TinyCLR.Sockets;
 
 namespace Bytewizer.TinyCLR.Http
 {
-    public class HttpServer : SocketService, IServer
+    public class HttpServer : SocketService
     {
         public HttpServer()
         {
@@ -28,6 +27,7 @@ namespace Bytewizer.TinyCLR.Http
             : base(configure)
         {
             context = new HttpContext();
+            _options.UseMiddleware(new HttpSessionMiddleware());
         }
 
         public HttpServer(IPAddress address, int port, IPipelineBuilder pipeline)

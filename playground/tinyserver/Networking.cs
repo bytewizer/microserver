@@ -5,6 +5,7 @@ using GHIElectronics.TinyCLR.Pins;
 using GHIElectronics.TinyCLR.Devices.Spi;
 using GHIElectronics.TinyCLR.Devices.Gpio;
 using GHIElectronics.TinyCLR.Devices.Network;
+using System.Net;
 
 namespace Bytewizer.TinyCLR
 {
@@ -45,6 +46,16 @@ namespace Bytewizer.TinyCLR
 
             networkCommunicationInterfaceSettings.ResetActiveState = GpioPinValue.Low;
 
+            //networkInterfaceSetting.IsDhcpEnabled = false;
+            //networkInterfaceSetting.IsDynamicDnsEnabled = false;
+            //networkInterfaceSetting.Address = new IPAddress(new byte[] { 172, 20, 10, 52 });
+            //networkInterfaceSetting.SubnetMask = new IPAddress(new byte[] { 255, 255, 255, 0 });
+            //networkInterfaceSetting.GatewayAddress = new IPAddress(new byte[] { 172, 20, 10, 1 });
+            //networkInterfaceSetting.DnsAddresses = new IPAddress[] { 
+            //    new IPAddress(new byte[] { 8, 8, 8, 8 }),
+            //    new IPAddress(new byte[] { 4, 4, 4, 4 }) 
+            //};
+            
             networkInterfaceSetting.MacAddress = new byte[] { 0x3E, 0x4B, 0x27, 0x21, 0x61, 0x57 };
 
             networkController.SetInterfaceSettings(networkInterfaceSetting);
