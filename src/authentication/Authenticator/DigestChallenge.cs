@@ -27,7 +27,7 @@ namespace Bytewizer.TinyCLR.Http.Authenticator
 
         public string Qop { get; set; }
 
-        public static string ToChallengeString(string realm)
+        public static string ToResponse(string realm)
         {
            return new DigestChallenge(realm).ToDigestString();
         }

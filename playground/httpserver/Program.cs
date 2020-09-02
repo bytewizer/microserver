@@ -9,9 +9,11 @@ using GHIElectronics.TinyCLR.Devices.Storage;
 using Bytewizer.TinyCLR.Http;
 using Bytewizer.TinyCLR.Sockets;
 using Bytewizer.TinyCLR.WebServer.Properties;
+using Bytewizer.TinyCLR.WebServer.Authentication;
 
 namespace Bytewizer.TinyCLR.WebServer
 {
+ 
     class Program
     {
         static void Main()
@@ -27,35 +29,23 @@ namespace Bytewizer.TinyCLR.WebServer
             var sd = StorageController.FromName(SC20100.StorageController.SdCard);
             var drive = FileSystem.Mount(sd.Hdc);
 
-            var authOpitons = new AuthenticationOptions(new UserService()) { Realm = "device.bytewizer.local" };
+            //var authOpitons = new AuthenticationOptions(new UserService()) { Realm = "device.bytewizer.local" };
 
             var server = new HttpServer(options =>
             {
                 //TODO: Build into server so that it is always in the pipeline
                 options.UseMiddleware(new HttpSessionMiddleware());
-
-                options.UseStatusCodePages(new StatusCodePagesOptions
-                {
-                    Handle = context =>
-                    {
-                        var response = context.Response;
-                        if (response.StatusCode < 500)
-                        {
-                            response.Write($"Client error ({response.StatusCode})");
-                        }
-                        else
-                        {
-                            response.Write($"Server error ({response.StatusCode})");
-                        }
-                    }
-                });
-
-                //options.UseDeveloperExceptionPage();
-                options.UseRouting();
-                options.UseStaticFiles();
+                options.UseDeveloperExceptionPage();
+                //options.UseAuthentication(new AuthenticationOptions()
+                //{
+                //    AuthenticationScheme = AuthenticationSchemes.Basic,
+                //    AccountService = new AccountService(),
+                //    Realm = "device.bytewizer.local"
+                //});
+                options.UseStaticFiles();     
                 options.UseMvc();
-                options.UseMiddleware(new CustomMiddleware());
-                
+                //options.UseMiddleware(new CustomMiddleware());
+
             });
             server.Start();
         }
@@ -68,8 +58,6 @@ namespace Bytewizer.TinyCLR.WebServer
             // Read certificate from SD card
             //var X509cert = ReadCertFromSdCard();
 
-            var authOpitons = new AuthenticationOptions(new UserService()) { Realm = "device.bytewizer.local" };
-
             var sslserver = new HttpServer(options =>
             {
                 options.Listen(IPAddress.Any, 443, listener =>
@@ -77,7 +65,6 @@ namespace Bytewizer.TinyCLR.WebServer
                     listener.UseHttps(X509cert);
                 });
                 options.Register(new HttpSessionMiddleware());
-                options.Register(new AuthenticationMiddleware(authOpitons));
                 options.Register(new CustomMiddleware());
             });
 
@@ -86,6 +73,8 @@ namespace Bytewizer.TinyCLR.WebServer
 
         static X509Certificate ReadCertFromResources()
         {
+            Resources.GetBytes(Resources.BinaryResources.DeviceCert);
+
             var X509cert = new X509Certificate(Resources.GetBytes(Resources.BinaryResources.DeviceCert))
             {
                 PrivateKey = Resources.GetBytes(Resources.BinaryResources.DeviceKey)
@@ -120,3 +109,30 @@ namespace Bytewizer.TinyCLR.WebServer
         }
     }
 }
+
+//options.UseStatusCodePages(new StatusCodePagesOptions
+//{
+//    Handle = context =>
+//    {
+//        var response = context.Response;
+//        if (response.StatusCode < 500)
+//        {
+//            response.Write($"Client error ({response.StatusCode})");
+//        }
+//        else
+//        {
+//            response.Write($"Server error ({response.StatusCode})");
+//        }
+//    }
+//});
+
+//options.UseResourceFiles(new ResourceFileOptions()
+//{
+//    Resources = new Hashtable()
+//    {
+//        { "/index.html", Resources.StringResources.Index },
+//        { "/assets/css/bootstrap.css", Resources.StringResources.BootstrapCss },
+//        { "/assets/js/bootstrap.js", Resources.StringResources.Bootstrap },
+//        { "/assets/js/jquery.js", Resources.StringResources.Jquery },
+//    }
+//});

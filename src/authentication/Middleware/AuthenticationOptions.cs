@@ -1,24 +1,18 @@
-﻿using System;
-
-using Bytewizer.TinyCLR.Http.Authenticator;
+﻿using Bytewizer.TinyCLR.Http.Authenticator;
 
 namespace Bytewizer.TinyCLR.Http
 {
     public class AuthenticationOptions
     {
-
-        public AuthenticationOptions(IAccountService userService)
+        public AuthenticationOptions()
         {
-            if (userService == null)
-                throw new ArgumentNullException(nameof(userService));
-
-                Authenticator = new Authentication(userService);
-            UserService = userService;
+            AuthenticationScheme = AuthenticationSchemes.None;
+            Realm = "tinyclr";
         }
 
-        public IAuthenticator Authenticator { get; } 
+        public AuthenticationSchemes AuthenticationScheme { get; set; }
 
-        public IAccountService UserService { get; }
+        public IAccountService AccountService { get; set; }
 
         public string Realm { get; set; }
     }

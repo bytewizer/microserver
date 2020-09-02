@@ -36,7 +36,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Authentication\User.cs" />
     <Compile Include="Authentication\UserService.cs" />
+    <Compile Include="Controllers\ApiController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\ExampleController.cs" />
     <Compile Include="Middleware\CustomMiddleware.cs" />
@@ -56,7 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
@@ -117,6 +119,18 @@
     <Reference Include="GHIElectronics.TinyCLR.Pins, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GHIElectronics.TinyCLR.Pins.2.0.0\lib\net452\GHIElectronics.TinyCLR.Pins.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bootstrap.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bootstrap.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\index.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jquery.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -4,18 +4,23 @@ Microserver is a modular server built for TinyCLR OS IoT devices.
 
 [![Build Status](https://img.shields.io/github/workflow/status/microcompiler/microserver/Actions%20CI?style=flat-square&logo=github)](https://github.com/microcompiler/microserver/actions)
 
-Microserver is a simple MVC style http server with the following features:
+## Socket Service
+
+* Tcp/Udp support
+* Extendable Pipeline
+* Ssl Transport Support
+
+<a href="https://github.com/microcompiler/microserver/tree/master/src/sockets">More Information</a>
 
 ## HTTP Web Service
 
-* Controller Handling
+* Controller
 * Action Results (Content, Json, Files, Redirects)
 * Model Binding
 * Header Decoding
 * Digest/Basic Authentication
 * Extendable Pipeline Middleware
 * Static File Handling
-* Ssl Transport Support
 
 ## Requirements
 
@@ -33,6 +38,9 @@ using SC20100S development board.
 static void Main()
 {
     Networking.SetupEthernet();
+
+    var sdCard = StorageController.FromName(SC20100.StorageController.SdCard);
+    var drive = FileSystem.Mount(sdCard.Hdc);
 
     var server = new HttpServer(options =>
     {

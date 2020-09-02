@@ -8,6 +8,8 @@ using GHIElectronics.TinyCLR.Devices.Storage;
 
 using Bytewizer.TinyCLR.Sockets;
 using Bytewizer.TinyCLR.TinyServer.Properties;
+using System.Reflection;
+using System.Resources;
 
 namespace Bytewizer.TinyCLR.TinyServer
 {
@@ -62,6 +64,7 @@ namespace Bytewizer.TinyCLR.TinyServer
 
         static X509Certificate ReadCertFromResources()
         {
+
             var X509cert = new X509Certificate(Resources.GetBytes(Resources.BinaryResources.DeviceCert))
             {
                 PrivateKey = Resources.GetBytes(Resources.BinaryResources.DeviceKey)

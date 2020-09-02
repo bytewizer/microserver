@@ -90,7 +90,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc.Middleware
                     args = _modelMapper.Bind(httpRequest, parameters);            
                 }
                 
-                var tom = typeof(Controller).GetConstructor(new Type[1]);
+                //var tom = typeof(Controller).GetConstructor(new Type[1]);
 
                 ActionResult result = (ActionResult)action.Invoke(controller, args);
                 result.ExecuteResult(controllerContext);

@@ -11,10 +11,10 @@
 namespace Bytewizer.TinyCLR.WebServer.Properties
 {
     
-    internal partial class Resources
+    public partial class Resources
     {
         private static System.Resources.ResourceManager manager;
-        internal static System.Resources.ResourceManager ResourceManager
+        public static System.Resources.ResourceManager ResourceManager
         {
             get
             {
@@ -25,12 +25,12 @@ namespace Bytewizer.TinyCLR.WebServer.Properties
                 return Resources.manager;
             }
         }
-        internal static byte[] GetBytes(Resources.BinaryResources id)
+        public static byte[] GetBytes(Resources.BinaryResources id)
         {
             return ((byte[])(ResourceManager.GetObject(((short)(id)))));
         }
         [System.SerializableAttribute()]
-        internal enum BinaryResources : short
+        public enum BinaryResources : short
         {
             DeviceCert = 12948,
             DeviceKey = 20123,

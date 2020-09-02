@@ -61,10 +61,13 @@
   <ItemGroup>
     <Compile Include="Http\DefaultContentTypeProvider.cs" />
     <Compile Include="Http\IContentTypeProvider.cs" />
+    <Compile Include="Middleware\ResourceFileExtensions.cs" />
+    <Compile Include="Middleware\ResourceFileMiddleware.cs" />
     <Compile Include="Middleware\StaticFileMiddleware.cs" />
     <Compile Include="Middleware\StaticFileExtensions.cs" />
     <Compile Include="Middleware\StaticFileOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Middleware\ResourceFileOptions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\http\Bytewizer.TinyCLR.Http.csproj">

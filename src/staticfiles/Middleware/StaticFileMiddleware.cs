@@ -46,32 +46,34 @@ namespace Bytewizer.TinyCLR.Http
         protected override void Invoke(HttpContext context, RequestDelegate next)
         {
             var matchUrl = context.Request.Path;
+            if (!string.IsNullOrEmpty(matchUrl))
+            {
+                if (!ValidateEndpoint(context))
+                {
+                    Debug.WriteLine("Static files was skipped as the request already matched an endpoint");
+                }
+                else if (!ValidateMethod(context))
+                {
+                    var method = context.Request.Method;
+                    Debug.WriteLine($"The request method {method} are not supported");
+                }
+                else if (!ValidatePath(matchUrl, out var subPath))
+                {
+                    var path = context.Request.Path;
+                    Debug.WriteLine($"The request path {path} does not match the path filter");
+                }
+                else if (!LookupContentType(_contentTypeProvider, _options, subPath, out var contentType))
+                {
+                    var path = context.Request.Path;
+                    Debug.WriteLine($"The request path {path} does not match a supported file type");
+                }
+                else
+                {
+                    // If we get here we can try to serve the file
+                    TryServeStaticFile(context, contentType, subPath);
 
-            if (!ValidateEndpoint(context))
-            {
-                Debug.WriteLine("Static files was skipped as the request already matched an endpoint");
-            }
-            else if (!ValidateMethod(context))
-            {
-                var method = context.Request.Method;
-                Debug.WriteLine($"The request method {method} are not supported");
-            }
-            else if (!ValidatePath(matchUrl, out var subPath))
-            {
-                var path = context.Request.Path;
-                Debug.WriteLine($"The request path {path} does not match the path filter");
-            }
-            else if (!LookupContentType(_contentTypeProvider, _options, subPath, out var contentType))
-            {
-                var path = context.Request.Path;
-                Debug.WriteLine($"The request path {path} does not match a supported file type");
-            }
-            else
-            {
-                // If we get here we can try to serve the file
-                TryServeStaticFile(context, contentType, subPath);
-
-                return;
+                    return;
+                }
             }
 
             next(context);

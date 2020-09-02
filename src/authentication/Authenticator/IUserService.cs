@@ -2,6 +2,6 @@
 {
     public interface IAccountService
     {
-        IAuthenticationUser Lookup(string userName, string host);
+        IUser Authenticate(string username, string password);
     }
 }

@@ -5,16 +5,16 @@ using Bytewizer.TinyCLR.Sockets;
 namespace Bytewizer.TinyCLR.Http
 {
     /// <summary>
-    /// Extension methods for the <see cref="AuthenticationMiddleware"/>.
+    /// Extension methods for the <see cref="ResourceFileMiddleware"/>.
     /// </summary>
-    public static class AuthenticationMiddlewareExtensions
+    public static class ResourceFileExtensions 
     {
         /// <summary>
-        /// Enable authentication capabilities.
+        /// Enables resource file serving for the current request path.
         /// </summary>
         /// <param name="app">The <see cref="ServerOptions"/> instance this method extends.</param>
-        /// <param name="options">The <see cref="AuthenticationOptions"/> used to configure the middleware.</param>
-        public static void UseAuthentication(this ServerOptions app, AuthenticationOptions options)
+        /// <param name="options">The <see cref="ResourceFileOptions"/> used to configure the middleware.</param>
+        public static void UseResourceFiles(this ServerOptions app, ResourceFileOptions options)
         {
             if (app == null)
             {
@@ -26,7 +26,7 @@ namespace Bytewizer.TinyCLR.Http
                 throw new ArgumentNullException(nameof(options));
             }
 
-            app.UseMiddleware(new AuthenticationMiddleware(options));
+            app.UseMiddleware(new ResourceFileMiddleware(options));
         }
     }
 }
