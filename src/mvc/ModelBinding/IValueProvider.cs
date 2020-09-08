@@ -6,5 +6,12 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ModelBinding
     {
         string Get(string name);
         QueryValue[] GetValues();
+
+        /// <summary>
+        /// Find all parameters which starts with the specified argument.
+        /// </summary>
+        /// <param name="prefix">Beginning of the field name</param>
+        /// <returns>All matching parameters.</returns>
+        IEnumerable Find(string prefix);
     }
 }

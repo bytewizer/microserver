@@ -14,16 +14,18 @@ namespace Bytewizer.TinyCLR.Http
         {
             ParserMode mode = ParserMode.FirstLine;
 
+            var body = new StringBuilder();
             var reader = new StreamReader(context.Session.InputStream);
-
-            while (reader.Peek() != -1)
+           
+            string line;
+            while ((line = reader.ReadLine()) != null)
             {
                 switch (mode)
                 {
                     case ParserMode.FirstLine:
                         reader.SkipWhiteSpace();
 
-                        string[] requestLine = reader.ReadLine().Split(new char[] { ' ' }, 3);
+                        string[] requestLine = line.Split(new char[] { ' ' }, 3);
                         if (requestLine.Length != 3)
                             throw new Exception("Expected first line to contain three words in accordance HTTP specification.");
 
@@ -69,7 +71,6 @@ namespace Bytewizer.TinyCLR.Http
                         break;
 
                     case ParserMode.Headers:
-                        var line = reader.ReadLine();
 
                         if (string.IsNullOrEmpty(line))
                         {
@@ -82,47 +83,39 @@ namespace Bytewizer.TinyCLR.Http
                         if (seperatorIndex > 1)
                         {
                             var name = line.Substring(0, seperatorIndex);
-                            var value = line.Substring(seperatorIndex + 2);
+                            var value = line.Substring(seperatorIndex + 1);
 
                             context.Request.Headers.Add(name, value);
                         }
-
-                        //if ((line != null) || (line.Length <= 0))
-                        //{
-                        //    int delimiterIndex = line.IndexOf(": ");
-                        //    if (delimiterIndex != -1)
-                        //    {
-                        //        var offset = 2;
-                        //        var name = line.Substring(0, delimiterIndex);
-                        //        var value = line.Substring(delimiterIndex + offset, line.Length - delimiterIndex - offset);
-                        //        context.Request.Headers.Add(name, value);
-                        //    }
-                        //}
-
                         break;
 
                     case ParserMode.Body:
-                        var body = reader.ReadToEnd();
 
-                        // Normalize line endings to CRLF, which is required for headers, etc.
-                        //body = body.Replace("\r\n", "\n").Replace("\n", "\r\n");
-                        //body = string.Concat(line, "\r\n", body);
-
-                        var bytes = Encoding.UTF8.GetBytes(body);
-                        if (bytes.Length > 0)
-                        {
-                            context.Request.Body = new MemoryStream();
-                            context.Request.Body.Write(bytes, 0, bytes.Length);
-                        }
+                        // TODO: Improve performace by not reading every body line 
+                        //Stream req = context.Session.InputStream;
+                        //req.Seek(0, System.IO.SeekOrigin.Begin);
+                        //string body = new StreamReader(req).ReadToEnd();
+                        body.AppendLine(line);
 
                         break;
                 }
+            }
+
+            var bytes = Encoding.UTF8.GetBytes(body.ToString());
+            if (bytes.Length > 0)
+            {
+                context.Request.Body = new MemoryStream(bytes);
+                context.Request.Body.Position = 0;
             }
         }
 
         public static void Encode(HttpContext context)
         {
-            //context.Session.OutputStream = new MemoryStream();
+            if (context.Session.InputStream == null)
+            {
+                return;
+            }
+            
             var outputWriter = new StreamWriter(context.Session.InputStream);
 
             var response = context.Response;
@@ -134,18 +127,12 @@ namespace Bytewizer.TinyCLR.Http
 
             outputWriter.Write($"{protocol} {statusCode} {reasonPhrase}\r\n");
 
-            // set zero content length
-            if (response.Body != null && response.Body.Length > -1)
-            {
-                response.Headers.ContentLength = response.Body.Length;
-            }
-
             // process headers
             if (response.Headers != null && response.Headers.Count > 0)
             {
                 foreach (HeaderValue header in response.Headers)
                 {
-                    outputWriter.Write($"{header.Key}: {header.Value}\r\n");  // note the space after :
+                    outputWriter.Write($"{header.Key}: {header.Value}\r\n");
                 }
             }
 
@@ -162,13 +149,5 @@ namespace Bytewizer.TinyCLR.Http
                 context.Response.Body.Dispose();
             }
         }
-
-        private enum ParserMode
-        {
-            FirstLine,
-            Headers,
-            Body
-        }
     }
-
 }

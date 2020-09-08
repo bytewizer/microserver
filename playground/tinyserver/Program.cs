@@ -10,6 +10,7 @@ using Bytewizer.TinyCLR.Sockets;
 using Bytewizer.TinyCLR.TinyServer.Properties;
 using System.Reflection;
 using System.Resources;
+using System.Diagnostics;
 
 namespace Bytewizer.TinyCLR.TinyServer
 {
@@ -29,15 +30,21 @@ namespace Bytewizer.TinyCLR.TinyServer
             //server.Start();
 
 
-            SetupHttpServer();
-            //SetupSecureServer();  // Install self signed browser certs from the certificate folder before running secure server
-        }
+
+
+
+
+
+                SetupHttpServer();
+                //SetupSecureServer();  // Install self signed browser certs from the certificate folder before running secure server
+            }
 
         static void SetupHttpServer()
         {
             var server = new SocketServer(options =>
             {
                 options.Register(new SimpleResponse());
+          
             });
             server.Start();
         }

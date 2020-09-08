@@ -42,6 +42,8 @@
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\ExampleController.cs" />
     <Compile Include="Middleware\CustomMiddleware.cs" />
+    <Compile Include="Middleware\CustomMiddlewareExtensions.cs" />
+    <Compile Include="Models\PlayerModel.cs" />
     <Compile Include="Networking.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -121,16 +123,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\bootstrap.css" />
+    <None Include="Resources\resource.html" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\bootstrap.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\index.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\jquery.js" />
+    <Folder Include="Tests\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

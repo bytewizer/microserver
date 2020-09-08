@@ -11,7 +11,7 @@ namespace Bytewizer.TinyCLR.WebServer.Authentication
         public AccountService()
         {
             // users hardcoded for simplicity, store in a db with hashed passwords in production applications
-            var user = new User { Id = 1, FirstName = "Test", LastName = "User", Username = "test", Password = "test" };
+            var user = new User { Id = 1, FirstName = "Bob", LastName = "Smith", Username = "bsmith", Password = "test" };
             _users.Add(user.Username, user);
         }
 

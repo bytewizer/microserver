@@ -1,7 +1,11 @@
-﻿using System.IO;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
 
 using Bytewizer.TinyCLR.Http;
 using Bytewizer.TinyCLR.Http.Mvc;
+using Bytewizer.TinyCLR.WebServer.Models;
+using GHIElectronics.TinyCLR.Data.Json;
 
 namespace Bytewizer.TinyCLR.WebServer
 {
@@ -68,6 +72,53 @@ namespace Bytewizer.TinyCLR.WebServer
             return File(stream, "image/jpeg", "ocean.jpeg");
         }
 
+        public IActionResult PostJsonBody()
+        {
+            // {"TeamId":288272,"PlayerName":"Nazem Kadri","Points":18,"Goals":10,"Assists":16}
+
+            if (HttpContext.Request.Body == null 
+                || HttpContext.Request.Method != HttpMethods.Post)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                var stream = HttpContext.Request.Body;
+                var player = (PlayerModel)JsonConverter.DeserializeObject(stream, typeof(PlayerModel));
+                Debug.WriteLine($"Team ID:{player.TeamId} - Name:{player.PlayerName}");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return BadRequest();
+            }
+
+            return Ok();
+        }
+
+        public IActionResult PostForm(string firstname, string lastname)
+        {
+            var fullname = $"{ firstname } { lastname }";
+
+            return Content(fullname, "text/html");
+        }
+
+        public IActionResult PostForm2()
+        {
+            var body = HttpContext.Request.Body;
+
+            var reader = new StreamReader(body);
+
+            while (reader.Peek() != -1)
+            {
+                var line = reader.ReadLine();
+                Debug.WriteLine(line);
+            }
+
+            return Ok();
+        }
+
     }
 
     public class JsonData
@@ -78,7 +129,7 @@ namespace Bytewizer.TinyCLR.WebServer
             Address = "103 Main Street, Burbank, CA 92607";
         }
 
-        public string Name { get; set;}
+        public string Name { get; set; }
         public string Address { get; set; }
     }
 }

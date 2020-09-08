@@ -59,12 +59,11 @@
     <None Include="..\..\images\package-logo.png" Pack="true" PackagePath="\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Http\ParserMode.cs" />
     <Compile Include="Middleware\HandleDelegate.cs" />
     <Compile Include="Middleware\UseMiddlewareExtensions.cs" />
     <Compile Include="Http\Header\DateTimeHelper.cs" />
-    <Compile Include="Middleware\HttpSessionExtensions.cs" />
     <Compile Include="Middleware\StatusCodePagesExtensions.cs" />
-    <Compile Include="Middleware\HttpSessionOptions.cs" />
     <Compile Include="Middleware\StatusCodePagesOptions.cs" />
     <Compile Include="Middleware\StatusCodePagesMiddleware.cs" />
     <Compile Include="Extensions\CharExtensions.cs" />
@@ -95,7 +94,7 @@
     <Compile Include="Middleware\DeveloperExceptionPageMiddleware.cs" />
     <Compile Include="Middleware\DeveloperExceptionPageOptions.cs" />
     <Compile Include="Middleware\Middleware.cs" />
-    <Compile Include="Middleware\HttpSessionMiddleware.cs" />
+    <Compile Include="Middleware\HttpMiddleware.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Http\Routes\RouteDictionary.cs" />
     <Compile Include="Http\Routes\RouteEnumerator.cs" />

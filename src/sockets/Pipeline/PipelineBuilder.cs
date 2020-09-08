@@ -1,7 +1,5 @@
 ﻿namespace Bytewizer.TinyCLR.Sockets
 {
-    public delegate IPipelineFilter FilterDelegate();
-
     public class PipelineBuilder : IPipelineBuilder
     {
         private FilterDelegate[] filters = new FilterDelegate[0];

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace Bytewizer.TinyCLR.Http.Mvc.ModelBinding
 {
@@ -15,6 +16,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ModelBinding
             return modelType == typeof(string)
                 || modelType == typeof(bool)
                 || modelType == typeof(byte)
+                || modelType == typeof(byte[])
                 || modelType == typeof(sbyte)
                 || modelType == typeof(short)
                 || modelType == typeof(ushort)
@@ -27,7 +29,10 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ModelBinding
 
         public object Bind(IModelBinderContext context)
         {
-            var name = context.ModelName;
+            var name = string.IsNullOrEmpty(context.Prefix)
+                           ? context.ModelName
+                           : context.Prefix + "." + context.ModelName;
+
             var parameter = context.ValueProvider.Get(name);
             if (parameter == null)
                 return null;
@@ -64,6 +69,11 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ModelBinding
                 if (context.ModelType == typeof(byte))
                 {
                     return value = byte.Parse((string)value);
+                }
+
+                if (context.ModelType == typeof(byte[]))
+                {
+                    return value =  Encoding.UTF8.GetBytes((string)value);
                 }
 
                 if (context.ModelType == typeof(sbyte))

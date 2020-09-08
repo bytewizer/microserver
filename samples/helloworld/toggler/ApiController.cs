@@ -19,11 +19,16 @@ namespace Bytewizer.Toggler
             }
         }
 
-        public IActionResult ToggleLed(string webname)
-        {   
-            led.Write(led.Read() == GpioPinValue.High ? GpioPinValue.Low : GpioPinValue.High);
+        public IActionResult Toggle(bool status)
+        {
+            if (status == true)
+            {
+                led.Write(GpioPinValue.High);
+                return Content("Turn Off", "text/html");
+            }
 
-            return Ok();
+            led.Write(GpioPinValue.Low);
+            return Content("Turn On", "text/html");
         }
     }
 }

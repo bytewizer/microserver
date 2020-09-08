@@ -1,4 +1,4 @@
-﻿using GHIElectronics.TinyCLR.IO;
+﻿using System.Resources;
 using System.Collections;
 
 namespace Bytewizer.TinyCLR.Http
@@ -9,14 +9,14 @@ namespace Bytewizer.TinyCLR.Http
     public class ResourceFileOptions
     {
         /// <summary>
-        /// Create an instance with the default options settings.
+        /// Used to map urls to resource files.
         /// </summary>
-        public ResourceFileOptions() 
-        { 
-        }
-
         public Hashtable Resources { get; set; }
 
+        /// <summary>
+        /// The resource manager that provides access resources at run time.
+        /// </summary>
+        public ResourceManager ResourceManager { get; set; }
         /// <summary>
         /// Used to map files to content-types.
         /// </summary>

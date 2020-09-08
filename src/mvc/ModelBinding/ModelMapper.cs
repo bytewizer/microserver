@@ -50,7 +50,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ModelBinding
             
             foreach (QueryValue item in binders)
             {
-                var context = new ModelBinderContext(parameters[x].ParameterType, (string)item.Key, provider);
+                var context = new ModelBinderContext(parameters[x].ParameterType, (string)item.Key, string.Empty, provider);
                 foreach (IModelBinder modelBinder in _binders)
                 {
                     if (modelBinder.CanBind(context))
@@ -80,7 +80,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ModelBinding
 
             if (!string.IsNullOrEmpty(name))
             {
-                var context = new ModelBinderContext(type, name, provider);
+                var context = new ModelBinderContext(type, name, string.Empty, provider);
                 foreach (IModelBinder modelBinder in _binders)
                 {
                     if (modelBinder.CanBind(context))

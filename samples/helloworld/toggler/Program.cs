@@ -14,7 +14,7 @@ namespace Bytewizer.Toggler
             Networking.SetupEthernet();
 
             var sd = StorageController.FromName(SC20100.StorageController.SdCard);
-            var drive = FileSystem.Mount(sd.Hdc);
+            FileSystem.Mount(sd.Hdc);
 
             var server = new HttpServer(options =>
             {

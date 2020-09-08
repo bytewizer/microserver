@@ -8,14 +8,10 @@ namespace Bytewizer.TinyCLR.Http
     public class StaticFileOptions
     {
         /// <summary>
-        /// Create an instance with the default options settings.
+        /// Provides a drive mapping access for file streams.
         /// </summary>
-        public StaticFileOptions() 
-        { 
-        }
-
         public IDriveProvider DriveProvider { get; set; }
-
+        
         /// <summary>
         /// Used to map files to content-types.
         /// </summary>

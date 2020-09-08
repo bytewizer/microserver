@@ -1,27 +1,16 @@
 ﻿using System;
 using System.IO;
+using System.Diagnostics;
 
 using Bytewizer.TinyCLR.Sockets;
 using Bytewizer.TinyCLR.Http.Header;
-using System.Diagnostics;
 
 namespace Bytewizer.TinyCLR.Http
 {
-    public class HttpSessionMiddleware : Middleware
+    public class HttpMiddleware : Middleware
     {
-        private readonly HttpSessionOptions _options;
-
-        public HttpSessionMiddleware()
+        public HttpMiddleware()
         {
-            _options = new HttpSessionOptions();
-        }
-
-        public HttpSessionMiddleware(HttpSessionOptions options)
-        {
-            if (options == null)
-                throw new ArgumentNullException(nameof(options));
-
-            _options = options;
         }
 
         protected override void Invoke(HttpContext context, RequestDelegate next)
@@ -39,11 +28,25 @@ namespace Bytewizer.TinyCLR.Http
 
             DebugHeaders(context);
 
+            if (context.Request.Body.Length > 0)
+            {
+                Debug.WriteLine("---------- Body Content ----------");
+                var reader = new StreamReader(context.Request.Body);
+                while (reader.Peek() != -1)
+                {
+                    var line = reader.ReadLine();
+                    Debug.WriteLine(line);
+                }
+                context.Request.Body.Position = 0;
+            }
+
             next(context);
 
             HttpMessageParser.Encode(context);
-
         }
+
+
+ 
 
         private void DebugHeaders(HttpContext context)
         {

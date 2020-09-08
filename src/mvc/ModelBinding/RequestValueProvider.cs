@@ -29,5 +29,17 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ModelBinding
             }
             return list;
         }
+
+        /// <summary>
+        /// Find all parameters which starts with the specified argument.
+        /// </summary>
+        /// <param name="prefix">Beginning of the field name</param>
+        /// <returns>
+        /// All matching parameters.
+        /// </returns>
+        public IEnumerable Find(string prefix)
+        {
+            return null;
+        }
     }
 }

@@ -27,7 +27,6 @@ namespace Bytewizer.TinyCLR.Http
             : base(configure)
         {
             context = new HttpContext();
-            _options.UseMiddleware(new HttpSessionMiddleware());
         }
 
         public HttpServer(IPAddress address, int port, IPipelineBuilder pipeline)

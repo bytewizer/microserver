@@ -25,6 +25,10 @@ namespace Bytewizer.TinyCLR.WebServer.Properties
                 return Resources.manager;
             }
         }
+        public static string GetString(Resources.StringResources id)
+        {
+            return ((string)(ResourceManager.GetObject(((short)(id)))));
+        }
         public static byte[] GetBytes(Resources.BinaryResources id)
         {
             return ((byte[])(ResourceManager.GetObject(((short)(id)))));
@@ -34,6 +38,11 @@ namespace Bytewizer.TinyCLR.WebServer.Properties
         {
             DeviceCert = 12948,
             DeviceKey = 20123,
+        }
+        [System.SerializableAttribute()]
+        public enum StringResources : short
+        {
+            Resource = 27564,
         }
     }
 }

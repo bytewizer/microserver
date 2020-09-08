@@ -13,7 +13,6 @@ namespace Bytewizer.TinyCLR.Http.Mvc.Middleware
         private readonly Hashtable _controllers = new Hashtable();
         private readonly ModelMapper _modelMapper = new ModelMapper();
 
-
         public IEnumerable Controllers
         {
             get { return _controllers; }
@@ -89,9 +88,9 @@ namespace Bytewizer.TinyCLR.Http.Mvc.Middleware
                     var httpRequest = controllerContext.HttpContext.Request;
                     args = _modelMapper.Bind(httpRequest, parameters);            
                 }
-                
-                //var tom = typeof(Controller).GetConstructor(new Type[1]);
 
+                //var tom = typeof(Controller).GetConstructor(new Type[1]);
+                //Type[] ts = args != null ? new Type[args.Length] : new Type[0];
                 ActionResult result = (ActionResult)action.Invoke(controller, args);
                 result.ExecuteResult(controllerContext);
 

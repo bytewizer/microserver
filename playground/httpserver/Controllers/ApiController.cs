@@ -25,5 +25,17 @@ namespace Bytewizer.TinyCLR.WebServer.Controllers
 
             return Ok();
         }
+
+        public IActionResult Toggle(bool status)
+        {
+            if (status == true)
+            {    
+                led.Write(GpioPinValue.High);
+                return Content("Turn Off", "text/html");
+            }
+
+            led.Write(GpioPinValue.Low);
+            return Content("Turn On", "text/html");
+        }
     }
 }

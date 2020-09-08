@@ -57,9 +57,11 @@
   <ItemGroup>
     <None Include="..\..\LICENSE.md" Pack="true" PackagePath="$(PackageLicenseFile)" />
     <None Include="..\..\images\package-logo.png" Pack="true" PackagePath="\" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Listener\SocketListenerOptionsDelegate.cs" />
+    <Compile Include="Pipeline\FilterDelegate.cs" />
     <Compile Include="Pipeline\FilterExtensions.cs" />
     <Compile Include="Pipeline\IPipelineFilter.cs" />
     <Compile Include="Pipeline\IPipelineBuilder.cs" />

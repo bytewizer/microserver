@@ -15,7 +15,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ModelBinding
         }
 
         public object Bind(IModelBinderContext context)
-        {
+        {    
             throw new NotImplementedException();
         }
     }

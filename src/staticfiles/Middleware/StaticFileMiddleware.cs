@@ -21,7 +21,7 @@ namespace Bytewizer.TinyCLR.Http
         /// Initializes a default instance of the <see cref="StaticFileMiddleware"/> class.
         /// </summary>
         public StaticFileMiddleware()
-            : this (new StaticFileOptions())
+            : this(new StaticFileOptions())
         {
         }
 
@@ -46,13 +46,10 @@ namespace Bytewizer.TinyCLR.Http
         protected override void Invoke(HttpContext context, RequestDelegate next)
         {
             var matchUrl = context.Request.Path;
+
             if (!string.IsNullOrEmpty(matchUrl))
             {
-                if (!ValidateEndpoint(context))
-                {
-                    Debug.WriteLine("Static files was skipped as the request already matched an endpoint");
-                }
-                else if (!ValidateMethod(context))
+                if (!ValidateMethod(context))
                 {
                     var method = context.Request.Method;
                     Debug.WriteLine($"The request method {method} are not supported");
@@ -92,10 +89,11 @@ namespace Bytewizer.TinyCLR.Http
             }
         }
 
+        private static readonly object _lock = new object();
+
         private void ServeStaticFile(HttpContext context, string contentType, string subPath, DateTime lastModified)
         {
             //TODO: Implement If-Ranged
-            
             var modifiedSince = context.Request.Headers.IfModifiedSince;
 
             if (modifiedSince < lastModified)
@@ -103,33 +101,32 @@ namespace Bytewizer.TinyCLR.Http
                 var driveName = _driveProvider?.Name ?? string.Empty;
                 var fullPath = $@"{driveName}{subPath}";
                 var filename = Path.GetFileName(subPath);
-                var stream = new FileStream(fullPath, FileMode.Open, FileAccess.Read, FileShare.Read);
-                
+
                 context.Response.Headers.LastModified = lastModified.ToString("R");
                 context.Response.Headers.ContentDisposition = $"inline; filename={filename}";
                 context.Response.ContentType = contentType;
-                context.Response.ContentLength = stream.Length;
                 context.Response.StatusCode = StatusCodes.Status200OK;
-                
-                if (context.Request.Method == HttpMethods.Get)
+
+                // TODO: Not sure if i need this lock?
+                lock (_lock)
                 {
-                    context.Response.Body = stream;
+                    var stream = new FileStream(fullPath, FileMode.Open, FileAccess.Read, FileShare.Read);
+                    context.Response.ContentLength = stream.Length;
+                    if (context.Request.Method == HttpMethods.Get)
+                    {
+                        context.Response.Body = stream;
+                    }
+                    else
+                    {
+                        stream.Close();
+                        stream.Dispose();
+                    }
                 }
 
                 return;
             }
 
             context.Response.StatusCode = StatusCodes.Status304NotModified;
-        }
-
-        private static bool ValidateEndpoint(HttpContext context)
-        {
-            if (context.GetEndpoint() == null)
-            {
-                return false;
-            }
-
-            return true;
         }
 
         private static bool ValidateMethod(HttpContext context)
@@ -170,7 +167,6 @@ namespace Bytewizer.TinyCLR.Http
             lastModified = DateTime.MinValue;
             return fileInfo.Exists;
         }
-
         private static bool LookupContentType(
             IContentTypeProvider contentTypeProvider,
             StaticFileOptions options,
