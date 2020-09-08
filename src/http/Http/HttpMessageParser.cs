@@ -107,6 +107,16 @@ namespace Bytewizer.TinyCLR.Http
                 context.Request.Body = new MemoryStream(bytes);
                 context.Request.Body.Position = 0;
             }
+
+            var cookieParser = new HttpCookieParser();
+            var cookies =  context.Request.Headers.Cookie;
+            if (cookies != null)
+            {
+                context.Request.Cookies = cookieParser.Parse(cookies);
+            }
+
+            var tom = context.Request.Cookies["sails.sid"];
+
         }
 
         public static void Encode(HttpContext context)

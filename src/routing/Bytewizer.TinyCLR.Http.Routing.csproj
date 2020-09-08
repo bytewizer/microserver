@@ -59,6 +59,10 @@
     <None Include="..\..\images\package-logo.png" Pack="true" PackagePath="\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Http\HttpContextExtensions.cs" />
+    <Compile Include="Http\Routes\RouteDictionary.cs" />
+    <Compile Include="Http\Routes\RouteEnumerator.cs" />
+    <Compile Include="Http\Routes\RouteValue.cs" />
     <Compile Include="Middleware\RoutingMiddleware.cs" />
     <Compile Include="Middleware\RoutingExtensions.cs" />
     <Compile Include="Middleware\RoutingOptions.cs" />

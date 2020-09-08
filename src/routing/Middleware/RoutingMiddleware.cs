@@ -22,6 +22,8 @@ namespace Bytewizer.TinyCLR.Http
 
         protected override void Invoke(HttpContext context, RequestDelegate next)
         {
+            context.Request.RouteValues = new RouteDictionary();
+
             context.Request.RouteValues = new RouteDictionary
             {
                 { "default", new string[] { context.Request.Path } }

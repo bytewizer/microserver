@@ -23,7 +23,7 @@ namespace Bytewizer.TinyCLR.Http
         /// <summary>
         /// Gets the query value collection.
         /// </summary>
-        public QueryCollection Query { get; set; } 
+        public QueryCollection Query { get; set; }
 
         /// <summary>
         /// Gets or sets the request body Stream.
@@ -78,8 +78,18 @@ namespace Bytewizer.TinyCLR.Http
         }
 
         /// <summary>
+        /// Gets the collection of Cookies for this request.
+        /// </summary>
+        public ICookieCollection Cookies { get; set; }
+
+        /// <summary>
+        /// Gets the request body as a form for this request.
+        /// </summary>
+        public IFormCollection Form { get; set; }
+
+        /// <summary>
         /// Gets the collection of route values for this request.
         /// </summary>
-        public RouteDictionary RouteValues { get; set; }
+        public IRouteValueDictionary RouteValues { get; set; }
     }
 }

@@ -4,9 +4,9 @@ using System.Collections;
 namespace Bytewizer.TinyCLR.Http
 {
     /// <summary>
-    /// An <see cref="RouteDictionary"/> type for route values.
+    /// An <see cref="FormFileCollection"/> type for form/file values.
     /// </summary>
-    public class RouteDictionary : ICollection, IEnumerable
+    public class FormFileCollection : IFormFileCollection, ICollection, IEnumerable
     {
         /// <summary>
         /// The array list used to store the pairs.
@@ -14,20 +14,20 @@ namespace Bytewizer.TinyCLR.Http
         private ArrayList _pairs;
 
         /// <summary>
-        /// Initializes an empty uninitialized instance of the <see cref="RouteDictionary" /> class.
+        /// Initializes an empty uninitialized instance of the <see cref="FormFileCollection" /> class.
         /// </summary>
-        public static readonly RouteDictionary Empty = new RouteDictionary();
+        public static readonly FormFileCollection Empty = new FormFileCollection();
 
         /// <summary>
         /// Initializes a new empty uninitialized instance of class.
         /// </summary>
-        public RouteDictionary() { }
+        public FormFileCollection() { }
 
         /// <summary>
         /// Initializes a new, empty instance of the class.
         /// <param name="capacity">The number of elements that the new list can initially store.</param>
         /// </summary>
-        public RouteDictionary(int capacity)
+        public FormFileCollection(int capacity)
         {
             _pairs = new ArrayList
             {
@@ -38,7 +38,7 @@ namespace Bytewizer.TinyCLR.Http
         /// <summary>
         ///  Initializes a new, empty instance of the class using the specified <see cref="ArrayList"/>.
         /// </summary>
-        public RouteDictionary(ArrayList pairs)
+        public FormFileCollection(ArrayList pairs)
         {
             _pairs = pairs;
         }
@@ -52,7 +52,7 @@ namespace Bytewizer.TinyCLR.Http
         /// attempting to get it returns null, and attempting to set it creates a new element
         /// using the specified key.
         /// </returns>
-        public string[] this[string key]
+        public string this[string key]
         {
             get
             {
@@ -63,7 +63,7 @@ namespace Bytewizer.TinyCLR.Http
 
                 for (int i = 0; i < Count; i++)
                 {
-                    RouteValue kvp = (RouteValue)_pairs[i];
+                    FormFileValue kvp = (FormFileValue)_pairs[i];
                     if (kvp.Key == key)
                     {
                         return kvp.Value;
@@ -80,14 +80,14 @@ namespace Bytewizer.TinyCLR.Http
 
                 for (int i = 0; i < Count; i++)
                 {
-                    RouteValue kvp = (RouteValue)_pairs[i];
+                    FormFileValue kvp = (FormFileValue)_pairs[i];
                     if (kvp.Key == key)
                     {
                         kvp.Value = value;
                         return;
                     }
                 }
-                _pairs.Add(new RouteValue(key, value));
+                _pairs.Add(new FormFileValue(key, value));
             }
         }
 
@@ -100,11 +100,11 @@ namespace Bytewizer.TinyCLR.Http
         /// attempting to get it returns null, and attempting to set it creates a new element
         /// using the specified key.
         /// </returns>
-        public RouteValue this[int index]
+        public FormFileValue this[int index]
         {
             get 
             { 
-                return (RouteValue)_pairs[index]; 
+                return ((FormFileValue)_pairs[index]); 
             }
         }
 
@@ -117,11 +117,11 @@ namespace Bytewizer.TinyCLR.Http
             {
                 if (_pairs == null)
                 {
-                    return new ArrayList();
+                    return default;
                 }
 
                 ArrayList list = new ArrayList();
-                foreach (RouteValue kvp in _pairs)
+                foreach (FormFileValue kvp in _pairs)
                 {
                     list.Add(kvp.Key);
                 }
@@ -138,11 +138,11 @@ namespace Bytewizer.TinyCLR.Http
             {
                 if (_pairs == null)
                 {
-                    return new ArrayList();
+                    return default;
                 }
 
-                ArrayList list = new ArrayList();
-                foreach (RouteValue kvp in _pairs)
+                var list = new ArrayList();
+                foreach (FormFileValue kvp in _pairs)
                 {
                     list.Add(kvp.Value);
                 }
@@ -155,7 +155,7 @@ namespace Bytewizer.TinyCLR.Http
         /// </summary>
         /// <param name="key">The key to use as the key of the element to add.</param>
         /// <param name="value">The value of the rule to add.</param>
-        public void Add(string key, string[] value)
+        public void Add(string key, string value)
         {
             if (_pairs == null)
             {
@@ -180,7 +180,7 @@ namespace Bytewizer.TinyCLR.Http
         /// Determines whether the collection contains a specific key.
         /// </summary>
         /// <param name="key">The key to locate in the collection.</param>
-        public bool Contains(string key)
+        public bool ContainsKey(string key)
         {
             if (_pairs == null)
             {
@@ -201,7 +201,7 @@ namespace Bytewizer.TinyCLR.Http
         /// <c>true</c> if the object that implements collection contains an element with the specified key; otherwise, <c>false</c>.
         /// </returns>
         /// <exception cref="ArgumentNullException">Specified key is <c>null</c></exception>
-        public bool TryGetValue(string key, out string[] value)
+        public bool TryGetValue(string key, out string value)
         {
             if (key == null) throw new ArgumentNullException(nameof(key));
 
@@ -220,8 +220,8 @@ namespace Bytewizer.TinyCLR.Http
         /// <summary>
         /// Removes the element with the specified key from the collection.
         /// </summary>
-        /// <param name="item">The <see cref="RouteValue"/> to remove from the collection.</param>
-        public void Remove(RouteValue item)
+        /// <param name="item">The <see cref="FormFileValue"/> to remove from the collection.</param>
+        public void Remove(FormFileValue item)
         {
             if (_pairs != null)
             {
@@ -239,7 +239,7 @@ namespace Bytewizer.TinyCLR.Http
             {
                 for (int i = 0; i < Count; i++)
                 {
-                    RouteValue nvp = (RouteValue)_pairs[i];
+                    FormFileValue nvp = (FormFileValue)_pairs[i];
                     if (nvp.Key == key)
                     {
                         _pairs.RemoveAt(i);
@@ -252,17 +252,17 @@ namespace Bytewizer.TinyCLR.Http
         #region ICollection Members
 
         /// <summary>
-        /// The one-dimensional array of type <see cref="RouteValue"/> that is the destination of <see cref="RouteValue"/> 
+        /// The one-dimensional array of type <see cref="QueryValue"/> that is the destination of <see cref="QueryValue"/> 
         /// objects copied from <see cref="ICollection"/>. The array must have zero-based indexing.
         /// </summary>
-        /// <param name="array">The one-dimensional array of <see cref="RouteValue"/> that is the destination of the elements copied from the collection. The <see cref="Array"/> must have zero-based indexing.</param>
+        /// <param name="array">The one-dimensional array of <see cref="QueryValue"/> that is the destination of the elements copied from the collection. The <see cref="Array"/> must have zero-based indexing.</param>
         /// <param name="index">The zero-based index in array at which copying begins.</param>
-		public void CopyTo(RouteValue[] array, int index)
+		public void CopyTo(FormFileValue[] array, int index)
         {
             if (array == null)
                 throw new ArgumentNullException(nameof(array));
 
-            if (!(array is RouteValue[]typedArray))
+            if (!(array is FormFileValue[]typedArray))
                 throw new InvalidCastException(nameof(array));
 
             if (index < 0 || (typedArray.Length - index) < Count)
@@ -272,13 +272,13 @@ namespace Bytewizer.TinyCLR.Http
             {
                 foreach (string key in Keys)
                 {
-                    typedArray[index++] = new RouteValue(key, this[key]);
+                    typedArray[index++] = new FormFileValue(key, this[key]);
                 }
             }
         }
 
         /// <summary>
-        /// The one-dimensional <see cref="Array"/> that is the destination of <see cref="RouteValue"/> 
+        /// The one-dimensional <see cref="Array"/> that is the destination of <see cref="FormFileValue"/> 
         /// objects copied from <see cref="ICollection"/>. The <see cref="Array"/> must have zero-based indexing.
         /// </summary>
         /// <param name="array">The one-dimensional <see cref="Array"/> that is the destination of the elements copied from the collection. The <see cref="Array"/> must have zero-based indexing.</param>
@@ -383,7 +383,7 @@ namespace Bytewizer.TinyCLR.Http
         /// </summary>
         public IEnumerator GetEnumerator()
         {
-            return new RouteEnumerator(this);
+            return new FormFileEnumerator(this);
         }
 
         #endregion

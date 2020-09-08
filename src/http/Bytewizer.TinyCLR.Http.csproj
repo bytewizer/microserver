@@ -59,7 +59,18 @@
     <None Include="..\..\images\package-logo.png" Pack="true" PackagePath="\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Http\Cookies\CookieCollection.cs" />
+    <Compile Include="Http\Cookies\CookieEnumerator.cs" />
+    <Compile Include="Http\Cookies\CookieParser.cs" />
+    <Compile Include="Http\Cookies\CookieValue.cs" />
+    <Compile Include="Http\FormFile\IFormCollection.cs" />
+    <Compile Include="Http\Cookies\ICookieCollection.cs" />
+    <Compile Include="Http\FormFile\IFormFileCollection.cs" />
+    <Compile Include="Http\FormFile\FormFileCollection.cs" />
+    <Compile Include="Http\FormFile\FormFileEnumerator.cs" />
+    <Compile Include="Http\FormFile\FormFileValue.cs" />
     <Compile Include="Http\ParserMode.cs" />
+    <Compile Include="Http\Routes\IRouteValueDictionary.cs" />
     <Compile Include="Middleware\HandleDelegate.cs" />
     <Compile Include="Middleware\UseMiddlewareExtensions.cs" />
     <Compile Include="Http\Header\DateTimeHelper.cs" />
@@ -78,7 +89,6 @@
     <Compile Include="Http\HttpProtocol.cs" />
     <Compile Include="Http\HttpReasonPhrase.cs" />
     <Compile Include="Http\HttpRequest.cs" />
-    <Compile Include="Http\HttpContextExtensions.cs" />
     <Compile Include="Http\HttpResponse.cs" />
     <Compile Include="Http\HttpRequestExtensions.cs" />
     <Compile Include="Http\HttpResponseExtensions.cs" />
@@ -96,9 +106,6 @@
     <Compile Include="Middleware\Middleware.cs" />
     <Compile Include="Middleware\HttpMiddleware.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Http\Routes\RouteDictionary.cs" />
-    <Compile Include="Http\Routes\RouteEnumerator.cs" />
-    <Compile Include="Http\Routes\RouteValue.cs" />
     <Compile Include="Extensions\StreamReaderExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Server\HttpServer.cs" />

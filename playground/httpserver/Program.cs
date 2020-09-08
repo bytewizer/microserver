@@ -16,14 +16,14 @@ namespace Bytewizer.TinyCLR.WebServer
 
         static void SetupHttpServer()
         {
-            var sd = StorageController.FromName(SC20100.StorageController.SdCard);
-            FileSystem.Mount(sd.Hdc);
+            //var sd = StorageController.FromName(SC20100.StorageController.SdCard);
+            //FileSystem.Mount(sd.Hdc);
 
             var server = new HttpServer(options =>
             {
                 options.UseMiddleware(new HttpMiddleware());
-                options.UseFileServer();
-                options.UseMvc();
+                options.UseCustomMiddleware();
+
             });
             server.Start();
         }
