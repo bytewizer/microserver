@@ -64,6 +64,7 @@
     <Compile Include="ActionResults\ActionResult.cs" />
     <Compile Include="ActionResults\BadRequestResult.cs" />
     <Compile Include="ActionResults\ContentResult.cs" />
+    <Compile Include="ActionResults\ViewResult.cs" />
     <Compile Include="ActionResults\FileResult.cs" />
     <Compile Include="ActionResults\FileStreamResult.cs" />
     <Compile Include="ActionResults\NotFoundResult.cs" />
@@ -104,6 +105,16 @@
     <Compile Include="Resolver\FactoryResolver.cs" />
     <Compile Include="Resolver\ServiceResolver.cs" />
     <Compile Include="ActionResults\StatusCodeResult.cs" />
+    <Compile Include="ViewEngine\FieldExtensions.cs" />
+    <Compile Include="ViewEngine\SerializedView.cs" />
+    <Compile Include="ViewEngine\ViewModel.cs" />
+    <Compile Include="ViewEngine\ViewCache.cs" />
+    <Compile Include="ViewEngine\ViewChild.cs" />
+    <Compile Include="ViewEngine\ViewData.cs" />
+    <Compile Include="ViewEngine\ViewDictionary.cs" />
+    <Compile Include="ViewEngine\ViewElement.cs" />
+    <Compile Include="ViewEngine\ViewOptions.cs" />
+    <Compile Include="ViewEngine\ViewPartial.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\http\Bytewizer.TinyCLR.Http.csproj">
@@ -136,8 +147,6 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewEngine\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -107,20 +107,16 @@ namespace Bytewizer.TinyCLR.Http
                 context.Response.ContentType = contentType;
                 context.Response.StatusCode = StatusCodes.Status200OK;
 
-                // TODO: Not sure if i need this lock?
-                lock (_lock)
+                var stream = new FileStream(fullPath, FileMode.Open, FileAccess.Read, FileShare.Read);
+                context.Response.ContentLength = stream.Length;
+                if (context.Request.Method == HttpMethods.Get)
                 {
-                    var stream = new FileStream(fullPath, FileMode.Open, FileAccess.Read, FileShare.Read);
-                    context.Response.ContentLength = stream.Length;
-                    if (context.Request.Method == HttpMethods.Get)
-                    {
-                        context.Response.Body = stream;
-                    }
-                    else
-                    {
-                        stream.Close();
-                        stream.Dispose();
-                    }
+                    context.Response.Body = stream;
+                }
+                else
+                {
+                    stream.Close();
+                    stream.Dispose();
                 }
 
                 return;

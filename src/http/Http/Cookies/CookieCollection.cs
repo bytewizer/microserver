@@ -165,6 +165,16 @@ namespace Bytewizer.TinyCLR.Http
             this[key] = value;
         }
 
+        public void Add(string key, string value, CookieOptions options)
+        {
+            if (options == null)
+            {
+                throw new ArgumentNullException(nameof(options));
+            }
+
+            //TODO:
+        }
+
         /// <summary>
         /// Removes all elements from the collection.
         /// </summary>
@@ -249,15 +259,24 @@ namespace Bytewizer.TinyCLR.Http
             }
         }
 
+        public void Remove(string key, CookieOptions options)
+        {
+            if (options == null)
+            {
+                throw new ArgumentNullException(nameof(options));
+            }
+        }
+
+
         #region ICollection Members
 
-        /// <summary>
-        /// The one-dimensional array of type <see cref="QueryValue"/> that is the destination of <see cref="QueryValue"/> 
-        /// objects copied from <see cref="ICollection"/>. The array must have zero-based indexing.
-        /// </summary>
-        /// <param name="array">The one-dimensional array of <see cref="QueryValue"/> that is the destination of the elements copied from the collection. The <see cref="Array"/> must have zero-based indexing.</param>
-        /// <param name="index">The zero-based index in array at which copying begins.</param>
-		public void CopyTo(CookieValue[] array, int index)
+            /// <summary>
+            /// The one-dimensional array of type <see cref="QueryValue"/> that is the destination of <see cref="QueryValue"/> 
+            /// objects copied from <see cref="ICollection"/>. The array must have zero-based indexing.
+            /// </summary>
+            /// <param name="array">The one-dimensional array of <see cref="QueryValue"/> that is the destination of the elements copied from the collection. The <see cref="Array"/> must have zero-based indexing.</param>
+            /// <param name="index">The zero-based index in array at which copying begins.</param>
+            public void CopyTo(CookieValue[] array, int index)
         {
             if (array == null)
                 throw new ArgumentNullException(nameof(array));
@@ -384,6 +403,26 @@ namespace Bytewizer.TinyCLR.Http
         public IEnumerator GetEnumerator()
         {
             return new CookieEnumerator(this);
+        }
+
+        public void Append(string key, string value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Append(string key, string value, CookieOptions options)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(string key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(string key, CookieOptions options)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

@@ -3,6 +3,7 @@ using GHIElectronics.TinyCLR.Pins;
 using GHIElectronics.TinyCLR.Devices.Storage;
 
 using Bytewizer.TinyCLR.Http;
+using System.Diagnostics;
 
 namespace Bytewizer.TinyCLR.WebServer
 {
@@ -11,19 +12,19 @@ namespace Bytewizer.TinyCLR.WebServer
         static void Main()
         {
             Networking.SetupEthernet();
-            SetupHttpServer();      
+            SetupHttpServer();
         }
 
         static void SetupHttpServer()
         {
-            //var sd = StorageController.FromName(SC20100.StorageController.SdCard);
-            //FileSystem.Mount(sd.Hdc);
+            var sd = StorageController.FromName(SC20100.StorageController.SdCard);
+            FileSystem.Mount(sd.Hdc);
 
             var server = new HttpServer(options =>
             {
                 options.UseMiddleware(new HttpMiddleware());
-                options.UseCustomMiddleware();
-
+                options.UseFileServer();
+                options.UseMvc();
             });
             server.Start();
         }

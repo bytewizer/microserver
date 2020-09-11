@@ -1,6 +1,5 @@
-using System;
-
 using Bytewizer.TinyCLR.Http.Mvc.Filters;
+using Bytewizer.TinyCLR.Http.Mvc.ViewEngine;
 
 namespace Bytewizer.TinyCLR.Http.Mvc
 {
@@ -12,9 +11,12 @@ namespace Bytewizer.TinyCLR.Http.Mvc
         /// <summary>
         /// Initializes a new instance of the <see cref="Controller"/> class.
         /// </summary>
-        protected Controller() 
-        { 
+        protected Controller()
+        {
+            ViewModel = new ViewModel(@"views\home\index.html");
         }
+
+        public ViewModel ViewModel { get; set; }
 
         /// <summary>
         /// Creates a <see cref="JsonResult"/> object that serializes the specified <paramref name="data"/> object
@@ -26,6 +28,13 @@ namespace Bytewizer.TinyCLR.Http.Mvc
         public virtual JsonResult Json(object data)
         {
             return new JsonResult(data);
+        }
+
+        public virtual ContentResult View(string file)
+        {
+            ViewModel.Filename = file;
+           
+            return Content(ViewModel.Render(), "text/html");
         }
 
         /// <inheritdoc />

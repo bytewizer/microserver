@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 
 namespace Bytewizer.TinyCLR.Http.Mvc
 {
     /// <summary>
-    /// An action result which sends content to the client. 
+    /// Represents an <see cref="ActionResult"/> that renders a view to the response.
     /// </summary>
-    public class ContentResult : ActionResult
+    public class ViewResult : ActionResult
     {
         /// <summary>
         /// Gets or set the content representing the body of the response.
@@ -22,6 +22,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc
         /// </summary>
         public int StatusCode { get; set; }
 
+
         /// <inheritdoc />
         public override void ExecuteResult(ActionContext context)
         {
@@ -30,7 +31,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc
                 throw new ArgumentNullException(nameof(context));
             }
 
-            context.HttpContext.Response.Write(Content, ContentType);
+            //context.HttpContext.Response.Write(Content, ContentType);
         }
     }
 }

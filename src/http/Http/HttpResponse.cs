@@ -50,5 +50,10 @@ namespace Bytewizer.TinyCLR.Http
         /// Gets or sets the HTTP response code.
         /// </summary>
         public int StatusCode { get; set; }
+
+        /// <summary>
+        /// Gets an object that can be used to manage cookies for this response.
+        /// </summary>
+        public ICookieCollection Cookies { get; set; }
     } 
 }

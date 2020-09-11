@@ -25,6 +25,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc.Resolver
             {
                 if (_instance == null)
                     throw new InvalidOperationException("You must implement and assign service resolver.");
+                
                 return _instance;
             }
         }
@@ -42,6 +43,11 @@ namespace Bytewizer.TinyCLR.Http.Mvc.Resolver
         public virtual object Resolve(Type type) 
         {
             return _resolver.Resolve(type);
+        }
+
+        public virtual object Resolve(Type type, params object[] args)
+        {
+            return _resolver.Resolve(type, args);
         }
     }
 }

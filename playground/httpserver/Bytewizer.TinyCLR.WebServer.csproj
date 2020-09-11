@@ -39,6 +39,7 @@
     <Compile Include="Authentication\User.cs" />
     <Compile Include="Authentication\UserService.cs" />
     <Compile Include="Controllers\ApiController.cs" />
+    <Compile Include="Controllers\HomeControllers.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\ExampleController.cs" />
     <Compile Include="Middleware\CustomMiddleware.cs" />
@@ -127,6 +128,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Tests\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Root\home\index.html" />
+    <Content Include="Root\shared\header.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

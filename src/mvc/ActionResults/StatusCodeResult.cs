@@ -30,6 +30,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc
             {
                 throw new ArgumentNullException(nameof(context));
             }
+
             context.HttpContext.Response.StatusCode = StatusCode;
         }
     }

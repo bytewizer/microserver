@@ -114,9 +114,6 @@ namespace Bytewizer.TinyCLR.Http
             {
                 context.Request.Cookies = cookieParser.Parse(cookies);
             }
-
-            var tom = context.Request.Cookies["sails.sid"];
-
         }
 
         public static void Encode(HttpContext context)
@@ -146,7 +143,19 @@ namespace Bytewizer.TinyCLR.Http
                 }
             }
 
-            // TODO: process cookies
+            if (response.Cookies != null && response.Cookies.Count > 0)
+            {
+                //Set-Cookie: <name>=<value>[; <name>=<value>][; expires=<date>][; domain=<domain_name>][; path=<some_path>][; secure][; httponly]
+                foreach (CookieValue item in response.Cookies as CookieCollection)
+                {
+                    var cookie = item.Value;
+                    outputWriter.Write(string.Concat(
+                                "Set-Cookie: ",
+                                cookie,
+                                "\r\n")
+                                );
+                }
+            }
 
             outputWriter.Write("\r\n");
             outputWriter.Flush();
