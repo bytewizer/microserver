@@ -1,5 +1,5 @@
 using Bytewizer.TinyCLR.Http.Mvc.Filters;
-using Bytewizer.TinyCLR.Http.Mvc.ViewEngine;
+using Bytewizer.TinyCLR.Http.Mvc.Stubble;
 
 namespace Bytewizer.TinyCLR.Http.Mvc
 {
@@ -13,10 +13,12 @@ namespace Bytewizer.TinyCLR.Http.Mvc
         /// </summary>
         protected Controller()
         {
-            ViewModel = new ViewModel(@"views\home\index.html");
         }
 
-        public ViewModel ViewModel { get; set; }
+        /// <summary>
+        /// Gets or sets <see cref="ViewData"/> used by <see cref="ViewResult"/>.
+        /// </summary>
+        public ViewData ViewData { get; set; } = new ViewData();
 
         /// <summary>
         /// Creates a <see cref="JsonResult"/> object that serializes the specified <paramref name="data"/> object
@@ -30,11 +32,30 @@ namespace Bytewizer.TinyCLR.Http.Mvc
             return new JsonResult(data);
         }
 
-        public virtual ContentResult View(string file)
+        /// <summary>
+        /// Creates a <see cref="ViewResult"/> object by specifying a <paramref name="viewName"/>.
+        /// </summary>
+        /// <param name="viewName">The name or path of the view that is rendered to the response.</param>
+        public virtual ViewResult View(string viewName)
         {
-            ViewModel.Filename = file;
-           
-            return Content(ViewModel.Render(), "text/html");
+            return new ViewResult()
+            {
+                ViewName = viewName,
+                ViewData = ViewData
+            };
+        }
+
+        /// <summary>
+        /// Creates a <see cref="PartialViewResult"/> object that renders a partial view to the response.
+        /// </summary>
+        public virtual ViewResult PartialView(string viewName, string viewSection)
+        {
+            return new ViewResult()
+            {
+                ViewName = viewName,
+                ViewSection = viewSection,
+                ViewData = ViewData
+            };
         }
 
         /// <inheritdoc />

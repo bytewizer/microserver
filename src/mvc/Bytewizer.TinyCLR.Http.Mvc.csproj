@@ -82,15 +82,11 @@
     <Compile Include="Filters\ActionExecutingContext.cs" />
     <Compile Include="Filters\ExceptionContext.cs" />
     <Compile Include="IActionResult.cs" />
-    <Compile Include="ModelBinding\DateTimeModelBinder.cs" />
     <Compile Include="Resolver\IServiceResolver.cs" />
     <Compile Include="ActionResults\JsonResult.cs" />
     <Compile Include="Middleware\ControllerExtensions.cs" />
     <Compile Include="Middleware\ControllerMiddleware.cs" />
     <Compile Include="Middleware\ControllerOptions.cs" />
-    <Compile Include="ModelBinding\ArrayModelBinder.cs" />
-    <Compile Include="ModelBinding\ClassModelBinder.cs" />
-    <Compile Include="ModelBinding\EnumModelBinder.cs" />
     <Compile Include="ModelBinding\IModelBinder.cs" />
     <Compile Include="ModelBinding\IModelBinderContext.cs" />
     <Compile Include="ModelBinding\IValueProvider.cs" />
@@ -105,16 +101,16 @@
     <Compile Include="Resolver\FactoryResolver.cs" />
     <Compile Include="Resolver\ServiceResolver.cs" />
     <Compile Include="ActionResults\StatusCodeResult.cs" />
-    <Compile Include="ViewEngine\FieldExtensions.cs" />
-    <Compile Include="ViewEngine\SerializedView.cs" />
-    <Compile Include="ViewEngine\ViewModel.cs" />
-    <Compile Include="ViewEngine\ViewCache.cs" />
-    <Compile Include="ViewEngine\ViewChild.cs" />
-    <Compile Include="ViewEngine\ViewData.cs" />
-    <Compile Include="ViewEngine\ViewDictionary.cs" />
-    <Compile Include="ViewEngine\ViewElement.cs" />
-    <Compile Include="ViewEngine\ViewOptions.cs" />
-    <Compile Include="ViewEngine\ViewPartial.cs" />
+    <Compile Include="Stubble\ClosingElement.cs" />
+    <Compile Include="Stubble\FieldExtensions.cs" />
+    <Compile Include="Stubble\SerializedView.cs" />
+    <Compile Include="Stubble\ViewEngine.cs" />
+    <Compile Include="Stubble\ViewCache.cs" />
+    <Compile Include="Stubble\ViewChild.cs" />
+    <Compile Include="Stubble\ViewData.cs" />
+    <Compile Include="Stubble\ViewDictionary.cs" />
+    <Compile Include="Stubble\ViewElement.cs" />
+    <Compile Include="Stubble\ViewPartial.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\http\Bytewizer.TinyCLR.Http.csproj">

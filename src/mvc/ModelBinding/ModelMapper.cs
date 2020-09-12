@@ -14,10 +14,6 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ModelBinding
         {
             // TODO: Additional Model Binders
             _binders.Add(new PrimitiveModelBinder());
-            //_binders.Add(new DateTimeModelBinder());
-            //_binders.Add(new ArrayModelBinder());
-            //_binders.Add(new EnumModelBinder());
-            //_binders.Add(new ClassModelBinder());
         }
 
         public void Clear()
@@ -30,67 +26,51 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ModelBinding
             _binders.Add(binder);
         }
 
-        public object[] Bind(HttpRequest request, ParameterInfo[] parameters)
+        public object[] Bind(ControllerContext context)
         {
-            if (request == null)
+            if (context == null)
             {
-                throw new ArgumentNullException(nameof(request));
+                throw new ArgumentNullException(nameof(context));
             }
+
+            var action = context.ActionDescriptor.MethodInfo;
+            
+            if (action == null)
+            {
+                throw new ArgumentNullException(nameof(action));
+            }
+
+            var parameters = action.GetParameters();
 
             if (parameters.Length == 0)
                 return null;
 
-            var provider = new RequestValueProvider(request);
-            var binders = provider.GetValues();
-            if (parameters.Length != binders.Length)
+            var provider = new RequestValueProvider(context.HttpContext.Request);
+            
+            var binders = provider.GetKeys();
+            if (parameters.Length != binders.Count)
                 return null;
 
-            var x = 0;
             object[] results = new object[parameters.Length];
-            
-            foreach (QueryValue item in binders)
+
+            var x = 0;
+            foreach (string item in binders)
             {
-                var context = new ModelBinderContext(parameters[x].ParameterType, (string)item.Key, string.Empty, provider);
+                var modelContext = new ModelBinderContext(parameters[x].ParameterType, item, string.Empty, provider)
+                {
+                    RootBinder = this
+                };
                 foreach (IModelBinder modelBinder in _binders)
                 {
-                    if (modelBinder.CanBind(context))
+                    if (modelBinder.CanBind(modelContext))
                     {
-                        results[x] = modelBinder.Bind(context);
+                        results[x] = modelBinder.Bind(modelContext);
                     }
                 }
                 x++;
             };
 
             return results;
-        }
-
-        public object Bind(HttpRequest request, Type type, string name)
-        {
-            if (request == null)
-            {
-                throw new ArgumentNullException(nameof(request));
-            }
-
-            if (type == null)
-            {
-                throw new ArgumentNullException(nameof(type));
-            }
-
-            var provider = new RequestValueProvider(request);
-
-            if (!string.IsNullOrEmpty(name))
-            {
-                var context = new ModelBinderContext(type, name, string.Empty, provider);
-                foreach (IModelBinder modelBinder in _binders)
-                {
-                    if (modelBinder.CanBind(context))
-                    {
-                        return modelBinder.Bind(context);
-                    }
-                }
-            }
-
-            return null;
         }
 
         bool IModelBinder.CanBind(IModelBinderContext context)

@@ -1,7 +1,8 @@
-﻿using System;
+﻿//using GHIElectronics.TinyCLR.Data.Json;
+using System;
 using System.Collections;
 
-namespace Bytewizer.TinyCLR.Http.Mvc.ViewEngine
+namespace Bytewizer.TinyCLR.Http.Mvc.Stubble
 {
     [Serializable]
     public struct ViewElement

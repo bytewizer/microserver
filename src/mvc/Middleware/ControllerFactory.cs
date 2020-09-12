@@ -63,7 +63,6 @@ namespace Bytewizer.TinyCLR.Http.Mvc.Middleware
             var actionContext = new ActionContext(context, descriptor);
             var controllerContext = new ControllerContext(actionContext);
 
-            //var args1 = _modelMapper.Bind(context.Request, action.GetParameters());
             var controller = (Controller)ServiceResolver.Current.Resolve(controllerType);
 
             if (controller == null)
@@ -83,19 +82,9 @@ namespace Bytewizer.TinyCLR.Http.Mvc.Middleware
                     return executingContext.Result;
                 }
 
-                object[] args = null;
-                var parameters = action.GetParameters();
-                if (parameters.Length > 0)
-                {
-                    var httpRequest = controllerContext.HttpContext.Request;
-                    args = _modelMapper.Bind(httpRequest, parameters);            
-                }
+                var args = _modelMapper.Bind(controllerContext);
 
-                //var tom = typeof(Controller).GetConstructor(new Type[1]);
-                //Type[] ts = args != null ? new Type[args.Length] : new Type[0];
                 ActionResult result = (ActionResult)action.Invoke(controller, args);
-
-                //ActionResult result = (ActionResult).CreateInstance(args);
                 result.ExecuteResult(controllerContext);
 
                 var executedContext = new ActionExecutedContext(actionContext, new ArrayList(), controllerContext);

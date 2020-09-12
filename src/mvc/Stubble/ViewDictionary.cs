@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 
-namespace Bytewizer.TinyCLR.Http.Mvc.ViewEngine
+namespace Bytewizer.TinyCLR.Http.Mvc.Stubble
 {
     public class ViewDictionary : Hashtable
     {
-        private readonly ViewModel _parent;
+        private readonly ViewData _parent;
         private readonly string _id;
         
-        public ViewDictionary(ViewModel parent, string id)
+        public ViewDictionary(ViewData parent, string id)
         {
             _parent = parent;
             _id = id;

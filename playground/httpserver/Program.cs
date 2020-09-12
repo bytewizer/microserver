@@ -3,7 +3,6 @@ using GHIElectronics.TinyCLR.Pins;
 using GHIElectronics.TinyCLR.Devices.Storage;
 
 using Bytewizer.TinyCLR.Http;
-using System.Diagnostics;
 
 namespace Bytewizer.TinyCLR.WebServer
 {
@@ -23,6 +22,7 @@ namespace Bytewizer.TinyCLR.WebServer
             var server = new HttpServer(options =>
             {
                 options.UseMiddleware(new HttpMiddleware());
+                options.UseDeveloperExceptionPage();
                 options.UseFileServer();
                 options.UseMvc();
             });

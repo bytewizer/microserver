@@ -4,58 +4,27 @@ using System.Text;
 using System.Collections;
 using System.Reflection;
 
-using GHIElectronics.TinyCLR.Data.Json;
+//using GHIElectronics.TinyCLR.Data.Json;
 
-namespace Bytewizer.TinyCLR.Http.Mvc.ViewEngine
+namespace Bytewizer.TinyCLR.Http.Mvc.Stubble
 {
-    public class ViewModel
+    public class ViewEngine
     {
         public IList Elements; //public List<ViewElement> Elements;
-        public IList Partials = new ArrayList(); //public List<ViewPartial> Partials = new List<ViewPartial>();
-        public IDictionary Fields = new Hashtable(); //public Dictionary<string, int[]> Fields = new Dictionary<string, int[]>();
+        public ArrayList Partials = new ArrayList(); //public List<ViewPartial> Partials = new List<ViewPartial>();
+        
         public string Filename = "";
         public string HTML = "";
         public string Section = ""; //section of the template to use for rendering
 
         private ViewData data;
-        private IDictionary children = null; //private Dictionary<string, ViewChild> children = null;
-
-        public ViewChild Child(string id)
-        {
-            if (children == null)
-            {
-                children = new Hashtable(); //children = new Dictionary<string, ViewChild>();
-            }
-            if (!children.Contains(id))
-            {
-                children.Add(id, new ViewChild(this, id));
-            }
-            return (ViewChild)children[id];
-        }
-
-        public ViewModel(ViewOptions options)
-        {
-            if (options.Html != null && options.Html != "")
-            {
-                Parse("", "", options.Html);
-            }
-            else
-            {
-                Parse(options.File, options.Section, "");
-            }
-        }
-
-        public ViewModel() 
-        {
-            Parse("", "", "", null);
-        }
-
+        
         /// <summary>
         /// Use a template file to bind data and replace mustache variables with data, e.g. {{my-name}} is replaced with value of View["my-name"]
         /// </summary>
         /// <param name="file">relative path to the template file</param>
         /// <param name="cache">Dictionary object used to save cached, parsed template to</param>
-        public ViewModel(string file, IDictionary cache = null) //public View(string file, Dictionary<string, SerializedView> cache = null)
+        public ViewEngine(string file, IDictionary cache = null) //public View(string file, Dictionary<string, SerializedView> cache = null)
         {
             Parse(file, "", "", cache);
         }
@@ -66,8 +35,13 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ViewEngine
         /// <param name="file">relative path to the template file</param>
         /// <param name="section">section name within the template file to load, e.g. {{my-section}} ... {{/my-section}}</param>
         /// <param name="cache">Dictionary object used to save cached, parsed template to</param>
-        public ViewModel(string file, string section, IDictionary cache = null)
+        public ViewEngine(string file, string section, IDictionary cache = null)
         {
+            if (section == null)
+            {
+                section = string.Empty;
+            }
+            
             Parse(file, section.ToLower(), "", cache);
         }
 
@@ -84,117 +58,6 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ViewEngine
             set
             {
                 data[key.ToLower()] = value;
-            }
-        }
-
-        public bool ContainsKey(string key)
-        {
-            return data.ContainsKey(key.ToLower());
-        }
-
-        public void Show(string blockKey)
-        {
-            data[blockKey.ToLower(), true] = true;
-        }
-
-        /// <summary>
-        /// Binds an object to the view template. Use e.g. {{myprop}} or {{myobj.myprop}} to represent object fields & properties in template
-        /// </summary>
-        /// <param name="obj"></param>
-        public void Bind(object obj, string root = "")
-        {
-            if (obj != null)
-            {
-                foreach (MethodInfo method in obj.GetType().GetMethods())
-                {
-                    if (!method.IsPublic)
-                        continue;
-
-                    if (method.Name.IndexOf("get_") == 0)
-                    {
-                        object val = method.Invoke(obj, null);
-                        
-                        var name = (root != "" ? root + "." : "") + method.Name.TrimStart(new char[] {'g','e','t','_' }).ToLower();
-                        if (val == null)
-                        {
-                            data[name] = "";
-                        }
-                        else if (val is string || val is int || val is long || val is double || val is decimal || val is short)
-                        {
-                            //add property value to dictionary
-                            data[name] = val.ToString();
-                        }
-                        else if (val is bool)
-                        {
-                            data[name] = (bool)val == true ? "1" : "0";
-                        }
-                        else if (val is DateTime)
-                        {
-                            data[name] = ((DateTime)val).ToString() + " " + ((DateTime)val).ToString();
-                        }
-                        else if (val is object)
-                        {
-                            //recurse child object for properties
-                            Bind(val, name);
-                        }
-                    }
-                }
-                            
-                //foreach (PropertyInfo property in obj.GetType().GetProperties())
-                //{
-                //    object val = property.GetValue(obj);
-                //    var name = (root != "" ? root + "." : "") + property.Name.ToLower();
-                //    if (val == null)
-                //    {
-                //        data[name] = "";
-                //    }
-                //    else if (val is string || val is int || val is long || val is double || val is decimal || val is short)
-                //    {
-                //        //add property value to dictionary
-                //        data[name] = val.ToString();
-                //    }
-                //    else if (val is bool)
-                //    {
-                //        data[name] = (bool)val == true ? "1" : "0";
-                //    }
-                //    else if (val is DateTime)
-                //    {
-                //        data[name] = ((DateTime)val).ToString() + " " + ((DateTime)val).ToString();
-                //    }
-                //    else if (val is object)
-                //    {
-                //        //recurse child object for properties
-                //        Bind(val, name);
-                //    }
-                //}
-
-                //foreach (PropertyDescriptor property in TypeDescriptor.GetProperties(obj))
-                //{
-                //    object val = property.GetValue(obj);
-                //    var name = (root != "" ? root + "." : "") + property.Name.ToLower();
-                //    if (val == null)
-                //    {
-                //        data[name] = "";
-                //    }
-                //    else if (val is string || val is int || val is long || val is double || val is decimal || val is short)
-                //    {
-                //        //add property value to dictionary
-                //        data[name] = val.ToString();
-                //    }
-                //    else if (val is bool)
-                //    {
-                //        data[name] = (bool)val == true ? "1" : "0";
-                //    }
-                //    else if (val is DateTime)
-                //    {
-                //        data[name] = ((DateTime)val).ToShortDateString() + " " + ((DateTime)val).ToShortTimeString();
-                //    }
-                //    else if (val is object)
-                //    {
-                //        //recurse child object for properties
-                //        Bind(val, name);
-                //    }
-                //}
             }
         }
 
@@ -220,7 +83,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ViewEngine
                         cached = (SerializedView)cache[file + '/' + section];
                         data = cached.Data;
                         Elements = cached.Elements;
-                        Fields = cached.Fields;
+                        //Fields = cached.Fields;
                     }
                 }
             }
@@ -310,7 +173,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ViewEngine
                                 var partial_path = arr[x].Substring(u + 1, u2 - u - 1);
 
                                 //load the view HTML
-                                var newScaff = new ViewModel(partial_path, "", cache);
+                                var newScaff = new ViewEngine(partial_path, "", cache);
 
                                 //check for HTML include variables
                                 if (i - u2 > 0)
@@ -321,11 +184,12 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ViewEngine
                                         //HTML include variables exist
                                         try
                                         {
-                                            var kv = (IDictionary)JsonConverter.Deserialize("{" + vars + "}");
-                                            foreach (DictionaryEntry kvp in kv)
-                                            {
-                                                newScaff[(string)kvp.Key] = (string)kvp.Value;
-                                            }
+                                            //var kv = (IDictionary)JsonConverter.Deserialize("{" + vars + "}");
+                                            //var kv =  JsonSerializer.Deserialize<IDictionary>("{" + vars + "}");
+                                            //foreach (DictionaryEntry kvp in kv)
+                                            //{
+                                            //    newScaff[(string)kvp.Key] = (string)kvp.Value;
+                                            //}
                                         }
                                         catch (Exception)
                                         {
@@ -404,14 +268,14 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ViewEngine
 
                                     if (viewElem.Name.IndexOf('/') < 0)
                                     {
-                                        if (Fields.Contains(viewElem.Name))
+                                        if (data.Fields.Contains(viewElem.Name))
                                         {
                                             //add element index to existing field
-                                            int[] field = (int[])Fields[viewElem.Name];
+                                            int[] field = (int[])data.Fields[viewElem.Name];
 
                                             foreach (var item in field.Append(Elements.Count))
                                             {
-                                                Fields[viewElem.Name] = item;
+                                                data.Fields[viewElem.Name] = item;
                                             }
 
                                             //TODO: Not tested
@@ -420,7 +284,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ViewEngine
                                         else
                                         {
                                             //add field with element index
-                                            Fields.Add(viewElem.Name, new int[] { Elements.Count });
+                                            data.Fields.Add(viewElem.Name, new int[] { Elements.Count });
                                         }
                                     }
 
@@ -441,12 +305,11 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ViewEngine
                                         var vars = arr[x].Substring(s + 1, i - s - 1);
                                         try
                                         {
-                                            viewElem.Vars = (IDictionary)JsonConverter.Deserialize("{" + vars + "}");
+                                            //TODO: viewElem.Vars = (IDictionary)JsonConverter.Deserialize("{" + vars + "}");
                                         }
                                         catch (Exception)
                                         {
                                         }
-
                                     }
                                 }
                                 else
@@ -459,6 +322,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ViewEngine
                         }
                     }
                 }
+
                 //cache the view data
                 if (cache != null)
                 {
@@ -466,7 +330,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ViewEngine
                     {
                         Data = data,
                         Elements = Elements,
-                        Fields = Fields,
+                        Fields = data.Fields,
                         Partials = Partials
                     };
                     cache.Add(file + '/' + section, view);
@@ -497,19 +361,6 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ViewEngine
             return result.ToString();
 
             //return string.Join("", html);
-        }
-
-        public string Render()
-        {
-            return Render(data);
-        }
-
-        private class ClosingElement
-        {
-            public string Name;
-            public int Start;
-            public int End;
-            public IList Show { get; set; } = new ArrayList(); //public List<bool> Show { get; set; } = new List<bool>();
         }
 
         public string Render(ViewData nData, bool hideElements = true)
@@ -586,21 +437,6 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ViewEngine
                                 if (isInList == false) { removeIndexes.Add(y); }
                             }
                         }
-
-                        //if (((ClosingElement)closing[x]).Show != true)
-                        //if (((ClosingElement)closing[x]).Show.FirstOrDefault() != true)
-                        //{
-                        //    //add range of indexes from closing to the removeIndexes list
-                        //    for (int y = ((ClosingElement)closing[x]).Start; y < ((ClosingElement)closing[x]).End; y++)
-                        //    {
-                        //        isInList = false;
-                        //        for (int z = 0; z < removeIndexes.Count; z++)
-                        //        {
-                        //            if ((int)removeIndexes[z] == y) { isInList = true; break; }
-                        //        }
-                        //        if (isInList == false) { removeIndexes.Add(y); }
-                        //    }
-                        //}
                     }
 
                     //physically remove HTML list items from view
@@ -652,9 +488,8 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ViewEngine
 
         public string Get(string name)
         {
-            var tom = new ArrayList();
-
             var index = Elements.IndexOf(name); //var index = Elements.FindIndex(c => c.Name == name);
+            
             if (index < 0) { return ""; }
 
             var part = (ViewElement)Elements[index];
@@ -686,7 +521,6 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ViewEngine
         }
 
         private static ArrayList DeepCopy(ArrayList obj)
-
         {
             if (!typeof(ArrayList).IsSerializable)
             {
@@ -698,26 +532,11 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ViewEngine
                 throw new Exception("The source object must not be null");
             }
 
-            //ArrayList result = default(ArrayList);
-            //using (var memoryStream = new MemoryStream())
-            //{
-            //    var formatter = new BinaryFormatter();
-            //    formatter.Serialize(memoryStream, obj);
-            //    memoryStream.Seek(0, SeekOrigin.Begin);
-            //    result = (ArrayList)formatter.Deserialize(memoryStream);
-            //    memoryStream.Close();
-            //}
-
             ArrayList result = new ArrayList();
             foreach (ViewElement element in obj)
             {
                 result.Add(element);
             }
-
-            //ArrayList result = new ArrayList
-            //{
-            //    (ArrayList)obj.Clone()
-            //};
 
             return result;
         }

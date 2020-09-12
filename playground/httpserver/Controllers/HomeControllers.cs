@@ -2,6 +2,8 @@
 using GHIElectronics.TinyCLR.Devices.Gpio;
 
 using Bytewizer.TinyCLR.Http.Mvc;
+using Bytewizer.TinyCLR.Http.Mvc.Stubble;
+
 using Bytewizer.TinyCLR.WebServer.Models;
 
 namespace Bytewizer.TinyCLR.WebServer
@@ -22,21 +24,21 @@ namespace Bytewizer.TinyCLR.WebServer
 
         public IActionResult Index()
         {
-            ViewModel["title"] = "Microserver";
-            ViewModel["image"] = "<img src='/assets/img/ocean.jpg' class='rounded'>";      
-            ViewModel.Show("has-image");
-            ViewModel.Child("header")["content"] = "<h3>Shared Header Content</h3>";
-            ViewModel.Bind( 
-                new PlayerModel ()
-                    {
-                        TeamId = 288272,
-                        PlayerName = "Nazem Kadri",
-                        Points = 18,
-                        Goals = 10,
-                        Assists = 16
-                    });
+            ViewData["title"] = "Microserver";
+            ViewData["image"] = "<img src='/assets/img/ocean.jpg' class='rounded'>";
+            ViewData.Show("has-image");
+            ViewData.Child("header")["content"] = "<h3>Shared Header Content</h3>";
+            ViewData.Bind(
+                new PlayerModel()
+                {
+                    TeamId = 288272,
+                    PlayerName = "Nazem Kadri",
+                    Points = 18,
+                    Goals = 10,
+                    Assists = 16
+                });
 
-            return View(@"views\Home\index.html");
+            return View(@"views\home\index.html");
         }
 
         public IActionResult Toggle()

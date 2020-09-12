@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bytewizer.TinyCLR.Http.Mvc.ViewEngine
+namespace Bytewizer.TinyCLR.Http.Mvc.Stubble
 {
     [Serializable]
     public class ViewPartial

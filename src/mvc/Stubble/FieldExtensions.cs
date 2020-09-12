@@ -1,4 +1,4 @@
-﻿namespace Bytewizer.TinyCLR.Http.Mvc.ViewEngine
+﻿namespace Bytewizer.TinyCLR.Http.Mvc.Stubble
 {
     public static class FieldExtensions
     {

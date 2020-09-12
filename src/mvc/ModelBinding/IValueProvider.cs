@@ -5,7 +5,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ModelBinding
     public interface IValueProvider
     {
         string Get(string name);
-        QueryValue[] GetValues();
+        ICollection GetValues();
 
         /// <summary>
         /// Find all parameters which starts with the specified argument.

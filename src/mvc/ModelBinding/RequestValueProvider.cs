@@ -17,17 +17,14 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ModelBinding
             return _request.Query[name];
         }
 
-        public QueryValue[] GetValues()
-        {            
-            IEnumerator enumerator = _request.Query.GetEnumerator();
-            QueryValue[] list = new QueryValue[_request.Query.Count];
-            int x = 0;
-            while (enumerator.MoveNext())
-            {
-                list[x] = (QueryValue)enumerator.Current;
-                x++;
-            }
-            return list;
+        public ICollection GetKeys()
+        {
+            return _request.Query.Keys;
+        }
+
+        public ICollection GetValues()
+        {
+            return _request.Query.Values;
         }
 
         /// <summary>
@@ -39,7 +36,15 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ModelBinding
         /// </returns>
         public IEnumerable Find(string prefix)
         {
-            return null;
+            IEnumerator enumerator = _request.Query.GetEnumerator();
+            QueryValue[] list = new QueryValue[_request.Query.Count];
+            int x = 0;
+            while (enumerator.MoveNext())
+            {
+                list[x] = (QueryValue)enumerator.Current;
+                x++;
+            }
+            return list;
         }
     }
 }
