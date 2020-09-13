@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿using Bytewizer.TinyCLR.Http;
 using Bytewizer.TinyCLR.Http.Mvc;
 using Bytewizer.TinyCLR.Http.Mvc.Filters;
 
@@ -8,18 +7,29 @@ namespace Bytewizer.TinyCLR.WebServer.Controllers
     public class ExampleController : Controller
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
-        {            
-            base.OnActionExecuting(filterContext);
+        {
+            // called before action method
+            if (filterContext.HttpContext.Request.Method != HttpMethods.Get)
+            {
+                filterContext.Result = new BadRequestResult();
+            }
         }
 
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            base.OnActionExecuted(filterContext);
+            // called after action method
         }
 
         public override void OnException(ExceptionContext filterContext)
         {
-            base.OnException(filterContext);
+            // called on action method execption
+            var actionName = ControllerContext.ActionDescriptor.DisplayName;
+            filterContext.Result = new ContentResult
+            {
+                Content = $"An error occurred in the {actionName} action.",
+                ContentType = "text/plain",
+                StatusCode = StatusCodes.Status500InternalServerError
+            };
         }
 
         // Any public IActionResult method inherited from Controller is made available as an endpoint

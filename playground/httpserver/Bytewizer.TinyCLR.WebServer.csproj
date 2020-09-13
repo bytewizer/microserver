@@ -38,7 +38,8 @@
   <ItemGroup>
     <Compile Include="Authentication\User.cs" />
     <Compile Include="Authentication\UserService.cs" />
-    <Compile Include="Controllers\ApiController.cs" />
+    <Compile Include="Controllers\CircutController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeControllers.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\ExampleController.cs" />

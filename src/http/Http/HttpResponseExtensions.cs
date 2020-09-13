@@ -15,7 +15,12 @@ namespace Bytewizer.TinyCLR.Http
             Write(response, text, contentType, StatusCodes.Status200OK, Encoding.UTF8);
         }
 
-        public static void Write(this HttpResponse response,  string text, string contentType, int status, Encoding encoding)
+        public static void Write(this HttpResponse response, string text, string contentType, int status)
+        {
+            Write(response, text, contentType, status, Encoding.UTF8);
+        }
+
+        public static void Write(this HttpResponse response, string text, string contentType, int status, Encoding encoding)
         {
             if (response == null)
             {
@@ -36,6 +41,7 @@ namespace Bytewizer.TinyCLR.Http
             response.StatusCode = status;
             response.ContentType = contentType;
             response.ContentLength += encoded.Length;
+            response.Body.Position = 0;
             response.Body.Write(encoded, 0, encoded.Length);
         }
     }

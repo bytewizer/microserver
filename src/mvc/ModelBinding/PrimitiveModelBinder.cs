@@ -18,6 +18,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ModelBinding
                 || modelType == typeof(byte)
                 || modelType == typeof(byte[])
                 || modelType == typeof(sbyte)
+                || modelType == typeof(sbyte[])
                 || modelType == typeof(short)
                 || modelType == typeof(ushort)
                 || modelType == typeof(int)
@@ -79,6 +80,11 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ModelBinding
                 if (context.ModelType == typeof(sbyte))
                 {
                     return value = sbyte.Parse((string)value);
+                }
+
+                if (context.ModelType == typeof(sbyte[]))
+                {
+                    return value = Encoding.UTF8.GetBytes((string)value);
                 }
 
                 if (context.ModelType == typeof(short))

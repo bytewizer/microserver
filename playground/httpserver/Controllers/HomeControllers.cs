@@ -8,7 +8,7 @@ using Bytewizer.TinyCLR.WebServer.Models;
 
 namespace Bytewizer.TinyCLR.WebServer
 {
-    public class HomeController: Controller
+    public class HomeController : Controller
     {
         private static GpioPin led;
 

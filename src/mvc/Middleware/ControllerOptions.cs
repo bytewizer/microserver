@@ -8,6 +8,8 @@
         /// <summary>
         /// Create an instance with the default options settings.
         /// </summary>
-        public ControllerOptions() { }
+        public ControllerOptions() 
+        { 
+        }
     }
 }

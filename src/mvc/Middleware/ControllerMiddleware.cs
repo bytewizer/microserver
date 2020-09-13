@@ -16,7 +16,8 @@ namespace Bytewizer.TinyCLR.Http
 
         public ControllerMiddleware()
             : this (new ControllerOptions())
-        { }
+        {
+        }
 
         public ControllerMiddleware(ControllerOptions options)
         {
@@ -36,17 +37,16 @@ namespace Bytewizer.TinyCLR.Http
 
         protected override void Invoke(HttpContext context, RequestDelegate next)
         {
-            ControllerMapping mapping;
 
             string uri = context.Request.Path.TrimStart('/').TrimEnd('/').ToLower();
 
-            if (_controllerFactory.TryMapping(uri, out mapping))
+            if (_controllerFactory.TryMapping(uri, out ControllerMapping mapping))
             {
                 string actionName = uri.Substring(uri.LastIndexOf('/') + 1);
 
                 MethodInfo action = mapping.FindAction(actionName);
-                ActionResult result = (ActionResult)_controllerFactory.Invoke(mapping.ControllerType, action, context);
-
+                _controllerFactory.Invoke(mapping.ControllerType, action, context);
+               
                 return;
             }
 

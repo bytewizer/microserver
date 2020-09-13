@@ -1,8 +1,30 @@
 # Static Files Examples
+Static files when found are served and sent back as-is to the client. 
 
-## UseStaticFiles() - Static Files 
+## Static File Server - UseFileServer()
+UseFileServer() combines the functionality of UseStaticFiles() and UseDefaultFiles().
 
-Static files (js, css, html etc) when found are served, no further processing is required, and sends the file back as-is to the client. Its the responsibility of UseStaticFiles() middleware is to look for a file path (for example images/image.jpeg) and serve content from this folder.
+```CSharp
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Storage devices must be mounted to access sd cards
+        var sd = StorageController.FromName(SC20100.StorageController.SdCard);
+        FileSystem.Mount(sd.Hdc);
+        
+        var server = new SocketServer(options =>
+        {
+            options.UseFileServer();
+        });
+        server.Start();
+    }
+}
+```
+
+## Static Files - UseStaticFiles() 
+
+Its the responsibility of UseStaticFiles() middleware is to look for a file path (for example images/image.jpeg) and serve content from this folder.
 
 The UseDefaultFiles() middleware serves the following files on the root request. UseDefaultFiles() is a URL rewriter that doesn't actually serve the file. UseDefaultFiles() must be called before UseStaticFiles() to serve the default file.
 
@@ -40,10 +62,8 @@ options.UseDefaultFiles(new DefaultFilesOptions()
     }
 });
 ```
-## UseFileServer() - Static File Server
-UseFileServer() combines the functionality of UseStaticFiles() and UseDefaultFiles().
 
-## UseResourceFiles() - Resource Files
+## Resource Files - UseResourceFiles()
 
 ```CSharp
 class Program

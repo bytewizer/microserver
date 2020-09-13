@@ -6,21 +6,39 @@ Microserver is a modular server built for TinyCLR OS IoT devices.
 
 ## Socket Service
 
-* Tcp/Udp support
+* TCP/UDP support
 * Extendable Pipeline
-* Ssl Transport Support
+* SSL Transport Support
 
 <a href="https://github.com/microcompiler/microserver/tree/master/src/sockets">More Information</a>
 
 ## HTTP Web Service
+* Extendable Middleware
+* Header / Cookeie Decoding
+* Forms / Files Decoding
+* Developer Execption Pages
 
-* Controller
-* Action Results (Content, Json, Files, Redirects)
+<a href="https://github.com/microcompiler/microserver/tree/master/src/http">More Information</a>
+
+## HTTP Authentication
+* Basic Authentication
+* Digest Authentication
+
+<a href="https://github.com/microcompiler/microserver/tree/master/src/authentication">More Information</a>
+
+## HTTP Static File Handling
+* Storage / Resource File Serving
+* Default File Routing
+
+<a href="https://github.com/microcompiler/microserver/tree/master/src/staticfiles">More Information</a>
+
+## HTTP Model-View-Controllers (MVC)
+* Controllers
 * Model Binding
-* Header Decoding
-* Digest/Basic Authentication
-* Extendable Pipeline Middleware
-* Static File Handling
+* JSON Integration
+* Action Results (Content, Json, Files, Redirects)
+
+<a href="https://github.com/microcompiler/microserver/tree/master/src/mvc">More Information</a>
 
 ## Requirements
 
