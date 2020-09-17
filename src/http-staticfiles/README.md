@@ -24,7 +24,7 @@ class Program
 
 ## Static Files
 
-Its the responsibility of UseStaticFiles() middleware is to look for a file path (for example images/image.jpeg) and serve content from this folder. The UseDefaultFiles() is a URL rewriter that doesn't actually serve the file. UseDefaultFiles() must be called before UseStaticFiles() to serve the default file **Index.html** or **Index.htm**
+Its the responsibility of UseStaticFiles() middleware is to look for a file path (e.g. images/image.jpeg) and serve content from this folder. The UseDefaultFiles() is a URL rewriter that doesn't actually serve the file. UseDefaultFiles() must be called before UseStaticFiles() to serve the default file **Index.html** or **Index.htm**
 
 ```CSharp
 class Program

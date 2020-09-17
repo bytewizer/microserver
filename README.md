@@ -20,19 +20,19 @@ Microserver is a modular server built for TinyCLR OS IoT devices.
 
 <a href="https://github.com/microcompiler/microserver/tree/master/src/http">More Information</a>
 
+## Model-View-Controllers (MVC)
+* Controllers
+* Model Binding
+* Action Results (Content, Json, Files, Redirects)
+* Stubble View Engine
+* JSON Integration
+
+<a href="https://github.com/microcompiler/microserver/tree/master/src/mvc">More Information</a>
 ## Static File Handling
 * Storage / Resource File Serving
 * Default File Routing
 
 <a href="https://github.com/microcompiler/microserver/tree/master/src/staticfiles">More Information</a>
-
-## Model-View-Controllers (MVC)
-* Controllers
-* Model Binding
-* JSON Integration
-* Action Results (Content, Json, Files, Redirects)
-
-<a href="https://github.com/microcompiler/microserver/tree/master/src/mvc">More Information</a>
 
 ## Authentication
 * Basic Authentication
@@ -104,22 +104,22 @@ public class ExampleController : Controller
         string response = "<doctype !html><html><head><title>Hello, world!</title>" +
             "<style>body { background-color: #111 }" +
             "h1 { font-size:3cm; text-align: center; color: white;}</style></head>" +
-            "<body><h1>" + $"{id}" + "</h1></body></html>\r\n";
+            "<body><h1>" + $"{id}" + "</h1></body></html>";
 
         return Content(response, "text/html");
     }
 }
 ```
 
-## Microsoft .NET Micro Framework (NETMF)
-
-Have a look <a href="https://github.com/microcompiler/microserver/releases/tag/v1.1.0"> here </a> if your looking for the orginal MicroServer built for Microsoft .NET Micro Framework (NETMF).
-
 ## Branches
 
 **master** - This is the branch containing the latest release - no contributions should be made directly to this branch.
 
 **develop** - This is the development branch to which contributions should be proposed by contributors as pull requests. This development branch will periodically be merged to the master branch, and be released to [NuGet Gallery](https://www.nuget.org).
+
+## Microsoft .NET Micro Framework (NETMF)
+
+Have a look <a href="https://github.com/microcompiler/microserver/releases/tag/v1.1.0"> here </a> if your looking for the orginal MicroServer built for Microsoft .NET Micro Framework (NETMF).
 
 ## Contributions
 

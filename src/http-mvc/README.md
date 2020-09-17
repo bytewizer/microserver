@@ -37,13 +37,9 @@ Model binding goes through the following steps after the routing system selects 
 
 The simple types that the model binder can convert source strings into include the following:
 
-* Boolean
+* String, Boolean, Double
 * Byte, SByte, Byte[]
-* Char
-* Decimal
-* Double
 * Int16, Int32, Int64
-* Single
 * UInt16, UInt32, UInt64
 
 ## Using HttpContext from a controller
@@ -207,7 +203,7 @@ public class HomeController: Controller
 }
 ```
 
-## Import partial Templates
+## Import Partial Templates
 You can also import partial templates from within a template.
 
 ```Html
@@ -243,7 +239,7 @@ public class HomeController: Controller
     {
         ViewData["content"] = "Welcome to Stubble";
         ViewData.Child("header")["head"] = "<h3>Shared Header Content</h3>";
-        ViewData.Child("foot")["foot"] = "<h3>Shared Footer Content</h3>";
+        ViewData.Child("footer")["foot"] = "<h3>Shared Footer Content</h3>";
 
         return View(@"views\home\index.html");
     }
@@ -271,7 +267,7 @@ public class HomeController: Controller
 {
     public IActionResult Index()
     {
-        ViewData["Title"] = "Welcome to Stubble";
+        ViewData["title"] = "Welcome to Stubble";
         ViewData.Bind(
             new PlayerModel()
             {

@@ -66,11 +66,11 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\authentication\Bytewizer.TinyCLR.Http.Authentication.csproj">
+    <ProjectReference Include="..\..\src\http-authentication\Bytewizer.TinyCLR.Http.Authentication.csproj">
       <Project>{A94B42E0-7FCC-448F-9645-6732ABA96F28}</Project>
       <Name>Bytewizer.TinyCLR.Http.Authentication</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\debug\Bytewizer.TinyCLR.Logging.Debug.csproj">
+    <ProjectReference Include="..\..\src\logging-debug\Bytewizer.TinyCLR.Logging.Debug.csproj">
       <Project>{F5997E37-7348-4FA6-9103-990D9906DA4F}</Project>
       <Name>Bytewizer.TinyCLR.Logging.Debug</Name>
     </ProjectReference>
@@ -86,11 +86,11 @@
       <Project>{D6D13310-C4A1-4409-B0E3-10F29F7FF262}</Project>
       <Name>Bytewizer.TinyCLR.Logging</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\mvc\Bytewizer.TinyCLR.Http.Mvc.csproj">
+    <ProjectReference Include="..\..\src\http-mvc\Bytewizer.TinyCLR.Http.Mvc.csproj">
       <Project>{15C6A7FC-1C29-471B-B57A-08D61C58FA08}</Project>
       <Name>Bytewizer.TinyCLR.Http.Mvc</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\routing\Bytewizer.TinyCLR.Http.Routing.csproj">
+    <ProjectReference Include="..\..\src\http-routing\Bytewizer.TinyCLR.Http.Routing.csproj">
       <Project>{C57CD6AF-268A-46E1-BDD4-073A6B69B5A5}</Project>
       <Name>Bytewizer.TinyCLR.Http.Routing</Name>
     </ProjectReference>
@@ -98,7 +98,7 @@
       <Project>{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}</Project>
       <Name>Bytewizer.TinyCLR.Sockets</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\staticfiles\Bytewizer.TinyCLR.Http.StaticFiles.csproj">
+    <ProjectReference Include="..\..\src\http-staticfiles\Bytewizer.TinyCLR.Http.StaticFiles.csproj">
       <Project>{2DD3D5AB-D849-4898-B6E9-1A49683955B2}</Project>
       <Name>Bytewizer.TinyCLR.Http.StaticFiles</Name>
     </ProjectReference>
