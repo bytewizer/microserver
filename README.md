@@ -12,7 +12,7 @@ Microserver is a modular server built for TinyCLR OS IoT devices.
 
 <a href="https://github.com/microcompiler/microserver/tree/master/src/sockets">More Information</a>
 
-## HTTP Web Service
+## Web Service
 * Extendable Middleware
 * Header / Cookeie Decoding
 * Forms / Files Decoding
@@ -20,25 +20,25 @@ Microserver is a modular server built for TinyCLR OS IoT devices.
 
 <a href="https://github.com/microcompiler/microserver/tree/master/src/http">More Information</a>
 
-## HTTP Authentication
-* Basic Authentication
-* Digest Authentication
-
-<a href="https://github.com/microcompiler/microserver/tree/master/src/authentication">More Information</a>
-
-## HTTP Static File Handling
+## Static File Handling
 * Storage / Resource File Serving
 * Default File Routing
 
 <a href="https://github.com/microcompiler/microserver/tree/master/src/staticfiles">More Information</a>
 
-## HTTP Model-View-Controllers (MVC)
+## Model-View-Controllers (MVC)
 * Controllers
 * Model Binding
 * JSON Integration
 * Action Results (Content, Json, Files, Redirects)
 
 <a href="https://github.com/microcompiler/microserver/tree/master/src/mvc">More Information</a>
+
+## Authentication
+* Basic Authentication
+* Digest Authentication
+
+<a href="https://github.com/microcompiler/microserver/tree/master/src/authentication">More Information</a>
 
 ## Requirements
 
@@ -55,19 +55,59 @@ using SC20100S development board.
 ```CSharp
 static void Main()
 {
-    Networking.SetupEthernet();
-
-    var sdCard = StorageController.FromName(SC20100.StorageController.SdCard);
-    var drive = FileSystem.Mount(sdCard.Hdc);
+    //Attempts auto-detection of the board initializing networking and sd storage.
+    Mainboard.Initialize();
 
     var server = new HttpServer(options =>
     {
         options.UseMiddleware(new HttpSessionMiddleware());
         options.UseDeveloperExceptionPage();
-        options.UseStaticFiles();
+        options.UseFileServer();
         options.UseMvc();
     });
     server.Start();
+}
+```
+
+```CSharp
+public class ExampleController : Controller
+{
+    public override void OnActionExecuting(ActionExecutingContext filterContext)
+    {
+        // called before action method
+        if (filterContext.HttpContext.Request.Method != HttpMethods.Get)
+        {
+            filterContext.Result = new BadRequestResult();
+        }
+    }
+
+    public override void OnActionExecuted(ActionExecutedContext filterContext)
+    {
+        // called after action method
+    }
+
+    public override void OnException(ExceptionContext filterContext)
+    {
+        // called on action method execption
+        var actionName = ControllerContext.ActionDescriptor.DisplayName;
+        filterContext.Result = new ContentResult
+        {
+            Content = $"An error occurred in the {actionName} action.",
+            ContentType = "text/plain",
+            StatusCode = StatusCodes.Status500InternalServerError
+        };
+    }
+
+    // Any public IActionResult method inherited from Controller is made available as an endpoint
+    public IActionResult GetById(long id)
+    {
+        string response = "<doctype !html><html><head><title>Hello, world!</title>" +
+            "<style>body { background-color: #111 }" +
+            "h1 { font-size:3cm; text-align: center; color: white;}</style></head>" +
+            "<body><h1>" + $"{id}" + "</h1></body></html>\r\n";
+
+        return Content(response, "text/html");
+    }
 }
 ```
 

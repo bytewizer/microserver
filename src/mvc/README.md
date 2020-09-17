@@ -1,10 +1,10 @@
-# Model-View-Controller (MVC) Examples
+# Model-View-Controller (MVC)
 
 ## Controllers
 The controller takes the result of the model's processing and returns either the proper view and its associated view data or the result of the API call. Controller Actions can return anything that produces a response. The action method is responsible for choosing what kind of response. The action result does the responding.  Controllers include the following features:
 
 * <b>Html Context</b> - Encapsulates all HTTP-specific information about an individual HTTP request.
-* <b>Action Context<b> - Including OnActionExecuting, OnActionExecuted, OnExecption methods.
+* <b>Action Context</b> - Including OnActionExecuting, OnActionExecuted, OnExecption methods.
 * <b>Action Results</b> - Including View, Content, Json File, Ok, Redirect, BadRequest, NotFound and StatusCode responses.
 * <b>Action Filters</b> - Are called before the action executes, after executed and on errors.
 
@@ -147,9 +147,9 @@ public class ErrorController : Controller
 }
 ```
 
-## Stubble  
+# Stubble View Engine  
 
-A light-weight templating engine simular to <b>Razor</b> used for mutating HTML documents.
+A light-weight templating engine simular to <b>Mustache</b> or <b>Razor</b> used for mutating HTML documents.
 
 ### Usage with HTML
 
@@ -181,7 +181,7 @@ public class HomeController: Controller
 }
 ```
 
-### Show Blocks of HTML
+## Show Blocks of HTML
 You can render optional blocks of content when neccessary.
 
 ```Html
@@ -191,7 +191,7 @@ You can render optional blocks of content when neccessary.
 {{/has-author}}
 ```
 
-Now you can use Stubble to render the optional park information.
+Now you can use Stubble to render the optional information.
 
 ```Csharp
 public class HomeController: Controller
@@ -207,7 +207,7 @@ public class HomeController: Controller
 }
 ```
 
-### Import partial Templates
+## Import partial Templates
 You can also import partial templates from within a template.
 
 ```Html
@@ -250,7 +250,7 @@ public class HomeController: Controller
 }
 ```
 
-### Bind Objects to Templates
+## Bind Objects to Templates
 You can bind complex C# objects to templates.
 
 ```Html
@@ -264,7 +264,7 @@ You can bind complex C# objects to templates.
     <footer></footer>
 </html>
 ```
-Now you can use Stubble to  to bind variables within your template.
+Now you can use Stubble to bind variables within your template.
 
 ```Csharp
 public class HomeController: Controller

@@ -1,8 +1,8 @@
-# Static Files Examples
+# Static File Handling
 Static files when found are served and sent back as-is to the client. 
 
-## Static File Server - UseFileServer()
-UseFileServer() combines the functionality of UseStaticFiles() and UseDefaultFiles().
+## Static File Server
+The UseFileServer() combines the functionality of UseStaticFiles() and UseDefaultFiles() middleware.
 
 ```CSharp
 class Program
@@ -13,7 +13,7 @@ class Program
         var sd = StorageController.FromName(SC20100.StorageController.SdCard);
         FileSystem.Mount(sd.Hdc);
         
-        var server = new SocketServer(options =>
+        var server = new HttpServer(options =>
         {
             options.UseFileServer();
         });
@@ -22,14 +22,9 @@ class Program
 }
 ```
 
-## Static Files - UseStaticFiles() 
+## Static Files
 
-Its the responsibility of UseStaticFiles() middleware is to look for a file path (for example images/image.jpeg) and serve content from this folder.
-
-The UseDefaultFiles() middleware serves the following files on the root request. UseDefaultFiles() is a URL rewriter that doesn't actually serve the file. UseDefaultFiles() must be called before UseStaticFiles() to serve the default file.
-
-1.  Index.html
-2.  Index.htm
+Its the responsibility of UseStaticFiles() middleware is to look for a file path (for example images/image.jpeg) and serve content from this folder. The UseDefaultFiles() is a URL rewriter that doesn't actually serve the file. UseDefaultFiles() must be called before UseStaticFiles() to serve the default file **Index.html** or **Index.htm**
 
 ```CSharp
 class Program
@@ -40,7 +35,7 @@ class Program
         var sd = StorageController.FromName(SC20100.StorageController.SdCard);
         FileSystem.Mount(sd.Hdc);
         
-        var server = new SocketServer(options =>
+        var server = new HttpServer(options =>
         {
             // UseDefaultFiles() must be called before UseStaticFile().
             options.UseDefaultFiles();
@@ -63,14 +58,16 @@ options.UseDefaultFiles(new DefaultFilesOptions()
 });
 ```
 
-## Resource Files - UseResourceFiles()
+## Embedded Resource Files
+
+The UseResourceFiles() middleware is used to access files embedded within assemblies.
 
 ```CSharp
 class Program
 {    
     static void Main(string[] args)
     { 
-        var server = new SocketServer(options =>
+        var server = new HttpServer(options =>
         {
             options.UseResourceFiles(new ResourceFileOptions()
                 {

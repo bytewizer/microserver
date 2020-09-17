@@ -42,25 +42,5 @@ namespace Bytewizer.TinyCLR.WebServer.Controllers
 
             return Content(response, "text/html");
         }
-
-        public IActionResult GetByName(string name)
-        {
-            string response = "<doctype !html><html><head><title>Hello, world!</title>" +
-                "<style>body { background-color: #111 }" +
-                "h1 { font-size:3cm; text-align: center; color: white;}</style></head>" +
-                "<body><h1>" + $"{name}" + "</h1></body></html>\r\n";
-
-            return Content(response, "text/html");
-        }
-
-        public IActionResult GetOK()
-        {
-            return Ok();
-        }
-
-        public IActionResult GetBadRequest()
-        {
-            return BadRequest();
-        }
     }
 }

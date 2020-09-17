@@ -1,1 +1,1 @@
-# HTTP Authentication
+# Authentication

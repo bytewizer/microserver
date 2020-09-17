@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections;
-using System.Diagnostics;
 using System.IO;
+using System.Diagnostics;
+
 using Bytewizer.TinyCLR.Http;
 using Bytewizer.TinyCLR.Http.Mvc;
 using Bytewizer.TinyCLR.WebServer.Models;
