@@ -1,7 +1,9 @@
 # HTTP Web Server
 
 ## Custom Middleware
-Middleware is generally encapsulated in a class and exposed with an extension method. 
+Middleware is generally encapsulated in a class and exposed with an extension method. Every request sent runs through the pipeline of configured middleware before it is processed to generate a response. Each middleware can be programmed to perform some work in two distinct steps: before and after the request gets processed. middleware components are invoked in the order they have been registered. The figure below shows the overall diagram.
+
+![Middleware Pipeline](images/pipeline.jpeg)
 
 ```CSharp
 public class CustomMiddleware : Middleware

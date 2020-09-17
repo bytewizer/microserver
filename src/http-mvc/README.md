@@ -23,7 +23,7 @@ public class ExampleController : Controller
     }
 }
 ```
-## Model binding for HTTP requests
+## Model Binding for HTTP requests
 
 Controllers and Stubble pages work with data that comes from HTTP requests.
 
@@ -42,7 +42,7 @@ The simple types that the model binder can convert source strings into include t
 * Int16, Int32, Int64
 * UInt16, UInt32, UInt64
 
-## Using HttpContext from a controller
+## Using HttpContext from a Controller
 
 Controllers expose the HttpContext property:
 
@@ -72,7 +72,6 @@ public class JsonData
     public string Name { get; set; }
     public string Address { get; set; }
 }
-
 
 public IActionResult GetJson()
 {

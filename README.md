@@ -27,18 +27,18 @@ Microserver is a modular server built for TinyCLR OS IoT devices.
 * Stubble View Engine
 * JSON Integration
 
-<a href="https://github.com/microcompiler/microserver/tree/master/src/mvc">More Information</a>
+<a href="https://github.com/microcompiler/microserver/tree/master/src/http-mvc">More Information</a>
 ## Static File Handling
 * Storage / Resource File Serving
 * Default File Routing
 
-<a href="https://github.com/microcompiler/microserver/tree/master/src/staticfiles">More Information</a>
+<a href="https://github.com/microcompiler/microserver/tree/master/src/http-staticfiles">More Information</a>
 
 ## Authentication
 * Basic Authentication
 * Digest Authentication
 
-<a href="https://github.com/microcompiler/microserver/tree/master/src/authentication">More Information</a>
+<a href="https://github.com/microcompiler/microserver/tree/master/src/http-authentication">More Information</a>
 
 ## Requirements
 

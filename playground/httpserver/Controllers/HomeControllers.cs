@@ -3,7 +3,6 @@ using GHIElectronics.TinyCLR.Devices.Gpio;
 
 using Bytewizer.TinyCLR.Http.Mvc;
 using Bytewizer.TinyCLR.Http.Mvc.Stubble;
-
 using Bytewizer.TinyCLR.WebServer.Models;
 
 using Bytewizer.TinyCLR.Logging;
@@ -37,7 +36,7 @@ namespace Bytewizer.TinyCLR.WebServer
 
         public IActionResult Index()
         {
-            _logger.LogInformation(100, "Starting");
+            _logger.LogInformation(100, "/index action");
 
             ViewData["title"] = "Microserver";
             ViewData["image"] = "<img src='/assets/img/ocean.jpg' class='rounded'>";
@@ -58,6 +57,8 @@ namespace Bytewizer.TinyCLR.WebServer
 
         public IActionResult Toggle()
         {
+            _logger.LogInformation(100, "/toggle action");
+
             _led.Write(_led.Read() == GpioPinValue.High ? GpioPinValue.Low : GpioPinValue.High);
 
             return Ok();
