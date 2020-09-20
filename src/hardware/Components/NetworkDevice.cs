@@ -30,17 +30,6 @@ namespace Bytewizer.TinyCLR.Hardware.Components
             _networkController.SetAsDefaultController();
             _networkController.NetworkAddressChanged += NetworkAddressChanged;
             _networkController.NetworkLinkConnectedChanged += NetworkLinkConnectedChanged;
-
-            NetworkSettings = new EthernetNetworkInterfaceSettings
-            {
-                Address = new IPAddress(new byte[] { 192, 168, 1, 100 }),
-                SubnetMask = new IPAddress(new byte[] { 255, 255, 255, 0 }),
-                GatewayAddress = new IPAddress(new byte[] { 192, 168, 1, 1 }),
-                MacAddress = new byte[] { 0x3E, 0x4B, 0x27, 0x21, 0x61, 0x57 }
-            };
-
-            networkController.SetInterfaceSettings(NetworkSettings);
-            networkController.SetAsDefaultController();
         }
 
         protected override void Dispose(bool disposing)
@@ -58,12 +47,12 @@ namespace Bytewizer.TinyCLR.Hardware.Components
 
         public bool IsConnected { get; private set; }
 
-        public EthernetNetworkInterfaceSettings NetworkSettings { get; private set; }
+        public NetworkInterfaceSettings Settings { get; set; }
 
         public void UseDHCP()
         {
-            NetworkSettings.IsDhcpEnabled = true;
-            NetworkSettings.IsDynamicDnsEnabled = true;
+            Settings.IsDhcpEnabled = true;
+            Settings.IsDynamicDnsEnabled = true;
 
             Enabled();
         }
@@ -93,12 +82,12 @@ namespace Bytewizer.TinyCLR.Hardware.Components
             if (dns == null && dns.Length < 1)
                 throw new ArgumentNullException(nameof(dns));
 
-            NetworkSettings.Address = ip;
-            NetworkSettings.SubnetMask = subnet;
-            NetworkSettings.GatewayAddress = gateway;
-            NetworkSettings.DnsAddresses = dns;
-            NetworkSettings.IsDhcpEnabled = false;
-            NetworkSettings.IsDynamicDnsEnabled = false;
+            Settings.Address = ip;
+            Settings.SubnetMask = subnet;
+            Settings.GatewayAddress = gateway;
+            Settings.DnsAddresses = dns;
+            Settings.IsDhcpEnabled = false;
+            Settings.IsDynamicDnsEnabled = false;
 
             Enabled();
         }
@@ -130,7 +119,7 @@ namespace Bytewizer.TinyCLR.Hardware.Components
         {
             _networkController.Enable();
 
-            if (_dhcpEvent.WaitOne(1000, true))
+            if (_dhcpEvent.WaitOne(Timeout, true))
             {
                 Debug.WriteLine("Work method signaled.");
             }

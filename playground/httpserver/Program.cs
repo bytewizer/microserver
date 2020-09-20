@@ -5,17 +5,16 @@ namespace Bytewizer.TinyCLR.WebServer
 {
     class Program
     {
-        private static IMainboard _board;
+        public static IMainboard MainBoard;
 
         static void Main()
         {
             try
             {
-                _board = Mainboard.Initialize();
-                
+                MainBoard = Mainboard.Connect(BoardModel.Duino);
+
                 var server = new HttpServer(options =>
                 {
-                    options.UseMiddleware(new HttpMiddleware());
                     options.UseDeveloperExceptionPage();
                     options.UseFileServer();
                     options.UseMvc();
@@ -24,7 +23,7 @@ namespace Bytewizer.TinyCLR.WebServer
             }
             catch
             {
-                _board?.Dispose();
+                MainBoard?.Dispose();
             }
         }
     }

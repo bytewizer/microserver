@@ -14,7 +14,8 @@ namespace Bytewizer.TinyCLR.WebServer
     public class TestController : Controller
     {
         public IActionResult GetById(int id)
-        {
+        { 
+            
             string response = "<doctype !html><html><head><title>Hello, world!</title>" +
                 "<style>body { background-color: #111 }" +
                 "h1 { font-size:3cm; text-align: center; color: white;}</style></head>" +

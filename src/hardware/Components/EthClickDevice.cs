@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 
 using GHIElectronics.TinyCLR.Pins;
 using GHIElectronics.TinyCLR.Devices.Spi;
@@ -7,12 +8,15 @@ using GHIElectronics.TinyCLR.Devices.Network;
 
 namespace Bytewizer.TinyCLR.Hardware.Components
 {
-    public class EthClickDevice : NetworkDevice, INetworkDevice
+    public class EthClickDevice : NetworkDevice, IEthernetDevice
     {
-        public static EthClickDevice Initialize(HardwareModel model, int slot)
+        EthernetNetworkInterfaceSettings IEthernetDevice.Settings 
+            => Settings as EthernetNetworkInterfaceSettings;
+
+        public static EthClickDevice Initialize(ChipsetModel model, int slot)
         {
             EthClickDevice device = null;
-            if (model == HardwareModel.Sc20100)
+            if (model == ChipsetModel.Sc20100)
             {
                 switch(slot)
                 {
@@ -24,7 +28,7 @@ namespace Bytewizer.TinyCLR.Hardware.Components
                         break;
                 }
             }
-            if (model == HardwareModel.Sc20260)
+            if (model == ChipsetModel.Sc20260)
             {
                 switch (slot)
                 {
@@ -46,6 +50,16 @@ namespace Bytewizer.TinyCLR.Hardware.Components
         public EthClickDevice(NetworkController networkController, GpioPin resetPin)
             : base(networkController, resetPin)
         {
+            Settings = new EthernetNetworkInterfaceSettings
+            {
+                Address = new IPAddress(new byte[] { 192, 168, 1, 100 }),
+                SubnetMask = new IPAddress(new byte[] { 255, 255, 255, 0 }),
+                GatewayAddress = new IPAddress(new byte[] { 192, 168, 1, 1 }),
+                MacAddress = new byte[] { 0x3E, 0x4B, 0x27, 0x21, 0x61, 0x57 }
+            };
+
+            networkController.SetInterfaceSettings(Settings);
+
             Reset();
         }
 

@@ -5,13 +5,13 @@ namespace Bytewizer.TinyCLR.TinyServer
 {
     class Program
     {
-        private static IMainboard _board;
+        private static IMainboard MainBoard;
 
         static void Main()
         {
             try
             {
-                _board = Mainboard.Initialize();
+                MainBoard = Mainboard.Connect(BoardModel.Sc20260D);
 
                 var server = new SocketServer(options =>
                 {
@@ -21,7 +21,7 @@ namespace Bytewizer.TinyCLR.TinyServer
             }
             catch
             {
-                _board?.Dispose();
+                MainBoard?.Dispose();
             }
         }
     }

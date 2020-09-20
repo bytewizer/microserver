@@ -1,23 +1,22 @@
 ﻿using System;
 
-using GHIElectronics.TinyCLR.Pins;
 using Bytewizer.TinyCLR.Hardware.Components;
 using GHIElectronics.TinyCLR.Devices.Gpio;
+using GHIElectronics.TinyCLR.Pins;
 
 namespace Bytewizer.TinyCLR.Hardware.Boards
 {
     /// <summary>
-    /// SC20260D development board.
+    /// FEZ Feather board.
     /// </summary>
-    public sealed class SC20100Board : DisposableObject, IMainboard
+    public sealed class FeatherBoard : DisposableObject, IMainboard
     {
-
         #region Lifetime
 
         /// <summary>
         /// Creates an instance.
         /// </summary>
-        public SC20100Board()
+        public FeatherBoard()
         {
             try
             {
@@ -25,8 +24,7 @@ namespace Bytewizer.TinyCLR.Hardware.Boards
                 HardwareProvider.Initialize();
 
                 // Initialize components
-                Network = EthClickDevice.Initialize(ChipsetModel.Sc20100, 1);
-                Storage = CardDevice.Connect(SC20100.StorageController.SdCard);
+                Network = WifiDevice.Initialize();
                 Led = new LedDevice(SC20100.GpioPin.PE11);
 
             }
@@ -34,7 +32,6 @@ namespace Bytewizer.TinyCLR.Hardware.Boards
             {
                 // Close devices in case partially initialized
                 Network?.Dispose();
-                Storage?.Dispose();
 
                 // Continue error
                 throw;
@@ -57,7 +54,6 @@ namespace Bytewizer.TinyCLR.Hardware.Boards
 
             // Dispose owned objects
             Network?.Dispose();
-            Storage?.Dispose();
         }
 
         #endregion IDisposable
@@ -72,14 +68,9 @@ namespace Bytewizer.TinyCLR.Hardware.Boards
         public ChipsetModel Chipset => ChipsetModel.Sc20100;
 
         /// <summary>
-        /// Ethernet device.
+        /// Wifi device.
         /// </summary>
         public INetworkDevice Network { get; }
-
-        /// <summary>
-        /// Storage device.
-        /// </summary>
-        public IStorageDevice Storage { get; }
 
         /// <summary>
         /// Onboard led device.

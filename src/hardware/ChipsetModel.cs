@@ -3,20 +3,20 @@
     /// <summary>
     /// Defines the specific hardware model of a TinyCLR board.
     /// </summary>
-    public enum HardwareModel
+    public enum ChipsetModel
     {
         /// <summary>
-        /// Unknown board model.
+        /// Unknown chipset model.
         /// </summary>
         Unidentified = 0,
 
         /// <summary>
-        /// SCM20260D development board.
+        /// SCM20260 chipset model.
         /// </summary>
         Sc20260 = 1,
 
         /// <summary>
-        /// SC20100S development board.
+        /// SC20100 chipset model.
         /// </summary>
         Sc20100 = 2,
     }

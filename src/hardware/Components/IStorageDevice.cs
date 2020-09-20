@@ -1,9 +1,10 @@
-﻿namespace Bytewizer.TinyCLR.Hardware.Components
+﻿using System;
+
+namespace Bytewizer.TinyCLR.Hardware.Components
 {
-    public interface IStorageDevice
+    public interface IStorageDevice : IDisposable
     {
         void Mount();
         void Unmount();
-        void Dispose();
     }
 }

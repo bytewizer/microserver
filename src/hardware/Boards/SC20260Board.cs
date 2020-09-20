@@ -1,7 +1,9 @@
 ﻿using System;
 
 using Bytewizer.TinyCLR.Hardware.Components;
+
 using GHIElectronics.TinyCLR.Pins;
+using GHIElectronics.TinyCLR.Devices.Gpio;
 
 namespace Bytewizer.TinyCLR.Hardware.Boards
 {
@@ -10,6 +12,7 @@ namespace Bytewizer.TinyCLR.Hardware.Boards
     /// </summary>
     public sealed class SC20260Board : DisposableObject, IMainboard
     {
+     
         #region Lifetime
 
         /// <summary>
@@ -24,7 +27,8 @@ namespace Bytewizer.TinyCLR.Hardware.Boards
 
                 // Initialize components
                 Network = EthernetDevice.Initialize();
-                Storage = SdCardDevice.Initialize(SC20260.StorageController.SdCard);
+                Storage = CardDevice.Connect(SC20260.StorageController.SdCard);
+                Led = new LedDevice(SC20260.GpioPin.PH11);
             }
             catch
             {
@@ -36,8 +40,6 @@ namespace Bytewizer.TinyCLR.Hardware.Boards
                 throw;
             }
         }
-
-        #region IDisposable
 
         /// <summary>
         /// Frees resources owned by this instance.
@@ -56,16 +58,14 @@ namespace Bytewizer.TinyCLR.Hardware.Boards
             Storage?.Dispose();
         }
 
-        #endregion IDisposable
-
-        #endregion Lifetime
+        #endregion
 
         #region Public Properties
 
         /// <summary>
-        /// Hardware model.
+        /// Hardware chipset model.
         /// </summary>
-        public HardwareModel Model => HardwareModel.Sc20260;
+        public ChipsetModel Chipset => ChipsetModel.Sc20260;
 
         /// <summary>
         /// Ethernet device.
@@ -76,6 +76,11 @@ namespace Bytewizer.TinyCLR.Hardware.Boards
         /// Storage device.
         /// </summary>
         public IStorageDevice Storage { get; }
+        
+        /// <summary>
+        /// Onboard led device.
+        /// </summary>
+        public ILedDevice Led { get; }
 
         #endregion Public Properties
     }

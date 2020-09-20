@@ -60,15 +60,10 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Http\Cookies\CookieBuilder.cs" />
     <Compile Include="Http\Cookies\CookieCollection.cs" />
     <Compile Include="Http\Cookies\CookieEnumerator.cs" />
-    <Compile Include="Http\Cookies\CookieOptions.cs" />
     <Compile Include="Http\Cookies\CookieParser.cs" />
-    <Compile Include="Http\Cookies\CookieSecurePolicy.cs" />
     <Compile Include="Http\Cookies\CookieValue.cs" />
-    <Compile Include="Http\Cookies\SameSiteMode.cs" />
-    <Compile Include="Http\Cookies\SetCookieHeaderValue.cs" />
     <Compile Include="Http\FormFile\IFormCollection.cs" />
     <Compile Include="Http\Cookies\ICookieCollection.cs" />
     <Compile Include="Http\FormFile\IFormFileCollection.cs" />

@@ -108,6 +108,7 @@ namespace Bytewizer.TinyCLR.Http
                 context.Response.StatusCode = StatusCodes.Status200OK;
 
                 var stream = new FileStream(fullPath, FileMode.Open, FileAccess.Read, FileShare.Read);
+
                 context.Response.ContentLength = stream.Length;
                 if (context.Request.Method == HttpMethods.Get)
                 {
@@ -118,8 +119,6 @@ namespace Bytewizer.TinyCLR.Http
                     stream.Close();
                     stream.Dispose();
                 }
-
-                return;
             }
 
             context.Response.StatusCode = StatusCodes.Status304NotModified;

@@ -165,16 +165,6 @@ namespace Bytewizer.TinyCLR.Http
             this[key] = value;
         }
 
-        public void Add(string key, string value, CookieOptions options)
-        {
-            if (options == null)
-            {
-                throw new ArgumentNullException(nameof(options));
-            }
-
-            //TODO:
-        }
-
         /// <summary>
         /// Removes all elements from the collection.
         /// </summary>
@@ -258,15 +248,6 @@ namespace Bytewizer.TinyCLR.Http
                 }
             }
         }
-
-        public void Remove(string key, CookieOptions options)
-        {
-            if (options == null)
-            {
-                throw new ArgumentNullException(nameof(options));
-            }
-        }
-
 
         #region ICollection Members
 
@@ -410,17 +391,7 @@ namespace Bytewizer.TinyCLR.Http
             throw new NotImplementedException();
         }
 
-        public void Append(string key, string value, CookieOptions options)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Delete(string key)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(string key, CookieOptions options)
         {
             throw new NotImplementedException();
         }

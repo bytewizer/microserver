@@ -13,18 +13,18 @@ namespace Bytewizer.TinyCLR.WebServer
 {
     public class HomeController : Controller
     {
-        private static GpioPin _led;
+        //private static GpioPin _led;
         private static ILogger _logger;
 
         private static LoggerFactory loggingFactory;
 
         public HomeController()
         {
-            if (_led == null)
-            {
-                _led = HardwareProvider.Gpio.OpenPin(SC20100.GpioPin.PE11);
-                _led.SetDriveMode(GpioPinDriveMode.Output);
-            }
+            //if (_led == null)
+            //{
+            //    _led = HardwareProvider.Gpio.OpenPin(SC20100.GpioPin.PE11);
+            //    _led.SetDriveMode(GpioPinDriveMode.Output);
+            //}
             if (loggingFactory == null)
             {
                 loggingFactory = new LoggerFactory();
@@ -57,10 +57,8 @@ namespace Bytewizer.TinyCLR.WebServer
 
         public IActionResult Toggle()
         {
-            _logger.LogInformation(100, "/toggle action");
-
-            _led.Write(_led.Read() == GpioPinValue.High ? GpioPinValue.Low : GpioPinValue.High);
-
+            Program.MainBoard.Led.Toggle();
+            
             return Ok();
         }
     }

@@ -64,7 +64,6 @@ static void Main()
 {
     var server = new HttpServer(options =>
     { 
-        options.UseMiddleware(new HttpMiddleware());
         options.UseDeveloperExceptionPage(); // Should be called first in the pipeline.
     });
     server.Start();

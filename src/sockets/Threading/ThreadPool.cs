@@ -6,11 +6,15 @@ using System.Diagnostics;
 namespace Bytewizer.TinyCLR.Threading
 {
     public delegate void WaitCallback(object state);
-
     public delegate void UnhandledThreadPoolExceptionDelegate(object state, Exception ex);
 
     public static class ThreadPool
     {
+        private static int _minThreadCount;
+        private static int _maxThreadCount = 10;
+        private static readonly ArrayList _Threads = new ArrayList();
+        private static readonly Queue _ItemsQueue = new Queue();
+
         static ThreadPool()
         {
             SetMinThreads(3);
@@ -59,11 +63,6 @@ namespace Bytewizer.TinyCLR.Threading
                 return null;
             }
         }
-
-        private static int _minThreadCount;
-        private static int _maxThreadCount = 10;
-        private static readonly ArrayList _Threads = new ArrayList();
-        private static readonly Queue _ItemsQueue = new Queue();
 
         public static int GetMinThreads()
         {

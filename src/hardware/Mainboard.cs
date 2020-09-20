@@ -1,10 +1,12 @@
-﻿namespace Bytewizer.TinyCLR.Hardware
+﻿using Bytewizer.TinyCLR.Hardware.Boards;
+
+namespace Bytewizer.TinyCLR.Hardware
 {
     public class Mainboard
     {
-        public static IMainboard Initialize()
+        public static IMainboard Connect(BoardModel model)
         {
-            var device = DeviceProvider.Connect();
+            var device = DeviceProvider.Connect(model);
             device.Network.Enabled();
 
             return device;

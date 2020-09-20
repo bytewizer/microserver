@@ -30,11 +30,21 @@
         </div>
         <div class="row">
             <div class="col text-center">
-                <button type="button" class="m-2 btn btn-primary btn-lg">Toggle Led</button>
+                <p class="font-weight-bold">{{teamid}} - {{playername}} - {{points}} - {{goals}} - {{assists}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                <button type="button" class="m-2 btn btn-dark btn-lg">Toggle Led</button>
                 <div id="output"></div>
             </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="col text-center">
+                {{button name:"submit", style:"outline"}}
+                <div id="output"></div>
+            </div>
+        </div>
     </div>
 </body>
 

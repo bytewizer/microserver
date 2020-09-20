@@ -59,15 +59,23 @@
     <None Include="..\..\images\package-logo.png" Pack="true" PackagePath="\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Boards\FeatherBoard.cs" />
+    <Compile Include="Boards\DuinoBoard.cs" />
+    <Compile Include="Components\IEthernetDevice.cs" />
+    <Compile Include="Components\ILedDevice.cs" />
+    <Compile Include="Components\IWifiDevice.cs" />
+    <Compile Include="Components\LedDevice.cs" />
+    <Compile Include="Components\WifiDevice.cs" />
     <Compile Include="Components\IStorageDevice.cs" />
-    <Compile Include="Components\SdCardDevice.cs" />
+    <Compile Include="Components\CardDevice.cs" />
     <Compile Include="Components\EthClickDevice.cs" />
     <Compile Include="Components\INetworkDevice.cs" />
     <Compile Include="Components\EthernetDevice.cs" />
     <Compile Include="DeviceProvider.cs" />
     <Compile Include="Components\NetworkDevice.cs" />
+    <Compile Include="BoardModel.cs" />
     <Compile Include="Mainboard.cs" />
-    <Compile Include="HardwareModel.cs" />
+    <Compile Include="ChipsetModel.cs" />
     <Compile Include="HardwareProvider.cs" />
     <Compile Include="IMainboard.cs" />
     <Compile Include="Boards\SC20100Board.cs" />

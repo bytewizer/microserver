@@ -24,7 +24,7 @@ namespace Bytewizer.TinyCLR.Http
         }
 
         public HttpServer(ServerOptionsDelegate configure)
-            : base(configure)
+            : base(configure, new HttpMiddleware())
         {
             context = new HttpContext();
         }

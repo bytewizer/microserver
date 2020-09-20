@@ -13,12 +13,17 @@ namespace Bytewizer.TinyCLR.Hardware
         /// <summary>
         /// Hardware model.
         /// </summary>
-        HardwareModel Model { get; }
+        ChipsetModel Chipset { get; }
         
         /// <summary>
         /// Hardware model.
         /// </summary>
         INetworkDevice Network { get; }
+
+        /// <summary>
+        /// Onboard LED.
+        /// </summary>
+        ILedDevice Led { get; }
 
         #endregion
     }

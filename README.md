@@ -14,7 +14,7 @@ Microserver is a modular server built for TinyCLR OS IoT devices.
 
 ## Web Service
 * Extendable Middleware
-* Header / Cookeie Decoding
+* Header / Cookie Decoding
 * Forms / Files Decoding
 * Developer Execption Pages
 
@@ -60,7 +60,6 @@ static void Main()
 
     var server = new HttpServer(options =>
     {
-        options.UseMiddleware(new HttpSessionMiddleware());
         options.UseDeveloperExceptionPage();
         options.UseFileServer();
         options.UseMvc();

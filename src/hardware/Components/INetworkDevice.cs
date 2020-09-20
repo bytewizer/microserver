@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 
 using GHIElectronics.TinyCLR.Devices.Network;
 
@@ -7,7 +8,7 @@ namespace Bytewizer.TinyCLR.Hardware.Components
     /// <summary>
     /// Ethernet device interface.
     /// </summary>
-    public interface INetworkDevice
+    public interface INetworkDevice : IDisposable
     {
         bool IsConnected { get; }
         bool IsLinkReady { get; }
@@ -16,9 +17,7 @@ namespace Bytewizer.TinyCLR.Hardware.Components
         void Enabled();
         void Reset();
         void UseDHCP();
-        EthernetNetworkInterfaceSettings NetworkSettings { get; }
         void UseStaticIP(IPAddress ip, IPAddress subnet, IPAddress gateway, IPAddress[] dns);
         void UseStaticIP(string ip, string subnet, string gateway, string[] dns);
-        void Dispose();
     }
 }

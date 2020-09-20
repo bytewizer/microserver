@@ -38,6 +38,14 @@ namespace Bytewizer.TinyCLR.Sockets
             })
         { }
 
+        public SocketService(ServerOptionsDelegate configure, IPipelineFilter filter)
+        {
+            var options = new ServerOptions();
+            options.Register(filter);
+            configure(options);
+            _options = options;
+        }
+
         public SocketService(ServerOptionsDelegate configure)
         {
             var options = new ServerOptions();

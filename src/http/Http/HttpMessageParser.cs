@@ -149,11 +149,7 @@ namespace Bytewizer.TinyCLR.Http
                 foreach (CookieValue item in response.Cookies as CookieCollection)
                 {
                     var cookie = item.Value;
-                    outputWriter.Write(string.Concat(
-                                "Set-Cookie: ",
-                                cookie,
-                                "\r\n")
-                                );
+                    outputWriter.Write($"Set-Cookie: {cookie}\r\n");
                 }
             }
 

@@ -37,11 +37,11 @@ namespace Bytewizer.TinyCLR.Hardware
         /// <returns>
         /// Development board hardware model when detected, or null when failed.
         /// </returns>
-        public static HardwareModel Detect()
+        public static ChipsetModel Detect()
         {
             // Return existing board model when present
             if (_board != null)
-                return _board.Model;
+                return _board.Chipset;
 
             // Thread-safe lock
             lock (_lock)
@@ -56,23 +56,21 @@ namespace Bytewizer.TinyCLR.Hardware
                         // Return  model for known device names
                         if (deviceName == "SC20260")
                         {
-                            // Must be a SCM20260D development board
-                            return HardwareModel.Sc20260;
+                            return ChipsetModel.Sc20260;
                         }
                         if (deviceName == "SC20100")
                         {
-                            // Must be a SC20260D development board
-                            return HardwareModel.Sc20100;
+                            return ChipsetModel.Sc20100;
                         }
                     }
 
                     // Unsupported device
-                    return HardwareModel.Unidentified;
+                    return ChipsetModel.Unidentified;
                 }
                 catch
                 {
                     // No hardware found
-                    return HardwareModel.Unidentified;
+                    return ChipsetModel.Unidentified;
                 }
             }
         }
@@ -90,7 +88,7 @@ namespace Bytewizer.TinyCLR.Hardware
         /// The requested hardware model must be the same, otherwise any existing board
         /// is disposed and an attempt made to create a board of the new model.
         /// </remarks>
-        public static IMainboard Connect(HardwareModel model)
+        public static IMainboard Connect(BoardModel model)
         {
             // Thread-safe lock
             lock (_lock)
@@ -98,8 +96,13 @@ namespace Bytewizer.TinyCLR.Hardware
                 // Check existing board when present
                 if (_board != null)
                 {
-                    // Return existing board when present
-                    if (_board.Model == model)
+                    // Detect chipset
+                    var chipset = Detect();
+                    if (chipset == ChipsetModel.Unidentified)
+                        return null;
+
+                    // Return existing board when chipset mataches
+                    if (_board.Chipset == chipset)
                         return _board;
 
                     // Dispose existing board when not null and different model (just in case)
@@ -110,42 +113,32 @@ namespace Bytewizer.TinyCLR.Hardware
                 // Create new board
                 switch (model)
                 {
-                    case HardwareModel.Sc20100:
-                        return _board = new SC20100Board();
-
-                    case HardwareModel.Sc20260:
+                    case BoardModel.Sc20260D:
                         return _board = new SC20260Board();
 
+                    case BoardModel.Sc20100S:
+                        return _board = new SC20100Board();
+
+                    case BoardModel.Bit:
+                        throw new NotImplementedException();
+
+                    case BoardModel.Duino:
+                        return _board = new DuinoBoard();
+
+                    case BoardModel.Feather:
+                        return _board = new FeatherBoard();
+
+                    case BoardModel.Portal:
+                        throw new NotImplementedException();
+                    
+                    case BoardModel.Stick:
+                        throw new NotImplementedException();
+
                     default:
-                        // Invalid value or unsupported
                         throw new ArgumentOutOfRangeException(nameof(model));
                 }
             }
         }
-
-        /// <summary>
-        /// Returns the current <see cref="IMainboard"/> or performs hardware detection then creates it the first time.
-        /// </summary>
-        /// <returns>Hardware interface for the detected model when successful or null when none found.</returns>
-        public static IMainboard Connect()
-        {
-            // Thread-safe lock
-            lock (_lock)
-            {
-                // Return existing board when present
-                if (_board != null)
-                    return _board;
-
-                // Detect model
-                var model = Detect();
-                if (model == HardwareModel.Unidentified)
-                    return null;
-
-                // Create and return interface
-                return Connect(model);
-            }
-        }
-
         #endregion
     }
 }

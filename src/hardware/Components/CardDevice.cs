@@ -5,13 +5,13 @@ using GHIElectronics.TinyCLR.Devices.Storage;
 
 namespace Bytewizer.TinyCLR.Hardware.Components
 {
-    class SdCardDevice : DisposableObject, IStorageDevice
+    class CardDevice : DisposableObject, IStorageDevice
     {
         private readonly StorageController _storageController;
 
-        public static SdCardDevice Initialize(string name)
+        public static CardDevice Connect(string name)
         {
-            var device = new SdCardDevice(name);
+            var device = new CardDevice(name);
 
             try
             {
@@ -24,7 +24,7 @@ namespace Bytewizer.TinyCLR.Hardware.Components
             return device;
         }
 
-        public SdCardDevice(string name)
+        public CardDevice(string name)
         {
             _storageController = StorageController.FromName(name);
         }

@@ -1,23 +1,22 @@
 ﻿using System;
 
-using GHIElectronics.TinyCLR.Pins;
 using Bytewizer.TinyCLR.Hardware.Components;
 using GHIElectronics.TinyCLR.Devices.Gpio;
+using GHIElectronics.TinyCLR.Pins;
 
 namespace Bytewizer.TinyCLR.Hardware.Boards
 {
     /// <summary>
-    /// SC20260D development board.
+    /// FEZ Duino board.
     /// </summary>
-    public sealed class SC20100Board : DisposableObject, IMainboard
+    public sealed class DuinoBoard : DisposableObject, IMainboard
     {
-
         #region Lifetime
 
         /// <summary>
         /// Creates an instance.
         /// </summary>
-        public SC20100Board()
+        public DuinoBoard()
         {
             try
             {
@@ -25,10 +24,9 @@ namespace Bytewizer.TinyCLR.Hardware.Boards
                 HardwareProvider.Initialize();
 
                 // Initialize components
-                Network = EthClickDevice.Initialize(ChipsetModel.Sc20100, 1);
+                Network = WifiDevice.Initialize();
                 Storage = CardDevice.Connect(SC20100.StorageController.SdCard);
                 Led = new LedDevice(SC20100.GpioPin.PE11);
-
             }
             catch
             {
@@ -40,8 +38,6 @@ namespace Bytewizer.TinyCLR.Hardware.Boards
                 throw;
             }
         }
-
-        #region IDisposable
 
         /// <summary>
         /// Frees resources owned by this instance.
@@ -60,9 +56,7 @@ namespace Bytewizer.TinyCLR.Hardware.Boards
             Storage?.Dispose();
         }
 
-        #endregion IDisposable
-
-        #endregion Lifetime
+        #endregion
 
         #region Public Properties
 
@@ -72,7 +66,7 @@ namespace Bytewizer.TinyCLR.Hardware.Boards
         public ChipsetModel Chipset => ChipsetModel.Sc20100;
 
         /// <summary>
-        /// Ethernet device.
+        /// Network device.
         /// </summary>
         public INetworkDevice Network { get; }
 
@@ -87,6 +81,5 @@ namespace Bytewizer.TinyCLR.Hardware.Boards
         public ILedDevice Led { get; }
 
         #endregion Public Properties
-
     }
 }
