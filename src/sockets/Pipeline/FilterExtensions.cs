@@ -1,7 +1,15 @@
-﻿namespace Bytewizer.TinyCLR.Sockets
+﻿namespace Bytewizer.TinyCLR.Sockets.Pipeline
 {
+    /// <summary>
+    /// Contains extension methods for <see cref="FilterDelegate"/>.
+    /// </summary>
     public static class FilterExtensions
     {
+        /// <summary>
+        /// Inserts the <see cref="FilterDelegate"/> as the last node in the collection.
+        /// </summary>
+        /// <param name="array">The <see cref="FilterDelegate"/> array of filters.</param>
+        /// <param name="filter">The <see cref="FilterDelegate"/> to insert.</param>
         public static FilterDelegate[] Append(this FilterDelegate[] array, FilterDelegate filter)
         {
             if (array == null)

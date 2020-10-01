@@ -15,7 +15,7 @@ namespace Bytewizer.TinyCLR.Http
             ParserMode mode = ParserMode.FirstLine;
 
             var body = new StringBuilder();
-            var reader = new StreamReader(context.Session.InputStream);
+            var reader = new StreamReader(context.Channel.InputStream);
            
             string line;
             while ((line = reader.ReadLine()) != null)
@@ -118,12 +118,12 @@ namespace Bytewizer.TinyCLR.Http
 
         public static void Encode(HttpContext context)
         {
-            if (context.Session.InputStream == null)
+            if (context.Channel.InputStream == null)
             {
                 return;
             }
             
-            var outputWriter = new StreamWriter(context.Session.InputStream);
+            var outputWriter = new StreamWriter(context.Channel.InputStream);
 
             var response = context.Response;
 
@@ -160,7 +160,7 @@ namespace Bytewizer.TinyCLR.Http
             if (response.Body != null && response.Body.Length > -1)
             {
                 context.Response.Body.Position = 0;
-                context.Response.Body.CopyTo(context.Session.InputStream);
+                context.Response.Body.CopyTo(context.Channel.InputStream);
                 context.Response.Body.Dispose();
             }
         }

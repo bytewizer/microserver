@@ -2,21 +2,39 @@
 using System.Net;
 using System.Net.Sockets;
 
-namespace Bytewizer.TinyCLR.Sockets
+namespace Bytewizer.TinyCLR.Sockets.Channel
 {
+    /// <summary>
+    /// Represents a socket connection between two end points.
+    /// </summary>
     public class ConnectionInfo
     {
+        /// <summary>
+        /// Get the identity of this channel.
+        /// </summary>
         public string Id { get; internal set; }
 
+        /// <summary>
+        /// Gets address of the local end point.
+        /// </summary>
         public IPAddress LocalIpAddress { get; internal set; }
 
+        /// <summary>
+        /// Gets port of the local end point.
+        /// </summary>
         public int LocalPort { get; internal set; }
 
+        /// <summary>
+        /// Gets address of the connected end point.
+        /// </summary>
         public IPAddress RemoteIpAddress { get; internal set; }
 
+        /// <summary>
+        /// Gets port of the connected end point.
+        /// </summary>
         public int RemotePort { get; internal set; }
         
-        public static ConnectionInfo Set(Socket channel)
+        internal static ConnectionInfo Set(Socket channel)
         {
             return new ConnectionInfo()
             {

@@ -1,4 +1,5 @@
 ﻿using Bytewizer.TinyCLR.Sockets;
+using Bytewizer.TinyCLR.Sockets.Channel;
 
 namespace Bytewizer.TinyCLR.Http
 {
@@ -21,7 +22,7 @@ namespace Bytewizer.TinyCLR.Http
         /// <summary>
         /// Gets information about the underlying connection for this request.
         /// </summary>
-        public ConnectionInfo Connection => Session.Connection;
+        public ConnectionInfo Connection => Channel.Connection;
 
         /// <summary>
         /// Gets the <see cref="HttpRequest"/> object for this request.
@@ -41,7 +42,7 @@ namespace Bytewizer.TinyCLR.Http
         /// <summary>
         /// Gets or sets the object used to manage user session data for this request.
         /// </summary>
-        public SocketSession Session { get; set; } = new SocketSession();
+        public SocketChannel Channel { get; set; } = new SocketChannel();
 
         /// <summary>
         /// Gets or sets security information for the current HTTP request.
@@ -53,7 +54,7 @@ namespace Bytewizer.TinyCLR.Http
         /// </summary>
         public void Abort()
         {
-            Session?.Clear();
+            Channel?.Clear();
         }
     }
 }

@@ -6,16 +6,16 @@ using Bytewizer.TinyCLR.Sockets;
 
 namespace Bytewizer.TinyCLR.TinyServer
 {
-    public class SimpleResponse : PipelineFilter
+    public class HttpResponse : PipelineFilter
     {
         protected override void Invoke(IContext context, RequestDelegate next)
         {
             try
             {
-                if (context.Session.InputStream == null)
+                if (context.Channel.InputStream == null)
                     return;
                 
-                var reader = new StreamReader(context.Session.InputStream);
+                var reader = new StreamReader(context.Channel.InputStream);
 
                 // read the context input stream (required or browser will stall the request)
                 while (reader.Peek() != -1)
@@ -24,13 +24,13 @@ namespace Bytewizer.TinyCLR.TinyServer
                     Debug.WriteLine(line);
                 }
 
-                string response = "HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n" +
+                string response = "HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\nConnection: Close\r\n\r\n" +
                                   "<doctype !html><html><head><meta http-equiv='refresh' content='5'><title>Hello, world!</title>" +
                                   "<style>body { background-color: #111 } h1 { font-size:2cm; text-align: center; color: white;}</style></head>" +
                                   "<body><h1>" + DateTime.Now.Ticks.ToString() + "</h1></body></html>";
 
                 // send the response to browser
-                context.Session.Write(response);           
+                context.Channel.Write(response);           
             }
             catch (Exception ex)
             {
@@ -40,7 +40,7 @@ namespace Bytewizer.TinyCLR.TinyServer
             finally
             {
                 // close the connection once all data is sent (only after the last send)
-                context.Session.Clear();
+                context.Channel.Clear();
             }
         }
     }

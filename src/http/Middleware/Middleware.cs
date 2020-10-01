@@ -1,4 +1,5 @@
 ﻿using Bytewizer.TinyCLR.Sockets;
+using Bytewizer.TinyCLR.Sockets.Pipeline;
 
 namespace Bytewizer.TinyCLR.Http
 {

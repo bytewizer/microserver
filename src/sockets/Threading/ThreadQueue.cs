@@ -4,27 +4,53 @@ using System.Collections;
 
 namespace Bytewizer.TinyCLR.Threading
 {
+	/// <summary>
+	/// Provides a queue of short running sequential thread execution.
+	/// </summary>
 	public class ThreadQueue : IDisposable
 	{
-		private static ThreadQueue instance;
+		private static ThreadQueue _instance;
 
-		private readonly Queue taskQueue = new Queue();
-		private readonly ManualResetEvent queueEvent = new ManualResetEvent(false);
+		private readonly Queue _taskQueue = new Queue();
+		private readonly ManualResetEvent _queueEvent = new ManualResetEvent(false);
         
-		private bool running = true;
+		private bool _running = true;
 
-		public bool ExistQueueEvent { get; private set; } = false;
-
+		/// <summary>
+		/// Initializes a new instance of the <see cref="ThreadQueue"/> for sequential execution threads.
+		/// </summary>
 		public static ThreadQueue Instance
 		{
 			get
 			{
-				if (instance == null)
+				if (_instance == null)
 				{
-					instance = new ThreadQueue();
+					_instance = new ThreadQueue();
 				}
-				return instance;
+				return _instance;
 			}
+		}
+
+		/// <summary>
+		/// Adds an <see cref="Action"/> to execute with <see cref="ThreadPool"/>.
+		/// </summary>
+		/// <param name="task">The action to execute.</param>
+		public void Enqueue(Action task)
+		{
+			lock (_taskQueue)
+			{
+				_taskQueue.Enqueue(task);
+				_queueEvent.Set();
+			}
+		}
+
+		/// <summary>
+		/// Frees resources owned by this instance.
+		/// </summary>
+		public void Dispose()
+		{
+			_running = false;
+			_queueEvent.Set();
 		}
 
 		private ThreadQueue()
@@ -34,21 +60,20 @@ namespace Bytewizer.TinyCLR.Threading
 
 		private void Execute(object obj)
 		{
-			while (queueEvent.WaitOne())
+			while (_queueEvent.WaitOne())
 			{
-				if (!running) { break; }
+				if (!_running) { break; }
 
 				Action actor = null;
-				lock (taskQueue)
+				lock (_taskQueue)
 				{
-					if (taskQueue.Count > 0)
+					if (_taskQueue.Count > 0)
 					{
-						actor = (Action)taskQueue.Dequeue();
+						actor = (Action)_taskQueue.Dequeue();
 					}
 					else
 					{
-						ExistQueueEvent = false;
-						queueEvent.Reset();
+						_queueEvent.Reset();
 					}
 				}
 				if (actor != null)
@@ -59,32 +84,14 @@ namespace Bytewizer.TinyCLR.Threading
 					}
 					catch
 					{
-						lock (taskQueue)
+						lock (_taskQueue)
 						{
-							running = false;
-							taskQueue.Clear();
+							_running = false;
+							_taskQueue.Clear();
 						}
 					}
 				}
 			}
 		}
-
-        public void Enqueue(Action task)
-		{
-			lock (taskQueue)
-			{
-				taskQueue.Enqueue(task);
-				queueEvent.Set();
-				ExistQueueEvent = true;
-			}
-		}
-
-		public void Dispose()
-		{
-			running = false;
-			ExistQueueEvent = false;
-			queueEvent.Set();
-		}
 	}
 }
-

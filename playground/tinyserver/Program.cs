@@ -1,5 +1,6 @@
 ﻿using Bytewizer.TinyCLR.Sockets;
 using Bytewizer.TinyCLR.Hardware;
+using System.Threading;
 
 namespace Bytewizer.TinyCLR.TinyServer
 {
@@ -11,13 +12,18 @@ namespace Bytewizer.TinyCLR.TinyServer
         {
             try
             {
-                MainBoard = Mainboard.Connect(BoardModel.Sc20260D);
-
+                MainBoard = Mainboard.Connect(BoardModel.Duino);
+               
                 var server = new SocketServer(options =>
                 {
-                    options.Register(new SimpleResponse());
+                    options.Register(new HttpResponse());
                 });
                 server.Start();
+                //Thread.Sleep(1000);
+                //server.Stop();
+                //Thread.Sleep(1000);
+                //server.Start();
+                //Thread.Sleep(1000);
             }
             catch
             {

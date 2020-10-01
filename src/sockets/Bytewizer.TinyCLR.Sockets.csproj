@@ -45,6 +45,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Bytewizer.TinyCLR.Sockets.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -60,30 +61,37 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Listener\DisconnectedHandler.cs" />
+    <Compile Include="Listener\ConnectedHandler.cs" />
+    <Compile Include="Listener\SocketExtensions.cs" />
     <Compile Include="Listener\SocketListenerOptionsDelegate.cs" />
     <Compile Include="Pipeline\FilterDelegate.cs" />
     <Compile Include="Pipeline\FilterExtensions.cs" />
     <Compile Include="Pipeline\IPipelineFilter.cs" />
     <Compile Include="Pipeline\IPipelineBuilder.cs" />
-    <Compile Include="Pipeline\PipelineFilter.cs" />
-    <Compile Include="Pipeline\Pipeline.cs" />
+    <Compile Include="PipelineFilter.cs" />
+    <Compile Include="Pipeline\SocketPipeline.cs" />
     <Compile Include="Pipeline\PipelineBuilder.cs" />
-    <Compile Include="Pipeline\RequestDelegate.cs" />
+    <Compile Include="RequestDelegate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Server\ConnectionInfo.cs" />
-    <Compile Include="Server\Context.cs" />
-    <Compile Include="Server\IContext.cs" />
-    <Compile Include="Server\ServerOptions.cs" />
-    <Compile Include="Server\ServerOptionsDelegate.cs" />
-    <Compile Include="Server\SocketSession.cs" />
-    <Compile Include="Server\SocketService.cs" />
-    <Compile Include="Server\SocketServer.cs" />
-    <Compile Include="Server\SslStreamBuilder.cs" />
+    <Compile Include="Channel\ConnectionInfo.cs" />
+    <Compile Include="Context.cs" />
+    <Compile Include="IContext.cs" />
+    <Compile Include="ServerOptions.cs" />
+    <Compile Include="ServerOptionsDelegate.cs" />
+    <Compile Include="Channel\SocketChannel.cs" />
+    <Compile Include="SocketService.cs" />
+    <Compile Include="SocketServer.cs" />
+    <Compile Include="Channel\SslStreamBuilder.cs" />
     <Compile Include="Listener\SocketListener.cs" />
     <Compile Include="Listener\SocketListenerOptions.cs" />
     <Compile Include="Listener\SocketListenerOptionsExtensions.cs" />
+    <Compile Include="Threading\ThreadPoolItem.cs" />
     <Compile Include="Threading\ThreadPool.cs" />
+    <Compile Include="Threading\ThreadPoolThread.cs" />
     <Compile Include="Threading\ThreadQueue.cs" />
+    <Compile Include="Threading\UnhandledThreadPoolExceptionDelegate.cs" />
+    <Compile Include="Threading\WaitCallback.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="GHIElectronics.TinyCLR.Networking">

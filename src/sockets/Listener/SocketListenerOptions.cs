@@ -1,47 +1,92 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
+using System.Threading;
 using System.Net.Sockets;
 using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
-using System.Threading;
 
-namespace Bytewizer.TinyCLR.Sockets
+namespace Bytewizer.TinyCLR.Sockets.Listener
 {
+    /// <summary>
+    /// Represents configuration options of socket specific features.
+    /// </summary>
     public class SocketListenerOptions
     {
-        public IPEndPoint IPEndPoint => EndPoint as IPEndPoint;
+        /// <summary>
+        /// Specifies a network <see cref="IPEndPoint"/> as an IP address and a port number.
+        /// </summary>
+        public IPEndPoint IPEndPoint => EndPoint;
 
+        /// <summary>
+        /// Specifies the possible versions of SslProtocols that the <see cref="SocketListener"/> class represents.
+        /// </summary>
         public SslProtocols SslProtocols { get; set; } = SslProtocols.Tls12;
 
-        // Socket options
+        /// <summary>
+        /// Specifies the type of socket that the <see cref="SocketListener"/> class represents.
+        /// </summary>
         public SocketType SocketType { get; set; } = SocketType.Stream;
 
+        /// <summary>
+        /// Specifies the protocols that the <see cref="SocketListener"/> class represents.
+        /// </summary>
         public ProtocolType ProtocolType { get; set; } = ProtocolType.Tcp;
 
+        /// <summary>
+        /// Specifies the <see cref="SocketListener"/> to be bound to an address that is already in use.
+        /// </summary>
         public bool ReuseAddress { get; set; } = true;
 
+        /// <summary>
+        /// Specifies the <see cref="SocketListener"/> to use keep-alives.
+        /// </summary>
         public bool KeepAlive { get; set; } = false;
 
+        /// <summary>
+        /// Permit sending broadcast messages on the <see cref="SocketListener"/>.
+        /// </summary>
         public bool Broadcast { get; set; } = false;
 
-        public ThreadPriority ThreadPriority { get; set; } = ThreadPriority.AboveNormal;
+        /// <summary>
+        /// Disables the Nagle algorithm for send coalescing.
+        /// </summary>
+        public bool NoDelay { get; set; } = true;
 
-        // Timeout
+        /// <summary>
+        /// Specifies the <see cref="SocketListener"/> send time-out.
+        /// </summary>
         public int SendTimeout { get; set; } = -1; // default value
 
+        /// <summary>
+        /// Specifies the <see cref="SocketListener"/> receive time-out.
+        /// </summary>
         public int ReceiveTimeout { get; set; } = -1; // default value
 
-        // Socket threading
-        public int MinThreads { get; set; } = 3; 
+        /// <summary>
+        /// Specifies the scheduling priority of <see cref="SocketListener"/>.
+        /// </summary>
+        public ThreadPriority ThreadPriority { get; set; } = ThreadPriority.AboveNormal;
 
-        public int MaxThreads { get; set; } = 10; 
+        /// <summary>
+        /// Specifies the minimum number of threads the <see cref="SocketListener"/> thread pool creates on demand,
+        /// as new requests are made, before switching to an algorithm for managing
+        /// thread creation and destruction.
+        /// </summary>
+        public int MinThreads { get; set; } = 3;
 
-        public TimeSpan HandshakeTimeout { get; set; } = TimeSpan.FromSeconds(3);
+        /// <summary>
+        /// Specifies the number of requests to the <see cref="SocketListener"/> thread pool that can be active
+        /// concurrently. All requests above this number remain queued until thread pool threads become available.
+        /// </summary>
+        public int MaxThreads { get; set; } = 25;
 
-        public int MaxCountOfPendingConnections { get; set; } = 255;
+        /// <summary>
+        /// Specifies the maximum length of the <see cref="SocketListener"/> pending connections queue.
+        /// </summary>
+        public int MaxPendingConnections { get; set; } = 10; //255
 
-        public int DefaultKeepAliveMilliseconds { get; set; } = 60000;
-
+        /// <summary>
+        /// Returns a <see cref="string"/> that represents this instance.
+        /// </summary>
         public override string ToString()
         {
             return $"{Scheme}://{IPEndPoint}";

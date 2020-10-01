@@ -1,13 +1,17 @@
 using System;
-using System.Threading;
 using System.Collections;
 using System.Diagnostics;
 
 namespace Bytewizer.TinyCLR.Threading
 {
-    public delegate void WaitCallback(object state);
-    public delegate void UnhandledThreadPoolExceptionDelegate(object state, Exception ex);
-
+    /// <summary>
+    /// Provides a pool of threads that can be used to execute tasks, post work items, 
+    /// process asynchronous I/O, wait on behalf of other threads, and process timers.
+    /// </summary>
+    /// <remarks>
+    /// Only short running operations should be executed by using ThreadPool. Multiple long running operations
+    /// would block the available threads. New operations will not be called at all if all threads are blocked.
+    /// </remarks>
     public static class ThreadPool
     {
         private static int _minThreadCount;
@@ -15,16 +19,34 @@ namespace Bytewizer.TinyCLR.Threading
         private static readonly ArrayList _Threads = new ArrayList();
         private static readonly Queue _ItemsQueue = new Queue();
 
+        /// <summary>
+        /// A delegate which is executed one of the worker threads in unhandeld.
+        /// </summary>
+        public static event UnhandledThreadPoolExceptionDelegate UnhandledThreadPoolException;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ThreadPool"/> class.
+        /// </summary>
         static ThreadPool()
         {
+            // create the initial number of threads
             SetMinThreads(3);
         }
 
+        /// <summary>
+        /// Queues a method for execution. The method executes when a thread pool thread becomes available.
+        /// </summary>
+        /// <param name="callback">A <see cref="WaitCallback"/> that represents the method to be executed.</param>
         public static bool QueueUserWorkItem(WaitCallback callback)
         {
             return QueueUserWorkItem(callback, null);
         }
 
+        /// <summary>
+        /// Queues a method for execution. The method executes when a thread pool thread becomes available.
+        /// </summary>
+        /// <param name="callback">A <see cref="WaitCallback"/> that represents the method to be executed.</param>
+        /// <param name="state">An object containing data to be used by the method.</param>
         public static bool QueueUserWorkItem(WaitCallback callback, object state)
         {
             lock (_ItemsQueue.SyncRoot)
@@ -39,6 +61,66 @@ namespace Bytewizer.TinyCLR.Threading
                     _ItemsQueue.Enqueue(new ThreadPoolItem(callback, state));
                 }
                 return true;
+            }
+        }
+
+        /// <summary>
+        /// Retrieves the minimum number of threads the thread pool creates on demand, as new
+        /// requests are made, before switching to an algorithm for managing thread creation and destruction.
+        /// </summary>
+        public static int GetMinThreads()
+        {
+            return _minThreadCount;
+        }
+
+        /// <summary>
+        /// Sets the minimum number of threads the thread pool creates on demand, as new requests are made,
+        /// before switching to an algorithm for managing thread creation and destruction.
+        /// </summary>
+        /// <param name="workerThreads">The minimum number of worker threads that the thread pool creates on demand.</param>
+        public static bool SetMinThreads(int workerThreads)
+        {
+            _minThreadCount = workerThreads;
+
+            while (_Threads.Count < _minThreadCount)
+            {
+                CreateNewThread();
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Retrieves the number of requests to the thread pool that can be active concurrently. All requests 
+        /// above that number remain queued until thread pool threads become available.
+        /// </summary>
+        public static int GetMaxThreads()
+        {
+            return _maxThreadCount;
+        }
+
+        /// <summary>
+        /// Sets the number of requests to the thread pool that can be active concurrently. All requests above
+        /// that number remain queued until thread pool threads become available.
+        /// </summary>
+        /// <param name="workerThreads">The maximum number of worker threads in the thread pool.</param>
+        public static bool SetMaxThreads(int workerThreads)
+        {
+            _maxThreadCount = workerThreads;
+            return true;
+        }
+
+        /// <summary>
+        /// Shuts down all threads after they have finished theire work.
+        /// </summary>
+        public static void Shutdown()
+        {
+            lock (_Threads)
+            {
+                foreach (ThreadPoolThread thread in _Threads)
+                {
+                    thread.Dispose();
+                }
+                _Threads.Clear();
             }
         }
 
@@ -64,50 +146,11 @@ namespace Bytewizer.TinyCLR.Threading
             }
         }
 
-        public static int GetMinThreads()
-        {
-            return _minThreadCount;
-        }
-
-        public static bool SetMinThreads(int count)
-        {
-            _minThreadCount = count;
-
-            while (_Threads.Count < _minThreadCount)
-            {
-                CreateNewThread();
-            }
-            return true;
-        }
-
-        public static int GetMaxThreads()
-        {
-            return _maxThreadCount;
-        }
-
-        public static bool SetMaxThreads(int count)
-        {
-            _maxThreadCount = count;
-            return true;
-        }
-
         private static void CreateNewThread()
         {
             lock (_Threads)
             {
                 _Threads.Add(new ThreadPoolThread());
-            }
-        }
-
-        public static void Shutdown()
-        {
-            lock (_Threads)
-            {
-                foreach (ThreadPoolThread thread in _Threads)
-                {
-                    thread.Dispose();
-                }
-                _Threads.Clear();
             }
         }
 
@@ -137,90 +180,7 @@ namespace Bytewizer.TinyCLR.Threading
 
         internal static void OnUnhandledThreadPoolException(ThreadPoolItem item, Exception exception)
         {
-            var tmp = UnhandledThreadPoolException;
-            if (tmp != null)
-            {
-                tmp(item.State, exception);
-            }
-        }
-
-        public static event UnhandledThreadPoolExceptionDelegate UnhandledThreadPoolException;
-    }
-
-    internal class ThreadPoolItem
-    {
-        public WaitCallback Callback { get; private set; }
-        public object State { get; private set; }
-
-        public ThreadPoolItem(WaitCallback callback, object state)
-        {
-            Callback = callback;
-            State = state;
-        }
-    }
-
-    internal class ThreadPoolThread : IDisposable
-    {
-        public ThreadPoolThread()
-        {
-            _thread = new Thread(ThreadProc);
-            _thread.Start();
-        }
-
-        private void ThreadProc()
-        {
-            while (_thread != null)
-            {
-                try
-                {
-                    _WaitEvent.WaitOne();
-
-                    if (_thread != null && _item != null)
-                    {
-                        _item.Callback(_item.State);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    ThreadPool.OnUnhandledThreadPoolException(Item, ex);
-                }
-
-                if (_thread != null)
-                {
-                    _WaitEvent.Reset();
-                    _item = null;
-                    IsBusy = ThreadPool.NotifyThreadIdle(this);
-                }
-            }
-        }
-
-        public bool IsBusy { get; set; }
-
-        private ThreadPoolItem _item;
-
-        public ThreadPoolItem Item
-        {
-            get { return _item; }
-            set
-            {
-                _item = value;
-                if (_item != null)
-                {
-                    IsBusy = true;
-                    _WaitEvent.Set();
-                }
-            }
-        }
-
-        private readonly ManualResetEvent _WaitEvent = new ManualResetEvent(false);
-
-        private Thread _thread;
-
-        public void Dispose()
-        {
-            IsBusy = true;
-            _thread = null;
-            _WaitEvent.Set();
+            UnhandledThreadPoolException?.Invoke(item.State, exception);
         }
     }
 }
