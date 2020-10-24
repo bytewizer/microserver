@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
-using System.Diagnostics;
 
 using Bytewizer.TinyCLR.Sockets.Pipeline;
 using Bytewizer.TinyCLR.Sockets.Listener;
@@ -12,15 +11,18 @@ namespace Bytewizer.TinyCLR.Sockets
     /// Represents a base implementation of <see cref="SocketService"/> which uses <see cref="SocketListener"/> for serving requests.
     /// </summary>
     public abstract class SocketService
-    {
-        private readonly ServerOptions _options;
+    {       
         private readonly SocketListener _listener;
-        private readonly IPipelineFilter _pipeline;
 
         /// <summary>
-        /// The context of the request.
+        /// Configuration options of server specific features.
         /// </summary>
-        protected IContext Context = new Context();
+        protected readonly ServerOptions Options;
+
+        /// <summary>
+        /// The socket pipeline used to invoke pipeline fiters.
+        /// </summary>
+        protected readonly IPipelineFilter Pipeline;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SocketService"/> class with pre-configured default options.
@@ -104,10 +106,10 @@ namespace Bytewizer.TinyCLR.Sockets
             
             configure(options);
 
-            _options = options;
-            _listener = new SocketListener(_options.Listener);
-            _listener.ClientConnected += ClientConnected;
-            _pipeline = ((PipelineBuilder)_options.Pipeline).Build();
+            Options = options;
+            _listener = new SocketListener(Options.Listener);
+            _listener.Connected += ClientConnected;
+            Pipeline = ((PipelineBuilder)Options.Pipeline).Build();
         }
 
         /// <summary>
@@ -140,30 +142,14 @@ namespace Bytewizer.TinyCLR.Sockets
             }
         }
 
-        private void ClientConnected(object sender, Socket socket)
-        {
-            var options = _options.Listener;
-            try
-            {
-                using (socket)
-                {
-                    if (options.IsTls)
-                    {
-                        Context.Channel.Assign(socket, options.Certificate, options.SslProtocols);
-                    }
-                    else
-                    {
-                        Context.Channel.Assign(socket);
-                    }
-
-                    _pipeline.Invoke(Context);
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"Failed to accept incoming connection. Exception: { ex.Message } StackTrace: {ex.StackTrace}");
-                return;
-            }
+        /// <summary>
+        /// A client has connected.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="socket">The socket for the connected end point.</param>
+        protected virtual void ClientConnected(object sender, Socket socket)
+        { 
         }
+
     }
 }

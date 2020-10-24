@@ -10,124 +10,118 @@ namespace Bytewizer.Bind
 {
     class Program
     {
-        private static Thread _thread;
-        private static Socket _listener;
-
-        private static bool _active = false;
-
-        private static readonly ManualResetEvent _accept = new ManualResetEvent(false);
-        private static readonly ManualResetEvent _started = new ManualResetEvent(false);
-
         static void Main(string[] args)
         {
-            Start();
-            Thread.Sleep(5000);
-            Stop();
-            Thread.Sleep(5000);
-            Start();
-            Thread.Sleep(5000);
-            Stop();
-            Thread.Sleep(5000);
-            Start();
+            var server = new HttpServer();
+            server.Start();
         }
 
-        public static void Start()
+        public class HttpServer
         {
-            // Don't return until thread that calls Accept is ready to listen
-            _started.Reset();
+            private Thread _thread;
+            private Socket _listener;
 
-            // create the socket listener
-            _listener = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            _listener.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
-            _listener.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, false);
+            private bool _active = false;
+            private readonly ManualResetEvent _acceptEvent = new ManualResetEvent(false);
+            private readonly ManualResetEvent _startedEvent = new ManualResetEvent(false);
 
-            // bind the listening socket to the port
-            IPEndPoint ep = new IPEndPoint(IPAddress.Any, 80);
-            _listener.Bind(ep);
-
-            // start listening
-            _listener.Listen(10);
-
-            _thread = new Thread(() =>
+            public void Start()
             {
-                _active = true;
-                AcceptConnections();
-            });
-            _thread.Priority = ThreadPriority.AboveNormal;
-            _thread.Start();
+                // Don't return until thread that calls Accept is ready to listen
+                _startedEvent.Reset();
 
-            // Waits for thread that calls Accept to start
-            _started.WaitOne();
+                // create the socket listener
+                _listener = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                _listener.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+                _listener.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);
 
-            Debug.WriteLine($"Started socket listener on {_listener.LocalEndPoint}");
-        }
+                // bind the listening socket to the port
+                IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, 80);
+                _listener.Bind(endPoint);
 
-        public static void Stop()
-        {
-            _active = false;
+                // start listening
+                _listener.Listen(5);
 
-            // Signal the accept thread to continue
-            _accept.Set();
-
-            // Wait for thread to exit 
-            _thread.Join();
-            _thread = null;
-
-            // Dispose listener
-            _listener.Close();
-            _listener = null;
-
-            Debug.WriteLine("Stopped socket listener");
-        }
-
-        private static void AcceptConnections()
-        {
-            _started.Set();
-
-            while (_active)
-            {
-                // Set the event to nonsignaled state
-                _accept.Reset();
-
-                Console.WriteLine("Waiting for a connection...");
-                using (var socket = _listener.Accept())
+                _thread = new Thread(() =>
                 {
-                    // Set the event to signaled state
-                    _accept.Set();
+                    _active = true;
+                    AcceptConnections();
+                });
+                _thread.Priority = ThreadPriority.AboveNormal;
+                _thread.Start();
 
-                    // Send response to client
-                    Send(socket);
+                // Waits for thread that calls Accept() to start
+                _startedEvent.WaitOne();
 
-                    // Close connection
-                    socket.Close();
+                Debug.WriteLine($"Started socket listener");
+            }
+
+            public void Stop()
+            {
+                _active = false;
+
+                // Signal the accept thread to continue
+                _acceptEvent.Set();
+
+                // Wait for thread to exit 
+                _thread.Join();
+                _thread = null;
+
+                _listener.Close();
+                _listener = null;
+
+                Debug.WriteLine("Stopped socket listener");
+            }
+
+            private void AcceptConnections()
+            {
+                // Set the started event to signaled state
+                _startedEvent.Set();
+
+                while (_active)
+                {
+                    // Set the accept event to nonsignaled state
+                    _acceptEvent.Reset();
+
+                    Debug.WriteLine("Waiting for a connection...");
+                    using (var remoteSocket = _listener.Accept())
+                    {
+                        // Set the accept event to signaled state
+                        _acceptEvent.Set();
+
+                        // Send response to client
+                        Response(remoteSocket);
+
+                        // Close connection
+                        remoteSocket.Close();
+                    }
+
+                    // Wait until a connection is made before continuing
+                    _acceptEvent.WaitOne();
                 }
 
-                // Wait until a connection is made before continuing
-                _accept.WaitOne();
+                Debug.WriteLine("Exited AcceptConnection()");
             }
 
-            Debug.WriteLine("Exited AcceptConnection()");
-        }
-
-        private static void Send(Socket socket)
-        {
-            var network = new NetworkStream(socket);
-            var reader = new StreamReader(network);
-
-            // read the context input stream (required or browser will stall the request)
-            while (reader.Peek() != -1)
+            private void Response(Socket socket)
             {
-                var line = reader.ReadLine();
-                Debug.WriteLine(line);
+                using var network = new NetworkStream(socket);
+                using var reader = new StreamReader(network);
+                
+                while (reader.Peek() != -1)
+                {
+                    var line = reader.ReadLine();
+                    Debug.WriteLine(line);
+                }
+
+                string response = "HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\nConnection: close\r\n\r\n" +
+                                     "<doctype !html><html><head><title>Hello, world!</title>" +
+                                     "<style>body { background-color: #111 } h1 { font-size:2cm; text-align: center; color: white;}</style></head>" +
+                                     "<body><h1>" + DateTime.Now.Ticks.ToString() + "</h1></body></html>";
+
+                var bytes = Encoding.UTF8.GetBytes(response);
+                network.Write(bytes, 0, bytes.Length);
             }
-
-            string response = "HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\nConnection: close\r\n\r\n" +
-                                 "<doctype !html><html><head><title>Hello, world!</title>" +
-                                 "<style>body { background-color: #111 } h1 { font-size:2cm; text-align: center; color: white;}</style></head>" +
-                                 "<body><h1>" + DateTime.Now.Ticks.ToString() + "</h1></body></html>";
-
-            var bytes = Encoding.UTF8.GetBytes(response);
-            network.Write(bytes, 0, bytes.Length);
         }
     }
 }

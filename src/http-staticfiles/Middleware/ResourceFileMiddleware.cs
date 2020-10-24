@@ -55,6 +55,7 @@ namespace Bytewizer.TinyCLR.Http
         /// Processes a request to determine if it matches a known file and if so serves it.
         /// </summary>
         /// <param name="context">The <see cref="HttpContext"/> that encapsulates all HTTP-specific information about an individual HTTP request.</param>
+        /// <param name="next">The next request handler to be executed.</param>
         protected override void Invoke(HttpContext context, RequestDelegate next)
         {
             var matchUrl = context.Request.Path;

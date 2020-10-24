@@ -8,20 +8,25 @@ namespace Bytewizer.TinyCLR.TinyServer
 {
     public class HttpResponse : PipelineFilter
     {
+        private int counter = 1;
+        
         protected override void Invoke(IContext context, RequestDelegate next)
         {
             try
             {
                 if (context.Channel.InputStream == null)
                     return;
-                
-                var reader = new StreamReader(context.Channel.InputStream);
 
-                // read the context input stream (required or browser will stall the request)
-                while (reader.Peek() != -1)
+                Debug.WriteLine($"Response: # {counter++}");
+
+                using (var reader = new StreamReader(context.Channel.InputStream))
                 {
-                    var line = reader.ReadLine();
-                    Debug.WriteLine(line);
+                    // read the context input stream (required or browser will stall the request)
+                    while (reader.Peek() != -1)
+                    {
+                        var line = reader.ReadLine();
+                        Debug.WriteLine(line);
+                    }
                 }
 
                 string response = "HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\nConnection: Close\r\n\r\n" +
@@ -30,7 +35,7 @@ namespace Bytewizer.TinyCLR.TinyServer
                                   "<body><h1>" + DateTime.Now.Ticks.ToString() + "</h1></body></html>";
 
                 // send the response to browser
-                context.Channel.Write(response);           
+                context.Channel.Write(response);
             }
             catch (Exception ex)
             {

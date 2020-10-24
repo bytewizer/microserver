@@ -37,7 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Filters\PipelineResponse.cs" />
-    <Compile Include="Filters\SimpleResponse.cs" />
+    <Compile Include="Filters\HttpResponse.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -52,10 +52,6 @@
     <None Include="Resources\bytewizer.local_key.pem" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\hardware\Bytewizer.TinyCLR.Hardware.csproj">
-      <Project>{9EC0C1B6-8FF3-4B58-A67B-F613625AFA69}</Project>
-      <Name>Bytewizer.TinyCLR.Hardware</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\sockets\Bytewizer.TinyCLR.Sockets.csproj">
       <Project>{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}</Project>
       <Name>Bytewizer.TinyCLR.Sockets</Name>
@@ -68,6 +64,18 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="GHIElectronics.TinyCLR.Devices.Gpio, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\GHIElectronics.TinyCLR.Devices.Gpio.2.0.0\lib\net452\GHIElectronics.TinyCLR.Devices.Gpio.dll</HintPath>
+    </Reference>
+    <Reference Include="GHIElectronics.TinyCLR.Devices.Network, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\GHIElectronics.TinyCLR.Devices.Network.2.0.0\lib\net452\GHIElectronics.TinyCLR.Devices.Network.dll</HintPath>
+    </Reference>
+    <Reference Include="GHIElectronics.TinyCLR.Devices.Spi, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\GHIElectronics.TinyCLR.Devices.Spi.2.0.0\lib\net452\GHIElectronics.TinyCLR.Devices.Spi.dll</HintPath>
+    </Reference>
+    <Reference Include="GHIElectronics.TinyCLR.Devices.Uart, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\GHIElectronics.TinyCLR.Devices.Uart.2.0.0\lib\net452\GHIElectronics.TinyCLR.Devices.Uart.dll</HintPath>
+    </Reference>
     <Reference Include="GHIElectronics.TinyCLR.IO, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\GHIElectronics.TinyCLR.IO.2.0.0\lib\net452\GHIElectronics.TinyCLR.IO.dll</HintPath>
     </Reference>
@@ -76,6 +84,9 @@
     </Reference>
     <Reference Include="GHIElectronics.TinyCLR.Networking, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\GHIElectronics.TinyCLR.Networking.2.0.0\lib\net452\GHIElectronics.TinyCLR.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="GHIElectronics.TinyCLR.Pins, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\GHIElectronics.TinyCLR.Pins.2.0.0\lib\net452\GHIElectronics.TinyCLR.Pins.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

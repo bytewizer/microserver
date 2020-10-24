@@ -42,6 +42,7 @@ namespace Bytewizer.TinyCLR.Http
         /// path for a later middleware to handle.
         /// </summary>
         /// <param name="context">The <see cref="HttpContext"/> that encapsulates all HTTP-specific information about an individual HTTP request.</param>
+        /// <param name="next">The next request handler to be executed.</param>
         protected override void Invoke(HttpContext context, RequestDelegate next)
         {
             if (ValidateMethod(context) && context.Request.Path == "/")

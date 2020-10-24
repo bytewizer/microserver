@@ -14,8 +14,8 @@ namespace Bytewizer.TinyCLR.BindError
         private static Socket _listener;
 
         private static bool _active = false;
-        private static readonly ManualResetEvent _accept = new ManualResetEvent(false);
-        private static readonly ManualResetEvent _started = new ManualResetEvent(false);
+        private static readonly ManualResetEvent _acceptEvent = new ManualResetEvent(false);
+        private static readonly ManualResetEvent _startedEvent = new ManualResetEvent(false);
 
         static void Main()
         {
@@ -34,7 +34,7 @@ namespace Bytewizer.TinyCLR.BindError
         public static void Start() 
         {
             // Don't return until thread that calls Accept is ready to listen
-            _started.Reset();
+            _startedEvent.Reset();
 
             // create the socket listener
             _listener = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -46,7 +46,7 @@ namespace Bytewizer.TinyCLR.BindError
             _listener.Bind(endPoint);
 
             // start listening
-            _listener.Listen(10);
+            _listener.Listen(5);
 
             _thread = new Thread(() =>
             {
@@ -57,7 +57,7 @@ namespace Bytewizer.TinyCLR.BindError
             _thread.Start();
 
             // Waits for thread that calls Accept() to start
-            _started.WaitOne();
+            _startedEvent.WaitOne();
 
             Debug.WriteLine($"Started socket listener on {_listener.LocalEndPoint}");
         }
@@ -67,7 +67,7 @@ namespace Bytewizer.TinyCLR.BindError
             _active = false;
 
             // Signal the main thread to continue
-            _accept.Set();
+            _acceptEvent.Set();
             
             // Wait for thread to exit 
             _thread.Join(1000);
@@ -82,28 +82,28 @@ namespace Bytewizer.TinyCLR.BindError
         private static void AcceptConnections()
         {
             // Set the started event to signaled state
-            _started.Set();
+            _startedEvent.Set();
 
             while (_active)
             {             
                 // Set the accept event to nonsignaled state
-                _accept.Reset();
+                _acceptEvent.Reset();
 
                 Debug.WriteLine("Waiting for a connection...");
-                using (var socket = _listener.Accept())
+                using (var remoteSocket = _listener.Accept())
                 {
                     // Set the accept event to signaled state
-                    _accept.Set();
+                    _acceptEvent.Set();
                     
                     // Send response to client
-                    Response(socket);
+                    Response(remoteSocket);
 
                     // Close connection
-                    socket.Close();
+                    remoteSocket.Close();
                 }
                 
                 // Wait until a connection is made before continuing
-                _accept.WaitOne();           
+                _acceptEvent.WaitOne();           
             }
 
             Debug.WriteLine("Exited AcceptConnection()");

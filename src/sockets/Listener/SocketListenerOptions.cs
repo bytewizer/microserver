@@ -17,9 +17,19 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
         public IPEndPoint IPEndPoint => EndPoint;
 
         /// <summary>
+        /// Specifies to secure the connection using Tls.
+        /// </summary>
+        public bool IsTls { get; internal set; }
+
+        /// <summary>
         /// Specifies the possible versions of SslProtocols that the <see cref="SocketListener"/> class represents.
         /// </summary>
-        public SslProtocols SslProtocols { get; set; } = SslProtocols.Tls12;
+        public SslProtocols SslProtocols { get; internal set; } = SslProtocols.Tls12;
+
+        /// <summary>
+        /// Specifies the X.509 certificate that the <see cref="SocketListener"/> class represents.
+        /// </summary>
+        public X509Certificate Certificate { get; internal set; }
 
         /// <summary>
         /// Specifies the type of socket that the <see cref="SocketListener"/> class represents.
@@ -80,7 +90,7 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
         public int MaxThreads { get; set; } = 25;
 
         /// <summary>
-        /// Specifies the maximum length of the <see cref="SocketListener"/> pending connections queue.
+        /// Specifies the maximum backlog of the <see cref="SocketListener"/> pending connections queue.
         /// </summary>
         public int MaxPendingConnections { get; set; } = 10; //255
 
@@ -94,11 +104,7 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
 
         // Interal options
         internal IPEndPoint EndPoint { get; set; }
-
-        internal X509Certificate Certificate { get; set; }
-        
-        internal bool IsTls { get; set; }
-
+   
         internal SocketListenerOptions()
         {
             EndPoint = new IPEndPoint(IPAddress.Any, 80);

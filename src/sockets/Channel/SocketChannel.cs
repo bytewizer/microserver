@@ -35,34 +35,34 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
         /// <summary>
         /// Assign a socket to this channel.
         /// </summary>
-        /// <param name="channel">The connected socket for channel.</param>
-        public void Assign(Socket channel)
+        /// <param name="socket">The connected socket for channel.</param>
+        public void Assign(Socket socket)
         {
-            if (channel == null)
-                throw new ArgumentNullException(nameof(channel));
+            if (socket == null)
+                throw new ArgumentNullException(nameof(socket));
 
-            Socket = channel;
-            InputStream = new NetworkStream(channel);
-            OutputStream = new NetworkStream(channel);
-            Connection = ConnectionInfo.Set(channel);
+            Socket = socket;
+            InputStream = new NetworkStream(socket);
+            OutputStream = new NetworkStream(socket);
+            Connection = ConnectionInfo.Set(socket);
         }
 
         /// <summary>
         /// Assign a socket to this channel.
         /// </summary>
-        /// <param name="channel">The connected socket for channel.</param>
+        /// <param name="socket">The connected socket for channel.</param>
         /// <param name="certificate">The X.509 certificate for channel.</param>
         /// <param name="allowedProtocols">The possible versions of ssl protocols channel allows.</param>
-        public void Assign(Socket channel, X509Certificate certificate, SslProtocols allowedProtocols)
+        public void Assign(Socket socket, X509Certificate certificate, SslProtocols allowedProtocols)
         {
-            if (channel == null)
-                throw new ArgumentNullException(nameof(channel));
+            if (socket == null)
+                throw new ArgumentNullException(nameof(socket));
 
             var streamBuilder = new SslStreamBuilder(certificate, allowedProtocols);
 
-            Socket = channel;
-            InputStream = streamBuilder.Build(channel);
-            Connection = ConnectionInfo.Set(channel);
+            Socket = socket;
+            InputStream = streamBuilder.Build(socket);
+            Connection = ConnectionInfo.Set(socket);
         }
 
         /// <summary>
@@ -86,6 +86,11 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
             {
                 Socket.Close();
                 Socket = null;
+            }
+
+            if (Connection != null)
+            {
+                Connection = null;
             }
 
             if (InputStream != null)

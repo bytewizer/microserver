@@ -1,6 +1,5 @@
 ﻿using Bytewizer.TinyCLR.Sockets;
 using Bytewizer.TinyCLR.Hardware;
-using System.Threading;
 
 namespace Bytewizer.TinyCLR.TinyServer
 {
@@ -12,94 +11,105 @@ namespace Bytewizer.TinyCLR.TinyServer
         {
             try
             {
-                MainBoard = Mainboard.Connect(BoardModel.Duino);
-               
+                MainBoard = Mainboard.Connect(BoardModel.Sc20260D);
+
                 var server = new SocketServer(options =>
                 {
                     options.Register(new HttpResponse());
                 });
                 server.Start();
-                //Thread.Sleep(1000);
-                //server.Stop();
-                //Thread.Sleep(1000);
-                //server.Start();
-                //Thread.Sleep(1000);
             }
             catch
             {
                 MainBoard?.Dispose();
             }
-        }
+        }    
     }
 }
 
 
 
 
+//private static void InitializeEthernet()
+//{
+//    var networkController = NetworkController.FromName(SC20260.NetworkController.EthernetEmac);
 
-    //        SetupHttpServer();
-    //            //SetupSecureServer();  // Install self signed browser certs from the certificate folder before running secure server
-    //        }
+//    var networkInterfaceSetting = new EthernetNetworkInterfaceSettings
+//    {
+//        MacAddress = new byte[] { 0x00, 0x8D, 0xA4, 0x49, 0xCD, 0xBD },
+//        IsDhcpEnabled = true,
+//        IsDynamicDnsEnabled = true
+//    };
 
-    //    static void SetupHttpServer()
-    //    {
+//    networkController.SetInterfaceSettings(networkInterfaceSetting);
+//    networkController.SetAsDefaultController();
 
-    //    }
+//    networkController.Enable();
+//}
 
-    //    static void SetupSecureServer()
-    //    {
-    //        // Read certifiacate from project resource
-    //        var X509cert = ReadCertFromResources();
+//        SetupHttpServer();
+//            //SetupSecureServer();  // Install self signed browser certs from the certificate folder before running secure server
+//        }
 
-    //        // Read certificate from SD card
-    //        //var X509cert = ReadCertFromSdCard();
+//    static void SetupHttpServer()
+//    {
 
-    //        var sslserver = new SocketServer(options =>
-    //        {
-    //            options.Listen(IPAddress.Any, 443, listener =>
-    //            {
-    //                listener.UseHttps(X509cert);
-    //            });
-    //            options.Register(new SimpleResponse());
-    //        });
+//    }
 
-    //        sslserver.Start();
-    //    }
+//    static void SetupSecureServer()
+//    {
+//        // Read certifiacate from project resource
+//        var X509cert = ReadCertFromResources();
 
-    //    static X509Certificate ReadCertFromResources()
-    //    {
+//        // Read certificate from SD card
+//        //var X509cert = ReadCertFromSdCard();
 
-    //        var X509cert = new X509Certificate(Resources.GetBytes(Resources.BinaryResources.DeviceCert))
-    //        {
-    //            PrivateKey = Resources.GetBytes(Resources.BinaryResources.DeviceKey)
-    //        };
+//        var sslserver = new SocketServer(options =>
+//        {
+//            options.Listen(IPAddress.Any, 443, listener =>
+//            {
+//                listener.UseHttps(X509cert);
+//            });
+//            options.Register(new SimpleResponse());
+//        });
 
-    //        return X509cert;
-    //    }
+//        sslserver.Start();
+//    }
 
-    //    static X509Certificate ReadCertFromSdCard()
-    //    {
-    //        var storageController = StorageController.FromName(SC20260.StorageController.SdCard);
-    //        var drive = FileSystem.Mount(storageController.Hdc);
+//    static X509Certificate ReadCertFromResources()
+//    {
 
-    //        var certFilename = drive.Name + "\\bytewizer.local.pem";
-    //        FileStream certRead = new FileStream(certFilename, FileMode.Open);
+//        var X509cert = new X509Certificate(Resources.GetBytes(Resources.BinaryResources.DeviceCert))
+//        {
+//            PrivateKey = Resources.GetBytes(Resources.BinaryResources.DeviceKey)
+//        };
 
-    //        var cert = new byte[certRead.Length];
-    //        certRead.Read(cert, 0, cert.Length);
+//        return X509cert;
+//    }
 
-    //        var keyFileName = drive.Name + "\\bytewizer.local_key.pem";
-    //        FileStream keyRead = new FileStream(keyFileName, FileMode.Open);
+//    static X509Certificate ReadCertFromSdCard()
+//    {
+//        var storageController = StorageController.FromName(SC20260.StorageController.SdCard);
+//        var drive = FileSystem.Mount(storageController.Hdc);
 
-    //        var key = new byte[keyRead.Length];
-    //        keyRead.Read(key, 0, key.Length);
+//        var certFilename = drive.Name + "\\bytewizer.local.pem";
+//        FileStream certRead = new FileStream(certFilename, FileMode.Open);
 
-    //        var X509cert = new X509Certificate(cert)
-    //        {
-    //            PrivateKey = key
-    //        };
+//        var cert = new byte[certRead.Length];
+//        certRead.Read(cert, 0, cert.Length);
 
-    //        return X509cert;
-    //    }
-    //}
+//        var keyFileName = drive.Name + "\\bytewizer.local_key.pem";
+//        FileStream keyRead = new FileStream(keyFileName, FileMode.Open);
+
+//        var key = new byte[keyRead.Length];
+//        keyRead.Read(key, 0, key.Length);
+
+//        var X509cert = new X509Certificate(cert)
+//        {
+//            PrivateKey = key
+//        };
+
+//        return X509cert;
+//    }
+//}
 //}

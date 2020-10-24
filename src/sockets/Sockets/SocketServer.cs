@@ -1,4 +1,7 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
+using System.Net.Sockets;
+using System.Diagnostics;
 
 using Bytewizer.TinyCLR.Sockets.Pipeline;
 
@@ -10,8 +13,16 @@ namespace Bytewizer.TinyCLR.Sockets
     public class SocketServer : SocketService
     {
         /// <summary>
+        /// Initializes a default instance of the <see cref="SocketServer"/> class.
+        /// </summary>
+        public SocketServer()
+        {
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="SocketServer"/> class.
         /// </summary>
+        /// <param name="pipeline">The request pipeline to invoke.</param>
         public SocketServer(IPipelineBuilder pipeline)
             : base(pipeline)
         {
@@ -44,6 +55,45 @@ namespace Bytewizer.TinyCLR.Sockets
         public SocketServer(IPAddress address, int port, IPipelineBuilder pipeline)
             : base(address, port, pipeline)
         {
+        }
+
+        /// <summary>
+        /// A client has connected.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="socket">The socket for the connected end point.</param>
+        protected override void ClientConnected(object sender, Socket socket)
+        {
+            try
+            {
+                var context = new Context();
+
+                // Assign socket
+                if (Options.Listener.IsTls)
+                {
+                    context.Channel.Assign(
+                        socket,
+                        Options.Listener.Certificate,
+                        Options.Listener.SslProtocols);
+                }
+                else
+                {
+                    context.Channel.Assign(socket);
+                }
+
+                // Invoke pipeline 
+                Pipeline.Invoke(context);
+
+                if (context != null)
+                {
+                    context = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Failed to accept incoming connection. Exception: { ex.Message } StackTrace: {ex.StackTrace}");
+                return;
+            }
         }
     }
 }

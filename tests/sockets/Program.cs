@@ -1,13 +1,7 @@
-﻿using System;
-using System.Net;
-using System.Security.Cryptography.X509Certificates;
+﻿using Bytewizer.TinyCLR.Sockets;
 
-using Bytewizer.TinyCLR.Sockets;
-using Bytewizer.TinyCLR.Hardware;
-using Bytewizer.TinyCLR.Tests.Sockets.Properties;
-using System.Threading;
-using GHIElectronics.TinyCLR.Native;
-using System.Diagnostics;
+using GHIElectronics.TinyCLR.Pins;
+using GHIElectronics.TinyCLR.Devices.Network;
 
 namespace Bytewizer.TinyCLR.Tests.Sockets
 {
@@ -15,83 +9,34 @@ namespace Bytewizer.TinyCLR.Tests.Sockets
     {
         static void Main()
         {
-
-
-            Mainboard.Initialize();
-            //StartStopServer();
+            InitializeEthernet();
             SetupHttpServer();
-            //SetupSecureServer();
-
-            //var freeRam = Memory.ManagedMemory.FreeBytes;
-            //var usedRam = Memory.ManagedMemory.UsedBytes;
-            //var percent = ((double)(usedRam + freeRam) - freeRam) / (usedRam + freeRam) * 100;
-            //while (true)
-            //{
-            //    Debug.WriteLine($"Free Memory: {freeRam} / Used Memory: {usedRam} {percent}%");
-            //    Thread.Sleep(1000);
-            //}
-
         }
 
-        static void StartStopServer()
+        private static void InitializeEthernet()
         {
-            var server = new SocketServer(options =>
+            var networkController = NetworkController.FromName(SC20260.NetworkController.EthernetEmac);
+
+            var networkInterfaceSetting = new EthernetNetworkInterfaceSettings
             {
-                options.Register(new SimpleResponse());
-            });
-            server.Start();
-            Thread.Sleep(15000);
-            server.Stop();
-            Thread.Sleep(10000);
-            server.Start();
-            //Thread.Sleep(5000);
-            //server.Stop();
-            //Thread.Sleep(5000);
-            //server.Start();
-            //Thread.Sleep(5000);
-            //server.Stop();
-            //Thread.Sleep(5000);
-            //server.Start();
-            //Thread.Sleep(5000);
-            //server.Stop();
-            //Thread.Sleep(5000);
-            //server.Start();
-            //Thread.Sleep(5000);
-            //server.Stop();
-            //Thread.Sleep(5000);
-            //server.Start();
-            //Thread.Sleep(5000);
-            //server.Stop();
-            //Thread.Sleep(5000);
+                MacAddress = new byte[] { 0x00, 0x8D, 0xA4, 0x49, 0xCD, 0xBD },
+                IsDhcpEnabled = true,
+                IsDynamicDnsEnabled = true
+            };
+
+            networkController.SetInterfaceSettings(networkInterfaceSetting);
+            networkController.SetAsDefaultController();
+
+            networkController.Enable();
         }
 
         static void SetupHttpServer()
         {
             var server = new SocketServer(options =>
             {
-                options.Register(new SimpleResponse());
+                options.Register(new HttpResponse());
             });
             server.Start();
-        }
-
-        static void SetupSecureServer()
-        {
-            // Read certifiacate from project resource
-            var X509cert = new X509Certificate(Resources.GetBytes(Resources.BinaryResources.DeviceCert))
-            {
-                PrivateKey = Resources.GetBytes(Resources.BinaryResources.DeviceKey)
-            };
-
-            var sslserver = new SocketServer(options =>
-            {
-                options.Listen(IPAddress.Any, 443, listener =>
-                {
-                    listener.UseHttps(X509cert);
-                });
-                options.Register(new SimpleResponse());
-            });
-
-            sslserver.Start();
         }
     }
 }

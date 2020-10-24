@@ -11,25 +11,26 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
     /// Represents an implementation of the <see cref="SocketListener"/> which listens for remote clients.
     /// </summary>
     public class SocketListener
-    {        
+    {
         private Thread _thread;
         private Socket _listener;
 
         private readonly SocketListenerOptions _options;
-        private readonly ManualResetEvent _acceptSignal = new ManualResetEvent(false);
-        private readonly ManualResetEvent _startedSignal = new ManualResetEvent(false);
+
+        private readonly ManualResetEvent _acceptEvent = new ManualResetEvent(false);
+        private readonly ManualResetEvent _startedEvent = new ManualResetEvent(false);
 
         private static readonly object _lock = new object();
 
         /// <summary>
         /// An event that is raised when a client is connected.
         /// </summary>
-        public event ConnectedHandler ClientConnected = delegate { };
+        public event ConnectedHandler Connected = delegate { };
 
         /// <summary>
         /// An event that is raised when a client is disconnected.
         /// </summary>
-        public event DisconnectedHandler ClientDisconnected = delegate { };
+        public event DisconnectedHandler Disconnected = delegate { };
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SocketListener"/> class.
@@ -38,9 +39,6 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
         public SocketListener(SocketListenerOptions options)
         {
             _options = options;
-
-            ThreadPool.SetMinThreads(_options.MaxThreads);
-            ThreadPool.SetMaxThreads(_options.MaxThreads);
         }
 
         /// <summary>
@@ -56,19 +54,22 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
             // If service was already started the call has no effect
             if (IsActive)
                 return true;
-            
+
+            ThreadPool.SetMinThreads(_options.MaxThreads);
+            ThreadPool.SetMaxThreads(_options.MaxThreads);
+
             lock (_lock)
             {
-
                 try
                 {
                     // Don't return until thread that calls Accept is ready to listen
-                    _startedSignal.Reset();
+                    _startedEvent.Reset();
 
                     _listener = new Socket(AddressFamily.InterNetwork, _options.SocketType, _options.ProtocolType);
                     _listener.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, _options.ReuseAddress);
                     _listener.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, _options.KeepAlive);
                     _listener.SetSocketOption(SocketOptionLevel.Tcp, SocketOptionName.NoDelay, _options.NoDelay);
+                    //_listener.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontLinger, true);
 
                     if (_options.ProtocolType == ProtocolType.Udp)
                     {
@@ -94,7 +95,7 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
                     _thread.Start();
 
                     // Waits for thread that calls Accept to start
-                    _startedSignal.WaitOne();
+                    _startedEvent.WaitOne();
 
                     Debug.WriteLine($"Started socket listener bound on {_options.EndPoint}");
                 }
@@ -116,7 +117,9 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
             // If service was already started the call has no effect
             if (!IsActive)
                 return true;
-            
+
+            ThreadPool.Shutdown();
+
             lock (_lock)
             {
                 IsActive = false;
@@ -124,12 +127,12 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
                 try
                 {
                     // Signal the accept thread to continue
-                    _acceptSignal.Set();
+                    _acceptEvent.Set();
 
                     if (_thread != null)
                     {
                         // Wait for thread to exit
-                        _thread.Join(200);
+                        _thread.Join(1000);
                         _thread = null;
                     }
 
@@ -154,42 +157,42 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
 
         private void AcceptConnections()
         {
-            // Signal the start method to continue
-            _startedSignal.Set();
-
             int retry;
-            Socket remoteSocket;
+
+            // Signal the start method to continue
+            _startedEvent.Set();
 
             while (IsActive)
             {
                 retry = 0;
-                
+
                 try
                 {
-                    // Set the event to nonsignaled state
-                    _acceptSignal.Reset();
+                    // Set the accept event to nonsignaled state
+                    _acceptEvent.Reset();
 
                     // Waiting for a connection
-                    remoteSocket = _listener.Accept();
-                    remoteSocket.SetSocketOption(SocketOptionLevel.Tcp, SocketOptionName.NoDelay, _options.NoDelay); // TODO: Do i need it in both places?
+                    var remoteSocket = _listener.Accept();
 
-                    ThreadQueue.Instance.Enqueue(() => {
-                        
-                        // Signal the accept thread to continue
-                        _acceptSignal.Set();
+                    ThreadPool.QueueUserWorkItem(
+                        new WaitCallback(delegate (object state)
+                        {
+                            // Signal the accept thread to continue
+                            _acceptEvent.Set();
 
-                        ClientConnected(this, remoteSocket);
-                    });
+                            // Invoke the connected handler
+                            Connected(this, remoteSocket);
+                        }));
 
                     // Wait until a connection is made before continuing
-                    _acceptSignal.WaitOne();
+                    _acceptEvent.WaitOne();
                 }
                 catch (SocketException ex)
                 {
                     //The listen socket was closed
                     if (ex.IsIgnorableSocketException())
                     {
-                        ClientDisconnected(this, ex);
+                        Disconnected(this, ex);
                         continue;
                     }
 
@@ -204,17 +207,15 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
                     if (ex is ObjectDisposedException || ex is NullReferenceException)
                         break;
 
-                    ClientDisconnected(this, ex);
+                    Disconnected(this, ex);
 
                     // Signal the accept thread to continue
-                    _acceptSignal.Set();
+                    _acceptEvent.Set();
 
                     // try again
                     continue;
                 }
             }
-
-            ThreadQueue.Instance.Dispose();
         }
     }
 }
