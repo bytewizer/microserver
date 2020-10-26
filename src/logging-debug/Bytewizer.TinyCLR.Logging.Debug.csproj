@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="DebugLogger.cs" />
     <Compile Include="DebugLogger.debug.cs" />
+    <Compile Include="DebugLoggerFactoryExtensions.cs" />
     <Compile Include="DebugLoggerProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

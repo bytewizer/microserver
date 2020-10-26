@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using System.Diagnostics;
 
 namespace Bytewizer.TinyCLR.Logging.Debug
@@ -8,11 +9,26 @@ namespace Bytewizer.TinyCLR.Logging.Debug
     /// </summary>
     internal partial class DebugLogger : ILogger
     {
+        private readonly string _name;
+        private readonly LogLevel _minLevel;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="DebugLogger"/> class.
         /// </summary>
         public DebugLogger(string name)
+            : this(name, LogLevel.Trace)
         {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DebugLogger"/> class.
+        /// </summary>
+        /// <param name="name">The name of the logger.</param>
+        /// <param name="filter">The function used to filter events based on the log level.</param>
+        public DebugLogger(string name, LogLevel minLevel)
+        {
+            _name = string.IsNullOrEmpty(name) ? nameof(DebugLogger) : name;
+            _minLevel = minLevel;
         }
 
         /// <inheritdoc />
@@ -20,7 +36,19 @@ namespace Bytewizer.TinyCLR.Logging.Debug
         {
             // If the filter is null, everything is enabled
             // unless the debugger is not attached
-            return Debugger.IsAttached && logLevel != LogLevel.None;
+            return Debugger.IsAttached &&
+                logLevel != LogLevel.None &&
+                LogFilter(logLevel);
+        }
+
+        private bool LogFilter(LogLevel logLevel)
+        {
+            if (_minLevel <= logLevel)
+            {
+                return true ;
+            }
+
+            return false;
         }
 
         /// <inheritdoc />
@@ -38,14 +66,34 @@ namespace Bytewizer.TinyCLR.Logging.Debug
                 return;
             }
 
-            message = $"{ logLevel }: {message}";
+            var builder = new StringBuilder();
+
+            builder.Append(logLevel);
+            builder.Append(": ");
+
+            if (eventId.Id != 0)
+            {
+                builder.Append(eventId.Id);
+                builder.Append(": ");
+
+                if (!string.IsNullOrEmpty(eventId.Name))
+                {
+                    builder.Append(eventId.Name);
+                    builder.Append(": ");
+                }
+            }
+            builder.Append(_name);
+            builder.Append(": ");
+
+            builder.Append(message);
 
             if (exception != null)
             {
-                message += Environment.NewLine + Environment.NewLine + exception;
+                builder.Append(": ");
+                builder.Append(exception);
             }
 
-            DebugWriteLine(message);
+            DebugWriteLine(builder.ToString());
         }
     }
 }

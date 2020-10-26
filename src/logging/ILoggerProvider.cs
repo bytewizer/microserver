@@ -10,7 +10,6 @@ namespace Bytewizer.TinyCLR.Logging
         /// <summary>
         /// Creates a new <see cref="ILogger"/> instance.
         /// </summary>
-        /// <param name="categoryName">The category name for messages produced by the logger.</param>
         ILogger CreateLogger(string categoryName);
     }
 }

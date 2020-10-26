@@ -38,6 +38,11 @@ namespace Bytewizer.TinyCLR.Logging
 
         private static void LoggerLog(LogLevel logLevel, EventId eventId, ILogger logger, Exception exception, object state, ref ArrayList exceptions)
         {
+            if (logger == null)
+            {
+                return;
+            }
+
             try
             {
                 logger.Log(logLevel, eventId, state, exception);
@@ -82,7 +87,7 @@ namespace Bytewizer.TinyCLR.Logging
                 ThrowLoggingError(exceptions);
             }
 
-            return i < loggers.Length ? true : false;
+            return i < loggers.Length;
         }
 
         private static bool LoggerIsEnabled(LogLevel logLevel, ILogger logger, ref ArrayList exceptions)
@@ -112,10 +117,10 @@ namespace Bytewizer.TinyCLR.Logging
             var msg = new StringBuilder();
             foreach (Exception execption in exceptions)
             {
-                msg.AppendLine(execption.InnerException.ToString());
+                msg.AppendLine(execption.Message.ToString());
             }
             
-            throw new InvalidOperationException($"An error occurred while writing to logger(s). InnerException(s): {msg}");
+            throw new InvalidOperationException($"An error occurred while writing to logger(s). Message(s): {msg}");
         }
     }
 }

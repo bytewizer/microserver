@@ -29,7 +29,7 @@ namespace Bytewizer.TinyCLR.WebServer
             {
                 loggingFactory = new LoggerFactory();
 
-                loggingFactory.AddProvider(new DebugLoggerProvider());
+                loggingFactory.AddDebug();
                 _logger = loggingFactory.CreateLogger(typeof(HomeController));
             }
         }

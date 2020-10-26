@@ -8,7 +8,7 @@ namespace Bytewizer.TinyCLR.TinyServer
 {
     public class HttpResponse : PipelineFilter
     {
-        private int counter = 1;
+        private long counter = 1;
         
         protected override void Invoke(IContext context, RequestDelegate next)
         {

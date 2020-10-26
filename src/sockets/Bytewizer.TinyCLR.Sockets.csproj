@@ -110,6 +110,11 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\logging\Bytewizer.TinyCLR.Logging.csproj">
+      <Project>{D6D13310-C4A1-4409-B0E3-10F29F7FF262}</Project>
+      <Name>Bytewizer.TinyCLR.Logging</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

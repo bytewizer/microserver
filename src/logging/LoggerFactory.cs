@@ -10,7 +10,7 @@ namespace Bytewizer.TinyCLR.Logging
         private readonly Hashtable _loggers = new Hashtable();
         private readonly ArrayList _providerRegistrations = new ArrayList();
 
-        private LoggerFilterOptions _filterOptions;
+        private readonly LoggerFilterOptions _filterOptions;
         private readonly object _sync = new object();
         private bool _disposed;
 
@@ -51,7 +51,7 @@ namespace Bytewizer.TinyCLR.Logging
                 var logger = new Logger() {
                     Loggers = CreateLoggers(categoryName)
                 };
-                logger.MessageLoggers = CreateMessagLoggers(logger.Loggers);
+                logger.MessageLoggers = CreateMessageLoggers(logger.Loggers);
 
                 _loggers[categoryName] = logger;
 
@@ -59,7 +59,7 @@ namespace Bytewizer.TinyCLR.Logging
             }
         }
 
-        private MessageLogger[] CreateMessagLoggers(LoggerInformation[] loggers)
+        private MessageLogger[] CreateMessageLoggers(LoggerInformation[] loggers)
         {
             var messageLoggers = new MessageLogger[loggers.Length];
             
@@ -83,7 +83,7 @@ namespace Bytewizer.TinyCLR.Logging
             var loggers = new LoggerInformation[_providerRegistrations.Count];
             for (var i = 0; i < _providerRegistrations.Count; i++)
             {
-                loggers[i] = new LoggerInformation(((ILoggerProvider)_providerRegistrations[i]), categoryName);
+                loggers[i] = new LoggerInformation((ILoggerProvider)_providerRegistrations[i], categoryName);
             }
             return loggers;
         }

@@ -6,10 +6,21 @@ namespace Bytewizer.TinyCLR.Logging.Debug
     /// </summary>
     public class DebugLoggerProvider : ILoggerProvider
     {
+        private readonly LogLevel _minLevel;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DebugLoggerProvider"/> class.
+        /// </summary>
+        /// <param name="filter">The function used to filter events based on the log level.</param>
+        public DebugLoggerProvider(LogLevel minLevel)
+        {
+            _minLevel = minLevel;
+        }
+
         /// <inheritdoc />
         public ILogger CreateLogger(string name)
         {
-            return new DebugLogger(name);
+            return new DebugLogger(name, _minLevel);
         }
 
         public void Dispose()
