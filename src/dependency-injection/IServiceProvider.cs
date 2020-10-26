@@ -14,6 +14,6 @@ namespace Bytewizer.TinyCLR.DependencyInjection
         /// <returns>
         /// A service object of type serviceType. -or- null if there is no service object of type serviceType.
         /// </returns>
-        Object GetService(Type serviceType);
+        object GetService(Type serviceType);
     }
 }

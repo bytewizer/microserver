@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections;
-using System.Reflection;
+
 using Bytewizer.TinyCLR.DependencyInjection.ServiceLookup;
 
 namespace Bytewizer.TinyCLR.DependencyInjection
@@ -10,20 +10,12 @@ namespace Bytewizer.TinyCLR.DependencyInjection
     /// </summary>
     public sealed class ServiceProvider : IServiceProvider, IDisposable
     {
-        //private readonly IServiceProviderEngine _engine;
-        private readonly IServiceCollection _serviceDescriptors;
-        
-        private readonly Hashtable types = new Hashtable();
+        private readonly IServiceProviderEngine _engine;
 
-        internal ServiceProvider(IServiceCollection serviceDescriptors, ServiceProviderOptions options)
+        internal ServiceProvider(IServiceCollection serviceDescriptors, IServiceProviderEngine engine, ServiceProviderOptions options)
         {
-            _serviceDescriptors = serviceDescriptors;
-
-            foreach (ServiceDescriptor serviceDescriptor in serviceDescriptors)
-            {
-                types[serviceDescriptor.ServiceType] = serviceDescriptor.ImplementationType;
-            }
-
+            _engine = engine;
+            
             if (options.ValidateOnBuild)
             {
                 ArrayList exceptions = null;
@@ -31,7 +23,7 @@ namespace Bytewizer.TinyCLR.DependencyInjection
                 {
                     try
                     {
-                        //_engine.ValidateService(serviceDescriptor);
+                        _engine.ValidateService(serviceDescriptor);
                     }
                     catch (Exception e)
                     {
@@ -49,49 +41,12 @@ namespace Bytewizer.TinyCLR.DependencyInjection
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _engine.Dispose();
         }
 
         public object GetService(Type serviceType)
         {
-            Type implementation = (Type)types[serviceType];
-
-            ConstructorInfo constructor = implementation.GetConstructors()[0];
-            ParameterInfo[] constructorParameters = constructor.GetParameters();
-            if (constructorParameters.Length == 0)
-            {
-                return Activator.CreateInstance(implementation);
-            }
-
-            ArrayList parameters = new ArrayList();
-            foreach (ParameterInfo parameterInfo in constructorParameters)
-            {
-                parameters.Add(GetService(parameterInfo.ParameterType));
-            }
-
-            return constructor.Invoke(parameters.ToArray());
+            return _engine.GetService(serviceType);
         }
-
-        //private static ConstructorInfo[] GetConstructors(Type type)
-        //{
-        //    BindingFlags bindingFlags = BindingFlags.CreateInstance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
-        //    MethodInfo[] methods = type.GetMethods(bindingFlags);
-
-        //    ConstructorInfo[] constructors = new ConstructorInfo[methods.Length];
-        //    for (int i = 0; i < constructors.Length; i++)
-        //    {
-        //        ParameterInfo[] constructorParameters = methods[i].GetParameters();
-
-        //        Type[] parameters = new Type[constructorParameters.Length];
-        //        for (int n = 0; n < parameters.Length; n++)
-        //        {
-        //            parameters[n] = constructorParameters[n].ParameterType;
-        //        }
-
-        //        constructors[i] = methods[i].DeclaringType.GetConstructor(parameters);
-        //    }
-
-        //    return constructors;
-        //}
     }
 }

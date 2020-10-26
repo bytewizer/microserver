@@ -70,9 +70,10 @@
     <Compile Include="ServiceCollection.cs" />
     <Compile Include="ServiceCollectionContainerBuilderExtensions.cs" />
     <Compile Include="ServiceLookup\IServiceProviderEngine.cs" />
+    <Compile Include="ServiceLookup\ServiceProviderEngine.cs" />
     <Compile Include="ServiceProvider.cs" />
-    <Compile Include="ServiceProviderMode.cs" />
     <Compile Include="ServiceProviderOptions.cs" />
+    <Compile Include="SingletonCache.cs" />
     <Compile Include="TypeExtensions.cs.cs" />
   </ItemGroup>
   <ItemGroup>

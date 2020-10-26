@@ -63,64 +63,6 @@ namespace Bytewizer.TinyCLR.DependencyInjection
         }
 
         /// <summary>
-        /// Adds a scoped service of the type specified in <paramref name="serviceType"/> with an
-        /// implementation of the type specified in <paramref name="implementationType"/> to the
-        /// specified <see cref="IServiceCollection"/>.
-        /// </summary>
-        /// <param name="services">The <see cref="IServiceCollection"/> to add the service to.</param>
-        /// <param name="serviceType">The type of the service to register.</param>
-        /// <param name="implementationType">The implementation type of the service.</param>
-        /// <returns>A reference to this instance after the operation has completed.</returns>
-        /// <seealso cref="ServiceLifetime.Scoped"/>
-        public static IServiceCollection AddScoped(
-            this IServiceCollection services,
-            Type serviceType,
-            Type implementationType)
-        {
-            if (services == null)
-            {
-                throw new ArgumentNullException(nameof(services));
-            }
-
-            if (serviceType == null)
-            {
-                throw new ArgumentNullException(nameof(serviceType));
-            }
-
-            if (implementationType == null)
-            {
-                throw new ArgumentNullException(nameof(implementationType));
-            }
-
-            return Add(services, serviceType, implementationType, ServiceLifetime.Scoped);
-        }
-
-        /// <summary>
-        /// Adds a scoped service of the type specified in <paramref name="serviceType"/> to the
-        /// specified <see cref="IServiceCollection"/>.
-        /// </summary>
-        /// <param name="services">The <see cref="IServiceCollection"/> to add the service to.</param>
-        /// <param name="serviceType">The type of the service to register and the implementation to use.</param>
-        /// <returns>A reference to this instance after the operation has completed.</returns>
-        /// <seealso cref="ServiceLifetime.Scoped"/>
-        public static IServiceCollection AddScoped(
-            this IServiceCollection services,
-            Type serviceType)
-        {
-            if (services == null)
-            {
-                throw new ArgumentNullException(nameof(services));
-            }
-
-            if (serviceType == null)
-            {
-                throw new ArgumentNullException(nameof(serviceType));
-            }
-
-            return services.AddScoped(serviceType, serviceType);
-        }
-
-        /// <summary>
         /// Adds a singleton service of the type specified in <paramref name="serviceType"/> with an
         /// implementation of the type specified in <paramref name="implementationType"/> to the
         /// specified <see cref="IServiceCollection"/>.

@@ -74,7 +74,7 @@ namespace Bytewizer.TinyCLR.DependencyInjection
         /// <inheritdoc />
         public override string ToString()
         {
-            var lifetime = $"{nameof(ServiceType)}: {ServiceType} {nameof(Lifetime)}: {Lifetime} ";
+            string lifetime = $"{nameof(ServiceType)}: {ServiceType} {nameof(Lifetime)}: {Lifetime} ";
 
             if (ImplementationType != null)
             {
@@ -120,19 +120,6 @@ namespace Bytewizer.TinyCLR.DependencyInjection
             }
 
             return Describe(service, implementationType, ServiceLifetime.Transient);
-        }
-
-        /// <summary>
-        /// Creates an instance of <see cref="ServiceDescriptor"/> with the specified
-        /// <paramref name="service"/> and <paramref name="implementationType"/>
-        /// and the <see cref="ServiceLifetime.Scoped"/> lifetime.
-        /// </summary>
-        /// <param name="service">The type of the service.</param>
-        /// <param name="implementationType">The type of the implementation.</param>
-        /// <returns>A new instance of <see cref="ServiceDescriptor"/>.</returns>
-        public static ServiceDescriptor Scoped(Type service, Type implementationType)
-        {
-            return Describe(service, implementationType, ServiceLifetime.Scoped);
         }
 
         /// <summary>

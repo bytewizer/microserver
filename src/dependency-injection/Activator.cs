@@ -33,7 +33,7 @@ namespace Bytewizer.TinyCLR.DependencyInjection
 
             if (parameters == null)
             {
-                throw new ArgumentNullException(nameof(parameters));
+                parameters = new object[] { };
             }
 
             return type.GetConstructor(new Type[] { }).Invoke(parameters);
@@ -48,12 +48,12 @@ namespace Bytewizer.TinyCLR.DependencyInjection
 
             if (types == null)
             {
-                throw new ArgumentNullException(nameof(types));
+                types = new Type[] { };
             }
 
             if (parameters == null)
             {
-                throw new ArgumentNullException(nameof(parameters));
+                parameters = new object[] { };
             }
 
             return type.GetConstructor(types).Invoke(parameters);
