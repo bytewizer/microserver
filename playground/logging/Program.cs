@@ -1,8 +1,9 @@
 ﻿using System;
-
+using System.Collections;
+using Bytewizer.TinyCLR.Logging;
 using Bytewizer.TinyCLR.Logging.Debug;
 
-namespace Bytewizer.TinyCLR.Logging
+namespace Bytewizer.Playground.Logging
 {
     class Program
     {
@@ -10,34 +11,19 @@ namespace Bytewizer.TinyCLR.Logging
         
         static void Main()
         {
-            //var filter = new LoggerFilterOptions()
-            //{
-            //    MinLevel = LogLevel.Trace
-            //};
-            //loggerFactory = new LoggerFactory(filter);
+            var filter = new LoggerFilterOptions()
+            {
+                MinLevel = LogLevel.Information
+            };
 
-            loggerFactory = new LoggerFactory();
-            //loggerFactory.AddDebug();
+            var provider = new ArrayList
+            {
+                new DebugLoggerProvider(LogLevel.Information)
+            };
+
+            loggerFactory = new LoggerFactory(provider, filter);
 
             TestLoggerExtensions();
-            //TestLogger();
-        }
-
-        private static void TestLogger()
-        {
-            ILogger logger = loggerFactory.CreateLogger(nameof(TestLogger));
-
-            var id = new EventId(10, "event id name");
-            logger.Log(LogLevel.Information, id, "event id message");
-
-            try 
-            {
-                throw new NullReferenceException();
-            }
-            catch (Exception ex)
-            {
-                logger.Log(LogLevel.Error, id, ex, "message");
-            }         
         }
 
         private static void TestLoggerExtensions()
@@ -53,3 +39,21 @@ namespace Bytewizer.TinyCLR.Logging
         }
     }
 }
+
+
+//private static void TestLogger()
+//{
+//    ILogger logger = loggerFactory.CreateLogger(nameof(TestLogger));
+
+//    var id = new EventId(10, "event id name");
+//    logger.Log(LogLevel.Information, id, "event id message");
+
+//    try 
+//    {
+//        throw new NullReferenceException();
+//    }
+//    catch (Exception ex)
+//    {
+//        logger.Log(LogLevel.Error, id, ex, "message");
+//    }         
+//}
