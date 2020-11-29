@@ -53,8 +53,6 @@ namespace Bytewizer.TinyCLR.Hardware.Components
         {
             Settings = new WiFiNetworkInterfaceSettings
             {
-                Ssid = "crytek-guest",
-                Password = "ricerice",
                 Address = new IPAddress(new byte[] { 192, 168, 1, 100 }),
                 SubnetMask = new IPAddress(new byte[] { 255, 255, 255, 0 }),
                 GatewayAddress = new IPAddress(new byte[] { 192, 168, 1, 1 }),
