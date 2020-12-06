@@ -61,10 +61,11 @@ namespace Bytewizer.TinyCLR.Http.Header
                     return null;
                 }
 
+                var searchKey = key.ToLower();
                 for (int i = 0; i < Count; i++)
                 {
                     HeaderValue kvp = (HeaderValue)_pairs[i];
-                    if (kvp.Key == key)
+                    if (kvp.Key.ToLower() == searchKey)
                     {
                         return kvp.Value;
                     }
@@ -78,10 +79,11 @@ namespace Bytewizer.TinyCLR.Http.Header
                     _pairs = new ArrayList();
                 }
 
+                var searchKey = key.ToLower();
                 for (int i = 0; i < Count; i++)
                 {
                     HeaderValue kvp = (HeaderValue)_pairs[i];
-                    if (kvp.Key == key)
+                    if (kvp.Key.ToLower() == searchKey)
                     {
                         kvp.Value = value;
                         return;
@@ -222,7 +224,7 @@ namespace Bytewizer.TinyCLR.Http.Header
                 _pairs = new ArrayList();
             }
 
-            this[key] = value;
+            this[key] = value.Trim();
         }
 
         /// <summary>
@@ -247,7 +249,17 @@ namespace Bytewizer.TinyCLR.Http.Header
                 return false;
             }
 
-            return _pairs.Contains(key);
+            var searchKey = key.ToLower();
+            for (int i = 0; i < Count; i++)
+            {
+                HeaderValue kvp = (HeaderValue)_pairs[i];
+                if (kvp.Key.ToLower() == searchKey)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -265,16 +277,19 @@ namespace Bytewizer.TinyCLR.Http.Header
         {
             if (key == null) throw new ArgumentNullException(nameof(key));
 
-            var item = this[key];
-
-            if (item == null)
+            var searchKey = key.ToLower();
+            for (int i = 0; i < Count; i++)
             {
-                value = default;
-                return false;
+                HeaderValue kvp = (HeaderValue)_pairs[i];
+                if (kvp.Key.ToLower() == searchKey)
+                {
+                    value = kvp.Value;
+                    return true;
+                }
             }
 
-            value = item;
-            return true;
+            value = default;
+            return false;
         }
 
         /// <summary>
