@@ -12,6 +12,7 @@ on:
       - '!*.md'
       - '!LICENSE'
 env:
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
   CONFIGURATION: 'Release'
   VERBOSITY:  'Normal'
 
