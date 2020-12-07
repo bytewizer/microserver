@@ -31,9 +31,9 @@ namespace Bytewizer.Playground.Pipeline
             {
                 var ctx = context as Context;
 
-                Debug.WriteLine("Module A: Code executed before 'next'");
+                Debug.WriteLine("Module 1: Code executed before 'next'");
                 next(context);
-                Debug.WriteLine("Module A: Code executed after 'next'");
+                Debug.WriteLine("Module 1: Code executed after 'next'");
                 Debug.WriteLine(ctx.Message);
             }
         }
@@ -42,7 +42,7 @@ namespace Bytewizer.Playground.Pipeline
         {
             protected override void Invoke(IContext context, RequestDelegate next)
             {
-                Debug.WriteLine("Module B: Code executed before 'next'");
+                Debug.WriteLine("Module 2: Code executed before 'next'");
 
                 // if you do not include the 'next' delegate in the module. Execution will turn around in
                 // the pipeline skipping down stream modules.  
@@ -53,10 +53,10 @@ namespace Bytewizer.Playground.Pipeline
                 }
                 else
                 {
-                    Debug.WriteLine("Skipping module C in pipeline and turning back");
+                    Debug.WriteLine("Skipping module 2 in pipeline and turning back");
                 }
 
-                Debug.WriteLine("Module B: Code executed after 'next'");
+                Debug.WriteLine("Module 2: Code executed after 'next'");
             }
         }
 
@@ -64,9 +64,9 @@ namespace Bytewizer.Playground.Pipeline
         {
             protected override void Invoke(IContext context, RequestDelegate next)
             {
-                Debug.WriteLine("Module C: Code executed before 'next'");
+                Debug.WriteLine("Module 3: Code executed before 'next'");
                 next(context); // this is optional and skipped in the last module of the pipeline
-                Debug.WriteLine("Module C: Code executed after 'next'");
+                Debug.WriteLine("Module 3: Code executed after 'next'");
             }
         }
     }

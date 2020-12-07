@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="BackgroundService.cs" />
     <Compile Include="HostBuilderContext.cs" />
+    <Compile Include="HostConfigAction.cs" />
     <Compile Include="HostingAbstractionsHostExtensions.cs" />
     <Compile Include="IHost.cs" />
     <Compile Include="IHostBuilder.cs" />
@@ -85,6 +86,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bytewizer.Extensions.Configuration.Abstractions\Bytewizer.Extensions.Configuration.Abstractions.csproj">
+      <Project>{B9007D79-7998-45FC-A72C-1160CAA10768}</Project>
+      <Name>Bytewizer.Extensions.Configuration.Abstractions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bytewizer.Extensions.DependencyInjection.Abstractions\Bytewizer.Extensions.DependencyInjection.Abstraction.csproj">
       <Project>{F5997E37-7348-4FA6-9103-990D9906DA4F}</Project>
       <Name>Bytewizer.Extensions.DependencyInjection.Abstraction</Name>

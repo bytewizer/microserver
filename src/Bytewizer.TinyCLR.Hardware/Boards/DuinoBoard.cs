@@ -9,7 +9,7 @@ namespace Bytewizer.TinyCLR.Hardware.Boards
     /// <summary>
     /// FEZ Duino board.
     /// </summary>
-    public sealed class DuinoBoard : DisposableObject, IMainboard
+    public sealed class DuinoBoard : DisposableObject, IHardware
     {
         #region Lifetime
 

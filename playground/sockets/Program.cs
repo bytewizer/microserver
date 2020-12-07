@@ -5,7 +5,7 @@ namespace Bytewizer.Playground.Sockets
 {
     class Program
     {
-        private static IMainboard MainBoard;
+        private static IHostHardware MainBoard;
 
         static void Main()
         {

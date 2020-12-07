@@ -7,7 +7,7 @@ using Bytewizer.TinyCLR.Hardware.Boards;
 namespace Bytewizer.TinyCLR.Hardware
 {
     /// <summary>
-    /// Hardware device provider for <see cref="IMainboard"/> compatible boards.
+    /// Hardware device provider for <see cref="IHardware"/> compatible boards.
     /// </summary>
     /// <remarks>
     /// Starting point from which consumers can gain access to all hardware devices
@@ -25,7 +25,7 @@ namespace Bytewizer.TinyCLR.Hardware
         /// <summary>
         /// Currently active board.
         /// </summary>
-        private static IMainboard _board;
+        private static IHardware _board;
 
         #endregion
 
@@ -80,7 +80,7 @@ namespace Bytewizer.TinyCLR.Hardware
         #region Factory
 
         /// <summary>
-        /// Returns the current <see cref="IMainboard"/> or creates it the first time.
+        /// Returns the current <see cref="IHardware"/> or creates it the first time.
         /// </summary>
         /// <param name="model">Hardware model.</param>
         /// <returns>Hardware interface for the requested model when successful.</returns>
@@ -88,7 +88,7 @@ namespace Bytewizer.TinyCLR.Hardware
         /// The requested hardware model must be the same, otherwise any existing board
         /// is disposed and an attempt made to create a board of the new model.
         /// </remarks>
-        public static IMainboard Connect(BoardModel model)
+        public static IHardware Connect(BoardModel model)
         {
             // Thread-safe lock
             lock (_lock)

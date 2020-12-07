@@ -9,10 +9,12 @@ namespace Bytewizer.TinyCLR.DependencyInjection
     /// </summary>
     public sealed class ServiceProvider : IServiceProvider, IDisposable
     {
-        internal Hashtable ResolvedServices { get; } = new Hashtable();
+        internal IServiceCollection _serviceDescriptors;
 
         internal ServiceProvider(IServiceCollection serviceDescriptors, ServiceProviderOptions options)
         {
+            _serviceDescriptors = serviceDescriptors;
+            
             if (options.ValidateOnBuild)
             {
                 ArrayList exceptions = null;
@@ -35,47 +37,53 @@ namespace Bytewizer.TinyCLR.DependencyInjection
                 }
             }
 
-            foreach (ServiceDescriptor serviceDescriptor in serviceDescriptors)
-            {
-                lock (ResolvedServices)
-                {
-                    ResolvedServices[serviceDescriptor.ServiceType] = serviceDescriptor;
-                }
-            }
-            ResolvedServices.Add(typeof(IServiceProvider), new ServiceDescriptor(typeof(IServiceProvider), this));
+            _serviceDescriptors.Add(new ServiceDescriptor(typeof(IServiceProvider), this));
+
         }
 
-        /// <summary>
-        /// Gets the service object of the specified type.
-        /// </summary>
-        /// <param name="serviceType">The type of the service to get.</param>
-        /// <returns>The service that was produced.</returns>
+        /// <inheritdoc />
+        public IEnumerable GetServices(Type serviceType)
+        {
+            ArrayList services = new ArrayList();
+           
+            foreach (ServiceDescriptor serviceDescriptor in _serviceDescriptors)
+            {
+                if (serviceDescriptor.ServiceType == serviceType)
+                {
+                    if (serviceDescriptor.Lifetime == ServiceLifetime.Singleton
+                      & serviceDescriptor.ImplementationInstance != null)
+                    {
+                        services.Add(serviceDescriptor.ImplementationInstance);
+                    }
+                    else
+                    {
+                        var instance = Resolve(serviceDescriptor.ImplementationType);
+                        {
+                            lock (_serviceDescriptors)
+                            {
+                                serviceDescriptor.ImplementationInstance = instance;
+                            }
+                        }
+
+                        services.Add(instance);
+                    }
+                }
+            }
+
+            return services;
+        }
+
+        /// <inheritdoc />
         public object GetService(Type serviceType)
         {
-            ServiceDescriptor serviceDescriptor = (ServiceDescriptor)ResolvedServices[serviceType];
-
-            if (serviceDescriptor == null)
+            var services = (ArrayList)GetServices(serviceType);
+            if (services.Count == 0)
             {
                 return null;
             }
 
-            if (serviceDescriptor.Lifetime == ServiceLifetime.Singleton
-                    & serviceDescriptor.ImplementationInstance != null)
-            {
-                return serviceDescriptor.ImplementationInstance;
-            }
-            else
-            {
-                var instance = Resolve(serviceDescriptor.ImplementationType);
-                {
-                    lock (ResolvedServices)
-                    {
-                        ResolvedServices[serviceDescriptor.ServiceType] = new ServiceDescriptor(serviceType, instance);
-                    }
-                }
-
-                return instance;
-            }
+            // returns the last added service of this type
+            return services[services.Count - 1];
         }
 
         public void Dispose()

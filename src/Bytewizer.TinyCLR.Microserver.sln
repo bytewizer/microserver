@@ -37,6 +37,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Mvc"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Routing", "Bytewizer.TinyCLR.Http.Routing\Bytewizer.TinyCLR.Http.Routing.csproj", "{C57CD6AF-268A-46E1-BDD4-073A6B69B5A5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.Extensions.Http", "Bytewizer.Extensions.Http\Bytewizer.Extensions.Http.csproj", "{41658A59-33BF-420C-8F11-4E964DDAD29D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.Extensions.Sockets", "Bytewizer.Extensions.Sockets\Bytewizer.Extensions.Sockets.csproj", "{542CA79C-1787-4A74-B818-0A8E9324C1F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.Extensions.Hardware", "Bytewizer.Extensions.Hardware\Bytewizer.Extensions.Hardware.csproj", "{234C971F-8F66-4730-9E82-7E21F0D93899}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +117,18 @@ Global
 		{C57CD6AF-268A-46E1-BDD4-073A6B69B5A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C57CD6AF-268A-46E1-BDD4-073A6B69B5A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C57CD6AF-268A-46E1-BDD4-073A6B69B5A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41658A59-33BF-420C-8F11-4E964DDAD29D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41658A59-33BF-420C-8F11-4E964DDAD29D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41658A59-33BF-420C-8F11-4E964DDAD29D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41658A59-33BF-420C-8F11-4E964DDAD29D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{542CA79C-1787-4A74-B818-0A8E9324C1F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{542CA79C-1787-4A74-B818-0A8E9324C1F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{542CA79C-1787-4A74-B818-0A8E9324C1F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{542CA79C-1787-4A74-B818-0A8E9324C1F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{234C971F-8F66-4730-9E82-7E21F0D93899}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{234C971F-8F66-4730-9E82-7E21F0D93899}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{234C971F-8F66-4730-9E82-7E21F0D93899}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{234C971F-8F66-4730-9E82-7E21F0D93899}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -70,7 +70,7 @@ namespace Bytewizer.TinyCLR.DependencyInjection
         public Type ImplementationType { get; }
 
         /// <inheritdoc />
-        public object ImplementationInstance { get; }
+        public object ImplementationInstance { get; set; }
 
         /// <inheritdoc />
         public override string ToString()

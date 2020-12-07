@@ -10,7 +10,7 @@ namespace Bytewizer.TinyCLR.Hardware.Boards
     /// <summary>
     /// SC20260D development board.
     /// </summary>
-    public sealed class SC20260Board : DisposableObject, IMainboard
+    public sealed class SC20260Board : DisposableObject, IHardware
     {
      
         #region Lifetime

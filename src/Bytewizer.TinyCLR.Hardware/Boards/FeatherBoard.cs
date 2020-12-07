@@ -9,7 +9,7 @@ namespace Bytewizer.TinyCLR.Hardware.Boards
     /// <summary>
     /// FEZ Feather board.
     /// </summary>
-    public sealed class FeatherBoard : DisposableObject, IMainboard
+    public sealed class FeatherBoard : DisposableObject, IHardware
     {
         #region Lifetime
 

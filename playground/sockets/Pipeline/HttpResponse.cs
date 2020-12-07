@@ -47,7 +47,7 @@ namespace Bytewizer.Playground.Sockets
             }
             finally
             {
-                // close the connection once all data is sent (only after the last send)
+                // clear the connection once all data is sent (only after the last send)
                 ctx.Channel.Clear();
             }
         }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 
 using Bytewizer.TinyCLR.Logging;
 
@@ -8,8 +7,6 @@ namespace Bytewizer.TinyCLR.Hosting.Internal
     internal class Host : IHost, IDisposable
     {
         private readonly ILogger _logger;
-
-        private readonly ArrayList _hostedServices = new ArrayList();
 
         public Host(IServiceProvider services, ILoggerFactory loggerFactory)
         {
@@ -36,12 +33,10 @@ namespace Bytewizer.TinyCLR.Hosting.Internal
         {
             _logger.Starting();
 
-            var service = Services.GetService(typeof(IHostedService));
-            _hostedServices.Add(service);
-
-            foreach (IHostedService hostedService in _hostedServices)
+            var hostedServices = Services.GetServices(typeof(IHostedService));
+            foreach (IHostedService hostedService in hostedServices)
             {
-                hostedService.StartAsync();
+                hostedService.Start();
             }
 
            _logger.Started();

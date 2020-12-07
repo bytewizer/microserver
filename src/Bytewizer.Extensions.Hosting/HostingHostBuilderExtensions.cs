@@ -38,14 +38,5 @@ namespace Bytewizer.TinyCLR.Hosting
         {
             return hostBuilder.ConfigureServices((context, collection) => collection.AddLogging(builder => configureLogging(builder)));
         }
-
-        /// <summary>
-        /// Runs an application and block the calling thread until host shutdown.
-        /// </summary>
-        /// <param name="host">The <see cref="IHost"/> to run.</param>
-        //public static void RunAsync(this IHost host)
-        //{
-        //    host.Run();
-        //}
     }
 }

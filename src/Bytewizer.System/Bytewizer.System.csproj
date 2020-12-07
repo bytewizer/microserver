@@ -64,6 +64,8 @@
     <Compile Include="DisposableObject.cs" />
     <Compile Include="IServiceProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Threading\CancellationTokenSource.cs" />
+    <Compile Include="Threading\CancellationToken.cs" />
     <Compile Include="Threading\ThreadPool.cs" />
     <Compile Include="Threading\ThreadPoolItem.cs" />
     <Compile Include="Threading\ThreadPoolThread.cs" />

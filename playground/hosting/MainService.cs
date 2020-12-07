@@ -1,4 +1,4 @@
-﻿
+﻿using System.Threading;
 using Bytewizer.TinyCLR.Hosting;
 using Bytewizer.TinyCLR.Logging;
 
@@ -16,7 +16,7 @@ namespace Bytewizer.Playground.Hosting
 
         public ILogger Logger { get; }
 
-        protected override void ExecuteAsync()
+        protected override void ExecuteAsync(CancellationToken stoppingToken)
         {
             Logger.LogInformation("Hit ExecuteAsync()");
 

@@ -1,12 +1,12 @@
-﻿using Bytewizer.TinyCLR.Hardware.Components;
-using System;
+﻿using System;
+using Bytewizer.TinyCLR.Hardware.Components;
 
 namespace Bytewizer.TinyCLR.Hardware
 {
     /// <summary>
     /// Common hardware interface to all TinyCLR devices.
     /// </summary>
-    public interface IMainboard : IDisposable
+    public interface IHardware : IDisposable
     {
         #region General
 

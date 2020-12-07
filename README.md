@@ -10,7 +10,7 @@ Microserver is a modular server built for TinyCLR OS IoT devices.
 * Extendable Pipeline
 * SSL Transport Support
 
-<a href="https://github.com/microcompiler/microserver/tree/master/src/sockets">More Information</a>
+<a href="https://github.com/microcompiler/microserver/tree/master/src/Bytewizer.TinyCLR.Sockets">More Information</a>
 
 ## Web Service
 * Extendable Middleware
@@ -18,7 +18,7 @@ Microserver is a modular server built for TinyCLR OS IoT devices.
 * Forms / Files Decoding
 * Developer Execption Pages
 
-<a href="https://github.com/microcompiler/microserver/tree/master/src/http">More Information</a>
+<a href="https://github.com/microcompiler/microserver/tree/master/src/Bytewizer.TinyCLR.Http">More Information</a>
 
 ## Model-View-Controllers (MVC)
 * Controllers
@@ -27,18 +27,18 @@ Microserver is a modular server built for TinyCLR OS IoT devices.
 * Stubble View Engine
 * JSON Integration
 
-<a href="https://github.com/microcompiler/microserver/tree/master/src/http-mvc">More Information</a>
+<a href="https://github.com/microcompiler/microserver/tree/master/src/Bytewizer.TinyCLR.Http.Mvc">More Information</a>
 ## Static File Handling
 * Storage / Resource File Serving
 * Default File Routing
 
-<a href="https://github.com/microcompiler/microserver/tree/master/src/http-staticfiles">More Information</a>
+<a href="https://github.com/microcompiler/microserver/tree/master/src/Bytewizer.TinyCLR.Http.StaticFiles">More Information</a>
 
 ## Authentication
 * Basic Authentication
 * Digest Authentication
 
-<a href="https://github.com/microcompiler/microserver/tree/master/src/http-authentication">More Information</a>
+<a href="https://github.com/microcompiler/microserver/tree/master/src/Bytewizer.TinyCLR.Http.Authentication">More Information</a>
 
 ## Requirements
 
@@ -49,6 +49,9 @@ using SC20100S development board.
 ## Getting Started
 
 **Work in Progress!** As we encourage users to play with the samples and test programs, this project has not yet reached a stable state. See the [Playground Project](https://github.com/microcompiler/microserver/tree/master/playground) for an example of how to use these packages.
+
+## Give a Star! :star:
+If you like or are using this project to start your solution, please give it a star. Thanks!
 
 ### Getting Started
 
