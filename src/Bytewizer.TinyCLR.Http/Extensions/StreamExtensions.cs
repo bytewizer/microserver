@@ -7,7 +7,8 @@ namespace Bytewizer.TinyCLR.Http.Extensions
     {
         public static void CopyTo(this Stream src, Stream dest)
         {
-            int size = (src.CanSeek) ? Math.Min((int)(src.Length - src.Position), 0x2000) : 0x2000;
+            int maxChunkSize = 0x100;
+            int size = (src.CanSeek) ? Math.Min((int)(src.Length - src.Position), maxChunkSize) : maxChunkSize;
             byte[] buffer = new byte[size];
             int n;
             do

@@ -8,7 +8,6 @@ namespace Bytewizer.TinyCLR.Http
     /// </summary>
     public class HttpContext : IContext
     {
-
         /// <summary>
         /// Initializes an instance of the <see cref="HttpContext" /> class.
         /// </summary>

@@ -1,6 +1,7 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 
-namespace System
+namespace Bytewizer.TinyCLR
 {
     /// <summary>
     /// Contains extension methods for <see cref="Type"/>.

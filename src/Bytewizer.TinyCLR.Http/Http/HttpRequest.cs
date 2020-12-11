@@ -13,12 +13,14 @@ namespace Bytewizer.TinyCLR.Http
         {
             Headers = new HeaderDictionary();
             Query = new QueryCollection();
+            Body = new MemoryStream();
+            Path = string.Empty;
         }
 
         /// <summary>
         /// Gets the request headers.
         /// </summary>
-        public HeaderDictionary Headers { get; set; } 
+        public HeaderDictionary Headers { get; set; }
 
         /// <summary>
         /// Gets the query value collection.
@@ -44,11 +46,6 @@ namespace Bytewizer.TinyCLR.Http
         /// Gets or sets the request path.
         /// </summary>
         public string Path { get; set; }
-
-        /// <summary>
-        /// Gets or sets the request path base.
-        /// </summary>
-        public string PathBase { get; set; }
 
         /// <summary>
         /// Gets or sets the value for the Content-Length response header.

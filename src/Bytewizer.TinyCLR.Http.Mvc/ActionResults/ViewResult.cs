@@ -1,6 +1,6 @@
 using System;
 
-using Bytewizer.TinyCLR.Http.Mvc.Stubble;
+using Bytewizer.TinyCLR.Stubble;
 
 namespace Bytewizer.TinyCLR.Http.Mvc
 {

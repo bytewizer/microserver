@@ -92,7 +92,7 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
         /// <summary>
         /// Specifies the maximum backlog of the <see cref="SocketListener"/> pending connections queue.
         /// </summary>
-        public int MaxPendingConnections { get; set; } = 10; //255
+        public int MaxPendingConnections { get; set; } = 5; //255
 
         /// <summary>
         /// Returns a <see cref="string"/> that represents this instance.

@@ -73,7 +73,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="NuGet.Build.Tasks.Pack">
-      <Version>5.7.0</Version>
+      <Version>5.8.0</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
@@ -82,6 +82,10 @@
     <ProjectReference Include="..\Bytewizer.Extensions.Hosting.Abstractions\Bytewizer.Extensions.Hosting.Abstractions.csproj">
       <Project>{AF9A8325-3077-404E-A8A2-54750464CE1F}</Project>
       <Name>Bytewizer.Extensions.Hosting.Abstractions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bytewizer.TinyCLR.Core\Bytewizer.TinyCLR.Core.csproj">
+      <Project>{70392D1D-6B78-46C8-9531-C02915742A46}</Project>
+      <Name>Bytewizer.TinyCLR.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bytewizer.TinyCLR.Http.Mvc\Bytewizer.TinyCLR.Http.Mvc.csproj">
       <Project>{15C6A7FC-1C29-471B-B57A-08D61C58FA08}</Project>

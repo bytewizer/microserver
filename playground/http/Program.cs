@@ -5,7 +5,7 @@ namespace Bytewizer.Playground.Mvc
 {
     class Program
     {
-        public static IHostHardware MainBoard;
+        public static IHardware MainBoard;
 
         static void Main()
         {

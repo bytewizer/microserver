@@ -1,5 +1,5 @@
 ﻿using Bytewizer.TinyCLR.Http.Mvc;
-using Bytewizer.TinyCLR.Http.Mvc.Stubble;
+using Bytewizer.TinyCLR.Stubble;
 using Bytewizer.Playground.Mvc.Models;
 
 namespace Bytewizer.Playground.Mvc

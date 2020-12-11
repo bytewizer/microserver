@@ -35,6 +35,7 @@ Microserver is a modular server built for TinyCLR OS IoT devices.
 <a href="https://github.com/microcompiler/microserver/tree/master/src/Bytewizer.TinyCLR.Http.StaticFiles">More Information</a>
 
 ## Authentication
+
 * Basic Authentication
 * Digest Authentication
 
@@ -46,14 +47,13 @@ Microserver is a modular server built for TinyCLR OS IoT devices.
 **Hardware:** Project was tested 
 using SC20100S development board.  
 
-## Getting Started
-
-**Work in Progress!** As we encourage users to play with the samples and test programs, this project has not yet reached a stable state. See the [Playground Project](https://github.com/microcompiler/microserver/tree/master/playground) for an example of how to use these packages.
-
 ## Give a Star! :star:
+
 If you like or are using this project to start your solution, please give it a star. Thanks!
 
-### Getting Started
+## Getting Started
+
+**Work in Progress!** As we encourage users to play with the samples and test programs, this project has not yet reached a stable state. See the [Project Playground](https://github.com/microcompiler/microserver/tree/master/playground) for an example of how to use these packages.
 
 ```CSharp
 static void Main()

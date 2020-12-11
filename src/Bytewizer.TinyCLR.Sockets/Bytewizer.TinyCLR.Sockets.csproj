@@ -92,19 +92,19 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="NuGet.Build.Tasks.Pack">
-      <Version>5.7.0</Version>
+      <Version>5.8.0</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bytewizer.TinyCLR.Core\Bytewizer.TinyCLR.Core.csproj">
+      <Project>{70392D1D-6B78-46C8-9531-C02915742A46}</Project>
+      <Name>Bytewizer.TinyCLR.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bytewizer.TinyCLR.Pipeline\Bytewizer.TinyCLR.Pipeline.csproj">
       <Project>{8470EE70-1C41-45E4-8EDF-0D20CFEBFFD1}</Project>
       <Name>Bytewizer.TinyCLR.Pipeline</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Bytewizer.System\Bytewizer.System.csproj">
-      <Project>{70392D1D-6B78-46C8-9531-C02915742A46}</Project>
-      <Name>Bytewizer.System</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -161,7 +161,7 @@ namespace System.Threading
                 {
                     thread.Dispose();
                     _Threads.Remove(thread);
-                    Debug.WriteLine(string.Concat("ThreadPool | ",  DateTime.Now.ToString("MM/dd/yyyy | HH:mm:ss.fff") , " | Thread stopped: #" + _Threads.Count));
+                    Debug.WriteLine(string.Concat("ThreadPool | ", DateTime.Now.ToString("MM/dd/yyyy | HH:mm:ss.fff"), " | Thread stopped: #" + _Threads.Count));
                     return false;
                 }
             }

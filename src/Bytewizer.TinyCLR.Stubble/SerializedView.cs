@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 
-namespace Bytewizer.TinyCLR.Http.Mvc.Stubble
+namespace Bytewizer.TinyCLR.Stubble
 {
     [Serializable]
     public struct SerializedView

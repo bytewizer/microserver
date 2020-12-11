@@ -22,6 +22,8 @@ namespace Bytewizer.Playground.Mvc
                 "h1 { font-size:3cm; text-align: center; color: white;}</style></head>" +
                 "<body><h1>" + $"{id}" + "</h1></body></html>";
 
+            var tom = HttpContext;
+
             return Content(response, "text/html");
         }
 
@@ -69,7 +71,7 @@ namespace Bytewizer.Playground.Mvc
 
         public IActionResult GetFile()
         {
-            var fullPath = @"ocean.jpg";
+            var fullPath = @"\assets\img\ocean.jpg";
             var stream = new FileStream(fullPath, FileMode.Open, FileAccess.Read, FileShare.Read);
 
             return File(stream, "image/jpeg", "ocean.jpeg");

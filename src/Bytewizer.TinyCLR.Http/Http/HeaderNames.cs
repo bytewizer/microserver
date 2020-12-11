@@ -7,6 +7,7 @@
     /// </summary>
     public static class HeaderNames
     {
+        // TODO: Trim size way down
         public static readonly string Accept = "Accept";
         public static readonly string AcceptCharset = "Accept-Charset";
         public static readonly string AcceptEncoding = "Accept-Encoding";

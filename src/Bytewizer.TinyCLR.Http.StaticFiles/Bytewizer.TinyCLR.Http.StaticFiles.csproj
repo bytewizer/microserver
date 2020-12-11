@@ -76,6 +76,10 @@
     <Compile Include="Middleware\ResourceFileOptions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bytewizer.TinyCLR.Core\Bytewizer.TinyCLR.Core.csproj">
+      <Project>{70392D1D-6B78-46C8-9531-C02915742A46}</Project>
+      <Name>Bytewizer.TinyCLR.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bytewizer.TinyCLR.Http\Bytewizer.TinyCLR.Http.csproj">
       <Project>{EB778176-633A-4997-A683-2C891C5DB436}</Project>
       <Name>Bytewizer.TinyCLR.Http</Name>
@@ -105,7 +109,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="NuGet.Build.Tasks.Pack">
-      <Version>5.7.0</Version>
+      <Version>5.8.0</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>

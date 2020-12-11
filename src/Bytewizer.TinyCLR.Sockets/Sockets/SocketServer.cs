@@ -88,6 +88,7 @@ namespace Bytewizer.TinyCLR.Sockets
                 {
                     context = null;
                 }
+
             }
             catch (Exception ex)
             {

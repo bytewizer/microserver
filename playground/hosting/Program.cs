@@ -5,6 +5,7 @@ using Bytewizer.TinyCLR.Logging;
 using Bytewizer.Extensions.Hardware;
 using Bytewizer.TinyCLR.DependencyInjection;
 using Bytewizer.TinyCLR.Hardware;
+using Bytewizer.Extensions.Configuration;
 
 namespace Bytewizer.Playground.Hosting
 {
@@ -12,6 +13,10 @@ namespace Bytewizer.Playground.Hosting
     {
         static void Main()
         {
+            var builder = new ConfigurationBuilder();
+            IConfigurationRoot configuration = builder.Build();
+            var settings = configuration.GetSection("AppSettings");
+
             CreateHostBuilder().Build().Run();
         }
 

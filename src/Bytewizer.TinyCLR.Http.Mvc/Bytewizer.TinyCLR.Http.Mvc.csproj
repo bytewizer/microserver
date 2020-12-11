@@ -98,22 +98,15 @@
     <Compile Include="ModelBinding\RequestValueProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ActionResults\RedirectResult.cs" />
-    <Compile Include="Resolver\Activator.cs" />
     <Compile Include="Resolver\FactoryResolver.cs" />
     <Compile Include="Resolver\ServiceResolver.cs" />
     <Compile Include="ActionResults\StatusCodeResult.cs" />
-    <Compile Include="Stubble\ClosingElement.cs" />
-    <Compile Include="Stubble\FieldExtensions.cs" />
-    <Compile Include="Stubble\SerializedView.cs" />
-    <Compile Include="Stubble\ViewEngine.cs" />
-    <Compile Include="Stubble\ViewCache.cs" />
-    <Compile Include="Stubble\ViewChild.cs" />
-    <Compile Include="Stubble\ViewData.cs" />
-    <Compile Include="Stubble\ViewDictionary.cs" />
-    <Compile Include="Stubble\ViewElement.cs" />
-    <Compile Include="Stubble\ViewPartial.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bytewizer.TinyCLR.Core\Bytewizer.TinyCLR.Core.csproj">
+      <Project>{70392D1D-6B78-46C8-9531-C02915742A46}</Project>
+      <Name>Bytewizer.TinyCLR.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bytewizer.TinyCLR.Http\Bytewizer.TinyCLR.Http.csproj">
       <Project>{EB778176-633A-4997-A683-2C891C5DB436}</Project>
       <Name>Bytewizer.TinyCLR.Http</Name>
@@ -125,6 +118,10 @@
     <ProjectReference Include="..\Bytewizer.TinyCLR.Sockets\Bytewizer.TinyCLR.Sockets.csproj">
       <Project>{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}</Project>
       <Name>Bytewizer.TinyCLR.Sockets</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bytewizer.TinyCLR.Stubble\Bytewizer.TinyCLR.Stubble.csproj">
+      <Project>{AE8EEFF0-3D3D-411C-8AA9-2D2A73131731}</Project>
+      <Name>Bytewizer.TinyCLR.Stubble</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -143,7 +140,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="NuGet.Build.Tasks.Pack">
-      <Version>5.7.0</Version>
+      <Version>5.8.0</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>

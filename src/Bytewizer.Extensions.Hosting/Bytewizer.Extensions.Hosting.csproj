@@ -82,7 +82,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="NuGet.Build.Tasks.Pack">
-      <Version>5.7.0</Version>
+      <Version>5.8.0</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
@@ -120,9 +120,9 @@
       <Project>{D6D13310-C4A1-4409-B0E3-10F29F7FF262}</Project>
       <Name>Bytewizer.Extensions.Logging</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bytewizer.System\Bytewizer.System.csproj">
+    <ProjectReference Include="..\Bytewizer.TinyCLR.Core\Bytewizer.TinyCLR.Core.csproj">
       <Project>{70392D1D-6B78-46C8-9531-C02915742A46}</Project>
-      <Name>Bytewizer.System</Name>
+      <Name>Bytewizer.TinyCLR.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

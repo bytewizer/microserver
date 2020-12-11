@@ -65,8 +65,9 @@ namespace Bytewizer.TinyCLR.Http
         /// <param name="socket">The socket for the connected end point.</param>
         protected override void ClientConnected(object sender, Socket socket)
         {
-            try
-            {
+            //try
+            //{
+                // Creates a new HttpContext object per request.
                 var context = new HttpContext();
 
                 // Assign socket
@@ -85,16 +86,17 @@ namespace Bytewizer.TinyCLR.Http
                 // Invoke pipeline 
                 Pipeline.Invoke(context);
 
-                if (context != null)
-                {
-                    context = null;
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"Failed to accept incoming connection. Exception: { ex.Message } StackTrace: {ex.StackTrace}");
-                return;
-            }
+                // Close connection and clear channel once pipeline is complete.
+                context.Channel.Clear();
+
+                // Destroy context object.
+                context = null;
+            //}
+            //catch (Exception ex)
+            //{
+            //    Debug.WriteLine($"Failed to accept incoming connection. Exception: { ex.Message } StackTrace: {ex.StackTrace}");
+            //    return;
+            //}
         }
     }
 }

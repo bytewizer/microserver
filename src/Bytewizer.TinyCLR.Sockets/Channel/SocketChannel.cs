@@ -62,6 +62,7 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
 
             Socket = socket;
             InputStream = streamBuilder.Build(socket);
+            OutputStream = new NetworkStream(socket);
             Connection = ConnectionInfo.Set(socket);
         }
 

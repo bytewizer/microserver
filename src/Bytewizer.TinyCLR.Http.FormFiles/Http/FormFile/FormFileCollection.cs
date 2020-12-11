@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 
-namespace Bytewizer.TinyCLR.Http
+namespace Bytewizer.TinyCLR.Http.FormFiles
 {
     /// <summary>
     /// An <see cref="FormFileCollection"/> type for form/file values.

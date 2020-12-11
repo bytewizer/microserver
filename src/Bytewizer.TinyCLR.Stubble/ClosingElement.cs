@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace Bytewizer.TinyCLR.Http.Mvc.Stubble
+namespace Bytewizer.TinyCLR.Stubble
 {
     public class ClosingElement
     {

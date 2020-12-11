@@ -33,7 +33,7 @@ namespace Bytewizer.TinyCLR.Http
                             throw new Exception($"Status line for requests should end with the HTTP version. Your line ended with { requestLine[2] }.");
 
                         context.Request.Method = requestLine[0];
-                        context.Request.PathBase = requestLine[1];
+                        context.Request.Path = requestLine[1];
 
                         if (requestLine[1].Contains("?"))
                         {
@@ -117,13 +117,8 @@ namespace Bytewizer.TinyCLR.Http
         }
 
         public static void Encode(HttpContext context)
-        {
-            if (context.Channel.InputStream == null)
-            {
-                return;
-            }
-            
-            var outputWriter = new StreamWriter(context.Channel.InputStream);
+        {            
+            var outputWriter = new StreamWriter(context.Channel.OutputStream);
 
             var response = context.Response;
 
@@ -157,12 +152,19 @@ namespace Bytewizer.TinyCLR.Http
             outputWriter.Flush();
 
             // copy message body to input stream
-            if (response.Body != null && response.Body.Length > -1)
+            if (response.Body.Length > 0)
             {
                 context.Response.Body.Position = 0;
-                context.Response.Body.CopyTo(context.Channel.InputStream);
+                context.Response.Body.CopyTo(context.Channel.OutputStream);
                 context.Response.Body.Dispose();
             }
+        }
+
+        internal enum ParserMode
+        {
+            FirstLine,
+            Headers,
+            Body
         }
     }
 }

@@ -45,7 +45,7 @@ namespace Bytewizer.TinyCLR.Http
         }
 
         /// <summary>
-        /// Moves top the next item in the enumerator.
+        /// Moves to the next item in the enumerator.
         /// </summary>
         public bool MoveNext()
         {

@@ -67,6 +67,7 @@ namespace Bytewizer.TinyCLR.Http
                     string value = queryString.Substring(equalIndex + 1, delimiterIndex - equalIndex - 1);
                     accumulator.Add(
                         new QueryValue(
+                            //TODO: Unescape strings
                             //Uri.UnescapeDataString(name.Replace("+", " ")),
                             //Uri.UnescapeDataString(value.Replace("+", " ")));
                             name.Replace("+", " "),

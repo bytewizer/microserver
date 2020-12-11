@@ -4,7 +4,7 @@ using System.Collections;
 namespace Bytewizer.TinyCLR.Http.Header
 {
     /// <summary>
-    /// An <see cref="HeaderDictionary"/> type for route values.
+    /// A <see cref="HeaderDictionary"/> type for case-insensitive header values. 
     /// </summary>
     public class HeaderDictionary : ICollection, IEnumerable
     {
@@ -327,10 +327,10 @@ namespace Bytewizer.TinyCLR.Http.Header
         #region ICollection Members
 
         /// <summary>
-        /// The one-dimensional array of type <see cref="RouteValue"/> that is the destination of <see cref="RouteValue"/> 
+        /// The one-dimensional array of type <see cref="HeaderValue"/> that is the destination of <see cref="HeaderValue"/> 
         /// objects copied from <see cref="ICollection"/>. The array must have zero-based indexing.
         /// </summary>
-        /// <param name="array">The one-dimensional array of <see cref="RouteValue"/> that is the destination of the elements copied from the collection. The <see cref="Array"/> must have zero-based indexing.</param>
+        /// <param name="array">The one-dimensional array of <see cref="HeaderValue"/> that is the destination of the elements copied from the collection. The <see cref="Array"/> must have zero-based indexing.</param>
         /// <param name="index">The zero-based index in array at which copying begins.</param>
 		public void CopyTo(HeaderValue[] array, int index)
         {
@@ -465,6 +465,7 @@ namespace Bytewizer.TinyCLR.Http.Header
             set { this[HeaderNames.Upgrade] = value; }
         }
 
+        /// <inheritdoc/>
         public string SecWebSocketAccept
         {
             get { return this[HeaderNames.SecWebSocketAccept]; }
@@ -478,12 +479,14 @@ namespace Bytewizer.TinyCLR.Http.Header
             set { this[HeaderNames.LastModified] = value; }
         }
 
+        /// <inheritdoc/>
         public string WWWAuthenticate
         {
             get { return this[HeaderNames.WWWAuthenticate]; }
             set { this[HeaderNames.WWWAuthenticate] = value; }
         }
 
+        /// <inheritdoc/>
         public string Authorization
         {
             get { return this[HeaderNames.Authorization]; }

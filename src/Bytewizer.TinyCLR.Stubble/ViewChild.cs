@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Reflection;
 
-namespace Bytewizer.TinyCLR.Http.Mvc.Stubble
+namespace Bytewizer.TinyCLR.Stubble
 {
     public class ViewChild
     {
@@ -81,5 +81,4 @@ namespace Bytewizer.TinyCLR.Http.Mvc.Stubble
             }
         }
     }
-
 }

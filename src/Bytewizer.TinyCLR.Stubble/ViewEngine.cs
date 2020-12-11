@@ -6,7 +6,7 @@ using System.Reflection;
 
 //using GHIElectronics.TinyCLR.Data.Json;
 
-namespace Bytewizer.TinyCLR.Http.Mvc.Stubble
+namespace Bytewizer.TinyCLR.Stubble
 {
     public class ViewEngine
     {

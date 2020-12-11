@@ -9,7 +9,7 @@ namespace Bytewizer.TinyCLR.Http
     public class QueryValue
     {
         /// <summary>
-        /// Gets the key in the route/value pair.
+        /// Gets the key in the query/value pair.
         /// </summary>
         public string Key { get; set; }
 
@@ -26,8 +26,8 @@ namespace Bytewizer.TinyCLR.Http
         /// <summary>
         /// Initializes a new instance of the <see cref="QueryValue"/> structure with the specified key and value.
         /// </summary>
-        /// <param name="key">The key in the route/value pair.</param>
-        /// <param name="value">The value in the route/value pair.</param>
+        /// <param name="key">The key in the query/value pair.</param>
+        /// <param name="value">The value in the query/value pair.</param>
         public QueryValue(string key, string value)
         {
             Key = key;

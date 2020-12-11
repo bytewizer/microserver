@@ -45,7 +45,6 @@ static void Main()
 {
     var server = new HttpServer(options =>
     { 
-        options.UseMiddleware(new HttpMiddleware());
         options.UseCustomMiddleware();
     });
     server.Start();

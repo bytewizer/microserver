@@ -49,6 +49,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Core\Bytewizer.TinyCLR.Core.csproj">
+      <Project>{70392D1D-6B78-46C8-9531-C02915742A46}</Project>
+      <Name>Bytewizer.TinyCLR.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Hardware\Bytewizer.TinyCLR.Hardware.csproj">
       <Project>{9EC0C1B6-8FF3-4B58-A67B-F613625AFA69}</Project>
       <Name>Bytewizer.TinyCLR.Hardware</Name>

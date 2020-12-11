@@ -8,12 +8,12 @@ namespace Bytewizer.TinyCLR.Http.Header
     public class HeaderValue
     {
         /// <summary>
-        /// Gets the key in the route/value pair.
+        /// Gets the key in the header/value pair.
         /// </summary>
         public string Key { get; set; }
 
         /// <summary>
-        /// Gets the value in the route/value pair.
+        /// Gets the value in the header/value pair.
         /// </summary>
         public string Value { get; set; }
 
@@ -25,8 +25,8 @@ namespace Bytewizer.TinyCLR.Http.Header
         /// <summary>
         /// Initializes a new instance of the <see cref="HeaderValue"/> structure with the specified key and value.
         /// </summary>
-        /// <param name="key">The key in the route/value pair.</param>
-        /// <param name="value">The value in the route/value pair.</param>
+        /// <param name="key">The key in the header/value pair.</param>
+        /// <param name="value">The value in the header/value pair.</param>
         public HeaderValue(string key, string value)
         {
             Key = key;

@@ -16,7 +16,7 @@ namespace Bytewizer.TinyCLR.Http
         private readonly ControllerFactory _controllerFactory;
 
         public ControllerMiddleware()
-            : this (new ControllerOptions())
+            : this(new ControllerOptions())
         {
         }
 
@@ -38,7 +38,6 @@ namespace Bytewizer.TinyCLR.Http
 
         protected override void Invoke(HttpContext context, RequestDelegate next)
         {
-
             string uri = context.Request.Path.TrimStart('/').TrimEnd('/').ToLower();
 
             if (_controllerFactory.TryMapping(uri, out ControllerMapping mapping))
@@ -47,7 +46,7 @@ namespace Bytewizer.TinyCLR.Http
 
                 MethodInfo action = mapping.FindAction(actionName);
                 _controllerFactory.Invoke(mapping.ControllerType, action, context);
-               
+
                 return;
             }
 
