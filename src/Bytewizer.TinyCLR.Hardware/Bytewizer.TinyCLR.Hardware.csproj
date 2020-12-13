@@ -74,6 +74,7 @@
     <Compile Include="DeviceProvider.cs" />
     <Compile Include="Components\NetworkDevice.cs" />
     <Compile Include="BoardModel.cs" />
+    <Compile Include="HardwareOptions.cs" />
     <Compile Include="Mainboard.cs" />
     <Compile Include="ChipsetModel.cs" />
     <Compile Include="HardwareProvider.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Boards\SC20100Board.cs" />
     <Compile Include="Boards\SC20260Board.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="HardwareOptionsDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="GHIElectronics.TinyCLR.Devices.Network">

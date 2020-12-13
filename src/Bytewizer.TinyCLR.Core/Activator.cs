@@ -1,8 +1,7 @@
 ﻿namespace System
 {
     /// <summary>
-    /// Contains methods to create types of objects locally or remotely, 
-    /// or obtain references to existing remote objects. This class cannot be inherited.
+    /// Contains methods to create types of objects locally. This class cannot be inherited.
     /// </summary>
     public static class Activator
     {

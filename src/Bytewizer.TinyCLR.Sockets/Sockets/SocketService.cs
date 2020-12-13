@@ -10,7 +10,7 @@ namespace Bytewizer.TinyCLR.Sockets
     /// <summary>
     /// Represents a base implementation of <see cref="SocketService"/> which uses <see cref="SocketListener"/> for serving requests.
     /// </summary>
-    public abstract class SocketService
+    public abstract class SocketService : IServer
     {       
         private readonly SocketListener _listener;
 
@@ -112,9 +112,7 @@ namespace Bytewizer.TinyCLR.Sockets
             Pipeline = ((PipelineBuilder)Options.Pipeline).Build();
         }
 
-        /// <summary>
-        /// Start accepting incoming requests.
-        /// </summary>
+        ///<inheritdoc/>
         public bool Start()
         {
             try
@@ -127,9 +125,7 @@ namespace Bytewizer.TinyCLR.Sockets
             }
         }
 
-        /// <summary>
-        /// Stop receiving incoming requests.
-        /// </summary>
+        ///<inheritdoc/>
         public bool Stop()
         {
             try

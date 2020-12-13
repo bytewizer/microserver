@@ -76,6 +76,7 @@ namespace Bytewizer.TinyCLR.DependencyInjection
         /// <inheritdoc />
         public object GetService(Type serviceType)
         {
+            // TODO: Performance enhancements
             var services = (ArrayList)GetServices(serviceType);
             if (services.Count == 0)
             {

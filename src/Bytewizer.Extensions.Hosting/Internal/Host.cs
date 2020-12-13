@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Threading;
 using Bytewizer.TinyCLR.Logging;
 
 namespace Bytewizer.TinyCLR.Hosting.Internal
@@ -36,7 +36,11 @@ namespace Bytewizer.TinyCLR.Hosting.Internal
             var hostedServices = Services.GetServices(typeof(IHostedService));
             foreach (IHostedService hostedService in hostedServices)
             {
-                hostedService.Start();
+                var thread = new Thread(() =>
+                {
+                    hostedService.Start();
+                });
+                thread.Start();
             }
 
            _logger.Started();

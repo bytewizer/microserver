@@ -1,5 +1,6 @@
 ﻿using Bytewizer.TinyCLR.Logging;
 using Bytewizer.TinyCLR.DependencyInjection;
+using System;
 
 namespace Bytewizer.TinyCLR.Hosting
 {

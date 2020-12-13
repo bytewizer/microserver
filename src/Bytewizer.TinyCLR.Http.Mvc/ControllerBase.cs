@@ -74,7 +74,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc
         /// <param name="content">The content to write to the response.</param>
         /// <returns>The created <see cref="ContentResult"/> object for the response.</returns>
         public virtual ContentResult Content(string content)
-            => Content(content, string.Empty);
+            => Content(content, "text/html");
 
         /// <summary>
         /// Creates a <see cref="ContentResult"/> object by specifying a

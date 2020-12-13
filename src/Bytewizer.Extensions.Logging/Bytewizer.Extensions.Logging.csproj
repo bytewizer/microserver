@@ -63,7 +63,6 @@
     <Compile Include="ILoggingBuilder.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="LoggerFactory.cs" />
-    <Compile Include="LoggerFactoryExtensions.cs" />
     <Compile Include="LoggerFilterOptions.cs" />
     <Compile Include="LoggerInformation.cs" />
     <Compile Include="LoggingBuilder.cs" />
@@ -71,7 +70,6 @@
     <Compile Include="LoggingServiceCollectionExtensions.cs" />
     <Compile Include="MessageLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TypeNameHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="GHIElectronics.TinyCLR.Core">

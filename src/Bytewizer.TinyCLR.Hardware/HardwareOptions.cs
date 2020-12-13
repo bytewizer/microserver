@@ -1,14 +1,12 @@
-﻿using Bytewizer.TinyCLR.Hardware;
-
-namespace Bytewizer.Extensions.Hardware
+﻿namespace Bytewizer.TinyCLR.Hardware
 {
     /// <summary>
-    /// Options for the <see cref="Mainboard"/>.
+    /// Represents configuration options of hardware specific features.
     /// </summary>
     public class HardwareOptions
     {
         /// <summary>
-        /// Hardware board model.
+        /// Defines the model of a TinyCLR board.
         /// </summary>
         public BoardModel BoardModel { get; set; }
     }

@@ -45,6 +45,15 @@ namespace Bytewizer.TinyCLR.Sockets
         }
 
         /// <summary>
+        /// Bind to the given port.
+        /// </summary>
+        /// <param name="port">The port for receiving data.</param>
+        public void Listen(int port)
+        {
+            Listen(IPAddress.Any, port, _ => { });
+        }
+
+        /// <summary>
         /// Bind to given ip endpoint.
         /// </summary>
         /// <param name="endPoint">The endpoint to bind on.</param>

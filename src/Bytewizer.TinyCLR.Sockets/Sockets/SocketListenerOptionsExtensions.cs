@@ -2,7 +2,9 @@
 using System.Net.Sockets;
 using System.Security.Cryptography.X509Certificates;
 
-namespace Bytewizer.TinyCLR.Sockets.Listener
+using Bytewizer.TinyCLR.Sockets.Listener;
+
+namespace Bytewizer.TinyCLR.Sockets
 {
     /// <summary>
     /// Extension methods for <see cref="SocketListenerOptions"/> that configures <see cref="SocketListener"/> for a given endpoint.

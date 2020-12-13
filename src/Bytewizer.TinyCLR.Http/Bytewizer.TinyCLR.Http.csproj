@@ -69,6 +69,7 @@
     <Compile Include="Http\FormFile\IFormFileCollection.cs" />
     <Compile Include="Http\Routes\IRouteValueDictionary.cs" />
     <Compile Include="Middleware\HandleDelegate.cs" />
+    <Compile Include="Middleware\HttpMessageParser.cs" />
     <Compile Include="Middleware\UseMiddlewareExtensions.cs" />
     <Compile Include="Http\Header\DateTimeHelper.cs" />
     <Compile Include="Middleware\StatusCodePagesExtensions.cs" />
@@ -81,7 +82,6 @@
     <Compile Include="Http\HeaderNames.cs" />
     <Compile Include="Http\Header\HeaderValue.cs" />
     <Compile Include="Http\HttpContext.cs" />
-    <Compile Include="Http\HttpMessageParser.cs" />
     <Compile Include="Http\HttpMethods.cs" />
     <Compile Include="Http\HttpProtocol.cs" />
     <Compile Include="Http\HttpReasonPhrase.cs" />

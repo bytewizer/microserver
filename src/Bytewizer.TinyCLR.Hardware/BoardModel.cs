@@ -6,6 +6,11 @@
     public enum BoardModel
     {
         /// <summary>
+        /// Unknown board model.
+        /// </summary>
+        Unidentified = 0,
+
+        /// <summary>
         /// SCM20260D development board.
         /// </summary>
         Sc20260D = 1,
