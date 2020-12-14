@@ -3,7 +3,6 @@ using System.Reflection;
 using System.Collections;
 using System.Diagnostics;
 
-using Bytewizer.TinyCLR.Http.Mvc;
 using Bytewizer.TinyCLR.Pipeline;
 using Bytewizer.TinyCLR.Http.Mvc.Middleware;
 

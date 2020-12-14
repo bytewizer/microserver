@@ -1,9 +1,6 @@
-﻿using Bytewizer.TinyCLR;
-using Bytewizer.TinyCLR.Http;
-
-using GHIElectronics.TinyCLR.Pins;
-using GHIElectronics.TinyCLR.IO;
-using GHIElectronics.TinyCLR.Devices.Storage;
+﻿using Bytewizer.TinyCLR.Http;
+using Bytewizer.TinyCLR.Hosting;
+using Bytewizer.TinyCLR.Hardware;
 
 namespace Bytewizer.Toggler
 {
@@ -11,19 +8,19 @@ namespace Bytewizer.Toggler
     {
         static void Main()
         {
-            Networking.SetupEthernet();
-
-            var sd = StorageController.FromName(SC20100.StorageController.SdCard);
-            FileSystem.Mount(sd.Hdc);
-
-            var server = new HttpServer(options =>
-            {
-                options.UseMiddleware(new HttpSessionMiddleware());
-                options.UseDeveloperExceptionPage();
-                options.UseStaticFiles();
-                options.UseMvc();
-            });
-            server.Start();
+            CreateHostBuilder().Build().Run();
         }
+
+        public static IHostBuilder CreateHostBuilder() =>
+            Host.CreateDefaultBuilder()
+                .ConfigureHardware(config =>
+                {
+                    config.BoardModel = BoardModel.Sc20260D;
+                })
+                .ConfigureWebHost(options =>
+                {
+                    options.UseFileServer();
+                    options.UseMvc();
+                });
     }
 }

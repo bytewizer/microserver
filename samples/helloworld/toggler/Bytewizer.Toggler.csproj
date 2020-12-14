@@ -37,7 +37,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ApiController.cs" />
-    <Compile Include="Networking.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -45,17 +44,56 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Bytewizer.Extensions.Configuration, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Bytewizer.Extensions.Configuration.2.0.0-prebuild.68\lib\net452\Bytewizer.Extensions.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Bytewizer.Extensions.Configuration.Abstractions, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Bytewizer.Extensions.Configuration.Abstractions.2.0.0-prebuild.68\lib\net452\Bytewizer.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Bytewizer.Extensions.DependencyInjection, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Bytewizer.Extensions.DependencyInjection.2.0.0-prebuild.68\lib\net452\Bytewizer.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Bytewizer.Extensions.DependencyInjection.Abstraction, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Bytewizer.Extensions.DependencyInjection.Abstraction.2.0.0-prebuild.68\lib\net452\Bytewizer.Extensions.DependencyInjection.Abstraction.dll</HintPath>
+    </Reference>
+    <Reference Include="Bytewizer.Extensions.Hosting, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Bytewizer.Extensions.Hosting.2.0.0-prebuild.68\lib\net452\Bytewizer.Extensions.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="Bytewizer.Extensions.Hosting.Abstractions, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Bytewizer.Extensions.Hosting.Abstractions.2.0.0-prebuild.68\lib\net452\Bytewizer.Extensions.Hosting.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Bytewizer.Extensions.Logging, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Bytewizer.Extensions.Logging.2.0.0-prebuild.68\lib\net452\Bytewizer.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Bytewizer.Extensions.Logging.Abstractions, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Bytewizer.Extensions.Logging.Abstractions.2.0.0-prebuild.68\lib\net452\Bytewizer.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Bytewizer.Extensions.Logging.Debug, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Bytewizer.Extensions.Logging.Debug.2.0.0-prebuild.68\lib\net452\Bytewizer.Extensions.Logging.Debug.dll</HintPath>
+    </Reference>
+    <Reference Include="Bytewizer.TinyCLR.Hardware, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Bytewizer.TinyCLR.Hardware.2.0.0-prebuild.68\lib\net452\Bytewizer.TinyCLR.Hardware.dll</HintPath>
+    </Reference>
     <Reference Include="Bytewizer.TinyCLR.Http, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Bytewizer.TinyCLR.Http.2.0.0-prebuild.44\lib\net452\Bytewizer.TinyCLR.Http.dll</HintPath>
+      <HintPath>packages\Bytewizer.TinyCLR.Http.2.0.0-prebuild.68\lib\net452\Bytewizer.TinyCLR.Http.dll</HintPath>
     </Reference>
     <Reference Include="Bytewizer.TinyCLR.Http.Mvc, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Bytewizer.TinyCLR.Http.Mvc.2.0.0-prebuild.44\lib\net452\Bytewizer.TinyCLR.Http.Mvc.dll</HintPath>
+      <HintPath>packages\Bytewizer.TinyCLR.Http.Mvc.2.0.0-prebuild.68\lib\net452\Bytewizer.TinyCLR.Http.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Bytewizer.TinyCLR.Http.StaticFiles, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Bytewizer.TinyCLR.Http.StaticFiles.2.0.0-prebuild.44\lib\net452\Bytewizer.TinyCLR.Http.StaticFiles.dll</HintPath>
+      <HintPath>packages\Bytewizer.TinyCLR.Http.StaticFiles.2.0.0-prebuild.68\lib\net452\Bytewizer.TinyCLR.Http.StaticFiles.dll</HintPath>
+    </Reference>
+    <Reference Include="Bytewizer.TinyCLR.Pipeline, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Bytewizer.TinyCLR.Pipeline.2.0.0-prebuild.68\lib\net452\Bytewizer.TinyCLR.Pipeline.dll</HintPath>
     </Reference>
     <Reference Include="Bytewizer.TinyCLR.Sockets, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Bytewizer.TinyCLR.Sockets.2.0.0-prebuild.44\lib\net452\Bytewizer.TinyCLR.Sockets.dll</HintPath>
+      <HintPath>packages\Bytewizer.TinyCLR.Sockets.2.0.0-prebuild.68\lib\net452\Bytewizer.TinyCLR.Sockets.dll</HintPath>
+    </Reference>
+    <Reference Include="Bytewizer.TinyCLR.Stubble, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Bytewizer.TinyCLR.Stubble.2.0.0-prebuild.68\lib\net452\Bytewizer.TinyCLR.Stubble.dll</HintPath>
+    </Reference>
+    <Reference Include="Bytewizer.TinyCLR.System, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Bytewizer.TinyCLR.System.2.0.0-prebuild.68\lib\net452\Bytewizer.TinyCLR.System.dll</HintPath>
     </Reference>
     <Reference Include="GHIElectronics.TinyCLR.Data.Json, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\GHIElectronics.TinyCLR.Data.Json.2.0.0\lib\net452\GHIElectronics.TinyCLR.Data.Json.dll</HintPath>

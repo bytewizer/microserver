@@ -2,6 +2,7 @@
 using GHIElectronics.TinyCLR.Devices.Gpio;
 
 using Bytewizer.TinyCLR.Http.Mvc;
+using Bytewizer.TinyCLR.Hardware;
 
 namespace Bytewizer.Toggler
 {    
@@ -12,11 +13,15 @@ namespace Bytewizer.Toggler
         public ApiController()
         {
             if (led == null)
-            {           
-                var gpioController = GpioController.GetDefault();
-                led = gpioController.OpenPin(SC20100.GpioPin.PE11);
+            {
+                led = HardwareProvider.Gpio.OpenPin(SC20260.GpioPin.PH11);
                 led.SetDriveMode(GpioPinDriveMode.Output);
             }
+        }
+
+        public IActionResult GetOK()
+        {
+            return Ok();
         }
 
         public IActionResult Toggle(bool status)
@@ -24,11 +29,12 @@ namespace Bytewizer.Toggler
             if (status == true)
             {
                 led.Write(GpioPinValue.High);
-                return Content("Turn Off", "text/html");
+
+                return Content("Turn Off");
             }
 
             led.Write(GpioPinValue.Low);
-            return Content("Turn On", "text/html");
+            return Content("Turn On");
         }
     }
 }

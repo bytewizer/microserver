@@ -36,8 +36,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Controllers\TestController.cs" />
-    <Compile Include="Pipeline\HttpResponse.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Services\TimedHostedService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -46,33 +45,33 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Bytewizer.Extensions.Configuration.Abstractions\Bytewizer.Extensions.Configuration.Abstractions.csproj">
+    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Configuration.Abstractions\Bytewizer.TinyCLR.Configuration.Abstractions.csproj">
       <Project>{B9007D79-7998-45FC-A72C-1160CAA10768}</Project>
-      <Name>Bytewizer.Extensions.Configuration.Abstractions</Name>
+      <Name>Bytewizer.TinyCLR.Configuration.Abstractions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Bytewizer.Extensions.DependencyInjection.Abstractions\Bytewizer.Extensions.DependencyInjection.Abstraction.csproj">
+    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.DependencyInjection.Abstractions\Bytewizer.TinyCLR.DependencyInjection.Abstraction.csproj">
       <Project>{F5997E37-7348-4FA6-9103-990D9906DA4F}</Project>
-      <Name>Bytewizer.Extensions.DependencyInjection.Abstraction</Name>
+      <Name>Bytewizer.TinyCLR.DependencyInjection.Abstraction</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Bytewizer.Extensions.DependencyInjection\Bytewizer.Extensions.DependencyInjection.csproj">
+    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.DependencyInjection\Bytewizer.TinyCLR.DependencyInjection.csproj">
       <Project>{AEB62F01-BA5F-45E3-A82C-4D2E058046A3}</Project>
-      <Name>Bytewizer.Extensions.DependencyInjection</Name>
+      <Name>Bytewizer.TinyCLR.DependencyInjection</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Bytewizer.Extensions.Hosting.Abstractions\Bytewizer.Extensions.Hosting.Abstractions.csproj">
+    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Hosting.Abstractions\Bytewizer.TinyCLR.Hosting.Abstractions.csproj">
       <Project>{AF9A8325-3077-404E-A8A2-54750464CE1F}</Project>
-      <Name>Bytewizer.Extensions.Hosting.Abstractions</Name>
+      <Name>Bytewizer.TinyCLR.Hosting.Abstractions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Bytewizer.Extensions.Hosting\Bytewizer.Extensions.Hosting.csproj">
+    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Hosting\Bytewizer.TinyCLR.Hosting.csproj">
       <Project>{46C0A2CE-6233-47B2-899A-EA57B9522848}</Project>
-      <Name>Bytewizer.Extensions.Hosting</Name>
+      <Name>Bytewizer.TinyCLR.Hosting</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Bytewizer.Extensions.Logging.Abstractions\Bytewizer.Extensions.Logging.Abstractions.csproj">
+    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Logging.Abstractions\Bytewizer.TinyCLR.Logging.Abstractions.csproj">
       <Project>{598D7917-49D1-4E76-BFF4-23221BAD7072}</Project>
-      <Name>Bytewizer.Extensions.Logging.Abstractions</Name>
+      <Name>Bytewizer.TinyCLR.Logging.Abstractions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Bytewizer.Extensions.Logging\Bytewizer.Extensions.Logging.csproj">
+    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Logging\Bytewizer.TinyCLR.Logging.csproj">
       <Project>{D6D13310-C4A1-4409-B0E3-10F29F7FF262}</Project>
-      <Name>Bytewizer.Extensions.Logging</Name>
+      <Name>Bytewizer.TinyCLR.Logging</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Core\Bytewizer.TinyCLR.Core.csproj">
       <Project>{70392D1D-6B78-46C8-9531-C02915742A46}</Project>

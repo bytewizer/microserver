@@ -3,12 +3,11 @@ using System.Reflection;
 using System.Collections;
 
 using Bytewizer.TinyCLR.Http.Mvc.Filters;
-using Bytewizer.TinyCLR.Http.Mvc.Resolver;
 using Bytewizer.TinyCLR.Http.Mvc.ModelBinding;
 
 namespace Bytewizer.TinyCLR.Http.Mvc.Middleware
 {
-    class ControllerFactory
+    public class ControllerFactory
     {
         private readonly Hashtable _controllers = new Hashtable();
         private readonly ModelMapper _modelMapper = new ModelMapper();
@@ -53,7 +52,8 @@ namespace Bytewizer.TinyCLR.Http.Mvc.Middleware
 
         public virtual object Invoke(Type controllerType, MethodInfo action, HttpContext context)
         {
-            var controller = (Controller)ServiceResolver.Current.Resolve(controllerType);
+            var controller = (Controller)Activator.CreateInstance(controllerType);
+            //var controller = (Controller)ServiceResolver.Current.Resolve(controllerType);
             if (controller == null)
             {
                 throw new InvalidOperationException(nameof(controller));

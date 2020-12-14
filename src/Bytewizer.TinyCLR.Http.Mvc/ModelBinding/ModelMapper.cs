@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Reflection;
 using System.Collections;
-
-using Bytewizer.TinyCLR.Http.Mvc.Resolver;
 
 namespace Bytewizer.TinyCLR.Http.Mvc.ModelBinding
 {
@@ -88,7 +85,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ModelBinding
                 }
             }
 
-            return context.ModelType.IsClass ? null : ServiceResolver.Current.Resolve(context.ModelType);
+            return context.ModelType.IsClass ? null : Activator.CreateInstance(context.ModelType);
         }
     }
 }

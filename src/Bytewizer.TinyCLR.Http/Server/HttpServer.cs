@@ -89,8 +89,6 @@ namespace Bytewizer.TinyCLR.Http
                 // Close connection and clear channel once pipeline is complete.
                 context.Channel.Clear();
 
-                // Destroy context object.
-                context = null;
             //}
             //catch (Exception ex)
             //{

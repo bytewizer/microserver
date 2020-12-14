@@ -60,6 +60,8 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builder\ApplicationBuilder.cs" />
+    <Compile Include="Builder\IApplicationBuilder.cs" />
     <Compile Include="Http\Cookies\CookieCollection.cs" />
     <Compile Include="Http\Cookies\CookieEnumerator.cs" />
     <Compile Include="Http\Cookies\CookieParser.cs" />

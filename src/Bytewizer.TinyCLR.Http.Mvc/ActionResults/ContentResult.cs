@@ -7,8 +7,6 @@ namespace Bytewizer.TinyCLR.Http.Mvc
     /// </summary>
     public class ContentResult : ActionResult
     {
-        private const int DefaultStatusCode = StatusCodes.Status200OK;
-
         /// <summary>
         /// Gets or set the content representing the body of the response.
         /// </summary>
@@ -22,7 +20,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc
         /// <summary>
         /// Gets or sets the HTTP status code.
         /// </summary>
-        public int StatusCode { get; set; } = DefaultStatusCode;
+        public int StatusCode { get; set; } = StatusCodes.Status200OK;
 
         /// <inheritdoc />
         public override void ExecuteResult(ActionContext context)

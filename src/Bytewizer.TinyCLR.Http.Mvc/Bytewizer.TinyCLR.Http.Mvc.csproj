@@ -83,7 +83,6 @@
     <Compile Include="Filters\ActionExecutingContext.cs" />
     <Compile Include="Filters\ExceptionContext.cs" />
     <Compile Include="IActionResult.cs" />
-    <Compile Include="Resolver\IServiceResolver.cs" />
     <Compile Include="ActionResults\JsonResult.cs" />
     <Compile Include="Middleware\ControllerExtensions.cs" />
     <Compile Include="Middleware\ControllerMiddleware.cs" />
@@ -98,8 +97,6 @@
     <Compile Include="ModelBinding\RequestValueProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ActionResults\RedirectResult.cs" />
-    <Compile Include="Resolver\FactoryResolver.cs" />
-    <Compile Include="Resolver\ServiceResolver.cs" />
     <Compile Include="ActionResults\StatusCodeResult.cs" />
   </ItemGroup>
   <ItemGroup>

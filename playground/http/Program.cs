@@ -11,7 +11,9 @@ namespace Bytewizer.Playground.Mvc
         {
             try
             {
-                MainBoard = Mainboard.Connect(BoardModel.Sc20260D);
+                var hardwareOptions = new HardwareOptions() { BoardModel = BoardModel.Sc20260D };
+                MainBoard = new Mainboard(hardwareOptions).Connect();
+                MainBoard.Network.Enabled();
 
                 var server = new HttpServer(options =>
                 {

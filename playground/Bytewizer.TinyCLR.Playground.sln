@@ -9,19 +9,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.Playground.Hostin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.Playground.Logging", "logging\Bytewizer.Playground.Logging.csproj", "{D2D43294-6EFA-49D3-A811-DF078915B4F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.Extensions.DependencyInjection", "..\src\Bytewizer.Extensions.DependencyInjection\Bytewizer.Extensions.DependencyInjection.csproj", "{AEB62F01-BA5F-45E3-A82C-4D2E058046A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.DependencyInjection", "..\src\Bytewizer.TinyCLR.DependencyInjection\Bytewizer.TinyCLR.DependencyInjection.csproj", "{AEB62F01-BA5F-45E3-A82C-4D2E058046A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.Extensions.DependencyInjection.Abstraction", "..\src\Bytewizer.Extensions.DependencyInjection.Abstractions\Bytewizer.Extensions.DependencyInjection.Abstraction.csproj", "{F5997E37-7348-4FA6-9103-990D9906DA4F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.DependencyInjection.Abstraction", "..\src\Bytewizer.TinyCLR.DependencyInjection.Abstractions\Bytewizer.TinyCLR.DependencyInjection.Abstraction.csproj", "{F5997E37-7348-4FA6-9103-990D9906DA4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.Extensions.Hosting", "..\src\Bytewizer.Extensions.Hosting\Bytewizer.Extensions.Hosting.csproj", "{46C0A2CE-6233-47B2-899A-EA57B9522848}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Hosting", "..\src\Bytewizer.TinyCLR.Hosting\Bytewizer.TinyCLR.Hosting.csproj", "{46C0A2CE-6233-47B2-899A-EA57B9522848}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.Extensions.Hosting.Abstractions", "..\src\Bytewizer.Extensions.Hosting.Abstractions\Bytewizer.Extensions.Hosting.Abstractions.csproj", "{AF9A8325-3077-404E-A8A2-54750464CE1F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Hosting.Abstractions", "..\src\Bytewizer.TinyCLR.Hosting.Abstractions\Bytewizer.TinyCLR.Hosting.Abstractions.csproj", "{AF9A8325-3077-404E-A8A2-54750464CE1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.Extensions.Logging", "..\src\Bytewizer.Extensions.Logging\Bytewizer.Extensions.Logging.csproj", "{D6D13310-C4A1-4409-B0E3-10F29F7FF262}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Logging", "..\src\Bytewizer.TinyCLR.Logging\Bytewizer.TinyCLR.Logging.csproj", "{D6D13310-C4A1-4409-B0E3-10F29F7FF262}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.Extensions.Logging.Abstractions", "..\src\Bytewizer.Extensions.Logging.Abstractions\Bytewizer.Extensions.Logging.Abstractions.csproj", "{598D7917-49D1-4E76-BFF4-23221BAD7072}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Logging.Abstractions", "..\src\Bytewizer.TinyCLR.Logging.Abstractions\Bytewizer.TinyCLR.Logging.Abstractions.csproj", "{598D7917-49D1-4E76-BFF4-23221BAD7072}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.Extensions.Logging.Debug", "..\src\Bytewizer.Extensions.Logging.Debug\Bytewizer.Extensions.Logging.Debug.csproj", "{BE75C9F4-A4E1-4083-881D-AF55266EC7A7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Logging.Debug", "..\src\Bytewizer.TinyCLR.Logging.Debug\Bytewizer.TinyCLR.Logging.Debug.csproj", "{BE75C9F4-A4E1-4083-881D-AF55266EC7A7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.Playground.DependencyInjection", "di\Bytewizer.Playground.DependencyInjection.csproj", "{2A1D97AA-6900-4B83-9E2B-BAB818040CBB}"
 EndProject
@@ -47,9 +47,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.Playground.Mvc", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Mvc", "..\src\Bytewizer.TinyCLR.Http.Mvc\Bytewizer.TinyCLR.Http.Mvc.csproj", "{15C6A7FC-1C29-471B-B57A-08D61C58FA08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.Extensions.Configuration.Abstractions", "..\src\Bytewizer.Extensions.Configuration.Abstractions\Bytewizer.Extensions.Configuration.Abstractions.csproj", "{B9007D79-7998-45FC-A72C-1160CAA10768}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Configuration.Abstractions", "..\src\Bytewizer.TinyCLR.Configuration.Abstractions\Bytewizer.TinyCLR.Configuration.Abstractions.csproj", "{B9007D79-7998-45FC-A72C-1160CAA10768}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.Extensions.Configuration", "..\src\Bytewizer.Extensions.Configuration\Bytewizer.Extensions.Configuration.csproj", "{F1D8AB71-50A6-4AA6-B45E-E69D4C8EB174}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Configuration", "..\src\Bytewizer.TinyCLR.Configuration\Bytewizer.TinyCLR.Configuration.csproj", "{F1D8AB71-50A6-4AA6-B45E-E69D4C8EB174}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Stubble", "..\src\Bytewizer.TinyCLR.Stubble\Bytewizer.TinyCLR.Stubble.csproj", "{AE8EEFF0-3D3D-411C-8AA9-2D2A73131731}"
 EndProject
@@ -58,6 +58,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.FormFiles", "..\src\Bytewizer.TinyCLR.Http.FormFiles\Bytewizer.TinyCLR.Http.FormFiles.csproj", "{BA43CFC2-A205-41B4-B917-FEA9D5D827AE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.Playground.AspNet", "aspnet\Bytewizer.Playground.AspNet.csproj", "{91B0185F-F0F4-46FB-A4E5-958CA1271D81}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{B5E51479-98A1-473C-9C58-51CC7E18C5AB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extensions", "Extensions", "{F51AEF7F-A214-4861-B0EF-9E68D7A6580B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -194,10 +198,30 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{A3A122A6-C4B1-4FEA-9D4C-5A1FE31FCA8F} = {4E3B2537-B6D2-419B-AACF-F243DC0F8A68}
 		{D2D43294-6EFA-49D3-A811-DF078915B4F9} = {4E3B2537-B6D2-419B-AACF-F243DC0F8A68}
+		{AEB62F01-BA5F-45E3-A82C-4D2E058046A3} = {F51AEF7F-A214-4861-B0EF-9E68D7A6580B}
+		{F5997E37-7348-4FA6-9103-990D9906DA4F} = {F51AEF7F-A214-4861-B0EF-9E68D7A6580B}
+		{46C0A2CE-6233-47B2-899A-EA57B9522848} = {F51AEF7F-A214-4861-B0EF-9E68D7A6580B}
+		{AF9A8325-3077-404E-A8A2-54750464CE1F} = {F51AEF7F-A214-4861-B0EF-9E68D7A6580B}
+		{D6D13310-C4A1-4409-B0E3-10F29F7FF262} = {F51AEF7F-A214-4861-B0EF-9E68D7A6580B}
+		{598D7917-49D1-4E76-BFF4-23221BAD7072} = {F51AEF7F-A214-4861-B0EF-9E68D7A6580B}
+		{BE75C9F4-A4E1-4083-881D-AF55266EC7A7} = {F51AEF7F-A214-4861-B0EF-9E68D7A6580B}
 		{2A1D97AA-6900-4B83-9E2B-BAB818040CBB} = {4E3B2537-B6D2-419B-AACF-F243DC0F8A68}
 		{745C8C5B-9ACD-4BCB-830A-64F7226A0D7E} = {4E3B2537-B6D2-419B-AACF-F243DC0F8A68}
 		{8A1BE3FA-45DC-41C0-98C8-3FBB31AF45E2} = {4E3B2537-B6D2-419B-AACF-F243DC0F8A68}
+		{9EC0C1B6-8FF3-4B58-A67B-F613625AFA69} = {B5E51479-98A1-473C-9C58-51CC7E18C5AB}
+		{8470EE70-1C41-45E4-8EDF-0D20CFEBFFD1} = {B5E51479-98A1-473C-9C58-51CC7E18C5AB}
+		{CECB4A63-1460-4721-96B1-7FCCEC0FAF84} = {B5E51479-98A1-473C-9C58-51CC7E18C5AB}
+		{EB778176-633A-4997-A683-2C891C5DB436} = {B5E51479-98A1-473C-9C58-51CC7E18C5AB}
+		{A94B42E0-7FCC-448F-9645-6732ABA96F28} = {B5E51479-98A1-473C-9C58-51CC7E18C5AB}
+		{C57CD6AF-268A-46E1-BDD4-073A6B69B5A5} = {B5E51479-98A1-473C-9C58-51CC7E18C5AB}
+		{2DD3D5AB-D849-4898-B6E9-1A49683955B2} = {B5E51479-98A1-473C-9C58-51CC7E18C5AB}
 		{95FE6FB5-882C-4DBF-A242-3EB6BB19202A} = {4E3B2537-B6D2-419B-AACF-F243DC0F8A68}
+		{15C6A7FC-1C29-471B-B57A-08D61C58FA08} = {B5E51479-98A1-473C-9C58-51CC7E18C5AB}
+		{B9007D79-7998-45FC-A72C-1160CAA10768} = {F51AEF7F-A214-4861-B0EF-9E68D7A6580B}
+		{F1D8AB71-50A6-4AA6-B45E-E69D4C8EB174} = {F51AEF7F-A214-4861-B0EF-9E68D7A6580B}
+		{AE8EEFF0-3D3D-411C-8AA9-2D2A73131731} = {B5E51479-98A1-473C-9C58-51CC7E18C5AB}
+		{70392D1D-6B78-46C8-9531-C02915742A46} = {B5E51479-98A1-473C-9C58-51CC7E18C5AB}
+		{BA43CFC2-A205-41B4-B917-FEA9D5D827AE} = {B5E51479-98A1-473C-9C58-51CC7E18C5AB}
 		{91B0185F-F0F4-46FB-A4E5-958CA1271D81} = {4E3B2537-B6D2-419B-AACF-F243DC0F8A68}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

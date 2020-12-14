@@ -26,7 +26,6 @@ namespace Bytewizer.TinyCLR.Http
             {
                 throw new ArgumentNullException(nameof(options));
             }
-
             app.UseMiddleware(new ControllerMiddleware(options));
         }
     }

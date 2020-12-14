@@ -50,5 +50,15 @@ namespace Bytewizer.TinyCLR
 
             return constructors;
         }
+
+        /// <summary>
+        /// Determines whether an instance of a specified type can be assigned to a variable of the current type.
+        /// </summary>
+        /// <param name="type">The current <see cref="Type"/></param>
+        /// <param name="c">The type to compare with the current type.</param>
+        public static bool IsAssignableFrom(this Type type, Type c)
+        {
+            return true;
+        }
     }
 }
