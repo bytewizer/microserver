@@ -61,15 +61,18 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FilterDelegate.cs" />
-    <Compile Include="FilterExtensions.cs" />
-    <Compile Include="IContext.cs" />
-    <Compile Include="IPipelineBuilder.cs" />
-    <Compile Include="IPipelineFilter.cs" />
-    <Compile Include="PipelineBuilder.cs" />
-    <Compile Include="PipelineFilter.cs" />
+    <Compile Include="Pipeline\IApplication.cs" />
+    <Compile Include="Pipeline\InvokeMiddlewareDelegate.cs" />
+    <Compile Include="Pipeline\InvokeMiddleware.cs" />
+    <Compile Include="Pipeline\MiddlewareDelegate.cs" />
+    <Compile Include="Pipeline\MiddlewareDelegateExtensions.cs" />
+    <Compile Include="Pipeline\IContext.cs" />
+    <Compile Include="Pipeline\IApplicationBuilder.cs" />
+    <Compile Include="Pipeline\IMiddleware.cs" />
+    <Compile Include="Pipeline\ApplicationBuilder.cs" />
+    <Compile Include="Pipeline\Middleware.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RequestDelegate.cs" />
+    <Compile Include="Pipeline\RequestDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="GHIElectronics.TinyCLR.Core">

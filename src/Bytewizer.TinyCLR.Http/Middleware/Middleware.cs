@@ -1,14 +1,13 @@
-﻿using Bytewizer.TinyCLR.Sockets;
-using Bytewizer.TinyCLR.Pipeline;
+﻿using Bytewizer.TinyCLR.Pipeline;
 
 namespace Bytewizer.TinyCLR.Http
 {
     /// <summary>
     /// Defines middleware that can be added to the application's request pipeline.
     /// </summary>
-    public abstract class Middleware : IPipelineFilter
+    public abstract class Middleware : IMiddleware
     {
-        private IPipelineFilter next;
+        private IMiddleware next;
 
         /// <summary>
         /// Request handling method.
@@ -17,19 +16,30 @@ namespace Bytewizer.TinyCLR.Http
         /// <param name="next">The delegate representing the remaining middleware in the request pipeline.</param>
         protected abstract void Invoke(HttpContext context, RequestDelegate next);
 
-        public void Register(IPipelineFilter filter)
+        public void Use(InvokeMiddlewareDelegate middleware)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        /// <inheritdoc/>
+        public void Use(MiddlewareDelegate middleware)
+        {
+            UseMiddleware(middleware.Invoke());
+        }
+
+        public void UseMiddleware(IMiddleware middleware)
         {
             if (next == null)
             {
-                next = filter;
+                next = middleware;
             }
             else
             {
-                next.Register(filter);
+                next.UseMiddleware(middleware);
             }
         }
 
-        void IPipelineFilter.Invoke(IContext context)
+        void IApplication.Invoke(IContext context)
         {
             var httpContext = context as HttpContext;
             

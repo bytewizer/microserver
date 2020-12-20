@@ -60,15 +60,25 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Builder\ApplicationBuilder.cs" />
-    <Compile Include="Builder\IApplicationBuilder.cs" />
     <Compile Include="Http\Cookies\CookieCollection.cs" />
     <Compile Include="Http\Cookies\CookieEnumerator.cs" />
     <Compile Include="Http\Cookies\CookieParser.cs" />
     <Compile Include="Http\Cookies\CookieValue.cs" />
     <Compile Include="Http\Cookies\ICookieCollection.cs" />
+    <Compile Include="Http\Endpoint.cs" />
+    <Compile Include="Http\HttpContextExtensions.cs" />
+    <Compile Include="Http\Features\EndpointFeature.cs" />
+    <Compile Include="Http\Features\FeatureCollection.cs" />
+    <Compile Include="Http\Features\FeatureEnumerator.cs" />
+    <Compile Include="Http\Features\FeatureValue.cs" />
+    <Compile Include="Http\Features\IEndpointFeature.cs" />
+    <Compile Include="Http\Features\IFeatureCollection.cs" />
     <Compile Include="Http\FormFile\IFormCollection.cs" />
     <Compile Include="Http\FormFile\IFormFileCollection.cs" />
+    <Compile Include="Http\Items\ItemsDictionary.cs" />
+    <Compile Include="Http\Items\ItemsEnumerator.cs" />
+    <Compile Include="Http\Items\ItemsValue.cs" />
+    <Compile Include="Http\RequestDelegate.cs" />
     <Compile Include="Http\Routes\IRouteValueDictionary.cs" />
     <Compile Include="Middleware\HandleDelegate.cs" />
     <Compile Include="Middleware\HttpMessageParser.cs" />
@@ -91,9 +101,6 @@
     <Compile Include="Http\HttpResponse.cs" />
     <Compile Include="Http\HttpRequestExtensions.cs" />
     <Compile Include="Http\HttpResponseExtensions.cs" />
-    <Compile Include="Http\Items\ItemsDictionary.cs" />
-    <Compile Include="Http\Items\ItemsEnumerator.cs" />
-    <Compile Include="Http\Items\ItemsValue.cs" />
     <Compile Include="Http\Query\QueryCollection.cs" />
     <Compile Include="Http\Query\QueryEnumerator.cs" />
     <Compile Include="Http\Query\QueryParser.cs" />

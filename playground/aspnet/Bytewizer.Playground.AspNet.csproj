@@ -65,6 +65,10 @@
       <Project>{46C0A2CE-6233-47B2-899A-EA57B9522848}</Project>
       <Name>Bytewizer.TinyCLR.Hosting</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Http.Routing\Bytewizer.TinyCLR.Http.Routing.csproj">
+      <Project>{C57CD6AF-268A-46E1-BDD4-073A6B69B5A5}</Project>
+      <Name>Bytewizer.TinyCLR.Http.Routing</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Logging.Abstractions\Bytewizer.TinyCLR.Logging.Abstractions.csproj">
       <Project>{598D7917-49D1-4E76-BFF4-23221BAD7072}</Project>
       <Name>Bytewizer.TinyCLR.Logging.Abstractions</Name>

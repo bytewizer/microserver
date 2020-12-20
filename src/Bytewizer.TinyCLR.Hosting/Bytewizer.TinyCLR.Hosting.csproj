@@ -66,6 +66,10 @@
     <Compile Include="HostingHostBuilderExtensions.cs" />
     <Compile Include="HostingLoggerExtensions.cs" />
     <Compile Include="HardwareHostBuilderExtensions.cs" />
+    <Compile Include="IWebHost.cs" />
+    <Compile Include="IWebHostBuilder.cs" />
+    <Compile Include="WebHost.cs" />
+    <Compile Include="WebHostBuilder.cs" />
     <Compile Include="WebHostBuilderExtensions.cs" />
     <Compile Include="LoggerEventIds.cs" />
     <Compile Include="Internal\Host.cs" />

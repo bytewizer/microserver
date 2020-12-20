@@ -7,10 +7,10 @@ using Bytewizer.TinyCLR.Pipeline;
 
 namespace Bytewizer.Playground.Sockets
 {
-    public class HttpResponse : PipelineFilter
+    public class HttpResponse : Middleware
     {
         private long counter = 1;
-        
+      
         protected override void Invoke(IContext context, RequestDelegate next)
         {
             var ctx = context as ISocketContext;

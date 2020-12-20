@@ -23,7 +23,7 @@ namespace Bytewizer.TinyCLR.Sockets
         /// Initializes a new instance of the <see cref="SocketServer"/> class.
         /// </summary>
         /// <param name="pipeline">The request pipeline to invoke.</param>
-        public SocketServer(IPipelineBuilder pipeline)
+        public SocketServer(IApplicationBuilder pipeline)
             : base(pipeline)
         {
         }
@@ -52,7 +52,7 @@ namespace Bytewizer.TinyCLR.Sockets
         /// <param name="address">The ip address for receiving data.</param>
         /// <param name="port">The port for receiving data.</param>
         /// <param name="pipeline">The request pipeline to invoke.</param>
-        public SocketServer(IPAddress address, int port, IPipelineBuilder pipeline)
+        public SocketServer(IPAddress address, int port, IApplicationBuilder pipeline)
             : base(address, port, pipeline)
         {
         }

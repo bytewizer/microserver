@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections;
 
-namespace Bytewizer.TinyCLR.Http
+namespace Bytewizer.TinyCLR.Http.Features
 {
     /// <summary>
-    /// An <see cref="RouteDictionary"/> type for route values.
+    /// An <see cref="FeatureCollection"/> type for key values.
     /// </summary>
-    public class RouteDictionary : IRouteValueDictionary, ICollection, IEnumerable
+    public class FeatureCollection : ICollection, IEnumerable, IFeatureCollection
     {
         /// <summary>
         /// The array list used to store the pairs.
@@ -14,20 +14,15 @@ namespace Bytewizer.TinyCLR.Http
         private ArrayList _pairs;
 
         /// <summary>
-        /// Initializes an empty uninitialized instance of the <see cref="RouteDictionary" /> class.
-        /// </summary>
-        public static readonly RouteDictionary Empty = new RouteDictionary();
-
-        /// <summary>
         /// Initializes a new empty uninitialized instance of class.
         /// </summary>
-        public RouteDictionary() { }
+        public FeatureCollection() { }
 
         /// <summary>
         /// Initializes a new, empty instance of the class.
         /// <param name="capacity">The number of elements that the new list can initially store.</param>
         /// </summary>
-        public RouteDictionary(int capacity)
+        public FeatureCollection(int capacity)
         {
             _pairs = new ArrayList
             {
@@ -38,7 +33,7 @@ namespace Bytewizer.TinyCLR.Http
         /// <summary>
         ///  Initializes a new, empty instance of the class using the specified <see cref="ArrayList"/>.
         /// </summary>
-        public RouteDictionary(ArrayList pairs)
+        public FeatureCollection(ArrayList pairs)
         {
             _pairs = pairs;
         }
@@ -52,7 +47,7 @@ namespace Bytewizer.TinyCLR.Http
         /// attempting to get it returns null, and attempting to set it creates a new element
         /// using the specified key.
         /// </returns>
-        public string[] this[string key]
+        public object this[Type key]
         {
             get
             {
@@ -63,7 +58,7 @@ namespace Bytewizer.TinyCLR.Http
 
                 for (int i = 0; i < Count; i++)
                 {
-                    RouteValue kvp = (RouteValue)_pairs[i];
+                    FeatureValue kvp = (FeatureValue)_pairs[i];
                     if (kvp.Key == key)
                     {
                         return kvp.Value;
@@ -80,15 +75,14 @@ namespace Bytewizer.TinyCLR.Http
 
                 for (int i = 0; i < Count; i++)
                 {
-                    RouteValue kvp = (RouteValue)_pairs[i];
+                    FeatureValue kvp = (FeatureValue)_pairs[i];
                     if (kvp.Key == key)
                     {
                         kvp.Value = value;
                         return;
                     }
                 }
-
-                _pairs.Add(new RouteValue(key, value));
+                _pairs.Add(new FeatureValue(key, value));
             }
         }
 
@@ -101,12 +95,31 @@ namespace Bytewizer.TinyCLR.Http
         /// attempting to get it returns null, and attempting to set it creates a new element
         /// using the specified key.
         /// </returns>
-        public RouteValue this[int index]
+        public FeatureValue this[int index]
         {
-            get 
-            { 
-                return (RouteValue)_pairs[index]; 
+            get
+            {
+                return (FeatureValue)_pairs[index];
             }
+        }
+
+        /// <summary>
+        /// Retrieves the requested feature from the collection.
+        /// </summary>
+        /// <returns>The requested feature, or null if it is not present.</returns>
+        public object Get(Type type)
+        {
+            return this[type];
+        }
+
+        /// <summary>
+        /// Sets the given feature in the collection.
+        /// </summary>
+        /// <param name="instance">The feature value.</param>
+        public void Set(Type type, object instance)
+        {
+
+            this[type] = instance;
         }
 
         /// <summary>
@@ -122,7 +135,7 @@ namespace Bytewizer.TinyCLR.Http
                 }
 
                 ArrayList list = new ArrayList();
-                foreach (RouteValue kvp in _pairs)
+                foreach (FeatureValue kvp in _pairs)
                 {
                     list.Add(kvp.Key);
                 }
@@ -143,7 +156,7 @@ namespace Bytewizer.TinyCLR.Http
                 }
 
                 ArrayList list = new ArrayList();
-                foreach (RouteValue kvp in _pairs)
+                foreach (FeatureValue kvp in _pairs)
                 {
                     list.Add(kvp.Value);
                 }
@@ -156,24 +169,14 @@ namespace Bytewizer.TinyCLR.Http
         /// </summary>
         /// <param name="key">The key to use as the key of the element to add.</param>
         /// <param name="value">The value of the rule to add.</param>
-        public void Add(string key, string[] value)
+        public void Add(Type key, string value)
         {
             if (_pairs == null)
             {
                 _pairs = new ArrayList();
             }
 
-            // TODO:  Contains is not working correctly
-            // Route names must be unique application wide
-            if (!string.IsNullOrEmpty(key))
-            {
-                var route = _pairs.Contains(key);
-                if (route == true)
-                    throw new InvalidOperationException(
-                         $"Route names must be unique. You cannot add a route with the same route name.");
-            }
-
-            this[key] = value;
+            this[key] = value.Trim();
         }
 
         /// <summary>
@@ -191,14 +194,23 @@ namespace Bytewizer.TinyCLR.Http
         /// Determines whether the collection contains a specific key.
         /// </summary>
         /// <param name="key">The key to locate in the collection.</param>
-        public bool Contains(string key)
+        public bool ContainsKey(Type key)
         {
             if (_pairs == null)
             {
                 return false;
             }
 
-            return _pairs.Contains(key);
+            for (int i = 0; i < Count; i++)
+            {
+                FeatureValue kvp = (FeatureValue)_pairs[i];
+                if (kvp.Key == key)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -212,27 +224,29 @@ namespace Bytewizer.TinyCLR.Http
         /// <c>true</c> if the object that implements collection contains an element with the specified key; otherwise, <c>false</c>.
         /// </returns>
         /// <exception cref="ArgumentNullException">Specified key is <c>null</c></exception>
-        public bool TryGetValue(string key, out string[] value)
+        public bool TryGetValue(Type key, out object value)
         {
             if (key == null) throw new ArgumentNullException(nameof(key));
 
-            var item = this[key];
-
-            if (item == null)
+            for (int i = 0; i < Count; i++)
             {
-                value = default;
-                return false;
+                FeatureValue kvp = (FeatureValue)_pairs[i];
+                if (kvp.Key == key)
+                {
+                    value = kvp.Value;
+                    return true;
+                }
             }
 
-            value = item;
-            return true;
+            value = default;
+            return false;
         }
 
         /// <summary>
         /// Removes the element with the specified key from the collection.
         /// </summary>
-        /// <param name="item">The <see cref="RouteValue"/> to remove from the collection.</param>
-        public void Remove(RouteValue item)
+        /// <param name="item">The <see cref="FeatureValue"/> to remove from the collection.</param>
+        public void Remove(FeatureValue item)
         {
             if (_pairs != null)
             {
@@ -244,13 +258,13 @@ namespace Bytewizer.TinyCLR.Http
         /// Removes the element with the specified key from the collection.
         /// </summary>
         /// <param name="key">The key to remove from the collection.</param>
-        public void Remove(string key)
+        public void Remove(Type key)
         {
             if (_pairs != null)
             {
                 for (int i = 0; i < Count; i++)
                 {
-                    RouteValue nvp = (RouteValue)_pairs[i];
+                    FeatureValue nvp = (FeatureValue)_pairs[i];
                     if (nvp.Key == key)
                     {
                         _pairs.RemoveAt(i);
@@ -263,17 +277,17 @@ namespace Bytewizer.TinyCLR.Http
         #region ICollection Members
 
         /// <summary>
-        /// The one-dimensional array of type <see cref="RouteValue"/> that is the destination of <see cref="RouteValue"/> 
+        /// The one-dimensional array of type <see cref="FeatureValue"/> that is the destination of <see cref="FeatureValue"/> 
         /// objects copied from <see cref="ICollection"/>. The array must have zero-based indexing.
         /// </summary>
-        /// <param name="array">The one-dimensional array of <see cref="RouteValue"/> that is the destination of the elements copied from the collection. The <see cref="Array"/> must have zero-based indexing.</param>
+        /// <param name="array">The one-dimensional array of <see cref="FeatureValue"/> that is the destination of the elements copied from the collection. The <see cref="Array"/> must have zero-based indexing.</param>
         /// <param name="index">The zero-based index in array at which copying begins.</param>
-		public void CopyTo(RouteValue[] array, int index)
+		public void CopyTo(FeatureValue[] array, int index)
         {
             if (array == null)
                 throw new ArgumentNullException(nameof(array));
 
-            if (!(array is RouteValue[]typedArray))
+            if (!(array is FeatureValue[] typedArray))
                 throw new InvalidCastException(nameof(array));
 
             if (index < 0 || (typedArray.Length - index) < Count)
@@ -281,15 +295,15 @@ namespace Bytewizer.TinyCLR.Http
 
             if (_pairs != null)
             {
-                foreach (string key in Keys)
+                foreach (Type key in Keys)
                 {
-                    typedArray[index++] = new RouteValue(key, this[key]);
+                    typedArray[index++] = new FeatureValue(key, this[key]);
                 }
             }
         }
 
         /// <summary>
-        /// The one-dimensional <see cref="Array"/> that is the destination of <see cref="RouteValue"/> 
+        /// The one-dimensional <see cref="Array"/> that is the destination of <see cref="FeatureValue"/> 
         /// objects copied from <see cref="ICollection"/>. The <see cref="Array"/> must have zero-based indexing.
         /// </summary>
         /// <param name="array">The one-dimensional <see cref="Array"/> that is the destination of the elements copied from the collection. The <see cref="Array"/> must have zero-based indexing.</param>
@@ -394,7 +408,7 @@ namespace Bytewizer.TinyCLR.Http
         /// </summary>
         public IEnumerator GetEnumerator()
         {
-            return new RouteEnumerator(this);
+            return new FeatureEnumerator(this);
         }
 
         #endregion

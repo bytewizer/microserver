@@ -21,13 +21,15 @@ namespace Bytewizer.Playground.AspNet
         //}
 
         public IActionResult GetOK()
-        {
+        {            
             //_logger.LogInformation("GetOK() is working.");
             return Ok();
         }
 
         public IActionResult GetById(int id)
-        {           
+        {
+            var context = HttpContext.Request.RouteValues;
+
             string response = "<doctype !html><html><head><title>Hello, world!</title>" +
                 "<style>body { background-color: #111 }" +
                 "h1 { font-size:3cm; text-align: center; color: white;}</style></head>" +

@@ -6,18 +6,24 @@ using Bytewizer.TinyCLR.Pipeline;
 namespace Bytewizer.Playground.Pipeline
 {
     class Program
-    {       
+    {
         static void Main()
         {
-            var builder = new PipelineBuilder();
-            builder.Register(new Module1());
-            builder.Register(new Module2());
-            builder.Register(new Module3());
-            
-            var pipeline = builder.Build();
             var ctx = new Context() { Message = "Context: Finished" };
-            
-            pipeline.Invoke(ctx);
+
+            var builder = new ApplicationBuilder();
+            builder.Register(new Middleware1());
+            builder.Register(new Middleware2());
+            builder.Register(new Middleware3());
+
+            var app = builder.Build();
+            app.Use((context, next) =>
+            {
+                Debug.WriteLine("Inline: Code executed before 'next'");
+                next(context);
+                Debug.WriteLine("Inline: Code executed after 'next'");
+            });
+            app.Invoke(ctx);
         }
 
         public class Context : IContext
@@ -25,24 +31,24 @@ namespace Bytewizer.Playground.Pipeline
             public string Message { get; set; }
         }
 
-        public class Module1 : PipelineFilter
+        public class Middleware1 : Middleware
         {
             protected override void Invoke(IContext context, RequestDelegate next)
             {
                 var ctx = context as Context;
 
-                Debug.WriteLine("Module 1: Code executed before 'next'");
+                Debug.WriteLine("Middleware 1: Code executed before 'next'");
                 next(context);
-                Debug.WriteLine("Module 1: Code executed after 'next'");
+                Debug.WriteLine("Middleware 1: Code executed after 'next'");
                 Debug.WriteLine(ctx.Message);
             }
         }
 
-        public class Module2 : PipelineFilter
+        public class Middleware2 : Middleware
         {
             protected override void Invoke(IContext context, RequestDelegate next)
             {
-                Debug.WriteLine("Module 2: Code executed before 'next'");
+                Debug.WriteLine("Middleware 2: Code executed before 'next'");
 
                 // if you do not include the 'next' delegate in the module. Execution will turn around in
                 // the pipeline skipping down stream modules.  
@@ -53,20 +59,20 @@ namespace Bytewizer.Playground.Pipeline
                 }
                 else
                 {
-                    Debug.WriteLine("Skipping module 2 in pipeline and turning back");
+                    Debug.WriteLine("Skipping Middleware 2 in pipeline and turning back");
                 }
 
-                Debug.WriteLine("Module 2: Code executed after 'next'");
+                Debug.WriteLine("Middleware 2: Code executed after 'next'");
             }
         }
 
-        public class Module3 : PipelineFilter
+        public class Middleware3 : Middleware
         {
             protected override void Invoke(IContext context, RequestDelegate next)
             {
-                Debug.WriteLine("Module 3: Code executed before 'next'");
+                Debug.WriteLine("Middleware 3: Code executed before 'next'");
                 next(context); // this is optional and skipped in the last module of the pipeline
-                Debug.WriteLine("Module 3: Code executed after 'next'");
+                Debug.WriteLine("Middleware 3: Code executed after 'next'");
             }
         }
     }

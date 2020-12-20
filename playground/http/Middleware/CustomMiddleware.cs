@@ -2,7 +2,6 @@
 using System.Diagnostics;
 
 using Bytewizer.TinyCLR.Http;
-using Bytewizer.TinyCLR.Pipeline;
 using Bytewizer.TinyCLR.Http.Header;
 
 namespace Bytewizer.Playground.Mvc

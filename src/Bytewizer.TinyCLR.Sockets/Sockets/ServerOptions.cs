@@ -11,7 +11,7 @@ namespace Bytewizer.TinyCLR.Sockets
     /// </summary>
     public class ServerOptions
     {
-        internal IPipelineBuilder Pipeline { get; set; } = new PipelineBuilder();
+        internal IApplicationBuilder Pipeline { get; set; } = new ApplicationBuilder();
 
         /// <summary>
         /// Configuration options of socket specific features.
@@ -19,19 +19,10 @@ namespace Bytewizer.TinyCLR.Sockets
         public SocketListenerOptions Listener { get; private set; } = new SocketListenerOptions();
 
         /// <summary>
-        /// Register a <see cref="IPipelineFilter"/> filter to the pipeline. Filters are executed in the order they are added.
+        /// Register a <see cref="IMiddleware"/> filter to the pipeline. Filters are executed in the order they are added.
         /// </summary>
-        /// <param name="filter">The <see cref="PipelineFilter"/> to include in the pipeline.</param>
-        public void Register(IPipelineFilter filter)
-        {
-            Pipeline.Register(filter);
-        }
-
-        /// <summary>
-        /// Register a <see cref="FilterDelegate"/> filter to the pipeline. Filters are executed in the order they are added.
-        /// </summary>
-        /// <param name="filter">The <see cref="FilterDelegate"/> to include in the pipeline.</param>
-        public void Register(FilterDelegate filter)
+        /// <param name="filter">The <see cref="Middleware"/> to include in the pipeline.</param>
+        public void Register(IMiddleware filter)
         {
             Pipeline.Register(filter);
         }

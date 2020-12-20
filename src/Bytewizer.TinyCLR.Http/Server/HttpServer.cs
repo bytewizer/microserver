@@ -24,7 +24,7 @@ namespace Bytewizer.TinyCLR.Http
         /// Initializes a new instance of the <see cref="HttpServer"/> class.
         /// </summary>
         /// <param name="pipeline">The request pipeline to invoke.</param>
-        public HttpServer(IPipelineBuilder pipeline)
+        public HttpServer(IApplicationBuilder pipeline)
             : base(pipeline)
         {
         }
@@ -53,7 +53,7 @@ namespace Bytewizer.TinyCLR.Http
         /// <param name="address">The ip address for receiving data.</param>
         /// <param name="port">The port for receiving data.</param>
         /// <param name="pipeline">The request pipeline to invoke.</param>
-        public HttpServer(IPAddress address, int port, IPipelineBuilder pipeline)
+        public HttpServer(IPAddress address, int port, Pipeline.IApplicationBuilder pipeline)
             : base(address, port, pipeline)
         {
         }

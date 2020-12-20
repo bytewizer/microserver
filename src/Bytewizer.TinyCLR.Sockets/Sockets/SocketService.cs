@@ -22,7 +22,7 @@ namespace Bytewizer.TinyCLR.Sockets
         /// <summary>
         /// The socket pipeline used to invoke pipeline fiters.
         /// </summary>
-        protected readonly IPipelineFilter Pipeline;
+        protected readonly IApplication Pipeline;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SocketService"/> class with pre-configured default options.
@@ -34,7 +34,7 @@ namespace Bytewizer.TinyCLR.Sockets
         /// Initializes a new instance of the <see cref="SocketService"/> class.
         /// </summary>
         /// <param name="pipeline">The request pipeline to invoke.</param>
-        public SocketService(IPipelineBuilder pipeline)
+        public SocketService(IApplicationBuilder pipeline)
             : this(options =>
             {
                 options.Pipeline = pipeline;
@@ -70,7 +70,7 @@ namespace Bytewizer.TinyCLR.Sockets
         /// <param name="address">The ip address for receiving data.</param>
         /// <param name="port">The port for receiving data.</param>
         /// <param name="pipeline">The request pipeline to invoke.</param>
-        public SocketService(IPAddress address, int port, IPipelineBuilder pipeline)
+        public SocketService(IPAddress address, int port, IApplicationBuilder pipeline)
             : this(options =>
             {
                 options.Pipeline = pipeline;
@@ -91,11 +91,11 @@ namespace Bytewizer.TinyCLR.Sockets
         /// </summary>
         /// <param name="configure">The configuration options of <see cref="SocketService"/> specific features.</param>
         /// <param name="filter">
-        /// The request <see cref="PipelineFilter"/> to add to the pipeline.
+        /// The request <see cref="Middleware"/> to add to the pipeline.
         /// Filters are executed in the order they are added.
         /// </param>
 
-        public SocketService(ServerOptionsDelegate configure, IPipelineFilter filter)
+        public SocketService(ServerOptionsDelegate configure, IMiddleware filter)
         {
             var options = new ServerOptions();
             
@@ -109,7 +109,7 @@ namespace Bytewizer.TinyCLR.Sockets
             Options = options;
             _listener = new SocketListener(Options.Listener);
             _listener.Connected += ClientConnected;
-            Pipeline = ((PipelineBuilder)Options.Pipeline).Build();
+            Pipeline = ((ApplicationBuilder)Options.Pipeline).Build();
         }
 
         ///<inheritdoc/>

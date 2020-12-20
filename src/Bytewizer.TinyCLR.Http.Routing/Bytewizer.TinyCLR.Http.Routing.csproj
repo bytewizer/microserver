@@ -59,16 +59,30 @@
     <None Include="..\..\images\package-logo.png" Pack="true" PackagePath="\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Http\Features\IRoutingFeature.cs" />
+    <Compile Include="Http\Features\RoutingFeature.cs" />
+    <Compile Include="Http\Routes\RouteData.cs" />
+    <Compile Include="Http\Routes\RoutePattern.cs" />
+    <Compile Include="Route.cs" />
+    <Compile Include="EndpointRouteBuilder.cs" />
+    <Compile Include="EndpointRouteBuilderExtensions.cs" />
     <Compile Include="Http\HttpContextExtensions.cs" />
     <Compile Include="Http\Routes\RouteDictionary.cs" />
     <Compile Include="Http\Routes\RouteEnumerator.cs" />
     <Compile Include="Http\Routes\RouteValue.cs" />
-    <Compile Include="Middleware\RoutingMiddleware.cs" />
-    <Compile Include="Middleware\RoutingExtensions.cs" />
-    <Compile Include="Middleware\RoutingOptions.cs" />
+    <Compile Include="IEndpointRouteBuilder.cs" />
+    <Compile Include="MappedRoute.cs" />
+    <Compile Include="Middleware\EndpointMiddleware.cs" />
+    <Compile Include="Middleware\EndpointRoutingMiddleware.cs" />
+    <Compile Include="Middleware\RoutingBuilderExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="EndpointRouteAction.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bytewizer.TinyCLR.Core\Bytewizer.TinyCLR.Core.csproj">
+      <Project>{70392D1D-6B78-46C8-9531-C02915742A46}</Project>
+      <Name>Bytewizer.TinyCLR.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bytewizer.TinyCLR.Http\Bytewizer.TinyCLR.Http.csproj">
       <Project>{EB778176-633A-4997-A683-2C891C5DB436}</Project>
       <Name>Bytewizer.TinyCLR.Http</Name>

@@ -2,7 +2,7 @@
 using Bytewizer.TinyCLR.Hosting;
 using Bytewizer.TinyCLR.Logging;
 using Bytewizer.TinyCLR.Hardware;
-using Bytewizer.TinyCLR.DependencyInjection;
+using Bytewizer.TinyCLR.Http.Routing;
 
 namespace Bytewizer.Playground.AspNet
 {
@@ -29,8 +29,23 @@ namespace Bytewizer.Playground.AspNet
                 })
                 .ConfigureWebHost(webBuilder =>
                 {
-                    webBuilder.UseFileServer();
-                    webBuilder.UseMvc();
+                    //webBuilder.UseFileServer();
+                    webBuilder.UseRouting();
+                    webBuilder.UseEndpoints(endpoints => 
+                        {            
+                            endpoints.MapControllerRoute(
+                                    name: "default",
+                                    url: "/",
+                                    defaults: new Route { Controller = "Home", Action = "Index", Id = "" }
+                            );
+                            endpoints.MapControllerRoute(
+                                    name: "default",
+                                    url: "regex(^[/]{1})",
+                                    defaults: new Route { Controller = "example", Action = "gethello", Id = "" }
+                            );
+                            endpoints.MapDefaultControllerRoute();
+                        });
+                    //webBuilder.UseMvc();
                 })
                 .ConfigureLogging((context, logging) =>
                 {

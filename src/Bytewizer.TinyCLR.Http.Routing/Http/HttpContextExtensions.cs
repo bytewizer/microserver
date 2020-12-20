@@ -1,31 +1,48 @@
 ﻿using System;
-using System.Net;
+
+using Bytewizer.TinyCLR.Http.Routing;
+using Bytewizer.TinyCLR.Http.Features;
 
 namespace Bytewizer.TinyCLR.Http
 {
+    /// <summary>
+    /// Extension methods for <see cref="HttpContext"/> related to routing.
+    /// </summary>
     public static class HttpContextExtensions
     {
-        public static RouteDictionary GetRouteData(this HttpContext context)
+        /// <summary>
+        /// Gets the <see cref="RouteData"/> associated with the provided <paramref name="httpContext"/>.
+        /// </summary>
+        /// <param name="httpContext">The <see cref="HttpContext"/> associated with the current request.</param>
+        public static RouteData GetRouteData(this HttpContext httpContext)
         {
-            if (context == null)
+            if (httpContext == null)
             {
-                throw new ArgumentNullException(nameof(context));
+                throw new ArgumentNullException(nameof(httpContext));
             }
 
-            return context.Request.RouteValues as RouteDictionary;
+            var routingFeature = (RoutingFeature)httpContext.Features.Get(typeof(IRoutingFeature));
+            return routingFeature?.RouteData; //?? new RouteData(httpContext.Request.RouteValues);
         }
 
-        //public static string[] GetRouteValue(this HttpContext context, string key)
+        //public static string[] GetRouteValue(this HttpContext httpContext, string key)
         //{
-        //    if (context == null)
+        //    if (httpContext == null)
         //    {
-        //        throw new ArgumentNullException(nameof(context));
+        //        throw new ArgumentNullException(nameof(httpContext));
         //    }
 
-        //    return context.Request.RouteValues[key];
+        //    if (key == null)
+        //    {
+        //        throw new ArgumentNullException(nameof(key));
+        //    }
+
+
+
+        //    rreturn httpContext.Features.Get<IRouteValuesFeature>()?.RouteValues[key];
         //}
 
-        //public static EndPoint GetEndpoint(this HttpContext context) 
+        //public static EndPoint GetEndpoint(this HttpContext context)
         //{
         //    if (context == null)
         //    {

@@ -1,4 +1,4 @@
-﻿using Bytewizer.TinyCLR.Http;
+﻿using Bytewizer.TinyCLR.Pipeline;
 
 namespace Bytewizer.TinyCLR.Hosting
 {
