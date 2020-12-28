@@ -1,9 +1,9 @@
 ﻿using System;
 
 namespace Bytewizer.TinyCLR.Http.Mvc.ModelBinding
-{ 
+{
     /// <summary>
-    /// Default implementation
+    /// A context object for <see cref="IModelBinder"/>.
     /// </summary>
     public class ModelBinderContext : IModelBinderContext
     {
@@ -14,21 +14,28 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ModelBinding
         /// <param name="modelName">Name of the model (i.e. property or argument name).</param>
         /// <param name="prefix">The prefix (if this is a nested field like "User.FirstName", prefix = "User.").</param>
         /// <param name="valueProvider">The value provider.</param>
-        /// <exception cref="System.ArgumentNullException"></exception>
         public ModelBinderContext(Type modelType, string modelName, string prefix, IValueProvider valueProvider)
         {
             if (modelType == null)
-                throw new ArgumentNullException("modelType", "May not be null or empty.");
-            if (valueProvider == null) throw new ArgumentNullException("valueProvider");
+            {
+                throw new ArgumentNullException(nameof(modelType));
+            }
+            
+            if (valueProvider == null)
+            {
+                throw new ArgumentNullException(nameof(valueProvider));
+            }
+            
             if (string.IsNullOrEmpty(modelName))
-                throw new ArgumentNullException("modelName", "May not be null or empty.");
+            {
+                throw new ArgumentNullException(nameof(modelName));
+            }
 
             ValueProvider = valueProvider;
             Prefix = prefix;
             ModelName = modelName;
             ModelType = modelType;
         }
-
 
         /// <summary>
         /// Gets or sets prefix for this model in the list
@@ -37,12 +44,10 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ModelBinding
         /// <example>User[0].</example>
         public string Prefix { get; set; }
 
-
         /// <summary>
         /// Gets type of model which we are currently mapping (i.e. view model type)
         /// </summary>
         public Type ModelType { get; private set; }
-
 
         /// <summary>
         /// Gets name of the model. Corresponds to the property name
@@ -72,7 +77,9 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ModelBinding
         public object Execute(Type modelType, string prefix, string modelName)
         {
             if (RootBinder == null)
+            {
                 throw new InvalidOperationException("Requires the property RootBinder to have been set first.");
+            }
 
             return RootBinder.Bind(CreateForChild(modelType, prefix, modelName));
         }

@@ -1,34 +1,34 @@
 ﻿using System;
 
-using Bytewizer.TinyCLR.Sockets;
+using Bytewizer.TinyCLR.Pipeline.Builder;
 
 namespace Bytewizer.TinyCLR.Http
 {
     /// <summary>
-    /// Extension methods for the <see cref="DeveloperExceptionPageMiddleware"/>.
+    /// <see cref="IApplicationBuilder"/> extension methods for the <see cref="DeveloperExceptionPageMiddleware"/>.
     /// </summary>
     public static class DeveloperExceptionPageExtensions
     {
         /// <summary>
         /// Captures <see cref="Exception"/> instances from the pipeline and generates error responses.
         /// </summary>
-        /// <param name="app">The <see cref="ServerOptions"/> instance this method extends.</param>
-        public static void UseDeveloperExceptionPage(this ServerOptions app)
+        /// <param name="app">The <see cref="IApplicationBuilder"/> instance this method extends.</param>
+        public static IApplicationBuilder UseDeveloperExceptionPage(this IApplicationBuilder app)
         {
             if (app == null)
             {
                 throw new ArgumentNullException(nameof(app));
             }
 
-            app.UseMiddleware(new DeveloperExceptionPageMiddleware());
+            return app.UseMiddleware(typeof(DeveloperExceptionPageMiddleware));
         }
 
         /// <summary>
         /// Captures <see cref="Exception"/> instances from the pipeline and generates error responses.
         /// </summary>
-        /// <param name="app">The <see cref="ServerOptions"/> instance this method extends.</param>
+        /// <param name="app">The <see cref="IApplicationBuilder"/> instance this method extends.</param>
         /// <param name="options">The <see cref="DeveloperExceptionPageOptions"/> used to configure the middleware.</param>
-        public static void UseDeveloperExceptionPage(this ServerOptions app, DeveloperExceptionPageOptions options)
+        public static IApplicationBuilder UseDeveloperExceptionPage(this IApplicationBuilder app, DeveloperExceptionPageOptions options)
         {
             if (app == null)
             {
@@ -40,7 +40,7 @@ namespace Bytewizer.TinyCLR.Http
                 throw new ArgumentNullException(nameof(options));
             }
 
-            app.UseMiddleware(new DeveloperExceptionPageMiddleware(options));
+            return app.UseMiddleware(typeof(DeveloperExceptionPageMiddleware), options);
         }
     }
 }

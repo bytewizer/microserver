@@ -1,7 +1,9 @@
-﻿namespace Bytewizer.TinyCLR.Http
+﻿using Bytewizer.TinyCLR.Http.Internal;
+
+namespace Bytewizer.TinyCLR.Http
 {
     /// <summary>
-    /// Options for the <see cref="StatusCodePagesMiddleware"/>.
+    /// Options for configuring the <see cref="StatusCodePagesMiddleware"/>.
     /// </summary>
     public class StatusCodePagesOptions
     {
@@ -16,7 +18,6 @@
 
                 var body = BuildResponseBody(statusCode);
 
-                context.Response.ContentType = "text/plain";
                 context.Response.Write(body);
             };
         }
@@ -29,6 +30,9 @@
             return string.Format($"Status Code: {httpStatusCode}{separator}{reasonPhrase}");
         }
 
-        public HandleDelegate Handle { get; set; } = delegate { };
+        /// <summary>
+        /// The <see cref="RequestDelegate" /> that will handle the exception. 
+        /// </summary>
+        public RequestDelegate Handle { get; set; } = delegate { };
     }
 }

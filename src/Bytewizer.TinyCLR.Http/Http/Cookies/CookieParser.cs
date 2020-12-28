@@ -1,8 +1,10 @@
 ﻿using System;
 
-namespace Bytewizer.TinyCLR.Http
+using Bytewizer.TinyCLR.Http.Cookies;
+
+namespace Bytewizer.TinyCLR.Http.Internal
 {
-    public class HttpCookieParser
+    internal class HttpCookieParser
     {
         private string _headerValue;
         private CookieCollection _cookies;
@@ -155,7 +157,7 @@ namespace Bytewizer.TinyCLR.Http
             if (name == null) throw new ArgumentNullException("name");
             if (name == "") return; // ignore empty cookie names as defined in rfc 6265 http://tools.ietf.org/html/rfc6265
 
-            _cookies.Add(name, value);
+            _cookies[name] = value;
         }
 
         private void MoveNext()

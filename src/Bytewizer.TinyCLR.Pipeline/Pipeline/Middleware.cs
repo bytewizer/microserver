@@ -1,5 +1,7 @@
 ﻿using System;
 
+using Bytewizer.TinyCLR.Pipeline.Builder;
+
 namespace Bytewizer.TinyCLR.Pipeline
 {
     /// <summary>
@@ -17,13 +19,13 @@ namespace Bytewizer.TinyCLR.Pipeline
         protected abstract void Invoke(IContext context, RequestDelegate next);
 
         /// <inheritdoc/>
-        public void Use(InvokeMiddlewareDelegate middleware)
+        public void Use(InlineMiddlewareDelegate middleware)
         {
-            UseMiddleware(new InvokeMiddleware(middleware));
+            Use(new InlineMiddleware(middleware));
         }
 
         /// <inheritdoc/>
-        public void UseMiddleware(IMiddleware middleware)
+        public void Use(IMiddleware middleware)
         {
             if (middleware == null)
             {
@@ -36,7 +38,7 @@ namespace Bytewizer.TinyCLR.Pipeline
             }
             else
             {
-                next.UseMiddleware(middleware);
+                next.Use(middleware);
             }
         }
 

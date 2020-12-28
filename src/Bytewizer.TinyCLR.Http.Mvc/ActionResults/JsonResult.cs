@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 
 using GHIElectronics.TinyCLR.Data.Json;
 
@@ -15,20 +16,18 @@ namespace Bytewizer.TinyCLR.Http.Mvc
         /// <param name="value">The value to format as JSON.</param>
         public JsonResult(object value)
         {
-            ContentType = "application/json";
-            StatusCode = StatusCodes.Status200OK;
             Value = value;
         }
 
         /// <summary>
         /// Gets or sets the Content-Type header of the response.
         /// </summary>
-        public string ContentType { get; set; }
+        public string ContentType { get; set; } = "application/json; charset=UTF-8";
 
         /// <summary>
         /// Gets or sets the HTTP status code.
         /// </summary>
-        public int StatusCode { get; set; }
+        public int StatusCode { get; set; } = StatusCodes.Status200OK;
 
         /// <summary>
         /// Gets or sets the value to be formatted.
@@ -43,7 +42,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc
                 throw new ArgumentNullException(nameof(context));
             }
             var json = JsonConverter.Serialize(Value).ToString();
-            context.HttpContext.Response.Write(json, "application/json");
+            context.HttpContext.Response.Write(json, ContentType, StatusCode, Encoding.UTF8);
         }
     }
 }

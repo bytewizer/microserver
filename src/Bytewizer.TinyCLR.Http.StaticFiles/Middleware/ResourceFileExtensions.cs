@@ -1,6 +1,7 @@
 ﻿using System;
 
-using Bytewizer.TinyCLR.Sockets;
+using Bytewizer.TinyCLR.Pipeline.Builder;
+
 
 namespace Bytewizer.TinyCLR.Http
 {
@@ -12,9 +13,9 @@ namespace Bytewizer.TinyCLR.Http
         /// <summary>
         /// Enables resource file serving for the current request path.
         /// </summary>
-        /// <param name="app">The <see cref="ServerOptions"/> instance this method extends.</param>
+        /// <param name="app">The <see cref="IApplicationBuilder"/> instance this method extends.</param>
         /// <param name="options">The <see cref="ResourceFileOptions"/> used to configure the middleware.</param>
-        public static void UseResourceFiles(this ServerOptions app, ResourceFileOptions options)
+        public static IApplicationBuilder UseResourceFiles(this IApplicationBuilder app, ResourceFileOptions options)
         {
             if (app == null)
             {
@@ -26,7 +27,7 @@ namespace Bytewizer.TinyCLR.Http
                 throw new ArgumentNullException(nameof(options));
             }
 
-            app.UseMiddleware(new ResourceFileMiddleware(options));
+            return app.UseMiddleware(typeof(ResourceFileMiddleware), options);
         }
     }
 }

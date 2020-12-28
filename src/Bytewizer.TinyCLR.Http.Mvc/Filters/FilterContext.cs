@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-
-namespace Bytewizer.TinyCLR.Http.Mvc.Filters
+﻿namespace Bytewizer.TinyCLR.Http.Mvc.Filters
 {
     /// <summary>
     /// An abstract context for filters.

@@ -3,8 +3,6 @@ using System.IO;
 
 using GHIElectronics.TinyCLR.IO;
 
-using Bytewizer.TinyCLR.Pipeline;
-
 namespace Bytewizer.TinyCLR.Http
 {
     /// <summary>

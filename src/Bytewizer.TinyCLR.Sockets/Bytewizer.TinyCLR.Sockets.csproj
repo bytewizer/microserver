@@ -63,7 +63,7 @@
   <ItemGroup>
     <Compile Include="Listener\DisconnectedHandler.cs" />
     <Compile Include="Listener\ConnectedHandler.cs" />
-    <Compile Include="Listener\SocketExtensions.cs" />
+    <Compile Include="Listener\SocketExceptionExtensions.cs" />
     <Compile Include="Listener\SocketListenerOptionsDelegate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Channel\ConnectionInfo.cs" />
@@ -102,6 +102,10 @@
     <ProjectReference Include="..\Bytewizer.TinyCLR.Core\Bytewizer.TinyCLR.Core.csproj">
       <Project>{70392D1D-6B78-46C8-9531-C02915742A46}</Project>
       <Name>Bytewizer.TinyCLR.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bytewizer.TinyCLR.Logging.Abstractions\Bytewizer.TinyCLR.Logging.Abstractions.csproj">
+      <Project>{598D7917-49D1-4E76-BFF4-23221BAD7072}</Project>
+      <Name>Bytewizer.TinyCLR.Logging.Abstractions</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bytewizer.TinyCLR.Pipeline\Bytewizer.TinyCLR.Pipeline.csproj">
       <Project>{8470EE70-1C41-45E4-8EDF-0D20CFEBFFD1}</Project>

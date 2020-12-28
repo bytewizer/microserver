@@ -4,7 +4,7 @@ using System.Collections;
 namespace Bytewizer.TinyCLR.Http.Mvc.Filters
 {
     /// <summary>
-    /// A context for action filters, specifically <see cref="IActionFilter.OnActionExecuted"/>
+    /// A context for action filters./>
     /// </summary>
     public class ActionExecutingContext : FilterContext
     {
@@ -12,10 +12,6 @@ namespace Bytewizer.TinyCLR.Http.Mvc.Filters
         /// Instantiates a new <see cref="ActionExecutingContext"/> instance.
         /// </summary>
         /// <param name="actionContext">The <see cref="ActionContext"/>.</param>
-        /// <param name="filters">All applicable <see cref="IFilterMetadata"/> implementations.</param>
-        /// <param name="actionArguments">
-        /// The arguments to pass when invoking the action. Keys are parameter names.
-        /// </param>
         /// <param name="controller">The controller instance containing the action.</param>
         public ActionExecutingContext(ActionContext actionContext, object controller)
             : base(actionContext)

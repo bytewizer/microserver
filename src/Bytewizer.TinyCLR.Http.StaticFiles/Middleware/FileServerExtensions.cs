@@ -1,6 +1,6 @@
 ﻿using System;
 
-using Bytewizer.TinyCLR.Sockets;
+using Bytewizer.TinyCLR.Pipeline.Builder;
 
 namespace Bytewizer.TinyCLR.Http
 {
@@ -12,8 +12,8 @@ namespace Bytewizer.TinyCLR.Http
         /// <summary>
         /// Enable all static file middleware for the current request path in the root directory.
         /// </summary>
-        /// <param name="app">The <see cref="ServerOptions"/> instance this method extends.</param>
-        public static void UseFileServer(this ServerOptions app)
+        /// <param name="app">The <see cref="IApplicationBuilder"/> instance this method extends.</param>
+        public static IApplicationBuilder UseFileServer(this IApplicationBuilder app)
         {
             if (app == null)
             {
@@ -22,6 +22,8 @@ namespace Bytewizer.TinyCLR.Http
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
+            
+            return app;
         }
     }
 }

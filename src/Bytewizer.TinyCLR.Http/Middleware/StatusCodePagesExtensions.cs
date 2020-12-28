@@ -1,11 +1,13 @@
 ﻿using System;
 
 using Bytewizer.TinyCLR.Sockets;
+using Bytewizer.TinyCLR.Pipeline.Builder;
+
 
 namespace Bytewizer.TinyCLR.Http
 {
     /// <summary>
-    /// Extension methods for the <see cref="StatusCodePagesMiddleware"/>.
+    /// <see cref="IApplicationBuilder"/> extension methods for the <see cref="StatusCodePagesMiddleware"/>.
     /// </summary>
     public static class StatusCodePagesExtensions
     {
@@ -13,23 +15,23 @@ namespace Bytewizer.TinyCLR.Http
         /// Status code middleware with the given options that checks for responses with status codes 
         /// between 400 and 599 that do not have a body.
         /// </summary>
-        /// <param name="app">The <see cref="ServerOptions"/> instance this method extends.</param>
-        public static void UseStatusCodePages(this ServerOptions app)
+        /// <param name="app">The <see cref="IApplicationBuilder"/> instance this method extends.</param>
+        public static IApplicationBuilder UseStatusCodePages(this IApplicationBuilder app)
         {
             if (app == null)
             {
                 throw new ArgumentNullException(nameof(app));
             }
 
-            app.UseMiddleware(new StatusCodePagesMiddleware());
+            return app.UseMiddleware(typeof(StatusCodePagesMiddleware));
         }
 
         /// <summary>
         /// Captures <see cref="Exception"/> instances from the pipeline and generates error responses.
         /// </summary>
-        /// <param name="app">The <see cref="ServerOptions"/> instance this method extends.</param>
+        /// <param name="app">The <see cref="IApplicationBuilder"/> instance this method extends.</param>
         /// <param name="options">The <see cref="StatusCodePagesOptions"/> used to configure the middleware.</param>
-        public static void UseStatusCodePages(this ServerOptions app, StatusCodePagesOptions options)
+        public static IApplicationBuilder UseStatusCodePages(this IApplicationBuilder app, StatusCodePagesOptions options)
         {
             if (app == null)
             {
@@ -41,7 +43,7 @@ namespace Bytewizer.TinyCLR.Http
                 throw new ArgumentNullException(nameof(options));
             }
 
-            app.UseMiddleware(new StatusCodePagesMiddleware(options));
+            return app.UseMiddleware(typeof(StatusCodePagesMiddleware), options);
         }
     }
 }

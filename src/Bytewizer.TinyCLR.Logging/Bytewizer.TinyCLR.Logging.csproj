@@ -45,6 +45,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Bytewizer.TinyCLR.Logging.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -59,16 +60,11 @@
     <None Include="..\..\images\package-logo.png" Pack="true" PackagePath="\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LoggingBuilderDelegate.cs" />
-    <Compile Include="ILoggingBuilder.cs" />
-    <Compile Include="Logger.cs" />
-    <Compile Include="LoggerFactory.cs" />
-    <Compile Include="LoggerFilterOptions.cs" />
-    <Compile Include="LoggerInformation.cs" />
-    <Compile Include="LoggingBuilder.cs" />
-    <Compile Include="LoggingBuilderExtensions.cs" />
-    <Compile Include="LoggingServiceCollectionExtensions.cs" />
-    <Compile Include="MessageLogger.cs" />
+    <Compile Include="Logging\Logger.cs" />
+    <Compile Include="Logging\LoggerFactory.cs" />
+    <Compile Include="Logging\LoggerFilterOptions.cs" />
+    <Compile Include="Logging\LoggerInformation.cs" />
+    <Compile Include="Logging\MessageLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -87,14 +83,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bytewizer.TinyCLR.DependencyInjection.Abstractions\Bytewizer.TinyCLR.DependencyInjection.Abstraction.csproj">
-      <Project>{f5997e37-7348-4fa6-9103-990d9906da4f}</Project>
-      <Name>Bytewizer.TinyCLR.DependencyInjection.Abstraction</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Bytewizer.TinyCLR.DependencyInjection\Bytewizer.TinyCLR.DependencyInjection.csproj">
-      <Project>{AEB62F01-BA5F-45E3-A82C-4D2E058046A3}</Project>
-      <Name>Bytewizer.TinyCLR.DependencyInjection</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Bytewizer.TinyCLR.Logging.Abstractions\Bytewizer.TinyCLR.Logging.Abstractions.csproj">
       <Project>{598D7917-49D1-4E76-BFF4-23221BAD7072}</Project>
       <Name>Bytewizer.TinyCLR.Logging.Abstractions</Name>

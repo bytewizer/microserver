@@ -72,6 +72,11 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
         public int ReceiveTimeout { get; set; } = -1; // default value
 
         /// <summary>
+        /// Specifies the <see cref="SocketListener"/> socket retry limit before failing.
+        /// </summary>
+        public int SocketRetry { get; set; } = 5; 
+
+        /// <summary>
         /// Specifies the scheduling priority of <see cref="SocketListener"/>.
         /// </summary>
         public ThreadPriority ThreadPriority { get; set; } = ThreadPriority.AboveNormal;
@@ -87,12 +92,12 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
         /// Specifies the number of requests to the <see cref="SocketListener"/> thread pool that can be active
         /// concurrently. All requests above this number remain queued until thread pool threads become available.
         /// </summary>
-        public int MaxThreads { get; set; } = 25;
+        public int MaxThreads { get; set; } = 10;
 
         /// <summary>
         /// Specifies the maximum backlog of the <see cref="SocketListener"/> pending connections queue.
         /// </summary>
-        public int MaxPendingConnections { get; set; } = 5; //255
+        public int MaxPendingConnections { get; set; } = 5;
 
         /// <summary>
         /// Returns a <see cref="string"/> that represents this instance.

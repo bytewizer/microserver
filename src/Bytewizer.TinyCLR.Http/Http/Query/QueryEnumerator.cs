@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace Bytewizer.TinyCLR.Http
+namespace Bytewizer.TinyCLR.Http.Query
 {
     /// <summary>
     /// Provides a class for enumerating over key/value pairs.

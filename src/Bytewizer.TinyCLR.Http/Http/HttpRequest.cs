@@ -1,5 +1,6 @@
 ﻿using System.IO;
 
+using Bytewizer.TinyCLR.Http.Query;
 using Bytewizer.TinyCLR.Http.Header;
 
 namespace Bytewizer.TinyCLR.Http
@@ -9,6 +10,9 @@ namespace Bytewizer.TinyCLR.Http
     /// </summary>
     public class HttpRequest
     {
+        /// <summary>
+        /// Initializes an instance of the <see cref="HttpRequest" /> class.
+        /// </summary>
         public HttpRequest()
         {
             Headers = new HeaderDictionary();
@@ -20,12 +24,12 @@ namespace Bytewizer.TinyCLR.Http
         /// <summary>
         /// Gets the request headers.
         /// </summary>
-        public HeaderDictionary Headers { get; set; }
+        public IHeaderDictionary Headers { get; set; }
 
         /// <summary>
         /// Gets the query value collection.
         /// </summary>
-        public QueryCollection Query { get; set; }
+        public IQueryCollection Query { get; set; }
 
         /// <summary>
         /// Gets or sets the request body Stream.
@@ -52,8 +56,8 @@ namespace Bytewizer.TinyCLR.Http
         /// </summary>
         public long ContentLength
         {
-            get { return Headers.ContentLength; }
-            set { Headers.ContentLength = value; }
+            get { return ((HeaderDictionary)Headers).ContentLength; }
+            set { ((HeaderDictionary)Headers).ContentLength = value; }
         }
 
         /// <summary>
@@ -61,8 +65,8 @@ namespace Bytewizer.TinyCLR.Http
         /// </summary>
         public string ContentType
         {
-            get { return Headers.ContentType; }
-            set { Headers.ContentType = value; }
+            get { return ((HeaderDictionary)Headers).ContentType; }
+            set { ((HeaderDictionary)Headers).ContentType = value; }
         }
 
         /// <summary>
@@ -70,8 +74,8 @@ namespace Bytewizer.TinyCLR.Http
         /// </summary>
         public string Host
         {
-            get { return Headers.Host; }
-            set { Headers.Host = value; }
+            get { return ((HeaderDictionary)Headers).Host; }
+            set { ((HeaderDictionary)Headers).Host = value; }
         }
 
         /// <summary>
@@ -79,14 +83,5 @@ namespace Bytewizer.TinyCLR.Http
         /// </summary>
         public ICookieCollection Cookies { get; set; }
 
-        /// <summary>
-        /// Gets the request body as a form for this request.
-        /// </summary>
-        public IFormCollection Form { get; set; }
-
-        /// <summary>
-        /// Gets the collection of route values for this request.
-        /// </summary>
-        public IRouteValueDictionary RouteValues { get; set; }
     }
 }

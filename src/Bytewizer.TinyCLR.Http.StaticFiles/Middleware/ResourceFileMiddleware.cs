@@ -2,10 +2,9 @@
 using System.IO;
 using System.Text;
 using System.Resources;
-using System.Diagnostics;
 using System.Collections;
 
-using Bytewizer.TinyCLR.Pipeline;
+using Bytewizer.TinyCLR.Logging;
 
 namespace Bytewizer.TinyCLR.Http
 {
@@ -18,13 +17,14 @@ namespace Bytewizer.TinyCLR.Http
         private readonly DateTime _lastModified;
         private readonly Hashtable _resources;
         private readonly ResourceManager _resourceManager;
+        private readonly ILogger _logger;
         private readonly IContentTypeProvider _contentTypeProvider;
-        
+
         /// <summary>
         /// Initializes a default instance of the <see cref="ResourceFileMiddleware"/> class.
         /// </summary>
         public ResourceFileMiddleware()
-            : this (new ResourceFileOptions())
+            : this (NullLoggerFactory.Instance, new ResourceFileOptions())
         {
         }
 
@@ -33,10 +33,29 @@ namespace Bytewizer.TinyCLR.Http
         /// </summary>
         /// <param name="options">The <see cref="ResourceFileOptions"/> used to configure the middleware.</param>
         public ResourceFileMiddleware(ResourceFileOptions options)
+            : this(NullLoggerFactory.Instance, options)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ResourceFileMiddleware"/> class.
+        /// </summary>
+        /// <param name="loggerFactory">The factory used to create loggers.</param>
+        /// <param name="options">The <see cref="ResourceFileOptions"/> used to configure the middleware.</param>
+        public ResourceFileMiddleware(ILoggerFactory loggerFactory, ResourceFileOptions options)
         {
             //var rm = new System.Resources.ResourceManager("Bytewizer.TinyCLR.WebServer.Properties.Resources", _options.Assembly);
+            if (loggerFactory == null)
+            {
+                throw new ArgumentNullException(nameof(loggerFactory));
+            }
+
             if (options == null)
+            {
                 throw new ArgumentNullException(nameof(options));
+            }
+
+            _logger = loggerFactory.CreateLogger("Bytewizer.TinyCLR.Http");
 
             _options = options;
             _resources = _options.Resources ?? new Hashtable();
@@ -64,17 +83,17 @@ namespace Bytewizer.TinyCLR.Http
                 if (!ValidateMethod(context))
                 {
                     var method = context.Request.Method;
-                    Debug.WriteLine($"The request method {method} are not supported");
+                    _logger.LogDebug($"The request method {method} are not supported");
                 }
                 else if (!ValidatePath(matchUrl, out string subPath, out short resourceId))
                 {
                     var path = context.Request.Path;
-                    Debug.WriteLine($"The request path {path} does not match the path filter");
+                    _logger.LogDebug($"The request path {path} does not match the path filter");
                 }
                 else if (!LookupContentType(_contentTypeProvider, _options, subPath, out var contentType))
                 {
                     var path = context.Request.Path;
-                    Debug.WriteLine($"The request path {path} does not match a supported file type");
+                    _logger.LogDebug($"The request path {path} does not match a supported file type");
                 }
                 else
                 {
@@ -124,13 +143,14 @@ namespace Bytewizer.TinyCLR.Http
                 subPath = subPath.Replace("/", Path.DirectorySeparatorChar.ToString());
 
                 var filename = Path.GetFileName(subPath);
-                context.Response.Headers.LastModified = _lastModified.ToString("R");
-                context.Response.Headers.ContentDisposition = $"inline; filename={filename}";
+                context.Response.Headers[HeaderNames.LastModified] = _lastModified.ToString("R");
+                context.Response.Headers[HeaderNames.ContentDisposition] = $"inline; filename={filename}";
                 context.Response.ContentType = contentType;
                 context.Response.StatusCode = StatusCodes.Status200OK;
 
                 if (context.Request.Method == HttpMethods.Get)
                 {
+                    // TODO:  Chunked resource using GetObject(idResource, offset, size) - GHI #761
                     var fileObject = _options.ResourceManager.GetObject(resourceId);
                     if (fileObject.GetType() == typeof(string))
                     {

@@ -1,9 +1,16 @@
 ﻿using System.IO;
 
-namespace Bytewizer.TinyCLR
+namespace Bytewizer.TinyCLR.Http.Extensions
 {
+    /// <summary>
+    /// Contains extension methods for <see cref="StreamReader"/>.
+    /// </summary>
     static class StreamReaderExtensions
     {
+        /// <summary>
+        /// Skips white space in the current stream.
+        /// </summary>
+        /// <param name="reader">The source <see cref="StreamReader"/>.</param>
         public static void SkipWhiteSpace(this StreamReader reader)
         {
             while (true)

@@ -1,6 +1,6 @@
 ﻿using System;
-
-using Bytewizer.TinyCLR.Sockets;
+using Bytewizer.TinyCLR.Logging;
+using Bytewizer.TinyCLR.Pipeline.Builder;
 
 namespace Bytewizer.TinyCLR.Http
 {
@@ -12,23 +12,43 @@ namespace Bytewizer.TinyCLR.Http
         /// <summary>
         /// Enables static file serving for the current request path.
         /// </summary>
-        /// <param name="options">The <see cref="ServerOptions"/> instance this method extends.</param>
-        public static void UseStaticFiles(this ServerOptions options)
+        /// <param name="app">The <see cref="IApplicationBuilder"/> instance this method extends.</param>
+        public static IApplicationBuilder UseStaticFiles(this IApplicationBuilder app)
         {
-            if (options == null)
+            if (app == null)
             {
-                throw new ArgumentNullException(nameof(options));
+                throw new ArgumentNullException(nameof(app));
             }
 
-            options.UseMiddleware(new StaticFileMiddleware());
+            return app.UseMiddleware(typeof(StaticFileMiddleware));
         }
 
         /// <summary>
         /// Enables static file serving for the current request path.
         /// </summary>
-        /// <param name="app">The <see cref="ServerOptions"/> instance this method extends.</param>
+        /// <param name="app">The <see cref="IApplicationBuilder"/> instance this method extends.</param>
+        /// <param name="loggerFactory">The factory used to create loggers.</param>
+        public static IApplicationBuilder UseStaticFiles(this IApplicationBuilder app, ILoggerFactory loggerFactory)
+        {
+            if (app == null)
+            {
+                throw new ArgumentNullException(nameof(app));
+            }
+
+            if (loggerFactory == null)
+            {
+                throw new ArgumentNullException(nameof(loggerFactory));
+            }
+
+            return app.UseMiddleware(typeof(StaticFileMiddleware), loggerFactory, new StaticFileOptions());
+        }
+
+        /// <summary>
+        /// Enables static file serving for the current request path.
+        /// </summary>
+        /// <param name="app">The <see cref="IApplicationBuilder"/> instance this method extends.</param>
         /// <param name="options">The <see cref="StaticFileOptions"/> used to configure the middleware.</param>
-        public static void UseStaticFiles(this ServerOptions app, StaticFileOptions options)
+        public static IApplicationBuilder UseStaticFiles(this IApplicationBuilder app, StaticFileOptions options)
         {
             if (app == null)
             {
@@ -40,7 +60,7 @@ namespace Bytewizer.TinyCLR.Http
                 throw new ArgumentNullException(nameof(options));
             }
 
-            app.UseMiddleware(new StaticFileMiddleware(options));
+            return app.UseMiddleware(typeof(StaticFileMiddleware), options);
         }
     }
 }

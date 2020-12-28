@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections;
 
-namespace Bytewizer.TinyCLR.Http
+namespace Bytewizer.TinyCLR.Http.Query
 {
     /// <summary>
     /// An <see cref="QueryCollection"/> type for query values.
     /// </summary>
-    public class QueryCollection : ICollection, IEnumerable
+    public class QueryCollection : IQueryCollection
     {
         /// <summary>
         /// The array list used to store the pairs.
@@ -14,29 +14,19 @@ namespace Bytewizer.TinyCLR.Http
         private ArrayList _pairs;
 
         /// <summary>
-        /// Initializes an empty uninitialized instance of the <see cref="QueryCollection" /> class.
+        /// Thread synchronization.
         /// </summary>
-        public static readonly QueryCollection Empty = new QueryCollection();
+        private readonly object _lock = new object();
 
         /// <summary>
         /// Initializes a new empty uninitialized instance of class.
         /// </summary>
-        public QueryCollection() { }
-
-        /// <summary>
-        /// Initializes a new, empty instance of the class.
-        /// <param name="capacity">The number of elements that the new list can initially store.</param>
-        /// </summary>
-        public QueryCollection(int capacity)
-        {
-            _pairs = new ArrayList
-            {
-                Capacity = capacity
-            };
+        public QueryCollection() 
+        { 
         }
 
         /// <summary>
-        ///  Initializes a new, empty instance of the class using the specified <see cref="ArrayList"/>.
+        ///  Initializes a new empty instance of the class using the specified <see cref="ArrayList"/>.
         /// </summary>
         public QueryCollection(ArrayList pairs)
         {
@@ -87,7 +77,10 @@ namespace Bytewizer.TinyCLR.Http
                         return;
                     }
                 }
-                _pairs.Add(new QueryValue(key, value));
+                lock (_lock)
+                {
+                    _pairs.Add(new QueryValue(key, value));
+                }
             }
         }
 
@@ -151,45 +144,6 @@ namespace Bytewizer.TinyCLR.Http
         }
 
         /// <summary>
-        /// Add the given query string to the collection.
-        /// </summary>
-        /// <param name="queryString">A query string of query keys and values to append.</param>
-        public void Add(string queryString)
-        {
-            var items = QueryParser.ParseQuery(queryString);
-            foreach(QueryValue item in items)
-            {
-                Add(item.Key, item.Value);
-            }
-        }
-
-        /// <summary>
-        /// Adds the specified element to the collection.
-        /// </summary>
-        /// <param name="key">The key to use as the key of the element to add.</param>
-        /// <param name="value">The value of the rule to add.</param>
-        public void Add(string key, string value)
-        {
-            if (_pairs == null)
-            {
-                _pairs = new ArrayList();
-            }
-
-            this[key] = value;
-        }
-
-        /// <summary>
-        /// Removes all elements from the collection.
-        /// </summary>
-        public void Clear()
-        {
-            if (_pairs != null)
-            {
-                _pairs.Clear();
-            }
-        }
-
-        /// <summary>
         /// Determines whether the collection contains a specific key.
         /// </summary>
         /// <param name="key">The key to locate in the collection.</param>
@@ -233,18 +187,6 @@ namespace Bytewizer.TinyCLR.Http
         /// <summary>
         /// Removes the element with the specified key from the collection.
         /// </summary>
-        /// <param name="item">The <see cref="QueryValue"/> to remove from the collection.</param>
-        public void Remove(QueryValue item)
-        {
-            if (_pairs != null)
-            {
-                _pairs.Remove(item.Key);
-            }
-        }
-
-        /// <summary>
-        /// Removes the element with the specified key from the collection.
-        /// </summary>
         /// <param name="key">The key to remove from the collection.</param>
         public void Remove(string key)
         {
@@ -262,33 +204,18 @@ namespace Bytewizer.TinyCLR.Http
             }
         }
 
-        #region ICollection Members
-
         /// <summary>
-        /// The one-dimensional array of type <see cref="QueryValue"/> that is the destination of <see cref="QueryValue"/> 
-        /// objects copied from <see cref="ICollection"/>. The array must have zero-based indexing.
+        /// Removes all elements from the collection.
         /// </summary>
-        /// <param name="array">The one-dimensional array of <see cref="QueryValue"/> that is the destination of the elements copied from the collection. The <see cref="Array"/> must have zero-based indexing.</param>
-        /// <param name="index">The zero-based index in array at which copying begins.</param>
-		public void CopyTo(QueryValue[] array, int index)
+        public void Clear()
         {
-            if (array == null)
-                throw new ArgumentNullException(nameof(array));
-
-            if (!(array is QueryValue[]typedArray))
-                throw new InvalidCastException(nameof(array));
-
-            if (index < 0 || (typedArray.Length - index) < Count)
-                throw new ArgumentOutOfRangeException(nameof(index));
-
             if (_pairs != null)
             {
-                foreach (string key in Keys)
-                {
-                    typedArray[index++] = new QueryValue(key, this[key]);
-                }
+                _pairs.Clear();
             }
         }
+
+        #region ICollection Members
 
         /// <summary>
         /// The one-dimensional <see cref="Array"/> that is the destination of <see cref="QueryValue"/> 

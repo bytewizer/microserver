@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Text;
 
-using Bytewizer.TinyCLR.Pipeline;
+using Bytewizer.TinyCLR.Logging;
 using Bytewizer.TinyCLR.Http.Header;
+using Bytewizer.TinyCLR.Http.Internal;
 
 namespace Bytewizer.TinyCLR.Http
 {
@@ -11,21 +12,39 @@ namespace Bytewizer.TinyCLR.Http
     /// </summary>
     public class DeveloperExceptionPageMiddleware : Middleware
     {
+        private readonly ILogger _logger;
         private readonly DeveloperExceptionPageOptions _options;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DeveloperExceptionPageMiddleware"/> class.
+        /// </summary>
         public DeveloperExceptionPageMiddleware()
+            : this(NullLoggerFactory.Instance, new DeveloperExceptionPageOptions()) 
         {
-            _options = new DeveloperExceptionPageOptions();
         }
 
-        public DeveloperExceptionPageMiddleware(DeveloperExceptionPageOptions options)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DeveloperExceptionPageMiddleware"/> class.
+        /// </summary>
+        /// <param name="loggerFactory">The factory used to create loggers.</param>
+        /// <param name="options">The options for configuring the middleware.</param>
+        public DeveloperExceptionPageMiddleware(ILoggerFactory loggerFactory, DeveloperExceptionPageOptions options)
         {
-            if (options == null)
-                throw new ArgumentNullException(nameof(options));
+            if (loggerFactory == null)
+            {
+                throw new ArgumentNullException(nameof(loggerFactory));
+            }
 
+            if (options == null)
+            {
+                throw new ArgumentNullException(nameof(options));
+            }
+
+            _logger = loggerFactory.CreateLogger("Bytewizer.TinyCLR.Http");
             _options = options;
         }
 
+        /// <inheritdoc/>
         protected override void Invoke(HttpContext context, RequestDelegate next)
         {
             try 
@@ -34,6 +53,8 @@ namespace Bytewizer.TinyCLR.Http
             }
             catch(Exception ex)
             {
+                _logger.UnhandledException(ex);
+
                 var sb = new StringBuilder();
 
                 sb.AppendLine("EXCEPTION");
@@ -52,8 +73,15 @@ namespace Bytewizer.TinyCLR.Http
                     sb.AppendLine($"{pair.Key}: {pair.Value}");
                 }
 
-                context.Response.StatusCode = StatusCodes.Status500InternalServerError;
-                context.Response.Write(sb.ToString(), "text/plain");
+                try 
+                {
+                    context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+                    context.Response.Write(sb.ToString());
+                }
+                catch
+                {
+                    throw;
+                }
             }
         }
     }

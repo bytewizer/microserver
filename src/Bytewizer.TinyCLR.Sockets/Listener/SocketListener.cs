@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading;
 using System.Net.Sockets;
-using System.Diagnostics;
 
 namespace Bytewizer.TinyCLR.Sockets.Listener
 {
@@ -18,7 +17,7 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
         private readonly ManualResetEvent _acceptEvent = new ManualResetEvent(false);
         private readonly ManualResetEvent _startedEvent = new ManualResetEvent(false);
 
-        private static readonly object _lock = new object();
+        private readonly object _lock = new object();
 
         /// <summary>
         /// An event that is raised when a client is connected.
@@ -45,6 +44,11 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
         public bool IsActive { get; private set; } = false;
 
         /// <summary>
+        /// Gets the <see cref="SocketListenerOptions"/> used to configure <see cref="SocketListener"/>.
+        /// </summary>
+        public SocketListenerOptions Options => _options;
+
+        /// <summary>
         /// Start listener.
         /// </summary>
         public bool Start()
@@ -67,7 +71,6 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
                     _listener.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, _options.ReuseAddress);
                     _listener.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, _options.KeepAlive);
                     _listener.SetSocketOption(SocketOptionLevel.Tcp, SocketOptionName.NoDelay, _options.NoDelay);
-                    //_listener.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontLinger, true);
 
                     if (_options.ProtocolType == ProtocolType.Udp)
                     {
@@ -86,7 +89,7 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
                         if (_listener != null)
                         {
                             IsActive = true;
-                            AcceptConnections();
+                            AcceptConnection();
                         }
                     });
                     _thread.Priority = _options.ThreadPriority;
@@ -94,13 +97,11 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
 
                     // Waits for thread that calls Accept to start
                     _startedEvent.WaitOne();
-
-                    Debug.WriteLine($"Started socket listener bound on {_options.EndPoint}");
                 }
-                catch (Exception)
+                catch
                 {
                     IsActive = false;
-                    return false;
+                    throw;
                 }
 
                 return true;
@@ -140,20 +141,18 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
                         _listener.Close();
                         _listener = null;
                     }
-
-                    Debug.WriteLine($"Stopped socket listener bound on {_options.EndPoint}");
                 }
-                catch (Exception)
+                catch
                 {
                     IsActive = false;
-                    return false;
+                    throw;
                 }
 
                 return true;
             }
         }
 
-        private void AcceptConnections()
+        private void AcceptConnection()
         {
             int retry;
 
@@ -172,7 +171,7 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
                     // Waiting for a connection
                     var remoteSocket = _listener.Accept();
 
-                    ThreadPool.QueueUserWorkItem(
+                        ThreadPool.QueueUserWorkItem(
                         new WaitCallback(delegate (object state)
                         {
                             // Signal the accept thread to continue
@@ -194,9 +193,9 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
                         continue;
                     }
 
-                    Debug.WriteLine($"Socket exception message: { ex.Message }");
-
-                    if (retry > 5) throw;
+                    if (retry > _options.SocketRetry)
+                        throw;
+                    
                     retry++;
                     continue;
                 }

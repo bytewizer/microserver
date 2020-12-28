@@ -45,6 +45,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Bytewizer.TinyCLR.Logging.Abstractions.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -59,15 +60,17 @@
     <None Include="..\..\images\package-logo.png" Pack="true" PackagePath="\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EventId.cs" />
-    <Compile Include="ILogger.cs" />
-    <Compile Include="ILoggerFactory.cs" />
-    <Compile Include="ILoggerProvider.cs" />
-    <Compile Include="LoggerExtensions.cs" />
-    <Compile Include="LoggerFactoryExtensions.cs" />
-    <Compile Include="LogLevel.cs" />
+    <Compile Include="Logging\EventId.cs" />
+    <Compile Include="Logging\ILogger.cs" />
+    <Compile Include="Logging\ILoggerFactory.cs" />
+    <Compile Include="Logging\ILoggerProvider.cs" />
+    <Compile Include="Logging\LoggerExtensions.cs" />
+    <Compile Include="Logging\LoggerFactoryExtensions.cs" />
+    <Compile Include="Logging\LogLevel.cs" />
+    <Compile Include="Logging\NullLogger.cs" />
+    <Compile Include="Logging\NullLoggerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TypeNameHelper.cs" />
+    <Compile Include="Logging\TypeNameHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="GHIElectronics.TinyCLR.Core">

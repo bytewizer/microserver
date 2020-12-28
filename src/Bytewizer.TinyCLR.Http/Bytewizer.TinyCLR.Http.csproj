@@ -45,6 +45,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Bytewizer.TinyCLR.Http.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -65,25 +66,20 @@
     <Compile Include="Http\Cookies\CookieParser.cs" />
     <Compile Include="Http\Cookies\CookieValue.cs" />
     <Compile Include="Http\Cookies\ICookieCollection.cs" />
-    <Compile Include="Http\Endpoint.cs" />
-    <Compile Include="Http\HttpContextExtensions.cs" />
-    <Compile Include="Http\Features\EndpointFeature.cs" />
     <Compile Include="Http\Features\FeatureCollection.cs" />
     <Compile Include="Http\Features\FeatureEnumerator.cs" />
     <Compile Include="Http\Features\FeatureValue.cs" />
-    <Compile Include="Http\Features\IEndpointFeature.cs" />
     <Compile Include="Http\Features\IFeatureCollection.cs" />
-    <Compile Include="Http\FormFile\IFormCollection.cs" />
-    <Compile Include="Http\FormFile\IFormFileCollection.cs" />
-    <Compile Include="Http\Items\ItemsDictionary.cs" />
-    <Compile Include="Http\Items\ItemsEnumerator.cs" />
-    <Compile Include="Http\Items\ItemsValue.cs" />
+    <Compile Include="Http\Header\IHeaderDictionary.cs" />
+    <Compile Include="Http\Query\IQueryCollection.cs" />
+    <Compile Include="Internal\HttpMessage.cs" />
+    <Compile Include="Internal\UriHelper.cs" />
     <Compile Include="Http\RequestDelegate.cs" />
-    <Compile Include="Http\Routes\IRouteValueDictionary.cs" />
-    <Compile Include="Middleware\HandleDelegate.cs" />
-    <Compile Include="Middleware\HttpMessageParser.cs" />
+    <Compile Include="Internal\DiagnosticsLoggerExtensions.cs" />
+    <Compile Include="Middleware\Features\IStatusCodePagesFeature.cs" />
+    <Compile Include="Middleware\Features\StatusCodePagesFeature.cs" />
     <Compile Include="Middleware\UseMiddlewareExtensions.cs" />
-    <Compile Include="Http\Header\DateTimeHelper.cs" />
+    <Compile Include="Internal\DateTimeHelper.cs" />
     <Compile Include="Middleware\StatusCodePagesExtensions.cs" />
     <Compile Include="Middleware\StatusCodePagesOptions.cs" />
     <Compile Include="Middleware\StatusCodePagesMiddleware.cs" />
@@ -96,10 +92,9 @@
     <Compile Include="Http\HttpContext.cs" />
     <Compile Include="Http\HttpMethods.cs" />
     <Compile Include="Http\HttpProtocol.cs" />
-    <Compile Include="Http\HttpReasonPhrase.cs" />
+    <Compile Include="Internal\HttpReasonPhrase.cs" />
     <Compile Include="Http\HttpRequest.cs" />
     <Compile Include="Http\HttpResponse.cs" />
-    <Compile Include="Http\HttpRequestExtensions.cs" />
     <Compile Include="Http\HttpResponseExtensions.cs" />
     <Compile Include="Http\Query\QueryCollection.cs" />
     <Compile Include="Http\Query\QueryEnumerator.cs" />
@@ -109,8 +104,8 @@
     <Compile Include="Middleware\DeveloperExceptionPageExtensions.cs" />
     <Compile Include="Middleware\DeveloperExceptionPageMiddleware.cs" />
     <Compile Include="Middleware\DeveloperExceptionPageOptions.cs" />
-    <Compile Include="Middleware\Middleware.cs" />
-    <Compile Include="Middleware\HttpMiddleware.cs" />
+    <Compile Include="Http\Middleware.cs" />
+    <Compile Include="Internal\HttpMiddleware.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Extensions\StreamReaderExtensions.cs" />
     <Compile Include="Server\HttpServer.cs" />
@@ -119,6 +114,10 @@
     <ProjectReference Include="..\Bytewizer.TinyCLR.Core\Bytewizer.TinyCLR.Core.csproj">
       <Project>{70392D1D-6B78-46C8-9531-C02915742A46}</Project>
       <Name>Bytewizer.TinyCLR.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bytewizer.TinyCLR.Logging.Abstractions\Bytewizer.TinyCLR.Logging.Abstractions.csproj">
+      <Project>{598D7917-49D1-4E76-BFF4-23221BAD7072}</Project>
+      <Name>Bytewizer.TinyCLR.Logging.Abstractions</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bytewizer.TinyCLR.Pipeline\Bytewizer.TinyCLR.Pipeline.csproj">
       <Project>{8470EE70-1C41-45E4-8EDF-0D20CFEBFFD1}</Project>

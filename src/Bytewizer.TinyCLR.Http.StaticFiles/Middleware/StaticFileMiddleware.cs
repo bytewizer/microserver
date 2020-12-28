@@ -1,10 +1,9 @@
 ﻿using System;
 using System.IO;
-using System.Diagnostics;
+using Bytewizer.TinyCLR.Http.Header;
+using Bytewizer.TinyCLR.Logging;
 
 using GHIElectronics.TinyCLR.IO;
-
-using Bytewizer.TinyCLR.Pipeline;
 
 namespace Bytewizer.TinyCLR.Http
 {
@@ -16,23 +15,43 @@ namespace Bytewizer.TinyCLR.Http
         private readonly StaticFileOptions _options;
         private readonly IDriveProvider _driveProvider;
         private readonly IContentTypeProvider _contentTypeProvider;
+        private readonly ILogger _logger;
 
         /// <summary>
         /// Initializes a default instance of the <see cref="StaticFileMiddleware"/> class.
         /// </summary>
         public StaticFileMiddleware()
-            : this(new StaticFileOptions())
+            : this(NullLoggerFactory.Instance, new StaticFileOptions())
+        {
+        }
+
+        /// <summary>
+        /// Initializes a default instance of the <see cref="StaticFileMiddleware"/> class.
+        /// </summary>
+        /// <param name="options">The <see cref="StaticFileOptions"/> used to configure the middleware.</param>
+        public StaticFileMiddleware(StaticFileOptions options)
+            : this(NullLoggerFactory.Instance, options)
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StaticFileMiddleware"/> class.
         /// </summary>
+        /// <param name="loggerFactory">The factory used to create loggers.</param>
         /// <param name="options">The <see cref="StaticFileOptions"/> used to configure the middleware.</param>
-        public StaticFileMiddleware(StaticFileOptions options)
+        public StaticFileMiddleware(ILoggerFactory loggerFactory, StaticFileOptions options)
         {
+            if (loggerFactory == null)
+            {
+                throw new ArgumentNullException(nameof(loggerFactory));
+            }
+
             if (options == null)
+            {
                 throw new ArgumentNullException(nameof(options));
+            }
+
+            _logger = loggerFactory.CreateLogger("Bytewizer.TinyCLR.Http");
 
             _options = options;
             _driveProvider = _options.DriveProvider;
@@ -43,6 +62,7 @@ namespace Bytewizer.TinyCLR.Http
         /// Processes a request to determine if it matches a known file and if so serves it.
         /// </summary>
         /// <param name="context">The <see cref="HttpContext"/> that encapsulates all HTTP-specific information about an individual HTTP request.</param>
+        /// <param name="next">The next request handler to be executed.</param>
         protected override void Invoke(HttpContext context, RequestDelegate next)
         {
             var matchUrl = context.Request.Path;
@@ -52,17 +72,17 @@ namespace Bytewizer.TinyCLR.Http
                 if (!ValidateMethod(context))
                 {
                     var method = context.Request.Method;
-                    Debug.WriteLine($"The request method {method} are not supported");
+                    _logger.LogDebug($"The request method {method} are not supported");
                 }
                 else if (!ValidatePath(matchUrl, out var subPath))
                 {
                     var path = context.Request.Path;
-                    Debug.WriteLine($"The request path {path} does not match the path filter");
+                    _logger.LogDebug($"The request path {path} does not match the path filter");
                 }
                 else if (!LookupContentType(_contentTypeProvider, _options, subPath, out var contentType))
                 {
                     var path = context.Request.Path;
-                    Debug.WriteLine($"The request path {path} does not match a supported file type");
+                    _logger.LogDebug($"The request path {path} does not match a supported file type");
                 }
                 else
                 {
@@ -80,7 +100,7 @@ namespace Bytewizer.TinyCLR.Http
         {
             if (!LookupFileInfo(subPath, out var lastModified))
             {
-                Debug.WriteLine($"The request path {subPath} does not match an existing file");
+                _logger.LogDebug($"The request path {subPath} does not match an existing file");
             }
             else
             {
@@ -88,8 +108,6 @@ namespace Bytewizer.TinyCLR.Http
                 ServeStaticFile(context, contentType, subPath, lastModified);
             }
         }
-
-        private static readonly object _lock = new object();
 
         private void ServeStaticFile(HttpContext context, string contentType, string subPath, DateTime lastModified)
         {
@@ -102,14 +120,14 @@ namespace Bytewizer.TinyCLR.Http
                 var fullPath = $@"{driveName}{subPath}";
                 var filename = Path.GetFileName(subPath);
 
-                context.Response.Headers.LastModified = lastModified.ToString("R");
-                context.Response.Headers.ContentDisposition = $"inline; filename={filename}";
+                context.Response.Headers[HeaderNames.LastModified] = lastModified.ToString("R");
+                context.Response.Headers[HeaderNames.ContentDisposition] = $"inline; filename={filename}";
                 context.Response.ContentType = contentType;
                 context.Response.StatusCode = StatusCodes.Status200OK;
 
-                var stream = new FileStream(fullPath, FileMode.Open, FileAccess.Read, FileShare.Read);
-
+                var stream = new FileStream(fullPath, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
                 context.Response.ContentLength = stream.Length;
+
                 if (context.Request.Method == HttpMethods.Get)
                 {
                     context.Response.Body = stream;
@@ -119,6 +137,8 @@ namespace Bytewizer.TinyCLR.Http
                     stream.Close();
                     stream.Dispose();
                 }
+
+                return;
             }
 
             context.Response.StatusCode = StatusCodes.Status304NotModified;

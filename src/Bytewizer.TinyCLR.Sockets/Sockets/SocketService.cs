@@ -1,8 +1,10 @@
 ﻿using System;
-using System.Net;
+using System.Diagnostics;
 using System.Net.Sockets;
 
+using Bytewizer.TinyCLR.Logging;
 using Bytewizer.TinyCLR.Pipeline;
+using Bytewizer.TinyCLR.Pipeline.Builder;
 using Bytewizer.TinyCLR.Sockets.Listener;
 
 namespace Bytewizer.TinyCLR.Sockets
@@ -11,105 +13,66 @@ namespace Bytewizer.TinyCLR.Sockets
     /// Represents a base implementation of <see cref="SocketService"/> which uses <see cref="SocketListener"/> for serving requests.
     /// </summary>
     public abstract class SocketService : IServer
-    {       
+    {
+        /// <summary>
+        /// The <see cref="SocketListener"/> which listens for remote clients.
+        /// </summary>
         private readonly SocketListener _listener;
 
         /// <summary>
-        /// Configuration options of server specific features.
+        /// The logger used to write to.
+        /// </summary>
+        private readonly ILogger _logger;
+
+        /// <summary>
+        /// The configuration options of server specific features.
         /// </summary>
         protected readonly ServerOptions Options;
 
         /// <summary>
-        /// The socket pipeline used to invoke pipeline fiters.
+        /// The application pipeline used to invoke pipeline middleware.
         /// </summary>
-        protected readonly IApplication Pipeline;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SocketService"/> class with pre-configured default options.
-        /// </summary>
-        public SocketService()
-            : this(_ => { }) { }
+        protected readonly IApplication Application;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SocketService"/> class.
         /// </summary>
-        /// <param name="pipeline">The request pipeline to invoke.</param>
-        public SocketService(IApplicationBuilder pipeline)
-            : this(options =>
-            {
-                options.Pipeline = pipeline;
-            })
-        { }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SocketService"/> class.
-        /// </summary>
-        /// <param name="port">The port for receiving data.</param>
-        public SocketService(int port)
-            : this(options =>
-            {
-                options.Listen(IPAddress.Any, port);
-            })
-        { }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SocketService"/> class.
-        /// </summary>
-        /// <param name="address">The ip address for receiving data.</param>
-        /// <param name="port">The port for receiving data.</param>
-        public SocketService(IPAddress address, int port)
-            : this(options =>
-            {
-                options.Listen(address, port);
-            })
-        { }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SocketService"/> class.
-        /// </summary>
-        /// <param name="address">The ip address for receiving data.</param>
-        /// <param name="port">The port for receiving data.</param>
-        /// <param name="pipeline">The request pipeline to invoke.</param>
-        public SocketService(IPAddress address, int port, IApplicationBuilder pipeline)
-            : this(options =>
-            {
-                options.Pipeline = pipeline;
-                options.Listen(address, port);
-            })
-        { }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SocketService"/> class.
-        /// </summary>
+        /// <param name="loggerFactory">The factory used to create loggers.</param>
+        /// <param name="middleware">The <see cref="IMiddleware"/> to include first in the application pipeline.</param>
         /// <param name="configure">The configuration options of <see cref="SocketService"/> specific features.</param>
-        public SocketService(ServerOptionsDelegate configure)
-            : this (configure, null)
-        { }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SocketService"/> class.
-        /// </summary>
-        /// <param name="configure">The configuration options of <see cref="SocketService"/> specific features.</param>
-        /// <param name="filter">
-        /// The request <see cref="Middleware"/> to add to the pipeline.
-        /// Filters are executed in the order they are added.
-        /// </param>
-
-        public SocketService(ServerOptionsDelegate configure, IMiddleware filter)
+        public SocketService(ILoggerFactory loggerFactory, IMiddleware middleware, ServerOptionsDelegate configure)
         {
-            var options = new ServerOptions();
-            
-            if (filter != null)
+            if (loggerFactory == null)
             {
-                options.Register(filter);
+                throw new ArgumentNullException(nameof(loggerFactory));
             }
-            
+
+            if (configure == null)
+            {
+                throw new ArgumentNullException(nameof(configure));
+            }
+
+            _logger = loggerFactory.CreateLogger("Bytewizer.TinyCLR.Sockets");
+
+            var options = new ServerOptions();
+
+            if (middleware != null)
+            {
+                options.Pipeline(app =>
+                {
+                    app.Use(middleware);
+                });
+            }
+
             configure(options);
 
-            Options = options;
-            _listener = new SocketListener(Options.Listener);
+            Application = options.Application;
+
+            _listener = new SocketListener(options.Listener);
             _listener.Connected += ClientConnected;
-            Pipeline = ((ApplicationBuilder)Options.Pipeline).Build();
+            _listener.Disconnected += ClientDisconnected;
+
+            Options = options;
         }
 
         ///<inheritdoc/>
@@ -117,10 +80,15 @@ namespace Bytewizer.TinyCLR.Sockets
         {
             try
             {
-                return _listener.Start();
+                var status = _listener.Start();
+                var message = $"Started socket listener bound to {_listener.Options.EndPoint}";
+                Debug.WriteLine(message);
+                _logger.LogInformation(message);
+                return status;
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex, $"Error starting listerner bound to {_listener.Options.EndPoint}");
                 return false;
             }
         }
@@ -130,10 +98,15 @@ namespace Bytewizer.TinyCLR.Sockets
         {
             try
             {
-                return _listener.Stop();
+                var status = _listener.Stop();
+                var message = $"Stopping socket listener bound to {_listener.Options.EndPoint}";
+                Debug.WriteLine(message);
+                _logger.LogInformation(message);
+                return status;
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex, $"Error stopping listener bound to {_listener.Options.EndPoint}");
                 return false;
             }
         }
@@ -142,10 +115,18 @@ namespace Bytewizer.TinyCLR.Sockets
         /// A client has connected.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="socket">The socket for the connected end point.</param>
+        /// <param name="socket">The socket for the connected endpoint.</param>
         protected virtual void ClientConnected(object sender, Socket socket)
         { 
         }
 
+        /// <summary>
+        /// A client has disconnected.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="execption">The socket <see cref="Exception"/> for the disconnected endpoint.</param>
+        protected virtual void ClientDisconnected(object sender, Exception execption)
+        {
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Bytewizer.TinyCLR.Http
+namespace Bytewizer.TinyCLR.Http.Cookies
 {
     /// <summary>
     /// Defines a form string value pair that can be set or retrieved.

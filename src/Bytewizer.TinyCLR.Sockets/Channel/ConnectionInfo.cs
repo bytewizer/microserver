@@ -38,7 +38,7 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
         {
             return new ConnectionInfo()
             {
-                Id = DateTime.Now.Ticks.ToString(), //TODO: GHI Github issue #476 / Id = _context.Channel.Id.ToString(),
+                Id = DateTime.Now.Ticks.ToString(), //TODO: Switch to Guid - GHI Github issue #476,
                 LocalIpAddress = ((IPEndPoint)channel.LocalEndPoint).Address,
                 LocalPort = ((IPEndPoint)channel.LocalEndPoint).Port,
                 RemoteIpAddress = ((IPEndPoint)channel.RemoteEndPoint).Address,

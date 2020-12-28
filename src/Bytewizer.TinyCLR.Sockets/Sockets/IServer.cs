@@ -1,7 +1,7 @@
 ﻿namespace Bytewizer.TinyCLR.Sockets
 {
     /// <summary>
-    /// Represents a server.
+    /// An interface for <see cref="SocketService"/>.
     /// </summary>
     public interface IServer
     {

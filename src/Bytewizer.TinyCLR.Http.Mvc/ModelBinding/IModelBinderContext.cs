@@ -26,7 +26,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ModelBinding
         string ModelName { get; }
 
         /// <summary>
-        /// Gets provider used to load values (for instance from HTTP forms)
+        /// Gets provider used to load values.
         /// </summary>
         IValueProvider ValueProvider { get; }
 
@@ -36,7 +36,6 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ModelBinding
         /// <param name="modelType">Type that we want to get</param>
         /// <param name="prefix">Prefix (if this is a nested get)</param>
         /// <param name="modelName">Property/argument name</param>
-        /// <returns>Created model</returns>
         object Execute(Type modelType, string prefix, string modelName);
     }
 }

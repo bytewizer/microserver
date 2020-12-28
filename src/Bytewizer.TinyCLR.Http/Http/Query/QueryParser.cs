@@ -1,5 +1,8 @@
 ﻿using System.Collections;
 
+using Bytewizer.TinyCLR.Http.Internal;
+using Bytewizer.TinyCLR.Http.Query;
+
 namespace Bytewizer.TinyCLR.Http
 {
     /// <summary>
@@ -66,13 +69,10 @@ namespace Bytewizer.TinyCLR.Http
                     string name = queryString.Substring(scanIndex, equalIndex - scanIndex);
                     string value = queryString.Substring(equalIndex + 1, delimiterIndex - equalIndex - 1);
                     accumulator.Add(
-                        new QueryValue(
-                            //TODO: Unescape strings
-                            //Uri.UnescapeDataString(name.Replace("+", " ")),
-                            //Uri.UnescapeDataString(value.Replace("+", " ")));
-                            name.Replace("+", " "),
-                            value.Replace("+", " "))
-                        );
+                        new QueryValue(                          
+                            UriHelper.UrlDecode(name),
+                            UriHelper.UrlDecode(value)
+                        ));
                     equalIndex = queryString.IndexOf('=', delimiterIndex);
                     if (equalIndex == -1)
                     {

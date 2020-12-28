@@ -9,9 +9,13 @@ class Program
 {
     static void Main(string[] args)
     {
-        var server = new SocketServer(options =>
+        IServer server = new SocketServer(options =>
         {
-            options.Register(new HttpResponse());
+            options.Pipeline(app =>
+            {
+                app.Use(new HttpResponse());
+            });
+            options.Listen(8080); // Listens on port 8080
         });
         server.Start();
     }
@@ -89,13 +93,15 @@ static void Main()
 
     var server = new SocketServer(options =>
     {
-        options.Listen(IPAddress.Any, 443, listener =>
+        options.Pipeline(app =>
+        {
+            app.Use(new HttpResponse());
+        });
+        options.Listen(443, listener =>
         {
             listener.UseHttps(X509cert);
         });
-        options.Register(new SimpleResponse());
     });
-
     server.Start();
 }
 ```

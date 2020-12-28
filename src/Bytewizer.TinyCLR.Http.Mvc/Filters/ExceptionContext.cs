@@ -11,6 +11,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc.Filters
         /// Instantiates a new <see cref="ExceptionContext"/> instance.
         /// </summary>
         /// <param name="actionContext">The <see cref="ActionContext"/>.</param>
+        /// <param name="exception">the <see cref="System.Exception"/> caught while executing the action.</param>
         public ExceptionContext(ActionContext actionContext, Exception exception)
         {
             HttpContext = actionContext.HttpContext;

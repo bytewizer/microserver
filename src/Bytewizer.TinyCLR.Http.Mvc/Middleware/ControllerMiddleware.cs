@@ -3,22 +3,30 @@ using System.Reflection;
 using System.Collections;
 using System.Diagnostics;
 
-using Bytewizer.TinyCLR.Pipeline;
 using Bytewizer.TinyCLR.Http.Mvc.Middleware;
-
 
 namespace Bytewizer.TinyCLR.Http
 {
+    /// <summary>
+    /// A middleware for generating controller routes and mapping request to controller actions.
+    /// </summary>
     public class ControllerMiddleware : Middleware
     {
         private readonly ControllerOptions _options;
         private readonly ControllerFactory _controllerFactory;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ControllerMiddleware"/> class.
+        /// </summary>
         public ControllerMiddleware()
             : this(new ControllerOptions())
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ControllerMiddleware"/> class.
+        /// </summary>
+        /// <param name="options">The options for configuring the middleware.</param>
         public ControllerMiddleware(ControllerOptions options)
         {
             if (options == null)
@@ -35,6 +43,7 @@ namespace Bytewizer.TinyCLR.Http
             }
         }
 
+        /// <inheritdoc/>
         protected override void Invoke(HttpContext context, RequestDelegate next)
         {
             string uri = context.Request.Path.TrimStart('/').TrimEnd('/').ToLower();

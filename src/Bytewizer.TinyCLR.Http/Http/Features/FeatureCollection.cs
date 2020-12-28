@@ -6,7 +6,7 @@ namespace Bytewizer.TinyCLR.Http.Features
     /// <summary>
     /// An <see cref="FeatureCollection"/> type for key values.
     /// </summary>
-    public class FeatureCollection : ICollection, IEnumerable, IFeatureCollection
+    public class FeatureCollection : IFeatureCollection
     {
         /// <summary>
         /// The array list used to store the pairs.
@@ -14,28 +14,15 @@ namespace Bytewizer.TinyCLR.Http.Features
         private ArrayList _pairs;
 
         /// <summary>
+        /// Thread synchronization.
+        /// </summary>
+        private readonly object _lock = new object();
+
+        /// <summary>
         /// Initializes a new empty uninitialized instance of class.
         /// </summary>
-        public FeatureCollection() { }
-
-        /// <summary>
-        /// Initializes a new, empty instance of the class.
-        /// <param name="capacity">The number of elements that the new list can initially store.</param>
-        /// </summary>
-        public FeatureCollection(int capacity)
-        {
-            _pairs = new ArrayList
-            {
-                Capacity = capacity
-            };
-        }
-
-        /// <summary>
-        ///  Initializes a new, empty instance of the class using the specified <see cref="ArrayList"/>.
-        /// </summary>
-        public FeatureCollection(ArrayList pairs)
-        {
-            _pairs = pairs;
+        public FeatureCollection() 
+        { 
         }
 
         /// <summary>
@@ -82,7 +69,11 @@ namespace Bytewizer.TinyCLR.Http.Features
                         return;
                     }
                 }
-                _pairs.Add(new FeatureValue(key, value));
+
+                lock (_lock)
+                {
+                    _pairs.Add(new FeatureValue(key, value));
+                }
             }
         }
 
@@ -115,143 +106,11 @@ namespace Bytewizer.TinyCLR.Http.Features
         /// <summary>
         /// Sets the given feature in the collection.
         /// </summary>
+        /// <param name="type">The feature type.</param>
         /// <param name="instance">The feature value.</param>
         public void Set(Type type, object instance)
         {
-
             this[type] = instance;
-        }
-
-        /// <summary>
-        /// Gets an <see cref="ICollection"/> containing the keys in the collection.
-        /// </summary>
-        public ICollection Keys
-        {
-            get
-            {
-                if (_pairs == null)
-                {
-                    return new ArrayList();
-                }
-
-                ArrayList list = new ArrayList();
-                foreach (FeatureValue kvp in _pairs)
-                {
-                    list.Add(kvp.Key);
-                }
-                return list;
-            }
-        }
-
-        /// <summary>
-        /// Gets an <see cref="ICollection"/> containing the values in the collection.
-        /// </summary>
-        public ICollection Values
-        {
-            get
-            {
-                if (_pairs == null)
-                {
-                    return new ArrayList();
-                }
-
-                ArrayList list = new ArrayList();
-                foreach (FeatureValue kvp in _pairs)
-                {
-                    list.Add(kvp.Value);
-                }
-                return list;
-            }
-        }
-
-        /// <summary>
-        /// Adds the specified element to the collection.
-        /// </summary>
-        /// <param name="key">The key to use as the key of the element to add.</param>
-        /// <param name="value">The value of the rule to add.</param>
-        public void Add(Type key, string value)
-        {
-            if (_pairs == null)
-            {
-                _pairs = new ArrayList();
-            }
-
-            this[key] = value.Trim();
-        }
-
-        /// <summary>
-        /// Removes all elements from the collection.
-        /// </summary>
-        public void Clear()
-        {
-            if (_pairs != null)
-            {
-                _pairs.Clear();
-            }
-        }
-
-        /// <summary>
-        /// Determines whether the collection contains a specific key.
-        /// </summary>
-        /// <param name="key">The key to locate in the collection.</param>
-        public bool ContainsKey(Type key)
-        {
-            if (_pairs == null)
-            {
-                return false;
-            }
-
-            for (int i = 0; i < Count; i++)
-            {
-                FeatureValue kvp = (FeatureValue)_pairs[i];
-                if (kvp.Key == key)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// Gets the value associated with the specified key.
-        /// </summary>
-        /// <param name="key">The key of the value to get.</param>
-        /// <param name="value">When this method returns, the value associated with the specified key, if the
-        /// key is found; otherwise, the default value for the type of the value parameter. This parameter is passed uninitialized.
-        /// </param>
-        /// <returns>
-        /// <c>true</c> if the object that implements collection contains an element with the specified key; otherwise, <c>false</c>.
-        /// </returns>
-        /// <exception cref="ArgumentNullException">Specified key is <c>null</c></exception>
-        public bool TryGetValue(Type key, out object value)
-        {
-            if (key == null) throw new ArgumentNullException(nameof(key));
-
-            for (int i = 0; i < Count; i++)
-            {
-                FeatureValue kvp = (FeatureValue)_pairs[i];
-                if (kvp.Key == key)
-                {
-                    value = kvp.Value;
-                    return true;
-                }
-            }
-
-            value = default;
-            return false;
-        }
-
-        /// <summary>
-        /// Removes the element with the specified key from the collection.
-        /// </summary>
-        /// <param name="item">The <see cref="FeatureValue"/> to remove from the collection.</param>
-        public void Remove(FeatureValue item)
-        {
-            if (_pairs != null)
-            {
-                _pairs.Remove(item.Key);
-            }
         }
 
         /// <summary>
@@ -274,33 +133,18 @@ namespace Bytewizer.TinyCLR.Http.Features
             }
         }
 
-        #region ICollection Members
-
         /// <summary>
-        /// The one-dimensional array of type <see cref="FeatureValue"/> that is the destination of <see cref="FeatureValue"/> 
-        /// objects copied from <see cref="ICollection"/>. The array must have zero-based indexing.
+        /// Removes all elements from the collection.
         /// </summary>
-        /// <param name="array">The one-dimensional array of <see cref="FeatureValue"/> that is the destination of the elements copied from the collection. The <see cref="Array"/> must have zero-based indexing.</param>
-        /// <param name="index">The zero-based index in array at which copying begins.</param>
-		public void CopyTo(FeatureValue[] array, int index)
+        public void Clear()
         {
-            if (array == null)
-                throw new ArgumentNullException(nameof(array));
-
-            if (!(array is FeatureValue[] typedArray))
-                throw new InvalidCastException(nameof(array));
-
-            if (index < 0 || (typedArray.Length - index) < Count)
-                throw new ArgumentOutOfRangeException(nameof(index));
-
             if (_pairs != null)
             {
-                foreach (Type key in Keys)
-                {
-                    typedArray[index++] = new FeatureValue(key, this[key]);
-                }
+                _pairs.Clear();
             }
         }
+
+        #region ICollection Members
 
         /// <summary>
         /// The one-dimensional <see cref="Array"/> that is the destination of <see cref="FeatureValue"/> 

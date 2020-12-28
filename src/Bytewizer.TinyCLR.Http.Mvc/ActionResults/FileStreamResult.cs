@@ -54,7 +54,8 @@ namespace Bytewizer.TinyCLR.Http.Mvc
                 throw new ArgumentNullException(nameof(context));
             }
 
-            context.HttpContext.Response.Headers.ContentDisposition = $"inline; filename={FileDownloadName}";
+            context.HttpContext.Response.Headers[HeaderNames.ContentDisposition] = $"inline; filename={FileDownloadName}";
+            context.HttpContext.Response.ContentType = ContentType;
             context.HttpContext.Response.Body = FileStream;
             context.HttpContext.Response.ContentLength = FileStream.Length;
             context.HttpContext.Response.StatusCode = StatusCodes.Status200OK;

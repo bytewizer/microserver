@@ -1,61 +1,49 @@
 ﻿using System;
-using System.Net;
 using System.Net.Sockets;
-using System.Diagnostics;
 
 using Bytewizer.TinyCLR.Sockets;
+using Bytewizer.TinyCLR.Logging;
 using Bytewizer.TinyCLR.Pipeline;
+using Bytewizer.TinyCLR.Http.Internal;
 
 namespace Bytewizer.TinyCLR.Http
 {
     /// <summary>
     /// Represents an implementation of the <see cref="HttpServer"/> for creating web servers.
     /// </summary>
-    public class HttpServer : SocketService
+    public class HttpServer : SocketService, IServer
     {
-        /// <summary>
-        /// Initializes a default instance of the <see cref="HttpServer"/> class.
-        /// </summary>
-        public HttpServer()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="HttpServer"/> class.
-        /// </summary>
-        /// <param name="pipeline">The request pipeline to invoke.</param>
-        public HttpServer(IApplicationBuilder pipeline)
-            : base(pipeline)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="HttpServer"/> class.
-        /// </summary>
-        /// <param name="port">The port for receiving data.</param>
-        public HttpServer(int port)
-            : base(port)
-        {
-        }
+        private readonly ILogger _logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HttpServer"/> class.
         /// </summary>
         /// <param name="configure">The configuration options of <see cref="HttpServer"/> specific features.</param>
         public HttpServer(ServerOptionsDelegate configure)
-            : base(configure, new HttpMiddleware())
+            : this(NullLoggerFactory.Instance, new HttpMiddleware(), configure)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SocketServer"/> class.
+        /// </summary>
+        /// <param name="loggerFactory">The factory used to create loggers.</param>
+        /// <param name="configure">The configuration options of <see cref="SocketServer"/> specific features.</param>
+        public HttpServer(ILoggerFactory loggerFactory, ServerOptionsDelegate configure)
+            : this(loggerFactory, new HttpMiddleware(), configure)
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HttpServer"/> class.
         /// </summary>
-        /// <param name="address">The ip address for receiving data.</param>
-        /// <param name="port">The port for receiving data.</param>
-        /// <param name="pipeline">The request pipeline to invoke.</param>
-        public HttpServer(IPAddress address, int port, Pipeline.IApplicationBuilder pipeline)
-            : base(address, port, pipeline)
+        /// <param name="loggerFactory">The factory used to create loggers.</param>
+        /// <param name="middleware">The <see cref="IMiddleware"/> to include in the application pipeline.</param>
+        /// <param name="configure">The configuration options of <see cref="HttpServer"/> specific features.</param>
+        public HttpServer(ILoggerFactory loggerFactory, IMiddleware middleware, ServerOptionsDelegate configure)
+            : base(loggerFactory, middleware, configure)
         {
+            _logger = loggerFactory.CreateLogger("Bytewizer.TinyCLR.Http");
         }
 
         /// <summary>
@@ -65,9 +53,8 @@ namespace Bytewizer.TinyCLR.Http
         /// <param name="socket">The socket for the connected end point.</param>
         protected override void ClientConnected(object sender, Socket socket)
         {
-            //try
-            //{
-                // Creates a new HttpContext object per request.
+            try
+            {
                 var context = new HttpContext();
 
                 // Assign socket
@@ -83,18 +70,21 @@ namespace Bytewizer.TinyCLR.Http
                     context.Channel.Assign(socket);
                 }
 
-                // Invoke pipeline 
-                Pipeline.Invoke(context);
+                // Check to make sure channel contains data
+                if (context.Channel.InputStream.Length > 0)
+                {   
+                    // Invoke pipeline 
+                    Application.Invoke(context);
+                }
 
-                // Close connection and clear channel once pipeline is complete.
-                context.Channel.Clear();
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    Debug.WriteLine($"Failed to accept incoming connection. Exception: { ex.Message } StackTrace: {ex.StackTrace}");
-            //    return;
-            //}
+                // Close connection and clear context once pipeline is complete
+                context.Clear();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogCritical(ex, $"Unexpcted exception in {nameof(HttpServer)}.{nameof(ClientConnected)}");
+                return;
+            }
         }
     }
 }

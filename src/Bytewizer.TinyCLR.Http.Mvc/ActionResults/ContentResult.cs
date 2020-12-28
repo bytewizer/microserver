@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace Bytewizer.TinyCLR.Http.Mvc
 {
@@ -7,6 +8,15 @@ namespace Bytewizer.TinyCLR.Http.Mvc
     /// </summary>
     public class ContentResult : ActionResult
     {
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ContentResult"/> class.
+        /// </summary>
+        public ContentResult(string content)
+        {
+            Content = content;
+        }
+
         /// <summary>
         /// Gets or set the content representing the body of the response.
         /// </summary>
@@ -15,7 +25,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc
         /// <summary>
         /// Gets or sets the Content-Type header for the response.
         /// </summary>
-        public string ContentType { get; set; }
+        public string ContentType { get; set; } = "text/html; charset=UTF-8";
 
         /// <summary>
         /// Gets or sets the HTTP status code.
@@ -30,7 +40,12 @@ namespace Bytewizer.TinyCLR.Http.Mvc
                 throw new ArgumentNullException(nameof(context));
             }
 
-            context.HttpContext.Response.Write(Content, ContentType, StatusCode);
+            if (ContentType == null)
+            {
+                throw new ArgumentNullException(nameof(ContentType));
+            }
+
+            context.HttpContext.Response.Write(Content, ContentType, StatusCode, Encoding.UTF8);
         }
     }
 }

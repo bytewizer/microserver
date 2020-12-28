@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
+using System.Net;
 using System.Text;
+using System.Collections;
 using System.Net.Sockets;
 using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
@@ -13,14 +15,19 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
     public class SocketChannel
     {
         /// <summary>
-        /// Gets socket for the connected end point.
+        /// Gets socket for the connected endpoint.
         /// </summary>
         public Socket Socket { get; internal set; }
 
         /// <summary>
-        /// Gets socket information for the connected end point.  
+        /// Gets socket information for the connected endpoint.  
         /// </summary>
         public ConnectionInfo Connection { get; internal set; }
+
+        /// <summary>
+        /// Gets or sets a key/value collection that can be used to share data within the scope of this channel.
+        /// </summary>
+        public byte[] Data { get; set; }
 
         /// <summary>
         /// Gets a <see cref="Stream"/> object representing the contents of the socket channel.
@@ -79,53 +86,47 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
         }
 
         /// <summary>
-        /// Clears the connected socket channel.
+        /// Closes and clears the connected socket channel.
         /// </summary>
         public void Clear()
         {
-            if (Socket != null)
-            {
-                Socket.Close();
-                Socket = null;
-            }
-
-            if (Connection != null)
-            {
-                Connection = null;
-            }
-
-            if (InputStream != null)
-            {
-                InputStream.Close();
-                InputStream = null;
-            }
-
-            if (OutputStream != null)
-            {
-                OutputStream.Close();
-                OutputStream = null;
-            }
+            Connection = null;
+            OutputStream?.Dispose();
+            InputStream?.Dispose();
+            Socket?.Close();
         }
 
         /// <summary>
         /// Writes a new response to the connected socket channel.
         /// </summary>
-        /// <param name="text">A <see cref="string"/> that contains data to be sent.</param>
-        public void Write(string text)
+        /// <param name="text">A <see cref="string"/> that contains data to be UTF8 encoded and sent.</param>
+        public int Write(string text)
         {
             if (text == null)
             {
                 throw new ArgumentNullException(nameof(text));
             }
 
-            var bytes = Encoding.UTF8.GetBytes(text);
-            OutputStream?.Write(bytes, 0, bytes.Length);
+            int bytesSent = 0;
+            try
+            {
+                var bytes = Encoding.UTF8.GetBytes(text);
+                OutputStream?.Write(bytes, 0, bytes.Length);
+                bytesSent += bytes.Length;
+            }
+            catch
+            {
+                throw;  //TODO: Best way to handle?
+            }
+
+            return bytesSent;
         }
 
         /// <summary>
         /// Writes a new response to the connected socket channel.
         /// </summary>
         /// <param name="bytes">A <see cref="byte"/> array that contains data to be sent.</param>
+        /// <returns>The number of bytes sent to the <see cref="Socket"/>.</returns>
         public int Write(byte[] bytes)
         {
             if (bytes.Length <= 0)
@@ -139,8 +140,9 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
                 OutputStream?.Write(bytes, 0, bytes.Length);
                 bytesSent += bytes.Length;
             }
-            catch (Exception)
+            catch 
             {
+                throw;  //TODO: Best way to handle?
             }
 
             return bytesSent;
@@ -170,8 +172,56 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
                     }
                 }
             }
-            catch (Exception)
+            catch
             {
+                throw; //TODO: Best way to handle?
+            }
+
+            return bytesSent;
+        }
+
+        /// <summary>
+        /// Sends data to connected socket channel.
+        /// </summary>
+        /// <param name="buffer">An array of type <see cref="byte"/> that contains the data to be sent.</param>
+        /// <param name="size">The number of bytes to send.</param>
+        /// <param name="offset">The position in the data buffer at which to begin sending data.</param>
+        /// <param name="socketFlags">A bitwise combination of the <see cref="SocketFlags"/> values.</param>
+        /// <returns>The number of bytes sent to the <see cref="Socket"/>.</returns>
+        public int Send(byte[] buffer, int size, int offset, SocketFlags socketFlags)
+        {
+            int bytesSent;
+            try
+            {
+                bytesSent = Socket.Send(buffer, size, offset, socketFlags);
+            }
+            catch
+            {
+                throw; //TODO: Best way to handle?
+            }
+
+            return bytesSent;
+        }
+
+        /// <summary>
+        /// Sends data to a specific remote endpoint.
+        /// </summary>
+        /// <param name="buffer">An array of type <see cref="byte"/> that contains the data to be sent.</param>
+        /// <param name="size">The number of bytes to send.</param>
+        /// <param name="offset">The position in the data buffer at which to begin sending data.</param>
+        /// <param name="socketFlags">A bitwise combination of the <see cref="SocketFlags"/> values.</param>
+        /// <param name="remoteEP">The <see cref="EndPoint"/> that represents the destination location for the data.</param>
+        /// <returns>The number of bytes sent.</returns>
+        public int SendTo(byte[] buffer, int size, int offset, SocketFlags socketFlags, EndPoint remoteEP)
+        {
+            int bytesSent;
+            try
+            {
+                bytesSent = Socket.SendTo(buffer, size, offset, socketFlags, remoteEP);
+            }
+            catch
+            {
+                throw; //TODO: Best way to handle?
             }
 
             return bytesSent;

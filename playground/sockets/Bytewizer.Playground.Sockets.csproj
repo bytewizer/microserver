@@ -7,8 +7,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{8A1BE3FA-45DC-41C0-98C8-3FBB31AF45E2}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Bytewizer.Playground.Pipeline</RootNamespace>
-    <AssemblyName>Bytewizer.Playground.Pipeline</AssemblyName>
+    <RootNamespace>Bytewizer.Playground.Sockets</RootNamespace>
+    <AssemblyName>Bytewizer.Playground.Sockets</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Middleware\HttpResponse.cs" />
+    <Compile Include="Middleware\HttpResponseExtensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -56,6 +57,18 @@
     <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Hardware\Bytewizer.TinyCLR.Hardware.csproj">
       <Project>{9EC0C1B6-8FF3-4B58-A67B-F613625AFA69}</Project>
       <Name>Bytewizer.TinyCLR.Hardware</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Logging.Abstractions\Bytewizer.TinyCLR.Logging.Abstractions.csproj">
+      <Project>{598D7917-49D1-4E76-BFF4-23221BAD7072}</Project>
+      <Name>Bytewizer.TinyCLR.Logging.Abstractions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Logging.Debug\Bytewizer.TinyCLR.Logging.Debug.csproj">
+      <Project>{BE75C9F4-A4E1-4083-881D-AF55266EC7A7}</Project>
+      <Name>Bytewizer.TinyCLR.Logging.Debug</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Logging\Bytewizer.TinyCLR.Logging.csproj">
+      <Project>{D6D13310-C4A1-4409-B0E3-10F29F7FF262}</Project>
+      <Name>Bytewizer.TinyCLR.Logging</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Pipeline\Bytewizer.TinyCLR.Pipeline.csproj">
       <Project>{8470EE70-1C41-45E4-8EDF-0D20CFEBFFD1}</Project>

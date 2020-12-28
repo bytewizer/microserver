@@ -3,8 +3,12 @@ using System.Text;
 
 namespace Bytewizer.TinyCLR.Http.Mvc.ModelBinding
 {
+    /// <summary>
+    /// An <see cref="IModelBinder"/> for primitive types.
+    /// </summary>
     class PrimitiveModelBinder : IModelBinder
     {
+        /// <inheritdoc />
         public bool CanBind(IModelBinderContext context)
         {
             if (context == null)
@@ -28,6 +32,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc.ModelBinding
                 || modelType == typeof(double);
         }
 
+        /// <inheritdoc />
         public object Bind(IModelBinderContext context)
         {
             var name = string.IsNullOrEmpty(context.Prefix)

@@ -61,15 +61,16 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pipeline\IApplication.cs" />
-    <Compile Include="Pipeline\InvokeMiddlewareDelegate.cs" />
-    <Compile Include="Pipeline\InvokeMiddleware.cs" />
+    <Compile Include="Pipeline\ApplicationDelegate.cs" />
+    <Compile Include="Pipeline\Builder\IApplication.cs" />
+    <Compile Include="Pipeline\InlineMiddlewareDelegate.cs" />
+    <Compile Include="Pipeline\InlineMiddleware.cs" />
     <Compile Include="Pipeline\MiddlewareDelegate.cs" />
     <Compile Include="Pipeline\MiddlewareDelegateExtensions.cs" />
     <Compile Include="Pipeline\IContext.cs" />
-    <Compile Include="Pipeline\IApplicationBuilder.cs" />
+    <Compile Include="Pipeline\Builder\IApplicationBuilder.cs" />
     <Compile Include="Pipeline\IMiddleware.cs" />
-    <Compile Include="Pipeline\ApplicationBuilder.cs" />
+    <Compile Include="Pipeline\Builder\ApplicationBuilder.cs" />
     <Compile Include="Pipeline\Middleware.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pipeline\RequestDelegate.cs" />
@@ -88,6 +89,12 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bytewizer.TinyCLR.Core\Bytewizer.TinyCLR.Core.csproj">
+      <Project>{70392D1D-6B78-46C8-9531-C02915742A46}</Project>
+      <Name>Bytewizer.TinyCLR.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

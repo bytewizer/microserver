@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Text;
 
-namespace Bytewizer.TinyCLR.Http
+namespace Bytewizer.TinyCLR.Http.Query
 {
     /// <summary>
     /// Defines a query string value pair that can be set or retrieved.

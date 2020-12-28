@@ -1,7 +1,6 @@
 ﻿namespace Bytewizer.TinyCLR.Http
 {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-
     /// <summary>
     /// Contains methods to verify the request method of an HTTP request. 
     /// </summary>

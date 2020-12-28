@@ -2,6 +2,9 @@ using System;
 
 namespace Bytewizer.TinyCLR.Http.Mvc.Filters
 {
+    /// <summary>
+    /// A context for action filters.
+    /// </summary>
     public class ActionExecutedContext : FilterContext
     {
         /// <summary>

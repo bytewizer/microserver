@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections;
 
-namespace Bytewizer.TinyCLR.Http
+namespace Bytewizer.TinyCLR.Http.Cookies
 {
     /// <summary>
     /// An <see cref="CookieCollection"/> type for cookie values.
     /// </summary>
-    public class CookieCollection : ICookieCollection, ICollection, IEnumerable
+    public class CookieCollection : ICookieCollection
     {
         /// <summary>
         /// The array list used to store the pairs.
@@ -14,33 +14,15 @@ namespace Bytewizer.TinyCLR.Http
         private ArrayList _pairs;
 
         /// <summary>
-        /// Initializes an empty uninitialized instance of the <see cref="CookieCollection" /> class.
+        /// Thread synchronization.
         /// </summary>
-        public static readonly CookieCollection Empty = new CookieCollection();
+        private readonly object _lock = new object();
 
         /// <summary>
         /// Initializes a new empty uninitialized instance of class.
         /// </summary>
-        public CookieCollection() { }
-
-        /// <summary>
-        /// Initializes a new, empty instance of the class.
-        /// <param name="capacity">The number of elements that the new list can initially store.</param>
-        /// </summary>
-        public CookieCollection(int capacity)
-        {
-            _pairs = new ArrayList
-            {
-                Capacity = capacity
-            };
-        }
-
-        /// <summary>
-        ///  Initializes a new, empty instance of the class using the specified <see cref="ArrayList"/>.
-        /// </summary>
-        public CookieCollection(ArrayList pairs)
-        {
-            _pairs = pairs;
+        public CookieCollection() 
+        { 
         }
 
         /// <summary>
@@ -87,7 +69,11 @@ namespace Bytewizer.TinyCLR.Http
                         return;
                     }
                 }
-                _pairs.Add(new CookieValue(key, value));
+
+                lock (_lock)
+                {
+                    _pairs.Add(new CookieValue(key, value));
+                }
             }
         }
 
@@ -151,32 +137,6 @@ namespace Bytewizer.TinyCLR.Http
         }
 
         /// <summary>
-        /// Adds the specified element to the collection.
-        /// </summary>
-        /// <param name="key">The key to use as the key of the element to add.</param>
-        /// <param name="value">The value of the rule to add.</param>
-        public void Add(string key, string value)
-        {
-            if (_pairs == null)
-            {
-                _pairs = new ArrayList();
-            }
-
-            this[key] = value;
-        }
-
-        /// <summary>
-        /// Removes all elements from the collection.
-        /// </summary>
-        public void Clear()
-        {
-            if (_pairs != null)
-            {
-                _pairs.Clear();
-            }
-        }
-
-        /// <summary>
         /// Determines whether the collection contains a specific key.
         /// </summary>
         /// <param name="key">The key to locate in the collection.</param>
@@ -220,18 +180,6 @@ namespace Bytewizer.TinyCLR.Http
         /// <summary>
         /// Removes the element with the specified key from the collection.
         /// </summary>
-        /// <param name="item">The <see cref="CookieValue"/> to remove from the collection.</param>
-        public void Remove(CookieValue item)
-        {
-            if (_pairs != null)
-            {
-                _pairs.Remove(item.Key);
-            }
-        }
-
-        /// <summary>
-        /// Removes the element with the specified key from the collection.
-        /// </summary>
         /// <param name="key">The key to remove from the collection.</param>
         public void Remove(string key)
         {
@@ -249,36 +197,21 @@ namespace Bytewizer.TinyCLR.Http
             }
         }
 
-        #region ICollection Members
-
-            /// <summary>
-            /// The one-dimensional array of type <see cref="QueryValue"/> that is the destination of <see cref="QueryValue"/> 
-            /// objects copied from <see cref="ICollection"/>. The array must have zero-based indexing.
-            /// </summary>
-            /// <param name="array">The one-dimensional array of <see cref="QueryValue"/> that is the destination of the elements copied from the collection. The <see cref="Array"/> must have zero-based indexing.</param>
-            /// <param name="index">The zero-based index in array at which copying begins.</param>
-            public void CopyTo(CookieValue[] array, int index)
+        /// <summary>
+        /// Removes all elements from the collection.
+        /// </summary>
+        public void Clear()
         {
-            if (array == null)
-                throw new ArgumentNullException(nameof(array));
-
-            if (!(array is CookieValue[]typedArray))
-                throw new InvalidCastException(nameof(array));
-
-            if (index < 0 || (typedArray.Length - index) < Count)
-                throw new ArgumentOutOfRangeException(nameof(index));
-
             if (_pairs != null)
             {
-                foreach (string key in Keys)
-                {
-                    typedArray[index++] = new CookieValue(key, this[key]);
-                }
+                _pairs.Clear();
             }
         }
 
+        #region ICollection Members
+
         /// <summary>
-        /// The one-dimensional <see cref="Array"/> that is the destination of <see cref="FormFileValue"/> 
+        /// The one-dimensional <see cref="Array"/> that is the destination of <see cref="CookieValue"/> 
         /// objects copied from <see cref="ICollection"/>. The <see cref="Array"/> must have zero-based indexing.
         /// </summary>
         /// <param name="array">The one-dimensional <see cref="Array"/> that is the destination of the elements copied from the collection. The <see cref="Array"/> must have zero-based indexing.</param>
@@ -384,16 +317,6 @@ namespace Bytewizer.TinyCLR.Http
         public IEnumerator GetEnumerator()
         {
             return new CookieEnumerator(this);
-        }
-
-        public void Append(string key, string value)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(string key)
-        {
-            throw new NotImplementedException();
         }
 
         #endregion

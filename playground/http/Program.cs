@@ -1,32 +1,32 @@
-﻿using Bytewizer.TinyCLR.Http;
-using Bytewizer.TinyCLR.Hardware;
+﻿using Bytewizer.TinyCLR.Hardware;
 
-namespace Bytewizer.Playground.Mvc
+using Bytewizer.TinyCLR.Http;
+using Bytewizer.TinyCLR.Logging;
+using Bytewizer.TinyCLR.Logging.Debug;
+
+namespace Bytewizer.Playground.Http
 {
     class Program
     {
-        public static IHardware MainBoard;
-
         static void Main()
         {
-            try
-            {
-                var hardwareOptions = new HardwareOptions() { BoardModel = BoardModel.Sc20260D };
-                MainBoard = new Mainboard(hardwareOptions).Connect();
-                MainBoard.Network.Enabled();
+            var hardwareOptions = new HardwareOptions() { BoardModel = BoardModel.Sc20260D };
+            var MainBoard = new Mainboard(hardwareOptions).Connect();
+            MainBoard.Network.Enabled();
 
-                var server = new HttpServer(options =>
-                {
-                    options.UseDeveloperExceptionPage();
-                    options.UseFileServer();
-                    options.UseMvc();
-                });
-                server.Start();
-            }
-            catch
+            var loggerFactory = new LoggerFactory();
+            loggerFactory.AddDebug(LogLevel.Trace);
+
+            var server = new HttpServer(loggerFactory, options =>
             {
-                MainBoard?.Dispose();
-            }
+                options.Pipeline(app =>
+                {
+                    app.UseDeveloperExceptionPage();
+                    app.UseStaticFiles();
+                    app.UseResponseMiddleware();
+                });
+            });
+            server.Start();
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace Bytewizer.TinyCLR.Http.Mvc.ModelBinding
 {
-    class ModelMapper : IModelBinder
+    internal class ModelMapper : IModelBinder
     {
         private readonly ArrayList _binders = new ArrayList();
 

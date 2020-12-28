@@ -19,11 +19,15 @@ namespace Bytewizer.TinyCLR.Sockets
         public static SocketListenerOptions UseHttps(this SocketListenerOptions listenOptions, X509Certificate serverCertificate)
         {
             if (listenOptions == null)
+            {
                 throw new ArgumentNullException(nameof(listenOptions));
+            }
 
             if (serverCertificate == null)
+            {
                 throw new ArgumentNullException(nameof(serverCertificate));
-            
+            }
+
             listenOptions.Certificate = serverCertificate;
             listenOptions.IsTls = true;
             listenOptions.KeepAlive = true;
@@ -38,11 +42,14 @@ namespace Bytewizer.TinyCLR.Sockets
         public static SocketListenerOptions UseTcp(this SocketListenerOptions listenOptions)
         {
             if (listenOptions == null)
+            {
                 throw new ArgumentNullException(nameof(listenOptions));
+            }
 
             listenOptions.SocketType = SocketType.Stream;
             listenOptions.ProtocolType = ProtocolType.Tcp;
             listenOptions.ReuseAddress = true;
+            
             return listenOptions;
         }
 
@@ -53,10 +60,13 @@ namespace Bytewizer.TinyCLR.Sockets
         public static SocketListenerOptions UseUdp(this SocketListenerOptions listenOptions)
         {
             if (listenOptions == null)
+            {
                 throw new ArgumentNullException(nameof(listenOptions));
+            }
 
             listenOptions.SocketType = SocketType.Dgram;
             listenOptions.ProtocolType = ProtocolType.Udp;
+            
             return listenOptions;
         }
     }

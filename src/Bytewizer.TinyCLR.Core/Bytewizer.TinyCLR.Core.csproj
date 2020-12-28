@@ -7,8 +7,8 @@
     <ProjectGuid>{70392D1D-6B78-46C8-9531-C02915742A46}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>System</RootNamespace>
-    <AssemblyName>Bytewizer.TinyCLR.System</AssemblyName>
+    <RootNamespace>Bytewizer.TinyCLR</RootNamespace>
+    <AssemblyName>Bytewizer.TinyCLR.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A1948822-69DD-4150-919B-F3F42EFB71CC};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -45,7 +45,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Bytewizer.TinyCLR.System.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\Bytewizer.TinyCLR.Core.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -60,13 +60,9 @@
     <None Include="..\..\images\package-logo.png" Pack="true" PackagePath="\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Activator.cs" />
-    <Compile Include="Collections\Dictionary.cs" />
-    <Compile Include="Collections\KeyValueEnumerator.cs" />
-    <Compile Include="Collections\KeyValuePair.cs" />
-    <Compile Include="DisposableObject.cs" />
+    <Compile Include="System\Activator.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="IServiceProvider.cs" />
+    <Compile Include="System\IServiceProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Threading\CancellationTokenSource.cs" />
     <Compile Include="Threading\CancellationToken.cs" />
@@ -75,7 +71,7 @@
     <Compile Include="Threading\ThreadPool\ThreadPoolThread.cs" />
     <Compile Include="Threading\ThreadPool\UnhandledThreadPoolExceptionDelegate.cs" />
     <Compile Include="Threading\ThreadPool\WaitCallback.cs" />
-    <Compile Include="Extensions\TypeExtensions.cs.cs" />
+    <Compile Include="Extensions\TypeExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="GHIElectronics.TinyCLR.Core">

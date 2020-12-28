@@ -3,7 +3,7 @@
 namespace Bytewizer.TinyCLR.Http.Mvc
 {
     /// <summary>
-    /// An action result which redirect to another url or controller/action.
+    /// An action result which redirect to another url or controller action.
     /// </summary>
     public class RedirectResult : ActionResult
     {
@@ -73,7 +73,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc
             {
                 string content = $"<!DOCTYPE html><html><head><META http-equiv='refresh' content='0;URL= {_url}'</head><body></body></html>";
                 context.HttpContext.Response.StatusCode = StatusCodes.Status302Found;
-                context.HttpContext.Response.Write(content, "text/html");
+                context.HttpContext.Response.Write(content);
             }
         }
     }

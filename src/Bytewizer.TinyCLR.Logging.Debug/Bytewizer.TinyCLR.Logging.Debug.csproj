@@ -45,8 +45,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>
-    </DocumentationFile>
+    <DocumentationFile>bin\Debug\Bytewizer.TinyCLR.Logging.Debug.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -61,10 +60,11 @@
     <None Include="..\..\images\package-logo.png" Pack="true" PackagePath="\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DebugLogger.cs" />
-    <Compile Include="DebugLogger.debug.cs" />
-    <Compile Include="DebugLoggerFactoryExtensions.cs" />
-    <Compile Include="DebugLoggerProvider.cs" />
+    <Compile Include="Logging\DebugLogger.cs" />
+    <Compile Include="Logging\DebugLogger.debug.cs" />
+    <Compile Include="Logging\DebugLoggerFactoryExtensions.cs" />
+    <Compile Include="Logging\DebugLoggerProvider.cs" />
+    <Compile Include="Logging\LogLevelString.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -83,17 +83,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bytewizer.TinyCLR.DependencyInjection.Abstractions\Bytewizer.TinyCLR.DependencyInjection.Abstraction.csproj">
-      <Project>{F5997E37-7348-4FA6-9103-990D9906DA4F}</Project>
-      <Name>Bytewizer.TinyCLR.DependencyInjection.Abstraction</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Bytewizer.TinyCLR.Logging.Abstractions\Bytewizer.TinyCLR.Logging.Abstractions.csproj">
       <Project>{598D7917-49D1-4E76-BFF4-23221BAD7072}</Project>
       <Name>Bytewizer.TinyCLR.Logging.Abstractions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Bytewizer.TinyCLR.Logging\Bytewizer.TinyCLR.Logging.csproj">
-      <Project>{D6D13310-C4A1-4409-B0E3-10F29F7FF262}</Project>
-      <Name>Bytewizer.TinyCLR.Logging</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

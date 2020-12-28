@@ -2,17 +2,16 @@
 
 namespace Bytewizer.TinyCLR.Http
 {
-    public interface ICookieCollection
+    /// <summary>
+    /// Represents a collection of cookies.
+    /// </summary>
+    public interface ICookieCollection : ICollection, IEnumerable
     {
         /// <summary>
-        /// Gets the number of elements contained in the <see cref="ICookieCollection" />.
+        /// Gets the value with the specified key.
         /// </summary>
-        int Count { get; }
-
-        /// <summary>
-        /// Gets an <see cref="ICollection" /> containing the keys of the <see cref="ICookieCollection" />.
-        /// </summary>
-        ICollection Keys { get; }
+        /// <param name="key">The key of the value to get.</param>
+        string this[string key] { get; }
 
         /// <summary>
         /// Determines whether the <see cref="ICookieCollection" /> contains an element with the specified key.
@@ -31,9 +30,13 @@ namespace Bytewizer.TinyCLR.Http
         bool TryGetValue(string key, out string value);
 
         /// <summary>
-        /// Gets the value with the specified key.
+        /// Gets an <see cref="ICollection" /> containing the keys of the <see cref="ICookieCollection" />.
         /// </summary>
-        /// <param name="key"> The key of the value to get.</param>
-        string this[string key] { get; }
+        ICollection Keys { get; }
+
+        /// <summary>
+        /// Gets an <see cref="ICollection"/> containing the values of the <see cref="ICookieCollection" />.
+        /// </summary>
+        ICollection Values { get; }
     }
 }

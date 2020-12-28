@@ -1,4 +1,7 @@
-﻿using Bytewizer.TinyCLR.Sockets;
+﻿using System;
+
+using Bytewizer.TinyCLR.Pipeline;
+using Bytewizer.TinyCLR.Pipeline.Builder;
 
 namespace Bytewizer.TinyCLR.Http
 {
@@ -8,13 +11,26 @@ namespace Bytewizer.TinyCLR.Http
     public static class UseMiddlewareExtensions
     {
         /// <summary>
-        /// Adds a middleware type to the servers request pipeline.
+        /// Adds a <see cref="IMiddleware"/> type to the servers request pipeline.
         /// </summary>
-        /// <param name="app">The <see cref="ServerOptions"/> instance.</param>
+        /// <param name="app">The <see cref="IApplicationBuilder"/> instance.</param>
         /// <param name="middleware">The middleware type.</param>
-        public static void UseMiddleware(this ServerOptions app, Middleware middleware)
+        public static IApplicationBuilder UseMiddleware(this IApplicationBuilder app, Type middleware)
         {
-            app.Register(middleware);
+            var instance = (Middleware)Activator.CreateInstance(middleware);
+            return app.Use(instance);
+        }
+
+        /// <summary>
+        /// Adds a <see cref="IMiddleware"/> type to the servers request pipeline.
+        /// </summary>
+        /// <param name="app">The <see cref="IApplicationBuilder"/> instance.</param>
+        /// <param name="middleware">The middleware type.</param>
+        /// <param name="args">The arguments to pass to the middleware type instance's constructor.</param>
+        public static IApplicationBuilder UseMiddleware(this IApplicationBuilder app, Type middleware, params object[] args)
+        {
+            var instance = (Middleware)Activator.CreateInstance(middleware, args);
+            return app.Use(instance);
         }
     }
 }

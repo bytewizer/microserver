@@ -2,6 +2,7 @@
 using System.Net;
 
 using Bytewizer.TinyCLR.Pipeline;
+using Bytewizer.TinyCLR.Pipeline.Builder;
 using Bytewizer.TinyCLR.Sockets.Listener;
 
 namespace Bytewizer.TinyCLR.Sockets
@@ -11,7 +12,9 @@ namespace Bytewizer.TinyCLR.Sockets
     /// </summary>
     public class ServerOptions
     {
-        internal IApplicationBuilder Pipeline { get; set; } = new ApplicationBuilder();
+        private readonly IApplicationBuilder _applicationBuilder = new ApplicationBuilder();
+
+        internal IApplication Application;
 
         /// <summary>
         /// Configuration options of socket specific features.
@@ -19,12 +22,13 @@ namespace Bytewizer.TinyCLR.Sockets
         public SocketListenerOptions Listener { get; private set; } = new SocketListenerOptions();
 
         /// <summary>
-        /// Register a <see cref="IMiddleware"/> filter to the pipeline. Filters are executed in the order they are added.
+        /// Configures <see cref="IApplication"/> pipeline options. <see cref="Middleware"/> are executed in the order they are added.
         /// </summary>
-        /// <param name="filter">The <see cref="Middleware"/> to include in the pipeline.</param>
-        public void Register(IMiddleware filter)
+        /// <param name="configure">The delegate for configuring the <see cref="IApplicationBuilder"/> that will be used to construct the <see cref="IApplication"/>.</param>
+        public void Pipeline(ApplicationDelegate configure)
         {
-            Pipeline.Register(filter);
+            configure(_applicationBuilder);
+            Application = _applicationBuilder.Build();
         }
 
         /// <summary>
@@ -66,6 +70,16 @@ namespace Bytewizer.TinyCLR.Sockets
         /// <summary>
         /// Bind to the given ip address, port and configuration.
         /// </summary>
+        /// <param name="port">The port for receiving data.</param>
+        /// <param name="configure">The <see cref="SocketListener"/> configuration options features.</param>
+        public void Listen(int port, SocketListenerOptionsDelegate configure)
+        {
+            Listen(IPAddress.Any, port, configure);
+        }
+
+        /// <summary>
+        /// Bind to the given ip address, port and configuration.
+        /// </summary>
         /// <param name="address">The ip address for receiving data.</param>
         /// <param name="port">The port for receiving data.</param>
         /// <param name="configure">The <see cref="SocketListener"/> configuration options features.</param>
@@ -97,7 +111,7 @@ namespace Bytewizer.TinyCLR.Sockets
             }
 
             var listenOptions = new SocketListenerOptions(endPoint);
-            
+
             configure(listenOptions);
 
             Listener = listenOptions;

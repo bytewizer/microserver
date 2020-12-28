@@ -13,7 +13,7 @@ Microserver is a modular server built for TinyCLR OS IoT devices.
 <a href="https://github.com/microcompiler/microserver/tree/master/src/Bytewizer.TinyCLR.Sockets">More Information</a>
 
 ## Web Service
-* Extendable Middleware
+* Extendable Middleware Pipeline
 * Header / Cookie Decoding
 * Forms / Files Decoding
 * Developer Execption Pages
@@ -34,10 +34,9 @@ Microserver is a modular server built for TinyCLR OS IoT devices.
 
 <a href="https://github.com/microcompiler/microserver/tree/master/src/Bytewizer.TinyCLR.Http.StaticFiles">More Information</a>
 
-## Authentication
+## Logging Framework 
 
-* Basic Authentication
-* Digest Authentication
+* Debug Log Provider
 
 <a href="https://github.com/microcompiler/microserver/tree/master/src/Bytewizer.TinyCLR.Http.Authentication">More Information</a>
 
@@ -53,13 +52,15 @@ If you like or are using this project to start your solution, please give it a s
 
 ## Getting Started
 
-**Work in Progress!** As we encourage users to play with the samples and test programs, this project has not yet reached a stable state. See the [Project Playground](https://github.com/microcompiler/microserver/tree/master/playground) for an example of how to use these packages.
+**Work in Progress!** As we encourage users to play with the samples and test programs, this project has not yet reached a stable state. See the [Project Playground](https://github.com/microcompiler/microserver/tree/master/playground) for an example of how to use these packages. 
+
+### Pre-build Nuget Packages
+Are located as attached artifacts on successful [Action Workflows](https://github.com/microcompiler/microserver/actions).
 
 ```CSharp
 static void Main()
 {
-    //Attempts auto-detection of the board initializing networking and sd storage.
-    Mainboard.Initialize();
+    //Initialize networking and sd storage
 
     var server = new HttpServer(options =>
     {
@@ -92,9 +93,8 @@ public class ExampleController : Controller
     {
         // called on action method execption
         var actionName = ControllerContext.ActionDescriptor.DisplayName;
-        filterContext.Result = new ContentResult
+        filterContext.Result = new ContentResult ($"An error occurred in the {actionName} action.")
         {
-            Content = $"An error occurred in the {actionName} action.",
             ContentType = "text/plain",
             StatusCode = StatusCodes.Status500InternalServerError
         };

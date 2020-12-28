@@ -1,22 +1,34 @@
 ﻿using System;
 
-using Bytewizer.TinyCLR.Sockets;
+using Bytewizer.TinyCLR.Pipeline.Builder;
 
 namespace Bytewizer.TinyCLR.Http
 {
+    /// <summary>
+    /// Extension methods for <see cref="IApplicationBuilder"/> to add MVC to the request execution pipeline.
+    /// </summary>
     public static class ControllerExtensions
     {
-        public static void UseMvc(this ServerOptions app)
+        /// <summary>
+        /// Adds MVC to the <see cref="IApplicationBuilder"/> request execution pipeline.
+        /// </summary>
+        /// <param name="app">The <see cref="IApplicationBuilder"/>.</param>
+        public static IApplicationBuilder UseMvc(this IApplicationBuilder app)
         {
             if (app == null)
             {
                 throw new ArgumentNullException(nameof(app));
             }
 
-            app.UseMiddleware(new ControllerMiddleware());
+           return app.UseMiddleware(typeof(ControllerMiddleware));
         }
 
-        public static void UseMvc(this ServerOptions app, ControllerOptions options)
+        /// <summary>
+        /// Adds MVC to the <see cref="IApplicationBuilder"/> request execution pipeline.
+        /// </summary>
+        /// <param name="app">The <see cref="IApplicationBuilder"/>.</param>
+        /// <param name="options">The <see cref="ControllerOptions"/> used to configure the middleware.</param>
+        public static IApplicationBuilder UseMvc(this IApplicationBuilder app, ControllerOptions options)
         {
             if (app == null)
             {
@@ -26,7 +38,8 @@ namespace Bytewizer.TinyCLR.Http
             {
                 throw new ArgumentNullException(nameof(options));
             }
-            app.UseMiddleware(new ControllerMiddleware(options));
+
+            return app.UseMiddleware(typeof(ControllerMiddleware), options);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace Bytewizer.TinyCLR.Http
+namespace Bytewizer.TinyCLR.Http.Cookies
 {
     /// <summary>
     /// Provides a class for enumerating over key/value pairs.
@@ -11,7 +11,7 @@ namespace Bytewizer.TinyCLR.Http
         private int _index = -1;
 
         /// <summary>
-        /// Creates a new instance of type <see cref="FormFileEnumerator"/>.
+        /// Creates a new instance of type <see cref="CookieEnumerator"/>.
         /// </summary>
         public CookieEnumerator(CookieCollection collection)
         {
