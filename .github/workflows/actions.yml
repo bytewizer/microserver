@@ -59,7 +59,7 @@ jobs:
         -p:VersionSuffix=prebuild.${{ steps.info.outputs.build }} 
         -p:Configuration=${env:CONFIGURATION}
         -p:RepositoryUrl="https://github.com/microcompiler/microserver"
-        -p:PackageTags="tcp-server;udp-server;socket-server;http-server;http;https;tinyclr;tinyclros;sitcore;iot"
+        -p:PackageTags='tcp-server udp-server socket-server http-server http;https tinyclr tinyclros sitcore iot'
         -p:IncludeSymbols=true 
         -p:SymbolPackageFormat="snupkg"
         -p:PublishRepositoryUrl=true
