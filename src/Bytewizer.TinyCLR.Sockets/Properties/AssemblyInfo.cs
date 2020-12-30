@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Bytewizer Socket Server")]
-[assembly: AssemblyDescription("SocketServer is a modular socket server built for TinyCLR OS.")]
+[assembly: AssemblyTitle("Bytewizer Microserver")]
+[assembly: AssemblyDescription("Microserver is a modular server built for IoT devices.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Bytewizer Socket Server")]
+[assembly: AssemblyProduct("")]
 [assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("cecb4a63-1460-4721-96b1-7fccec0faf84")]
+[assembly: Guid("06e330d2-f947-4cca-8244-6117bfbf8ad5")]
 
 // Version information for an assembly consists of the following four values:
 //

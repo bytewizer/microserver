@@ -6,10 +6,10 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Bytewizer Microserver")]
-[assembly: AssemblyDescription("HttpServer is a modular web server built for TinyCLR OS.")]
+[assembly: AssemblyDescription("Microserver is a modular server built for IoT devices.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Bytewizer Http Server")]
+[assembly: AssemblyProduct("")]
 [assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("2dd3d5ab-d849-4898-b6e9-1a49683955b2")]
+[assembly: Guid("93fbca26-c20e-4786-a004-e9ecfb2c55ee")]
 
 // Version information for an assembly consists of the following four values:
 //

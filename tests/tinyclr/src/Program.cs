@@ -14,8 +14,12 @@ namespace Bytewizer.TinyCLR.TestHarness
                 options.Pipeline(app =>
                 {
                     app.UseStaticFiles();
+                    app.UseRouting();
                     app.UseTestHarness();
-                    app.UseMvc();
+                    app.UseEndpoints(endpoints =>
+                    {
+                        endpoints.MapControllers();
+                    });
                 });
             });
             server.Start();

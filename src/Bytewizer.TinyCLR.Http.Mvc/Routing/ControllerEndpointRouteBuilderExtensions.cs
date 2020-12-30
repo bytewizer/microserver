@@ -25,9 +25,10 @@ namespace Bytewizer.TinyCLR.Http
 
             var controllerProvider = new ControllerEndpointProvider();
 
+            Debug.WriteLine("Map controller route list: ");
             foreach (DictionaryEntry item in controllerProvider.GetEndpoints())
             {
-                Debug.WriteLine("  route url: " + item.Key.ToString());
+                Debug.WriteLine("  url: " + item.Key.ToString());
                 endpoints.DataSources.Add(item.Key, item.Value);
             }
 

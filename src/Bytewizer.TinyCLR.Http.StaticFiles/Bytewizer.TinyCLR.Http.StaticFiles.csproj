@@ -33,7 +33,7 @@
     <AssemblyVersion>$(VersionPrefix).$(BuildNumber)</AssemblyVersion>
     <FileVersion>$(VersionPrefix).$(BuildNumber)</FileVersion>
     <PackageId>$(AssemblyName)</PackageId>
-    <PackageTags>TinyCLR TinyCLROS</PackageTags>
+    <PackageTags></PackageTags>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageIcon>package-logo.png</PackageIcon>
   </PropertyGroup>

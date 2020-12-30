@@ -38,13 +38,12 @@ Microserver is a modular server built for TinyCLR OS IoT devices.
 
 * Debug Log Provider
 
-<a href="https://github.com/microcompiler/microserver/tree/master/src/Bytewizer.TinyCLR.Http.Logging">More Information</a>
+<a href="https://github.com/microcompiler/microserver/tree/master/src/Bytewizer.TinyCLR.Logging">More Information</a>
 
 ## Requirements
 
 **Software:**  <a href="https://visualstudio.microsoft.com/downloads/">Visual Studio 2019</a> and <a href="https://www.ghielectronics.com/">GHI Electronics TinyCLR OS 2.0</a> or higher.  
-**Hardware:** Project was tested 
-using SC20100S development board.  
+**Hardware:** Project tested using FEZ Duino, FEZ Feather single board computers and development boards.  
 
 ## Give a Star! :star:
 
@@ -52,7 +51,7 @@ If you like or are using this project to start your solution, please give it a s
 
 ## Getting Started
 
-**Work in Progress!** As we encourage users to play with the samples and test programs, this project has not yet reached a stable state. See the [Project Playground](https://github.com/microcompiler/microserver/tree/master/playground) for an example of how to use these packages. 
+**Work in Progress!** As we encourage users to play with the samples and test programs this project has not yet reached a release state. See the working [Project Samples](https://github.com/microcompiler/microserver/tree/master/samples) for an example of how to use these packages. The [Project Playground](https://github.com/microcompiler/microserver/tree/master/playgound) also includeds many woking examples.
 
 ### Pre-build Nuget Packages
 Are located as attached artifacts on successful [Action Workflows](https://github.com/microcompiler/microserver/actions).
@@ -73,8 +72,8 @@ static void Main()
             {
                 endpoints.Map("/", context =>
                 {
-                    string response = "<doctype !html><html><head><title>Hello, world!</title></head>" +
-                                        "<body><h1>" + DateTime.Now.Ticks.ToString() + "</h1></body></html>";
+                    string response = "<doctype !html><html><head><title>Hello, world!</title>" +
+                    "</head><body><h1>" + DateTime.Now.Ticks.ToString() + "</h1></body></html>";
 
                     context.Response.Write(response);
                 });

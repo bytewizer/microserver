@@ -3,7 +3,7 @@ using Bytewizer.TinyCLR.Http.Mvc.Filters;
 namespace Bytewizer.TinyCLR.Http.Mvc
 {
     /// <summary>
-    ///  A base class for an MVC controller without view support.
+    ///  A base class for an MVC controller with view support.
     /// </summary>
     public abstract class Controller : ControllerBase
     {

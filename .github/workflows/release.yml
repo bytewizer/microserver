@@ -5,12 +5,13 @@ on:
       types: [published]
 
 env:
-  CONFIGURATION: "Release"
-  VERBOSITY:  "Minimal" 
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+  CONFIGURATION: 'Release'
+  VERBOSITY:  'Normal'
   
 jobs:
   Release:
-    name: Release on ${{ matrix.os }}
+    name: Release Build TinyCLR 
     runs-on: [windows-latest]
     strategy:
       matrix:
@@ -27,6 +28,11 @@ jobs:
         echo "##[set-output name=build;]$(echo $(git rev-list --count HEAD))"
         echo "##[set-output name=copyright;]$(echo © $(date -u +%Y) Bytewizer.  All rights reserved.)" 
     
+    - name: Show build information
+      run: |
+        echo build=${{ steps.info.outputs.build }}
+        echo copyright=${{ steps.info.outputs.copyright }}
+
     - name: Show release event information
       run: |
         echo "release.name        = ${{ github.event.release.name }}"
@@ -42,21 +48,22 @@ jobs:
       with:
         vs-version: ${{ matrix.vs-version }}       
     
-    - name: Restore project
+   - name: Restore project
       working-directory: src
       run: >- 
         msbuild -t:restore -verbosity:${env:VERBOSITY} 
 
-    - name: Build and pack libraries
+    - name: Release Build and pack libraries
       working-directory: src
       run: >- 
         msbuild -t:pack -verbosity:${env:VERBOSITY} 
         -p:PackageOutputPath=\builds\artifacts
         -p:BuildNumber="${{ steps.info.outputs.build }}" 
         -p:Copyright="${{ steps.info.outputs.copyright }}"
-        -p:PackageVersion="${{ steps.info.outputs.version }}"
+        -p:VersionSuffix="${{ steps.info.outputs.version }}" 
         -p:Configuration=${env:CONFIGURATION}
         -p:RepositoryUrl="https://github.com/microcompiler/microserver"
+        -p:PackageTags="http;webserver;tinyclr;tinyclros;sitcore;iot"
         -p:IncludeSymbols=true 
         -p:SymbolPackageFormat="snupkg"
         -p:PublishRepositoryUrl=true

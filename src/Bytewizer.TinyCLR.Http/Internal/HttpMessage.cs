@@ -161,7 +161,7 @@ namespace Bytewizer.TinyCLR.Http.Internal
             }
 
             // Set response header server name
-            response.Headers[HeaderNames.Server] = "TinyCLR";
+            response.Headers[HeaderNames.Server] = "Microserver";
 
             // Process headers
             if (response.Headers != null && response.Headers.Count > 0)

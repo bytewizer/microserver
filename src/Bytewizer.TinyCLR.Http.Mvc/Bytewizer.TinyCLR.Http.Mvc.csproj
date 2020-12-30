@@ -33,7 +33,7 @@
     <AssemblyVersion>$(VersionPrefix).$(BuildNumber)</AssemblyVersion>
     <FileVersion>$(VersionPrefix).$(BuildNumber)</FileVersion>
     <PackageId>$(AssemblyName)</PackageId>
-    <PackageTags>TinyCLR TinyCLROS</PackageTags>
+    <PackageTags></PackageTags>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageIcon>package-logo.png</PackageIcon>
   </PropertyGroup>
@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionResults\FileResult.cs" />
+    <Compile Include="ActionResults\ViewResult.cs" />
     <Compile Include="Mvc\ActionContext.cs" />
     <Compile Include="Mvc\ActionDescriptor.cs" />
     <Compile Include="ActionResults\ActionResult.cs" />
@@ -75,6 +76,16 @@
     <Compile Include="Mvc\ControllerBase.cs" />
     <Compile Include="Mvc\ControllerContext.cs" />
     <Compile Include="Filters\FilterContext.cs" />
+    <Compile Include="Stubble\ClosingElement.cs" />
+    <Compile Include="Stubble\FieldExtensions.cs" />
+    <Compile Include="Stubble\SerializedView.cs" />
+    <Compile Include="Stubble\ViewCache.cs" />
+    <Compile Include="Stubble\ViewChild.cs" />
+    <Compile Include="Stubble\ViewData.cs" />
+    <Compile Include="Stubble\ViewDictionary.cs" />
+    <Compile Include="Stubble\ViewElement.cs" />
+    <Compile Include="Stubble\ViewEngine.cs" />
+    <Compile Include="Stubble\ViewPartial.cs" />
     <Compile Include="Routing\Internal\ControllerDelegateFactory.cs" />
     <Compile Include="Routing\Internal\ControllerEndpointProvider.cs" />
     <Compile Include="ActionResults\EmptyResult.cs" />

@@ -21,8 +21,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Logging",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Logging.Debug", "Bytewizer.TinyCLR.Logging.Debug\Bytewizer.TinyCLR.Logging.Debug.csproj", "{BE75C9F4-A4E1-4083-881D-AF55266EC7A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Mvc.View", "Bytewizer.TinyCLR.Http.Mvc.View\Bytewizer.TinyCLR.Http.Mvc.View.csproj", "{AE8EEFF0-3D3D-411C-8AA9-2D2A73131731}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,10 +63,6 @@ Global
 		{BE75C9F4-A4E1-4083-881D-AF55266EC7A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE75C9F4-A4E1-4083-881D-AF55266EC7A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE75C9F4-A4E1-4083-881D-AF55266EC7A7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AE8EEFF0-3D3D-411C-8AA9-2D2A73131731}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AE8EEFF0-3D3D-411C-8AA9-2D2A73131731}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AE8EEFF0-3D3D-411C-8AA9-2D2A73131731}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AE8EEFF0-3D3D-411C-8AA9-2D2A73131731}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

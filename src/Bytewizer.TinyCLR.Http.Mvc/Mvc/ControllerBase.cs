@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 
+using Bytewizer.TinyCLR.Stubble;
+
 namespace Bytewizer.TinyCLR.Http.Mvc
 {
     /// <summary>
@@ -48,6 +50,37 @@ namespace Bytewizer.TinyCLR.Http.Mvc
 
                 _controllerContext = value;
             }
+        }
+
+        /// <summary>
+        /// Gets or sets <see cref="ViewData"/> used by <see cref="ViewResult"/>.
+        /// </summary>
+        public ViewData ViewData { get; set; } = new ViewData();
+
+        /// <summary>
+        /// Creates a <see cref="ViewResult"/> object by specifying a <paramref name="viewName"/>.
+        /// </summary>
+        /// <param name="viewName">The name or path of the view that is rendered to the response.</param>
+        public virtual ViewResult View(string viewName)
+        {
+            return new ViewResult()
+            {
+                ViewName = viewName,
+                ViewData = ViewData
+            };
+        }
+
+        /// <summary>
+        /// Creates a <see cref="ViewPartial"/> object that renders a partial view to the response.
+        /// </summary>
+        public virtual ViewResult PartialView(string viewName, string viewSection)
+        {
+            return new ViewResult()
+            {
+                ViewName = viewName,
+                ViewSection = viewSection,
+                ViewData = ViewData
+            };
         }
 
         /// <summary>
