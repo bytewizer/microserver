@@ -48,7 +48,7 @@ jobs:
       with:
         vs-version: ${{ matrix.vs-version }}       
     
-   - name: Restore project
+    - name: Restore project
       working-directory: src
       run: >- 
         msbuild -t:restore -verbosity:${env:VERBOSITY} 
