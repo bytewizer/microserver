@@ -60,7 +60,7 @@ jobs:
         -p:PackageOutputPath=\builds\artifacts
         -p:BuildNumber="${{ steps.info.outputs.build }}" 
         -p:Copyright="${{ steps.info.outputs.copyright }}"
-        -p:VersionSuffix="${{ steps.info.outputs.version }}" 
+        -p:PackageVersion="${{ steps.info.outputs.version }}"
         -p:Configuration=${env:CONFIGURATION}
         -p:RepositoryUrl="https://github.com/microcompiler/microserver"
         -p:PackageTags="tcp-server udp-server socket-server http-server http https tinyclr tinyclros sitcore iot"
