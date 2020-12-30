@@ -37,14 +37,14 @@ namespace Bytewizer.TinyCLR.Http
         public HttpResponse Response { get; private set; }
 
         /// <summary>
-        /// Gets information about the underlying connection for this request.
-        /// </summary>
-        public ConnectionInfo Connection => Channel.Connection;
-
-        /// <summary>
         /// Gets or sets the object used to manage user session data for this request.
         /// </summary>
         public SocketChannel Channel { get; set; }
+
+        /// <summary>
+        /// Gets information about the underlying connection for this request.
+        /// </summary>
+        public ConnectionInfo Connection => Channel.Connection;
 
         /// <summary>
         /// Aborts the connection underlying this request.

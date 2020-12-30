@@ -9,15 +9,15 @@ namespace Bytewizer.TinyCLR.Pipeline.Builder
     public class ApplicationBuilder : IApplicationBuilder
     {
         private Hashtable _properties;
-        
+
         private MiddlewareDelegate[] _components = new MiddlewareDelegate[0];
 
         /// <summary>
         /// A central location for sharing state between components during the host building process.
         /// </summary>
-        public Hashtable Properties 
+        public Hashtable Properties
         {
-            get 
+            get
             {
                 if (_properties == null)
                 {
@@ -46,6 +46,25 @@ namespace Bytewizer.TinyCLR.Pipeline.Builder
 
         /// <inheritdoc/>
         public IServiceProvider ApplicationServices { get; set; }
+
+        /// <inheritdoc/>
+        public bool TryGetValue(string key, out object obj)
+        {
+            obj = default;
+            
+            if (_properties == null)
+            {
+                return false;
+            }
+
+            if (_properties.Contains(key))
+            {
+                obj = _properties[key];
+                return true;
+            }
+
+            return false;
+        }
 
         /// <inheritdoc/>
         public object GetProperty(string key)

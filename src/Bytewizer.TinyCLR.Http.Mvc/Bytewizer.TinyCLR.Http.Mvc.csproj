@@ -61,12 +61,12 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionResults\FileResult.cs" />
     <Compile Include="Mvc\ActionContext.cs" />
     <Compile Include="Mvc\ActionDescriptor.cs" />
     <Compile Include="ActionResults\ActionResult.cs" />
     <Compile Include="ActionResults\BadRequestResult.cs" />
     <Compile Include="ActionResults\ContentResult.cs" />
-    <Compile Include="ActionResults\FileResult.cs" />
     <Compile Include="ActionResults\FileStreamResult.cs" />
     <Compile Include="ActionResults\NotFoundResult.cs" />
     <Compile Include="ActionResults\OkResult.cs" />
@@ -74,23 +74,15 @@
     <Compile Include="Mvc\ControllerActionDescriptor.cs" />
     <Compile Include="Mvc\ControllerBase.cs" />
     <Compile Include="Mvc\ControllerContext.cs" />
-    <Compile Include="Features\Endpoint.cs" />
-    <Compile Include="Features\EndpointFeature.cs" />
-    <Compile Include="Features\HttpContextExtensions.cs" />
-    <Compile Include="Features\IEndpointFeature.cs" />
     <Compile Include="Filters\FilterContext.cs" />
-    <Compile Include="Middleware\Internal\ControllerFactory.cs" />
-    <Compile Include="Middleware\Internal\ControllerIndexer.cs" />
-    <Compile Include="Middleware\Internal\ControllerMapping.cs" />
+    <Compile Include="Routing\Internal\ControllerDelegateFactory.cs" />
+    <Compile Include="Routing\Internal\ControllerEndpointProvider.cs" />
     <Compile Include="ActionResults\EmptyResult.cs" />
     <Compile Include="Filters\ActionExecutedContext.cs" />
     <Compile Include="Filters\ActionExecutingContext.cs" />
     <Compile Include="Filters\ExceptionContext.cs" />
     <Compile Include="Mvc\IActionResult.cs" />
     <Compile Include="ActionResults\JsonResult.cs" />
-    <Compile Include="Middleware\ControllerExtensions.cs" />
-    <Compile Include="Middleware\ControllerMiddleware.cs" />
-    <Compile Include="Middleware\ControllerOptions.cs" />
     <Compile Include="ModelBinding\IModelBinder.cs" />
     <Compile Include="ModelBinding\IModelBinderContext.cs" />
     <Compile Include="ModelBinding\IValueProvider.cs" />
@@ -102,6 +94,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ActionResults\RedirectResult.cs" />
     <Compile Include="ActionResults\StatusCodeResult.cs" />
+    <Compile Include="Routing\ControllerEndpointRouteBuilderExtensions.cs" />
+    <Compile Include="Http\Route.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bytewizer.TinyCLR.Core\Bytewizer.TinyCLR.Core.csproj">

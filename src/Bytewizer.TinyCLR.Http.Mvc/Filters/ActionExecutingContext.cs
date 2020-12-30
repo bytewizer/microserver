@@ -4,7 +4,7 @@ using System.Collections;
 namespace Bytewizer.TinyCLR.Http.Mvc.Filters
 {
     /// <summary>
-    /// A context for action filters./>
+    /// A context for action filters.
     /// </summary>
     public class ActionExecutingContext : FilterContext
     {

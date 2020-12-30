@@ -4,8 +4,6 @@ using System.Diagnostics;
 using Bytewizer.TinyCLR.Http;
 using Bytewizer.TinyCLR.Http.Mvc;
 
-using Bytewizer.Playground.Mvc.Models;
-
 namespace Bytewizer.Playground.Mvc
 {
     // Any public IActionResult method inherited from Controller is made available as an endpoint
@@ -18,8 +16,6 @@ namespace Bytewizer.Playground.Mvc
                 "<style>body { background-color: #111 }" +
                 "h1 { font-size:3cm; text-align: center; color: white;}</style></head>" +
                 "<body><h1>" + $"{id}" + "</h1></body></html>";
-
-            var tom = HttpContext;
 
             return Content(response, "text/html");
         }
@@ -61,10 +57,8 @@ namespace Bytewizer.Playground.Mvc
 
         public IActionResult GetFile()
         {
-            var watch = HttpContext;
-
             var fullPath = @"\img\ocean.jpg";
-            var stream = new FileStream(fullPath, FileMode.Open, FileAccess.Read, FileShare.Read);
+            var stream = new FileStream(fullPath, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
 
             return File(stream, "image/jpeg", "ocean.jpeg");
         }

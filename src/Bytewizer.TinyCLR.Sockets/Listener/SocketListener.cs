@@ -171,15 +171,15 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
                     // Waiting for a connection
                     var remoteSocket = _listener.Accept();
 
-                        ThreadPool.QueueUserWorkItem(
-                        new WaitCallback(delegate (object state)
-                        {
+                    ThreadPool.QueueUserWorkItem(
+                    new WaitCallback(delegate (object state)
+                    {
                             // Signal the accept thread to continue
                             _acceptEvent.Set();
 
                             // Invoke the connected handler
                             Connected(this, remoteSocket);
-                        }));
+                    }));
 
                     // Wait until a connection is made before continuing
                     _acceptEvent.WaitOne();
@@ -195,7 +195,7 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
 
                     if (retry > _options.SocketRetry)
                         throw;
-                    
+
                     retry++;
                     continue;
                 }

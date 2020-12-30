@@ -1,8 +1,6 @@
-﻿using Bytewizer.TinyCLR.Hardware;
-
+﻿using System;
 using Bytewizer.TinyCLR.Http;
-using Bytewizer.TinyCLR.Logging;
-using Bytewizer.TinyCLR.Logging.Debug;
+using Bytewizer.TinyCLR.Hardware;
 
 namespace Bytewizer.Playground.Http
 {
@@ -14,17 +12,23 @@ namespace Bytewizer.Playground.Http
             var MainBoard = new Mainboard(hardwareOptions).Connect();
             MainBoard.Network.Enabled();
 
-            var loggerFactory = new LoggerFactory();
-            loggerFactory.AddDebug(LogLevel.Trace);
-
-            var server = new HttpServer(loggerFactory, options =>
+            var server = new HttpServer(options =>
             {
                 options.Pipeline(app =>
                 {
-                    app.UseDeveloperExceptionPage();
-                    app.UseStaticFiles();
-                    app.UseResponseMiddleware();
+                    app.UseRouting();
+                    app.UseEndpoints(endpoints =>
+                    {
+                        endpoints.Map("/", context => // Mapped to root url
+                        {
+                            string response = "<doctype !html><html><head><title>Hello, world!</title></head>" +
+                                                "<body><h1>" + DateTime.Now.Ticks.ToString() + "</h1></body></html>";
+
+                            context.Response.Write(response);
+                        });
+                    });
                 });
+                options.Listen(8080); 
             });
             server.Start();
         }

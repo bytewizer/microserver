@@ -36,7 +36,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Controllers\ExampleController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -63,9 +63,9 @@
       <Project>{9EC0C1B6-8FF3-4B58-A67B-F613625AFA69}</Project>
       <Name>Bytewizer.TinyCLR.Hardware</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Http.Mvc.Stubble\Bytewizer.TinyCLR.Http.Mvc.Stubble.csproj">
+    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Http.Mvc.View\Bytewizer.TinyCLR.Http.Mvc.View.csproj">
       <Project>{AE8EEFF0-3D3D-411C-8AA9-2D2A73131731}</Project>
-      <Name>Bytewizer.TinyCLR.Http.Mvc.Stubble</Name>
+      <Name>Bytewizer.TinyCLR.Http.Mvc.View</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Http.Mvc\Bytewizer.TinyCLR.Http.Mvc.csproj">
       <Project>{15C6A7FC-1C29-471B-B57A-08D61C58FA08}</Project>

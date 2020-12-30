@@ -148,6 +148,21 @@ namespace Bytewizer.TinyCLR.Http.Internal
             // Write first line
             _writer.Write($"{protocol} {statusCode} {reasonPhrase}\r\n");
 
+            // Set response date if not found in headers
+            if (response.Headers[HeaderNames.Date] == null)
+            {
+                response.Headers[HeaderNames.Date] = DateTime.UtcNow.ToString("R");
+            }
+
+            // Set response content length if not found in headers
+            if (response.Headers[HeaderNames.ContentLength] == null)
+            {
+                response.Headers[HeaderNames.ContentLength] = "0";
+            }
+
+            // Set response header server name
+            response.Headers[HeaderNames.Server] = "TinyCLR";
+
             // Process headers
             if (response.Headers != null && response.Headers.Count > 0)
             {

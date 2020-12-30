@@ -62,7 +62,7 @@ namespace Bytewizer.TinyCLR.Http
             var encoded = encoding.GetBytes(text);
             response.StatusCode = statusCode;
             response.ContentType = contentType;
-            response.ContentLength += encoded.Length;
+            response.ContentLength = encoded.Length; //response.ContentLength += encoded.Length;
             response.Body.Position = 0;
             response.Body.Write(encoded, 0, encoded.Length);
         }

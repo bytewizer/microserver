@@ -10,10 +10,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc
         /// <summary>
         /// Creates an empty <see cref="ActionContext"/>.
         /// </summary>
-        /// <remarks>
-        /// The default constructor is provided for unit test purposes only.
-        /// </remarks>
-        public ActionContext() 
+        public ActionContext()
         {
         }
 

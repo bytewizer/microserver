@@ -66,16 +66,23 @@
     <Compile Include="Http\Cookies\CookieParser.cs" />
     <Compile Include="Http\Cookies\CookieValue.cs" />
     <Compile Include="Http\Cookies\ICookieCollection.cs" />
+    <Compile Include="Routing\Endpoint.cs" />
     <Compile Include="Http\Features\FeatureCollection.cs" />
     <Compile Include="Http\Features\FeatureEnumerator.cs" />
     <Compile Include="Http\Features\FeatureValue.cs" />
     <Compile Include="Http\Features\IFeatureCollection.cs" />
     <Compile Include="Http\Header\IHeaderDictionary.cs" />
+    <Compile Include="Http\HttpContextExtensions.cs" />
     <Compile Include="Http\Query\IQueryCollection.cs" />
     <Compile Include="Internal\HttpMessage.cs" />
     <Compile Include="Internal\UriHelper.cs" />
     <Compile Include="Http\RequestDelegate.cs" />
     <Compile Include="Internal\DiagnosticsLoggerExtensions.cs" />
+    <Compile Include="Routing\Internal\DefaultEndpointRouteBuilder.cs" />
+    <Compile Include="Routing\EndpointBuilder.cs" />
+    <Compile Include="Routing\EndpointRouteBuilderExtensions.cs" />
+    <Compile Include="Routing\IEndpointRouteBuilder.cs" />
+    <Compile Include="Middleware\Routing\EndpointMiddleware.cs" />
     <Compile Include="Middleware\Features\IStatusCodePagesFeature.cs" />
     <Compile Include="Middleware\Features\StatusCodePagesFeature.cs" />
     <Compile Include="Middleware\UseMiddlewareExtensions.cs" />
@@ -108,6 +115,13 @@
     <Compile Include="Internal\HttpMiddleware.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Extensions\StreamReaderExtensions.cs" />
+    <Compile Include="Routing\Features\EndpointFeature.cs" />
+    <Compile Include="Routing\Features\IEndpointFeature.cs" />
+    <Compile Include="Middleware\Routing\EndpointRoutingExtensions.cs" />
+    <Compile Include="Middleware\Routing\EndpointRoutingMiddleware.cs" />
+    <Compile Include="Routing\EndpointRouteDelegate.cs" />
+    <Compile Include="Routing\RouteEndpoint.cs" />
+    <Compile Include="Routing\RouteEndpointBuilder.cs" />
     <Compile Include="Server\HttpServer.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -35,7 +35,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.Playground.Http",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.Playground.View", "view\Bytewizer.Playground.View.csproj", "{25069DEE-DECC-41FC-B642-D6246338913D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Mvc.Stubble", "..\src\Bytewizer.TinyCLR.Http.Mvc.Stubble\Bytewizer.TinyCLR.Http.Mvc.Stubble.csproj", "{AE8EEFF0-3D3D-411C-8AA9-2D2A73131731}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Mvc.View", "..\src\Bytewizer.TinyCLR.Http.Mvc.View\Bytewizer.TinyCLR.Http.Mvc.View.csproj", "{AE8EEFF0-3D3D-411C-8AA9-2D2A73131731}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

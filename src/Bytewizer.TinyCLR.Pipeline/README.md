@@ -11,12 +11,16 @@ class Program
     {
         var ctx = new Context() { Message = "Context: Finished" };
 
-        var builder = new ApplicationBuilder();
-        builder.Register(new Middleware1());
-        builder.Register(new Middleware2());
-        builder.Register(new Middleware3());
+        IApplicationBuilder builder = new ApplicationBuilder();
+        builder.Use(new Middleware1());
+        builder.Use(new Middleware2());
+        builder.Use(new Middleware3());
 
-        var app = builder.Build();
+        // Properties use to set values used by other middleware
+        builder.SetProperty("key", "Property Value");  
+        Debug.WriteLine((string)builder.GetProperty("key"));
+
+        IApplication app = builder.Build();
         app.Use((context, next) =>
         {
             Debug.WriteLine("Inline: Code executed before 'next'");

@@ -38,7 +38,7 @@ Microserver is a modular server built for TinyCLR OS IoT devices.
 
 * Debug Log Provider
 
-<a href="https://github.com/microcompiler/microserver/tree/master/src/Bytewizer.TinyCLR.Http.Authentication">More Information</a>
+<a href="https://github.com/microcompiler/microserver/tree/master/src/Bytewizer.TinyCLR.Http.Logging">More Information</a>
 
 ## Requirements
 
@@ -58,21 +58,53 @@ If you like or are using this project to start your solution, please give it a s
 Are located as attached artifacts on successful [Action Workflows](https://github.com/microcompiler/microserver/actions).
 
 ```CSharp
+using Bytewizer.TinyCLR.Http;
+
 static void Main()
 {
     //Initialize networking and sd storage
 
     var server = new HttpServer(options =>
     {
-        options.UseDeveloperExceptionPage();
-        options.UseFileServer();
-        options.UseMvc();
+        options.Pipeline(app =>
+        {
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.Map("/", context =>
+                {
+                    string response = "<doctype !html><html><head><title>Hello, world!</title></head>" +
+                                        "<body><h1>" + DateTime.Now.Ticks.ToString() + "</h1></body></html>";
+
+                    context.Response.Write(response);
+                });
+            });
+        });
     });
     server.Start();
 }
 ```
 
 ```CSharp
+
+static void Main()
+{
+    //Initialize networking and sd storage
+
+    var server = new HttpServer(options =>
+    {
+        options.Pipeline(app =>
+        {
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers(); 
+            });
+        });
+    });
+    server.Start();
+}
+
 public class ExampleController : Controller
 {
     public override void OnActionExecuting(ActionExecutingContext filterContext)

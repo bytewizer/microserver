@@ -16,7 +16,12 @@ namespace Bytewizer.Playground.Mvc
                 options.Pipeline(app =>
                 {
                     app.UseDeveloperExceptionPage();
-                    app.UseMvc();
+                    app.UseRouting();
+                    app.UseEndpoints(endpoints => 
+                    {
+                        endpoints.MapControllers();
+                        //endpoints.MapDefaultControllerRoute();
+                    });
                 });
             });
             server.Start();

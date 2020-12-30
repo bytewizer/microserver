@@ -1,7 +1,10 @@
 ﻿using System.IO;
+using System.Collections;
 
 using Bytewizer.TinyCLR.Http.Query;
 using Bytewizer.TinyCLR.Http.Header;
+using Bytewizer.TinyCLR.Http.Cookies;
+using Bytewizer.TinyCLR.Http.Features;
 
 namespace Bytewizer.TinyCLR.Http
 {
@@ -17,8 +20,8 @@ namespace Bytewizer.TinyCLR.Http
         {
             Headers = new HeaderDictionary();
             Query = new QueryCollection();
+            Cookies = new CookieCollection();
             Body = new MemoryStream();
-            Path = string.Empty;
         }
 
         /// <summary>
@@ -30,6 +33,11 @@ namespace Bytewizer.TinyCLR.Http
         /// Gets the query value collection.
         /// </summary>
         public IQueryCollection Query { get; set; }
+
+        /// <summary>
+        /// Gets the collection of Cookies for this request.
+        /// </summary>
+        public ICookieCollection Cookies { get; set; }
 
         /// <summary>
         /// Gets or sets the request body Stream.
@@ -77,11 +85,5 @@ namespace Bytewizer.TinyCLR.Http
             get { return ((HeaderDictionary)Headers).Host; }
             set { ((HeaderDictionary)Headers).Host = value; }
         }
-
-        /// <summary>
-        /// Gets the collection of Cookies for this request.
-        /// </summary>
-        public ICookieCollection Cookies { get; set; }
-
     }
 }

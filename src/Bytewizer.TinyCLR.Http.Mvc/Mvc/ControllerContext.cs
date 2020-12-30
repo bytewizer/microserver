@@ -10,9 +10,6 @@ namespace Bytewizer.TinyCLR.Http.Mvc
         /// <summary>
         /// Creates a new <see cref="ControllerContext"/>.
         /// </summary>
-        /// <remarks>
-        /// The default constructor is provided for unit test purposes only.
-        /// </remarks>
         public ControllerContext()
         {
         }
