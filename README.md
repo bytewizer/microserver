@@ -48,12 +48,12 @@ Microserver is a modular server built for TinyCLR OS IoT devices.
 
 If you like or are using this project to start your solution, please give it a star. Thanks!
 
-### Pre-build Nuget Packages
-Are located as attached artifacts on successful [Action Workflows](https://github.com/microcompiler/microserver/actions).
+## Nuget Packages
+Release candidate packages can be [downloaded](https://github.com/microcompiler/microserver/releases/tag/v2.0.0-rc.1) from releases as attached asset.  Prebuild packages are available as artifacts on successful [action](https://github.com/microcompiler/microserver/actions) workflow builds.
 
 ## Getting Started
 
-As we encourage users to play with the samples and test programs this project has not yet reached a release state. See the working [Samples](https://github.com/microcompiler/microserver/tree/master/samples) for an example of how to use packages. The [Playground](https://github.com/microcompiler/microserver/tree/master/playground) also includeds many woking examples.
+As we encourage users to play with the samples and test programs this project has not yet reached a release state. See the working [Samples](https://github.com/microcompiler/microserver/tree/master/samples) for an example of how to use packages. The [Playground](https://github.com/microcompiler/microserver/tree/master/playground) also includes many working examples.
 
 ### Simple Example
 
@@ -161,7 +161,7 @@ public class ExampleController : Controller
 
 ## Microsoft .NET Micro Framework (NETMF)
 
-Have a look <a href="https://github.com/microcompiler/microserver/releases/tag/v1.1.0"> here </a> if your looking for the orginal MicroServer built for Microsoft .NET Micro Framework (NETMF).
+Have a look <a href="https://github.com/microcompiler/microserver/releases/tag/v1.1.0"> here </a> if your looking for the original MicroServer built for Microsoft .NET Micro Framework (NETMF).
 
 ## Contributions
 
