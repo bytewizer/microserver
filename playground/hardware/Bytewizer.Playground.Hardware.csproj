@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9EC0C1B6-8FF3-4B58-A67B-F613625AFA69}</ProjectGuid>
+    <ProjectGuid>{A2937775-1F5B-4175-9595-755AE9561C38}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Bytewizer.TinyCLR.Hardware</RootNamespace>
@@ -33,7 +33,8 @@
     <AssemblyVersion>$(VersionPrefix).$(BuildNumber)</AssemblyVersion>
     <FileVersion>$(VersionPrefix).$(BuildNumber)</FileVersion>
     <PackageId>$(AssemblyName)</PackageId>
-    <PackageTags></PackageTags>
+    <PackageTags>
+    </PackageTags>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageIcon>package-logo.png</PackageIcon>
   </PropertyGroup>

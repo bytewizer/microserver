@@ -36,7 +36,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Middleware\MemoryInfoMiddleware.cs" />
     <Compile Include="Middleware\ResponseMiddleware.cs" />
+    <Compile Include="Middleware\MemoryInfoMiddlewareExtensions.cs" />
     <Compile Include="Middleware\ResponseMiddlewareExtensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -45,14 +47,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Hardware\Bytewizer.TinyCLR.Hardware.csproj">
-      <Project>{9EC0C1B6-8FF3-4B58-A67B-F613625AFA69}</Project>
-      <Name>Bytewizer.TinyCLR.Hardware</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Http.StaticFiles\Bytewizer.TinyCLR.Http.StaticFiles.csproj">
-      <Project>{2DD3D5AB-D849-4898-B6E9-1A49683955B2}</Project>
-      <Name>Bytewizer.TinyCLR.Http.StaticFiles</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Http\Bytewizer.TinyCLR.Http.csproj">
       <Project>{EB778176-633A-4997-A683-2C891C5DB436}</Project>
       <Name>Bytewizer.TinyCLR.Http</Name>
@@ -60,14 +54,6 @@
     <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Logging.Abstractions\Bytewizer.TinyCLR.Logging.Abstractions.csproj">
       <Project>{598D7917-49D1-4E76-BFF4-23221BAD7072}</Project>
       <Name>Bytewizer.TinyCLR.Logging.Abstractions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Logging.Debug\Bytewizer.TinyCLR.Logging.Debug.csproj">
-      <Project>{BE75C9F4-A4E1-4083-881D-AF55266EC7A7}</Project>
-      <Name>Bytewizer.TinyCLR.Logging.Debug</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Logging\Bytewizer.TinyCLR.Logging.csproj">
-      <Project>{D6D13310-C4A1-4409-B0E3-10F29F7FF262}</Project>
-      <Name>Bytewizer.TinyCLR.Logging</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Pipeline\Bytewizer.TinyCLR.Pipeline.csproj">
       <Project>{8470EE70-1C41-45E4-8EDF-0D20CFEBFFD1}</Project>
@@ -77,8 +63,15 @@
       <Project>{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}</Project>
       <Name>Bytewizer.TinyCLR.Sockets</Name>
     </ProjectReference>
+    <ProjectReference Include="..\hardware\Bytewizer.Playground.Hardware.csproj">
+      <Project>{A2937775-1F5B-4175-9595-755AE9561C38}</Project>
+      <Name>Bytewizer.Playground.Hardware</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="GHIElectronics.TinyCLR.Native, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GHIElectronics.TinyCLR.Native.2.0.0\lib\net452\GHIElectronics.TinyCLR.Native.dll</HintPath>
+    </Reference>
     <Reference Include="GHIElectronics.TinyCLR.Networking, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GHIElectronics.TinyCLR.Networking.2.0.0\lib\net452\GHIElectronics.TinyCLR.Networking.dll</HintPath>
     </Reference>

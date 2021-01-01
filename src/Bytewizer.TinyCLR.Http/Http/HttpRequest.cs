@@ -1,10 +1,9 @@
 ﻿using System.IO;
-using System.Collections;
+using System.Text;
 
 using Bytewizer.TinyCLR.Http.Query;
 using Bytewizer.TinyCLR.Http.Header;
 using Bytewizer.TinyCLR.Http.Cookies;
-using Bytewizer.TinyCLR.Http.Features;
 
 namespace Bytewizer.TinyCLR.Http
 {
@@ -84,6 +83,28 @@ namespace Bytewizer.TinyCLR.Http
         {
             get { return ((HeaderDictionary)Headers).Host; }
             set { ((HeaderDictionary)Headers).Host = value; }
+        }
+
+        /// <summary>
+        /// Get string from the current HTTP request
+        /// </summary>
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"Request method: {Method}");
+            sb.AppendLine($"Request URL: {Path}");
+            sb.AppendLine($"Request protocol: {Protocol}");
+            sb.AppendLine($"Request body: {Body.Length}");
+            foreach (QueryValue item in Query)
+            {
+                sb.AppendLine($"Request parameters: {item.Key}: {item.Value}");
+            }
+            foreach (HeaderValue header in Headers)
+            {
+                sb.AppendLine($"{header.Key}: {header.Value}");
+            }
+
+            return sb.ToString();
         }
     }
 }

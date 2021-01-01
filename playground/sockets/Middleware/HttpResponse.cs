@@ -24,7 +24,7 @@ namespace Bytewizer.Playground.Sockets
                     while (reader.Peek() != -1)
                     {
                         var line = reader.ReadLine();
-                        Debug.WriteLine(line);
+                       // Debug.WriteLine(line);
                     }
                 }
 

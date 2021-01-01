@@ -4,7 +4,7 @@ Microserver is a modular server built for TinyCLR OS IoT devices.
 
 [![Build Status](https://img.shields.io/github/workflow/status/microcompiler/microserver/Actions%20CI?style=flat-square&logo=github)](https://github.com/microcompiler/microserver/actions)
 
-## Socket Service
+### Socket Service
 
 * TCP/UDP support
 * Extendable Pipeline
@@ -12,7 +12,8 @@ Microserver is a modular server built for TinyCLR OS IoT devices.
 
 <a href="https://github.com/microcompiler/microserver/tree/master/src/Bytewizer.TinyCLR.Sockets">More Information</a>
 
-## Web Service
+### Web Service
+
 * Extendable Middleware Pipeline
 * Header / Cookie Decoding
 * Forms / Files Decoding
@@ -20,7 +21,8 @@ Microserver is a modular server built for TinyCLR OS IoT devices.
 
 <a href="https://github.com/microcompiler/microserver/tree/master/src/Bytewizer.TinyCLR.Http">More Information</a>
 
-## Model-View-Controllers (MVC)
+### Model-View-Controllers (MVC)
+
 * Controllers
 * Model Binding
 * Action Results (Content, Json, Files, Redirects)
@@ -28,40 +30,39 @@ Microserver is a modular server built for TinyCLR OS IoT devices.
 * JSON Integration
 
 <a href="https://github.com/microcompiler/microserver/tree/master/src/Bytewizer.TinyCLR.Http.Mvc">More Information</a>
-## Static File Handling
+
+### Static File Handling
+
 * Storage / Resource File Serving
 * Default File Routing
 
 <a href="https://github.com/microcompiler/microserver/tree/master/src/Bytewizer.TinyCLR.Http.StaticFiles">More Information</a>
 
-## Logging Framework 
-
-* Debug Log Provider
-
-<a href="https://github.com/microcompiler/microserver/tree/master/src/Bytewizer.TinyCLR.Logging">More Information</a>
-
 ## Requirements
 
 **Software:**  <a href="https://visualstudio.microsoft.com/downloads/">Visual Studio 2019</a> and <a href="https://www.ghielectronics.com/">GHI Electronics TinyCLR OS 2.0</a> or higher.  
 **Hardware:** Project tested using FEZ Duino, FEZ Feather single board computers and development boards.  
+**External RAM:** Devices with external RAM have the option of extending managed heap into **unsecure** external memory. TinyCLR Config can be used to extend the heap into external SDRAM increasing performance for simultaneous sessions. Please note this feature provides a large amount of managed heap space but data is stored outside of the microcontroller chip where it's less secure.
 
 ## Give a Star! :star:
 
 If you like or are using this project to start your solution, please give it a star. Thanks!
 
-## Getting Started
-
-**Work in Progress!** As we encourage users to play with the samples and test programs this project has not yet reached a release state. See the working [Project Samples](https://github.com/microcompiler/microserver/tree/master/samples) for an example of how to use these packages. The [Project Playground](https://github.com/microcompiler/microserver/tree/master/playgound) also includeds many woking examples.
-
 ### Pre-build Nuget Packages
 Are located as attached artifacts on successful [Action Workflows](https://github.com/microcompiler/microserver/actions).
+
+## Getting Started
+
+As we encourage users to play with the samples and test programs this project has not yet reached a release state. See the working [Samples](https://github.com/microcompiler/microserver/tree/master/samples) for an example of how to use packages. The [Playground](https://github.com/microcompiler/microserver/tree/master/playground) also includeds many woking examples.
+
+### Simple Example
 
 ```CSharp
 using Bytewizer.TinyCLR.Http;
 
 static void Main()
 {
-    //Initialize networking and sd storage
+    //Initialize networking
 
     var server = new HttpServer(options =>
     {
@@ -72,8 +73,9 @@ static void Main()
             {
                 endpoints.Map("/", context =>
                 {
-                    string response = "<doctype !html><html><head><title>Hello, world!</title>" +
-                    "</head><body><h1>" + DateTime.Now.Ticks.ToString() + "</h1></body></html>";
+                    string response = "<doctype !html><html><head><title>Hello, world!" +
+                        "</title><meta http-equiv='refresh' content='5'></head><body>" +
+                        "<h1>" + DateTime.Now.Ticks.ToString() + "</h1></body></html>";
 
                     context.Response.Write(response);
                 });
@@ -84,7 +86,11 @@ static void Main()
 }
 ```
 
+### Controller Example
+
 ```CSharp
+
+// Url: http://{ip:port}/example/GetById?id=10
 
 static void Main()
 {
@@ -104,6 +110,7 @@ static void Main()
     server.Start();
 }
 
+// Page url is automatically created from the controller name and action method.  
 public class ExampleController : Controller
 {
     public override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -124,7 +131,9 @@ public class ExampleController : Controller
     {
         // called on action method execption
         var actionName = ControllerContext.ActionDescriptor.DisplayName;
-        filterContext.Result = new ContentResult ($"An error occurred in the {actionName} action.")
+        
+        filterContext.ExceptionHandled = true;
+        filterContext.Result = new ContentResult($"An error occurred in the {actionName} action.")
         {
             ContentType = "text/plain",
             StatusCode = StatusCodes.Status500InternalServerError

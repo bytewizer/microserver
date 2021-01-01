@@ -15,8 +15,11 @@ class Program
         
         var server = new HttpServer(options =>
         {
-            options.UseFileServer();
-        });
+            options.Pipeline(app =>
+                {
+                    app.UseFileServer();
+                });
+            });
         server.Start();
     }
 }
@@ -37,9 +40,13 @@ class Program
         
         var server = new HttpServer(options =>
         {
-            // UseDefaultFiles() must be called before UseStaticFile().
-            options.UseDefaultFiles();
-            options.UseStaticFiles();
+            options.Pipeline(app =>
+                {
+                    // UseDefaultFiles() must be called before UseStaticFile().
+                    app.UseDefaultFiles();
+                    app.UseStaticFiles();
+                });
+            });
         });
         server.Start();
     }
@@ -48,7 +55,7 @@ class Program
 
 To set default.html as a default page displayed on root access. Use DefaultFilesOptions method as shown below.
 ```CSharp
-options.UseDefaultFiles(new DefaultFilesOptions()
+app.UseDefaultFiles(new DefaultFilesOptions()
 {
     DefaultFileNames = new ArrayList()
     {
@@ -69,15 +76,19 @@ class Program
     { 
         var server = new HttpServer(options =>
         {
-            options.UseResourceFiles(new ResourceFileOptions()
+            options.Pipeline(app =>
                 {
-                    // Resource manager must be included as an option along with a list of resoruces
-                    ResourceManager = Resources.ResourceManager,
-                    Resources = new Hashtable()
+                app.UseResourceFiles(new ResourceFileOptions()
                     {
-                        { "/resource.html", Resources.StringResources.Resource }
-                    }
+                        // Resource manager must be included as an option along with a list of resoruces
+                        ResourceManager = Resources.ResourceManager,
+                        Resources = new Hashtable()
+                        {
+                            { "/resource.html", Resources.StringResources.Resource }
+                        }
+                    });
                 });
+            });
         });
         server.Start();
     }

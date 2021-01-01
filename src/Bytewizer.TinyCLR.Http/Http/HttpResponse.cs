@@ -29,7 +29,7 @@ namespace Bytewizer.TinyCLR.Http
         /// <summary>
         /// Gets an object that can be used to manage cookies for this response.
         /// </summary>
-        public ICookieCollection Cookies { get; }
+        public IResponseCookies Cookies { get; }
 
         /// <summary>
         /// Gets or sets the response body <see cref="Stream"/>.

@@ -69,14 +69,14 @@ namespace Bytewizer.TinyCLR.Http.Header
                     HeaderValue kvp = (HeaderValue)_pairs[i];
                     if (kvp.Key.ToLower() == searchKey)
                     {
-                        kvp.Value = value;
+                        kvp.Value = value.Trim();
                         return;
                     }
                 }
 
                 lock (_lock)
                 {
-                    _pairs.Add(new HeaderValue(key, value));
+                    _pairs.Add(new HeaderValue(key, value.Trim()));
                 }
             }
         }

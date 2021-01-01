@@ -67,22 +67,15 @@ public static class CustomMiddlewareExtensions
 The following code calls the middleware from HttpServer options:
 
 ```CSharp
-static void Main()
+options.Pipeline(app =>
 {
-     var server = new HttpServer(options =>
+    app.UseRouting();
+    app.UseCustomMiddleware();
+    app.UseEndpoints(endpoints =>
     {
-        options.Pipeline(app =>
-        {
-            app.UseRouting();
-            app.UseCustomMiddleware();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers(); 
-            });
-        });
+        endpoints.MapControllers(); 
     });
-    server.Start();
-}
+});
 ```
 
 ## Developer Exception Page
@@ -93,14 +86,10 @@ adds middleware into the request pipeline which displays developer-friendly exce
 middleware should not be used in production.
 
 ```CSharp
-static void Main()
+options.Pipeline(app =>
 {
-    var server = new HttpServer(options =>
-    { 
-        options.UseDeveloperExceptionPage(); // Should be called first in the pipeline.
-    });
-    server.Start();
-}
+    app.UseDeveloperExceptionPage(); // Should be called first in the pipeline.
+});
 ```
 ## Status Code Pages
 
@@ -108,19 +97,53 @@ Adds a StatusCodePages middleware with a default response handler that checks fo
 status codes between 400 and 599 that do not have a body.
 
 ```CSharp
-options.UseStatusCodePages(new StatusCodePagesOptions
+options.Pipeline(app =>
 {
-    Handle = context =>
+    app.UseStatusCodePages(new StatusCodePagesOptions
     {
-        var response = context.Response;
-        if (response.StatusCode < 500)
+        Handle = context =>
         {
-            response.Write($"Client error ({response.StatusCode})");
+            var response = context.Response;
+            if (response.StatusCode < 500)
+            {
+                response.Write($"Client error ({response.StatusCode})");
+            }
+            else
+            {
+                response.Write($"Server error ({response.StatusCode})");
+            }
         }
-        else
-        {
-            response.Write($"Server error ({response.StatusCode})");
-        }
-    }
+    });
+});
+```
+
+## Cookie Support
+
+Cookies provide a means in to store user-specific information, such as history or user preferences. A cookie is a small bit of text that accompanies requests and responses as they go between the server and client.
+
+To remove a cookie determine whether the cookie exists, and if so, create a new cookie with the same name and set the max age to 0.
+
+```CSharp
+options.Pipeline(app =>
+{
+    app.UseRouting();
+    app.UseEndpoints(endpoints =>
+    {
+        endpoints.Map("/", context => // Mapped to root url
+        {                       
+            // Set a response cookie
+            context.Response.Cookies.Append("sessionId", "38afes7a8", 86400,
+                "bytewizer.local", "device.bytewizer.local", false, false);
+
+            // Get request cookie
+            context.Request.Cookies.TryGetValue("sessionId", out string id);
+
+            // Remove/Expire a browser cookie 
+            //context.Response.Cookies.Append("sessionId", "38afes7a8", 0,
+            //   "bytewizer.local", "device.bytewizer.local", false, false);
+
+            context.Response.Write($"Session Id: {id}", "text/plain");
+        });
+    });
 });
 ```

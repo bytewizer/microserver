@@ -18,17 +18,17 @@ namespace Bytewizer.Playground.Mvc
                     app.UseRouting();
                     app.UseEndpoints(endpoints =>
                     {
+                        endpoints.MapDefaultControllerRoute(); // Maps root to /home/index
+                        endpoints.MapControllers(); // Maps all /controller/actions
                         endpoints.MapControllerRoute(
-                            name: "test",
-                            pattern: "/getok",
-                            defaults: new Route { controller = "test", action = "getok" }
+                            name: "persons",
+                            pattern: "/persons",
+                            defaults: new Route { controller = "json", action = "getpersons" }
                         );
                         endpoints.Map("/money", context => 
-                        {
+                        {                      
                             context.Response.Write("Show me the money!"); 
                         });
-                        endpoints.MapDefaultControllerRoute();
-                        endpoints.MapControllers();
                     });
                 });
             });

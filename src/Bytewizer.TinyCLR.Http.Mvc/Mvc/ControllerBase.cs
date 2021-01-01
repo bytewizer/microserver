@@ -109,7 +109,7 @@ namespace Bytewizer.TinyCLR.Http.Mvc
         /// <param name="content">The content to write to the response.</param>
         /// <returns>The created <see cref="ContentResult"/> object for the response.</returns>
         public virtual ContentResult Content(string content)
-            => Content(content, "text/html");
+            => Content(content, "text/html; charset=UTF-8");
 
         /// <summary>
         /// Creates a <see cref="ContentResult"/> object by specifying a
@@ -175,29 +175,13 @@ namespace Bytewizer.TinyCLR.Http.Mvc
             => new OkResult();
 
         /// <summary>
-        /// Creates a <see cref="RedirectResult"/> object that redirects (<see cref="StatusCodes.Status302Found"/>)
-        /// to the specified <paramref name="url"/>.
-        /// </summary>
-        /// <param name="url">The URL to redirect to.</param>
-        /// <returns>The created <see cref="RedirectResult"/> for the response.</returns>
-        public virtual RedirectResult Redirect(string url)
-        {
-            if (string.IsNullOrEmpty(url))
-            {
-                throw new ArgumentException(nameof(url));
-            }
-
-            return new RedirectResult(url);
-        }
-
-        /// <summary>
         /// Redirects (<see cref="StatusCodes.Status302Found"/>) to the specified action using the 
         /// <paramref name="actionName"/> and the <paramref name="controllerName"/>.
         /// </summary>
         /// <param name="actionName">The name of the action.</param>
         /// <param name="controllerName">The name of the controller.</param>
         /// <returns>The created <see cref="RedirectResult"/> for the response.</returns>
-        public virtual RedirectResult RedirectResult(string actionName, string controllerName)
+        public virtual RedirectResult Redirect(string actionName, string controllerName)
         {
             if (string.IsNullOrEmpty(controllerName))
             {

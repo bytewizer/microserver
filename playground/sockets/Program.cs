@@ -3,7 +3,6 @@ using Bytewizer.TinyCLR.Hardware;
 
 using Bytewizer.TinyCLR.Logging;
 using Bytewizer.TinyCLR.Logging.Debug;
-using Bytewizer.TinyCLR;
 
 namespace Bytewizer.Playground.Sockets
 {
@@ -18,12 +17,11 @@ namespace Bytewizer.Playground.Sockets
             var loggerFactory = new LoggerFactory();
             loggerFactory.AddDebug(LogLevel.Trace);
 
-            var tom = hardwareOptions.GetType().GetProperties();
-
             IServer server = new SocketServer(loggerFactory, options =>
             {
                 options.Pipeline(app =>
                 {
+                    app.UseMemoryInfo();
                     app.UseHttpResponse();
                 });
             });

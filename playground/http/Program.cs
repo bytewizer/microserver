@@ -1,4 +1,5 @@
 ﻿using System;
+
 using Bytewizer.TinyCLR.Http;
 using Bytewizer.TinyCLR.Hardware;
 
@@ -9,26 +10,27 @@ namespace Bytewizer.Playground.Http
         static void Main()
         {
             var hardwareOptions = new HardwareOptions() { BoardModel = BoardModel.Sc20260D };
-            var MainBoard = new Mainboard(hardwareOptions).Connect();
-            MainBoard.Network.Enabled();
+            var mainBoard = new Mainboard(hardwareOptions).Connect();
+            mainBoard.Network.Enabled();
 
             var server = new HttpServer(options =>
             {
                 options.Pipeline(app =>
                 {
+                    app.UseMemoryInfo();
                     app.UseRouting();
                     app.UseEndpoints(endpoints =>
                     {
-                        endpoints.Map("/", context => // Mapped to root url
+                        endpoints.Map("/", context =>
                         {
-                            string response = "<doctype !html><html><head><title>Hello, world!</title></head>" +
-                                                "<body><h1>" + DateTime.Now.Ticks.ToString() + "</h1></body></html>";
+                            string response = "<doctype !html><html><head><title>Hello, world!" +
+                                "</title><meta http-equiv='refresh' content='5'></head><body>" +
+                                "<h1>" + DateTime.Now.Ticks.ToString() + "</h1></body></html>";
 
                             context.Response.Write(response);
                         });
                     });
                 });
-                options.Listen(8080); 
             });
             server.Start();
         }

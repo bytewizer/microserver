@@ -121,11 +121,11 @@ namespace Bytewizer.TinyCLR.Hardware.Components
 
             if (_dhcpEvent.WaitOne(Timeout, true))
             {
-                Debug.WriteLine("Work method signaled.");
+                //Debug.WriteLine("Work method signaled.");
             }
             else
             {
-                Debug.WriteLine("Timed out waiting for work method to signal.");
+                //Debug.WriteLine("Timed out waiting for work method to signal.");
             }
         }
 

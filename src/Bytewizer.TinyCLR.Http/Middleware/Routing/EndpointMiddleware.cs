@@ -1,4 +1,5 @@
 ﻿using System;
+using Bytewizer.TinyCLR.Logging;
 
 namespace Bytewizer.TinyCLR.Http
 {
@@ -7,11 +8,23 @@ namespace Bytewizer.TinyCLR.Http
     /// </summary>
     public class EndpointMiddleware : Middleware
     {
+        //private readonly ILogger _logger;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="EndpointMiddleware"/> class.
         /// </summary>
         public EndpointMiddleware()
+            :this(NullLoggerFactory.Instance)
         {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EndpointMiddleware"/> class.
+        /// </summary>
+        /// <param name="loggerFactory">The factory used to create loggers.</param>
+        public EndpointMiddleware(ILoggerFactory loggerFactory)
+        {
+            //_logger = loggerFactory.CreateLogger("Bytewizer.TinyCLR.Http");
         }
 
         /// <inheritdoc/>
@@ -22,6 +35,7 @@ namespace Bytewizer.TinyCLR.Http
             {
                 try
                 {
+                    //_logger.LogDebug($"Executing endpoint '{endpoint.DisplayName}'");
                     endpoint.RequestDelegate(context);
                 }
                 catch (Exception)
@@ -30,6 +44,8 @@ namespace Bytewizer.TinyCLR.Http
                 }
             }
 
+            // TODO: Not sure if inline requests performance hit is worth this logger
+            //_logger.LogDebug($"Executed endpoint '{endpoint.DisplayName}'");
             next(context);
         }
     }

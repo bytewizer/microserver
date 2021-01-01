@@ -33,7 +33,8 @@
     <AssemblyVersion>$(VersionPrefix).$(BuildNumber)</AssemblyVersion>
     <FileVersion>$(VersionPrefix).$(BuildNumber)</FileVersion>
     <PackageId>$(AssemblyName)</PackageId>
-    <PackageTags></PackageTags>
+    <PackageTags>
+    </PackageTags>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageIcon>package-logo.png</PackageIcon>
   </PropertyGroup>
@@ -66,6 +67,7 @@
     <Compile Include="Http\Cookies\CookieParser.cs" />
     <Compile Include="Http\Cookies\CookieValue.cs" />
     <Compile Include="Http\Cookies\ICookieCollection.cs" />
+    <Compile Include="Http\Cookies\IResponseCookies.cs" />
     <Compile Include="Routing\Endpoint.cs" />
     <Compile Include="Http\Features\FeatureCollection.cs" />
     <Compile Include="Http\Features\FeatureEnumerator.cs" />

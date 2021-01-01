@@ -49,7 +49,7 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
         /// <summary>
         /// Specifies the <see cref="SocketListener"/> to use keep-alives.
         /// </summary>
-        public bool KeepAlive { get; set; } = false;
+        public bool KeepAlive { get; set; } = true;
 
         /// <summary>
         /// Permit sending broadcast messages on the <see cref="SocketListener"/>.
@@ -92,12 +92,12 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
         /// Specifies the number of requests to the <see cref="SocketListener"/> thread pool that can be active
         /// concurrently. All requests above this number remain queued until thread pool threads become available.
         /// </summary>
-        public int MaxThreads { get; set; } = 10;
+        public int MaxThreads { get; set; } = 25;
 
         /// <summary>
         /// Specifies the maximum backlog of the <see cref="SocketListener"/> pending connections queue.
         /// </summary>
-        public int MaxPendingConnections { get; set; } = 5;
+        public int MaxPendingConnections { get; set; } = 10;
 
         /// <summary>
         /// Returns a <see cref="string"/> that represents this instance.

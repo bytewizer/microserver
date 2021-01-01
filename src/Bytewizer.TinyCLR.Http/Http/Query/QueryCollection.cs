@@ -73,13 +73,13 @@ namespace Bytewizer.TinyCLR.Http.Query
                     QueryValue kvp = (QueryValue)_pairs[i];
                     if (kvp.Key == key)
                     {
-                        kvp.Value = value;
+                        kvp.Value = value.Trim();
                         return;
                     }
                 }
                 lock (_lock)
                 {
-                    _pairs.Add(new QueryValue(key, value));
+                    _pairs.Add(new QueryValue(key, value.Trim()));
                 }
             }
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Collections;
 
 namespace Bytewizer.TinyCLR.Http.Cookies
@@ -6,7 +7,7 @@ namespace Bytewizer.TinyCLR.Http.Cookies
     /// <summary>
     /// An <see cref="CookieCollection"/> type for cookie values.
     /// </summary>
-    public class CookieCollection : ICookieCollection
+    public class CookieCollection : ICookieCollection, IResponseCookies
     {
         /// <summary>
         /// The array list used to store the pairs.
@@ -65,14 +66,14 @@ namespace Bytewizer.TinyCLR.Http.Cookies
                     CookieValue kvp = (CookieValue)_pairs[i];
                     if (kvp.Key == key)
                     {
-                        kvp.Value = value;
+                        kvp.Value = value.Trim();
                         return;
                     }
                 }
 
                 lock (_lock)
                 {
-                    _pairs.Add(new CookieValue(key, value));
+                    _pairs.Add(new CookieValue(key, value.Trim()));
                 }
             }
         }
@@ -181,7 +182,7 @@ namespace Bytewizer.TinyCLR.Http.Cookies
         /// Removes the element with the specified key from the collection.
         /// </summary>
         /// <param name="key">The key to remove from the collection.</param>
-        public void Remove(string key)
+        public void Delete(string key)
         {
             if (_pairs != null)
             {
@@ -206,6 +207,74 @@ namespace Bytewizer.TinyCLR.Http.Cookies
             {
                 _pairs.Clear();
             }
+        }
+
+        /// <summary>
+        /// Add a new cookie and value.
+        /// </summary>
+        /// <param name="name">Name of the new cookie.</param>
+        /// <param name="value">Value of the new cookie.</param>
+
+        public void Append(string name, string value)
+        {
+            var sb = new StringBuilder();
+
+            // Append cookie
+            sb.Append(name);
+            sb.Append("=");
+            sb.Append(value);
+            
+            // Add the cookie to the corresponding collection
+            this[name] = sb.ToString();
+        }
+
+        /// <summary>
+        /// Add a new response cookie.
+        /// </summary>
+        /// <param name="name">Name of the new cookie.</param>
+        /// <param name="value">Value of the new cookie.</param>
+        /// <param name="maxAge">Cookie age in seconds until it expires of the new cookie. Default is 86400.</param>
+        /// <param name="path">Cookie path of the new cookie. Default is empty string.</param>
+        /// <param name="domain">Cookie domain of the new cookie. Default is empty string.</param>
+        /// <param name="secure">Cookie secure flag of the new cookie. Default is true.</param>
+        /// <param name="httpOnly">Cookie HTTP-only flag of the new cookie. Default is false.</param>
+        public void Append(string name,
+            string value,
+            int maxAge = 86400,
+            string path = "",
+            string domain = "",
+            bool secure = true,
+            bool httpOnly = false)
+        {
+            var sb = new StringBuilder();
+
+            // Append cookie
+            sb.Append(name);
+            sb.Append("=");
+            sb.Append(value);
+            sb.Append("; Max-Age=");
+            sb.Append(maxAge.ToString());
+            if (!string.IsNullOrEmpty(domain))
+            {
+                sb.Append("; Domain=");
+                sb.Append(domain);
+            }
+            if (!string.IsNullOrEmpty(path))
+            {
+                sb.Append("; Path=");
+                sb.Append(path);
+            }
+            if (secure)
+            {
+                sb.Append("; Secure");
+            }
+            if (httpOnly)
+            {
+                sb.Append("; HttpOnly");
+            }
+
+            // Add the cookie to the corresponding collection
+            this[name] = sb.ToString();
         }
 
         #region ICollection Members

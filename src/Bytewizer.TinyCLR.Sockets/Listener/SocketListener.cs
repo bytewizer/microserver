@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Net.Sockets;
+using System.Diagnostics;
 
 namespace Bytewizer.TinyCLR.Sockets.Listener
 {
@@ -54,6 +55,7 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
         public bool Start()
         {
             // If service was already started the call has no effect
+            Debug.Assert(!IsActive, "Server is already started!");
             if (IsActive)
                 return true;
 
@@ -113,7 +115,9 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
         /// </summary>
         public bool Stop()
         {
+            
             // If service was already started the call has no effect
+            Debug.Assert(IsActive, "Server is not started!");
             if (!IsActive)
                 return true;
 

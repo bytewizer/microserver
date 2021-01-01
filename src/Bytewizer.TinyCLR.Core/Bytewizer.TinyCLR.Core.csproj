@@ -33,7 +33,8 @@
     <AssemblyVersion>$(VersionPrefix).$(BuildNumber)</AssemblyVersion>
     <FileVersion>$(VersionPrefix).$(BuildNumber)</FileVersion>
     <PackageId>$(AssemblyName)</PackageId>
-    <PackageTags></PackageTags>
+    <PackageTags>
+    </PackageTags>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageIcon>package-logo.png</PackageIcon>
   </PropertyGroup>
