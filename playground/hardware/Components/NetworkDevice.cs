@@ -51,8 +51,8 @@ namespace Bytewizer.TinyCLR.Hardware.Components
 
         public void UseDHCP()
         {
-            Settings.IsDhcpEnabled = true;
-            Settings.IsDynamicDnsEnabled = true;
+            Settings.DhcpEnable = true;
+            Settings.DynamicDnsEnable = true;
 
             Enabled();
         }
@@ -86,8 +86,8 @@ namespace Bytewizer.TinyCLR.Hardware.Components
             Settings.SubnetMask = subnet;
             Settings.GatewayAddress = gateway;
             Settings.DnsAddresses = dns;
-            Settings.IsDhcpEnabled = false;
-            Settings.IsDynamicDnsEnabled = false;
+            Settings.DhcpEnable = false;
+            Settings.DynamicDnsEnable = false;
 
             Enabled();
         }

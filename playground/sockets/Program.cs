@@ -8,24 +8,28 @@ namespace Bytewizer.Playground.Sockets
 {
     class Program
     {
+        private static readonly ILoggerFactory loggerFactory = new LoggerFactory();
+
         static void Main()
         {
-            var hardwareOptions = new HardwareOptions() { BoardModel = BoardModel.Sc20260D };
-            var MainBoard = new Mainboard(hardwareOptions).Connect();
-            MainBoard.Network.Enabled();
-
-            var loggerFactory = new LoggerFactory();
+            InitializeHardware();
             loggerFactory.AddDebug(LogLevel.Trace);
 
             IServer server = new SocketServer(loggerFactory, options =>
             {
                 options.Pipeline(app =>
                 {
-                    app.UseMemoryInfo();
+                    //app.UseMemoryInfo();
                     app.UseHttpResponse();
                 });
             });
             server.Start();
+        }
+        public static void InitializeHardware()
+        {
+            var hardwareOptions = new HardwareOptions() { BoardModel = BoardModel.Sc20260D };
+            var mainBoard = new Mainboard(hardwareOptions).Connect();
+            mainBoard.Network.Enabled();
         }
     }
 }

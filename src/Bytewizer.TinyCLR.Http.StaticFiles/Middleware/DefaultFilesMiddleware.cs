@@ -43,14 +43,16 @@ namespace Bytewizer.TinyCLR.Http
         /// <param name="next">The next request handler to be executed.</param>
         protected override void Invoke(HttpContext context, RequestDelegate next)
         {
-            if (ValidateMethod(context) && context.Request.Path == "/")
+            if (ValidateMethod(context)) //&& context.Request.Path.EndsWith("/")
             {
                 for (int matchIndex = 0; matchIndex < _options.DefaultFileNames.Count; matchIndex++)
                 {
                     string defaultFile = (string)_options.DefaultFileNames[matchIndex];
 
+                    var path = context.Request.Path.Replace("/","\\");
+
                     var driveName = _driveProvider?.Name ?? string.Empty;
-                    var fullPath = $@"{driveName}{defaultFile}";
+                    var fullPath = $@"{driveName}{path}{defaultFile}";
                     var file = new FileInfo(fullPath);
                     
                     if (file.Exists)

@@ -19,13 +19,13 @@ namespace Bytewizer.Playground.Sockets
                     return;
 
                 using (var reader = new StreamReader(ctx.Channel.InputStream))
-                {                    
-                    // read the context input stream (required or browser will stall the request)
-                    while (reader.Peek() != -1)
+                {
+                    string line;
+                    do
                     {
-                        var line = reader.ReadLine();
-                       // Debug.WriteLine(line);
-                    }
+                        line = reader.ReadLine();
+                        //Debug.WriteLine(line);
+                    } while (!reader.EndOfStream);
                 }
 
                 string response = "HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n" +

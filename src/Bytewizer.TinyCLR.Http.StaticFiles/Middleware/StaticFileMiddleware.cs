@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
-using Bytewizer.TinyCLR.Http.Header;
+
 using Bytewizer.TinyCLR.Logging;
 
 using GHIElectronics.TinyCLR.IO;
@@ -54,6 +55,12 @@ namespace Bytewizer.TinyCLR.Http
             _logger = loggerFactory.CreateLogger("Bytewizer.TinyCLR.Http");
 
             _options = options;
+
+            if (_options.ServeUnknownFileTypes == true && string.IsNullOrEmpty(_options.DefaultContentType))
+            {
+                throw new ArgumentException($"The {nameof(_options.DefaultContentType)} must be set when { nameof(_options.ServeUnknownFileTypes)} is set to true)");
+            }
+
             _driveProvider = _options.DriveProvider;
             _contentTypeProvider = _options.ContentTypeProvider ?? new DefaultContentTypeProvider();
         }

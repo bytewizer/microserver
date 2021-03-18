@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.Playground.Hardwa
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hardware", "Hardware", "{8FC3E8C5-E58C-4468-87AA-A834786BE9EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.Playground.StaticFiles", "staticfiles\Bytewizer.Playground.StaticFiles.csproj", "{3AE0F517-9774-446B-9CEF-EC3987E07B04}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,12 @@ Global
 		{A2937775-1F5B-4175-9595-755AE9561C38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2937775-1F5B-4175-9595-755AE9561C38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2937775-1F5B-4175-9595-755AE9561C38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AE0F517-9774-446B-9CEF-EC3987E07B04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AE0F517-9774-446B-9CEF-EC3987E07B04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AE0F517-9774-446B-9CEF-EC3987E07B04}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{3AE0F517-9774-446B-9CEF-EC3987E07B04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AE0F517-9774-446B-9CEF-EC3987E07B04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AE0F517-9774-446B-9CEF-EC3987E07B04}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -116,6 +124,7 @@ Global
 		{C9626E8D-1B8F-40BD-BCE2-04912279D7C0} = {4E3B2537-B6D2-419B-AACF-F243DC0F8A68}
 		{A2937775-1F5B-4175-9595-755AE9561C38} = {8FC3E8C5-E58C-4468-87AA-A834786BE9EB}
 		{8FC3E8C5-E58C-4468-87AA-A834786BE9EB} = {4E3B2537-B6D2-419B-AACF-F243DC0F8A68}
+		{3AE0F517-9774-446B-9CEF-EC3987E07B04} = {4E3B2537-B6D2-419B-AACF-F243DC0F8A68}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C04E0A8C-D974-4A4F-9D49-9E9AC9A78F05}

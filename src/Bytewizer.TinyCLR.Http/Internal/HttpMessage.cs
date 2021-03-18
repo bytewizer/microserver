@@ -21,8 +21,9 @@ namespace Bytewizer.TinyCLR.Http.Internal
                 string line;
                 var body = new StringBuilder();
 
-                while ((line = reader.ReadLine()) != null)
+                do
                 {
+                    line = reader.ReadLine();
                     switch (mode)
                     {
                         case ParserMode.FirstLine:
@@ -106,7 +107,8 @@ namespace Bytewizer.TinyCLR.Http.Internal
 
                             break;
                     }
-                }
+                
+                } while (!reader.EndOfStream);
 
                 // Set request body
                 var bytes = Encoding.UTF8.GetBytes(body.ToString());

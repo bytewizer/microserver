@@ -3,7 +3,6 @@
 using Bytewizer.TinyCLR.Http.Mvc;
 
 using Bytewizer.Playground.Mvc.Models;
-using System.Collections;
 
 namespace Bytewizer.Playground.Mvc
 {

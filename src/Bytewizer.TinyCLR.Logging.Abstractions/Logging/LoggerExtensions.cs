@@ -385,7 +385,7 @@ namespace Bytewizer.TinyCLR.Logging
                 throw new ArgumentNullException(nameof(logger));
             }
 
-            logger.Log(logLevel, eventId, message, exception);
+            logger.Log(logLevel, eventId, string.Format(message, args), exception);
         }
     }
 }

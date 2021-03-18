@@ -7,9 +7,7 @@ namespace Bytewizer.Playground.Mvc
     {
         static void Main()
         {
-            var hardwareOptions = new HardwareOptions() { BoardModel = BoardModel.Sc20260D };
-            var mainBoard = new Mainboard(hardwareOptions).Connect();
-            mainBoard.Network.Enabled();
+            InitializeHardware();
 
             var server = new HttpServer(options =>
             {
@@ -34,12 +32,18 @@ namespace Bytewizer.Playground.Mvc
             });
             server.Start();
         }
+        public static void InitializeHardware()
+        {
+            var hardwareOptions = new HardwareOptions() { BoardModel = BoardModel.Sc20260D };
+            var mainBoard = new Mainboard(hardwareOptions).Connect();
+            mainBoard.Network.Enabled();
+        }
     }
 }
 
 //app.UseEndpoints(endpoints =>
 //{
-//    endpoints.Map("/tom", context =>
+//    endpoints.Map("/money", context =>
 //    {
 //        context.Response.Write("Show me the money!");
 //    });

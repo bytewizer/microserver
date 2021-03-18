@@ -67,8 +67,6 @@ namespace Bytewizer.TinyCLR.Http
 
                 context.Features.Set(typeof(IEndpointFeature), endpointFeature);
 
-                // Match found continue pipeline        
-                next(context);
             }
             else
             {

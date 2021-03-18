@@ -163,6 +163,7 @@ namespace Bytewizer.TinyCLR.Http
                         var file = fileObject as byte[];
                         context.Response.Body = new MemoryStream(file);
                     }
+                    context.Response.ContentLength = context.Response.Body.Length;
                 }
 
                 return;
