@@ -3,7 +3,7 @@ name: Actions CI
 on:
   push:
     branches:
-    - master
+    - develop
     paths: 
       - '**'
       - '!.editorconfig'
