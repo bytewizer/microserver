@@ -1,6 +1,6 @@
 # Microserver for TinyCLR OS
 
-Microserver is a modular server built for TinyCLR OS IoT devices inspired by AspNetCore.  Be sure to follow this project with videos on [YouTube](https://youtu.be/0hk1pLUItEM).
+Microserver is a modular server built for TinyCLR OS IoT devices inspired by AspNetCore.  Be sure to follow this project with videos on [YouTube](https://youtu.be/EDGo3NpBOpk).
 
 [![Build Status](https://img.shields.io/github/workflow/status/microcompiler/microserver/Actions%20CI?style=flat-square&logo=github)](https://github.com/microcompiler/microserver/actions)
 
