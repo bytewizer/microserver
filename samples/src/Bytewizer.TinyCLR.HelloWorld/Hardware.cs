@@ -6,7 +6,7 @@ using GHIElectronics.TinyCLR.Devices.Spi;
 using GHIElectronics.TinyCLR.Devices.Gpio;
 using GHIElectronics.TinyCLR.Devices.Network;
 
-namespace Bytewizer.TinyCLR.HelloWorld
+namespace Bytewizer.TinyCLR
 {
     public static class Hardware
     {
@@ -73,28 +73,28 @@ namespace Bytewizer.TinyCLR.HelloWorld
         }
 
         /// <summary>
-        /// Initialize onboard Wifi installed on FEZ Duino and FEZ Feather single board computers.
+        /// Initialize onboard Wifi installed on FEZ Portal single board computers.
         /// </summary>
         internal static void InitializeWiFi(string ssid, string password)
         {
-            var enablePin = GpioController.GetDefault().OpenPin(SC20100.GpioPin.PA8);
+            var enablePin = GpioController.GetDefault().OpenPin(SC20260.GpioPin.PA8);
             enablePin.SetDriveMode(GpioPinDriveMode.Output);
             enablePin.Write(GpioPinValue.High);
 
-            var Controller = NetworkController.FromName(SC20100.NetworkController.ATWinc15x0);
+            var Controller = NetworkController.FromName(SC20260.NetworkController.ATWinc15x0);
 
             Controller.SetCommunicationInterfaceSettings(new SpiNetworkCommunicationInterfaceSettings()
             {
-                SpiApiName = SC20100.SpiBus.Spi3,
-                GpioApiName = SC20100.GpioPin.Id,
-                InterruptPin = GpioController.GetDefault().OpenPin(SC20100.GpioPin.PB12),
+                SpiApiName = SC20260.SpiBus.Spi3,
+                GpioApiName = SC20260.GpioPin.Id,
+                InterruptPin = GpioController.GetDefault().OpenPin(SC20260.GpioPin.PF10),
                 InterruptEdge = GpioPinEdge.FallingEdge,
                 InterruptDriveMode = GpioPinDriveMode.InputPullUp,
-                ResetPin = GpioController.GetDefault().OpenPin(SC20100.GpioPin.PB13),
+                ResetPin = GpioController.GetDefault().OpenPin(SC20260.GpioPin.PC3),
                 ResetActiveState = GpioPinValue.Low,
                 SpiSettings = new SpiConnectionSettings()
                 {
-                    ChipSelectLine = GpioController.GetDefault().OpenPin(SC20100.GpioPin.PD15),
+                    ChipSelectLine = GpioController.GetDefault().OpenPin(SC20260.GpioPin.PA6),
                     ClockFrequency = 4000000,
                     Mode = SpiMode.Mode0,
                     ChipSelectType = SpiChipSelectType.Gpio,

@@ -41,7 +41,7 @@ Microserver is a modular server built for TinyCLR OS IoT devices inspired by Asp
 ## Requirements
 
 **Software:**  <a href="https://visualstudio.microsoft.com/downloads/">Visual Studio 2019</a> and <a href="https://www.ghielectronics.com/">GHI Electronics TinyCLR OS 2.1-Preview 4</a> or higher.  
-**Hardware:** Project tested using FEZ Feather single board computers and SCD-20260D development board.  
+**Hardware:** Project tested using FEZ Portal single board computers and SCD-20260D development board.  
 **External RAM:** Devices with external RAM have the option of extending managed heap into **unsecure** external memory. TinyCLR Config can be used to extend the heap into external SDRAM increasing performance for simultaneous sessions. Please note this feature provides a large amount of managed heap space but data is stored outside of the microcontroller chip where it's less secure.
 
 ## Nuget Packages

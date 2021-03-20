@@ -96,7 +96,7 @@ public static class CustomMiddlewareExtensions
         }
 
         app.SetProperty("key", "custom object/setting");
-        app.UseMiddleware(typeof(CustomMiddleware));
+        app.UseMiddleware(new CustomMiddleware());
     }
 }
 ```
