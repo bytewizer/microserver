@@ -1,6 +1,6 @@
 # Microserver for TinyCLR OS
 
-Microserver is a modular server built for TinyCLR OS IoT devices inspired by AspNetCore.
+Microserver is a modular server built for TinyCLR OS IoT devices inspired by AspNetCore.  Be sure to follow this project with videos on [YouTube](https://youtu.be/0hk1pLUItEM).
 
 [![Build Status](https://img.shields.io/github/workflow/status/microcompiler/microserver/Actions%20CI?style=flat-square&logo=github)](https://github.com/microcompiler/microserver/actions)
 
@@ -40,16 +40,16 @@ Microserver is a modular server built for TinyCLR OS IoT devices inspired by Asp
 
 ## Requirements
 
-**Software:**  <a href="https://visualstudio.microsoft.com/downloads/">Visual Studio 2019</a> and <a href="https://www.ghielectronics.com/">GHI Electronics TinyCLR OS 2.0</a> or higher.  
-**Hardware:** Project tested using SCD-20260D development board.  
+**Software:**  <a href="https://visualstudio.microsoft.com/downloads/">Visual Studio 2019</a> and <a href="https://www.ghielectronics.com/">GHI Electronics TinyCLR OS 2.1-Preview 4</a> or higher.  
+**Hardware:** Project tested using FEZ Feather single board computers and SCD-20260D development board.  
 **External RAM:** Devices with external RAM have the option of extending managed heap into **unsecure** external memory. TinyCLR Config can be used to extend the heap into external SDRAM increasing performance for simultaneous sessions. Please note this feature provides a large amount of managed heap space but data is stored outside of the microcontroller chip where it's less secure.
+
+## Nuget Packages
+Prebuild packages are available as attached artifacts on successful [action](https://github.com/microcompiler/microserver/actions) workflow builds.
 
 ## Give a Star! :star:
 
 If you like or are using this project to start your solution, please give it a star. Thanks!
-
-## Nuget Packages
-Release candidate packages can be [downloaded](https://github.com/microcompiler/microserver/releases/tag/v2.0.0-rc.1) from releases as attached asset.  Prebuild packages are available as artifacts on successful [action](https://github.com/microcompiler/microserver/actions) workflow builds.
 
 ## Getting Started
 

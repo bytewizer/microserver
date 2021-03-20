@@ -60,6 +60,7 @@
   <ItemGroup>
     <None Include="..\..\LICENSE.md" Pack="true" PackagePath="$(PackageLicenseFile)" />
     <None Include="..\..\images\package-logo.png" Pack="true" PackagePath="\" />
+    <None Include="CONTENTTYPES.md" />
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>

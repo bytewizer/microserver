@@ -24,12 +24,12 @@ namespace Bytewizer.Playground.Sockets
                     do
                     {
                         line = reader.ReadLine();
-                        //Debug.WriteLine(line);
+                        Debug.WriteLine(line);
                     } while (!reader.EndOfStream);
                 }
 
                 string response = "HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n" +
-                                  "<doctype !html><html><head><meta http-equiv='refresh' content='5'><title>Hello, world!</title>" +
+                                  "<doctype !html><html><head><meta http-equiv='refresh' content='1'><title>Hello, world!</title>" +
                                   "<style>body { background-color: #111 } h1 { font-size:2cm; text-align: center; color: white;}</style></head>" +
                                   "<body><h1>" + DateTime.Now.Ticks.ToString() + "</h1></body></html>";
                 

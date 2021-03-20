@@ -81,14 +81,13 @@ namespace Bytewizer.TinyCLR.Sockets
             try
             {
                 var status = _listener.Start();
-                var message = $"Started socket listener bound to {_listener.Options.EndPoint}";
-                Debug.WriteLine(message);
-                _logger.LogInformation(message);
+                WriteMessage($"Started socket listener bound to {_listener.Options.EndPoint}");
+
                 return status;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Error starting listerner bound to {_listener.Options.EndPoint}");
+                WriteExecption(ex, $"Error starting listerner bound to {_listener.Options.EndPoint}");
                 return false;
             }
         }
@@ -99,15 +98,38 @@ namespace Bytewizer.TinyCLR.Sockets
             try
             {
                 var status = _listener.Stop();
-                var message = $"Stopping socket listener bound to {_listener.Options.EndPoint}";
-                Debug.WriteLine(message);
-                _logger.LogInformation(message);
+                WriteMessage($"Stopping socket listener bound to {_listener.Options.EndPoint}");
+
                 return status;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Error stopping listener bound to {_listener.Options.EndPoint}");
+                WriteExecption(ex, $"Error stopping listener bound to {_listener.Options.EndPoint}");
                 return false;
+            }
+        }
+
+        private void WriteMessage(string message)
+        {
+            if (_logger.GetType() == typeof(NullLogger))
+            {
+                Debug.WriteLine(message);
+            }
+            else
+            {
+                _logger.LogInformation(message);
+            }
+        }
+
+        private void WriteExecption(Exception execption, string message)
+        {
+            if (_logger.GetType() == typeof(NullLogger))
+            {
+                Debug.WriteLine($"{message} : {execption}");
+            }
+            else
+            {
+                _logger.LogError(execption, message);
             }
         }
 
@@ -117,7 +139,7 @@ namespace Bytewizer.TinyCLR.Sockets
         /// <param name="sender">The source of the event.</param>
         /// <param name="socket">The socket for the connected endpoint.</param>
         protected virtual void ClientConnected(object sender, Socket socket)
-        { 
+        {
         }
 
         /// <summary>

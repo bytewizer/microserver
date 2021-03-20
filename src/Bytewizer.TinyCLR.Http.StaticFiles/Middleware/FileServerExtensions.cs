@@ -25,5 +25,25 @@ namespace Bytewizer.TinyCLR.Http
             
             return app;
         }
+
+        /// <summary>
+        /// Enable all static file middleware for the current request path in the root directory.
+        /// </summary>
+        /// <param name="app">The <see cref="IApplicationBuilder"/> instance this method extends.</param>
+        /// <param name="provider">The <see cref="IContentTypeProvider"/> Uused to map files to content-types.</param>
+        public static IApplicationBuilder UseFileServer(this IApplicationBuilder app, IContentTypeProvider provider)
+        {
+            if (app == null)
+            {
+                throw new ArgumentNullException(nameof(app));
+            }
+
+            app.UseDefaultFiles();
+            app.UseStaticFiles(
+                    new StaticFileOptions() { ContentTypeProvider = provider }
+                );
+
+            return app;
+        }
     }
 }
