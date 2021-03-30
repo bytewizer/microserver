@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Net.Sockets;
 
 using Bytewizer.TinyCLR.Logging;
 using Bytewizer.TinyCLR.Pipeline;
+using Bytewizer.TinyCLR.Sockets.Channel;
 
 namespace Bytewizer.TinyCLR.Sockets
 {
@@ -48,25 +48,15 @@ namespace Bytewizer.TinyCLR.Sockets
         /// A client has connected.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="socket">The socket for the connected end point.</param>
-        protected override void ClientConnected(object sender, Socket socket)
+        /// <param name="channel">The socket channel for the connected end point.</param>
+        protected override void ClientConnected(object sender, SocketChannel channel)
         {
             try
             {
-                var context = new SocketContext();
-
-                // Assign socket
-                if (Options.Listener.IsTls)
+                var context = new SocketContext
                 {
-                    context.Channel.Assign(
-                        socket,
-                        Options.Listener.Certificate,
-                        Options.Listener.SslProtocols);
-                }
-                else
-                {
-                    context.Channel.Assign(socket);
-                }
+                    Channel = channel
+                };
 
                 // Check to make sure channel contains data
                 if (context.Channel.InputStream.Length > 0)

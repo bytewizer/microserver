@@ -25,7 +25,7 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
         public ConnectionInfo Connection { get; internal set; }
 
         /// <summary>
-        /// Gets or sets a key/value collection that can be used to share data within the scope of this channel.
+        /// Gets or sets a byte array that can be used to share data within the scope of this channel.
         /// </summary>
         public byte[] Data { get; set; }
 
@@ -52,6 +52,23 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
             InputStream = new NetworkStream(socket);
             OutputStream = new NetworkStream(socket);
             Connection = ConnectionInfo.Set(socket);
+        }
+
+        /// <summary>
+        /// Assign a socket to this channel.
+        /// </summary>
+        /// <param name="socket">The connected socket for channel.</param>
+        /// <param name="buffer">The connected socket buffer for channel.</param>
+        /// <param name="endpoint">The remote endpoint of the connected socket. </param>
+        public void Assign(Socket socket, byte [] buffer, EndPoint endpoint)
+        {
+            if (socket == null)
+                throw new ArgumentNullException(nameof(socket));
+
+            Socket = socket;
+            InputStream = new MemoryStream(buffer);
+            OutputStream = new MemoryStream();
+            Connection = ConnectionInfo.Set(socket, endpoint);
         }
 
         /// <summary>

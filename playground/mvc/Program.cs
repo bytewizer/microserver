@@ -1,5 +1,4 @@
 ﻿using Bytewizer.TinyCLR.Http;
-using Bytewizer.TinyCLR.Hardware;
 
 namespace Bytewizer.Playground.Mvc
 {
@@ -7,7 +6,8 @@ namespace Bytewizer.Playground.Mvc
     {
         static void Main()
         {
-            InitializeHardware();
+            StorageProvider.Initialize();
+            NetworkProvider.InitializeEthernet();
 
             var server = new HttpServer(options =>
             {
@@ -31,12 +31,6 @@ namespace Bytewizer.Playground.Mvc
                 });
             });
             server.Start();
-        }
-        public static void InitializeHardware()
-        {
-            var hardwareOptions = new HardwareOptions() { BoardModel = BoardModel.Sc20260D };
-            var mainBoard = new Mainboard(hardwareOptions).Connect();
-            mainBoard.Network.Enabled();
         }
     }
 }

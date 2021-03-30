@@ -1,8 +1,8 @@
 ﻿using Bytewizer.TinyCLR.Sockets;
-using Bytewizer.TinyCLR.Hardware;
 
 using Bytewizer.TinyCLR.Logging;
 using Bytewizer.TinyCLR.Logging.Debug;
+using Bytewizer.TinyCLR.Netbios;
 
 namespace Bytewizer.Playground.Sockets
 {
@@ -12,7 +12,9 @@ namespace Bytewizer.Playground.Sockets
 
         static void Main()
         {
-            InitializeHardware();
+            StorageProvider.Initialize();
+            NetworkProvider.InitializeEthernet();
+           
             loggerFactory.AddDebug(LogLevel.Trace);
 
             IServer server = new SocketServer(loggerFactory, options =>
@@ -21,15 +23,14 @@ namespace Bytewizer.Playground.Sockets
                 {
                     //app.UseMemoryInfo();
                     app.UseHttpResponse();
+                    //app.UseNetBios("mydevice", new byte[] { 192, 168, 1, 145 });
                 });
+                //options.Listen(137, listener =>
+                //{
+                //    listener.UseUdp();
+                //});
             });
             server.Start();
-        }
-        public static void InitializeHardware()
-        {
-            var hardwareOptions = new HardwareOptions() { BoardModel = BoardModel.Sc20260D };
-            var mainBoard = new Mainboard(hardwareOptions).Connect();
-            mainBoard.Network.Enabled();
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Security.Cryptography.X509Certificates;
 
 using Bytewizer.TinyCLR.Http;
 using Bytewizer.TinyCLR.Sockets;
-using Bytewizer.TinyCLR.Hardware;
+
 
 using Bytewizer.Playground.StaticFiles.Properties;
 
@@ -13,7 +13,8 @@ namespace Bytewizer.Playground.StaticFiles
     {
         static void Main()
         {
-            InitializeHardware();
+            StorageProvider.Initialize();
+            NetworkProvider.InitializeEthernet();
 
             var server = new HttpServer(options =>
             {
@@ -435,13 +436,6 @@ namespace Bytewizer.Playground.StaticFiles
             //    });
             //});
             //sslServer.Start();
-        }
-
-        public static void InitializeHardware()
-        {
-            var hardwareOptions = new HardwareOptions() { BoardModel = BoardModel.Sc20260D };
-            var mainBoard = new Mainboard(hardwareOptions).Connect();
-            mainBoard.Network.Enabled();
         }
     }
 }

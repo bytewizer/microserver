@@ -52,91 +52,91 @@ namespace Bytewizer.TinyCLR
             return constructors;
         }
 
-        /// <summary>
-        /// Gets the properties of the current Type.
-        /// </summary>
-        /// <param name="type">The current <see cref="Type"/></param>
-        public static Hashtable GetProperties(this Type type)
-        {
-            Hashtable properties = new Hashtable();
+        ///// <summary>
+        ///// Gets the properties of the current Type.
+        ///// </summary>
+        ///// <param name="type">The current <see cref="Type"/></param>
+        //public static Hashtable GetProperties(this Type type)
+        //{
+        //    Hashtable properties = new Hashtable();
 
-            // Type dump
-            //Debug.WriteLine("Name: " + type.Name);
-            //Debug.WriteLine("    IsClass: " + type.IsClass);
-            //Debug.WriteLine("    IsArray: " + type.IsArray);
-            //Debug.WriteLine("    IsEnum: " + type.IsEnum);
-            //Debug.WriteLine("    IsAbstract: " + type.IsAbstract);
-            //Debug.WriteLine("");
+        //    // Type dump
+        //    //Debug.WriteLine("Name: " + type.Name);
+        //    //Debug.WriteLine("    IsClass: " + type.IsClass);
+        //    //Debug.WriteLine("    IsArray: " + type.IsArray);
+        //    //Debug.WriteLine("    IsEnum: " + type.IsEnum);
+        //    //Debug.WriteLine("    IsAbstract: " + type.IsAbstract);
+        //    //Debug.WriteLine("");
 
-            // If it's a class then it's something we care about
-            if (type.IsClass)
-            {
-                MethodInfo[] methods = type.GetMethods();
-                foreach (MethodInfo method in methods)
-                {
-                    //Debug.WriteLine("            Name: " + method.Name);
-                    //Debug.WriteLine("            IsVirtual: " + method.IsVirtual);
-                    //Debug.WriteLine("            IsStatic: " + method.IsStatic);
-                    //Debug.WriteLine("            IsPublic: " + method.IsPublic);
-                    //Debug.WriteLine("            IsFinal: " + method.IsFinal);
-                    //Debug.WriteLine("            IsAbstract: " + method.IsAbstract);
-                    ////Debug.WriteLine("            MemberType: " + method.MemberType);
-                    //Debug.WriteLine("            DeclaringType: " + method.DeclaringType);
-                    //Debug.WriteLine("            ReturnType: " + method.ReturnType);
+        //    // If it's a class then it's something we care about
+        //    if (type.IsClass)
+        //    {
+        //        MethodInfo[] methods = type.GetMethods();
+        //        foreach (MethodInfo method in methods)
+        //        {
+        //            //Debug.WriteLine("            Name: " + method.Name);
+        //            //Debug.WriteLine("            IsVirtual: " + method.IsVirtual);
+        //            //Debug.WriteLine("            IsStatic: " + method.IsStatic);
+        //            //Debug.WriteLine("            IsPublic: " + method.IsPublic);
+        //            //Debug.WriteLine("            IsFinal: " + method.IsFinal);
+        //            //Debug.WriteLine("            IsAbstract: " + method.IsAbstract);
+        //            ////Debug.WriteLine("            MemberType: " + method.MemberType);
+        //            //Debug.WriteLine("            DeclaringType: " + method.DeclaringType);
+        //            //Debug.WriteLine("            ReturnType: " + method.ReturnType);
 
-                    // If the Name.StartsWith "get_" and/or "set_",
-                    // and it's not Abstract && not Virtual
-                    // then it's a Property to save
-                    if ((method.Name.StartsWith("get_")) &&
-                        (method.IsAbstract == false) &&
-                        (method.IsVirtual == false))
-                    {
-                        // Ignore abstract and virtual objects
-                        if ((method.IsAbstract ||
-                            (method.IsVirtual) ||
-                            (method.ReturnType.IsAbstract)))
-                        {
-                            continue;
-                        }
+        //            // If the Name.StartsWith "get_" and/or "set_",
+        //            // and it's not Abstract && not Virtual
+        //            // then it's a Property to save
+        //            if ((method.Name.StartsWith("get_")) &&
+        //                (method.IsAbstract == false) &&
+        //                (method.IsVirtual == false))
+        //            {
+        //                // Ignore abstract and virtual objects
+        //                if ((method.IsAbstract ||
+        //                    (method.IsVirtual) ||
+        //                    (method.ReturnType.IsAbstract)))
+        //                {
+        //                    continue;
+        //                }
 
-                        // Ignore delegates and MethodInfos
-                        if ((method.ReturnType == typeof(Delegate)) ||
-                            (method.ReturnType == typeof(MulticastDelegate)) ||
-                            (method.ReturnType == typeof(MethodInfo)))
-                        {
-                            continue;
-                        }
+        //                // Ignore delegates and MethodInfos
+        //                if ((method.ReturnType == typeof(Delegate)) ||
+        //                    (method.ReturnType == typeof(MulticastDelegate)) ||
+        //                    (method.ReturnType == typeof(MethodInfo)))
+        //                {
+        //                    continue;
+        //                }
 
-                        // Same for DeclaringType
-                        if ((method.DeclaringType == typeof(Delegate)) ||
-                            (method.DeclaringType == typeof(MulticastDelegate)))
-                        {
-                            continue;
-                        }
+        //                // Same for DeclaringType
+        //                if ((method.DeclaringType == typeof(Delegate)) ||
+        //                    (method.DeclaringType == typeof(MulticastDelegate)))
+        //                {
+        //                    continue;
+        //                }
 
-                        // Don't need these types either
-                        if ((method.Name.StartsWith("System.Globalization")))
-                        {
-                            continue;
-                        }
+        //                // Don't need these types either
+        //                if ((method.Name.StartsWith("System.Globalization")))
+        //                {
+        //                    continue;
+        //                }
 
-                        properties.Add(method.Name.Substring(4), method.ReturnType);
-                    }
-                }
-                return properties;
-            }
+        //                properties.Add(method.Name.Substring(4), method.ReturnType);
+        //            }
+        //        }
+        //        return properties;
+        //    }
 
-            return null;
-        }
+        //    return null;
+        //}
 
-        /// <summary>
-        /// Determines whether an instance of a specified type can be assigned to a variable of the current type.
-        /// </summary>
-        /// <param name="type">The current <see cref="Type"/></param>
-        /// <param name="c">The type to compare with the current type.</param>
-        public static bool IsAssignableFrom(this Type type, Type c)
-        {
-            return true;
-        }
+        ///// <summary>
+        ///// Determines whether an instance of a specified type can be assigned to a variable of the current type.
+        ///// </summary>
+        ///// <param name="type">The current <see cref="Type"/></param>
+        ///// <param name="c">The type to compare with the current type.</param>
+        //public static bool IsAssignableFrom(this Type type, Type c)
+        //{
+        //    return true;
+        //}
     }
 }

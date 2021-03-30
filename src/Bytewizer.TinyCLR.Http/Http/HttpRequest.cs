@@ -59,6 +59,12 @@ namespace Bytewizer.TinyCLR.Http
         public string Path { get; set; }
 
         /// <summary>
+        /// Gets or sets the base path for the request. The path base should not end with a trailing slash.
+        /// </summary>
+        /// <returns>The base path for the request.</returns>
+        public string PathBase { get; set; }
+
+        /// <summary>
         /// Gets or sets the value for the Content-Length response header.
         /// </summary>
         public long ContentLength

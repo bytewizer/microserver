@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using Bytewizer.TinyCLR.Logging;
 using Bytewizer.TinyCLR.Pipeline;
 using Bytewizer.TinyCLR.Pipeline.Builder;
+using Bytewizer.TinyCLR.Sockets.Channel;
 using Bytewizer.TinyCLR.Sockets.Listener;
 
 namespace Bytewizer.TinyCLR.Sockets
@@ -68,7 +69,18 @@ namespace Bytewizer.TinyCLR.Sockets
 
             Application = options.Application;
 
-            _listener = new SocketListener(options.Listener);
+            switch (options.Listener.ProtocolType)
+            {
+                case ProtocolType.Tcp:
+                    _listener = new TcpListener(options.Listener);
+                    break;
+                case ProtocolType.Udp:
+                    _listener = new UdpListener(options.Listener);
+                    break;
+                default:
+                    throw new NotSupportedException();
+            }
+            
             _listener.Connected += ClientConnected;
             _listener.Disconnected += ClientDisconnected;
 
@@ -137,8 +149,8 @@ namespace Bytewizer.TinyCLR.Sockets
         /// A client has connected.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="socket">The socket for the connected endpoint.</param>
-        protected virtual void ClientConnected(object sender, Socket socket)
+        /// <param name="channel">The socket channel for the connected endpoint.</param>
+        protected virtual void ClientConnected(object sender, SocketChannel channel)
         {
         }
 

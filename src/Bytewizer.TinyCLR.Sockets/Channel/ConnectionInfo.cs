@@ -34,15 +34,26 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
         /// </summary>
         public int RemotePort { get; internal set; }
         
-        internal static ConnectionInfo Set(Socket channel)
+        internal static ConnectionInfo Set(Socket socket)
         {
             return new ConnectionInfo()
             {
                 Id = DateTime.Now.Ticks.ToString(), //TODO: Switch to Guid - GHI Github issue #476,
-                LocalIpAddress = ((IPEndPoint)channel.LocalEndPoint).Address,
-                LocalPort = ((IPEndPoint)channel.LocalEndPoint).Port,
-                RemoteIpAddress = ((IPEndPoint)channel.RemoteEndPoint).Address,
-                RemotePort = ((IPEndPoint)channel.RemoteEndPoint).Port
+                LocalIpAddress = ((IPEndPoint)socket.LocalEndPoint).Address,
+                LocalPort = ((IPEndPoint)socket.LocalEndPoint).Port,
+                RemoteIpAddress = ((IPEndPoint)socket.RemoteEndPoint).Address,
+                RemotePort = ((IPEndPoint)socket.RemoteEndPoint).Port
+            };
+        }
+        internal static ConnectionInfo Set(Socket socket, EndPoint endpoint)
+        {
+            return new ConnectionInfo()
+            {
+                Id = DateTime.Now.Ticks.ToString(), //TODO: Switch to Guid - GHI Github issue #476,
+                LocalIpAddress = ((IPEndPoint)socket.LocalEndPoint).Address,
+                LocalPort = ((IPEndPoint)socket.LocalEndPoint).Port,
+                RemoteIpAddress = ((IPEndPoint)endpoint).Address,
+                RemotePort = ((IPEndPoint)endpoint).Port
             };
         }
     }

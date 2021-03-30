@@ -65,9 +65,9 @@
       <Project>{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}</Project>
       <Name>Bytewizer.TinyCLR.Sockets</Name>
     </ProjectReference>
-    <ProjectReference Include="..\hardware\Bytewizer.Playground.Hardware.csproj">
-      <Project>{A2937775-1F5B-4175-9595-755AE9561C38}</Project>
-      <Name>Bytewizer.Playground.Hardware</Name>
+    <ProjectReference Include="..\hardware\Bytewizer.TinyCLR.Hardware.csproj">
+      <Project>{BA1C8D90-3F6E-446F-B2A6-6FA48A42838E}</Project>
+      <Name>Bytewizer.TinyCLR.Hardware</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

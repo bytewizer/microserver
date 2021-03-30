@@ -1,4 +1,6 @@
-﻿namespace Bytewizer.TinyCLR
+﻿using System.Collections;
+
+namespace Bytewizer.TinyCLR
 {
     /// <summary>
     /// Contains extension methods for <see cref="string"/> object.

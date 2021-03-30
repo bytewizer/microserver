@@ -76,84 +76,84 @@ namespace System
             return type.GetConstructor(types).Invoke(args);
         }
 
-        /// <summary>
-        /// Retrieves the default value for a given Type.
-        /// </summary>
-        /// <param name="type">The Type for which to get the default value.</param>
-        /// <returns>The default value for <paramref name="type"/></returns>
-        private static object GetDefaultValue(Type type)
-        {
-            // If no Type was supplied, if the Type was a reference type, or if the Type was a System.Void, return null
-            //if (type == null || !type.IsValueType || type == typeof(void))
-            //    return null;
+        ///// <summary>
+        ///// Retrieves the default value for a given Type.
+        ///// </summary>
+        ///// <param name="type">The Type for which to get the default value.</param>
+        ///// <returns>The default value for <paramref name="type"/></returns>
+        //private static object GetDefaultValue(Type type)
+        //{
+        //    // If no Type was supplied, if the Type was a reference type, or if the Type was a System.Void, return null
+        //    //if (type == null || !type.IsValueType || type == typeof(void))
+        //    //    return null;
 
-            if (type == typeof(string))
-            {
-                return default(string);
-            }
+        //    if (type == typeof(string))
+        //    {
+        //        return default(string);
+        //    }
 
-            if (type == typeof(bool))
-            {
-                return default(bool);
-            }
+        //    if (type == typeof(bool))
+        //    {
+        //        return default(bool);
+        //    }
 
-            if (type == typeof(byte))
-            {
-                return default(byte);
-            }
+        //    if (type == typeof(byte))
+        //    {
+        //        return default(byte);
+        //    }
 
-            if (type == typeof(byte[]))
-            {
-                return default(byte[]);
-            }
+        //    if (type == typeof(byte[]))
+        //    {
+        //        return default(byte[]);
+        //    }
 
-            if (type == typeof(sbyte))
-            {
-                return default(sbyte);
-            }
+        //    if (type == typeof(sbyte))
+        //    {
+        //        return default(sbyte);
+        //    }
 
-            if (type == typeof(sbyte[]))
-            {
-                return default(sbyte[]);
-            }
+        //    if (type == typeof(sbyte[]))
+        //    {
+        //        return default(sbyte[]);
+        //    }
 
-            if (type == typeof(short))
-            {
-                return default(short);
-            }
+        //    if (type == typeof(short))
+        //    {
+        //        return default(short);
+        //    }
 
-            if (type == typeof(ushort))
-            {
-                return default(ushort);
-            }
+        //    if (type == typeof(ushort))
+        //    {
+        //        return default(ushort);
+        //    }
 
-            if (type == typeof(int))
-            {
-                return default(int);
-            }
+        //    if (type == typeof(int))
+        //    {
+        //        return default(int);
+        //    }
 
-            if (type == typeof(uint))
-            {
-                return default(uint);
-            }
+        //    if (type == typeof(uint))
+        //    {
+        //        return default(uint);
+        //    }
 
-            if (type == typeof(long))
-            {
-                return default(long);
-            }
+        //    if (type == typeof(long))
+        //    {
+        //        return default(long);
+        //    }
 
-            if (type == typeof(ulong))
-            {
-                return default(ulong);
-            }
+        //    if (type == typeof(ulong))
+        //    {
+        //        return default(ulong);
+        //    }
 
-            if (type == typeof(double))
-            {
-                return default(double);
-            }
+        //    if (type == typeof(double))
+        //    {
+        //        return default(double);
+        //    }
 
-            return null;
-        }
+        //    return null;
+        //}
 
         //public static object GetDefaultValue2(Type parameter)
         //{
