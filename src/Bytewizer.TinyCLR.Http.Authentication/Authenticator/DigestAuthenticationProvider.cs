@@ -46,11 +46,6 @@ namespace Bytewizer.TinyCLR.Http.Authenticator
         public string Domain { get; internal set; }
 
         /// <summary>
-        /// A flag, indicating that the previous request from the client was rejected because the nonce value was stale.
-        /// </summary>
-        public string Stale { get; internal set; }
-
-        /// <summary>
         /// In seconds
         /// </summary>
         public double StaleTimeOut { get; set; }
@@ -76,7 +71,8 @@ namespace Bytewizer.TinyCLR.Http.Authenticator
         {
             if (!AuthHelper.ValidateHeader(context, out string auth, out string scheme))
             {
-                return new AuthenticateResult() { Succeeded = false };
+                return AuthenticateResult.Fail(
+                    new InvalidOperationException());
             }
             else if (Scheme != scheme)
             {
@@ -94,12 +90,10 @@ namespace Bytewizer.TinyCLR.Http.Authenticator
                         return AuthenticateResult.Fail(
                             new InvalidOperationException("Invalid digest authentication header failed to find nonce."));
                     }
-
-                    if (isStale)
+                    else if (isStale)
                     {
-                        Stale = "true";
-                        Challenge(context);
-                        Stale = null;
+                        Challenge(context, true);
+
                         context.Response.StatusCode = StatusCodes.Status401Unauthorized;
                         return AuthenticateResult.Fail(
                             new InvalidOperationException());
@@ -132,9 +126,15 @@ namespace Bytewizer.TinyCLR.Http.Authenticator
         /// <inheritdoc/>
         public void Challenge(HttpContext context)
         {
+            Challenge(context, false);
+        }
+
+        private void Challenge(HttpContext context, bool isStale)
+        {
+            var stale = isStale ? "true" : null;
             var challenge = new StringBuilder(128);
 
-            var nonce = GenerateNonce(context.Connection.RemoteIpAddress.ToString());
+            var nonce = CreateNonce(context.Connection.RemoteIpAddress.ToString());
             if (Domain != null)
             {
                 challenge.Append($"Digest realm=\"{Realm}\", domain=\"{Domain}\", nonce=\"{nonce}\"");
@@ -147,8 +147,8 @@ namespace Bytewizer.TinyCLR.Http.Authenticator
             if (Opaque != null)
                 challenge.Append($", opaque=\"{Opaque}\"");
 
-            if (Stale != null)
-                challenge.Append($", stale={Stale}");
+            if (stale != null)
+                challenge.Append($", stale={stale}");
 
             if (Algorithm != null)
                 challenge.Append($", algorithm={Algorithm}");
@@ -249,7 +249,7 @@ namespace Bytewizer.TinyCLR.Http.Authenticator
             return sb.ToString();
         }
 
-        private string GenerateNonce(string ipAddress)
+        private string CreateNonce(string ipAddress)
         {
             var timeStamp = (DateTime.UtcNow - _epoch).TotalSeconds;
             var privateHash = CreateHash($"{timeStamp}:{ipAddress}");
