@@ -90,7 +90,7 @@ namespace Bytewizer.TinyCLR.Http.Authenticator
         }
 
         /// <inheritdoc/>
-        public void Forbid(HttpContext context)
+        public void Unauthorized(HttpContext context)
         {
             context.Response.StatusCode = StatusCodes.Status401Unauthorized;
         }

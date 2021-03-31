@@ -121,7 +121,7 @@ namespace Bytewizer.TinyCLR.Http.Internal
                 // Set request cookies
                 var cookieParser = new HttpCookieParser();
                 var headers = context.Request.Headers as HeaderDictionary;
-                var cookies = headers.Cookie;
+                var cookies = headers[HeaderNames.Cookie];
                 if (cookies != null)
                 {
                     context.Request.Cookies = cookieParser.Parse(cookies);

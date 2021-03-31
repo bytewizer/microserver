@@ -2,6 +2,7 @@
 
 using Bytewizer.TinyCLR.Http;
 using Bytewizer.TinyCLR.Http.Authenticator;
+using GHIElectronics.TinyCLR.Native;
 
 namespace Bytewizer.Playground.Authentication
 {
@@ -12,6 +13,9 @@ namespace Bytewizer.Playground.Authentication
             StorageProvider.Initialize();
             NetworkProvider.InitializeEthernet();
 
+            //SystemTime.SetTime(new DateTime(2020, 1, 1, 11, 11, 11));
+
+            //var accountService = new AccountService();
             var accountService = new DefaultAccountService();
             accountService.Register("admin", "password");
 

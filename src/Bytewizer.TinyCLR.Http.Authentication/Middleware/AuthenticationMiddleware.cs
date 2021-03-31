@@ -27,7 +27,7 @@ namespace Bytewizer.TinyCLR.Http
         /// <inheritdoc/>
         protected override void Invoke(HttpContext context, RequestDelegate next)
         {
-            if (string.IsNullOrEmpty(context.Request.Headers.Authorization))
+            if (string.IsNullOrEmpty(context.Request.Headers[HeaderNames.Authorization]))
             {
                 _options.AuthenticationProvider.Challenge(context);
                 return;
@@ -42,7 +42,7 @@ namespace Bytewizer.TinyCLR.Http
                 }
             }
 
-            _options.AuthenticationProvider.Forbid(context);
+            _options.AuthenticationProvider.Unauthorized(context);
         }
     }
 }

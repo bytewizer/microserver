@@ -29,6 +29,6 @@ namespace Bytewizer.TinyCLR.Http
         /// Forbids the specified authentication scheme.
         /// </summary>
         /// <param name="context">The <see cref="HttpContext"/>.</param>
-        void Forbid(HttpContext context);
+        void Unauthorized(HttpContext context);
     }
 }

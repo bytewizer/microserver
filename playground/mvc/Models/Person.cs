@@ -3,9 +3,7 @@
 namespace Bytewizer.Playground.Mvc.Models
 {
     public class Person
-    {
-        private static int _userId = 100;
-        
+    {        
         public int Id { get; set; }
         
         public string FirstName { get; set; }

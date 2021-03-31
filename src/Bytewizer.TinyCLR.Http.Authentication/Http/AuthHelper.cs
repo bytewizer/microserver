@@ -25,7 +25,7 @@ namespace Bytewizer.TinyCLR.Http
             auth = null;
             scheme = null;
 
-            var authHeader = context.Request.Headers.Authorization;
+            var authHeader = context.Request.Headers[HeaderNames.Authorization];
             if (string.IsNullOrEmpty(authHeader))
             {
                 return false;

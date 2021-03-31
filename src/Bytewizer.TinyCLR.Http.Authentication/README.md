@@ -141,3 +141,4 @@ server.Start();
 
 ## RFC - Related Request for Comments 
 - [RFC 2617 - HTTP Authentication: Basic and Digest Access Authentication](https://tools.ietf.org/html/rfc2617)
+- [RFC 2069 - Digest Access Authentication](https://www.ietf.org/rfc/rfc2069.txt)

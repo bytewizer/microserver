@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text;
-using System.Threading;
 using System.Collections;
 
 using Bytewizer.TinyCLR.Http.Features;
@@ -15,21 +14,19 @@ namespace Bytewizer.TinyCLR.Http.Authenticator
     public class DigestAuthenticationProvider : IAuthenticationProvider
     {
         private readonly MD5 _md5 = MD5.Create();
-        private readonly Random _random = new Random();
         private readonly char[] _splitParts = new char[] { '=' };
         private readonly char[] _trimSymbols = new char[] { ' ', '\"' };
-
-        //private static Timer _timer;
-        //static readonly Hashtable _nonces = new Hashtable();
+        private readonly DateTime _epoch = new DateTime(2017, 1, 1, 0, 0, 0);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DigestAuthenticationProvider"/> class.
         /// </summary>
         public DigestAuthenticationProvider()
         {
-            Qop = "auth";
+            Qop = "auth";  // none, auth, auth-int
             Realm = AuthHelper.DefaultRealm;
-            Algorithm = "MD5";
+            Algorithm = "MD5"; // none, MD5, MD5-sess
+            StaleTimeOut = 300;
         }
 
         /// <inheritdoc/>
@@ -54,6 +51,11 @@ namespace Bytewizer.TinyCLR.Http.Authenticator
         public string Stale { get; internal set; }
 
         /// <summary>
+        /// In seconds
+        /// </summary>
+        public double StaleTimeOut { get; set; }
+
+        /// <summary>
         /// A string of data, specified by the server, which should be returned by the client unchanged in the Authorization
         /// header of subsequent requests with URIs in the same protection space.
         /// </summary>
@@ -72,12 +74,6 @@ namespace Bytewizer.TinyCLR.Http.Authenticator
         /// <inheritdoc/>
         public AuthenticateResult Authenticate(HttpContext context, AuthenticationOptions options)
         {
-            //lock (_nonces)
-            //{
-            //    if (_timer == null)
-            //        _timer = new Timer(ManageNonces, null, 15000, 15000);
-            //}
-
             if (!AuthHelper.ValidateHeader(context, out string auth, out string scheme))
             {
                 return new AuthenticateResult() { Succeeded = false };
@@ -90,29 +86,42 @@ namespace Bytewizer.TinyCLR.Http.Authenticator
             else
             {
                 var parameters = ParseAuthorizationHeader(auth, out string response, out string nonce, out string username);
-
-                //if (ValidateNonce(nonce))
-                //{
-                //    return AuthenticateResult.Fail(
-                //        new InvalidOperationException("Invalid digest authentication header failed to find nonce."));
-                //}
-
-                var user = options.AccountService.GetUser(username);
-                if (user != null)
+                if (parameters != null)
                 {
-                    if (response == DigestResponse(parameters, context.Request.Method, user.HA1))
+                    if (!ValidateNonce(nonce, context.Connection.RemoteIpAddress.ToString(), out bool isStale))
                     {
-                        var authenticationFeature = new HttpAuthenticationFeature
-                        {
-                            User = user,
-                        };
-                        context.Features.Set(typeof(IHttpAuthenticationFeature), authenticationFeature);
-                        return new AuthenticateResult();
+                        context.Response.StatusCode = StatusCodes.Status403Forbidden;
+                        return AuthenticateResult.Fail(
+                            new InvalidOperationException("Invalid digest authentication header failed to find nonce."));
                     }
-                    else
+
+                    if (isStale)
                     {
+                        Stale = "true";
+                        Challenge(context);
+                        Stale = null;
                         context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-                        return AuthenticateResult.Fail(new InvalidOperationException());
+                        return AuthenticateResult.Fail(
+                            new InvalidOperationException());
+                    }
+
+                    var user = options.AccountService.GetUser(username);
+                    if (user != null)
+                    {
+                        if (response == DigestResponse(parameters, context.Request.Method, user.HA1))
+                        {
+                            var authenticationFeature = new HttpAuthenticationFeature
+                            {
+                                User = user,
+                            };
+                            context.Features.Set(typeof(IHttpAuthenticationFeature), authenticationFeature);
+                            return new AuthenticateResult();
+                        }
+                        else
+                        {
+                            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                            return AuthenticateResult.Fail(new InvalidOperationException());
+                        }
                     }
                 }
 
@@ -123,42 +132,42 @@ namespace Bytewizer.TinyCLR.Http.Authenticator
         /// <inheritdoc/>
         public void Challenge(HttpContext context)
         {
-            var sb = new StringBuilder(128);
-            var nonce = CreateNonce();
+            var challenge = new StringBuilder(128);
 
+            var nonce = GenerateNonce(context.Connection.RemoteIpAddress.ToString());
             if (Domain != null)
             {
-                sb.Append($"Digest realm=\"{Realm}\", domain=\"{Domain}\", nonce=\"{nonce}\"");
+                challenge.Append($"Digest realm=\"{Realm}\", domain=\"{Domain}\", nonce=\"{nonce}\"");
             }
             else
             {
-                sb.Append($"Digest realm=\"{Realm}\", nonce=\"{nonce}\"");
+                challenge.Append($"Digest realm=\"{Realm}\", nonce=\"{nonce}\"");
             }
 
             if (Opaque != null)
-                sb.Append($", opaque=\"{Opaque}\"");
+                challenge.Append($", opaque=\"{Opaque}\"");
 
             if (Stale != null)
-                sb.Append($", stale={Stale}");
+                challenge.Append($", stale={Stale}");
 
             if (Algorithm != null)
-                sb.Append($", algorithm={Algorithm}");
+                challenge.Append($", algorithm={Algorithm}");
 
             if (Qop != null)
-                sb.Append($", qop=\"{Qop}\"");
+                challenge.Append($", qop=\"{Qop}\"");
 
-            sb.Append(", charset=\"UTF-8\"");
+            challenge.Append(", charset=\"UTF-8\"");
 
-            context.Response.Headers[HeaderNames.WWWAuthenticate] = sb.ToString();
+            context.Response.Headers[HeaderNames.WWWAuthenticate] = challenge.ToString();
             context.Response.StatusCode = StatusCodes.Status401Unauthorized;
         }
 
         /// <inheritdoc/>
-        public void Forbid(HttpContext context)
+        public void Unauthorized(HttpContext context)
         {
             context.Response.StatusCode = StatusCodes.Status401Unauthorized;
         }
-        
+
         private string DigestResponse(Hashtable parameters, string method, string ha1)
         {
             var nonce = (string)parameters["nonce"];
@@ -204,6 +213,11 @@ namespace Bytewizer.TinyCLR.Http.Authenticator
                     }
                 }
 
+                if (!parameters.Contains("response") || !parameters.Contains("algorithm"))
+                {
+                    return null;
+                }
+
                 response = parameters.Contains("response")
                     ? (string)parameters["response"] : string.Empty;
 
@@ -235,53 +249,39 @@ namespace Bytewizer.TinyCLR.Http.Authenticator
             return sb.ToString();
         }
 
-        private string CreateNonce()
+        private string GenerateNonce(string ipAddress)
         {
-            var bytes = new byte[16];
-            _random.NextBytes(bytes);
+            var timeStamp = (DateTime.UtcNow - _epoch).TotalSeconds;
+            var privateHash = CreateHash($"{timeStamp}:{ipAddress}");
 
-            string nonce = string.Empty;
-            for (int i = 0; i < 16; i++)
-            {
-                nonce += $"{bytes[i]:x02}";
-            }
-
-            return nonce;
+            return Convert.ToBase64String(Encoding.UTF8.GetBytes($"{timeStamp}:{privateHash}"));
         }
 
-        //private bool ValidateNonce(string nonce)
-        //{
-        //    lock (_nonces)
-        //    {
-        //        if (_nonces.Contains(nonce))
-        //        {
-        //            if ((DateTime)_nonces[nonce] < DateTime.Now)
-        //            {
-        //                _nonces.Remove(nonce);
-        //                return false;
-        //            }
+        private bool ValidateNonce(string nonce, string ipAddress, out bool isStale)
+        {
+            isStale = true;
+            string decoded = Encoding.UTF8.GetString(Convert.FromBase64String(nonce));
 
-        //            return true;
-        //        }
-        //    }
+            int pos = decoded.IndexOf(':');
+            if (pos == -1)
+            {
+                return false;
+            }
 
-        //    return false;
-        //}
+            var timeStamp = decoded.Substring(0, pos);
+            if (double.TryParse(timeStamp, out double nonceTimeStamp))
+            {
+                var dateTime = _epoch.AddSeconds(nonceTimeStamp);
+                isStale = dateTime.AddSeconds(StaleTimeOut) < DateTime.UtcNow;
+            };
 
-        //private void ManageNonces(object state)
-        //{
-        //    lock (_nonces)
-        //    {
-        //        foreach (DictionaryEntry pair in _nonces)
-        //        {
-        //            if ((DateTime)pair.Value >= DateTime.Now)
-        //                continue;
+            var privateHash = decoded.Substring(pos + 1, decoded.Length - pos - 1);
+            if (CreateHash($"{timeStamp}:{ipAddress}") == privateHash)
+            {
+                return true;
+            }
 
-        //            _nonces.Remove(pair.Key);
-        //            return;
-        //        }
-        //    }
-        //}
-
+            return false;
+        }
     }
 }

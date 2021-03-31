@@ -78,8 +78,10 @@ namespace Bytewizer.TinyCLR.Http
         /// </summary>
         public string ContentType
         {
-            get { return ((HeaderDictionary)Headers).ContentType; }
-            set { ((HeaderDictionary)Headers).ContentType = value; }
+            //get { return ((HeaderDictionary)Headers).ContentType; }
+            //set { ((HeaderDictionary)Headers).ContentType = value; }
+            get { return Headers[HeaderNames.ContentType]; }
+            set { Headers[HeaderNames.ContentType] = value; }
         }
 
         /// <summary>
@@ -87,8 +89,8 @@ namespace Bytewizer.TinyCLR.Http
         /// </summary>
         public string Host
         {
-            get { return ((HeaderDictionary)Headers).Host; }
-            set { ((HeaderDictionary)Headers).Host = value; }
+            get { return Headers[HeaderNames.Host]; }
+            set { Headers[HeaderNames.Host] = value; }
         }
 
         /// <summary>

@@ -386,131 +386,131 @@ namespace Bytewizer.TinyCLR.Http.Header
 
         #endregion
 
-        /// <inheritdoc/>
-        public string Connection
-        {
-            get { return this[HeaderNames.Connection]; }
-            set { this[HeaderNames.Connection] = value; }
-        }
+        ///// <inheritdoc/>
+        //public string Connection
+        //{
+        //    get { return this[HeaderNames.Connection]; }
+        //    set { this[HeaderNames.Connection] = value; }
+        //}
 
-        /// <inheritdoc/>
-        public string Upgrade
-        {
-            get { return this[HeaderNames.Upgrade]; }
-            set { this[HeaderNames.Upgrade] = value; }
-        }
+        ///// <inheritdoc/>
+        //public string Upgrade
+        //{
+        //    get { return this[HeaderNames.Upgrade]; }
+        //    set { this[HeaderNames.Upgrade] = value; }
+        //}
 
-        /// <inheritdoc/>
-        public string SecWebSocketAccept
-        {
-            get { return this[HeaderNames.SecWebSocketAccept]; }
-            set { this[HeaderNames.SecWebSocketAccept] = value; }
-        }
+        ///// <inheritdoc/>
+        //public string SecWebSocketAccept
+        //{
+        //    get { return this[HeaderNames.SecWebSocketAccept]; }
+        //    set { this[HeaderNames.SecWebSocketAccept] = value; }
+        //}
 
-        /// <inheritdoc/>
-        public string LastModified
-        {
-            get { return this[HeaderNames.LastModified]; }
-            set { this[HeaderNames.LastModified] = value; }
-        }
+        ///// <inheritdoc/>
+        //public string LastModified
+        //{
+        //    get { return this[HeaderNames.LastModified]; }
+        //    set { this[HeaderNames.LastModified] = value; }
+        //}
 
-        /// <inheritdoc/>
-        public string WWWAuthenticate
-        {
-            get { return this[HeaderNames.WWWAuthenticate]; }
-            set { this[HeaderNames.WWWAuthenticate] = value; }
-        }
+        ///// <inheritdoc/>
+        //public string WWWAuthenticate
+        //{
+        //    get { return this[HeaderNames.WWWAuthenticate]; }
+        //    set { this[HeaderNames.WWWAuthenticate] = value; }
+        //}
 
-        /// <inheritdoc/>
-        public string Authorization
-        {
-            get { return this[HeaderNames.Authorization]; }
-            set { this[HeaderNames.Authorization] = value; }
-        }
+        ///// <inheritdoc/>
+        //public string Authorization
+        //{
+        //    get { return this[HeaderNames.Authorization]; }
+        //    set { this[HeaderNames.Authorization] = value; }
+        //}
 
-        /// <inheritdoc/>  
-        public string Accept
-        {
-            get { return this[HeaderNames.Accept]; }
-            set { this[HeaderNames.Accept] = value; }
-        }
+        ///// <inheritdoc/>  
+        //public string Accept
+        //{
+        //    get { return this[HeaderNames.Accept]; }
+        //    set { this[HeaderNames.Accept] = value; }
+        //}
 
-        /// <inheritdoc/>
-        public string AcceptCharset
-        {
-            get { return this[HeaderNames.AcceptCharset]; }
-            set { this[HeaderNames.AcceptCharset] = value; }
-        }
+        ///// <inheritdoc/>
+        //public string AcceptCharset
+        //{
+        //    get { return this[HeaderNames.AcceptCharset]; }
+        //    set { this[HeaderNames.AcceptCharset] = value; }
+        //}
 
-        /// <inheritdoc/>
-        public string AcceptEncoding
-        {
-            get { return this[HeaderNames.AcceptEncoding]; }
-            set { this[HeaderNames.AcceptEncoding] = value; }
-        }
+        ///// <inheritdoc/>
+        //public string AcceptEncoding
+        //{
+        //    get { return this[HeaderNames.AcceptEncoding]; }
+        //    set { this[HeaderNames.AcceptEncoding] = value; }
+        //}
 
-        /// <inheritdoc/>
-        public string AcceptLanguage
-        {
-            get { return this[HeaderNames.AcceptLanguage]; }
-            set { this[HeaderNames.AcceptLanguage] = value; }
-        }
+        ///// <inheritdoc/>
+        //public string AcceptLanguage
+        //{
+        //    get { return this[HeaderNames.AcceptLanguage]; }
+        //    set { this[HeaderNames.AcceptLanguage] = value; }
+        //}
 
-        /// <inheritdoc/>
-        public string CacheControl
-        {
-            get { return this[HeaderNames.CacheControl]; }
-            set { this[HeaderNames.CacheControl] = value; }
-        }
+        ///// <inheritdoc/>
+        //public string CacheControl
+        //{
+        //    get { return this[HeaderNames.CacheControl]; }
+        //    set { this[HeaderNames.CacheControl] = value; }
+        //}
 
-        /// <inheritdoc/>
-        public string ContentDisposition
-        {
-            get { return this[HeaderNames.ContentDisposition]; }
-            set { this[HeaderNames.ContentDisposition] = value; }
-        }
+        ///// <inheritdoc/>
+        //public string ContentDisposition
+        //{
+        //    get { return this[HeaderNames.ContentDisposition]; }
+        //    set { this[HeaderNames.ContentDisposition] = value; }
+        //}
 
-        /// <inheritdoc/>
-        public string ContentRange
-        {
-            get { return this[HeaderNames.ContentRange]; }
-            set { this[HeaderNames.ContentRange] = value; }
-        }
+        ///// <inheritdoc/>
+        //public string ContentRange
+        //{
+        //    get { return this[HeaderNames.ContentRange]; }
+        //    set { this[HeaderNames.ContentRange] = value; }
+        //}
 
-        /// <inheritdoc/>
-        public string ContentType
-        {
-            get { return this[HeaderNames.ContentType]; }
-            set { this[HeaderNames.ContentType] = value; }
-        }
+        ///// <inheritdoc/>
+        //public string ContentType
+        //{
+        //    get { return this[HeaderNames.ContentType]; }
+        //    set { this[HeaderNames.ContentType] = value; }
+        //}
 
-        /// <inheritdoc/>
-        public string Cookie
-        {
-            get { return this[HeaderNames.Cookie]; }
-            set { this[HeaderNames.Cookie] = value; }
-        }
+        ///// <inheritdoc/>
+        //public string Cookie
+        //{
+        //    get { return this[HeaderNames.Cookie]; }
+        //    set { this[HeaderNames.Cookie] = value; }
+        //}
 
-        /// <inheritdoc/>
-        public string Date
-        {
-            get { return this[HeaderNames.Date]; }
-            set { this[HeaderNames.Date] = value; }
-        }
+        ///// <inheritdoc/>
+        //public string Date
+        //{
+        //    get { return this[HeaderNames.Date]; }
+        //    set { this[HeaderNames.Date] = value; }
+        //}
 
-        /// <inheritdoc/>
-        public string Expires
-        {
-            get { return this[HeaderNames.Expires]; }
-            set { this[HeaderNames.Expires] = value; }
-        }
+        ///// <inheritdoc/>
+        //public string Expires
+        //{
+        //    get { return this[HeaderNames.Expires]; }
+        //    set { this[HeaderNames.Expires] = value; }
+        //}
 
-        /// <inheritdoc/>
-        public string Host
-        {
-            get { return this[HeaderNames.Host]; }
-            set { this[HeaderNames.Host] = value; }
-        }
+        ///// <inheritdoc/>
+        //public string Host
+        //{
+        //    get { return this[HeaderNames.Host]; }
+        //    set { this[HeaderNames.Host] = value; }
+        //}
 
         #region IEnumerable Members
 
