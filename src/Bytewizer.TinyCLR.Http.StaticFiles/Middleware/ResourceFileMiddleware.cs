@@ -16,7 +16,7 @@ namespace Bytewizer.TinyCLR.Http
         private readonly ResourceFileOptions _options;
         private readonly DateTime _lastModified;
         private readonly Hashtable _resources;
-        private readonly ResourceManager _resourceManager;
+        //private readonly ResourceManager _resourceManager;
         private readonly ILogger _logger;
         private readonly IContentTypeProvider _contentTypeProvider;
 
@@ -59,7 +59,7 @@ namespace Bytewizer.TinyCLR.Http
 
             _options = options;
             _resources = _options.Resources ?? new Hashtable();
-            _resourceManager = _options.ResourceManager;
+            //_resourceManager = _options.ResourceManager;
             _contentTypeProvider = _options.ContentTypeProvider ?? new DefaultContentTypeProvider();
             _lastModified = DateTime.Now;
 

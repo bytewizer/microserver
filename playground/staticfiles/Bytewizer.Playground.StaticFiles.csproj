@@ -71,6 +71,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="microsd-root.zip" />
     <None Include="packages.config" />
     <None Include="Resources\bytewizer.local.pem" />
     <None Include="Resources\bytewizer.local_key.pem" />

@@ -52,11 +52,7 @@ namespace Bytewizer.TinyCLR.Http.Internal
                                 {
                                     context.Request.Query = new QueryCollection(result);
                                 }
-                                else
-                                {
-                                    context.Request.Query = new QueryCollection();
-                                }
-
+ 
                                 context.Request.Path = requestLine[1].Split('?')[0];
                             }
                             else
@@ -115,6 +111,7 @@ namespace Bytewizer.TinyCLR.Http.Internal
                 if (bytes.Length > 0)
                 {
                     context.Request.Body = new MemoryStream(bytes);
+                    //context.Request.Body.Write(bytes, 0, bytes.Length);
                     context.Request.Body.Position = 0;
                 }
 
@@ -159,9 +156,6 @@ namespace Bytewizer.TinyCLR.Http.Internal
                 {
                     response.Headers[HeaderNames.ContentLength] = "0";
                 }
-
-                // Set response header server name
-                response.Headers[HeaderNames.Server] = "Microserver";
 
                 // Process headers
                 if (response.Headers != null && response.Headers.Count > 0)

@@ -66,6 +66,8 @@
   <ItemGroup>
     <Compile Include="Http\DefaultContentTypeProvider.cs" />
     <Compile Include="Http\IContentTypeProvider.cs" />
+    <Compile Include="Middleware\BlazorFrameworkExtensions.cs" />
+    <Compile Include="Middleware\BlazorFrameworkMiddleware.cs" />
     <Compile Include="Middleware\ResourceFileExtensions.cs" />
     <Compile Include="Middleware\ResourceFileMiddleware.cs" />
     <Compile Include="Middleware\DefaultFilesExtensions.cs" />

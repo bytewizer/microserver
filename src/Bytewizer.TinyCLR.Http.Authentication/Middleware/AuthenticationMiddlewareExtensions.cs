@@ -14,8 +14,8 @@ namespace Bytewizer.TinyCLR.Http
         /// Enable authentication capabilities.
         /// </summary>
         /// <param name="app">The <see cref="IApplicationBuilder"/> instance this method extends.</param>
-        /// <param name="accountService">The <see cref="IAccountService"/> used to configure the middleware.</param>
-        public static IApplicationBuilder UseAuthentication(this IApplicationBuilder app, IAccountService accountService)
+        /// <param name="accountService">The <see cref="IAccountProvider"/> used to configure the middleware.</param>
+        public static IApplicationBuilder UseAuthentication(this IApplicationBuilder app, IAccountProvider accountService)
         {
             if (app == null)
             {
@@ -29,7 +29,7 @@ namespace Bytewizer.TinyCLR.Http
 
             var options = new AuthenticationOptions()
             {
-                AccountService = accountService
+                AccountProvider = accountService
             };
 
             return app.UseMiddleware(typeof(AuthenticationMiddleware), options);

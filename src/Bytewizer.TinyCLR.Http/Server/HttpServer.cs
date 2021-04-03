@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net.Sockets;
 
 using Bytewizer.TinyCLR.Sockets;
 using Bytewizer.TinyCLR.Logging;
@@ -15,6 +14,7 @@ namespace Bytewizer.TinyCLR.Http
     public class HttpServer : SocketService, IServer
     {
         private readonly ILogger _logger;
+        private readonly ContextPool _ContextPool;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HttpServer"/> class.
@@ -44,6 +44,7 @@ namespace Bytewizer.TinyCLR.Http
         public HttpServer(ILoggerFactory loggerFactory, IMiddleware middleware, ServerOptionsDelegate configure)
             : base(loggerFactory, middleware, configure)
         {
+            _ContextPool = new ContextPool();
             _logger = loggerFactory.CreateLogger("Bytewizer.TinyCLR.Http");
         }
 
@@ -56,21 +57,24 @@ namespace Bytewizer.TinyCLR.Http
         {
             try
             {
-                // Assign channel
-                var context = new HttpContext
-                {
-                    Channel = channel
-                };
+                // get context from context pool
+                var context = _ContextPool.GetContext(typeof(HttpContext)) as HttpContext;
+                
+                // assign channel
+                context.Channel = channel;
 
-                // Check to make sure channel contains data
+                // set server header name
+                context.Response.Headers[HeaderNames.Server] = _options.Name;
+
+                // check to make sure channel contains data
                 if (context.Channel.InputStream.Length > 0)
                 {   
-                    // Invoke pipeline 
-                    Application.Invoke(context);
+                    // invoke pipeline 
+                    _application.Invoke(context);
                 }
 
-                // Close connection and clear context once pipeline is complete
-                context.Clear();
+                // release context back to pool and close connection once pipeline is complete
+                _ContextPool.Release(context);
             }
             catch (Exception ex)
             {

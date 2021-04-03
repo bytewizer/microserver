@@ -85,13 +85,13 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
         /// Specifies the minimum number of threads the <see cref="SocketListener"/> thread pool creates on demand,
         /// as new requests are made, before switching to an algorithm for managing thread creation and destruction.
         /// </summary>
-        public int MinThreads { get; set; } = 3;
+        public int MinThreads { get; set; } = 5;
 
         /// <summary>
         /// Specifies the number of requests to the <see cref="SocketListener"/> thread pool that can be active
         /// concurrently. All requests above this number remain queued until thread pool threads become available.
         /// </summary>
-        public int MaxThreads { get; set; } = 25;
+        public int MaxThreads { get; set; } = 20;
 
         /// <summary>
         /// Specifies the maximum backlog of the <see cref="SocketListener"/> pending connections queue.

@@ -13,7 +13,7 @@ namespace Bytewizer.TinyCLR.Http.Header
         /// <summary>
         /// The array list used to store the pairs.
         /// </summary>
-        private ArrayList _pairs;
+        private readonly ArrayList _pairs;
 
         /// <summary>
         /// Thread synchronization.
@@ -24,7 +24,8 @@ namespace Bytewizer.TinyCLR.Http.Header
         /// Initializes a new empty uninitialized instance of class.
         /// </summary>
         public HeaderDictionary() 
-        { 
+        {
+            _pairs = new ArrayList(5);
         }
 
         /// <summary>
@@ -40,11 +41,6 @@ namespace Bytewizer.TinyCLR.Http.Header
         {
             get
             {
-                if (_pairs == null)
-                {
-                    return null;
-                }
-
                 var searchKey = key.ToLower();
                 for (int i = 0; i < Count; i++)
                 {
@@ -58,11 +54,6 @@ namespace Bytewizer.TinyCLR.Http.Header
             }
             set
             {
-                if (_pairs == null)
-                {
-                    _pairs = new ArrayList();
-                }
-
                 var searchKey = key.ToLower();
                 for (int i = 0; i < Count; i++)
                 {
@@ -165,11 +156,6 @@ namespace Bytewizer.TinyCLR.Http.Header
         {
             get
             {
-                if (_pairs == null)
-                {
-                    return new ArrayList();
-                }
-
                 ArrayList list = new ArrayList();
                 foreach (HeaderValue kvp in _pairs)
                 {
@@ -186,11 +172,6 @@ namespace Bytewizer.TinyCLR.Http.Header
         {
             get
             {
-                if (_pairs == null)
-                {
-                    return new ArrayList();
-                }
-
                 ArrayList list = new ArrayList();
                 foreach (HeaderValue kvp in _pairs)
                 {
@@ -206,11 +187,6 @@ namespace Bytewizer.TinyCLR.Http.Header
         /// <param name="key">The key to locate in the collection.</param>
         public bool ContainsKey(string key)
         {
-            if (_pairs == null)
-            {
-                return false;
-            }
-
             var searchKey = key.ToLower();
             for (int i = 0; i < Count; i++)
             {
@@ -260,16 +236,13 @@ namespace Bytewizer.TinyCLR.Http.Header
         /// <param name="key">The key to remove from the collection.</param>
         public void Remove(string key)
         {
-            if (_pairs != null)
+            for (int i = 0; i < Count; i++)
             {
-                for (int i = 0; i < Count; i++)
+                HeaderValue nvp = (HeaderValue)_pairs[i];
+                if (nvp.Key == key)
                 {
-                    HeaderValue nvp = (HeaderValue)_pairs[i];
-                    if (nvp.Key == key)
-                    {
-                        _pairs.RemoveAt(i);
-                        break;
-                    }
+                    _pairs.RemoveAt(i);
+                    break;
                 }
             }
         }
@@ -295,12 +268,9 @@ namespace Bytewizer.TinyCLR.Http.Header
         /// <param name="index">The zero-based index in array at which copying begins.</param>
         public void CopyTo(Array array, int index)
         {
-            if (_pairs != null)
+            if (_pairs.Count > 0)
             {
-                if (_pairs.Count > 0)
-                {
-                    _pairs.CopyTo(array, index);
-                }
+                _pairs.CopyTo(array, index);
             }
         }
 
@@ -311,11 +281,6 @@ namespace Bytewizer.TinyCLR.Http.Header
         {
             get
             {
-                if (_pairs == null)
-                {
-                    return 0;
-                }
-
                 return _pairs.Count;
             }
         }
@@ -327,11 +292,6 @@ namespace Bytewizer.TinyCLR.Http.Header
         {
             get
             {
-                if (_pairs == null)
-                {
-                    return false;
-                }
-
                 return _pairs.IsFixedSize;
             }
         }
@@ -343,11 +303,6 @@ namespace Bytewizer.TinyCLR.Http.Header
         {
             get
             {
-                if (_pairs == null)
-                {
-                    return false;
-                }
-
                 return _pairs.IsReadOnly;
             }
         }
@@ -359,11 +314,6 @@ namespace Bytewizer.TinyCLR.Http.Header
         {
             get
             {
-                if (_pairs == null)
-                {
-                    return false;
-                }
-
                 return _pairs.IsSynchronized;
             }
         }
@@ -375,142 +325,11 @@ namespace Bytewizer.TinyCLR.Http.Header
         {
             get
             {
-                if (_pairs == null)
-                {
-                    return new ArrayList().SyncRoot;
-                }
-
                 return _pairs.SyncRoot;
             }
         }
 
         #endregion
-
-        ///// <inheritdoc/>
-        //public string Connection
-        //{
-        //    get { return this[HeaderNames.Connection]; }
-        //    set { this[HeaderNames.Connection] = value; }
-        //}
-
-        ///// <inheritdoc/>
-        //public string Upgrade
-        //{
-        //    get { return this[HeaderNames.Upgrade]; }
-        //    set { this[HeaderNames.Upgrade] = value; }
-        //}
-
-        ///// <inheritdoc/>
-        //public string SecWebSocketAccept
-        //{
-        //    get { return this[HeaderNames.SecWebSocketAccept]; }
-        //    set { this[HeaderNames.SecWebSocketAccept] = value; }
-        //}
-
-        ///// <inheritdoc/>
-        //public string LastModified
-        //{
-        //    get { return this[HeaderNames.LastModified]; }
-        //    set { this[HeaderNames.LastModified] = value; }
-        //}
-
-        ///// <inheritdoc/>
-        //public string WWWAuthenticate
-        //{
-        //    get { return this[HeaderNames.WWWAuthenticate]; }
-        //    set { this[HeaderNames.WWWAuthenticate] = value; }
-        //}
-
-        ///// <inheritdoc/>
-        //public string Authorization
-        //{
-        //    get { return this[HeaderNames.Authorization]; }
-        //    set { this[HeaderNames.Authorization] = value; }
-        //}
-
-        ///// <inheritdoc/>  
-        //public string Accept
-        //{
-        //    get { return this[HeaderNames.Accept]; }
-        //    set { this[HeaderNames.Accept] = value; }
-        //}
-
-        ///// <inheritdoc/>
-        //public string AcceptCharset
-        //{
-        //    get { return this[HeaderNames.AcceptCharset]; }
-        //    set { this[HeaderNames.AcceptCharset] = value; }
-        //}
-
-        ///// <inheritdoc/>
-        //public string AcceptEncoding
-        //{
-        //    get { return this[HeaderNames.AcceptEncoding]; }
-        //    set { this[HeaderNames.AcceptEncoding] = value; }
-        //}
-
-        ///// <inheritdoc/>
-        //public string AcceptLanguage
-        //{
-        //    get { return this[HeaderNames.AcceptLanguage]; }
-        //    set { this[HeaderNames.AcceptLanguage] = value; }
-        //}
-
-        ///// <inheritdoc/>
-        //public string CacheControl
-        //{
-        //    get { return this[HeaderNames.CacheControl]; }
-        //    set { this[HeaderNames.CacheControl] = value; }
-        //}
-
-        ///// <inheritdoc/>
-        //public string ContentDisposition
-        //{
-        //    get { return this[HeaderNames.ContentDisposition]; }
-        //    set { this[HeaderNames.ContentDisposition] = value; }
-        //}
-
-        ///// <inheritdoc/>
-        //public string ContentRange
-        //{
-        //    get { return this[HeaderNames.ContentRange]; }
-        //    set { this[HeaderNames.ContentRange] = value; }
-        //}
-
-        ///// <inheritdoc/>
-        //public string ContentType
-        //{
-        //    get { return this[HeaderNames.ContentType]; }
-        //    set { this[HeaderNames.ContentType] = value; }
-        //}
-
-        ///// <inheritdoc/>
-        //public string Cookie
-        //{
-        //    get { return this[HeaderNames.Cookie]; }
-        //    set { this[HeaderNames.Cookie] = value; }
-        //}
-
-        ///// <inheritdoc/>
-        //public string Date
-        //{
-        //    get { return this[HeaderNames.Date]; }
-        //    set { this[HeaderNames.Date] = value; }
-        //}
-
-        ///// <inheritdoc/>
-        //public string Expires
-        //{
-        //    get { return this[HeaderNames.Expires]; }
-        //    set { this[HeaderNames.Expires] = value; }
-        //}
-
-        ///// <inheritdoc/>
-        //public string Host
-        //{
-        //    get { return this[HeaderNames.Host]; }
-        //    set { this[HeaderNames.Host] = value; }
-        //}
 
         #region IEnumerable Members
 

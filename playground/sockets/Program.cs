@@ -21,7 +21,7 @@ namespace Bytewizer.Playground.Sockets
             {
                 options.Pipeline(app =>
                 {
-                    //app.UseMemoryInfo();
+                    app.UseMemoryInfo();
                     app.UseHttpResponse();
                     //app.UseNetBios("mydevice", new byte[] { 192, 168, 1, 145 });
                 });

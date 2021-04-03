@@ -27,10 +27,10 @@
         //public static readonly string AltSvc = "Alt-Svc";
         //public static readonly string Authority = ":authority";
         public static readonly string Authorization = "Authorization";
-        //public static readonly string CacheControl = "Cache-Control";
+        public static readonly string CacheControl = "Cache-Control";
         //public static readonly string Connection = "Connection";
         public static readonly string ContentDisposition = "Content-Disposition";
-        //public static readonly string ContentEncoding = "Content-Encoding";
+        public static readonly string ContentEncoding = "Content-Encoding";
         //public static readonly string ContentLanguage = "Content-Language";
         public static readonly string ContentLength = "Content-Length";
         //public static readonly string ContentLocation = "Content-Location";
@@ -85,7 +85,7 @@
         //public static readonly string Upgrade = "Upgrade";
         //public static readonly string UpgradeInsecureRequests = "Upgrade-Insecure-Requests";
         //public static readonly string UserAgent = "User-Agent";
-        //public static readonly string Vary = "Vary";
+        public static readonly string Vary = "Vary";
         //public static readonly string Via = "Via";
         //public static readonly string Warning = "Warning";
         //public static readonly string WebSocketSubProtocols = "Sec-WebSocket-Protocol";

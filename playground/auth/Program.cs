@@ -12,9 +12,9 @@ namespace Bytewizer.Playground.Authentication
             StorageProvider.Initialize();
             NetworkProvider.InitializeEthernet();
 
-            //var accountService = new AccountService();
-            var accountService = new DefaultAccountService();
-            accountService.Register("admin", "password");
+            //var accountProvider = new AccountProvider();
+            var accountProvider = new DefaultAccountProvider();
+            accountProvider.CreateUser("admin", "password");
 
             var server = new HttpServer(options =>
             {
@@ -24,7 +24,7 @@ namespace Bytewizer.Playground.Authentication
                     app.UseAuthentication(new AuthenticationOptions
                     {
                         AuthenticationProvider = new DigestAuthenticationProvider(),
-                        AccountService = accountService
+                        AccountProvider = accountProvider
                     });
                     app.UseEndpoints(endpoints =>
                     {

@@ -58,5 +58,17 @@ namespace Bytewizer.TinyCLR.Http
             get { return Headers[HeaderNames.ContentType]; }
             set { Headers[HeaderNames.ContentType] = value; }
         }
+
+        /// <summary>
+        /// Clears the <see cref="HttpResponse"/> headers, cookies and body.
+        /// </summary>
+        public void Clear()
+        {
+            ((HeaderDictionary)Headers).Clear();
+            ((CookieCollection)Cookies).Clear();
+            StatusCode = 0;
+            Body = new MemoryStream(); 
+            //Body.SetLength(0);
+        }
     } 
 }

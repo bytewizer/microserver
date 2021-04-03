@@ -15,18 +15,18 @@ namespace Bytewizer.TinyCLR.Http.Authenticator
         /// <summary>
         /// Holds failure information from the authentication.
         /// </summary>
-        public Exception Failure { get; protected set; }
+        public string Failure { get; protected set; }
 
         /// <summary>
         /// Indicates that there was a failure during authentication.
         /// </summary>
-        /// <param name="failure">The failure exception.</param>
-        public static AuthenticateResult Fail(Exception failure)
+        /// <param name="message">The failure message.</param>
+        public static AuthenticateResult Fail(string message)
         {
             return new AuthenticateResult() 
             { 
                 Succeeded = false, 
-                Failure = failure 
+                Failure = message 
             };
         }
     }

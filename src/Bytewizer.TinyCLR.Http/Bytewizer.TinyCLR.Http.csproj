@@ -68,6 +68,8 @@
     <Compile Include="Http\Cookies\CookieValue.cs" />
     <Compile Include="Http\Cookies\ICookieCollection.cs" />
     <Compile Include="Http\Cookies\IResponseCookies.cs" />
+    <Compile Include="Middleware\UsePathBaseExtensions.cs" />
+    <Compile Include="Middleware\UsePathBaseMiddleware.cs" />
     <Compile Include="Routing\Endpoint.cs" />
     <Compile Include="Http\Features\FeatureCollection.cs" />
     <Compile Include="Http\Features\FeatureEnumerator.cs" />

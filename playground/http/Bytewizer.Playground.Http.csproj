@@ -37,9 +37,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Middleware\MemoryInfoMiddleware.cs" />
-    <Compile Include="Middleware\ResponseMiddleware.cs" />
+    <Compile Include="Middleware\HttpPerfMiddleware.cs" />
     <Compile Include="Middleware\MemoryInfoMiddlewareExtensions.cs" />
-    <Compile Include="Middleware\ResponseMiddlewareExtensions.cs" />
+    <Compile Include="Middleware\HttpPerfMiddlewareExtensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

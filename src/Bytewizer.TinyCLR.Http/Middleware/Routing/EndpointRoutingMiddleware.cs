@@ -52,7 +52,7 @@ namespace Bytewizer.TinyCLR.Http
             }
 
             string path = context.Request.Path.TrimStart('/').TrimEnd('/').ToLower();
-            
+       
             // TODO: Build matcher object
             var routeEndpoint = (Endpoint)_endpointDataSource[path];
             if (routeEndpoint != null)

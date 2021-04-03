@@ -17,7 +17,6 @@
             next(context);
 
             _httpMessage.Encode(context);
-
         }
     }
 }

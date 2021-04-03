@@ -44,23 +44,25 @@ namespace Bytewizer.TinyCLR.Http
         /// <summary>
         /// Gets information about the underlying connection for this request.
         /// </summary>
-        public ConnectionInfo Connection => Channel.Connection;
+        public ConnectionInfo Connection => Channel?.Connection;
 
         /// <summary>
         /// Aborts the connection underlying this request.
         /// </summary>
         public void Abort()
         {
-            Channel?.Clear();
+            Channel?.Socket?.Close();
         }
 
         /// <summary>
-        /// Closes and clears the connected socket channel and response body.
+        /// Closes the connected socket channel and clears context.
         /// </summary>
         public void Clear()
         {
-            Response.Body?.Dispose();        
-            Channel?.Clear();
+            ((FeatureCollection)Features).Clear();
+            Request.Clear();
+            Response.Clear();      
+            Channel.Clear();
         }
     }
 }

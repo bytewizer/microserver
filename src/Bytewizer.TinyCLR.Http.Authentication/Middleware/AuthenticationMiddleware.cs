@@ -1,5 +1,6 @@
 ﻿using Bytewizer.TinyCLR.Http.Authenticator;
 using System;
+using System.Diagnostics;
 
 namespace Bytewizer.TinyCLR.Http
 {
@@ -35,14 +36,19 @@ namespace Bytewizer.TinyCLR.Http
             else
             {
                 var results = _options.AuthenticationProvider.Authenticate(context, _options);
+                Debug.WriteLine(results.Failure);
                 if (results.Succeeded)
                 {
                     next(context);
                     return;
                 }
+                else
+                {
+                    return;
+                }
             }
 
-            _options.AuthenticationProvider.Unauthorized(context);
+            //_options.AuthenticationProvider.Forbid(context);
         }
     }
 }

@@ -21,6 +21,9 @@ namespace Bytewizer.TinyCLR.Http
             Query = new QueryCollection();
             Cookies = new CookieCollection();
             Body = new MemoryStream();
+
+            Path = string.Empty;
+            PathBase = string.Empty;
         }
 
         /// <summary>
@@ -91,6 +94,22 @@ namespace Bytewizer.TinyCLR.Http
         {
             get { return Headers[HeaderNames.Host]; }
             set { Headers[HeaderNames.Host] = value; }
+        }
+
+        /// <summary>
+        /// Clears the <see cref="HttpResponse"/> headers, query, cookies and body.
+        /// </summary>
+        public void Clear()
+        {
+            ((HeaderDictionary)Headers).Clear();
+            ((QueryCollection)Query).Clear();
+            ((CookieCollection)Cookies).Clear();
+            Body = new MemoryStream();
+
+            Path = string.Empty;
+            PathBase = string.Empty;
+
+            //Body.SetLength(0);
         }
 
         /// <summary>

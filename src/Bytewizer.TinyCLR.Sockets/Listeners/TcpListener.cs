@@ -46,7 +46,7 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
                     while (_listeningSockets >= _options.MaxConcurrentConnections)
                     {
                         Debug.WriteLine($"Maxium number of concurrent connections of {_listeningSockets} reached");
-                        _random.Next(100);
+                        //Thread.Sleep(_random.Next(100));
                     }
 
                     // Waiting for a connection

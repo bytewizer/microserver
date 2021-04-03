@@ -15,7 +15,9 @@ namespace Bytewizer.TinyCLR.Http
         public DefaultContentTypeProvider()
             : this(new Hashtable()
             {
+                { ".css", "text/css" },
                 { ".gif", "image/gif" },
+                { ".gz", "application/x-gzip" },
                 { ".htm", "text/html" },
                 { ".html", "text/html" },
                 { ".ico", "image/x-icon" },

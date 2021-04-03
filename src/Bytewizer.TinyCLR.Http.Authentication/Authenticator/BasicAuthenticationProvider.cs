@@ -39,12 +39,13 @@ namespace Bytewizer.TinyCLR.Http.Authenticator
         {
             if (!AuthHelper.ValidateHeader(context, out string auth, out string scheme))
             {
-                return new AuthenticateResult() { Succeeded = false };
+                Challenge(context);
+                return AuthenticateResult.Fail($"Invalid authentication header '{auth}'");
             }
             else if (Scheme != scheme)
             {
-                return AuthenticateResult.Fail(
-                    new InvalidOperationException($"The request schema '{scheme}' is not supported"));
+                Challenge(context);
+                return AuthenticateResult.Fail($"The request schema '{scheme}' is not supported");
             }
             else
             {
@@ -52,15 +53,13 @@ namespace Bytewizer.TinyCLR.Http.Authenticator
                 int pos = decoded.IndexOf(':');
                 if (pos == -1)
                 {
-                    return AuthenticateResult.Fail(
-                        new InvalidOperationException($"Invalid {scheme} authentication header failed to find colon."));
+                    return AuthenticateResult.Fail($"The request authorization token '{decoded}' was invalid");
                 }
 
                 string username = decoded.Substring(0, pos);
                 string password = decoded.Substring(pos + 1, decoded.Length - pos - 1);
 
-                var user = options.AccountService.GetUser(username);
-                if (user != null)
+                if (options.AccountProvider.TryGetUser(username, out IUser user))
                 {
                     if (user.HA1 == CreateHA1Hash(username, Realm, password))
                     {
@@ -73,13 +72,13 @@ namespace Bytewizer.TinyCLR.Http.Authenticator
                     }
                     else
                     {
-                        context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-                        return AuthenticateResult.Fail(new InvalidOperationException());
+                        Challenge(context);
+                        return AuthenticateResult.Fail("The request included an invalid username or password");
                     }
                 }
             }
 
-            return AuthenticateResult.Fail(new InvalidOperationException());
+            return AuthenticateResult.Fail("The request authorization failed to include required or supported properties");
         }
 
         /// <inheritdoc/>
@@ -90,7 +89,7 @@ namespace Bytewizer.TinyCLR.Http.Authenticator
         }
 
         /// <inheritdoc/>
-        public void Unauthorized(HttpContext context)
+        public void Forbid(HttpContext context)
         {
             context.Response.StatusCode = StatusCodes.Status401Unauthorized;
         }

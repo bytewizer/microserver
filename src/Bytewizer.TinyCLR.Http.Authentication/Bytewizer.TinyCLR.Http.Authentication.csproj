@@ -63,8 +63,8 @@
   <ItemGroup>
     <Compile Include="Authenticator\BasicAuthenticationProvider.cs" />
     <Compile Include="Http\AuthHelper.cs" />
-    <Compile Include="Http\DefaultAccountService.cs" />
-    <Compile Include="Http\DefaultUsers.cs" />
+    <Compile Include="Http\DefaultAccountProvider.cs" />
+    <Compile Include="Http\DefaultUser.cs" />
     <Compile Include="Authenticator\DigestAuthenticationProvider.cs" />
     <Compile Include="Authenticator\AuthenticateResult.cs" />
     <Compile Include="Http\IUser.cs" />
@@ -75,7 +75,7 @@
     <Compile Include="Middleware\AuthenticationMiddleware.cs" />
     <Compile Include="Middleware\AuthenticationMiddlewareExtensions.cs" />
     <Compile Include="Middleware\AuthenticationOptions.cs" />
-    <Compile Include="Http\IAccountService.cs" />
+    <Compile Include="Http\IAccountProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

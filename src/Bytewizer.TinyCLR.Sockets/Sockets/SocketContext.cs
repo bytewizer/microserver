@@ -15,6 +15,12 @@ namespace Bytewizer.TinyCLR.Sockets
         /// </summary>
         public void Abort()
         {
+            Channel?.Socket?.Close();
+        }
+
+        /// <inheritdoc/>
+        public void Clear() 
+        {
             Channel?.Clear();
         }
     }

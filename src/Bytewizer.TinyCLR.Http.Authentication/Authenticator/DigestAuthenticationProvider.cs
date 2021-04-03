@@ -26,7 +26,7 @@ namespace Bytewizer.TinyCLR.Http.Authenticator
             Qop = "auth";  // none, auth, auth-int
             Realm = AuthHelper.DefaultRealm;
             Algorithm = "MD5"; // none, MD5, MD5-sess
-            StaleTimeOut = 300;
+            NonceLifetime = 300;
         }
 
         /// <inheritdoc/>
@@ -41,18 +41,18 @@ namespace Bytewizer.TinyCLR.Http.Authenticator
         public string Realm { get; set; }
 
         /// <summary>
-        /// A quoted, space-separated list of URIs that define the protection space.
+        /// A space-separated list of URIs that define the protection space.
         /// </summary>
         public string Domain { get; internal set; }
 
         /// <summary>
-        /// In seconds
+        /// Controls how long the server nonce is valid in seconds.
         /// </summary>
-        public double StaleTimeOut { get; set; }
+        public double NonceLifetime { get; set; }
 
         /// <summary>
-        /// A string of data, specified by the server, which should be returned by the client unchanged in the Authorization
-        /// header of subsequent requests with URIs in the same protection space.
+        /// A string of data specified by the server which should be returned by the client unchanged in 
+        /// the authorization header of subsequent requests with URIs in the same protection space.
         /// </summary>
         public string Opaque { get; internal set; }
 
@@ -62,7 +62,7 @@ namespace Bytewizer.TinyCLR.Http.Authenticator
         public string Algorithm { get; internal set; }
 
         /// <summary>
-        /// If present, it is a quoted string of one or more tokens indicating the "quality of protection" values supported by the server.
+        /// A string of one or more tokens indicating the "quality of protection" values supported by the server.
         /// </summary>
         public string Qop { get; internal set; }
 
@@ -71,13 +71,13 @@ namespace Bytewizer.TinyCLR.Http.Authenticator
         {
             if (!AuthHelper.ValidateHeader(context, out string auth, out string scheme))
             {
-                return AuthenticateResult.Fail(
-                    new InvalidOperationException());
+                Challenge(context);
+                return AuthenticateResult.Fail($"The request authorization header '{auth}' was invalid");
             }
             else if (Scheme != scheme)
             {
-                return AuthenticateResult.Fail(
-                    new InvalidOperationException($"The request schema '{scheme}' is not supported"));
+                Challenge(context);
+                return AuthenticateResult.Fail($"The request schema '{scheme}' is not supported");
             }
             else
             {
@@ -86,21 +86,16 @@ namespace Bytewizer.TinyCLR.Http.Authenticator
                 {
                     if (!ValidateNonce(nonce, context.Connection.RemoteIpAddress.ToString(), out bool isStale))
                     {
-                        context.Response.StatusCode = StatusCodes.Status403Forbidden;
-                        return AuthenticateResult.Fail(
-                            new InvalidOperationException("Invalid digest authentication header failed to find nonce."));
+                        Challenge(context);
+                        return AuthenticateResult.Fail($"The authorization nonce '{nonce}' was invalid");
                     }
                     else if (isStale)
                     {
                         Challenge(context, true);
-
-                        context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-                        return AuthenticateResult.Fail(
-                            new InvalidOperationException());
+                        return AuthenticateResult.Fail($"The authentication nonce '{nonce}' was stale");
                     }
 
-                    var user = options.AccountService.GetUser(username);
-                    if (user != null)
+                    if (options.AccountProvider.TryGetUser(username, out IUser user))
                     {
                         if (response == DigestResponse(parameters, context.Request.Method, user.HA1))
                         {
@@ -111,15 +106,14 @@ namespace Bytewizer.TinyCLR.Http.Authenticator
                             context.Features.Set(typeof(IHttpAuthenticationFeature), authenticationFeature);
                             return new AuthenticateResult();
                         }
-                        else
-                        {
-                            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-                            return AuthenticateResult.Fail(new InvalidOperationException());
-                        }
                     }
+
+                    Challenge(context);
+                    return AuthenticateResult.Fail("The request included an invalid username or password");
                 }
 
-                return AuthenticateResult.Fail(new InvalidOperationException());
+                Challenge(context);
+                return AuthenticateResult.Fail("The request authorization failed to include required or supported properties");
             }
         }
 
@@ -163,9 +157,9 @@ namespace Bytewizer.TinyCLR.Http.Authenticator
         }
 
         /// <inheritdoc/>
-        public void Unauthorized(HttpContext context)
+        public void Forbid(HttpContext context)
         {
-            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            context.Response.StatusCode = StatusCodes.Status403Forbidden;
         }
 
         private string DigestResponse(Hashtable parameters, string method, string ha1)
@@ -272,7 +266,7 @@ namespace Bytewizer.TinyCLR.Http.Authenticator
             if (double.TryParse(timeStamp, out double nonceTimeStamp))
             {
                 var dateTime = _epoch.AddSeconds(nonceTimeStamp);
-                isStale = dateTime.AddSeconds(StaleTimeOut) < DateTime.UtcNow;
+                isStale = dateTime.AddSeconds(NonceLifetime) < DateTime.UtcNow;
             };
 
             var privateHash = decoded.Substring(pos + 1, decoded.Length - pos - 1);

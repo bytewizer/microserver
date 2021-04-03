@@ -62,6 +62,7 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pipeline\ContextPool.cs" />
     <Compile Include="Pipeline\ApplicationDelegate.cs" />
     <Compile Include="Pipeline\Builder\IApplication.cs" />
     <Compile Include="Pipeline\InlineMiddlewareDelegate.cs" />

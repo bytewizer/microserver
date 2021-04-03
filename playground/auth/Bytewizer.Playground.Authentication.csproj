@@ -37,7 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Authentication\User.cs" />
-    <Compile Include="Authentication\AccountService.cs" />
+    <Compile Include="Authentication\AccountProvider.cs" />
     <Compile Include="Middleware\ResponseMiddleware.cs" />
     <Compile Include="Middleware\ResponseMiddlewareExtensions.cs" />
     <Compile Include="Program.cs" />

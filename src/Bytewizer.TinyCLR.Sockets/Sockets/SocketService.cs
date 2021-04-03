@@ -28,12 +28,12 @@ namespace Bytewizer.TinyCLR.Sockets
         /// <summary>
         /// The configuration options of server specific features.
         /// </summary>
-        protected readonly ServerOptions Options;
+        protected readonly ServerOptions _options;
 
         /// <summary>
         /// The application pipeline used to invoke pipeline middleware.
         /// </summary>
-        protected readonly IApplication Application;
+        protected readonly IApplication _application;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SocketService"/> class.
@@ -67,7 +67,7 @@ namespace Bytewizer.TinyCLR.Sockets
 
             configure(options);
 
-            Application = options.Application;
+            _application = options.Application;
 
             switch (options.Listener.ProtocolType)
             {
@@ -84,7 +84,7 @@ namespace Bytewizer.TinyCLR.Sockets
             _listener.Connected += ClientConnected;
             _listener.Disconnected += ClientDisconnected;
 
-            Options = options;
+            _options = options;
         }
 
         ///<inheritdoc/>

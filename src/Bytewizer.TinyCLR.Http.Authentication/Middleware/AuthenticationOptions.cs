@@ -13,7 +13,7 @@ namespace Bytewizer.TinyCLR.Http
         public AuthenticationOptions()
         {
             AuthenticationProvider = new DigestAuthenticationProvider();      
-            AccountService = new DefaultAccountService();           
+            AccountProvider = new DefaultAccountProvider();           
         }
 
         /// <summary>
@@ -24,6 +24,6 @@ namespace Bytewizer.TinyCLR.Http
         /// <summary>
         /// Account service for the specified authentication scheme.
         /// </summary>
-        public IAccountService AccountService { get; set; }
+        public IAccountProvider AccountProvider { get; set; }
     }
 }
