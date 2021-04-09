@@ -87,9 +87,6 @@
     <Reference Include="GHIElectronics.TinyCLR.Native, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GHIElectronics.TinyCLR.Native.2.1.0-preview4\lib\net452\GHIElectronics.TinyCLR.Native.dll</HintPath>
     </Reference>
-    <Reference Include="GHIElectronics.TinyCLR.Networking, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GHIElectronics.TinyCLR.Networking.2.1.0-preview4\lib\net452\GHIElectronics.TinyCLR.Networking.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

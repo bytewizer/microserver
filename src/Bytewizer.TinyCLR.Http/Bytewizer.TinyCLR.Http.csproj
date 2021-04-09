@@ -62,12 +62,6 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Http\Cookies\CookieCollection.cs" />
-    <Compile Include="Http\Cookies\CookieEnumerator.cs" />
-    <Compile Include="Http\Cookies\CookieParser.cs" />
-    <Compile Include="Http\Cookies\CookieValue.cs" />
-    <Compile Include="Http\Cookies\ICookieCollection.cs" />
-    <Compile Include="Http\Cookies\IResponseCookies.cs" />
     <Compile Include="Middleware\UsePathBaseExtensions.cs" />
     <Compile Include="Middleware\UsePathBaseMiddleware.cs" />
     <Compile Include="Routing\Endpoint.cs" />
@@ -112,9 +106,6 @@
     <Compile Include="Http\Query\QueryParser.cs" />
     <Compile Include="Http\Query\QueryValue.cs" />
     <Compile Include="Http\StatusCodes.cs" />
-    <Compile Include="Middleware\DeveloperExceptionPageExtensions.cs" />
-    <Compile Include="Middleware\DeveloperExceptionPageMiddleware.cs" />
-    <Compile Include="Middleware\DeveloperExceptionPageOptions.cs" />
     <Compile Include="Http\Middleware.cs" />
     <Compile Include="Internal\HttpMiddleware.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle("Bytewizer Playground Pipeline")]
 [assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyConfiguration("Secure")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("TinyCLR OS Pipeline")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]

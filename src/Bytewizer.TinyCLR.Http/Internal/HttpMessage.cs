@@ -5,7 +5,7 @@ using System.Collections;
 
 using Bytewizer.TinyCLR.Http.Header;
 using Bytewizer.TinyCLR.Http.Query;
-using Bytewizer.TinyCLR.Http.Cookies;
+//using Bytewizer.TinyCLR.Http.Cookies;
 using Bytewizer.TinyCLR.Http.Extensions;
 
 namespace Bytewizer.TinyCLR.Http.Internal
@@ -116,13 +116,13 @@ namespace Bytewizer.TinyCLR.Http.Internal
                 }
 
                 // Set request cookies
-                var cookieParser = new HttpCookieParser();
-                var headers = context.Request.Headers as HeaderDictionary;
-                var cookies = headers[HeaderNames.Cookie];
-                if (cookies != null)
-                {
-                    context.Request.Cookies = cookieParser.Parse(cookies);
-                }
+                //var cookieParser = new HttpCookieParser();
+                //var headers = context.Request.Headers as HeaderDictionary;
+                //var cookies = headers[HeaderNames.Cookie];
+                //if (cookies != null)
+                //{
+                //    context.Request.Cookies = cookieParser.Parse(cookies);
+                //}
             }
         }
 
@@ -166,13 +166,13 @@ namespace Bytewizer.TinyCLR.Http.Internal
                     }
                 }
 
-                if (response.Cookies is CookieCollection cookies && cookies.Count > 0)
-                {
-                    foreach (CookieValue cookie in cookies)
-                    {
-                        writer.Write($"Set-Cookie: {cookie.Value}\r\n");
-                    }
-                }
+                //if (response.Cookies is CookieCollection cookies && cookies.Count > 0)
+                //{
+                //    foreach (CookieValue cookie in cookies)
+                //    {
+                //        writer.Write($"Set-Cookie: {cookie.Value}\r\n");
+                //    }
+                //}
 
                 writer.Write("\r\n");
                 writer.Flush();

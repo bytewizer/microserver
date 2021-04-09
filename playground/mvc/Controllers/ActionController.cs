@@ -44,9 +44,9 @@ namespace Bytewizer.Playground.Mvc
 
         public IActionResult GetFileStream()
         {
-            //Initialize sd storage card and create a jpeg file '\img\wave.jpg' on sd card. 
+            //Initialize sd storage card and create a jpeg file '\img\ocean.jpg' on sd card. 
 
-            var fullPath = @"\img\wave.jpg";
+            var fullPath = @"\img\ocean.jpg";
             var stream = new FileStream(fullPath, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
 
             return new FileStreamResult(stream, "image/jpeg");
@@ -56,7 +56,7 @@ namespace Bytewizer.Playground.Mvc
         {
             //Initialize sd storage card and create a jpeg file '\img\wave.jpg' on sd card. 
 
-            var fullPath = @"\img\wave.jpg";
+            var fullPath = @"\img\ocean.jpg";
             var stream = new FileStream(fullPath, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
 
             return File(stream, "image/jpeg", "ocean.jpeg");

@@ -2,7 +2,7 @@
 using System.IO;
 
 using Bytewizer.TinyCLR.Http.Header;
-using Bytewizer.TinyCLR.Http.Cookies;
+//using Bytewizer.TinyCLR.Http.Cookies;
 
 namespace Bytewizer.TinyCLR.Http
 {
@@ -17,7 +17,7 @@ namespace Bytewizer.TinyCLR.Http
         public HttpResponse()
         {
             Headers = new HeaderDictionary();
-            Cookies = new CookieCollection();
+            //Cookies = new CookieCollection();
             Body = new MemoryStream();
         }
 
@@ -29,7 +29,7 @@ namespace Bytewizer.TinyCLR.Http
         /// <summary>
         /// Gets an object that can be used to manage cookies for this response.
         /// </summary>
-        public IResponseCookies Cookies { get; }
+        //public IResponseCookies Cookies { get; }
 
         /// <summary>
         /// Gets or sets the response body <see cref="Stream"/>.
@@ -65,7 +65,7 @@ namespace Bytewizer.TinyCLR.Http
         public void Clear()
         {
             ((HeaderDictionary)Headers).Clear();
-            ((CookieCollection)Cookies).Clear();
+            //((CookieCollection)Cookies).Clear();
             StatusCode = 0;
             Body = new MemoryStream(); 
             //Body.SetLength(0);

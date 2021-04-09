@@ -34,21 +34,3 @@ namespace Bytewizer.Playground.Mvc
         }
     }
 }
-
-//app.UseEndpoints(endpoints =>
-//{
-//    endpoints.Map("/money", context =>
-//    {
-//        context.Response.Write("Show me the money!");
-//    });
-//    endpoints.MapDefaultControllerRoute();
-//    endpoints.MapControllers();
-//    endpoints.MapControllerRoute(
-//        name: "default",
-//        pattern: "/index",
-//        defaults: new Route { controller = "Home", action = "Index" });
-//    endpoints.MapControllerRoute(
-//        name: "short",
-//        pattern: "/home/short",
-//        defaults: new Route { controller = "Home", action = "Short" });
-//});

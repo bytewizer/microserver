@@ -36,18 +36,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Middleware\MemoryInfoMiddleware.cs" />
     <Compile Include="Middleware\HttpPerfMiddleware.cs" />
-    <Compile Include="Middleware\MemoryInfoMiddlewareExtensions.cs" />
     <Compile Include="Middleware\HttpPerfMiddlewareExtensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Http.Cors\Bytewizer.TinyCLR.Http.Cors.csproj">
-      <Project>{43458F16-E5CE-4731-BAB3-EF9B60D26A28}</Project>
-      <Name>Bytewizer.TinyCLR.Http.Cors</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Http\Bytewizer.TinyCLR.Http.csproj">
       <Project>{EB778176-633A-4997-A683-2C891C5DB436}</Project>
       <Name>Bytewizer.TinyCLR.Http</Name>
@@ -73,9 +67,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="GHIElectronics.TinyCLR.Native, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GHIElectronics.TinyCLR.Native.2.1.0-preview4\lib\net452\GHIElectronics.TinyCLR.Native.dll</HintPath>
-    </Reference>
     <Reference Include="GHIElectronics.TinyCLR.Networking, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GHIElectronics.TinyCLR.Networking.2.1.0-preview4\lib\net452\GHIElectronics.TinyCLR.Networking.dll</HintPath>
     </Reference>

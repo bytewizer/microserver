@@ -86,7 +86,7 @@ namespace Bytewizer.TinyCLR.Http.Authenticator
                 {
                     if (!ValidateNonce(nonce, context.Connection.RemoteIpAddress.ToString(), out bool isStale))
                     {
-                        Challenge(context);
+                        Challenge(context, false);
                         return AuthenticateResult.Fail($"The authorization nonce '{nonce}' was invalid");
                     }
                     else if (isStale)
@@ -108,11 +108,11 @@ namespace Bytewizer.TinyCLR.Http.Authenticator
                         }
                     }
 
-                    Challenge(context);
+                    Challenge(context, false);
                     return AuthenticateResult.Fail("The request included an invalid username or password");
                 }
 
-                Challenge(context);
+                Challenge(context, false);
                 return AuthenticateResult.Fail("The request authorization failed to include required or supported properties");
             }
         }

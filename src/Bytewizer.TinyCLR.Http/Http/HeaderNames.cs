@@ -5,7 +5,7 @@
     /// <summary>
     /// Well-know header names.
     /// </summary>
-    public static class HeaderNames
+    public static partial class HeaderNames
     {
         // TODO: Trim size way down to most common
 
@@ -73,7 +73,7 @@
         //public static readonly string SecWebSocketProtocol = "Sec-WebSocket-Protocol";
         //public static readonly string SecWebSocketVersion = "Sec-WebSocket-Version";
         public static readonly string Server = "Server";
-        //public static readonly string SetCookie = "Set-Cookie";
+        public static readonly string SetCookie = "Set-Cookie";
         //public static readonly string Status = ":status";
         //public static readonly string StrictTransportSecurity = "Strict-Transport-Security";
         //public static readonly string TE = "TE";

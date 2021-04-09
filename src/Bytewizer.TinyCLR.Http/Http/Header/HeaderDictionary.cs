@@ -23,20 +23,12 @@ namespace Bytewizer.TinyCLR.Http.Header
         /// <summary>
         /// Initializes a new empty uninitialized instance of class.
         /// </summary>
-        public HeaderDictionary() 
+        public HeaderDictionary()
         {
-            _pairs = new ArrayList(5);
+            _pairs = new ArrayList(10);
         }
 
-        /// <summary>
-        /// Gets or sets the value associated with the specified key.
-        /// </summary>
-        /// <param name="key">The key whose value to get or set.</param>
-        /// <returns>
-        /// The value associated with the specified key. If the specified key is not found,
-        /// attempting to get it returns null, and attempting to set it creates a new element
-        /// using the specified key.
-        /// </returns>
+        /// <inheritdoc/>
         public string this[string key]
         {
             get
@@ -83,15 +75,13 @@ namespace Bytewizer.TinyCLR.Http.Header
         /// </returns>
         public HeaderValue this[int index]
         {
-            get 
-            { 
-                return (HeaderValue)_pairs[index]; 
+            get
+            {
+                return (HeaderValue)_pairs[index];
             }
         }
 
-        /// <summary>
-        /// Strongly typed access to the Content-Length header.
-        /// </summary>
+        /// <inheritdoc/>
         public long ContentLength
         {
             get
@@ -119,9 +109,7 @@ namespace Bytewizer.TinyCLR.Http.Header
             }
         }
 
-        /// <summary>
-        /// Strongly typed access to the If-Modified-Since header.
-        /// </summary>
+        /// <inheritdoc/>
         public DateTime IfModifiedSince
         {
             get
@@ -213,7 +201,10 @@ namespace Bytewizer.TinyCLR.Http.Header
         /// <exception cref="ArgumentNullException">Specified key is <c>null</c></exception>
         public bool TryGetValue(string key, out string value)
         {
-            if (key == null) throw new ArgumentNullException(nameof(key));
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
 
             var searchKey = key.ToLower();
             for (int i = 0; i < Count; i++)
@@ -244,6 +235,32 @@ namespace Bytewizer.TinyCLR.Http.Header
                     _pairs.RemoveAt(i);
                     break;
                 }
+            }
+        }
+
+        /// <inheritdoc/>
+        public void Add(string key, string value)
+        {
+            if (TryGetValue(key, out string existingValue))
+            {
+                // RFC 2965 - Origin servers SHOULD NOT fold multiple Set-Cookie header fields into a single header
+                if (key.ToLower() == HeaderNames.SetCookie.ToLower())
+                {
+                    lock (_lock)
+                    {
+                        _pairs.Add(new HeaderValue(key, value.Trim()));
+                    }
+                }
+                else
+                {
+                    Remove(key);
+                    this[key] = $"{existingValue}, {value}";
+                }
+            }
+            else
+            {
+
+                this[key] = value;
             }
         }
 

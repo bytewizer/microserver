@@ -10,7 +10,7 @@ Microserver is a modular server built for TinyCLR OS IoT devices inspired by Asp
 * Extendable Pipeline
 * SSL Transport Support
 
-<a href="https://github.com/microcompiler/microserver/tree/master/src/Bytewizer.TinyCLR.Sockets">More Information</a>
+<a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Sockets">More Information</a>
 
 ### Web Service
 
@@ -19,7 +19,7 @@ Microserver is a modular server built for TinyCLR OS IoT devices inspired by Asp
 * Forms / Files Decoding
 * Developer Execption Pages
 
-<a href="https://github.com/microcompiler/microserver/tree/master/src/Bytewizer.TinyCLR.Http">More Information</a>
+<a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http">More Information</a>
 
 ### Model-View-Controllers (MVC)
 
@@ -29,14 +29,21 @@ Microserver is a modular server built for TinyCLR OS IoT devices inspired by Asp
 * Stubble View Engine
 * JSON Integration
 
-<a href="https://github.com/microcompiler/microserver/tree/master/src/Bytewizer.TinyCLR.Http.Mvc">More Information</a>
+<a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Mvc">More Information</a>
 
 ### Static File Handling
 
 * Storage / Resource File Serving
 * Default File Routing
 
-<a href="https://github.com/microcompiler/microserver/tree/master/src/Bytewizer.TinyCLR.Http.StaticFiles">More Information</a>
+<a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.StaticFiles">More Information</a>
+
+### Authentication
+
+* Digest Authentication
+* Basic Authentication
+
+<a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Authentication">More Information</a>
 
 ## Requirements
 

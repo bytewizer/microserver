@@ -152,34 +152,3 @@ options.Pipeline(app =>
     });
 });
 ```
-
-## Cookie Support
-
-Cookies provide a means in to store user-specific information, such as history or user preferences. A cookie is a small bit of text that accompanies requests and responses as they go between the server and client.
-
-To remove a cookie determine whether the cookie exists, and if so, create a new cookie with the same name and set the max age to 0.
-
-```CSharp
-options.Pipeline(app =>
-{
-    app.UseRouting();
-    app.UseEndpoints(endpoints =>
-    {
-        endpoints.Map("/", context => // Mapped to root url
-        {                       
-            // Set a response cookie
-            context.Response.Cookies.Append("sessionId", "38afes7a8", 86400,
-                "bytewizer.local", "device.bytewizer.local", false, false);
-
-            // Get request cookie
-            context.Request.Cookies.TryGetValue("sessionId", out string id);
-
-            // Remove/Expire a browser cookie 
-            //context.Response.Cookies.Append("sessionId", "38afes7a8", 0,
-            //   "bytewizer.local", "device.bytewizer.local", false, false);
-
-            context.Response.Write($"Session Id: {id}", "text/plain");
-        });
-    });
-});
-```

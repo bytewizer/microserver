@@ -1,8 +1,6 @@
 ﻿using System;
 
-using Bytewizer.TinyCLR.Http.Cookies;
-
-namespace Bytewizer.TinyCLR.Http.Internal
+namespace Bytewizer.TinyCLR.Http.Cookies
 {
     internal class HttpCookieParser
     {

@@ -3,7 +3,6 @@ using System.Text;
 
 using Bytewizer.TinyCLR.Logging;
 using Bytewizer.TinyCLR.Http.Header;
-using Bytewizer.TinyCLR.Http.Internal;
 
 namespace Bytewizer.TinyCLR.Http
 {
@@ -53,8 +52,6 @@ namespace Bytewizer.TinyCLR.Http
             }
             catch(Exception ex)
             {
-                _logger.UnhandledException(ex);
-
                 var sb = new StringBuilder();
 
                 sb.AppendLine("EXCEPTION");

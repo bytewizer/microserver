@@ -15,19 +15,15 @@ namespace Bytewizer.Playground.Http
             {
                 options.Pipeline(app =>
                 {
-                    //app.UseMemoryInfo();
-                    //app.UseCors();
-                    //app.UseHttpPerf();
-                    app.UsePathBase("/sample-alias");
                     app.UseRouting();
                     app.UseEndpoints(endpoints =>
                     {
-                        endpoints.Map("/foo/bar", context =>
+                        endpoints.Map("/", context =>
                         {
                             string response = "<doctype !html><html><head><meta http-equiv='refresh' content='1'><title>Hello, world!</title>" +
                                               "<style>body { background-color: #43bc69 } h1 { font-size:2cm; text-align: center; color: white;}</style></head>" +
                                               "<body><h1>" + DateTime.Now.Ticks.ToString() + "</h1></body></html>";
-
+                            
                             context.Response.Write(response);
                         });
                     });

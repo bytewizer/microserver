@@ -1,10 +1,13 @@
 ﻿using System.Diagnostics;
-using Bytewizer.TinyCLR.Http;
 
+using Bytewizer.TinyCLR.Pipeline;
 using GHIElectronics.TinyCLR.Native;
 
-namespace Bytewizer.Playground.Http
+namespace Bytewizer.Playground.Sockets
 {
+    /// <summary>
+    /// Captures memory information from the pipeline.
+    /// </summary>
     public class MemoryInfoMiddleware : Middleware
     {
         private long _managedUsedIn;
@@ -22,7 +25,8 @@ namespace Bytewizer.Playground.Http
         private long _unmanagedUsedDelta;
         private long _unmanagedFreeDelta;
 
-        protected override void Invoke(HttpContext context, RequestDelegate next)
+        /// <inheritdoc/>
+        protected override void Invoke(IContext context, RequestDelegate next)
         {
             _managedUsedIn = Memory.ManagedMemory.UsedBytes;
             _managedFreeIn = Memory.ManagedMemory.FreeBytes;

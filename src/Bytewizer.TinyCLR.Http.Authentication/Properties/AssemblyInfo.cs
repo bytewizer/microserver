@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle("Bytewizer Microserver")]
 [assembly: AssemblyDescription("HttpServer is a modular web server built for TinyCLR OS.")]
-[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyConfiguration("Secure")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Bytewizer Http Server")]
 [assembly: AssemblyCopyright("")]

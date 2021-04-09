@@ -1,9 +1,9 @@
 ﻿using System;
 
-using Bytewizer.TinyCLR.Http;
+
 using Bytewizer.TinyCLR.Pipeline.Builder;
 
-namespace Bytewizer.Playground.Http
+namespace Bytewizer.Playground.Sockets
 {
     public static class MemoryInfoMiddlewareExtensions
     {
@@ -14,7 +14,7 @@ namespace Bytewizer.Playground.Http
                 throw new ArgumentNullException(nameof(app));
             }
 
-            app.UseMiddleware(typeof(MemoryInfoMiddleware));
+            app.Use(new MemoryInfoMiddleware());
         }
     }
 }
