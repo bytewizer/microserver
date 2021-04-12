@@ -1,5 +1,5 @@
 ﻿using System;
-
+using Bytewizer.TinyCLR.Http;
 using Bytewizer.TinyCLR.Http.WebSockets;
 
 namespace Bytewizer.Playground.WebSocket
@@ -10,13 +10,12 @@ namespace Bytewizer.Playground.WebSocket
         {
         }
 
-        public override void OnDisconnected(Exception exception)
+        public override void OnMessage()
         {
         }
 
-        public void SendMessage(string user, string message)
+        public override void OnDisconnected(Exception exception)
         {
-            Clients.SendText();
         }
     }
 }

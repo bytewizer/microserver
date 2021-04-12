@@ -36,8 +36,8 @@ namespace Bytewizer.TinyCLR.Http
                 throw new ArgumentNullException(nameof(options));
 
             _options = options;
-            _validOrigins = SplitByComma(_options.Origins);
-            _validMethods = SplitByComma(_options.Methods);
+            _validOrigins = ParsingHelper.SplitByComma(_options.Origins);
+            _validMethods = ParsingHelper.SplitByComma(_options.Methods);
         }
 
         /// <inheritdoc/>
@@ -98,7 +98,7 @@ namespace Bytewizer.TinyCLR.Http
                 return;
             }
 
-            var currentMethods = SplitByComma(requestMethodHeader);
+            var currentMethods = ParsingHelper.SplitByComma(requestMethodHeader);
             if (_options.Methods != All && !ValidateMethods(currentMethods))  //!currentMethods.Any(_validMethods.Contains))
             {
                 context.Response.StatusCode = StatusCodes.Status400BadRequest;
@@ -119,22 +119,6 @@ namespace Bytewizer.TinyCLR.Http
             }
 
             return false;
-        }
-
-        private static ArrayList SplitByComma(string source)
-        {
-            var result = new ArrayList();
-            var values = source.Split(new char[] { ',' });
-
-            foreach (var value in values)
-            {
-                if (!string.IsNullOrEmpty(value))
-                {
-                    result.Add(value.Trim().ToUpper());
-                }
-            }
-
-            return result;
         }
     }
 }

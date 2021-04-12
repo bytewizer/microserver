@@ -69,5 +69,32 @@ namespace Bytewizer.TinyCLR.Sockets
             
             return listenOptions;
         }
+
+        //private static X509Certificate GetCertificate(int port, string folderPath, X509Certificate defaultCertificate
+        //)
+        //{
+        //    if (folderPath == null || folderPath.Length == 0)
+        //    {
+        //        folderPath = @"\";
+        //    }
+        //    try
+        //    {
+        //        var cer = Path.Combine(folderPath, $"{port}.cer");
+        //        var key = Path.Combine(folderPath, $"{port}.key");
+
+        //        if (File.Exists(cer) && File.Exists(key))
+        //        {
+        //            var cert = new X509Certificate(cer);
+        //            cert.PrivateKey = createRSAFromFile(key);
+
+        //            return cert;
+        //        }
+        //    }
+        //    catch
+        //    {
+        //    }
+
+        //    return defaultCertificate;
+        //}
     }
 }

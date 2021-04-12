@@ -197,6 +197,25 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
             return bytesSent;
         }
 
+
+        /// <summary>
+        ///      Send a new message to a connected socket.
+        /// </summary>
+        /// <param name="message">An array of type byte that contains the data to be sent.</param>
+        public int Send(byte[] message)
+        {
+            int bytesSent;
+            try
+            {
+                bytesSent = Socket.Send(message);
+            }
+            catch
+            {
+                throw; //TODO: Best way to handle?
+            }
+            return bytesSent;
+        }
+
         /// <summary>
         /// Sends data to connected socket channel.
         /// </summary>

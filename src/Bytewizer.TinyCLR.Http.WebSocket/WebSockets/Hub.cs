@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 
 namespace Bytewizer.TinyCLR.Http.WebSockets
 {
     /// <summary>
-    /// A base class for a Websocket hub.
+    /// A base class that provides methods to communicate with WebSocket connections that connected to a Hub.
     /// </summary>
-    public abstract class Hub
+    public abstract class Hub : HubBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Hub"/> class.
@@ -13,8 +13,6 @@ namespace Bytewizer.TinyCLR.Http.WebSockets
         protected Hub()
         {
         }
-
-        public WebSocketClients Clients { get; set; }
 
         /// <summary>
         /// Gets or sets the hub caller context.
@@ -25,6 +23,13 @@ namespace Bytewizer.TinyCLR.Http.WebSockets
         /// Called when a new connection is established with the hub.
         /// </summary>
         public virtual void OnConnected()
+        {
+        }
+
+        /// <summary>
+        /// Called when a new message is sent to the hub.
+        /// </summary>
+        public virtual void OnMessage()
         {
         }
 

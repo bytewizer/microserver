@@ -1,6 +1,8 @@
 ﻿using System;
-
+using System.Collections;
+using System.Diagnostics;
 using Bytewizer.TinyCLR.Http.Routing;
+using Bytewizer.TinyCLR.Http.WebSockets.Middleware;
 
 namespace Bytewizer.TinyCLR.Http
 {
@@ -32,6 +34,15 @@ namespace Bytewizer.TinyCLR.Http
             if (endpoints == null)
             {
                 throw new ArgumentNullException(nameof(endpoints));
+            }
+
+            var hubProvider = new HubEndpointProvider();
+
+            Debug.WriteLine("Map hub route list: ");
+            foreach (DictionaryEntry item in hubProvider.GetEndpoints())
+            {
+                Debug.WriteLine("  url: " + item.Key.ToString());
+                endpoints.DataSources.Add(item.Key, item.Value);
             }
 
             return endpoints;

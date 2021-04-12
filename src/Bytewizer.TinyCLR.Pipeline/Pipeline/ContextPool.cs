@@ -12,6 +12,8 @@ namespace Bytewizer.TinyCLR.Pipeline
         private readonly ArrayList _used;
         private readonly ArrayList _available;
 
+        private readonly object _lock = new object();
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ContextPool"/> class.
         /// </summary>
@@ -26,22 +28,28 @@ namespace Bytewizer.TinyCLR.Pipeline
         /// </summary>
         public IContext GetContext(Type context)
         {
-            //Debug.WriteLine($"Used Count:{_used.Count}");
-            //Debug.WriteLine($"Available Count:{_available.Count}");
+            //Debug.Assert(_used.Count < _available.Count, $"Context pool used/available count:{_used.Count}/{_available.Count}");
 
             lock (_available)
             {
                 if (_available.Count > 0)
                 {
                     IContext ctx = _available[0] as IContext;
-                    _available.RemoveAt(0);
-                    _used.Add(ctx);
+
+                    lock (_lock)
+                    {
+                        _available.RemoveAt(0);
+                        _used.Add(ctx);
+                    }
                     return ctx;
                 }
                 else
                 {
                     IContext ctx = Activator.CreateInstance(context) as IContext;
-                    _used.Add(ctx);
+                    lock (_lock)
+                    {
+                        _used.Add(ctx);
+                    }
                     return ctx;
                 }
             }
@@ -55,7 +63,7 @@ namespace Bytewizer.TinyCLR.Pipeline
             // Close connection and clears channel.
             context.Clear();
 
-            lock (_available)
+            lock (_lock)
             {
                 _used.Remove(context);
                 _available.Add(context);

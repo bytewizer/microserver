@@ -62,26 +62,34 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Crypto\SHA1.cs" />
+    <Compile Include="Extensions\StreamExtensions.cs" />
+    <Compile Include="Extensions\ByteArrayExtensions.cs" />
+    <Compile Include="Extensions\ByteOrder.cs" />
     <Compile Include="Features\HttpWebSocketFeature.cs" />
-    <Compile Include="Features\IHttpUpgradeFeature.cs" />
     <Compile Include="Features\IHttpWebSocketFeature.cs" />
-    <Compile Include="Http\HeaderNames.cs" />
-    <Compile Include="Internal\HandshakeHelper.cs" />
+    <Compile Include="Http\HttpContextExtensions.cs" />
+    <Compile Include="Internal\OpaqueStream.cs" />
     <Compile Include="Middleware\WebSocketMiddleware.cs" />
     <Compile Include="Middleware\WebSocketMiddlewareExtensions.cs" />
     <Compile Include="Middleware\WebSocketOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WebSocket\Hub.cs" />
     <Compile Include="Routing\HubEndpointRouteBuilderExtensions.cs" />
-    <Compile Include="WebSocket\WebSocketClientsExtensions.cs" />
-    <Compile Include="WebSocket\WebSocketClients.cs" />
-    <Compile Include="WebSocket\HubCallerContext.cs" />
-    <Compile Include="WebSocket\WebSocketFin.cs" />
-    <Compile Include="WebSocket\WebSocketFrame.cs" />
-    <Compile Include="WebSocket\WebSocketMask.cs" />
-    <Compile Include="WebSocket\WebSocketOpcode.cs" />
-    <Compile Include="WebSocket\WebSocketRsv.cs" />
-    <Compile Include="WebSocket\WebSocketUtils.cs" />
+    <Compile Include="Routing\Internal\HubEndpointProvider.cs" />
+    <Compile Include="WebSockets\Hub.cs" />
+    <Compile Include="Routing\Internal\HubDelegateFactory.cs" />
+    <Compile Include="WebSockets\HubCallerContext.cs" />
+    <Compile Include="WebSockets\HubBase.cs" />
+    <Compile Include="WebSockets\internal\Fin.cs" />
+    <Compile Include="WebSockets\internal\Mask.cs" />
+    <Compile Include="WebSockets\internal\Opcode.cs" />
+    <Compile Include="WebSockets\internal\OpcodeExtensions.cs" />
+    <Compile Include="WebSockets\internal\PayloadData.cs" />
+    <Compile Include="WebSockets\internal\Rsv.cs" />
+    <Compile Include="WebSockets\WebSocket.cs" />
+    <Compile Include="WebSockets\internal\WebSocketFrame.cs" />
+    <Compile Include="WebSockets\WebSocketState.cs" />
+    <Compile Include="WebSockets\WinSocketHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bytewizer.TinyCLR.Core\Bytewizer.TinyCLR.Core.csproj">

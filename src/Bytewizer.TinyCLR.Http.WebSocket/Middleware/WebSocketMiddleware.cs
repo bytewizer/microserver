@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Text;
 using System.Collections;
+
+using Bytewizer.TinyCLR.Http.Features;
 
 namespace Bytewizer.TinyCLR.Http
 {
@@ -10,6 +13,12 @@ namespace Bytewizer.TinyCLR.Http
     public class WebSocketMiddleware : Middleware
     {
         private readonly WebSocketOptions _options;
+        private readonly ArrayList _allowedOrigins;
+
+        /// <summary>
+        /// A string meaning "All" in Origin headers.
+        /// </summary>
+        public const string All = "*";
 
         /// <summary>
         /// Initializes a default instance of the <see cref="WebSocketMiddleware"/> class.
@@ -28,16 +37,36 @@ namespace Bytewizer.TinyCLR.Http
                 throw new ArgumentNullException(nameof(options));
 
             _options = options;
+            _allowedOrigins = ParsingHelper.SplitByComma(_options.AllowedOrigins);
         }
 
         /// <inheritdoc/>
         protected override void Invoke(HttpContext context, RequestDelegate next)
         {
-            next(context);
-        }
+            if (context.Features.Get(typeof(IHttpWebSocketFeature)) == null)
+            {
+                var webSocketFeature = new HttpWebSocketFeature(context, _options);
+                context.Features.Set(typeof(IHttpWebSocketFeature), webSocketFeature);
 
-        private class UpgradeHandshake
-        {
+                if (_options.AllowedOrigins != All)
+                {
+                    // Check for Origin header
+                    var originHeader = context.Request.Headers[HeaderNames.Origin];
+
+                    if (!string.IsNullOrEmpty(originHeader) && webSocketFeature.IsWebSocketRequest)
+                    {
+                        // Check allowed origins to see if request is allowed
+                        if (!_allowedOrigins.Contains(originHeader))
+                        {
+                            //_logger.LogDebug("Request origin {Origin} is not in the list of allowed origins.", originHeader);
+                            context.Response.StatusCode = StatusCodes.Status403Forbidden;
+                            return;
+                        }
+                    }
+                }
+
+                next(context);
+            }
         }
     }
 }

@@ -4,6 +4,8 @@ using System.Net.Sockets;
 using System.Diagnostics;
 
 using Bytewizer.TinyCLR.Sockets.Channel;
+using System.IO;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Bytewizer.TinyCLR.Sockets.Listener
 {
@@ -155,11 +157,12 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
             }
         }
 
+
         /// <summary>
         /// Accepted connection listening thread
         /// </summary>
         internal virtual void AcceptConnection()
-        { 
+        {
         }
 
         /// <summary>

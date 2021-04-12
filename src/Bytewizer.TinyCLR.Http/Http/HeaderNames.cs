@@ -28,7 +28,7 @@
         //public static readonly string Authority = ":authority";
         public static readonly string Authorization = "Authorization";
         public static readonly string CacheControl = "Cache-Control";
-        //public static readonly string Connection = "Connection";
+        public static readonly string Connection = "Connection";
         public static readonly string ContentDisposition = "Content-Disposition";
         public static readonly string ContentEncoding = "Content-Encoding";
         //public static readonly string ContentLanguage = "Content-Language";
@@ -68,10 +68,10 @@
         //public static readonly string RetryAfter = "Retry-After";
         //public static readonly string RequestId = "Request-Id";
         //public static readonly string Scheme = ":scheme";
-        //public static readonly string SecWebSocketAccept = "Sec-WebSocket-Accept";
-        //public static readonly string SecWebSocketKey = "Sec-WebSocket-Key";
-        //public static readonly string SecWebSocketProtocol = "Sec-WebSocket-Protocol";
-        //public static readonly string SecWebSocketVersion = "Sec-WebSocket-Version";
+        public static readonly string SecWebSocketAccept = "Sec-WebSocket-Accept";
+        public static readonly string SecWebSocketKey = "Sec-WebSocket-Key";
+        public static readonly string SecWebSocketProtocol = "Sec-WebSocket-Protocol";
+        public static readonly string SecWebSocketVersion = "Sec-WebSocket-Version";
         public static readonly string Server = "Server";
         public static readonly string SetCookie = "Set-Cookie";
         //public static readonly string Status = ":status";
@@ -82,7 +82,7 @@
         //public static readonly string Translate = "Translate";
         //public static readonly string TraceParent = "traceparent";
         //public static readonly string TraceState = "tracestate";
-        //public static readonly string Upgrade = "Upgrade";
+        public static readonly string Upgrade = "Upgrade";
         //public static readonly string UpgradeInsecureRequests = "Upgrade-Insecure-Requests";
         //public static readonly string UserAgent = "User-Agent";
         public static readonly string Vary = "Vary";

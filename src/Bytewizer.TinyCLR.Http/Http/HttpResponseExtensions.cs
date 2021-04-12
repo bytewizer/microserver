@@ -94,7 +94,8 @@ namespace Bytewizer.TinyCLR.Http
         /// </summary>
         /// <param name="response">The <see cref="HttpResponse"/>.</param>
         /// <param name="fullPath">The full path to the file.</param>
-        public static void SendFile(this HttpResponse response, string fullPath)
+        /// <param name="contentType">The Content-Type header of the file response.</param>
+        public static void SendFile(this HttpResponse response, string fullPath, string contentType)
         {
             if (response == null)
             {
@@ -104,7 +105,7 @@ namespace Bytewizer.TinyCLR.Http
             var fileName = Path.GetFileName(fullPath);
             var fileStream = new FileStream(fullPath, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
 
-            response.SendFile(fileStream, fullPath, fileName);
+            response.SendFile(fileStream, contentType, fileName);
         }
 
         /// <summary>

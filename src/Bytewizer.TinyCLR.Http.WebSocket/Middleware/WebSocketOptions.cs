@@ -15,7 +15,7 @@ namespace Bytewizer.TinyCLR.Http
         {
             KeepAliveInterval = TimeSpan.FromMinutes(2);
             ReceiveBufferSize = 4 * 1024;
-            AllowedOrigins = new ArrayList();
+            AllowedOrigins = "*";
         }
 
         /// <summary>
@@ -34,6 +34,6 @@ namespace Bytewizer.TinyCLR.Http
         /// Set the Origin header values allowed for WebSocket requests to prevent Cross-Site WebSocket Hijacking.
         /// By default all Origins are allowed.
         /// </summary>
-        public ArrayList AllowedOrigins { get; }
+        public string AllowedOrigins { get; }
     }
 }

@@ -16,8 +16,9 @@ namespace Bytewizer.TinyCLR.Http.Internal
         {
             ParserMode mode = ParserMode.FirstLine;
 
-            using (var reader = new StreamReader(context.Channel.InputStream))
-            {
+            //using (var reader = new StreamReader(context.Channel.InputStream))
+            var reader = new StreamReader(context.Channel.InputStream);
+            //{
                 string line;
                 var body = new StringBuilder();
 
@@ -99,7 +100,9 @@ namespace Bytewizer.TinyCLR.Http.Internal
                             //Stream req = context.Session.InputStream;
                             //req.Seek(0, System.IO.SeekOrigin.Begin);
                             //string body = new StreamReader(req).ReadToEnd();
-                            body.AppendLine(line);
+                            //body.AppendLine(line);
+
+
 
                             break;
                     }
@@ -123,7 +126,7 @@ namespace Bytewizer.TinyCLR.Http.Internal
                 //{
                 //    context.Request.Cookies = cookieParser.Parse(cookies);
                 //}
-            }
+            //}
         }
 
         public void Encode(HttpContext context)
