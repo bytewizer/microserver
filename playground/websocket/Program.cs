@@ -32,27 +32,13 @@ namespace Bytewizer.Playground.WebSocket
                             context.Response.SendFile(@"\websocket.html", "text/html");
                         });
 
-                        //endpoints.MapHubs();
+                        endpoints.MapHubs();
 
-                        endpoints.Map("/chat", context =>
-                        {
-                            var hub = (Hub)Activator.CreateInstance(typeof(ChatHub));
-                            if (hub == null)
-                            {
-                                throw new InvalidOperationException(nameof(hub));
-                            }
-
-                            //hub.HubCallerContext = new HubCallerContext(context);
-
-
-                            //hub.OnConnected();
-
-                            //var websocket = context.GetWebSocket();
-                            //if (websocket != null)
-                            //{
-                            //    WebSocketHelper.EntryPoint(context);
-                            //}
-                        });
+                        //endpoints.Map("/chat", context =>
+                        //{
+                        //    WebSocketHelper.EntryPoint(context, typeof(ChatHub));
+                        //});
+                       
                     });
                 });
             });

@@ -1,18 +1,18 @@
-﻿using Bytewizer.TinyCLR.Pipeline;
-using Bytewizer.TinyCLR.Sockets.Channel;
-
-namespace Bytewizer.TinyCLR.Http
+﻿namespace Bytewizer.TinyCLR.Http
 {
     /// <summary>
     /// Encapsulates all WebSocket-specific information about an individual caller.
     /// </summary>
     public class HubCallerContext 
     {
+        private readonly HttpContext _context;
+
         /// <summary>
         /// Initializes an instance of the <see cref="HubCallerContext" /> class.
         /// </summary>
         public HubCallerContext()
         {
+        
         }
 
         /// <summary>
@@ -20,13 +20,28 @@ namespace Bytewizer.TinyCLR.Http
         /// </summary>
         public HubCallerContext(HttpContext context) 
         {
-            HttpContext = context;
+            _context = context;
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="Http.HttpContext"/> for the current request.
+        /// Gets the connection id of the calling client.
         /// </summary>
+        public string ConnectionId => _context?.Connection.Id;
 
-        public HttpContext HttpContext { get; private set; }
+        /// <summary>
+        /// Gets the <see cref="HttpContext"/> for the current handshake request.
+        /// </summary>
+        public HttpContext GetHttpContext()
+        {
+            return _context;
+        }
+
+        /// <summary>
+        /// Aborts the connection underlying this request.
+        /// </summary>
+        public void Abort()
+        {
+            _context?.Channel.Socket.Close();
+        }
     }
 }

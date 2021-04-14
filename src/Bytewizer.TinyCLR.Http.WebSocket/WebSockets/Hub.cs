@@ -5,8 +5,10 @@ namespace Bytewizer.TinyCLR.Http.WebSockets
     /// <summary>
     /// A base class that provides methods to communicate with WebSocket connections that connected to a Hub.
     /// </summary>
-    public abstract class Hub : HubBase
+    public abstract class Hub : IHub
     {
+        private HubCallerContext _hubCallerContext;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Hub"/> class.
         /// </summary>
@@ -15,27 +17,45 @@ namespace Bytewizer.TinyCLR.Http.WebSockets
         }
 
         /// <summary>
-        /// Gets or sets the hub caller context.
+        /// Gets or sets the <see cref="HubCallerContext"/>.
         /// </summary>
-        public HubCallerContext Context { get; set; }
+        public HubCallerContext Context
+        {
+            get
+            {
+                if (_hubCallerContext == null)
+                {
+                    _hubCallerContext = new HubCallerContext();
+                }
 
-        /// <summary>
-        /// Called when a new connection is established with the hub.
-        /// </summary>
+                return _hubCallerContext;
+            }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException(nameof(value));
+                }
+
+                _hubCallerContext = value;
+            }
+        }
+
+        //public Client Client { get; set; }
+
+        public Clients Clients { get; set; }
+
+        /// <inheritdoc/>
         public virtual void OnConnected()
         {
         }
 
-        /// <summary>
-        /// Called when a new message is sent to the hub.
-        /// </summary>
-        public virtual void OnMessage()
+        /// <inheritdoc/>
+        public virtual void OnMessage(byte[] payload)
         {
         }
 
-        /// <summary>
-        /// Called when a connection with the hub is terminated.
-        /// </summary>
+        /// <inheritdoc/>
         public virtual void OnDisconnected(Exception exception)
         {
         }

@@ -9,6 +9,16 @@ namespace Bytewizer.TinyCLR.Http.Extensions
     public static class StreamExtensions
     {
         /// <summary>
+        /// Writes a sequence of bytes to the current stream and advances the current position within this stream by the number of bytes written.
+        /// </summary>
+        /// <param name="source">The source <see cref="Stream"/> to read from.</param>
+        /// <param name="buffer">An array of bytes.</param>
+        public static void Write(this Stream source, byte[] buffer)
+        {
+            source.Write(buffer, 0, buffer.Length);
+        }
+        
+        /// <summary>
         /// Reads the bytes from the current stream and writes them to another stream.
         /// </summary>
         /// <param name="source">The source <see cref="Stream"/> to read from.</param>

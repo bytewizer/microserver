@@ -69,17 +69,24 @@
     <Compile Include="Features\HttpWebSocketFeature.cs" />
     <Compile Include="Features\IHttpWebSocketFeature.cs" />
     <Compile Include="Http\HttpContextExtensions.cs" />
-    <Compile Include="Internal\OpaqueStream.cs" />
     <Compile Include="Middleware\WebSocketMiddleware.cs" />
     <Compile Include="Middleware\WebSocketMiddlewareExtensions.cs" />
     <Compile Include="Middleware\WebSocketOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Routing\HubEndpointRouteBuilderExtensions.cs" />
     <Compile Include="Routing\Internal\HubEndpointProvider.cs" />
+    <Compile Include="WebSockets\Clients.All.cs" />
+    <Compile Include="WebSockets\Clients.Others.cs" />
+    <Compile Include="WebSockets\Clients.Caller.cs" />
+    <Compile Include="WebSockets\Clients.cs" />
+    <Compile Include="WebSockets\IClientsAll.cs" />
+    <Compile Include="WebSockets\IClientsOthers.cs" />
+    <Compile Include="WebSockets\IClientsCaller.cs" />
+    <Compile Include="WebSockets\CloseStatusCode.cs" />
     <Compile Include="WebSockets\Hub.cs" />
     <Compile Include="Routing\Internal\HubDelegateFactory.cs" />
     <Compile Include="WebSockets\HubCallerContext.cs" />
-    <Compile Include="WebSockets\HubBase.cs" />
+    <Compile Include="WebSockets\IHub.cs" />
     <Compile Include="WebSockets\internal\Fin.cs" />
     <Compile Include="WebSockets\internal\Mask.cs" />
     <Compile Include="WebSockets\internal\Opcode.cs" />
@@ -89,7 +96,6 @@
     <Compile Include="WebSockets\WebSocket.cs" />
     <Compile Include="WebSockets\internal\WebSocketFrame.cs" />
     <Compile Include="WebSockets\WebSocketState.cs" />
-    <Compile Include="WebSockets\WinSocketHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bytewizer.TinyCLR.Core\Bytewizer.TinyCLR.Core.csproj">
