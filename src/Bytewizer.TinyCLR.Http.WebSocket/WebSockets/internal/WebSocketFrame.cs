@@ -47,7 +47,7 @@ namespace Bytewizer.TinyCLR.Http.WebSockets
             else
             {
                 Mask = Mask.Off;
-                MaskingKey = new byte[0];  // Empty bytes 
+                MaskingKey = EmptyBytes;
             }
 
             PayloadData = payloadData;
@@ -320,7 +320,7 @@ namespace Bytewizer.TinyCLR.Http.WebSockets
             // Extended Payload Length
             var extPayloadLen = payloadLen > 125
                                 ? frame.ExactPayloadLength.ToString()
-                                : String.Empty;
+                                : string.Empty;
 
             // Masking Key
             var maskingKey = BitConverter.ToString(frame.MaskingKey);

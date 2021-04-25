@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Text;
+using System.Diagnostics;
+
 using Bytewizer.TinyCLR.Http.WebSockets;
 
 namespace Bytewizer.Playground.WebSocket
@@ -14,16 +15,17 @@ namespace Bytewizer.Playground.WebSocket
 
         public override void OnConnected()
         {
-            var context = Context.GetHttpContext();
-            Debug.WriteLine(context.Request.ToString());
-
-            Debug.WriteLine(Context.ConnectionId);
+            Debug.WriteLine(Caller.ConnectionId);
+            Debug.WriteLine(Caller.GetHttpContext().Request.ToString());
         }
 
-        public override void OnMessage(byte[] payload)
+        public override void OnMessage(WebSocketContext context)
         {
-            var encodedPayload = Encoding.UTF8.GetString(payload);
-            //Clients.All.SendText($"ECHO: {encodedPayload}");
+            if (context.IsText)
+            {
+                var encodedPayload = Encoding.UTF8.GetString(context.Payload);
+                Clients.Caller.SendText($"ECHO: {encodedPayload}");
+            }
         }
 
         public override void OnDisconnected(Exception exception)

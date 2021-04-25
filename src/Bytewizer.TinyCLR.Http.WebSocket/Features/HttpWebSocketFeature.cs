@@ -1,8 +1,10 @@
 ﻿using System;
-using System.IO;
 using System.Text;
 
+using Bytewizer.TinyCLR.Http.Header;
 using Bytewizer.TinyCLR.Http.WebSockets;
+using Bytewizer.TinyCLR.Http.Extensions;
+
 using GHIElectronics.TinyCLR.Cryptography;
 
 namespace Bytewizer.TinyCLR.Http.Features
@@ -16,14 +18,14 @@ namespace Bytewizer.TinyCLR.Http.Features
         public HttpWebSocketFeature(HttpContext context, WebSocketOptions options)
         {
             _context = context;
-            _options = options;        
+            _options = options;
         }
 
         ///<inheritdoc/>
         public bool IsWebSocketRequest
         {
             get
-            {           
+            {
                 return CheckSupportedWebSocketRequest(_context.Request);
             }
         }
@@ -49,76 +51,78 @@ namespace Bytewizer.TinyCLR.Http.Features
             bool validKey = false;
             bool validVersion = false;
 
-            if (request.Method != HttpMethods.Get)
+            if (!string.Equals(request.Method, HttpMethods.Get))
             {
                 return false;
             }
 
-            var connection = request.Headers[HeaderNames.Connection];
-            var upgrade = request.Headers[HeaderNames.Upgrade];
-            var version = request.Headers[HeaderNames.SecWebSocketVersion];
-            var key = request.Headers[HeaderNames.SecWebSocketKey];
-
-            if (connection == "Upgrade")
+            foreach (HeaderValue pair in request.Headers)
             {
-                if (upgrade == "websocket")
+                if (string.Equals(HeaderNames.Connection, pair.Key))
                 {
-                    validConnection = true;
+                    if (string.Equals("Upgrade", pair.Value))
+                    {
+                        validConnection = true;
+                    }
                 }
-            }
-
-            if (upgrade == "websocket") // TODO: Remove?           
-            {
-                validUpgrade = true;
-            }
-
-            if (version == "13")
-            {
-                validVersion = true;
-            }
-
-            if (!string.IsNullOrEmpty(key))
-            {
-                if (Convert.FromBase64String(key).Length == 16)
+                else if (string.Equals(HeaderNames.Upgrade, pair.Key))
                 {
-                    validKey = true;
+                    if (string.Equals("websocket", pair.Value))
+                    {
+                        validUpgrade = true;
+                    }
+                }
+                else if (string.Equals(HeaderNames.SecWebSocketVersion, pair.Key))
+                {
+                    if (string.Equals("13", pair.Value))
+                    {
+                        validVersion = true;
+                    }
+                }
+                else if (string.Equals(HeaderNames.SecWebSocketKey, pair.Key))
+                {
+                    validKey = IsRequestKeyValid(pair.Value);
                 }
             }
 
             return validConnection && validUpgrade && validVersion && validKey;
         }
 
+        public static bool IsRequestKeyValid(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                return false;
+            }
+            try
+            {
+                byte[] data = Convert.FromBase64String(value);
+                return data.Length == 16;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         public static void GenerateResponseHeaders(HttpContext context, string key, string[] subProtocols)
         {
-            if (subProtocols != null)
-            {
-                //TODO
-            }
-            
-            var header = "HTTP/1.1 101 Switching Protocols\r\nConnection: Upgrade\r\n" +
-                $"Upgrade: websocket\r\nSec-WebSocket-Accept: {CreateResponseKey(key)}\r\n\r\n";
-            
-            context.Channel.Write(header);
-     
-
-            //response.Headers[HeaderNames.Connection] = HeaderNames.Upgrade;
-            //response.Headers[HeaderNames.Upgrade] = "websocket";
-            //response.Headers[HeaderNames.SecWebSocketAccept] = CreateResponseKey(key);
-            //if (!string.IsNullOrEmpty(subProtocol))
+            var header = new StringBuilder();
+            header.Append("HTTP/1.1 101 Switching Protocols\r\n");
+            header.Append("Upgrade: websocket\r\n");
+            header.Append("Connection: Upgrade\r\n");
+            header.Append($"Sec-WebSocket-Accept: {CreateResponseKey(key)}\r\n");
+            //if (subProtocols != null)
             //{
-            //    response.Headers[HeaderNames.SecWebSocketProtocol] = subProtocol;
+            //    sb.Append($"Sec-WebSocket-Protocol: {targetProtocol}\r\n");
             //}
+            header.Append("\r\n");
 
-            //response.StatusCode = StatusCodes.Status101SwitchingProtocols;
+            context.Channel.Write(header.ToString());
         }
 
         public static string CreateResponseKey(string requestKey)
         {
-            // "The value of this header field is constructed by concatenating /key/, defined above in step 4
-            // in Section 4.2.2, with the string "258EAFA5-E914-47DA-95CA-C5AB0DC85B11", taking the SHA-1 hash of
-            // this concatenated value to obtain a 20-byte value and base64-encoding"
-            // https://tools.ietf.org/html/rfc6455#section-4.2.2
-
             if (requestKey == null)
             {
                 throw new ArgumentNullException(nameof(requestKey));
@@ -137,6 +141,6 @@ namespace Bytewizer.TinyCLR.Http.Features
 
             return Convert.ToBase64String(hashedBytes);
         }
-        
+
     }
 }

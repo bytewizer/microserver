@@ -12,8 +12,8 @@ namespace Bytewizer.TinyCLR.Http
     /// </summary>
     public class WebSocketMiddleware : Middleware
     {
-        private readonly WebSocketOptions _options;
         private readonly ArrayList _allowedOrigins;
+        private readonly WebSocketOptions _options;
 
         /// <summary>
         /// A string meaning "All" in Origin headers.

@@ -3,13 +3,12 @@ using System.Collections;
 using System.Threading;
 
 using Bytewizer.TinyCLR.Http.Extensions;
-using Bytewizer.TinyCLR.Sockets.Channel;
 
 namespace Bytewizer.TinyCLR.Http.WebSockets.Middleware
 {
     internal class HubDelegateFactory
     {
-        private Hashtable _channels = new Hashtable();
+        private readonly Hashtable _channels = new Hashtable();
 
         public RequestDelegate CreateRequestDelegate(Type hubType)
         {
@@ -21,7 +20,7 @@ namespace Bytewizer.TinyCLR.Http.WebSockets.Middleware
                     throw new InvalidOperationException(nameof(hub));
                 }
 
-                hub.Context = new HubCallerContext(context);
+                hub.Caller = new HubCallerContext(context);
                 hub.Clients = new Clients(_channels, context.Channel);
 
                 _channels.Add(context.Channel.Connection.Id, context.Channel);
@@ -40,21 +39,31 @@ namespace Bytewizer.TinyCLR.Http.WebSockets.Middleware
                     hub.OnConnected();
 
                     var active = true;
-
-                    while (active)
+                    while (active)  // TODO: More efficent way?
                     {
                         if (inputStream != null & inputStream.Length > 0)
                         {
                             var frame = WebSocketFrame.ReadFrame(inputStream, true);
                             if (frame.IsClose)
                             {
+                                _channels.Remove(context.Channel.Connection.Id);
+
                                 var buffer = WebSocketFrame.CreateCloseFrame(PayloadData.Empty, false).ToArray();
                                 outputStream.Write(buffer);
 
                                 var execption = new Exception("WebSocket client disconnected");
                                 hub.OnDisconnected(execption);
+
+                                context.Channel.Clear();
                                 break;
 
+                            }else if(frame.IsFinal)
+                            {
+                                hub.OnMessage(new WebSocketContext(frame.PayloadData.ToArray(), frame.IsText));
+                            }
+                            else if (frame.IsFragment)
+                            {
+                                // TODO: build memory stream of data
                             }
                             else if (frame.IsPing)
                             {
@@ -67,12 +76,7 @@ namespace Bytewizer.TinyCLR.Http.WebSockets.Middleware
                                 var buffer = WebSocketFrame.CreatePingFrame(false).ToArray();
                                 outputStream.Write(buffer);
                             }
-                            else if (frame.IsFragment)
-                            {
-                                // TODO: build memory stream of data
-                            }
-
-                            hub.OnMessage(frame.PayloadData.ToArray());
+           
                         }
 
                         Thread.Sleep(10);

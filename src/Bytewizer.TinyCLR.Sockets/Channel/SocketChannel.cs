@@ -91,15 +91,16 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
         }
 
         /// <summary>
-        /// Determine whether the socket channel is closed.
+        /// Determine whether the socket channel is cleared.
         /// </summary>
-        /// <param name="timeoutMicroSeconds"></param>
-        public bool IsClosed(int timeoutMicroSeconds = 1)
+        public bool IsCleared()
         {
-            if (Socket == null)
+            if (Connection == null)
+            {
                 return true;
+            }
 
-            return Socket.Poll(timeoutMicroSeconds, SelectMode.SelectRead) && Socket.Available < 1;
+            return false;
         }
 
         /// <summary>
@@ -128,8 +129,9 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
             try
             {
                 var bytes = Encoding.UTF8.GetBytes(text);
-                OutputStream?.Write(bytes, 0, bytes.Length);
-                bytesSent += bytes.Length;
+                bytesSent += Write(bytes);
+                //OutputStream?.Write(bytes, 0, bytes.Length);
+                //bytesSent += bytes.Length;
             }
             catch
             {
@@ -151,18 +153,23 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
                 throw new ArgumentNullException(nameof(bytes));
             }
 
-            int bytesSent = 0;
-            try
+            using (Stream output = new MemoryStream(bytes))
             {
-                OutputStream?.Write(bytes, 0, bytes.Length);
-                bytesSent += bytes.Length;
-            }
-            catch 
-            {
-                throw;  //TODO: Best way to handle?
+                return Write(output);
             }
 
-            return bytesSent;
+            //int bytesSent = 0;
+            //try
+            //{
+            //    OutputStream?.Write(bytes, 0, bytes.Length);
+            //    bytesSent += bytes.Length;
+            //}
+            //catch 
+            //{
+            //    throw;  //TODO: Best way to handle?
+            //}
+
+            //return bytesSent;
         }
 
         /// <summary>
@@ -172,7 +179,9 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
         public int Write(Stream stream)
         {
             if (stream == null)
+            {
                 throw new ArgumentNullException(nameof(stream));
+            }
 
             byte[] sendBuffer = new byte[1460];
             int bytesSent = 0;
@@ -199,7 +208,7 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
 
 
         /// <summary>
-        ///      Send a new message to a connected socket.
+        /// Send a new message to a connected socket.
         /// </summary>
         /// <param name="message">An array of type byte that contains the data to be sent.</param>
         public int Send(byte[] message)

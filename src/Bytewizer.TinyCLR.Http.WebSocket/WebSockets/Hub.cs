@@ -19,7 +19,7 @@ namespace Bytewizer.TinyCLR.Http.WebSockets
         /// <summary>
         /// Gets or sets the <see cref="HubCallerContext"/>.
         /// </summary>
-        public HubCallerContext Context
+        public HubCallerContext Caller
         {
             get
             {
@@ -41,21 +41,23 @@ namespace Bytewizer.TinyCLR.Http.WebSockets
             }
         }
 
-        //public Client Client { get; set; }
-
         public Clients Clients { get; set; }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Called when a new connection is established with the hub.
+        /// </summary>
         public virtual void OnConnected()
         {
         }
 
         /// <inheritdoc/>
-        public virtual void OnMessage(byte[] payload)
+        public virtual void OnMessage(WebSocketContext context)
         {
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Called when a connection with the hub is terminated.
+        /// </summary>
         public virtual void OnDisconnected(Exception exception)
         {
         }

@@ -91,7 +91,6 @@
     <Compile Include="Middleware\StatusCodePagesOptions.cs" />
     <Compile Include="Middleware\StatusCodePagesMiddleware.cs" />
     <Compile Include="Extensions\CharExtensions.cs" />
-    <Compile Include="Extensions\StreamExtensions.cs" />
     <Compile Include="Http\Header\HeaderDictionary.cs" />
     <Compile Include="Http\Header\HeaderEnumerator.cs" />
     <Compile Include="Http\HeaderNames.cs" />

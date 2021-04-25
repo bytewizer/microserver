@@ -4,7 +4,7 @@
     {
         private readonly HttpMessage _httpMessage;
 
-        private int _msgcount;
+        private readonly int _msgcount;
 
         public HttpMiddleware()
         {
@@ -23,7 +23,10 @@
 
             next(context);
 
-            _httpMessage.Encode(context);
+            if (!context.Channel.IsCleared())
+            { 
+                _httpMessage.Encode(context);
+            }
 
             //_msgcount++;
         }

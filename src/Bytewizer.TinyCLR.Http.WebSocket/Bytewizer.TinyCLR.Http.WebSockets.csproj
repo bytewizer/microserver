@@ -95,6 +95,7 @@
     <Compile Include="WebSockets\internal\Rsv.cs" />
     <Compile Include="WebSockets\WebSocket.cs" />
     <Compile Include="WebSockets\internal\WebSocketFrame.cs" />
+    <Compile Include="WebSockets\WebSocketContext.cs" />
     <Compile Include="WebSockets\WebSocketState.cs" />
   </ItemGroup>
   <ItemGroup>
