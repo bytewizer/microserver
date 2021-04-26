@@ -30,7 +30,7 @@ This repo contains several runtime libraries that provide implementations for ma
 
 * <a href="https://github.com/microcompiler/runtime/tree/develop/src/Bytewizer.TinyCLR.Core">Core</a> 
 * <a href="https://github.com/microcompiler/runtime/tree/develop/src/Bytewizer.TinyCLR.Logging">Logging</a> 
-* <a href="https://github.com/microcompiler/runtime/tree/develop/src/Bytewizer.TinyCLR.Compression">Compression</a> 
+* <a href="https://github.com/microcompiler/runtime/tree/develop/src/Bytewizer.TinyCLR.IO.Compression">Compression</a> 
 * <a href="https://github.com/microcompiler/runtime/tree/develop/src/Bytewizer.TinyCLR.Cryptography">Cryptography</a> 
 * <a href="https://github.com/microcompiler/runtime/tree/develop/src/Bytewizer.TinyCLR.DependencyInjection">Dependency Injection (DI)</a> 
 
