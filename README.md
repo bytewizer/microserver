@@ -1,58 +1,47 @@
 # Microserver for TinyCLR OS
 
+[![Release](https://github.com/microcompiler/microserver/actions/workflows/release.yml/badge.svg)](https://github.com/microcompiler/microserver/actions/workflows/release.yml)
+[![Build](https://github.com/microcompiler/microserver/actions/workflows/actions.yml/badge.svg)](https://github.com/microcompiler/microserver/actions/workflows/actions.yml)
+
 Microserver is a modular server built for TinyCLR OS IoT devices inspired by AspNetCore.  Be sure to follow this project with videos on [YouTube](https://youtu.be/EDGo3NpBOpk).
 
-[![Build Status](https://img.shields.io/github/workflow/status/microcompiler/microserver/Actions%20CI?style=flat-square&logo=github)](https://github.com/microcompiler/microserver/actions)
+## Socket Services
 
-### Socket Service
+Build on a modular tcp/udp service wiht an extendable pipeline and SSL transport security.
 
-* TCP/UDP support
-* Extendable Pipeline
-* SSL Transport Support
+* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Sockets">Socket Services</a>
+* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Pipeline">Extendable Pipeline</a> 
 
-<a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Sockets">More Information</a>
+## Web Services
 
-### Web Service
+Create a modular web services including middleware, moduler routing, digest authentication, controllers, action results, view engine, storage / resource file serving, default file routing, JSON integration, and websockets.
 
-* Extendable Middleware Pipeline
-* Header / Cookie Decoding
-* Forms / Files Decoding
-* Developer Execption Pages
+* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http">Web Service</a>
+* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.WebSockets">WebSockets</a>
+* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Diagnostics">Diagnostics</a> 
+* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Authentication">Authentication</a>
+* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Cookies">Cookie Support</a>
+* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.StaticFiles">Static File Handling</a> 
+* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Mvc">Model-View-Controllers (MVC)</a> 
+* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Cors">Cross-origin Resource Sharing (Cors)</a>
 
-<a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http">More Information</a>
+## Runtime libraries
+This repo contains several runtime libraries that provide implementations for many general and app-specific types, algorithms, and utility functionality. <a href="https://github.com/microcompiler/runtime">More Information</a>
 
-### Model-View-Controllers (MVC)
-
-* Controllers
-* Model Binding
-* Action Results (Content, Json, Files, Redirects)
-* Stubble View Engine
-* JSON Integration
-
-<a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Mvc">More Information</a>
-
-### Static File Handling
-
-* Storage / Resource File Serving
-* Default File Routing
-
-<a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.StaticFiles">More Information</a>
-
-### Authentication
-
-* Digest Authentication
-* Basic Authentication
-
-<a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Authentication">More Information</a>
+* <a href="https://github.com/microcompiler/runtime/tree/develop/src/Bytewizer.TinyCLR.Core">Core</a> 
+* <a href="https://github.com/microcompiler/runtime/tree/develop/src/Bytewizer.TinyCLR.Logging">Logging</a> 
+* <a href="https://github.com/microcompiler/runtime/tree/develop/src/Bytewizer.TinyCLR.Compression">Compression</a> 
+* <a href="https://github.com/microcompiler/runtime/tree/develop/src/Bytewizer.TinyCLR.Cryptography">Cryptography</a> 
+* <a href="https://github.com/microcompiler/runtime/tree/develop/src/Bytewizer.TinyCLR.DependencyInjection">Dependency Injection (DI)</a> 
 
 ## Requirements
 
-**Software:**  <a href="https://visualstudio.microsoft.com/downloads/">Visual Studio 2019</a> and <a href="https://www.ghielectronics.com/">GHI Electronics TinyCLR OS 2.1-Preview 4</a> or higher.  
+**Software:**  <a href="https://visualstudio.microsoft.com/downloads/">Visual Studio 2019</a> and <a href="https://www.ghielectronics.com/">GHI Electronics TinyCLR OS 2.1</a> or higher.  
 **Hardware:** Project tested using FEZ Portal single board computers and SCD-20260D development board.  
 **External RAM:** Devices with external RAM have the option of extending managed heap into **unsecure** external memory. TinyCLR Config can be used to extend the heap into external SDRAM increasing performance for simultaneous sessions. Please note this feature provides a large amount of managed heap space but data is stored outside of the microcontroller chip where it's less secure.
 
 ## Nuget Packages
-Prebuild packages are available as attached artifacts on successful [action](https://github.com/microcompiler/microserver/actions) workflow builds.
+Prebuild packages are available as attached artifacts on successful [workflow builds](https://github.com/microcompiler/microserver/actions).
 
 ## Give a Star! :star:
 
@@ -96,7 +85,6 @@ static void Main()
 ### Controller Example
 
 ```CSharp
-
 // Url: http://{ip:port}/example/GetById?id=10
 
 static void Main()
@@ -160,11 +148,9 @@ public class ExampleController : Controller
 }
 ```
 
-## Branches
+**main** :: This is the branch containing the latest release build. No contributions should be made directly to this branch. The development branch will periodically be merged to the master branch, and be released to [NuGet Gallery](https://www.nuget.org).
 
-**master** - This is the branch containing the latest release - no contributions should be made directly to this branch.
-
-**develop** - This is the development branch to which contributions should be proposed by contributors as pull requests. This development branch will periodically be merged to the master branch, and be released to [NuGet Gallery](https://www.nuget.org).
+**develop** :: This is the development branch to which contributions should be proposed by contributors as pull requests. Development build packages are available as attached artifacts on successful [Build](https://github.com/microcompiler/microserver/actions/workflows/actions.yml) workflows.
 
 ## Microsoft .NET Micro Framework (NETMF)
 

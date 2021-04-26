@@ -1,4 +1,4 @@
-name: Actions CI
+name: Build
 
 on:
   push:
