@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "dgSpecHash": "bKE0RtqP75bJZu6svAYYnx0pOTpy2BXnkO6+qTvzz8irgrzDNiFZoIF4Mv5ovs+/Eqk/yYbJIu7o6imNhLLsYw==",
+  "success": true,
+  "projectFilePath": "C:\\Repos\\microcompiler\\microserver\\playground\\hardware\\Bytewizer.TinyCLR.Hardware.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Tom Rice\\.nuget\\packages\\ghielectronics.tinyclr.core\\2.1.0-preview4\\ghielectronics.tinyclr.core.2.1.0-preview4.nupkg.sha512",
+    "C:\\Users\\Tom Rice\\.nuget\\packages\\ghielectronics.tinyclr.devices.gpio\\2.1.0-preview4\\ghielectronics.tinyclr.devices.gpio.2.1.0-preview4.nupkg.sha512",
+    "C:\\Users\\Tom Rice\\.nuget\\packages\\ghielectronics.tinyclr.devices.network\\2.1.0-preview4\\ghielectronics.tinyclr.devices.network.2.1.0-preview4.nupkg.sha512",
+    "C:\\Users\\Tom Rice\\.nuget\\packages\\ghielectronics.tinyclr.devices.spi\\2.1.0-preview4\\ghielectronics.tinyclr.devices.spi.2.1.0-preview4.nupkg.sha512",
+    "C:\\Users\\Tom Rice\\.nuget\\packages\\ghielectronics.tinyclr.devices.storage\\2.1.0-preview4\\ghielectronics.tinyclr.devices.storage.2.1.0-preview4.nupkg.sha512",
+    "C:\\Users\\Tom Rice\\.nuget\\packages\\ghielectronics.tinyclr.devices.uart\\2.1.0-preview4\\ghielectronics.tinyclr.devices.uart.2.1.0-preview4.nupkg.sha512",
+    "C:\\Users\\Tom Rice\\.nuget\\packages\\ghielectronics.tinyclr.io\\2.1.0-preview4\\ghielectronics.tinyclr.io.2.1.0-preview4.nupkg.sha512",
+    "C:\\Users\\Tom Rice\\.nuget\\packages\\ghielectronics.tinyclr.native\\2.1.0-preview4\\ghielectronics.tinyclr.native.2.1.0-preview4.nupkg.sha512",
+    "C:\\Users\\Tom Rice\\.nuget\\packages\\ghielectronics.tinyclr.networking\\2.1.0-preview4\\ghielectronics.tinyclr.networking.2.1.0-preview4.nupkg.sha512",
+    "C:\\Users\\Tom Rice\\.nuget\\packages\\ghielectronics.tinyclr.pins\\2.1.0-preview4\\ghielectronics.tinyclr.pins.2.1.0-preview4.nupkg.sha512",
+    "C:\\Users\\Tom Rice\\.nuget\\packages\\microsoft.build.tasks.git\\1.0.0\\microsoft.build.tasks.git.1.0.0.nupkg.sha512",
+    "C:\\Users\\Tom Rice\\.nuget\\packages\\microsoft.sourcelink.common\\1.0.0\\microsoft.sourcelink.common.1.0.0.nupkg.sha512",
+    "C:\\Users\\Tom Rice\\.nuget\\packages\\microsoft.sourcelink.github\\1.0.0\\microsoft.sourcelink.github.1.0.0.nupkg.sha512",
+    "C:\\Users\\Tom Rice\\.nuget\\packages\\nuget.build.tasks.pack\\5.8.0\\nuget.build.tasks.pack.5.8.0.nupkg.sha512"
+  ],
+  "logs": []
+}

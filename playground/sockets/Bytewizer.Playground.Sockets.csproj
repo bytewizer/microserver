@@ -44,22 +44,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Core\Bytewizer.TinyCLR.Core.csproj">
-      <Project>{70392D1D-6B78-46C8-9531-C02915742A46}</Project>
-      <Name>Bytewizer.TinyCLR.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Logging.Abstractions\Bytewizer.TinyCLR.Logging.Abstractions.csproj">
-      <Project>{598D7917-49D1-4E76-BFF4-23221BAD7072}</Project>
-      <Name>Bytewizer.TinyCLR.Logging.Abstractions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Logging.Debug\Bytewizer.TinyCLR.Logging.Debug.csproj">
-      <Project>{BE75C9F4-A4E1-4083-881D-AF55266EC7A7}</Project>
-      <Name>Bytewizer.TinyCLR.Logging.Debug</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Logging\Bytewizer.TinyCLR.Logging.csproj">
-      <Project>{D6D13310-C4A1-4409-B0E3-10F29F7FF262}</Project>
-      <Name>Bytewizer.TinyCLR.Logging</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.NetBios\Bytewizer.TinyCLR.Netbios.csproj">
       <Project>{C21AFDC5-13EB-4B0C-8CC7-372C96E0870F}</Project>
       <Name>Bytewizer.TinyCLR.Netbios</Name>
@@ -81,6 +65,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Bytewizer.TinyCLR.Logging, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bytewizer.TinyCLR.Logging.2.0.0-prebuild.6\lib\net452\Bytewizer.TinyCLR.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Bytewizer.TinyCLR.Logging.Abstractions, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bytewizer.TinyCLR.Logging.Abstractions.2.0.0-prebuild.6\lib\net452\Bytewizer.TinyCLR.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Bytewizer.TinyCLR.Logging.Debug, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bytewizer.TinyCLR.Logging.Debug.2.0.0-prebuild.6\lib\net452\Bytewizer.TinyCLR.Logging.Debug.dll</HintPath>
+    </Reference>
     <Reference Include="GHIElectronics.TinyCLR.IO, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GHIElectronics.TinyCLR.IO.2.1.0-preview4\lib\net452\GHIElectronics.TinyCLR.IO.dll</HintPath>
     </Reference>

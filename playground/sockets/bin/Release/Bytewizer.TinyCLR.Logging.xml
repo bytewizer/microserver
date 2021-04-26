@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Bytewizer.TinyCLR.Logging</name>
+    </assembly>
+    <members>
+        <member name="T:Bytewizer.TinyCLR.Logging.LoggerFactory">
+            <summary>
+            Produces instances of <see cref="T:Bytewizer.TinyCLR.Logging.ILogger"/> classes based on the given providers.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Logging.LoggerFactory.#ctor">
+            <summary>
+            Creates a new <see cref="T:Bytewizer.TinyCLR.Logging.LoggerFactory"/> instance.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Logging.LoggerFactory.#ctor(System.Collections.IEnumerable,Bytewizer.TinyCLR.Logging.LoggerFilterOptions)">
+            <summary>
+            Creates a new <see cref="T:Bytewizer.TinyCLR.Logging.LoggerFactory"/> instance.
+            </summary>
+            <param name="providers">The providers to use in producing <see cref="T:Bytewizer.TinyCLR.Logging.ILogger"/> instances.</param>
+            <param name="filterOption">The filter option to use.</param>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Logging.LoggerFactory.AddProvider(Bytewizer.TinyCLR.Logging.ILoggerProvider)">
+            <summary>
+            Adds the given provider to those used in creating <see cref="T:Bytewizer.TinyCLR.Logging.ILogger"/> instances.
+            </summary>
+            <param name="provider">The <see cref="T:Bytewizer.TinyCLR.Logging.ILoggerProvider"/> to add.</param>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Logging.LoggerFactory.CreateLogger(System.String)">
+            <summary>
+            Creates an <see cref="T:Bytewizer.TinyCLR.Logging.ILogger"/> with the given <paramref name="categoryName"/>.
+            </summary>
+            <param name="categoryName">The category name for messages produced by the logger.</param>
+            <returns>The <see cref="T:Bytewizer.TinyCLR.Logging.ILogger"/> that was created.</returns>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Logging.LoggerFactory.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Logging.LoggerFilterOptions">
+            <summary>
+            The options for a LoggerFilter.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Logging.LoggerFilterOptions.#ctor">
+            <summary>
+            Creates a new <see cref="T:Bytewizer.TinyCLR.Logging.LoggerFilterOptions"/> instance.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Logging.LoggerFilterOptions.MinLevel">
+            <summary>
+            Gets or sets the minimum level of log messages if none of the rules match.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "0uAkZAuCKkDeSNLPNn5vLMBNQl/BGI73/Jy64k5qjxmkVStR5k6uYyVIByLyRcYm2hfO2wAv4Yg23mRUDR380w==",
+  "success": true,
+  "projectFilePath": "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Pipeline\\Bytewizer.TinyCLR.Pipeline.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Tom Rice\\.nuget\\packages\\bytewizer.tinyclr.core\\2.0.0-prebuild.6\\bytewizer.tinyclr.core.2.0.0-prebuild.6.nupkg.sha512",
+    "C:\\Users\\Tom Rice\\.nuget\\packages\\ghielectronics.tinyclr.core\\2.1.0-preview4\\ghielectronics.tinyclr.core.2.1.0-preview4.nupkg.sha512",
+    "C:\\Users\\Tom Rice\\.nuget\\packages\\microsoft.build.tasks.git\\1.0.0\\microsoft.build.tasks.git.1.0.0.nupkg.sha512",
+    "C:\\Users\\Tom Rice\\.nuget\\packages\\microsoft.sourcelink.common\\1.0.0\\microsoft.sourcelink.common.1.0.0.nupkg.sha512",
+    "C:\\Users\\Tom Rice\\.nuget\\packages\\microsoft.sourcelink.github\\1.0.0\\microsoft.sourcelink.github.1.0.0.nupkg.sha512",
+    "C:\\Users\\Tom Rice\\.nuget\\packages\\nuget.build.tasks.pack\\5.9.0\\nuget.build.tasks.pack.5.9.0.nupkg.sha512"
+  ],
+  "logs": []
+}

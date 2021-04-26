@@ -1,0 +1,297 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Http.WebSocket\\Bytewizer.TinyCLR.Http.WebSockets.csproj": {}
+  },
+  "projects": {
+    "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Http.WebSocket\\Bytewizer.TinyCLR.Http.WebSockets.csproj": {
+      "version": "2.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Http.WebSocket\\Bytewizer.TinyCLR.Http.WebSockets.csproj",
+        "projectName": "Bytewizer.TinyCLR.Http.WebSockets",
+        "projectPath": "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Http.WebSocket\\Bytewizer.TinyCLR.Http.WebSockets.csproj",
+        "packagesPath": "C:\\Users\\Tom Rice\\.nuget\\packages\\",
+        "outputPath": "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Http.WebSocket\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "configFilePaths": [
+          "C:\\Repos\\microcompiler\\microserver\\playground\\NuGet.Config",
+          "C:\\Users\\Tom Rice\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net452"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Repos\\microcompiler\\microserver\\.prerelease\\packages": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net452": {
+            "projectReferences": {
+              "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Http\\Bytewizer.TinyCLR.Http.csproj": {
+                "projectPath": "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Http\\Bytewizer.TinyCLR.Http.csproj"
+              },
+              "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Pipeline\\Bytewizer.TinyCLR.Pipeline.csproj": {
+                "projectPath": "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Pipeline\\Bytewizer.TinyCLR.Pipeline.csproj"
+              },
+              "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Sockets\\Bytewizer.TinyCLR.Sockets.csproj": {
+                "projectPath": "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Sockets\\Bytewizer.TinyCLR.Sockets.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net452": {
+          "dependencies": {
+            "GHIElectronics.TinyCLR.Networking": {
+              "target": "Package",
+              "version": "[2.1.0-preview4, )"
+            },
+            "Microsoft.SourceLink.GitHub": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
+            "NuGet.Build.Tasks.Pack": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.8.0, )"
+            }
+          }
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    },
+    "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Http\\Bytewizer.TinyCLR.Http.csproj": {
+      "version": "2.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Http\\Bytewizer.TinyCLR.Http.csproj",
+        "projectName": "Bytewizer.TinyCLR.Http",
+        "projectPath": "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Http\\Bytewizer.TinyCLR.Http.csproj",
+        "packagesPath": "C:\\Users\\Tom Rice\\.nuget\\packages\\",
+        "outputPath": "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Http\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "configFilePaths": [
+          "C:\\Repos\\microcompiler\\microserver\\playground\\NuGet.Config",
+          "C:\\Users\\Tom Rice\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net452"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Repos\\microcompiler\\microserver\\.prerelease\\packages": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net452": {
+            "projectReferences": {
+              "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Pipeline\\Bytewizer.TinyCLR.Pipeline.csproj": {
+                "projectPath": "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Pipeline\\Bytewizer.TinyCLR.Pipeline.csproj"
+              },
+              "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Sockets\\Bytewizer.TinyCLR.Sockets.csproj": {
+                "projectPath": "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Sockets\\Bytewizer.TinyCLR.Sockets.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net452": {
+          "dependencies": {
+            "GHIElectronics.TinyCLR.IO": {
+              "target": "Package",
+              "version": "[2.1.0-preview4, )"
+            },
+            "GHIElectronics.TinyCLR.Networking": {
+              "target": "Package",
+              "version": "[2.1.0-preview4, )"
+            },
+            "Microsoft.SourceLink.GitHub": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
+            "NuGet.Build.Tasks.Pack": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.9.0, )"
+            }
+          }
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    },
+    "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Pipeline\\Bytewizer.TinyCLR.Pipeline.csproj": {
+      "version": "2.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Pipeline\\Bytewizer.TinyCLR.Pipeline.csproj",
+        "projectName": "Bytewizer.TinyCLR.Pipeline",
+        "projectPath": "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Pipeline\\Bytewizer.TinyCLR.Pipeline.csproj",
+        "packagesPath": "C:\\Users\\Tom Rice\\.nuget\\packages\\",
+        "outputPath": "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Pipeline\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "configFilePaths": [
+          "C:\\Repos\\microcompiler\\microserver\\playground\\NuGet.Config",
+          "C:\\Users\\Tom Rice\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net452"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Repos\\microcompiler\\microserver\\.prerelease\\packages": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net452": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net452": {
+          "dependencies": {
+            "Bytewizer.TinyCLR.Core": {
+              "target": "Package",
+              "version": "[2.0.0-prebuild.6, )"
+            },
+            "GHIElectronics.TinyCLR.Core": {
+              "target": "Package",
+              "version": "[2.1.0-preview4, )"
+            },
+            "Microsoft.SourceLink.GitHub": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
+            "NuGet.Build.Tasks.Pack": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.9.0, )"
+            }
+          }
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    },
+    "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Sockets\\Bytewizer.TinyCLR.Sockets.csproj": {
+      "version": "2.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Sockets\\Bytewizer.TinyCLR.Sockets.csproj",
+        "projectName": "Bytewizer.TinyCLR.Sockets",
+        "projectPath": "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Sockets\\Bytewizer.TinyCLR.Sockets.csproj",
+        "packagesPath": "C:\\Users\\Tom Rice\\.nuget\\packages\\",
+        "outputPath": "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Sockets\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "configFilePaths": [
+          "C:\\Repos\\microcompiler\\microserver\\playground\\NuGet.Config",
+          "C:\\Users\\Tom Rice\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net452"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Repos\\microcompiler\\microserver\\.prerelease\\packages": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net452": {
+            "projectReferences": {
+              "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Pipeline\\Bytewizer.TinyCLR.Pipeline.csproj": {
+                "projectPath": "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Pipeline\\Bytewizer.TinyCLR.Pipeline.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net452": {
+          "dependencies": {
+            "Bytewizer.TinyCLR.Logging.Abstractions": {
+              "target": "Package",
+              "version": "[2.0.0-prebuild.6, )"
+            },
+            "GHIElectronics.TinyCLR.IO": {
+              "target": "Package",
+              "version": "[2.1.0-preview4, )"
+            },
+            "GHIElectronics.TinyCLR.Networking": {
+              "target": "Package",
+              "version": "[2.1.0-preview4, )"
+            },
+            "Microsoft.SourceLink.GitHub": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
+            "NuGet.Build.Tasks.Pack": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.9.0, )"
+            }
+          }
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

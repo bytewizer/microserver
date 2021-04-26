@@ -1,0 +1,910 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Bytewizer.TinyCLR.Http.Mvc</name>
+    </assembly>
+    <members>
+        <member name="T:Bytewizer.TinyCLR.Http.Mvc.FileResult">
+            <summary>
+            Represents an <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ActionResult"/> that when executed will
+            write a file as the response.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.FileResult.#ctor(System.String)">
+            <summary>
+            Creates a new <see cref="T:Bytewizer.TinyCLR.Http.Mvc.FileResult"/> instance with
+            the provided <paramref name="contentType"/>.
+            </summary>
+            <param name="contentType">The Content-Type header of the response.</param>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.FileResult.ContentType">
+            <summary>
+            Gets the Content-Type header for the response.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.FileResult.FileDownloadName">
+            <summary>
+            Gets the file name that will be used in the Content-Disposition header of the response.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.FileResult.EnableRangeProcessing">
+            <summary>
+            Gets or sets the value that enables range processing for the <see cref="T:Bytewizer.TinyCLR.Http.Mvc.FileResult"/>.
+            </summary>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Mvc.ViewResult">
+            <summary>
+            Represents an <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ActionResult"/> that renders a view to the response.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ViewResult.ViewName">
+            <summary>
+            Gets or sets the name or path of the view that is rendered to the response.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ViewResult.ViewSection">
+            <summary>
+            Gets or sets the section of the view that is rendered to the response.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ViewResult.ViewData">
+            <summary>
+            Gets or sets the <see cref="P:Bytewizer.TinyCLR.Http.Mvc.ViewResult.ViewData"/> for this result.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ViewResult.ViewEngine">
+            <summary>
+            Gets or sets the <see cref="P:Bytewizer.TinyCLR.Http.Mvc.ViewResult.ViewEngine"/> used to locate views.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ViewResult.ContentType">
+            <summary>
+            Gets or sets the Content-Type header for this result.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ViewResult.StatusCode">
+            <summary>
+            Gets or sets the HTTP status code.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ViewResult.ExecuteResult(Bytewizer.TinyCLR.Http.Mvc.ActionContext)">
+            <inheritdoc />
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Mvc.ActionContext">
+            <summary>
+            Context object for execution of action which has been selected as part of an HTTP request.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ActionContext.#ctor">
+            <summary>
+            Creates an empty <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ActionContext"/>.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ActionContext.#ctor(Bytewizer.TinyCLR.Http.Mvc.ActionContext)">
+            <summary>
+            Creates a new <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ActionContext"/>.
+            </summary>
+            <param name="actionContext">The <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ActionContext"/> to copy.</param>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ActionContext.#ctor(Bytewizer.TinyCLR.Http.HttpContext,Bytewizer.TinyCLR.Http.Mvc.ActionDescriptor)">
+            <summary>
+            Creates a new <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ActionContext"/>.
+            </summary>
+            <param name="httpContext">The <see cref="P:Bytewizer.TinyCLR.Http.Mvc.ActionContext.HttpContext"/> for the current request.</param>
+            /// <param name="actionDescriptor">The <see cref="P:Bytewizer.TinyCLR.Http.Mvc.ActionContext.ActionDescriptor"/> for the selected action.</param>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ActionContext.ActionDescriptor">
+            <summary>
+            Gets or sets the <see cref="P:Bytewizer.TinyCLR.Http.Mvc.ActionContext.ActionDescriptor"/> for the selected action.
+            </summary>
+            <remarks>
+            The property setter is provided for unit test purposes only.
+            </remarks>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ActionContext.HttpContext">
+            <summary>
+            Gets or sets the <see cref="T:Bytewizer.TinyCLR.Http.HttpContext"/> for the current request.
+            </summary>
+            <remarks>
+            The property setter is provided for unit test purposes only.
+            </remarks>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Mvc.ActionDescriptor">
+            <summary>
+            Describes an MVC action.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ActionDescriptor.#ctor">
+            <summary>
+            Initializes a new instance of <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ActionDescriptor"/>.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ActionDescriptor.Id">
+            <summary>
+            Gets an id which uniquely identifies the action.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ActionDescriptor.DisplayName">
+            <summary>
+            A friendly name for this action.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ActionDescriptor.Properties">
+            <summary>
+            Stores arbitrary metadata properties associated with the <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ActionDescriptor"/>.
+            </summary>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Mvc.ActionResult">
+            <summary>
+            A default implementation of <see cref="T:Bytewizer.TinyCLR.Http.Mvc.IActionResult"/>.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ActionResult.ExecuteResult(Bytewizer.TinyCLR.Http.Mvc.ActionContext)">
+            <summary>
+            Executes the result operation of the action method synchronously. This method is called by MVC to process
+            the result of an action method.
+            </summary>
+            <param name="context">The context in which the result is executed. The context information includes
+            information about the action that was executed and request information.</param>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Mvc.BadRequestResult">
+            <summary>
+            A <see cref="T:Bytewizer.TinyCLR.Http.Mvc.StatusCodeResult"/> that when executed will produce a Bad Request (400) response.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.BadRequestResult.#ctor">
+            <summary>
+            Creates a new <see cref="T:Bytewizer.TinyCLR.Http.Mvc.BadRequestResult"/> instance.
+            </summary>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Mvc.ContentResult">
+            <summary>
+            An action result which sends content to the client. 
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ContentResult.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ContentResult"/> class.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ContentResult.Content">
+            <summary>
+            Gets or set the content representing the body of the response.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ContentResult.ContentType">
+            <summary>
+            Gets or sets the Content-Type header for the response.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ContentResult.StatusCode">
+            <summary>
+            Gets or sets the HTTP status code.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ContentResult.ExecuteResult(Bytewizer.TinyCLR.Http.Mvc.ActionContext)">
+            <inheritdoc />
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Mvc.FileStreamResult">
+            <summary>
+            Represents an <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ActionResult"/> that when executed will
+            write a file from a stream to the response.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.FileStreamResult.#ctor(System.IO.Stream,System.String)">
+            <summary>
+            Creates a new <see cref="T:Bytewizer.TinyCLR.Http.Mvc.FileStreamResult"/> instance with
+            the provided <paramref name="fileStream"/> and the
+            provided <paramref name="contentType"/>.
+            </summary>
+            <param name="fileStream">The stream with the file.</param>
+            <param name="contentType">The Content-Type header of the response.</param>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.FileStreamResult.FileStream">
+            <summary>
+            Gets or sets the stream with the file that will be sent back as the response.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.FileStreamResult.ExecuteResult(Bytewizer.TinyCLR.Http.Mvc.ActionContext)">
+            <inheritdoc />
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Mvc.NotFoundResult">
+            <summary>
+            Represents an <see cref="T:Bytewizer.TinyCLR.Http.Mvc.StatusCodeResult"/> that when executed will produce a Not Found (404) response.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.NotFoundResult.#ctor">
+            <summary>
+            Creates a new <see cref="T:Bytewizer.TinyCLR.Http.Mvc.NotFoundResult"/> instance.
+            </summary>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Mvc.OkResult">
+            <summary>
+            An <see cref="T:Bytewizer.TinyCLR.Http.Mvc.StatusCodeResult"/> that when executed will produce an empty <see cref="F:Bytewizer.TinyCLR.Http.StatusCodes.Status200OK"/> response.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.OkResult.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bytewizer.TinyCLR.Http.Mvc.OkResult"/> class.
+            </summary>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Mvc.Controller">
+            <summary>
+             A base class for an MVC controller with view support.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.Controller.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bytewizer.TinyCLR.Http.Mvc.Controller"/> class.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.Controller.OnActionExecuting(Bytewizer.TinyCLR.Http.Mvc.Filters.ActionExecutingContext)">
+            <inheritdoc />
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.Controller.OnActionExecuted(Bytewizer.TinyCLR.Http.Mvc.Filters.ActionExecutedContext)">
+            <inheritdoc />
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.Controller.OnException(Bytewizer.TinyCLR.Http.Mvc.Filters.ExceptionContext)">
+            <inheritdoc />
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Mvc.ControllerActionDescriptor">
+            <summary>
+            A descriptor for an action of a controller.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ControllerActionDescriptor.ControllerName">
+            <summary>
+            The name of the controller.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ControllerActionDescriptor.ActionName">
+            <summary>
+            The name of the action.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ControllerActionDescriptor.MethodInfo">
+            <summary>
+            The <see cref="P:Bytewizer.TinyCLR.Http.Mvc.ControllerActionDescriptor.MethodInfo"/>.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ControllerActionDescriptor.DisplayName">
+            <inheritdoc />
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Mvc.ControllerBase">
+            <summary>
+            A base class for an MVC controller without view support.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ControllerBase.HttpContext">
+            <summary>
+            Gets the <see cref="T:Bytewizer.TinyCLR.Http.HttpContext"/> for the executing action.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ControllerBase.Request">
+            <summary>
+            Gets the <see cref="T:Bytewizer.TinyCLR.Http.HttpRequest"/> for the executing action.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ControllerBase.Response">
+            <summary>
+            Gets the <see cref="T:Bytewizer.TinyCLR.Http.HttpResponse"/> for the executing action.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ControllerBase.ControllerContext">
+            <summary>
+            Gets or sets the <see cref="P:Bytewizer.TinyCLR.Http.Mvc.ControllerBase.ControllerContext"/>.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ControllerBase.ViewData">
+            <summary>
+            Gets or sets <see cref="P:Bytewizer.TinyCLR.Http.Mvc.ControllerBase.ViewData"/> used by <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ViewResult"/>.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ControllerBase.View(System.String)">
+            <summary>
+            Creates a <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ViewResult"/> object by specifying a <paramref name="viewName"/>.
+            </summary>
+            <param name="viewName">The name or path of the view that is rendered to the response.</param>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ControllerBase.PartialView(System.String,System.String)">
+            <summary>
+            Creates a <see cref="T:Bytewizer.TinyCLR.Stubble.ViewPartial"/> object that renders a partial view to the response.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ControllerBase.Json(System.Object)">
+            <summary>
+            Creates a <see cref="T:Bytewizer.TinyCLR.Http.Mvc.JsonResult"/> object that serializes the specified <paramref name="data"/> object
+            to JSON.
+            </summary>
+            <param name="data">The object to serialize.</param>
+            <returns>The created <see cref="T:Bytewizer.TinyCLR.Http.Mvc.JsonResult"/> that serializes the specified <paramref name="data"/>
+            to JSON format for the response.</returns>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ControllerBase.StatusCode(System.Int32)">
+            <summary>
+            Creates a <see cref="T:Bytewizer.TinyCLR.Http.Mvc.StatusCodeResult"/> object by specifying a <paramref name="statusCode"/>.
+            </summary>
+            <param name="statusCode">The status code to set on the response.</param>
+            <returns>The created <see cref="T:Bytewizer.TinyCLR.Http.Mvc.StatusCodeResult"/> object for the response.</returns>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ControllerBase.Content(System.String)">
+            <summary>
+            Creates a <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ContentResult"/> object by specifying a <paramref name="content"/> string.
+            </summary>
+            <param name="content">The content to write to the response.</param>
+            <returns>The created <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ContentResult"/> object for the response.</returns>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ControllerBase.Content(System.String,System.String)">
+            <summary>
+            Creates a <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ContentResult"/> object by specifying a
+            <paramref name="content"/> string and a <paramref name="contentType"/>.
+            </summary>
+            <param name="content">The content to write to the response.</param>
+            <param name="contentType">The content MIME type.</param>
+            <returns>The created <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ContentResult"/> object for the response.</returns>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ControllerBase.File(System.IO.Stream,System.String,System.String)">
+            <summary>
+            Returns a file in the specified <paramref name="fileStream" /> (<see cref="F:Bytewizer.TinyCLR.Http.StatusCodes.Status200OK"/>) with the
+            specified <paramref name="contentType" /> as the Content-Type and the
+            specified <paramref name="fileDownloadName" /> as the suggested file name.
+            This supports range requests (<see cref="F:Bytewizer.TinyCLR.Http.StatusCodes.Status206PartialContent"/> or
+            <see cref="F:Bytewizer.TinyCLR.Http.StatusCodes.Status416RangeNotSatisfiable"/> if the range is not satisfiable).
+            </summary>
+            <param name="fileStream">The <see cref="T:System.IO.Stream"/> with the contents of the file.</param>
+            <param name="contentType">The Content-Type of the file.</param>
+            <param name="fileDownloadName">The suggested file name.</param>
+            <returns>The created <see cref="T:Bytewizer.TinyCLR.Http.Mvc.FileStreamResult"/> for the response.</returns>
+            <remarks>
+            The <paramref name="fileStream" /> parameter is disposed after the response is sent.
+            </remarks>        
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ControllerBase.File(System.IO.Stream,System.String,System.String,System.Boolean)">
+            <summary>
+            Returns a file in the specified <paramref name="fileStream" /> (<see cref="F:Bytewizer.TinyCLR.Http.StatusCodes.Status200OK"/>) with the
+            specified <paramref name="contentType" /> as the Content-Type and the
+            specified <paramref name="fileDownloadName" /> as the suggested file name.
+            This supports range requests (<see cref="F:Bytewizer.TinyCLR.Http.StatusCodes.Status206PartialContent"/> or
+            <see cref="F:Bytewizer.TinyCLR.Http.StatusCodes.Status416RangeNotSatisfiable"/> if the range is not satisfiable).
+            </summary>
+            <param name="fileStream">The <see cref="T:System.IO.Stream"/> with the contents of the file.</param>
+            <param name="contentType">The Content-Type of the file.</param>
+            <param name="fileDownloadName">The suggested file name.</param>
+            <param name="enableRangeProcessing">Set to <c>true</c> to enable range requests processing.</param>
+            <returns>The created <see cref="T:Bytewizer.TinyCLR.Http.Mvc.FileStreamResult"/> for the response.</returns>
+            <remarks>
+            The <paramref name="fileStream" /> parameter is disposed after the response is sent.
+            </remarks>        
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ControllerBase.Ok">
+            <summary>
+            Creates a <see cref="T:Bytewizer.TinyCLR.Http.Mvc.OkResult"/> object that produces an empty <see cref="F:Bytewizer.TinyCLR.Http.StatusCodes.Status200OK"/> response.
+            </summary>
+            <returns>The created <see cref="T:Bytewizer.TinyCLR.Http.Mvc.OkResult"/> for the response.</returns>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ControllerBase.Redirect(System.String,System.String)">
+            <summary>
+            Redirects (<see cref="F:Bytewizer.TinyCLR.Http.StatusCodes.Status302Found"/>) to the specified action using the 
+            <paramref name="actionName"/> and the <paramref name="controllerName"/>.
+            </summary>
+            <param name="actionName">The name of the action.</param>
+            <param name="controllerName">The name of the controller.</param>
+            <returns>The created <see cref="T:Bytewizer.TinyCLR.Http.Mvc.RedirectResult"/> for the response.</returns>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ControllerBase.BadRequest">
+            <summary>
+            Creates an <see cref="T:Bytewizer.TinyCLR.Http.Mvc.BadRequestResult"/> that produces a <see cref="F:Bytewizer.TinyCLR.Http.StatusCodes.Status400BadRequest"/> response.
+            </summary>
+            <returns>The created <see cref="T:Bytewizer.TinyCLR.Http.Mvc.BadRequestResult"/> for the response.</returns>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ControllerBase.NotFound">
+            <summary>
+            Creates an <see cref="T:Bytewizer.TinyCLR.Http.Mvc.NotFoundResult"/> that produces a <see cref="F:Bytewizer.TinyCLR.Http.StatusCodes.Status404NotFound"/> response.
+            </summary>
+            <returns>The created <see cref="T:Bytewizer.TinyCLR.Http.Mvc.NotFoundResult"/> for the response.</returns>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Mvc.ControllerContext">
+            <summary>
+            The context associated with the current request for a controller.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ControllerContext.#ctor">
+            <summary>
+            Creates a new <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ControllerContext"/>.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ControllerContext.#ctor(Bytewizer.TinyCLR.Http.Mvc.ActionContext)">
+            <summary>
+            Creates a new <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ControllerContext"/>.
+            </summary>
+            <param name="context">The <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ActionContext"/> associated with the current request.</param>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ControllerContext.ActionDescriptor">
+            <summary>
+            Gets or sets the <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ControllerActionDescriptor"/> associated with the current request.
+            </summary>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Mvc.Filters.FilterContext">
+            <summary>
+            An abstract context for filters.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.Filters.FilterContext.#ctor(Bytewizer.TinyCLR.Http.Mvc.ActionContext)">
+            <summary>
+            Instantiates a new <see cref="T:Bytewizer.TinyCLR.Http.Mvc.Filters.FilterContext"/> instance.
+            </summary>
+            <param name="actionContext">The <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ActionContext"/>.</param>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Mvc.Filters.ActionExecutedContext">
+            <summary>
+            A context for action filters.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.Filters.ActionExecutedContext.#ctor(Bytewizer.TinyCLR.Http.Mvc.ActionContext,System.Object)">
+            <summary>
+            Instantiates a new <see cref="T:Bytewizer.TinyCLR.Http.Mvc.Filters.ActionExecutingContext"/> instance.
+            </summary>
+            <param name="actionContext">The <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ActionContext"/>.</param>
+            <param name="controller">The controller instance containing the action.</param>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.Filters.ActionExecutedContext.Canceled">
+            <summary>
+            Gets or sets an indication that an action filter short-circuited the action and the action filter pipeline.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.Filters.ActionExecutedContext.Controller">
+            <summary>
+            Gets the controller instance containing the action.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.Filters.ActionExecutedContext.Exception">
+            <summary>
+            Gets or sets the <see cref="T:System.Exception"/> caught while executing the action or action filters, if any.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.Filters.ActionExecutedContext.ExceptionHandled">
+            <summary>
+            Gets or sets an indication that the <see cref="P:Bytewizer.TinyCLR.Http.Mvc.Filters.ActionExecutedContext.Exception"/> has been handled.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.Filters.ActionExecutedContext.Result">
+            <summary>
+            Gets or sets the <see cref="T:Bytewizer.TinyCLR.Http.Mvc.IActionResult"/>.
+            </summary>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Mvc.Filters.ActionExecutingContext">
+            <summary>
+            A context for action filters.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.Filters.ActionExecutingContext.#ctor(Bytewizer.TinyCLR.Http.Mvc.ActionContext,System.Object)">
+            <summary>
+            Instantiates a new <see cref="T:Bytewizer.TinyCLR.Http.Mvc.Filters.ActionExecutingContext"/> instance.
+            </summary>
+            <param name="actionContext">The <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ActionContext"/>.</param>
+            <param name="controller">The controller instance containing the action.</param>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.Filters.ActionExecutingContext.Result">
+            <summary>
+            Gets or sets the <see cref="T:Bytewizer.TinyCLR.Http.Mvc.IActionResult"/> to execute. Setting <see cref="P:Bytewizer.TinyCLR.Http.Mvc.Filters.ActionExecutingContext.Result"/> to a non-<c>null</c>
+            value inside an action filter will short-circuit the action and any remaining action filters.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.Filters.ActionExecutingContext.Controller">
+            <summary>
+            Gets the controller instance containing the action.
+            </summary>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Mvc.Filters.ExceptionContext">
+            <summary>
+            A context for exception filters.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.Filters.ExceptionContext.#ctor(Bytewizer.TinyCLR.Http.Mvc.ActionContext,System.Exception)">
+            <summary>
+            Instantiates a new <see cref="T:Bytewizer.TinyCLR.Http.Mvc.Filters.ExceptionContext"/> instance.
+            </summary>
+            <param name="actionContext">The <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ActionContext"/>.</param>
+            <param name="exception">the <see cref="T:System.Exception"/> caught while executing the action.</param>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.Filters.ExceptionContext.HttpContext">
+            <summary>
+            Gets the request context.
+            </summary>
+            <value>The request context.</value>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.Filters.ExceptionContext.Canceled">
+            <summary>
+            Gets or sets an indication that an action filter short-circuited the action and the action filter pipeline.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.Filters.ExceptionContext.Exception">
+            <summary>
+            Gets or sets the <see cref="T:System.Exception"/> caught while executing the action.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.Filters.ExceptionContext.ExceptionHandled">
+            <summary>
+            Gets or sets an indication that the <see cref="P:Bytewizer.TinyCLR.Http.Mvc.Filters.ExceptionContext.Exception"/> has been handled.
+            </summary>   
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.Filters.ExceptionContext.Result">
+            <summary>
+            Gets or sets the <see cref="T:Bytewizer.TinyCLR.Http.Mvc.IActionResult"/>.
+            </summary>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Mvc.EmptyResult">
+            <summary>
+            Represents an <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ActionResult"/> that when executed will do nothing.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.EmptyResult.ExecuteResult(Bytewizer.TinyCLR.Http.Mvc.ActionContext)">
+            <inheritdoc />
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Mvc.IActionResult">
+            <summary>
+            Defines a contract that represents the result of an action method.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.IActionResult.ExecuteResult(Bytewizer.TinyCLR.Http.Mvc.ActionContext)">
+            <summary>
+            Executes the result operation of the action method. This method is called by MVC to process
+            the result of an action method.
+            </summary>
+            <param name="context">The context in which the result is executed. The context information includes
+            information about the action that was executed and request information.</param>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Mvc.JsonResult">
+            <summary>
+            An action result which formats the given object as JSON and sends to the client.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.JsonResult.#ctor(System.Object)">
+            <summary>
+            Creates a new <see cref="T:Bytewizer.TinyCLR.Http.Mvc.JsonResult"/> with the given <paramref name="value"/>.
+            </summary>
+            <param name="value">The value to format as JSON.</param>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.JsonResult.ContentType">
+            <summary>
+            Gets or sets the Content-Type header of the response.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.JsonResult.StatusCode">
+            <summary>
+            Gets or sets the HTTP status code.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.JsonResult.Value">
+            <summary>
+            Gets or sets the value to be formatted.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.JsonResult.ExecuteResult(Bytewizer.TinyCLR.Http.Mvc.ActionContext)">
+            <inheritdoc />
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.IModelBinder">
+            <summary>
+            Defines an interface for model binders.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.IModelBinder.CanBind(Bytewizer.TinyCLR.Http.Mvc.ModelBinding.IModelBinderContext)">
+            <summary>
+            Attempts to bind a model.
+            </summary>
+            <param name="context">The <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.ModelBinderContext"/>.</param>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.IModelBinder.Bind(Bytewizer.TinyCLR.Http.Mvc.ModelBinding.IModelBinderContext)">
+            <summary>
+            Bind a model.
+            </summary>
+            <param name="context">The <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.ModelBinderContext"/>.</param>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.IModelBinderContext">
+            <summary>
+            Context information for <seealso cref="T:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.IModelBinder"/>.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.IModelBinderContext.Prefix">
+            <summary>
+            Gets or sets prefix for this model in the list
+            </summary>
+            <remarks>Prefixes are used to be albe to load items which are deeper down in the graph.</remarks>
+            <example>User[0].</example>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.IModelBinderContext.ModelType">
+            <summary>
+            Gets type of model which we are currently mapping (i.e. view model type)
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.IModelBinderContext.ModelName">
+            <summary>
+            Gets name of the model. Corresponds to the property or argument name
+            </summary>
+            <remarks>Empty =  root, otherwise the property to load.</remarks>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.IModelBinderContext.ValueProvider">
+            <summary>
+            Gets provider used to load values.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.IModelBinderContext.Execute(System.Type,System.String,System.String)">
+            <summary>
+            Execute another binder
+            </summary>
+            <param name="modelType">Type that we want to get</param>
+            <param name="prefix">Prefix (if this is a nested get)</param>
+            <param name="modelName">Property/argument name</param>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.IValueProvider">
+            <summary>
+            Defines the methods that are required for a value provider.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.IValueProvider.Get(System.String)">
+            <summary>
+            Retrieves a value object using the specified key.
+            </summary>
+            <param name="key">The key of the value object to retrieve.</param>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.IValueProvider.GetValues">
+            <summary>
+            Retrieves all value object.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.IValueProvider.Find(System.String)">
+            <summary>
+            Find all parameters which starts with the specified argument.
+            </summary>
+            <param name="prefix">Beginning of the field name</param>
+            <returns>All matching parameters.</returns>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.ModelBinderContext">
+            <summary>
+            A context object for <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.IModelBinder"/>.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.ModelBinderContext.#ctor(System.Type,System.String,System.String,Bytewizer.TinyCLR.Http.Mvc.ModelBinding.IValueProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.ModelBinderContext" /> class.
+            </summary>
+            <param name="modelType">Type of the model (view model type).</param>
+            <param name="modelName">Name of the model (i.e. property or argument name).</param>
+            <param name="prefix">The prefix (if this is a nested field like "User.FirstName", prefix = "User.").</param>
+            <param name="valueProvider">The value provider.</param>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.ModelBinderContext.Prefix">
+            <summary>
+            Gets or sets prefix for this model in the list
+            </summary>
+            <remarks>Prefixes are used to be albe to load items which are deeper down in the graph.</remarks>
+            <example>User[0].</example>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.ModelBinderContext.ModelType">
+            <summary>
+            Gets type of model which we are currently mapping (i.e. view model type)
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.ModelBinderContext.ModelName">
+            <summary>
+            Gets name of the model. Corresponds to the property name
+            </summary>
+            <remarks>
+            Empty =  root, otherwise the property to load.
+            </remarks>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.ModelBinderContext.ValueProvider">
+            <summary>
+            Gets provider used to load values (for instance from HTTP forms)
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.ModelBinderContext.RootBinder">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.ModelBinderContext.Execute(System.Type,System.String,System.String)">
+            <summary>
+            Execute a child binding
+            </summary>
+            <param name="modelType">Child model type</param>
+            <param name="prefix"></param>
+            <param name="modelName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.ModelBinderContext.CreateForChild(System.Type,System.String,System.String)">
+            <summary>
+            Create a scope for a child model
+            </summary>
+            <param name="type">The type.</param>
+            <param name="prefix">The prefix.</param>
+            <param name="modelName">Name of the model.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.ModelBindingException">
+            <summary>
+            Represents an exception when attempting to bind to a model.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.ModelBindingException.ModelName">
+            <summary>
+            Gets the model name which caused the exception.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.ModelBindingException.Value">
+            <summary>
+            Gets the model value which caused the exception.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.ModelBindingException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.ModelBindingException"/> class.
+            </summary>
+            <param name="message">The exception message.</param>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.ModelBindingException.#ctor(System.String,System.String,System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.ModelBindingException"/> class.
+            </summary>
+            <param name="message">The exception message.</param>
+            <param name="modelName">The model name which caused the exception.</param>
+            <param name="value">The model value which caused the exception.</param>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.ModelBindingException.#ctor(System.String,System.String,System.Object,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.ModelBindingException"/> class.
+            </summary>
+            <param name="message">The exception message.</param>
+            <param name="modelName">The model name which caused the exception.</param>
+            <param name="value">The model value which caused the exception.</param>
+            <param name="innerException">The inner exception.</param>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.ModelBindingException.Message">
+            <summary>
+            The binding message.
+            </summary>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.PrimitiveModelBinder">
+            <summary>
+            An <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.IModelBinder"/> for primitive types.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.PrimitiveModelBinder.CanBind(Bytewizer.TinyCLR.Http.Mvc.ModelBinding.IModelBinderContext)">
+            <inheritdoc />
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.PrimitiveModelBinder.Bind(Bytewizer.TinyCLR.Http.Mvc.ModelBinding.IModelBinderContext)">
+            <inheritdoc />
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.RequestValueProvider">
+            <summary>
+            An <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.IValueProvider"/> for binding simple data types.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.RequestValueProvider.#ctor(Bytewizer.TinyCLR.Http.HttpRequest)">
+            <summary>
+            Initializes a new instance of <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.RequestValueProvider"/>.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.RequestValueProvider.Get(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.RequestValueProvider.GetKeys">
+            <inheritdoc />
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.RequestValueProvider.GetValues">
+            <inheritdoc />
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.ModelBinding.RequestValueProvider.Find(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Mvc.RedirectResult">
+            <summary>
+            An action result which redirect to another url or controller action.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.RedirectResult.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bytewizer.TinyCLR.Http.Mvc.RedirectResult"/> class with the values
+            provided.
+            </summary>
+            <param name="url">The local URL to redirect to.</param>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.RedirectResult.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bytewizer.TinyCLR.Http.Mvc.RedirectResult"/> class with the values
+            </summary>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.RedirectResult.Url">
+            <summary>
+            Gets or sets the URL to redirect to.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.RedirectResult.ExecuteResult(Bytewizer.TinyCLR.Http.Mvc.ActionContext)">
+            <inheritdoc />
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Mvc.StatusCodeResult">
+            <summary>
+            Represents an <see cref="T:Bytewizer.TinyCLR.Http.Mvc.ActionResult"/> that when executed will
+            produce an HTTP response with the given response status code.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.StatusCodeResult.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bytewizer.TinyCLR.Http.Mvc.StatusCodeResult"/> class
+            with the given <paramref name="statusCode"/>.
+            </summary>
+            <param name="statusCode">The HTTP status code of the response.</param>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.StatusCodeResult.StatusCode">
+            <summary>
+            Gets the HTTP status code.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Mvc.StatusCodeResult.ExecuteResult(Bytewizer.TinyCLR.Http.Mvc.ActionContext)">
+            <inheritdoc />
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.ControllerEndpointRouteBuilderExtensions">
+            <summary>
+            Contains extension methods for using Controllers with <see cref="T:Bytewizer.TinyCLR.Http.Routing.IEndpointRouteBuilder"/>.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.ControllerEndpointRouteBuilderExtensions.MapControllers(Bytewizer.TinyCLR.Http.Routing.IEndpointRouteBuilder)">
+            <summary>
+            Adds endpoints for controller actions to the <see cref="T:Bytewizer.TinyCLR.Http.Routing.IEndpointRouteBuilder"/> without specifying any routes.
+            </summary>
+            <param name="endpoints">The <see cref="T:Bytewizer.TinyCLR.Http.Routing.IEndpointRouteBuilder"/>.</param>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.ControllerEndpointRouteBuilderExtensions.MapControllerRoute(Bytewizer.TinyCLR.Http.Routing.IEndpointRouteBuilder,System.String,System.String,Bytewizer.TinyCLR.Http.Route)">
+            <summary>
+            Adds endpoints for controller actions to the <see cref="T:Bytewizer.TinyCLR.Http.Routing.IEndpointRouteBuilder"/> and specifies a route
+            with the given <paramref name="name"/>, <paramref name="pattern"/> and <paramref name="defaults"/>.
+            </summary>
+            <param name="endpoints">The <see cref="T:Bytewizer.TinyCLR.Http.Routing.IEndpointRouteBuilder"/> to add the route to.</param>
+            <param name="name">The name of the route.</param>
+            <param name="pattern">The URL pattern of the route.</param>
+            <param name="defaults">
+            An object that contains default values for route parameters. The object's properties represent the
+            names and values of the default values.
+            </param>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute(Bytewizer.TinyCLR.Http.Routing.IEndpointRouteBuilder)">
+            <summary>
+            Adds endpoints for controller actions to the <see cref="T:Bytewizer.TinyCLR.Http.Routing.IEndpointRouteBuilder"/> and adds the default route
+            <c>{controller=Home}/{action=Index}</c>.
+            </summary>
+            <param name="endpoints">The <see cref="T:Bytewizer.TinyCLR.Http.Routing.IEndpointRouteBuilder"/>.</param>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Route">
+            <summary>
+            Implementation of <see cref="T:Bytewizer.TinyCLR.Http.Route"/> class.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Route.controller">
+            <summary>
+            Get or sets the route controller.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Route.action">
+            <summary>
+            Get or sets the route action.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Stubble.ViewEngine.#ctor(System.String,System.Collections.IDictionary)">
+            <summary>
+            Use a template file to bind data and replace mustache variables with data, e.g. {{my-name}} is replaced with value of View["my-name"]
+            </summary>
+            <param name="file">relative path to the template file</param>
+            <param name="cache">Dictionary object used to save cached, parsed template to</param>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Stubble.ViewEngine.#ctor(System.String,System.String,System.Collections.IDictionary)">
+            <summary>
+            Use a template file to bind data and replace mustache variables with data, e.g. {{my-name}} is replaced with value of View["my-name"]
+            </summary>
+            <param name="file">relative path to the template file</param>
+            <param name="section">section name within the template file to load, e.g. {{my-section}} ... {{/my-section}}</param>
+            <param name="cache">Dictionary object used to save cached, parsed template to</param>
+        </member>
+    </members>
+</doc>

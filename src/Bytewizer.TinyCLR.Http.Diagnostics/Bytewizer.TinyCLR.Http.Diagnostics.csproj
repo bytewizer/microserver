@@ -69,17 +69,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bytewizer.TinyCLR.Core\Bytewizer.TinyCLR.Core.csproj">
-      <Project>{70392D1D-6B78-46C8-9531-C02915742A46}</Project>
-      <Name>Bytewizer.TinyCLR.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Bytewizer.TinyCLR.Http\Bytewizer.TinyCLR.Http.csproj">
       <Project>{EB778176-633A-4997-A683-2C891C5DB436}</Project>
       <Name>Bytewizer.TinyCLR.Http</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Bytewizer.TinyCLR.Logging.Abstractions\Bytewizer.TinyCLR.Logging.Abstractions.csproj">
-      <Project>{598D7917-49D1-4E76-BFF4-23221BAD7072}</Project>
-      <Name>Bytewizer.TinyCLR.Logging.Abstractions</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bytewizer.TinyCLR.Pipeline\Bytewizer.TinyCLR.Pipeline.csproj">
       <Project>{8470EE70-1C41-45E4-8EDF-0D20CFEBFFD1}</Project>

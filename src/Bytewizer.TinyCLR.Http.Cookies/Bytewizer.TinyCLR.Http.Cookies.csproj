@@ -75,10 +75,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bytewizer.TinyCLR.Core\Bytewizer.TinyCLR.Core.csproj">
-      <Project>{70392D1D-6B78-46C8-9531-C02915742A46}</Project>
-      <Name>Bytewizer.TinyCLR.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Bytewizer.TinyCLR.Http\Bytewizer.TinyCLR.Http.csproj">
       <Project>{EB778176-633A-4997-A683-2C891C5DB436}</Project>
       <Name>Bytewizer.TinyCLR.Http</Name>

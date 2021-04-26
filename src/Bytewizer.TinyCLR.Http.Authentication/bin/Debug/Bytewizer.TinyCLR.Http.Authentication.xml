@@ -1,0 +1,336 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Bytewizer.TinyCLR.Http.Authentication</name>
+    </assembly>
+    <members>
+        <member name="T:Bytewizer.TinyCLR.Http.Authenticator.BasicAuthenticationProvider">
+            <summary>
+            The Basic access authentication scheme. This scheme is not considered to be a secure method of user 
+            authentication(unless used in conjunction with some external secure system such as SSL, as the user name and password are passed over the network as cleartext.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Authenticator.BasicAuthenticationProvider.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bytewizer.TinyCLR.Http.Authenticator.BasicAuthenticationProvider"/> class.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Authenticator.BasicAuthenticationProvider.Scheme">
+            <inheritdoc/>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Authenticator.BasicAuthenticationProvider.Realm">
+            <summary>
+            To be displayed to users so they know which username and password to use.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Authenticator.BasicAuthenticationProvider.Authenticate(Bytewizer.TinyCLR.Http.HttpContext,Bytewizer.TinyCLR.Http.AuthenticationOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Authenticator.BasicAuthenticationProvider.Challenge(Bytewizer.TinyCLR.Http.HttpContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Authenticator.BasicAuthenticationProvider.Forbid(Bytewizer.TinyCLR.Http.HttpContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Authenticator.BasicAuthenticationProvider.CreateHA1Hash(System.String,System.String,System.String)">
+            <summary>
+            Method to pre-compute the "A1" MD5 hash.
+            </summary>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Authenticator.DigestAuthenticationProvider">
+            <summary>
+            The Digest Access Authentication scheme implemented as simple access authentication.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Authenticator.DigestAuthenticationProvider.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bytewizer.TinyCLR.Http.Authenticator.DigestAuthenticationProvider"/> class.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Authenticator.DigestAuthenticationProvider.Scheme">
+            <inheritdoc/>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Authenticator.DigestAuthenticationProvider.Realm">
+            <summary>
+            To be displayed to users so they know which username and password to use.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Authenticator.DigestAuthenticationProvider.Domain">
+            <summary>
+            A space-separated list of URIs that define the protection space.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Authenticator.DigestAuthenticationProvider.NonceLifetime">
+            <summary>
+            Controls how long the server nonce is valid in seconds.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Authenticator.DigestAuthenticationProvider.Opaque">
+            <summary>
+            A string of data specified by the server which should be returned by the client unchanged in 
+            the authorization header of subsequent requests with URIs in the same protection space.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Authenticator.DigestAuthenticationProvider.Algorithm">
+            <summary>
+            A string indicating a pair of algorithms used to produce the digest and a checksum.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Authenticator.DigestAuthenticationProvider.Qop">
+            <summary>
+            A string of one or more tokens indicating the "quality of protection" values supported by the server.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Authenticator.DigestAuthenticationProvider.Authenticate(Bytewizer.TinyCLR.Http.HttpContext,Bytewizer.TinyCLR.Http.AuthenticationOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Authenticator.DigestAuthenticationProvider.Challenge(Bytewizer.TinyCLR.Http.HttpContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Authenticator.DigestAuthenticationProvider.Forbid(Bytewizer.TinyCLR.Http.HttpContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Authenticator.AuthenticateResult">
+            <summary>
+            Contains the result of an authenticate call.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Authenticator.AuthenticateResult.Succeeded">
+            <summary>
+            Indicates if authenticate was successful.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Authenticator.AuthenticateResult.Failure">
+            <summary>
+            Holds failure information from the authentication.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.Authenticator.AuthenticateResult.Fail(System.String)">
+            <summary>
+            Indicates that there was a failure during authentication.
+            </summary>
+            <param name="message">The failure message.</param>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.AuthHelper">
+            <summary>
+            Provides helper methods for authentications.
+            </summary>
+        </member>
+        <member name="F:Bytewizer.TinyCLR.Http.AuthHelper.DefaultRealm">
+            <summary>
+            The default realm used by authentication providers.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.AuthHelper.ValidateHeader(Bytewizer.TinyCLR.Http.HttpContext,System.String@,System.String@)">
+            <summary>
+            Validate the authorization header parts.
+            </summary>
+            <param name="context">The context for the request.</param>
+            <param name="auth">The requested authentication parameters part.</param>
+            <param name="scheme">The requested scheme part.</param>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.AuthHelper.ComputeA1Hash(System.String,System.String)">
+            <summary>
+            Method to pre-compute the "A1" MD5 hash.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.AuthHelper.ComputeA1Hash(System.String,System.String,System.String)">
+            <summary>
+            Method to pre-compute the "A1" MD5 hash.
+            </summary>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.DefaultAccountProvider">
+            <summary>
+            Represents the default implementation of the <see cref="T:Bytewizer.TinyCLR.Http.IAccountProvider"/> interface.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.DefaultAccountProvider.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bytewizer.TinyCLR.Http.DefaultAccountProvider"/> class.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.DefaultAccountProvider.Users">
+            <summary>
+            <summary>
+            The cross reference table of users and HA1 hashes.
+            </summary>
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.DefaultAccountProvider.TryGetUser(System.String,Bytewizer.TinyCLR.Http.IUser@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.DefaultAccountProvider.CreateUser(System.String,System.String)">
+            <summary>
+            Registers a new user.
+            </summary>
+            <param name="username"></param>
+            <param name="secret"></param>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.DefaultAccountProvider.CreateUser(System.String,System.String,System.String)">
+            <summary>
+            Registers a new user.
+            </summary>
+            <param name="username"></param>
+            <param name="realm"></param>
+            <param name="secret"></param>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.DefaultAccountProvider.DeleteUser(System.String)">
+            <summary>
+            Deletes a user from the provider.
+            </summary>
+            <param name="username">The name of the user to delete.</param>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.DefaultUser">
+            <summary>
+            The default user added to <see cref="T:Bytewizer.TinyCLR.Http.IAccountProvider"/>.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.DefaultUser.Username">
+            <summary>
+            The user name allow for login.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.DefaultUser.HA1">
+            <summary>
+            The MD5 HA1 hash.
+            </summary>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.IUser">
+            <summary>
+            Used to provide a minimal interface for a user name and hash.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.IUser.Username">
+            <summary>
+            Gets or sets the unique name for the user.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.IUser.HA1">
+            <summary>
+            Gets or sets HA1 user hash.
+            </summary>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Features.HttpAuthenticationFeature">
+            <inheritdoc/>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Features.HttpAuthenticationFeature.User">
+            <inheritdoc/>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.Features.IHttpAuthenticationFeature">
+            <summary>
+            A feature interface for authentication. Use <see cref="P:Bytewizer.TinyCLR.Http.HttpContext.Features"/>
+            to access an instance associated with the current request.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Features.IHttpAuthenticationFeature.User">
+            <summary>
+            Gets or sets security information for the current HTTP request.
+            </summary>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.HttpContextExtensions">
+            <summary>
+            Extension methods for <see cref="T:Bytewizer.TinyCLR.Http.HttpContext"/> related to routing.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.HttpContextExtensions.GetCurrentUser(Bytewizer.TinyCLR.Http.HttpContext)">
+            <summary>
+            Extension method for getting the current user name request.
+            </summary>
+            <param name="context">The <see cref="T:Bytewizer.TinyCLR.Http.HttpContext"/> context.</param>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.IAuthenticationProvider">
+            <summary>
+            Used to provide authentication.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.IAuthenticationProvider.Scheme">
+            <summary>
+            The authenticator scheme.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.IAuthenticationProvider.Authenticate(Bytewizer.TinyCLR.Http.HttpContext,Bytewizer.TinyCLR.Http.AuthenticationOptions)">
+            <summary>
+            Authenticate for the specified authentication scheme.
+            </summary>
+            <param name="context">The <see cref="T:Bytewizer.TinyCLR.Http.HttpContext"/>.</param>
+            <param name="options">The <see cref="T:Bytewizer.TinyCLR.Http.AuthenticationOptions"/> used to configure the middleware.</param>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.IAuthenticationProvider.Challenge(Bytewizer.TinyCLR.Http.HttpContext)">
+            <summary>
+            Challenge the specified authentication scheme.
+            </summary>
+            <param name="context">The <see cref="T:Bytewizer.TinyCLR.Http.HttpContext"/>.</param>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.IAuthenticationProvider.Forbid(Bytewizer.TinyCLR.Http.HttpContext)">
+            <summary>
+            Forbids the specified authentication scheme.
+            </summary>
+            <param name="context">The <see cref="T:Bytewizer.TinyCLR.Http.HttpContext"/>.</param>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.AuthenticationMiddleware">
+            <summary>
+            A middleware that enables authentication capabilities.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.AuthenticationMiddleware.#ctor(Bytewizer.TinyCLR.Http.AuthenticationOptions)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bytewizer.TinyCLR.Http.AuthenticationMiddleware"/> class. Defaults to <see cref="T:Bytewizer.TinyCLR.Http.Authenticator.DigestAuthenticationProvider"/> authentication provider.
+            </summary>
+            <param name="options">The <see cref="T:Bytewizer.TinyCLR.Http.AuthenticationOptions"/> used to configure the middleware.</param>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.AuthenticationMiddleware.Invoke(Bytewizer.TinyCLR.Http.HttpContext,Bytewizer.TinyCLR.Http.RequestDelegate)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.AuthenticationMiddlewareExtensions">
+            <summary>
+            Extension methods for the <see cref="T:Bytewizer.TinyCLR.Http.AuthenticationMiddleware"/>.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.AuthenticationMiddlewareExtensions.UseAuthentication(Bytewizer.TinyCLR.Pipeline.Builder.IApplicationBuilder,Bytewizer.TinyCLR.Http.IAccountProvider)">
+            <summary>
+            Enable authentication capabilities.
+            </summary>
+            <param name="app">The <see cref="T:Bytewizer.TinyCLR.Pipeline.Builder.IApplicationBuilder"/> instance this method extends.</param>
+            <param name="accountService">The <see cref="T:Bytewizer.TinyCLR.Http.IAccountProvider"/> used to configure the middleware.</param>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.AuthenticationMiddlewareExtensions.UseAuthentication(Bytewizer.TinyCLR.Pipeline.Builder.IApplicationBuilder,Bytewizer.TinyCLR.Http.AuthenticationOptions)">
+            <summary>
+            Enable authentication capabilities.
+            </summary>
+            <param name="app">The <see cref="T:Bytewizer.TinyCLR.Pipeline.Builder.IApplicationBuilder"/> instance this method extends.</param>
+            <param name="options">The <see cref="T:Bytewizer.TinyCLR.Http.AuthenticationOptions"/> used to configure the middleware.</param>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.AuthenticationOptions">
+            <summary>
+            Options for selecting authentication scheme and account services.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.AuthenticationOptions.#ctor">
+            <summary>
+            Configuration for the <see cref="T:Bytewizer.TinyCLR.Http.AuthenticationMiddleware"/>.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.AuthenticationOptions.AuthenticationProvider">
+            <summary>
+            Authentication service for the specified authentication scheme.
+            </summary>
+        </member>
+        <member name="P:Bytewizer.TinyCLR.Http.AuthenticationOptions.AccountProvider">
+            <summary>
+            Account service for the specified authentication scheme.
+            </summary>
+        </member>
+        <member name="T:Bytewizer.TinyCLR.Http.IAccountProvider">
+            <summary>
+            Used to provide user accounts from account services.
+            </summary>
+        </member>
+        <member name="M:Bytewizer.TinyCLR.Http.IAccountProvider.TryGetUser(System.String,Bytewizer.TinyCLR.Http.IUser@)">
+            <summary>
+            Retrive a user from the account service.
+            </summary>
+            <param name="username">The user name to retrive</param>
+            <param name="user">The <see cref="T:Bytewizer.TinyCLR.Http.IUser"/> retrived if located</param>
+        </member>
+    </members>
+</doc>

@@ -11,15 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http", "B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Mvc", "Bytewizer.TinyCLR.Http.Mvc\Bytewizer.TinyCLR.Http.Mvc.csproj", "{15C6A7FC-1C29-471B-B57A-08D61C58FA08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Core", "Bytewizer.TinyCLR.Core\Bytewizer.TinyCLR.Core.csproj", "{70392D1D-6B78-46C8-9531-C02915742A46}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.StaticFiles", "Bytewizer.TinyCLR.Http.StaticFiles\Bytewizer.TinyCLR.Http.StaticFiles.csproj", "{2DD3D5AB-D849-4898-B6E9-1A49683955B2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Logging.Abstractions", "Bytewizer.TinyCLR.Logging.Abstractions\Bytewizer.TinyCLR.Logging.Abstractions.csproj", "{598D7917-49D1-4E76-BFF4-23221BAD7072}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Logging", "Bytewizer.TinyCLR.Logging\Bytewizer.TinyCLR.Logging.csproj", "{D6D13310-C4A1-4409-B0E3-10F29F7FF262}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Logging.Debug", "Bytewizer.TinyCLR.Logging.Debug\Bytewizer.TinyCLR.Logging.Debug.csproj", "{BE75C9F4-A4E1-4083-881D-AF55266EC7A7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Authentication", "Bytewizer.TinyCLR.Http.Authentication\Bytewizer.TinyCLR.Http.Authentication.csproj", "{A94B42E0-7FCC-448F-9645-6732ABA96F28}"
 EndProject
@@ -27,13 +19,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Cors
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.WebSockets", "Bytewizer.TinyCLR.Http.WebSocket\Bytewizer.TinyCLR.Http.WebSockets.csproj", "{968603C1-8EA5-4E4B-B5BE-4943CEFFB04E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Cryptography", "Bytewizer.TinyCLR.Cryptography\Bytewizer.TinyCLR.Cryptography.csproj", "{DC4E01F9-57C5-407A-A706-0EC3E5BC363F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Cookies", "Bytewizer.TinyCLR.Http.Cookies\Bytewizer.TinyCLR.Http.Cookies.csproj", "{C560DE7A-02F3-4FB0-BD59-9C96138BD502}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Diagnostics", "Bytewizer.TinyCLR.Http.Diagnostics\Bytewizer.TinyCLR.Http.Diagnostics.csproj", "{5FADD03F-72E0-4A6A-81F7-FE4FA44FCB36}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.IO.Compression", "Bytewizer.TinyCLR.IO.Compression\Bytewizer.TinyCLR.IO.Compression.csproj", "{2FEF0009-3637-4CD5-8371-31530861A717}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,26 +45,10 @@ Global
 		{15C6A7FC-1C29-471B-B57A-08D61C58FA08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15C6A7FC-1C29-471B-B57A-08D61C58FA08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15C6A7FC-1C29-471B-B57A-08D61C58FA08}.Release|Any CPU.Build.0 = Release|Any CPU
-		{70392D1D-6B78-46C8-9531-C02915742A46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{70392D1D-6B78-46C8-9531-C02915742A46}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{70392D1D-6B78-46C8-9531-C02915742A46}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{70392D1D-6B78-46C8-9531-C02915742A46}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2DD3D5AB-D849-4898-B6E9-1A49683955B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2DD3D5AB-D849-4898-B6E9-1A49683955B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DD3D5AB-D849-4898-B6E9-1A49683955B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DD3D5AB-D849-4898-B6E9-1A49683955B2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{598D7917-49D1-4E76-BFF4-23221BAD7072}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{598D7917-49D1-4E76-BFF4-23221BAD7072}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{598D7917-49D1-4E76-BFF4-23221BAD7072}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{598D7917-49D1-4E76-BFF4-23221BAD7072}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D6D13310-C4A1-4409-B0E3-10F29F7FF262}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D6D13310-C4A1-4409-B0E3-10F29F7FF262}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D6D13310-C4A1-4409-B0E3-10F29F7FF262}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D6D13310-C4A1-4409-B0E3-10F29F7FF262}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BE75C9F4-A4E1-4083-881D-AF55266EC7A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BE75C9F4-A4E1-4083-881D-AF55266EC7A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BE75C9F4-A4E1-4083-881D-AF55266EC7A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BE75C9F4-A4E1-4083-881D-AF55266EC7A7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A94B42E0-7FCC-448F-9645-6732ABA96F28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A94B42E0-7FCC-448F-9645-6732ABA96F28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A94B42E0-7FCC-448F-9645-6732ABA96F28}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -89,10 +61,6 @@ Global
 		{968603C1-8EA5-4E4B-B5BE-4943CEFFB04E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{968603C1-8EA5-4E4B-B5BE-4943CEFFB04E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{968603C1-8EA5-4E4B-B5BE-4943CEFFB04E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DC4E01F9-57C5-407A-A706-0EC3E5BC363F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DC4E01F9-57C5-407A-A706-0EC3E5BC363F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DC4E01F9-57C5-407A-A706-0EC3E5BC363F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DC4E01F9-57C5-407A-A706-0EC3E5BC363F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C560DE7A-02F3-4FB0-BD59-9C96138BD502}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C560DE7A-02F3-4FB0-BD59-9C96138BD502}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C560DE7A-02F3-4FB0-BD59-9C96138BD502}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -101,10 +69,6 @@ Global
 		{5FADD03F-72E0-4A6A-81F7-FE4FA44FCB36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FADD03F-72E0-4A6A-81F7-FE4FA44FCB36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FADD03F-72E0-4A6A-81F7-FE4FA44FCB36}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2FEF0009-3637-4CD5-8371-31530861A717}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2FEF0009-3637-4CD5-8371-31530861A717}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2FEF0009-3637-4CD5-8371-31530861A717}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2FEF0009-3637-4CD5-8371-31530861A717}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

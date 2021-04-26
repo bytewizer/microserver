@@ -110,10 +110,6 @@
     <Compile Include="Http\Route.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bytewizer.TinyCLR.Core\Bytewizer.TinyCLR.Core.csproj">
-      <Project>{70392D1D-6B78-46C8-9531-C02915742A46}</Project>
-      <Name>Bytewizer.TinyCLR.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Bytewizer.TinyCLR.Http\Bytewizer.TinyCLR.Http.csproj">
       <Project>{EB778176-633A-4997-A683-2C891C5DB436}</Project>
       <Name>Bytewizer.TinyCLR.Http</Name>
@@ -128,6 +124,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="GHIElectronics.TinyCLR.Core">
+      <Version>2.1.0-preview4</Version>
+    </PackageReference>
     <PackageReference Include="GHIElectronics.TinyCLR.Data.Json">
       <Version>2.1.0-preview4</Version>
     </PackageReference>

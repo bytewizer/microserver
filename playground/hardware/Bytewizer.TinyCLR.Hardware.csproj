@@ -96,16 +96,6 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Core\Bytewizer.TinyCLR.Core.csproj">
-      <Project>{70392D1D-6B78-46C8-9531-C02915742A46}</Project>
-      <Name>Bytewizer.TinyCLR.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Logging.Abstractions\Bytewizer.TinyCLR.Logging.Abstractions.csproj">
-      <Project>{598D7917-49D1-4E76-BFF4-23221BAD7072}</Project>
-      <Name>Bytewizer.TinyCLR.Logging.Abstractions</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

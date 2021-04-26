@@ -47,10 +47,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Core\Bytewizer.TinyCLR.Core.csproj">
-      <Project>{70392D1D-6B78-46C8-9531-C02915742A46}</Project>
-      <Name>Bytewizer.TinyCLR.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Http.Mvc\Bytewizer.TinyCLR.Http.Mvc.csproj">
       <Project>{15C6A7FC-1C29-471B-B57A-08D61C58FA08}</Project>
       <Name>Bytewizer.TinyCLR.Http.Mvc</Name>
@@ -82,9 +78,6 @@
     </Reference>
     <Reference Include="GHIElectronics.TinyCLR.IO, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GHIElectronics.TinyCLR.IO.2.1.0-preview4\lib\net452\GHIElectronics.TinyCLR.IO.dll</HintPath>
-    </Reference>
-    <Reference Include="GHIElectronics.TinyCLR.Networking, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GHIElectronics.TinyCLR.Networking.2.1.0-preview4\lib\net452\GHIElectronics.TinyCLR.Networking.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

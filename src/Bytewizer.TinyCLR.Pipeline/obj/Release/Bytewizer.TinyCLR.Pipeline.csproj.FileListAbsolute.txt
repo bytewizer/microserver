@@ -1,0 +1,9 @@
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Pipeline\bin\Release\Bytewizer.TinyCLR.Pipeline.dll
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Pipeline\bin\Release\Bytewizer.TinyCLR.Pipeline.pdb
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Pipeline\bin\Release\Bytewizer.TinyCLR.Core.dll
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Pipeline\bin\Release\mscorlib.dll
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Pipeline\obj\Release\Bytewizer.TinyCLR.Pipeline.csproj.CoreCompileInputs.cache
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Pipeline\obj\Release\Bytewizer.TinyCLR.Pipeline.sourcelink.json
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Pipeline\obj\Release\Bytewizer.TinyCLR.Pipeline.csproj.CopyComplete
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Pipeline\obj\Release\Bytewizer.TinyCLR.Pipeline.dll
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Pipeline\obj\Release\Bytewizer.TinyCLR.Pipeline.pdb

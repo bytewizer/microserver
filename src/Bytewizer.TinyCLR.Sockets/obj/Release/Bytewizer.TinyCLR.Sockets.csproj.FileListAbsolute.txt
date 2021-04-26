@@ -1,0 +1,15 @@
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Sockets\bin\Release\Bytewizer.TinyCLR.Sockets.dll
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Sockets\bin\Release\Bytewizer.TinyCLR.Sockets.pdb
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Sockets\bin\Release\Bytewizer.TinyCLR.Core.dll
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Sockets\bin\Release\Bytewizer.TinyCLR.Logging.Abstractions.dll
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Sockets\bin\Release\mscorlib.dll
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Sockets\bin\Release\GHIElectronics.TinyCLR.IO.dll
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Sockets\bin\Release\GHIElectronics.TinyCLR.Networking.dll
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Sockets\bin\Release\Bytewizer.TinyCLR.Pipeline.dll
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Sockets\bin\Release\Bytewizer.TinyCLR.Pipeline.pdb
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Sockets\obj\Release\Bytewizer.TinyCLR.Sockets.csprojAssemblyReference.cache
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Sockets\obj\Release\Bytewizer.TinyCLR.Sockets.csproj.CoreCompileInputs.cache
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Sockets\obj\Release\Bytewizer.TinyCLR.Sockets.sourcelink.json
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Sockets\obj\Release\Bytewizer.TinyCLR.Sockets.csproj.CopyComplete
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Sockets\obj\Release\Bytewizer.TinyCLR.Sockets.dll
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Sockets\obj\Release\Bytewizer.TinyCLR.Sockets.pdb

@@ -78,6 +78,9 @@
     <Compile Include="Pipeline\RequestDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Bytewizer.TinyCLR.Core">
+      <Version>2.0.0-prebuild.6</Version>
+    </PackageReference>
     <PackageReference Include="GHIElectronics.TinyCLR.Core">
       <Version>2.1.0-preview4</Version>
     </PackageReference>
@@ -91,12 +94,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Bytewizer.TinyCLR.Core\Bytewizer.TinyCLR.Core.csproj">
-      <Project>{70392D1D-6B78-46C8-9531-C02915742A46}</Project>
-      <Name>Bytewizer.TinyCLR.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
