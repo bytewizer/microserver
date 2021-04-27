@@ -1,6 +1,3 @@
-C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Cors\obj\Debug\Bytewizer.TinyCLR.Http.Cors.csprojAssemblyReference.cache
-C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Cors\obj\Debug\Bytewizer.TinyCLR.Http.Cors.csproj.CoreCompileInputs.cache
-C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Cors\obj\Debug\Bytewizer.TinyCLR.Http.Cors.sourcelink.json
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Cors\bin\Debug\Bytewizer.TinyCLR.Http.Cors.xml
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Cors\bin\Debug\Bytewizer.TinyCLR.Http.Cors.dll
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Cors\bin\Debug\Bytewizer.TinyCLR.Http.Cors.pdb
@@ -18,6 +15,8 @@ C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Cors\bin\Debug\Byt
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Cors\bin\Debug\Bytewizer.TinyCLR.Pipeline.xml
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Cors\bin\Debug\Bytewizer.TinyCLR.Sockets.pdb
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Cors\bin\Debug\Bytewizer.TinyCLR.Sockets.xml
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Cors\obj\Debug\Bytewizer.TinyCLR.Http.Cors.csproj.CoreCompileInputs.cache
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Cors\obj\Debug\Bytewizer.TinyCLR.Http.Cors.sourcelink.json
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Cors\obj\Debug\Bytewizer.TinyCLR.Http.Cors.csproj.CopyComplete
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Cors\obj\Debug\Bytewizer.TinyCLR.Http.Cors.dll
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Cors\obj\Debug\Bytewizer.TinyCLR.Http.Cors.pdb

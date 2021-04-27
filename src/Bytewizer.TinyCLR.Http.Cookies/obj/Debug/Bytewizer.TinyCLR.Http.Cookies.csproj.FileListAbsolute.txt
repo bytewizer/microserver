@@ -1,6 +1,3 @@
-C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Cookies\obj\Debug\Bytewizer.TinyCLR.Http.Cookies.csprojAssemblyReference.cache
-C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Cookies\obj\Debug\Bytewizer.TinyCLR.Http.Cookies.csproj.CoreCompileInputs.cache
-C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Cookies\obj\Debug\Bytewizer.TinyCLR.Http.Cookies.sourcelink.json
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Cookies\bin\Debug\Bytewizer.TinyCLR.Http.Cookies.xml
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Cookies\bin\Debug\Bytewizer.TinyCLR.Http.Cookies.dll
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Cookies\bin\Debug\Bytewizer.TinyCLR.Http.Cookies.pdb
@@ -18,6 +15,8 @@ C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Cookies\bin\Debug\
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Cookies\bin\Debug\Bytewizer.TinyCLR.Pipeline.xml
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Cookies\bin\Debug\Bytewizer.TinyCLR.Sockets.pdb
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Cookies\bin\Debug\Bytewizer.TinyCLR.Sockets.xml
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Cookies\obj\Debug\Bytewizer.TinyCLR.Http.Cookies.csproj.CoreCompileInputs.cache
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Cookies\obj\Debug\Bytewizer.TinyCLR.Http.Cookies.sourcelink.json
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Cookies\obj\Debug\Bytewizer.TinyCLR.Http.Cookies.csproj.CopyComplete
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Cookies\obj\Debug\Bytewizer.TinyCLR.Http.Cookies.dll
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Cookies\obj\Debug\Bytewizer.TinyCLR.Http.Cookies.pdb

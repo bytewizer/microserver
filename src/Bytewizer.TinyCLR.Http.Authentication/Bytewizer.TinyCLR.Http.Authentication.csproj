@@ -94,10 +94,16 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="GHIElectronics.TinyCLR.Cryptography">
-      <Version>2.1.0-preview4</Version>
+      <Version>2.1.0-rc1</Version>
+    </PackageReference>
+    <PackageReference Include="GHIElectronics.TinyCLR.Data.Json">
+      <Version>2.1.0-rc1</Version>
+    </PackageReference>
+    <PackageReference Include="GHIElectronics.TinyCLR.IO">
+      <Version>2.1.0-rc1</Version>
     </PackageReference>
     <PackageReference Include="GHIElectronics.TinyCLR.Networking">
-      <Version>2.1.0-preview4</Version>
+      <Version>2.1.0-rc1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.SourceLink.GitHub">
       <Version>1.0.0</Version>

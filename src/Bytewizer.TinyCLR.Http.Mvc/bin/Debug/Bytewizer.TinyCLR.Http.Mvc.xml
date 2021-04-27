@@ -575,6 +575,11 @@
             Gets or sets the HTTP status code.
             </summary>
         </member>
+        <member name="P:Bytewizer.TinyCLR.Http.Mvc.JsonResult.Indented">
+            <summary>
+            Gets or sets a value that defines whether JSON should use pretty printing.
+            </summary>
+        </member>
         <member name="P:Bytewizer.TinyCLR.Http.Mvc.JsonResult.Value">
             <summary>
             Gets or sets the value to be formatted.

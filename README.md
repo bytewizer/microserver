@@ -16,13 +16,14 @@ Build on a modular tcp/udp service wiht an extendable pipeline and SSL transport
 
 Create a modular web services including middleware, moduler routing, digest authentication, controllers, action results, view engine, storage / resource file serving, default file routing, JSON integration, and websockets.
 
-* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http">Web Service</a>
+* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http">Http Server</a>
 * <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.WebSockets">WebSockets</a>
 * <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Diagnostics">Diagnostics</a> 
 * <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Authentication">Authentication</a>
 * <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Cookies">Cookie Support</a>
 * <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.StaticFiles">Static File Handling</a> 
 * <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Mvc">Model-View-Controllers (MVC)</a> 
+* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Json">JavaScript Object Notation (JSON)</a>
 * <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Cors">Cross-origin Resource Sharing (Cors)</a>
 
 ## Runtime libraries

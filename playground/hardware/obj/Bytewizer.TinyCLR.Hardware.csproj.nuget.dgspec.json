@@ -38,27 +38,31 @@
           "dependencies": {
             "GHIElectronics.TinyCLR.Core": {
               "target": "Package",
-              "version": "[2.1.0-preview4, )"
+              "version": "[2.1.0-rc1, )"
+            },
+            "GHIElectronics.TinyCLR.Data.Json": {
+              "target": "Package",
+              "version": "[2.1.0-rc1, )"
             },
             "GHIElectronics.TinyCLR.Devices.Network": {
               "target": "Package",
-              "version": "[2.1.0-preview4, )"
+              "version": "[2.1.0-rc1, )"
             },
             "GHIElectronics.TinyCLR.Devices.Storage": {
               "target": "Package",
-              "version": "[2.1.0-preview4, )"
+              "version": "[2.1.0-rc1, )"
             },
             "GHIElectronics.TinyCLR.IO": {
               "target": "Package",
-              "version": "[2.1.0-preview4, )"
+              "version": "[2.1.0-rc1, )"
             },
             "GHIElectronics.TinyCLR.Networking": {
               "target": "Package",
-              "version": "[2.1.0-preview4, )"
+              "version": "[2.1.0-rc1, )"
             },
             "GHIElectronics.TinyCLR.Pins": {
               "target": "Package",
-              "version": "[2.1.0-preview4, )"
+              "version": "[2.1.0-rc1, )"
             },
             "Microsoft.SourceLink.GitHub": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -70,7 +74,7 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[5.8.0, )"
+              "version": "[5.9.0, )"
             }
           }
         }

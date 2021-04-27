@@ -47,6 +47,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Diag
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.Playground.Cookies", "cookies\Bytewizer.Playground.Cookies.csproj", "{7B10DA7D-3137-4053-8E07-E284988CF3FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Json", "..\src\Bytewizer.TinyCLR.Http.Json\Bytewizer.TinyCLR.Http.Json.csproj", "{EA9A543B-DA2A-46C1-9E69-47C87DB94DBA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -155,6 +157,10 @@ Global
 		{7B10DA7D-3137-4053-8E07-E284988CF3FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B10DA7D-3137-4053-8E07-E284988CF3FF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7B10DA7D-3137-4053-8E07-E284988CF3FF}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{EA9A543B-DA2A-46C1-9E69-47C87DB94DBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA9A543B-DA2A-46C1-9E69-47C87DB94DBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA9A543B-DA2A-46C1-9E69-47C87DB94DBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA9A543B-DA2A-46C1-9E69-47C87DB94DBA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

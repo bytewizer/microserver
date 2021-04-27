@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\GHIElectronics.TinyCLR.Core.2.1.0-preview4\build\net452\GHIElectronics.TinyCLR.Core.props" Condition="Exists('..\packages\GHIElectronics.TinyCLR.Core.2.1.0-preview4\build\net452\GHIElectronics.TinyCLR.Core.props')" />
+  <Import Project="..\packages\GHIElectronics.TinyCLR.Core.2.1.0-rc1\build\net452\GHIElectronics.TinyCLR.Core.props" Condition="Exists('..\packages\GHIElectronics.TinyCLR.Core.2.1.0-rc1\build\net452\GHIElectronics.TinyCLR.Core.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -68,11 +68,19 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="GHIElectronics.TinyCLR.Data.Json, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GHIElectronics.TinyCLR.Data.Json.2.1.0-rc1\lib\net452\GHIElectronics.TinyCLR.Data.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="GHIElectronics.TinyCLR.IO, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GHIElectronics.TinyCLR.IO.2.1.0-rc1\lib\net452\GHIElectronics.TinyCLR.IO.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\GHIElectronics.TinyCLR.Core.2.1.0-preview4\build\net452\GHIElectronics.TinyCLR.Core.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\GHIElectronics.TinyCLR.Core.2.1.0-preview4\build\net452\GHIElectronics.TinyCLR.Core.props'))" />
+    <Error Condition="!Exists('..\packages\GHIElectronics.TinyCLR.Core.2.1.0-rc1\build\net452\GHIElectronics.TinyCLR.Core.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\GHIElectronics.TinyCLR.Core.2.1.0-rc1\build\net452\GHIElectronics.TinyCLR.Core.props'))" />
   </Target>
 </Project>

@@ -1,18 +1,19 @@
 {
   "version": 2,
-  "dgSpecHash": "UrqQ+lxT3oTAU9lQ0DAOs13A18KD6DKaneHJzYlFWIH8HTqsLBsr+vudENYDGyoXOYY9rss7rgyukCwgoCJ94Q==",
+  "dgSpecHash": "45eU2+ZGHsgaJxmxhlVmdDRDa4Hvvo6sCAnFvs31mgK1tDIda5JVMvN1BwKF6uURpHounfycyrLo3FFcHOnKNw==",
   "success": true,
   "projectFilePath": "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Http.Cors\\Bytewizer.TinyCLR.Http.Cors.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Tom Rice\\.nuget\\packages\\bytewizer.tinyclr.core\\2.0.0-prebuild.6\\bytewizer.tinyclr.core.2.0.0-prebuild.6.nupkg.sha512",
-    "C:\\Users\\Tom Rice\\.nuget\\packages\\bytewizer.tinyclr.logging.abstractions\\2.0.0-prebuild.6\\bytewizer.tinyclr.logging.abstractions.2.0.0-prebuild.6.nupkg.sha512",
-    "C:\\Users\\Tom Rice\\.nuget\\packages\\ghielectronics.tinyclr.core\\2.1.0-preview4\\ghielectronics.tinyclr.core.2.1.0-preview4.nupkg.sha512",
-    "C:\\Users\\Tom Rice\\.nuget\\packages\\ghielectronics.tinyclr.io\\2.1.0-preview4\\ghielectronics.tinyclr.io.2.1.0-preview4.nupkg.sha512",
-    "C:\\Users\\Tom Rice\\.nuget\\packages\\ghielectronics.tinyclr.networking\\2.1.0-preview4\\ghielectronics.tinyclr.networking.2.1.0-preview4.nupkg.sha512",
+    "C:\\Users\\Tom Rice\\.nuget\\packages\\bytewizer.tinyclr.core\\2.0.0-prebuild.10\\bytewizer.tinyclr.core.2.0.0-prebuild.10.nupkg.sha512",
+    "C:\\Users\\Tom Rice\\.nuget\\packages\\bytewizer.tinyclr.logging.abstractions\\2.0.0-prebuild.10\\bytewizer.tinyclr.logging.abstractions.2.0.0-prebuild.10.nupkg.sha512",
+    "C:\\Users\\Tom Rice\\.nuget\\packages\\ghielectronics.tinyclr.core\\2.1.0-rc1\\ghielectronics.tinyclr.core.2.1.0-rc1.nupkg.sha512",
+    "C:\\Users\\Tom Rice\\.nuget\\packages\\ghielectronics.tinyclr.data.json\\2.1.0-rc1\\ghielectronics.tinyclr.data.json.2.1.0-rc1.nupkg.sha512",
+    "C:\\Users\\Tom Rice\\.nuget\\packages\\ghielectronics.tinyclr.io\\2.1.0-rc1\\ghielectronics.tinyclr.io.2.1.0-rc1.nupkg.sha512",
+    "C:\\Users\\Tom Rice\\.nuget\\packages\\ghielectronics.tinyclr.networking\\2.1.0-rc1\\ghielectronics.tinyclr.networking.2.1.0-rc1.nupkg.sha512",
     "C:\\Users\\Tom Rice\\.nuget\\packages\\microsoft.build.tasks.git\\1.0.0\\microsoft.build.tasks.git.1.0.0.nupkg.sha512",
     "C:\\Users\\Tom Rice\\.nuget\\packages\\microsoft.sourcelink.common\\1.0.0\\microsoft.sourcelink.common.1.0.0.nupkg.sha512",
     "C:\\Users\\Tom Rice\\.nuget\\packages\\microsoft.sourcelink.github\\1.0.0\\microsoft.sourcelink.github.1.0.0.nupkg.sha512",
-    "C:\\Users\\Tom Rice\\.nuget\\packages\\nuget.build.tasks.pack\\5.8.0\\nuget.build.tasks.pack.5.8.0.nupkg.sha512"
+    "C:\\Users\\Tom Rice\\.nuget\\packages\\nuget.build.tasks.pack\\5.9.0\\nuget.build.tasks.pack.5.9.0.nupkg.sha512"
   ],
   "logs": []
 }

@@ -106,3 +106,8 @@ Middleware 2: Code executed after 'next'
 Middleware 1: Code executed after 'next'
 Context: Finished
 ```
+
+## TinyCLR Packages
+```bash
+PM> Install-Package Bytewizer.TinyCLR.Pipeline
+```

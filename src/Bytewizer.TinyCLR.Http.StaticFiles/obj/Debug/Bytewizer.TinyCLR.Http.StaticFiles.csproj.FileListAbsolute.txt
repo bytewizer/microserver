@@ -1,6 +1,3 @@
-C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.StaticFiles\obj\Debug\Bytewizer.TinyCLR.Http.StaticFiles.csprojAssemblyReference.cache
-C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.StaticFiles\obj\Debug\Bytewizer.TinyCLR.Http.StaticFiles.csproj.CoreCompileInputs.cache
-C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.StaticFiles\obj\Debug\Bytewizer.TinyCLR.Http.StaticFiles.sourcelink.json
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.StaticFiles\bin\Debug\Bytewizer.TinyCLR.Http.StaticFiles.xml
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.StaticFiles\bin\Debug\Bytewizer.TinyCLR.Http.StaticFiles.dll
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.StaticFiles\bin\Debug\Bytewizer.TinyCLR.Http.StaticFiles.pdb
@@ -20,6 +17,9 @@ C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.StaticFiles\bin\De
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.StaticFiles\bin\Debug\Bytewizer.TinyCLR.Pipeline.xml
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.StaticFiles\bin\Debug\Bytewizer.TinyCLR.Sockets.pdb
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.StaticFiles\bin\Debug\Bytewizer.TinyCLR.Sockets.xml
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.StaticFiles\obj\Debug\Bytewizer.TinyCLR.Http.StaticFiles.csprojAssemblyReference.cache
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.StaticFiles\obj\Debug\Bytewizer.TinyCLR.Http.StaticFiles.csproj.CoreCompileInputs.cache
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.StaticFiles\obj\Debug\Bytewizer.TinyCLR.Http.StaticFiles.sourcelink.json
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.StaticFiles\obj\Debug\Bytewizer.TinyCLR.Http.StaticFiles.csproj.CopyComplete
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.StaticFiles\obj\Debug\Bytewizer.TinyCLR.Http.StaticFiles.dll
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.StaticFiles\obj\Debug\Bytewizer.TinyCLR.Http.StaticFiles.pdb

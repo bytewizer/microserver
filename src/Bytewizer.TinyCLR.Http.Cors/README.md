@@ -48,5 +48,10 @@ var server = new HttpServer(options =>
 server.Start();
 ```
 
+## TinyCLR Packages
+```bash
+PM> Install-Package Bytewizer.TinyCLR.Cors
+```
+
 ## RFC - Related Request for Comments 
 - [RFC 6454 - The Web Origin Concept](https://tools.ietf.org/html/rfc6454)

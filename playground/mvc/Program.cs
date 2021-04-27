@@ -1,4 +1,8 @@
-﻿using Bytewizer.TinyCLR.Http;
+﻿using System;
+
+using Bytewizer.TinyCLR.Http;
+
+using Bytewizer.Playground.Mvc.Models;
 
 namespace Bytewizer.Playground.Mvc
 {

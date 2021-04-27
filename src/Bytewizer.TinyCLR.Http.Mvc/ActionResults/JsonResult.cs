@@ -1,7 +1,6 @@
+using GHIElectronics.TinyCLR.Data.Json;
 using System;
 using System.Text;
-
-using GHIElectronics.TinyCLR.Data.Json;
 
 namespace Bytewizer.TinyCLR.Http.Mvc
 {
@@ -30,6 +29,11 @@ namespace Bytewizer.TinyCLR.Http.Mvc
         public int StatusCode { get; set; } = StatusCodes.Status200OK;
 
         /// <summary>
+        /// Gets or sets a value that defines whether JSON should use pretty printing.
+        /// </summary>
+        public bool Indented { get; set; } = false;
+
+        /// <summary>
         /// Gets or sets the value to be formatted.
         /// </summary>
         public object Value { get; set; }
@@ -41,8 +45,10 @@ namespace Bytewizer.TinyCLR.Http.Mvc
             {
                 throw new ArgumentNullException(nameof(context));
             }
-            var json = JsonConverter.Serialize(Value).ToString();
-            context.HttpContext.Response.Write(json, ContentType, StatusCode, Encoding.UTF8);
+
+            var options = new JsonSerializationOptions() { Indented = Indented };
+
+            context.HttpContext.Response.WriteJson(Value, ContentType, StatusCode, Encoding.UTF8, options);
         }
     }
 }

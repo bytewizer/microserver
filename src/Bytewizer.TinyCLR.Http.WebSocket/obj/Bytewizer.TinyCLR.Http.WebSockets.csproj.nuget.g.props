@@ -19,7 +19,7 @@
     <Import Project="$(NuGetPackageRoot)microsoft.sourcelink.common\1.0.0\build\Microsoft.SourceLink.Common.props" Condition="Exists('$(NuGetPackageRoot)microsoft.sourcelink.common\1.0.0\build\Microsoft.SourceLink.Common.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.build.tasks.git\1.0.0\build\Microsoft.Build.Tasks.Git.props" Condition="Exists('$(NuGetPackageRoot)microsoft.build.tasks.git\1.0.0\build\Microsoft.Build.Tasks.Git.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.sourcelink.github\1.0.0\build\Microsoft.SourceLink.GitHub.props" Condition="Exists('$(NuGetPackageRoot)microsoft.sourcelink.github\1.0.0\build\Microsoft.SourceLink.GitHub.props')" />
-    <Import Project="$(NuGetPackageRoot)ghielectronics.tinyclr.core\2.1.0-preview4\build\net452\GHIElectronics.TinyCLR.Core.props" Condition="Exists('$(NuGetPackageRoot)ghielectronics.tinyclr.core\2.1.0-preview4\build\net452\GHIElectronics.TinyCLR.Core.props')" />
+    <Import Project="$(NuGetPackageRoot)ghielectronics.tinyclr.core\2.1.0-rc1\build\net452\GHIElectronics.TinyCLR.Core.props" Condition="Exists('$(NuGetPackageRoot)ghielectronics.tinyclr.core\2.1.0-rc1\build\net452\GHIElectronics.TinyCLR.Core.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <PkgMicrosoft_SourceLink_Common Condition=" '$(PkgMicrosoft_SourceLink_Common)' == '' ">C:\Users\Tom Rice\.nuget\packages\microsoft.sourcelink.common\1.0.0</PkgMicrosoft_SourceLink_Common>

@@ -4,6 +4,81 @@
     "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Http.Mvc\\Bytewizer.TinyCLR.Http.Mvc.csproj": {}
   },
   "projects": {
+    "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Http.Json\\Bytewizer.TinyCLR.Http.Json.csproj": {
+      "version": "2.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Http.Json\\Bytewizer.TinyCLR.Http.Json.csproj",
+        "projectName": "Bytewizer.TinyCLR.Http.Json",
+        "projectPath": "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Http.Json\\Bytewizer.TinyCLR.Http.Json.csproj",
+        "packagesPath": "C:\\Users\\Tom Rice\\.nuget\\packages\\",
+        "outputPath": "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Http.Json\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "configFilePaths": [
+          "C:\\Repos\\microcompiler\\microserver\\playground\\NuGet.Config",
+          "C:\\Users\\Tom Rice\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net452"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Repos\\microcompiler\\microserver\\.prerelease\\packages": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net452": {
+            "projectReferences": {
+              "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Http\\Bytewizer.TinyCLR.Http.csproj": {
+                "projectPath": "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Http\\Bytewizer.TinyCLR.Http.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net452": {
+          "dependencies": {
+            "GHIElectronics.TinyCLR.Core": {
+              "target": "Package",
+              "version": "[2.1.0-rc1, )"
+            },
+            "GHIElectronics.TinyCLR.Data.Json": {
+              "target": "Package",
+              "version": "[2.1.0-rc1, )"
+            },
+            "GHIElectronics.TinyCLR.IO": {
+              "target": "Package",
+              "version": "[2.1.0-rc1, )"
+            },
+            "Microsoft.SourceLink.GitHub": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
+            "NuGet.Build.Tasks.Pack": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.9.0, )"
+            }
+          }
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    },
     "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Http.Mvc\\Bytewizer.TinyCLR.Http.Mvc.csproj": {
       "version": "2.0.0",
       "restore": {
@@ -30,6 +105,9 @@
         "frameworks": {
           "net452": {
             "projectReferences": {
+              "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Http.Json\\Bytewizer.TinyCLR.Http.Json.csproj": {
+                "projectPath": "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Http.Json\\Bytewizer.TinyCLR.Http.Json.csproj"
+              },
               "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Http\\Bytewizer.TinyCLR.Http.csproj": {
                 "projectPath": "C:\\Repos\\microcompiler\\microserver\\src\\Bytewizer.TinyCLR.Http\\Bytewizer.TinyCLR.Http.csproj"
               },
@@ -48,19 +126,19 @@
           "dependencies": {
             "GHIElectronics.TinyCLR.Core": {
               "target": "Package",
-              "version": "[2.1.0-preview4, )"
+              "version": "[2.1.0-rc1, )"
             },
             "GHIElectronics.TinyCLR.Data.Json": {
               "target": "Package",
-              "version": "[2.1.0-preview4, )"
+              "version": "[2.1.0-rc1, )"
             },
             "GHIElectronics.TinyCLR.IO": {
               "target": "Package",
-              "version": "[2.1.0-preview4, )"
+              "version": "[2.1.0-rc1, )"
             },
             "GHIElectronics.TinyCLR.Networking": {
               "target": "Package",
-              "version": "[2.1.0-preview4, )"
+              "version": "[2.1.0-rc1, )"
             },
             "Microsoft.SourceLink.GitHub": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -128,13 +206,17 @@
       "frameworks": {
         "net452": {
           "dependencies": {
+            "GHIElectronics.TinyCLR.Data.Json": {
+              "target": "Package",
+              "version": "[2.1.0-rc1, )"
+            },
             "GHIElectronics.TinyCLR.IO": {
               "target": "Package",
-              "version": "[2.1.0-preview4, )"
+              "version": "[2.1.0-rc1, )"
             },
             "GHIElectronics.TinyCLR.Networking": {
               "target": "Package",
-              "version": "[2.1.0-preview4, )"
+              "version": "[2.1.0-rc1, )"
             },
             "Microsoft.SourceLink.GitHub": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -197,11 +279,19 @@
           "dependencies": {
             "Bytewizer.TinyCLR.Core": {
               "target": "Package",
-              "version": "[2.0.0-prebuild.6, )"
+              "version": "[2.0.0-prebuild.10, )"
             },
             "GHIElectronics.TinyCLR.Core": {
               "target": "Package",
-              "version": "[2.1.0-preview4, )"
+              "version": "[2.1.0-rc1, )"
+            },
+            "GHIElectronics.TinyCLR.Data.Json": {
+              "target": "Package",
+              "version": "[2.1.0-rc1, )"
+            },
+            "GHIElectronics.TinyCLR.IO": {
+              "target": "Package",
+              "version": "[2.1.0-rc1, )"
             },
             "Microsoft.SourceLink.GitHub": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -268,15 +358,19 @@
           "dependencies": {
             "Bytewizer.TinyCLR.Logging.Abstractions": {
               "target": "Package",
-              "version": "[2.0.0-prebuild.6, )"
+              "version": "[2.0.0-prebuild.10, )"
+            },
+            "GHIElectronics.TinyCLR.Data.Json": {
+              "target": "Package",
+              "version": "[2.1.0-rc1, )"
             },
             "GHIElectronics.TinyCLR.IO": {
               "target": "Package",
-              "version": "[2.1.0-preview4, )"
+              "version": "[2.1.0-rc1, )"
             },
             "GHIElectronics.TinyCLR.Networking": {
               "target": "Package",
-              "version": "[2.1.0-preview4, )"
+              "version": "[2.1.0-rc1, )"
             },
             "Microsoft.SourceLink.GitHub": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",

@@ -2,10 +2,10 @@
   "version": 3,
   "targets": {
     ".NETFramework,Version=v4.5.2": {
-      "Bytewizer.TinyCLR.Core/2.0.0-prebuild.6": {
+      "Bytewizer.TinyCLR.Core/2.0.0-prebuild.10": {
         "type": "package",
         "dependencies": {
-          "GHIElectronics.TinyCLR.Core": "2.1.0-preview4"
+          "GHIElectronics.TinyCLR.Core": "2.1.0-rc1"
         },
         "compile": {
           "lib/net452/Bytewizer.TinyCLR.Core.dll": {}
@@ -14,10 +14,10 @@
           "lib/net452/Bytewizer.TinyCLR.Core.dll": {}
         }
       },
-      "Bytewizer.TinyCLR.Logging.Abstractions/2.0.0-prebuild.6": {
+      "Bytewizer.TinyCLR.Logging.Abstractions/2.0.0-prebuild.10": {
         "type": "package",
         "dependencies": {
-          "GHIElectronics.TinyCLR.Core": "2.1.0-preview4"
+          "GHIElectronics.TinyCLR.Core": "2.1.0-rc1"
         },
         "compile": {
           "lib/net452/Bytewizer.TinyCLR.Logging.Abstractions.dll": {}
@@ -26,7 +26,7 @@
           "lib/net452/Bytewizer.TinyCLR.Logging.Abstractions.dll": {}
         }
       },
-      "GHIElectronics.TinyCLR.Core/2.1.0-preview4": {
+      "GHIElectronics.TinyCLR.Core/2.1.0-rc1": {
         "type": "package",
         "compile": {
           "lib/net452/mscorlib.dll": {}
@@ -38,11 +38,24 @@
           "build/net452/GHIElectronics.TinyCLR.Core.props": {}
         }
       },
-      "GHIElectronics.TinyCLR.Devices.Storage/2.1.0-preview4": {
+      "GHIElectronics.TinyCLR.Data.Json/2.1.0-rc1": {
         "type": "package",
         "dependencies": {
-          "GHIElectronics.TinyCLR.Core": "2.1.0-preview4",
-          "GHIElectronics.TinyCLR.Native": "2.1.0-preview4"
+          "GHIElectronics.TinyCLR.Core": "2.1.0-rc1",
+          "GHIElectronics.TinyCLR.IO": "2.1.0-rc1"
+        },
+        "compile": {
+          "lib/net452/GHIElectronics.TinyCLR.Data.Json.dll": {}
+        },
+        "runtime": {
+          "lib/net452/GHIElectronics.TinyCLR.Data.Json.dll": {}
+        }
+      },
+      "GHIElectronics.TinyCLR.Devices.Storage/2.1.0-rc1": {
+        "type": "package",
+        "dependencies": {
+          "GHIElectronics.TinyCLR.Core": "2.1.0-rc1",
+          "GHIElectronics.TinyCLR.Native": "2.1.0-rc1"
         },
         "compile": {
           "lib/net452/GHIElectronics.TinyCLR.Devices.Storage.dll": {}
@@ -51,10 +64,10 @@
           "lib/net452/GHIElectronics.TinyCLR.Devices.Storage.dll": {}
         }
       },
-      "GHIElectronics.TinyCLR.IO/2.1.0-preview4": {
+      "GHIElectronics.TinyCLR.IO/2.1.0-rc1": {
         "type": "package",
         "dependencies": {
-          "GHIElectronics.TinyCLR.Core": "2.1.0-preview4"
+          "GHIElectronics.TinyCLR.Core": "2.1.0-rc1"
         },
         "compile": {
           "lib/net452/GHIElectronics.TinyCLR.IO.dll": {}
@@ -63,10 +76,10 @@
           "lib/net452/GHIElectronics.TinyCLR.IO.dll": {}
         }
       },
-      "GHIElectronics.TinyCLR.Native/2.1.0-preview4": {
+      "GHIElectronics.TinyCLR.Native/2.1.0-rc1": {
         "type": "package",
         "dependencies": {
-          "GHIElectronics.TinyCLR.Core": "2.1.0-preview4"
+          "GHIElectronics.TinyCLR.Core": "2.1.0-rc1"
         },
         "compile": {
           "lib/net452/GHIElectronics.TinyCLR.Native.dll": {}
@@ -75,10 +88,10 @@
           "lib/net452/GHIElectronics.TinyCLR.Native.dll": {}
         }
       },
-      "GHIElectronics.TinyCLR.Networking/2.1.0-preview4": {
+      "GHIElectronics.TinyCLR.Networking/2.1.0-rc1": {
         "type": "package",
         "dependencies": {
-          "GHIElectronics.TinyCLR.Core": "2.1.0-preview4"
+          "GHIElectronics.TinyCLR.Core": "2.1.0-rc1"
         },
         "compile": {
           "lib/net452/GHIElectronics.TinyCLR.Networking.dll": {}
@@ -139,8 +152,9 @@
         "dependencies": {
           "Bytewizer.TinyCLR.Pipeline": "2.0.0",
           "Bytewizer.TinyCLR.Sockets": "2.0.0",
-          "GHIElectronics.TinyCLR.IO": "2.1.0-preview4",
-          "GHIElectronics.TinyCLR.Networking": "2.1.0-preview4"
+          "GHIElectronics.TinyCLR.Data.Json": "2.1.0-rc1",
+          "GHIElectronics.TinyCLR.IO": "2.1.0-rc1",
+          "GHIElectronics.TinyCLR.Networking": "2.1.0-rc1"
         },
         "compile": {
           "bin/placeholder/Bytewizer.TinyCLR.Http.dll": {}
@@ -153,8 +167,10 @@
         "type": "project",
         "framework": ".NETFramework,Version=v4.5.2",
         "dependencies": {
-          "Bytewizer.TinyCLR.Core": "2.0.0-prebuild.6",
-          "GHIElectronics.TinyCLR.Core": "2.1.0-preview4"
+          "Bytewizer.TinyCLR.Core": "2.0.0-prebuild.10",
+          "GHIElectronics.TinyCLR.Core": "2.1.0-rc1",
+          "GHIElectronics.TinyCLR.Data.Json": "2.1.0-rc1",
+          "GHIElectronics.TinyCLR.IO": "2.1.0-rc1"
         },
         "compile": {
           "bin/placeholder/Bytewizer.TinyCLR.Pipeline.dll": {}
@@ -167,10 +183,11 @@
         "type": "project",
         "framework": ".NETFramework,Version=v4.5.2",
         "dependencies": {
-          "Bytewizer.TinyCLR.Logging.Abstractions": "2.0.0-prebuild.6",
+          "Bytewizer.TinyCLR.Logging.Abstractions": "2.0.0-prebuild.10",
           "Bytewizer.TinyCLR.Pipeline": "2.0.0",
-          "GHIElectronics.TinyCLR.IO": "2.1.0-preview4",
-          "GHIElectronics.TinyCLR.Networking": "2.1.0-preview4"
+          "GHIElectronics.TinyCLR.Data.Json": "2.1.0-rc1",
+          "GHIElectronics.TinyCLR.IO": "2.1.0-rc1",
+          "GHIElectronics.TinyCLR.Networking": "2.1.0-rc1"
         },
         "compile": {
           "bin/placeholder/Bytewizer.TinyCLR.Sockets.dll": {}
@@ -181,10 +198,10 @@
       }
     },
     ".NETFramework,Version=v4.5.2/win": {
-      "Bytewizer.TinyCLR.Core/2.0.0-prebuild.6": {
+      "Bytewizer.TinyCLR.Core/2.0.0-prebuild.10": {
         "type": "package",
         "dependencies": {
-          "GHIElectronics.TinyCLR.Core": "2.1.0-preview4"
+          "GHIElectronics.TinyCLR.Core": "2.1.0-rc1"
         },
         "compile": {
           "lib/net452/Bytewizer.TinyCLR.Core.dll": {}
@@ -193,10 +210,10 @@
           "lib/net452/Bytewizer.TinyCLR.Core.dll": {}
         }
       },
-      "Bytewizer.TinyCLR.Logging.Abstractions/2.0.0-prebuild.6": {
+      "Bytewizer.TinyCLR.Logging.Abstractions/2.0.0-prebuild.10": {
         "type": "package",
         "dependencies": {
-          "GHIElectronics.TinyCLR.Core": "2.1.0-preview4"
+          "GHIElectronics.TinyCLR.Core": "2.1.0-rc1"
         },
         "compile": {
           "lib/net452/Bytewizer.TinyCLR.Logging.Abstractions.dll": {}
@@ -205,7 +222,7 @@
           "lib/net452/Bytewizer.TinyCLR.Logging.Abstractions.dll": {}
         }
       },
-      "GHIElectronics.TinyCLR.Core/2.1.0-preview4": {
+      "GHIElectronics.TinyCLR.Core/2.1.0-rc1": {
         "type": "package",
         "compile": {
           "lib/net452/mscorlib.dll": {}
@@ -217,11 +234,24 @@
           "build/net452/GHIElectronics.TinyCLR.Core.props": {}
         }
       },
-      "GHIElectronics.TinyCLR.Devices.Storage/2.1.0-preview4": {
+      "GHIElectronics.TinyCLR.Data.Json/2.1.0-rc1": {
         "type": "package",
         "dependencies": {
-          "GHIElectronics.TinyCLR.Core": "2.1.0-preview4",
-          "GHIElectronics.TinyCLR.Native": "2.1.0-preview4"
+          "GHIElectronics.TinyCLR.Core": "2.1.0-rc1",
+          "GHIElectronics.TinyCLR.IO": "2.1.0-rc1"
+        },
+        "compile": {
+          "lib/net452/GHIElectronics.TinyCLR.Data.Json.dll": {}
+        },
+        "runtime": {
+          "lib/net452/GHIElectronics.TinyCLR.Data.Json.dll": {}
+        }
+      },
+      "GHIElectronics.TinyCLR.Devices.Storage/2.1.0-rc1": {
+        "type": "package",
+        "dependencies": {
+          "GHIElectronics.TinyCLR.Core": "2.1.0-rc1",
+          "GHIElectronics.TinyCLR.Native": "2.1.0-rc1"
         },
         "compile": {
           "lib/net452/GHIElectronics.TinyCLR.Devices.Storage.dll": {}
@@ -230,10 +260,10 @@
           "lib/net452/GHIElectronics.TinyCLR.Devices.Storage.dll": {}
         }
       },
-      "GHIElectronics.TinyCLR.IO/2.1.0-preview4": {
+      "GHIElectronics.TinyCLR.IO/2.1.0-rc1": {
         "type": "package",
         "dependencies": {
-          "GHIElectronics.TinyCLR.Core": "2.1.0-preview4"
+          "GHIElectronics.TinyCLR.Core": "2.1.0-rc1"
         },
         "compile": {
           "lib/net452/GHIElectronics.TinyCLR.IO.dll": {}
@@ -242,10 +272,10 @@
           "lib/net452/GHIElectronics.TinyCLR.IO.dll": {}
         }
       },
-      "GHIElectronics.TinyCLR.Native/2.1.0-preview4": {
+      "GHIElectronics.TinyCLR.Native/2.1.0-rc1": {
         "type": "package",
         "dependencies": {
-          "GHIElectronics.TinyCLR.Core": "2.1.0-preview4"
+          "GHIElectronics.TinyCLR.Core": "2.1.0-rc1"
         },
         "compile": {
           "lib/net452/GHIElectronics.TinyCLR.Native.dll": {}
@@ -254,10 +284,10 @@
           "lib/net452/GHIElectronics.TinyCLR.Native.dll": {}
         }
       },
-      "GHIElectronics.TinyCLR.Networking/2.1.0-preview4": {
+      "GHIElectronics.TinyCLR.Networking/2.1.0-rc1": {
         "type": "package",
         "dependencies": {
-          "GHIElectronics.TinyCLR.Core": "2.1.0-preview4"
+          "GHIElectronics.TinyCLR.Core": "2.1.0-rc1"
         },
         "compile": {
           "lib/net452/GHIElectronics.TinyCLR.Networking.dll": {}
@@ -318,8 +348,9 @@
         "dependencies": {
           "Bytewizer.TinyCLR.Pipeline": "2.0.0",
           "Bytewizer.TinyCLR.Sockets": "2.0.0",
-          "GHIElectronics.TinyCLR.IO": "2.1.0-preview4",
-          "GHIElectronics.TinyCLR.Networking": "2.1.0-preview4"
+          "GHIElectronics.TinyCLR.Data.Json": "2.1.0-rc1",
+          "GHIElectronics.TinyCLR.IO": "2.1.0-rc1",
+          "GHIElectronics.TinyCLR.Networking": "2.1.0-rc1"
         },
         "compile": {
           "bin/placeholder/Bytewizer.TinyCLR.Http.dll": {}
@@ -332,8 +363,10 @@
         "type": "project",
         "framework": ".NETFramework,Version=v4.5.2",
         "dependencies": {
-          "Bytewizer.TinyCLR.Core": "2.0.0-prebuild.6",
-          "GHIElectronics.TinyCLR.Core": "2.1.0-preview4"
+          "Bytewizer.TinyCLR.Core": "2.0.0-prebuild.10",
+          "GHIElectronics.TinyCLR.Core": "2.1.0-rc1",
+          "GHIElectronics.TinyCLR.Data.Json": "2.1.0-rc1",
+          "GHIElectronics.TinyCLR.IO": "2.1.0-rc1"
         },
         "compile": {
           "bin/placeholder/Bytewizer.TinyCLR.Pipeline.dll": {}
@@ -346,10 +379,11 @@
         "type": "project",
         "framework": ".NETFramework,Version=v4.5.2",
         "dependencies": {
-          "Bytewizer.TinyCLR.Logging.Abstractions": "2.0.0-prebuild.6",
+          "Bytewizer.TinyCLR.Logging.Abstractions": "2.0.0-prebuild.10",
           "Bytewizer.TinyCLR.Pipeline": "2.0.0",
-          "GHIElectronics.TinyCLR.IO": "2.1.0-preview4",
-          "GHIElectronics.TinyCLR.Networking": "2.1.0-preview4"
+          "GHIElectronics.TinyCLR.Data.Json": "2.1.0-rc1",
+          "GHIElectronics.TinyCLR.IO": "2.1.0-rc1",
+          "GHIElectronics.TinyCLR.Networking": "2.1.0-rc1"
         },
         "compile": {
           "bin/placeholder/Bytewizer.TinyCLR.Sockets.dll": {}
@@ -360,10 +394,10 @@
       }
     },
     ".NETFramework,Version=v4.5.2/win-x64": {
-      "Bytewizer.TinyCLR.Core/2.0.0-prebuild.6": {
+      "Bytewizer.TinyCLR.Core/2.0.0-prebuild.10": {
         "type": "package",
         "dependencies": {
-          "GHIElectronics.TinyCLR.Core": "2.1.0-preview4"
+          "GHIElectronics.TinyCLR.Core": "2.1.0-rc1"
         },
         "compile": {
           "lib/net452/Bytewizer.TinyCLR.Core.dll": {}
@@ -372,10 +406,10 @@
           "lib/net452/Bytewizer.TinyCLR.Core.dll": {}
         }
       },
-      "Bytewizer.TinyCLR.Logging.Abstractions/2.0.0-prebuild.6": {
+      "Bytewizer.TinyCLR.Logging.Abstractions/2.0.0-prebuild.10": {
         "type": "package",
         "dependencies": {
-          "GHIElectronics.TinyCLR.Core": "2.1.0-preview4"
+          "GHIElectronics.TinyCLR.Core": "2.1.0-rc1"
         },
         "compile": {
           "lib/net452/Bytewizer.TinyCLR.Logging.Abstractions.dll": {}
@@ -384,7 +418,7 @@
           "lib/net452/Bytewizer.TinyCLR.Logging.Abstractions.dll": {}
         }
       },
-      "GHIElectronics.TinyCLR.Core/2.1.0-preview4": {
+      "GHIElectronics.TinyCLR.Core/2.1.0-rc1": {
         "type": "package",
         "compile": {
           "lib/net452/mscorlib.dll": {}
@@ -396,11 +430,24 @@
           "build/net452/GHIElectronics.TinyCLR.Core.props": {}
         }
       },
-      "GHIElectronics.TinyCLR.Devices.Storage/2.1.0-preview4": {
+      "GHIElectronics.TinyCLR.Data.Json/2.1.0-rc1": {
         "type": "package",
         "dependencies": {
-          "GHIElectronics.TinyCLR.Core": "2.1.0-preview4",
-          "GHIElectronics.TinyCLR.Native": "2.1.0-preview4"
+          "GHIElectronics.TinyCLR.Core": "2.1.0-rc1",
+          "GHIElectronics.TinyCLR.IO": "2.1.0-rc1"
+        },
+        "compile": {
+          "lib/net452/GHIElectronics.TinyCLR.Data.Json.dll": {}
+        },
+        "runtime": {
+          "lib/net452/GHIElectronics.TinyCLR.Data.Json.dll": {}
+        }
+      },
+      "GHIElectronics.TinyCLR.Devices.Storage/2.1.0-rc1": {
+        "type": "package",
+        "dependencies": {
+          "GHIElectronics.TinyCLR.Core": "2.1.0-rc1",
+          "GHIElectronics.TinyCLR.Native": "2.1.0-rc1"
         },
         "compile": {
           "lib/net452/GHIElectronics.TinyCLR.Devices.Storage.dll": {}
@@ -409,10 +456,10 @@
           "lib/net452/GHIElectronics.TinyCLR.Devices.Storage.dll": {}
         }
       },
-      "GHIElectronics.TinyCLR.IO/2.1.0-preview4": {
+      "GHIElectronics.TinyCLR.IO/2.1.0-rc1": {
         "type": "package",
         "dependencies": {
-          "GHIElectronics.TinyCLR.Core": "2.1.0-preview4"
+          "GHIElectronics.TinyCLR.Core": "2.1.0-rc1"
         },
         "compile": {
           "lib/net452/GHIElectronics.TinyCLR.IO.dll": {}
@@ -421,10 +468,10 @@
           "lib/net452/GHIElectronics.TinyCLR.IO.dll": {}
         }
       },
-      "GHIElectronics.TinyCLR.Native/2.1.0-preview4": {
+      "GHIElectronics.TinyCLR.Native/2.1.0-rc1": {
         "type": "package",
         "dependencies": {
-          "GHIElectronics.TinyCLR.Core": "2.1.0-preview4"
+          "GHIElectronics.TinyCLR.Core": "2.1.0-rc1"
         },
         "compile": {
           "lib/net452/GHIElectronics.TinyCLR.Native.dll": {}
@@ -433,10 +480,10 @@
           "lib/net452/GHIElectronics.TinyCLR.Native.dll": {}
         }
       },
-      "GHIElectronics.TinyCLR.Networking/2.1.0-preview4": {
+      "GHIElectronics.TinyCLR.Networking/2.1.0-rc1": {
         "type": "package",
         "dependencies": {
-          "GHIElectronics.TinyCLR.Core": "2.1.0-preview4"
+          "GHIElectronics.TinyCLR.Core": "2.1.0-rc1"
         },
         "compile": {
           "lib/net452/GHIElectronics.TinyCLR.Networking.dll": {}
@@ -497,8 +544,9 @@
         "dependencies": {
           "Bytewizer.TinyCLR.Pipeline": "2.0.0",
           "Bytewizer.TinyCLR.Sockets": "2.0.0",
-          "GHIElectronics.TinyCLR.IO": "2.1.0-preview4",
-          "GHIElectronics.TinyCLR.Networking": "2.1.0-preview4"
+          "GHIElectronics.TinyCLR.Data.Json": "2.1.0-rc1",
+          "GHIElectronics.TinyCLR.IO": "2.1.0-rc1",
+          "GHIElectronics.TinyCLR.Networking": "2.1.0-rc1"
         },
         "compile": {
           "bin/placeholder/Bytewizer.TinyCLR.Http.dll": {}
@@ -511,8 +559,10 @@
         "type": "project",
         "framework": ".NETFramework,Version=v4.5.2",
         "dependencies": {
-          "Bytewizer.TinyCLR.Core": "2.0.0-prebuild.6",
-          "GHIElectronics.TinyCLR.Core": "2.1.0-preview4"
+          "Bytewizer.TinyCLR.Core": "2.0.0-prebuild.10",
+          "GHIElectronics.TinyCLR.Core": "2.1.0-rc1",
+          "GHIElectronics.TinyCLR.Data.Json": "2.1.0-rc1",
+          "GHIElectronics.TinyCLR.IO": "2.1.0-rc1"
         },
         "compile": {
           "bin/placeholder/Bytewizer.TinyCLR.Pipeline.dll": {}
@@ -525,10 +575,11 @@
         "type": "project",
         "framework": ".NETFramework,Version=v4.5.2",
         "dependencies": {
-          "Bytewizer.TinyCLR.Logging.Abstractions": "2.0.0-prebuild.6",
+          "Bytewizer.TinyCLR.Logging.Abstractions": "2.0.0-prebuild.10",
           "Bytewizer.TinyCLR.Pipeline": "2.0.0",
-          "GHIElectronics.TinyCLR.IO": "2.1.0-preview4",
-          "GHIElectronics.TinyCLR.Networking": "2.1.0-preview4"
+          "GHIElectronics.TinyCLR.Data.Json": "2.1.0-rc1",
+          "GHIElectronics.TinyCLR.IO": "2.1.0-rc1",
+          "GHIElectronics.TinyCLR.Networking": "2.1.0-rc1"
         },
         "compile": {
           "bin/placeholder/Bytewizer.TinyCLR.Sockets.dll": {}
@@ -539,10 +590,10 @@
       }
     },
     ".NETFramework,Version=v4.5.2/win-x86": {
-      "Bytewizer.TinyCLR.Core/2.0.0-prebuild.6": {
+      "Bytewizer.TinyCLR.Core/2.0.0-prebuild.10": {
         "type": "package",
         "dependencies": {
-          "GHIElectronics.TinyCLR.Core": "2.1.0-preview4"
+          "GHIElectronics.TinyCLR.Core": "2.1.0-rc1"
         },
         "compile": {
           "lib/net452/Bytewizer.TinyCLR.Core.dll": {}
@@ -551,10 +602,10 @@
           "lib/net452/Bytewizer.TinyCLR.Core.dll": {}
         }
       },
-      "Bytewizer.TinyCLR.Logging.Abstractions/2.0.0-prebuild.6": {
+      "Bytewizer.TinyCLR.Logging.Abstractions/2.0.0-prebuild.10": {
         "type": "package",
         "dependencies": {
-          "GHIElectronics.TinyCLR.Core": "2.1.0-preview4"
+          "GHIElectronics.TinyCLR.Core": "2.1.0-rc1"
         },
         "compile": {
           "lib/net452/Bytewizer.TinyCLR.Logging.Abstractions.dll": {}
@@ -563,7 +614,7 @@
           "lib/net452/Bytewizer.TinyCLR.Logging.Abstractions.dll": {}
         }
       },
-      "GHIElectronics.TinyCLR.Core/2.1.0-preview4": {
+      "GHIElectronics.TinyCLR.Core/2.1.0-rc1": {
         "type": "package",
         "compile": {
           "lib/net452/mscorlib.dll": {}
@@ -575,11 +626,24 @@
           "build/net452/GHIElectronics.TinyCLR.Core.props": {}
         }
       },
-      "GHIElectronics.TinyCLR.Devices.Storage/2.1.0-preview4": {
+      "GHIElectronics.TinyCLR.Data.Json/2.1.0-rc1": {
         "type": "package",
         "dependencies": {
-          "GHIElectronics.TinyCLR.Core": "2.1.0-preview4",
-          "GHIElectronics.TinyCLR.Native": "2.1.0-preview4"
+          "GHIElectronics.TinyCLR.Core": "2.1.0-rc1",
+          "GHIElectronics.TinyCLR.IO": "2.1.0-rc1"
+        },
+        "compile": {
+          "lib/net452/GHIElectronics.TinyCLR.Data.Json.dll": {}
+        },
+        "runtime": {
+          "lib/net452/GHIElectronics.TinyCLR.Data.Json.dll": {}
+        }
+      },
+      "GHIElectronics.TinyCLR.Devices.Storage/2.1.0-rc1": {
+        "type": "package",
+        "dependencies": {
+          "GHIElectronics.TinyCLR.Core": "2.1.0-rc1",
+          "GHIElectronics.TinyCLR.Native": "2.1.0-rc1"
         },
         "compile": {
           "lib/net452/GHIElectronics.TinyCLR.Devices.Storage.dll": {}
@@ -588,10 +652,10 @@
           "lib/net452/GHIElectronics.TinyCLR.Devices.Storage.dll": {}
         }
       },
-      "GHIElectronics.TinyCLR.IO/2.1.0-preview4": {
+      "GHIElectronics.TinyCLR.IO/2.1.0-rc1": {
         "type": "package",
         "dependencies": {
-          "GHIElectronics.TinyCLR.Core": "2.1.0-preview4"
+          "GHIElectronics.TinyCLR.Core": "2.1.0-rc1"
         },
         "compile": {
           "lib/net452/GHIElectronics.TinyCLR.IO.dll": {}
@@ -600,10 +664,10 @@
           "lib/net452/GHIElectronics.TinyCLR.IO.dll": {}
         }
       },
-      "GHIElectronics.TinyCLR.Native/2.1.0-preview4": {
+      "GHIElectronics.TinyCLR.Native/2.1.0-rc1": {
         "type": "package",
         "dependencies": {
-          "GHIElectronics.TinyCLR.Core": "2.1.0-preview4"
+          "GHIElectronics.TinyCLR.Core": "2.1.0-rc1"
         },
         "compile": {
           "lib/net452/GHIElectronics.TinyCLR.Native.dll": {}
@@ -612,10 +676,10 @@
           "lib/net452/GHIElectronics.TinyCLR.Native.dll": {}
         }
       },
-      "GHIElectronics.TinyCLR.Networking/2.1.0-preview4": {
+      "GHIElectronics.TinyCLR.Networking/2.1.0-rc1": {
         "type": "package",
         "dependencies": {
-          "GHIElectronics.TinyCLR.Core": "2.1.0-preview4"
+          "GHIElectronics.TinyCLR.Core": "2.1.0-rc1"
         },
         "compile": {
           "lib/net452/GHIElectronics.TinyCLR.Networking.dll": {}
@@ -676,8 +740,9 @@
         "dependencies": {
           "Bytewizer.TinyCLR.Pipeline": "2.0.0",
           "Bytewizer.TinyCLR.Sockets": "2.0.0",
-          "GHIElectronics.TinyCLR.IO": "2.1.0-preview4",
-          "GHIElectronics.TinyCLR.Networking": "2.1.0-preview4"
+          "GHIElectronics.TinyCLR.Data.Json": "2.1.0-rc1",
+          "GHIElectronics.TinyCLR.IO": "2.1.0-rc1",
+          "GHIElectronics.TinyCLR.Networking": "2.1.0-rc1"
         },
         "compile": {
           "bin/placeholder/Bytewizer.TinyCLR.Http.dll": {}
@@ -690,8 +755,10 @@
         "type": "project",
         "framework": ".NETFramework,Version=v4.5.2",
         "dependencies": {
-          "Bytewizer.TinyCLR.Core": "2.0.0-prebuild.6",
-          "GHIElectronics.TinyCLR.Core": "2.1.0-preview4"
+          "Bytewizer.TinyCLR.Core": "2.0.0-prebuild.10",
+          "GHIElectronics.TinyCLR.Core": "2.1.0-rc1",
+          "GHIElectronics.TinyCLR.Data.Json": "2.1.0-rc1",
+          "GHIElectronics.TinyCLR.IO": "2.1.0-rc1"
         },
         "compile": {
           "bin/placeholder/Bytewizer.TinyCLR.Pipeline.dll": {}
@@ -704,10 +771,11 @@
         "type": "project",
         "framework": ".NETFramework,Version=v4.5.2",
         "dependencies": {
-          "Bytewizer.TinyCLR.Logging.Abstractions": "2.0.0-prebuild.6",
+          "Bytewizer.TinyCLR.Logging.Abstractions": "2.0.0-prebuild.10",
           "Bytewizer.TinyCLR.Pipeline": "2.0.0",
-          "GHIElectronics.TinyCLR.IO": "2.1.0-preview4",
-          "GHIElectronics.TinyCLR.Networking": "2.1.0-preview4"
+          "GHIElectronics.TinyCLR.Data.Json": "2.1.0-rc1",
+          "GHIElectronics.TinyCLR.IO": "2.1.0-rc1",
+          "GHIElectronics.TinyCLR.Networking": "2.1.0-rc1"
         },
         "compile": {
           "bin/placeholder/Bytewizer.TinyCLR.Sockets.dll": {}
@@ -719,86 +787,97 @@
     }
   },
   "libraries": {
-    "Bytewizer.TinyCLR.Core/2.0.0-prebuild.6": {
-      "sha512": "i//HAIl2FMZGT3ulzuv/+w9KQzUtr6KqjKVMEMGqHfBAm+ZocELwc2G7wjFFe56qc+93dqzzkAy3zMb53UAWHw==",
+    "Bytewizer.TinyCLR.Core/2.0.0-prebuild.10": {
+      "sha512": "TKaYj0AAOCa8YcN8ZbTjEPIkIl4EfzwTOTCJuXLDjkHtn8N6b/GRyTuPB0QG5nCg6w56qdFtlS/0rheYgI0dFg==",
       "type": "package",
-      "path": "bytewizer.tinyclr.core/2.0.0-prebuild.6",
+      "path": "bytewizer.tinyclr.core/2.0.0-prebuild.10",
       "files": [
         ".nupkg.metadata",
         "LICENSE.md",
-        "bytewizer.tinyclr.core.2.0.0-prebuild.6.nupkg.sha512",
+        "bytewizer.tinyclr.core.2.0.0-prebuild.10.nupkg.sha512",
         "bytewizer.tinyclr.core.nuspec",
         "lib/net452/Bytewizer.TinyCLR.Core.dll",
         "lib/net452/Bytewizer.TinyCLR.Core.xml",
         "package-logo.png"
       ]
     },
-    "Bytewizer.TinyCLR.Logging.Abstractions/2.0.0-prebuild.6": {
-      "sha512": "e4w8G1z87aOK7kN3iOGMj9W3x3zWOPFRaUMOOyRPFu8Dnl+w+lUSlUKpZu0xTLaY7b6w4p1xIKASyDEuokSKYQ==",
+    "Bytewizer.TinyCLR.Logging.Abstractions/2.0.0-prebuild.10": {
+      "sha512": "ObXIxHUwYZserfomIPbWOSp0pr+1teYKh00ygsCqIh0APJNdkdExg++HSpyqByJfrc1OzrVLPnmUbx8fxFjopw==",
       "type": "package",
-      "path": "bytewizer.tinyclr.logging.abstractions/2.0.0-prebuild.6",
+      "path": "bytewizer.tinyclr.logging.abstractions/2.0.0-prebuild.10",
       "files": [
         ".nupkg.metadata",
         "LICENSE.md",
-        "bytewizer.tinyclr.logging.abstractions.2.0.0-prebuild.6.nupkg.sha512",
+        "bytewizer.tinyclr.logging.abstractions.2.0.0-prebuild.10.nupkg.sha512",
         "bytewizer.tinyclr.logging.abstractions.nuspec",
         "lib/net452/Bytewizer.TinyCLR.Logging.Abstractions.dll",
         "lib/net452/Bytewizer.TinyCLR.Logging.Abstractions.xml",
         "package-logo.png"
       ]
     },
-    "GHIElectronics.TinyCLR.Core/2.1.0-preview4": {
-      "sha512": "fSdVQz6V7GT7rUDw7JYjWoe63XQcJ6bxgvW6TE8NVAImD55hRGY/zn00plllf1mHLzmR9x1uW6+1o3432MuUOQ==",
+    "GHIElectronics.TinyCLR.Core/2.1.0-rc1": {
+      "sha512": "1N9Sq06YomJL2NrTrLEhsVdA/TUaTO7RAVQ+VC9cTsi0CC0YphHCdEI8v6dP1caj/avWPBYFrpNICNYbO3Yipg==",
       "type": "package",
-      "path": "ghielectronics.tinyclr.core/2.1.0-preview4",
+      "path": "ghielectronics.tinyclr.core/2.1.0-rc1",
       "files": [
         ".nupkg.metadata",
         "build/net452/GHIElectronics.TinyCLR.Core.props",
-        "ghielectronics.tinyclr.core.2.1.0-preview4.nupkg.sha512",
+        "ghielectronics.tinyclr.core.2.1.0-rc1.nupkg.sha512",
         "ghielectronics.tinyclr.core.nuspec",
         "lib/net452/mscorlib.dll"
       ]
     },
-    "GHIElectronics.TinyCLR.Devices.Storage/2.1.0-preview4": {
-      "sha512": "UeHHLNtEA4k7Zxtq0XU/VskBliVpi0uPN5PZz8nfk9iv1LipKdegozK0cd59wMcZ3O5LsuVq2QXfwoWGM31i+w==",
+    "GHIElectronics.TinyCLR.Data.Json/2.1.0-rc1": {
+      "sha512": "CwRSw1GTK1oSSWHzMZatRpkpNHrFus8/mnU1M38HXGXQPxllBFXC3x4Yga2yysWli4i6h2dPouAPI60dWYJIAg==",
       "type": "package",
-      "path": "ghielectronics.tinyclr.devices.storage/2.1.0-preview4",
+      "path": "ghielectronics.tinyclr.data.json/2.1.0-rc1",
       "files": [
         ".nupkg.metadata",
-        "ghielectronics.tinyclr.devices.storage.2.1.0-preview4.nupkg.sha512",
+        "ghielectronics.tinyclr.data.json.2.1.0-rc1.nupkg.sha512",
+        "ghielectronics.tinyclr.data.json.nuspec",
+        "lib/net452/GHIElectronics.TinyCLR.Data.Json.dll"
+      ]
+    },
+    "GHIElectronics.TinyCLR.Devices.Storage/2.1.0-rc1": {
+      "sha512": "Hg4lC6Nu+suQMD7c+9s7/gs5UnTJr0jtLdnOOUtqqEyHZX+mL9qWO75yMdkTWR0+pcmbFe/9qjSlU5Y9gHRySw==",
+      "type": "package",
+      "path": "ghielectronics.tinyclr.devices.storage/2.1.0-rc1",
+      "files": [
+        ".nupkg.metadata",
+        "ghielectronics.tinyclr.devices.storage.2.1.0-rc1.nupkg.sha512",
         "ghielectronics.tinyclr.devices.storage.nuspec",
         "lib/net452/GHIElectronics.TinyCLR.Devices.Storage.dll"
       ]
     },
-    "GHIElectronics.TinyCLR.IO/2.1.0-preview4": {
-      "sha512": "E+o/AI4/qRjKRQS3Yfbsdq1k2bg3NLm36FiV6WKcJKyHoieGrUW0NCKrd1K+ee++a6RhYuUQA5VeS7GjUOq/pw==",
+    "GHIElectronics.TinyCLR.IO/2.1.0-rc1": {
+      "sha512": "A7SPgbNyuXPtAY4lJInhDe+5iJR/hNJAjtBcZSrcIuSJsnfYMDymEsnlrTEFQ47mOFS/hUvCDQ0OtySoCSW5sA==",
       "type": "package",
-      "path": "ghielectronics.tinyclr.io/2.1.0-preview4",
+      "path": "ghielectronics.tinyclr.io/2.1.0-rc1",
       "files": [
         ".nupkg.metadata",
-        "ghielectronics.tinyclr.io.2.1.0-preview4.nupkg.sha512",
+        "ghielectronics.tinyclr.io.2.1.0-rc1.nupkg.sha512",
         "ghielectronics.tinyclr.io.nuspec",
         "lib/net452/GHIElectronics.TinyCLR.IO.dll"
       ]
     },
-    "GHIElectronics.TinyCLR.Native/2.1.0-preview4": {
-      "sha512": "rJ/aN/rIwwu6Bdj5TNdbKnkJioe6IXkuRNi23I8lM9eiQey+wvsVfK5sJvVRzkDlIszflHfYzSwjuj33Zh5Yow==",
+    "GHIElectronics.TinyCLR.Native/2.1.0-rc1": {
+      "sha512": "UTWoWxck8pLNWa7KX+NVwOQ/Ftgr6tmvfTpMVuPGcPTZCNblRY9D/FVJfqhrvs+DwHXVq1trcsyg71/T2FVcWA==",
       "type": "package",
-      "path": "ghielectronics.tinyclr.native/2.1.0-preview4",
+      "path": "ghielectronics.tinyclr.native/2.1.0-rc1",
       "files": [
         ".nupkg.metadata",
-        "ghielectronics.tinyclr.native.2.1.0-preview4.nupkg.sha512",
+        "ghielectronics.tinyclr.native.2.1.0-rc1.nupkg.sha512",
         "ghielectronics.tinyclr.native.nuspec",
         "lib/net452/GHIElectronics.TinyCLR.Native.dll"
       ]
     },
-    "GHIElectronics.TinyCLR.Networking/2.1.0-preview4": {
-      "sha512": "eHI+wxJez9fBXBcmPmQ75uaNMf8ZTQjIWJ6As14Q46l2oIsOW6ZfWCGFMmFUXNEhmsJ4b90xdec+SaKdVwPGzg==",
+    "GHIElectronics.TinyCLR.Networking/2.1.0-rc1": {
+      "sha512": "vtDVvuIC3ciBz8kM1OWaArWGs6pa/NUJ7n3KdyrLcgrgMfxq8HQ0fOVpREbQcYbBEUxWy9ene3zqFmnQVSavRg==",
       "type": "package",
-      "path": "ghielectronics.tinyclr.networking/2.1.0-preview4",
+      "path": "ghielectronics.tinyclr.networking/2.1.0-rc1",
       "files": [
         ".nupkg.metadata",
-        "ghielectronics.tinyclr.networking.2.1.0-preview4.nupkg.sha512",
+        "ghielectronics.tinyclr.networking.2.1.0-rc1.nupkg.sha512",
         "ghielectronics.tinyclr.networking.nuspec",
         "lib/net452/GHIElectronics.TinyCLR.Networking.dll"
       ]
@@ -1002,9 +1081,10 @@
       "Bytewizer.TinyCLR.Http >= 2.0.0",
       "Bytewizer.TinyCLR.Pipeline >= 2.0.0",
       "Bytewizer.TinyCLR.Sockets >= 2.0.0",
-      "GHIElectronics.TinyCLR.Devices.Storage >= 2.1.0-preview4",
-      "GHIElectronics.TinyCLR.IO >= 2.1.0-preview4",
-      "GHIElectronics.TinyCLR.Networking >= 2.1.0-preview4",
+      "GHIElectronics.TinyCLR.Data.Json >= 2.1.0-rc1",
+      "GHIElectronics.TinyCLR.Devices.Storage >= 2.1.0-rc1",
+      "GHIElectronics.TinyCLR.IO >= 2.1.0-rc1",
+      "GHIElectronics.TinyCLR.Networking >= 2.1.0-rc1",
       "Microsoft.SourceLink.GitHub >= 1.0.0",
       "NuGet.Build.Tasks.Pack >= 5.9.0"
     ]
@@ -1054,17 +1134,21 @@
     "frameworks": {
       "net452": {
         "dependencies": {
+          "GHIElectronics.TinyCLR.Data.Json": {
+            "target": "Package",
+            "version": "[2.1.0-rc1, )"
+          },
           "GHIElectronics.TinyCLR.Devices.Storage": {
             "target": "Package",
-            "version": "[2.1.0-preview4, )"
+            "version": "[2.1.0-rc1, )"
           },
           "GHIElectronics.TinyCLR.IO": {
             "target": "Package",
-            "version": "[2.1.0-preview4, )"
+            "version": "[2.1.0-rc1, )"
           },
           "GHIElectronics.TinyCLR.Networking": {
             "target": "Package",
-            "version": "[2.1.0-preview4, )"
+            "version": "[2.1.0-rc1, )"
           },
           "Microsoft.SourceLink.GitHub": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",

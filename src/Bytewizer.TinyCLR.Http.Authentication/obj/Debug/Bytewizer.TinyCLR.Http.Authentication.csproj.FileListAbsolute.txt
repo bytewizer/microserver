@@ -1,6 +1,3 @@
-C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Authentication\obj\Debug\Bytewizer.TinyCLR.Http.Authentication.csprojAssemblyReference.cache
-C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Authentication\obj\Debug\Bytewizer.TinyCLR.Http.Authentication.csproj.CoreCompileInputs.cache
-C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Authentication\obj\Debug\Bytewizer.TinyCLR.Http.Authentication.sourcelink.json
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Authentication\bin\Debug\Bytewizer.TinyCLR.Http.Authentication.xml
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Authentication\bin\Debug\Bytewizer.TinyCLR.Http.Authentication.dll
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Authentication\bin\Debug\Bytewizer.TinyCLR.Http.Authentication.pdb
@@ -19,6 +16,9 @@ C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Authentication\bin
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Authentication\bin\Debug\Bytewizer.TinyCLR.Pipeline.xml
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Authentication\bin\Debug\Bytewizer.TinyCLR.Sockets.pdb
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Authentication\bin\Debug\Bytewizer.TinyCLR.Sockets.xml
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Authentication\obj\Debug\Bytewizer.TinyCLR.Http.Authentication.csprojAssemblyReference.cache
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Authentication\obj\Debug\Bytewizer.TinyCLR.Http.Authentication.csproj.CoreCompileInputs.cache
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Authentication\obj\Debug\Bytewizer.TinyCLR.Http.Authentication.sourcelink.json
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Authentication\obj\Debug\Bytewizer.TinyCLR.Http.Authentication.csproj.CopyComplete
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Authentication\obj\Debug\Bytewizer.TinyCLR.Http.Authentication.dll
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Authentication\obj\Debug\Bytewizer.TinyCLR.Http.Authentication.pdb

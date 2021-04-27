@@ -1,6 +1,3 @@
-C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http\obj\Debug\Bytewizer.TinyCLR.Http.csprojAssemblyReference.cache
-C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http\obj\Debug\Bytewizer.TinyCLR.Http.csproj.CoreCompileInputs.cache
-C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http\obj\Debug\Bytewizer.TinyCLR.Http.sourcelink.json
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http\bin\Debug\Bytewizer.TinyCLR.Http.xml
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http\bin\Debug\Bytewizer.TinyCLR.Http.dll
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http\bin\Debug\Bytewizer.TinyCLR.Http.pdb
@@ -15,6 +12,10 @@ C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http\bin\Debug\Bytewize
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http\bin\Debug\Bytewizer.TinyCLR.Pipeline.xml
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http\bin\Debug\Bytewizer.TinyCLR.Sockets.pdb
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http\bin\Debug\Bytewizer.TinyCLR.Sockets.xml
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http\obj\Debug\Bytewizer.TinyCLR.Http.csprojAssemblyReference.cache
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http\obj\Debug\Bytewizer.TinyCLR.Http.csproj.CoreCompileInputs.cache
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http\obj\Debug\Bytewizer.TinyCLR.Http.sourcelink.json
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http\obj\Debug\Bytewizer.TinyCLR.Http.csproj.CopyComplete
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http\obj\Debug\Bytewizer.TinyCLR.Http.dll
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http\obj\Debug\Bytewizer.TinyCLR.Http.pdb
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http\bin\Debug\GHIElectronics.TinyCLR.Data.Json.dll

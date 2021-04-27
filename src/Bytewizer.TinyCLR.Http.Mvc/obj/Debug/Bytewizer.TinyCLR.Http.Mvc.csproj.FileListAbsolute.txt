@@ -11,8 +11,11 @@ C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Mvc\bin\Debug\GHIE
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Mvc\bin\Debug\GHIElectronics.TinyCLR.IO.dll
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Mvc\bin\Debug\GHIElectronics.TinyCLR.Networking.dll
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Mvc\bin\Debug\Bytewizer.TinyCLR.Http.dll
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Mvc\bin\Debug\Bytewizer.TinyCLR.Http.Json.dll
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Mvc\bin\Debug\Bytewizer.TinyCLR.Pipeline.dll
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Mvc\bin\Debug\Bytewizer.TinyCLR.Sockets.dll
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Mvc\bin\Debug\Bytewizer.TinyCLR.Http.Json.pdb
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Mvc\bin\Debug\Bytewizer.TinyCLR.Http.Json.xml
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Mvc\bin\Debug\Bytewizer.TinyCLR.Http.pdb
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Mvc\bin\Debug\Bytewizer.TinyCLR.Http.xml
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Mvc\bin\Debug\Bytewizer.TinyCLR.Pipeline.pdb

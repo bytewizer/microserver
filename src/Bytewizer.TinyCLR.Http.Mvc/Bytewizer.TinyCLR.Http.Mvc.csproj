@@ -110,6 +110,10 @@
     <Compile Include="Http\Route.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bytewizer.TinyCLR.Http.Json\Bytewizer.TinyCLR.Http.Json.csproj">
+      <Project>{EA9A543B-DA2A-46C1-9E69-47C87DB94DBA}</Project>
+      <Name>Bytewizer.TinyCLR.Http.Json</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bytewizer.TinyCLR.Http\Bytewizer.TinyCLR.Http.csproj">
       <Project>{EB778176-633A-4997-A683-2C891C5DB436}</Project>
       <Name>Bytewizer.TinyCLR.Http</Name>
@@ -125,16 +129,16 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="GHIElectronics.TinyCLR.Core">
-      <Version>2.1.0-preview4</Version>
+      <Version>2.1.0-rc1</Version>
     </PackageReference>
     <PackageReference Include="GHIElectronics.TinyCLR.Data.Json">
-      <Version>2.1.0-preview4</Version>
+      <Version>2.1.0-rc1</Version>
     </PackageReference>
     <PackageReference Include="GHIElectronics.TinyCLR.IO">
-      <Version>2.1.0-preview4</Version>
+      <Version>2.1.0-rc1</Version>
     </PackageReference>
     <PackageReference Include="GHIElectronics.TinyCLR.Networking">
-      <Version>2.1.0-preview4</Version>
+      <Version>2.1.0-rc1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.SourceLink.GitHub">
       <Version>1.0.0</Version>

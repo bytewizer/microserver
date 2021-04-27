@@ -1,6 +1,3 @@
-C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Diagnostics\obj\Debug\Bytewizer.TinyCLR.Http.Diagnostics.csprojAssemblyReference.cache
-C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Diagnostics\obj\Debug\Bytewizer.TinyCLR.Http.Diagnostics.csproj.CoreCompileInputs.cache
-C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Diagnostics\obj\Debug\Bytewizer.TinyCLR.Http.Diagnostics.sourcelink.json
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Diagnostics\bin\Debug\Bytewizer.TinyCLR.Http.Diagnostics.xml
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Diagnostics\bin\Debug\Bytewizer.TinyCLR.Http.Diagnostics.dll
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Diagnostics\bin\Debug\Bytewizer.TinyCLR.Http.Diagnostics.pdb
@@ -19,6 +16,9 @@ C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Diagnostics\bin\De
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Diagnostics\bin\Debug\Bytewizer.TinyCLR.Pipeline.xml
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Diagnostics\bin\Debug\Bytewizer.TinyCLR.Sockets.pdb
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Diagnostics\bin\Debug\Bytewizer.TinyCLR.Sockets.xml
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Diagnostics\obj\Debug\Bytewizer.TinyCLR.Http.Diagnostics.csprojAssemblyReference.cache
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Diagnostics\obj\Debug\Bytewizer.TinyCLR.Http.Diagnostics.csproj.CoreCompileInputs.cache
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Diagnostics\obj\Debug\Bytewizer.TinyCLR.Http.Diagnostics.sourcelink.json
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Diagnostics\obj\Debug\Bytewizer.TinyCLR.Http.Diagnostics.csproj.CopyComplete
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Diagnostics\obj\Debug\Bytewizer.TinyCLR.Http.Diagnostics.dll
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Diagnostics\obj\Debug\Bytewizer.TinyCLR.Http.Diagnostics.pdb
