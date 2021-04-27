@@ -3,11 +3,11 @@ C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Pipeline\bin\Debug\Byte
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Pipeline\bin\Debug\Bytewizer.TinyCLR.Pipeline.pdb
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Pipeline\bin\Debug\Bytewizer.TinyCLR.Core.dll
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Pipeline\bin\Debug\mscorlib.dll
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Pipeline\bin\Debug\GHIElectronics.TinyCLR.Data.Json.dll
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Pipeline\bin\Debug\GHIElectronics.TinyCLR.IO.dll
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Pipeline\obj\Debug\Bytewizer.TinyCLR.Pipeline.csprojAssemblyReference.cache
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Pipeline\obj\Debug\Bytewizer.TinyCLR.Pipeline.csproj.CoreCompileInputs.cache
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Pipeline\obj\Debug\Bytewizer.TinyCLR.Pipeline.sourcelink.json
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Pipeline\obj\Debug\Bytewizer.TinyCLR.Pipeline.csproj.CopyComplete
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Pipeline\obj\Debug\Bytewizer.TinyCLR.Pipeline.dll
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Pipeline\obj\Debug\Bytewizer.TinyCLR.Pipeline.pdb
-C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Pipeline\bin\Debug\GHIElectronics.TinyCLR.Data.Json.dll
-C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Pipeline\bin\Debug\GHIElectronics.TinyCLR.IO.dll
-C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Pipeline\obj\Debug\Bytewizer.TinyCLR.Pipeline.csprojAssemblyReference.cache

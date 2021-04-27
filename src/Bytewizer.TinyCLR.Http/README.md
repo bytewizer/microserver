@@ -19,30 +19,6 @@ var server = new HttpServer(options =>
 server.Start();
 ```
 
-### JSON Deserializing
-Reads the HTTP content and returns the value that results from deserializing the content as JSON.
-
-```CSharp
-endpoints.Map("/json", context =>
-{
-    // Post a request with the following content as the body and content type of application/json.
-    // {"Id": 100,"Suffix": "I","SSN": "939-69-5554","Title": "Mr.","LastName": "Crona","Phone": "(458)-857-7797",
-    // "Gender": 0,"FirstName": "Roscoe","MiddleName": "Jerald","Email": "Roscoe@gmail.com","DOB": "2017-01-01T00:00:53.967Z"}
-    
-    if (context.Request.ReadFromJson(typeof(Person)) is Person person)
-    {
-        string response = "<doctype !html><html><head><title>Hello, world!" +
-        "</title></head><body><h1>" + person.FirstName + " " + person.LastName + "</h1></body></html>";
-
-        context.Response.Write(response);
-    }
-    else
-    {
-        context.Response.StatusCode = StatusCodes.Status204NoContent;
-    }
-});
-```
-
 ### Send File Response
 Sends a given file from a sd card or usb drive.
 

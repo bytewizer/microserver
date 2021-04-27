@@ -5,6 +5,7 @@ C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Authentication\bin
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Authentication\bin\Debug\Bytewizer.TinyCLR.Logging.Abstractions.dll
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Authentication\bin\Debug\mscorlib.dll
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Authentication\bin\Debug\GHIElectronics.TinyCLR.Cryptography.dll
+C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Authentication\bin\Debug\GHIElectronics.TinyCLR.Data.Json.dll
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Authentication\bin\Debug\GHIElectronics.TinyCLR.IO.dll
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Authentication\bin\Debug\GHIElectronics.TinyCLR.Networking.dll
 C:\Repos\microcompiler\microserver\src\Bytewizer.TinyCLR.Http.Authentication\bin\Debug\Bytewizer.TinyCLR.Http.dll

@@ -50,7 +50,7 @@ server.Start();
 
 ## TinyCLR Packages
 ```bash
-PM> Install-Package Bytewizer.TinyCLR.Cors
+PM> Install-Package Bytewizer.TinyCLR.Http.Cors
 ```
 
 ## RFC - Related Request for Comments 

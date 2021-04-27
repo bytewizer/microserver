@@ -7,7 +7,7 @@ Microserver is a modular server built for TinyCLR OS IoT devices inspired by Asp
 
 ## Socket Services
 
-Build on a modular tcp/udp service wiht an extendable pipeline and SSL transport security.
+Build on a modular tcp/udp service with an extendable pipeline and SSL transport security.
 
 * <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Sockets">Socket Services</a>
 * <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Pipeline">Extendable Pipeline</a> 
@@ -17,7 +17,7 @@ Build on a modular tcp/udp service wiht an extendable pipeline and SSL transport
 Create a modular web services including middleware, moduler routing, digest authentication, controllers, action results, view engine, storage / resource file serving, default file routing, JSON integration, and websockets.
 
 * <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http">Http Server</a>
-* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.WebSockets">WebSockets</a>
+* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.WebSocket">WebSockets</a>
 * <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Diagnostics">Diagnostics</a> 
 * <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Authentication">Authentication</a>
 * <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Cookies">Cookie Support</a>
