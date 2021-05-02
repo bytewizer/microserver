@@ -35,7 +35,7 @@ namespace Bytewizer.TinyCLR.Http
 
 
         /// <summary>
-        /// Gets an <see cref="ArrayList"/> containing the values of the <see cref="ICookieCollection" />.
+        /// Gets an <see cref="ArrayList"/> containing the values of the <see cref="IQueryCollection" />.
         /// </summary>
         ICollection Values { get; }
     }

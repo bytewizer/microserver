@@ -11,5 +11,4 @@
         public static readonly string Http2 = "HTTP/2";
         public static readonly string Http3 = "HTTP/3";
     }
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 }

@@ -62,8 +62,7 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Internal\HttpUpgradeFeature.cs" />
-    <Compile Include="Http\Features\IHttpUpgradeFeature.cs" />
+    <Compile Include="Http\HttpRequestExtensions.cs" />
     <Compile Include="Middleware\UsePathBaseExtensions.cs" />
     <Compile Include="Middleware\UsePathBaseMiddleware.cs" />
     <Compile Include="Routing\Endpoint.cs" />

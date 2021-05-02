@@ -44,7 +44,7 @@ namespace Bytewizer.TinyCLR.Http.Query
         {
             parsedValues = QueryParser.ParseNullableQuery(queryString);
 
-            return (parsedValues == null) ? false : true;
+            return parsedValues != null;
         }
 
         /// <summary>

@@ -1,8 +1,6 @@
 ﻿using System;
 
-using Bytewizer.TinyCLR.Sockets;
 using Bytewizer.TinyCLR.Pipeline.Builder;
-
 
 namespace Bytewizer.TinyCLR.Http
 {

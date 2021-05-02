@@ -17,7 +17,6 @@ namespace Bytewizer.TinyCLR.Http
         public HttpResponse()
         {
             Headers = new HeaderDictionary();
-            //Cookies = new CookieCollection();
             Body = new MemoryStream();
         }
 
@@ -25,11 +24,6 @@ namespace Bytewizer.TinyCLR.Http
         /// Gets the response headers.
         /// </summary>
         public IHeaderDictionary Headers { get; }
-
-        /// <summary>
-        /// Gets an object that can be used to manage cookies for this response.
-        /// </summary>
-        //public IResponseCookies Cookies { get; }
 
         /// <summary>
         /// Gets or sets the response body <see cref="Stream"/>.
@@ -65,10 +59,8 @@ namespace Bytewizer.TinyCLR.Http
         public void Clear()
         {
             ((HeaderDictionary)Headers).Clear();
-            //((CookieCollection)Cookies).Clear();
+            Body = new MemoryStream();
             StatusCode = 0;
-            Body = new MemoryStream(); 
-            //Body.SetLength(0);
         }
     } 
 }

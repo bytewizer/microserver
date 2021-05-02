@@ -11,7 +11,7 @@ namespace Bytewizer.TinyCLR.Http
     {
         /// <summary>
         /// Read JSON from the request and deserialize to the specified type.
-        /// If the request's content-type is not a known JSON type then an error will be thrown.
+        /// If the request's content-type is not a known JSON type then <c>null</c> is returned.
         /// </summary>
         /// <param name="request">The request to read from.</param>
         /// <param name="type">The type of object to read.</param>

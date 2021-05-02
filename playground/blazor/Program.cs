@@ -15,7 +15,6 @@ namespace Bytewizer.Playground.Blazor
                 {
                     app.UseBlazorFrameworkFiles("/blazor");
                 });
-                options.Name = "Blazor";
             });
             server.Start();
         }

@@ -55,10 +55,4 @@ namespace Bytewizer.TinyCLR.Http
             }
         }
     }
-
-
-    //    var originalPath = context.Request.Path;
-    //context.Request.Path = $"/{_pathBase}{originalPath}";
-
-    //next(context);
 }

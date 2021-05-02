@@ -5,8 +5,8 @@ using System.Collections;
 
 using Bytewizer.TinyCLR.Http.Header;
 using Bytewizer.TinyCLR.Http.Query;
-//using Bytewizer.TinyCLR.Http.Cookies;
 using Bytewizer.TinyCLR.Http.Extensions;
+using System.Diagnostics;
 
 namespace Bytewizer.TinyCLR.Http.Internal
 {
@@ -16,117 +16,108 @@ namespace Bytewizer.TinyCLR.Http.Internal
         {
             ParserMode mode = ParserMode.FirstLine;
 
-            //using (var reader = new StreamReader(context.Channel.InputStream))
             var reader = new StreamReader(context.Channel.InputStream);
-            //{
-                string line;
-                var body = new StringBuilder();
 
-                do
+            string line = reader.ReadLine();
+            while (!reader.EndOfStream)
+            {
+                switch (mode)
                 {
-                    line = reader.ReadLine();
-                    switch (mode)
-                    {
-                        case ParserMode.FirstLine:
-                            reader.SkipWhiteSpace();
+                    case ParserMode.FirstLine:
+                        reader.SkipWhiteSpace();
 
-                            string[] requestLine = line.Split(new char[] { ' ' }, 3);
-                            if (requestLine.Length != 3)
+                        string[] requestLine = line.Split(new char[] { ' ' }, 3);
+                        if (requestLine.Length != 3)
+                        {
+                            throw new Exception("Expected first line to contain three words in accordance HTTP specification.");
+                        }
+
+                        if (!requestLine[2].ToLower().StartsWith("http/"))
+                        {
+                            throw new Exception($"Status line for requests should end with the HTTP version. Your line ended with { requestLine[2] }.");
+                        }
+
+                        context.Request.Method = requestLine[0];
+                        context.Request.Path = requestLine[1];
+
+                        if (requestLine[1].Contains("?"))
+                        {
+                            var parameters = requestLine[1].Split('?')[1];
+
+                            var parsed = QueryValue.TryParseList(parameters, out ArrayList result);
+                            if (parsed)
                             {
-                                throw new Exception("Expected first line to contain three words in accordance HTTP specification.");
-                            }
-
-                            if (!requestLine[2].ToLower().StartsWith("http/"))
-                            {
-                                throw new Exception($"Status line for requests should end with the HTTP version. Your line ended with { requestLine[2] }.");
-                            }
-
-                            context.Request.Method = requestLine[0];
-                            context.Request.Path = requestLine[1];
-
-                            if (requestLine[1].Contains("?"))
-                            {
-                                var parameters = requestLine[1].Split('?')[1];
-
-                                var parsed = QueryValue.TryParseList(parameters, out ArrayList result);
-                                if (parsed)
-                                {
-                                    context.Request.Query = new QueryCollection(result);
-                                }
- 
-                                context.Request.Path = requestLine[1].Split('?')[0];
-                            }
-                            else
-                            {
-                                context.Request.Path = requestLine[1];
+                                context.Request.Query = new QueryCollection(result);
                             }
 
                             context.Request.Path = requestLine[1].Split('?')[0];
+                        }
+                        else
+                        {
+                            context.Request.Path = requestLine[1];
+                        }
 
-                            if (requestLine.Length >= 3)
-                            {
-                                context.Request.Protocol = requestLine[2];
-                            }
-                            else
-                            {
-                                context.Request.Protocol = HttpProtocol.Http11;
-                            }
+                        context.Request.Path = requestLine[1].Split('?')[0];
 
-                            mode = ParserMode.Headers;
-                            break;
+                        if (requestLine.Length >= 3)
+                        {
+                            context.Request.Protocol = requestLine[2];
+                        }
+                        else
+                        {
+                            context.Request.Protocol = HttpProtocol.Http11;
+                        }
 
-                        case ParserMode.Headers:
+                        mode = ParserMode.Headers;
 
-                            if (string.IsNullOrEmpty(line))
-                            {
-                                mode = ParserMode.Body;
-                                continue;
-                            }
+                        break;
 
-                            int seperatorIndex = line.IndexOf(": ");
+                    case ParserMode.Headers:
 
-                            if (seperatorIndex > 1)
-                            {
-                                var name = line.Substring(0, seperatorIndex);
-                                var value = line.Substring(seperatorIndex + 1);
+                        line = reader.ReadLine();
 
-                                context.Request.Headers[name] = value;
-                            }
-                            break;
+                        if (string.IsNullOrEmpty(line))
+                        {
+                            mode = ParserMode.Body;
+                            continue;
+                        }
 
-                        case ParserMode.Body:
+                        int seperatorIndex = line.IndexOf(": ");
 
-                            // TODO: Improve performace by not reading every body line 
-                            //Stream req = context.Session.InputStream;
-                            //req.Seek(0, System.IO.SeekOrigin.Begin);
-                            //string body = new StreamReader(req).ReadToEnd();
-                            //body.AppendLine(line);
+                        if (seperatorIndex > 1)
+                        {
+                            var name = line.Substring(0, seperatorIndex);
+                            var value = line.Substring(seperatorIndex + 1);
 
+                            context.Request.Headers[name] = value;
+                        }
 
+                        break;
 
-                            break;
-                    }
-                
-                } while (!reader.EndOfStream);
+                    case ParserMode.Body:
+                        var buffer = new byte[context.Request.ContentLength];
 
-                // Set request body
-                var bytes = Encoding.UTF8.GetBytes(body.ToString());
-                if (bytes.Length > 0)
-                {
-                    context.Request.Body = new MemoryStream(bytes);
-                    //context.Request.Body.Write(bytes, 0, bytes.Length);
-                    context.Request.Body.Position = 0;
+                        int bytesRead;
+                        while ((bytesRead = reader.BaseStream.Read(buffer, 0, buffer.Length)) > 0)
+                        {
+                            context.Request.Body.Write(buffer, 0, bytesRead);
+                        }
+
+                        context.Request.Body.Position = 0;
+                        reader.Close();
+
+                        break;
                 }
 
-                // Set request cookies
-                //var cookieParser = new HttpCookieParser();
-                //var headers = context.Request.Headers as HeaderDictionary;
-                //var cookies = headers[HeaderNames.Cookie];
-                //if (cookies != null)
-                //{
-                //    context.Request.Cookies = cookieParser.Parse(cookies);
-                //}
-            //}
+                Debug.WriteLine(line);
+            } 
+
+            using (var sr = new StreamReader(context.Request.Body))
+            {
+                
+                Debug.WriteLine(sr.ReadToEnd());
+            }
+
         }
 
         public void Encode(HttpContext context)
@@ -169,14 +160,6 @@ namespace Bytewizer.TinyCLR.Http.Internal
                     }
                 }
 
-                //if (response.Cookies is CookieCollection cookies && cookies.Count > 0)
-                //{
-                //    foreach (CookieValue cookie in cookies)
-                //    {
-                //        writer.Write($"Set-Cookie: {cookie.Value}\r\n");
-                //    }
-                //}
-
                 writer.Write("\r\n");
                 writer.Flush();
 
@@ -198,3 +181,48 @@ namespace Bytewizer.TinyCLR.Http.Internal
         }
     }
 }
+
+
+
+//var buffer = new byte[context.Request.ContentLength];
+
+//int bytesRead;
+//while ((bytesRead = reader.BaseStream.Read(buffer, 0, buffer.Length)) > 0)
+//{
+//    context.Request.Body.Write(buffer, 0, bytesRead);
+//}
+
+//for (int i = 0; i < buffer.Length; i++)
+//{
+//    Debug.WriteLine($"BODY : {buffer[i]}");
+//}
+
+
+// Set request body
+//var bytes = Encoding.UTF8.GetBytes(body.ToString());
+//if (bytes.Length > 0)
+//{
+//    context.Request.Body = new MemoryStream(bytes);
+//    //context.Request.Body.Write(bytes, 0, bytes.Length);
+//    context.Request.Body.Position = 0;
+//}
+//}
+
+//line = reader.ReadLine();
+//Debug.WriteLine(line);
+
+//var body = reader.ReadLine();
+
+//reader.BaseStream
+
+//reader.ReadBlock(buffer, 0,  buffer.Length);
+
+//var ms = new MemoryStream();
+//reader.BaseStream.CopyTo(ms);
+//Debug.WriteLine(ms.Length.ToString());
+// TODO: Improve performace by not reading every body line 
+//Stream req = context.Session.InputStream;
+//req.Seek(0, System.IO.SeekOrigin.Begin);
+//string body = new StreamReader(req).ReadToEnd();
+//body.AppendLine(line);
+//reader.CopyTo(context.Request.Body);

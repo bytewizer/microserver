@@ -75,5 +75,4 @@
         public const int Status510NotExtended = 510;
         public const int Status511NetworkAuthenticationRequired = 511;
     }
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 }

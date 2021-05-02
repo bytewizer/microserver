@@ -12,7 +12,7 @@ namespace Bytewizer.TinyCLR.Http
         private readonly StatusCodePagesOptions _options;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeveloperExceptionPageMiddleware"/> class.
+        /// Initializes a new instance of the <see cref="StatusCodePagesMiddleware"/> class.
         /// </summary>
         public StatusCodePagesMiddleware()
         {
@@ -20,7 +20,7 @@ namespace Bytewizer.TinyCLR.Http
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeveloperExceptionPageMiddleware"/> class.
+        /// Initializes a new instance of the <see cref="StatusCodePagesMiddleware"/> class.
         /// </summary>
         /// <param name="options">The options for configuring the middleware.</param>
         public StatusCodePagesMiddleware(StatusCodePagesOptions options)

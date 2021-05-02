@@ -62,7 +62,6 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Crypto\SHA1.cs" />
     <Compile Include="Extensions\StreamExtensions.cs" />
     <Compile Include="Extensions\ByteArrayExtensions.cs" />
     <Compile Include="Extensions\ByteOrder.cs" />
@@ -75,13 +74,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Routing\HubEndpointRouteBuilderExtensions.cs" />
     <Compile Include="Routing\Internal\HubEndpointProvider.cs" />
-    <Compile Include="WebSockets\Clients.All.cs" />
-    <Compile Include="WebSockets\Clients.Others.cs" />
-    <Compile Include="WebSockets\Clients.Caller.cs" />
-    <Compile Include="WebSockets\Clients.cs" />
-    <Compile Include="WebSockets\IClientsAll.cs" />
-    <Compile Include="WebSockets\IClientsOthers.cs" />
-    <Compile Include="WebSockets\IClientsCaller.cs" />
+    <Compile Include="WebSockets\Clients\Clients.All.cs" />
+    <Compile Include="WebSockets\Clients\Clients.Others.cs" />
+    <Compile Include="WebSockets\Clients\Clients.Caller.cs" />
+    <Compile Include="WebSockets\Clients\Clients.cs" />
+    <Compile Include="WebSockets\Clients\IClientsAll.cs" />
+    <Compile Include="WebSockets\Clients\IClientsOthers.cs" />
+    <Compile Include="WebSockets\Clients\IClientsCaller.cs" />
     <Compile Include="WebSockets\CloseStatusCode.cs" />
     <Compile Include="WebSockets\Hub.cs" />
     <Compile Include="Routing\Internal\HubDelegateFactory.cs" />
@@ -113,6 +112,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="GHIElectronics.TinyCLR.Cryptography">
+      <Version>2.1.0-rc1</Version>
+    </PackageReference>
     <PackageReference Include="GHIElectronics.TinyCLR.Data.Json">
       <Version>2.1.0-rc1</Version>
     </PackageReference>

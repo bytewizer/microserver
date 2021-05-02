@@ -16,5 +16,4 @@
         public static readonly string Put = "PUT";
         public static readonly string Trace = "TRACE";
     }
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 }

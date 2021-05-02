@@ -2,7 +2,7 @@
 
 Enables functionality for serializing and deserializing from JavaScript Object Notation (JSON).
 
-### Json Serializing
+## Json Serializing
 Writes the HTTP content that results from serializing the content as Json.
 
 ```CSharp
@@ -98,7 +98,7 @@ public class Person
 }
 ```
 
-### Json Deserializing
+## Json Deserializing
 Reads the HTTP content and returns the value that results from deserializing the content as Json.
 
 ```CSharp
@@ -112,8 +112,9 @@ static void Main()
             endpoints.Map("/json", context =>
             {
                 // Post a request with the following content as the body and content type of application/json.
-                // {"Id": 100,"Suffix": "I","SSN": "939-69-5554","Title": "Mr.","LastName": "Crona","Phone": "(458)-857-7797",
-                // "Gender": 0,"FirstName": "Roscoe","MiddleName": "Jerald","Email": "Roscoe@gmail.com","DOB": "2017-01-01T00:00:53.967Z"}
+                // {"Id": 100,"Suffix": "I","SSN": "939-69-5554","Title": "Mr.","LastName": "Crona","Phone":
+                // "(458)-857-7797","Gender": 0,"FirstName": "Roscoe","MiddleName": "Jerald","Email": "Roscoe@gmail.com",
+                //"DOB": "2017-01-01T00:00:53.967Z"}
     
                 if (context.Request.ReadFromJson(typeof(Person)) is Person person)
                 {

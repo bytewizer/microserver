@@ -2,10 +2,6 @@
 
 using Bytewizer.TinyCLR.Pipeline.Builder;
 
-using System.Collections;
-using System.Text;
-using System.Threading;
-
 namespace Bytewizer.TinyCLR.Http
 {
     /// <summary>
