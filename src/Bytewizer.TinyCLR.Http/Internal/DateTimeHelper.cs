@@ -6,6 +6,8 @@ namespace Bytewizer.TinyCLR.Http.Internal
     {
         internal static bool TryParse(string datetime, out DateTime d)
         {
+            // Attempt to parse the provided datetime value using RFC1123, RFC1036, or  ANSI C asctime() format.
+
             if (string.IsNullOrEmpty(datetime))
             {
                 d = DateTime.MinValue;

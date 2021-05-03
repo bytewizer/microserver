@@ -62,7 +62,12 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\StreamExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Http\HttpRequestExtensions.cs" />
+    <Compile Include="Internal\BufferReader.cs" />
+    <Compile Include="Internal\ChannelReader.cs" />
+    <Compile Include="Internal\ReadOnlyBufferedStream.cs" />
     <Compile Include="Middleware\UsePathBaseExtensions.cs" />
     <Compile Include="Middleware\UsePathBaseMiddleware.cs" />
     <Compile Include="Routing\Endpoint.cs" />

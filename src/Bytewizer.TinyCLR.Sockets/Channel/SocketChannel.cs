@@ -30,14 +30,14 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
         public byte[] Data { get; set; }
 
         /// <summary>
-        /// Gets a <see cref="Stream"/> object representing the contents of the socket channel.
+        /// Gets a <see cref="NetworkStream"/> object representing the contents of the socket channel.
         /// </summary>
-        public Stream InputStream { get; internal set; }
+        public NetworkStream InputStream { get; internal set; }
 
         /// <summary>
-        /// Gets a <see cref="Stream"/> object representing the contents of the socket channel.
+        /// Gets a <see cref="NetworkStream"/> object representing the contents of the socket channel.
         /// </summary>
-        public Stream OutputStream { get; internal set; }
+        public NetworkStream OutputStream { get; internal set; }
 
         /// <summary>
         /// Assign a socket to this channel.
@@ -66,8 +66,8 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
                 throw new ArgumentNullException(nameof(socket));
 
             Socket = socket;
-            InputStream = new MemoryStream(buffer);
-            OutputStream = new MemoryStream();
+            //InputStream = new MemoryStream(buffer);
+            //OutputStream = new MemoryStream();
             Connection = ConnectionInfo.Set(socket, endpoint);
         }
 

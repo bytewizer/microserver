@@ -36,26 +36,26 @@ namespace Bytewizer.Playground.Json
                             // Post a request with the following content as the body and content type of application/json.
                             // {"Id": 100,"Suffix": "I", "Title": "Mr.","LastName": "Crona","Phone":
                             // "(458)-857-7797","Gender": 0,"FirstName": "Roscoe","MiddleName": "Jerald","Email": "Roscoe@gmail.com",
-                            //"DOB": "2017-01-01T00:00:53.967Z"}
+                            // "DOB": "2017-01-01T00:00:53.967Z"}
 
-                            //if (context.Request.Method != HttpMethods.Post)
-                            //{
-                            //    context.Response.StatusCode = StatusCodes.Status405MethodNotAllowed;
-                            //    return;
-                            //}
+                            if (context.Request.Method != HttpMethods.Post)
+                            {
+                                context.Response.StatusCode = StatusCodes.Status405MethodNotAllowed;
+                                return;
+                            }
 
-                            //if (context.Request.ReadFromJson(typeof(Person)) is Person person)
-                            //{
-                            //    string response = "<doctype !html><html><head><title>Hello, world!" +
-                            //    "</title></head><body><h1>" + person.FirstName + " " + person.LastName + "</h1></body></html>";
+                            if (context.Request.ReadFromJson(typeof(Person)) is Person person)
+                            {
+                                string response = "<doctype !html><html><head><title>Hello, world!" +
+                                "</title></head><body><h1>" + person.FirstName + " " + person.LastName + "</h1></body></html>";
 
-                            //    context.Response.StatusCode = StatusCodes.Status202Accepted;
-                            //    context.Response.Write(response);
-                            //}
-                            //else
-                            //{
-                            //    context.Response.StatusCode = StatusCodes.Status204NoContent;
-                            //}
+                                context.Response.StatusCode = StatusCodes.Status202Accepted;
+                                context.Response.Write(response);
+                            }
+                            else
+                            {
+                                context.Response.StatusCode = StatusCodes.Status204NoContent;
+                            }
                         });
                         endpoints.Map("/json", context =>
                         {

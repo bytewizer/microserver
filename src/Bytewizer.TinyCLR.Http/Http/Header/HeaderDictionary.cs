@@ -59,6 +59,11 @@ namespace Bytewizer.TinyCLR.Http.Header
 
                 lock (_lock)
                 {
+                    if (key.IndexOfAny(new[] { ':', '\r', '\n' }) != -1)
+                    {
+                        throw new FormatException("Header name may not contain colon, CR or LF; Name: " + value);
+                    }
+
                     _pairs.Add(new HeaderValue(key, value.Trim()));
                 }
             }

@@ -1,12 +1,9 @@
 ﻿using System;
 using System.IO;
-using System.Text;
 using System.Collections;
 
 using Bytewizer.TinyCLR.Http.Header;
 using Bytewizer.TinyCLR.Http.Query;
-using Bytewizer.TinyCLR.Http.Extensions;
-using System.Diagnostics;
 
 namespace Bytewizer.TinyCLR.Http.Internal
 {
@@ -16,108 +13,98 @@ namespace Bytewizer.TinyCLR.Http.Internal
         {
             ParserMode mode = ParserMode.FirstLine;
 
-            var reader = new StreamReader(context.Channel.InputStream);
-
-            string line = reader.ReadLine();
-            while (!reader.EndOfStream)
+            using (var input =  context.Channel.InputStream)
             {
-                switch (mode)
+                var reader = new BufferReader(input);
+
+                string line;
+                do
                 {
-                    case ParserMode.FirstLine:
-                        reader.SkipWhiteSpace();
+                    line = reader.ReadLine();
+                    //Debug.WriteLine(line);
 
-                        string[] requestLine = line.Split(new char[] { ' ' }, 3);
-                        if (requestLine.Length != 3)
-                        {
-                            throw new Exception("Expected first line to contain three words in accordance HTTP specification.");
-                        }
+                    switch (mode)
+                    {
+                        case ParserMode.FirstLine:
 
-                        if (!requestLine[2].ToLower().StartsWith("http/"))
-                        {
-                            throw new Exception($"Status line for requests should end with the HTTP version. Your line ended with { requestLine[2] }.");
-                        }
-
-                        context.Request.Method = requestLine[0];
-                        context.Request.Path = requestLine[1];
-
-                        if (requestLine[1].Contains("?"))
-                        {
-                            var parameters = requestLine[1].Split('?')[1];
-
-                            var parsed = QueryValue.TryParseList(parameters, out ArrayList result);
-                            if (parsed)
+                            reader.ConsumeWhiteSpaces();
+                            string[] requestLine = line.Split(new char[] { ' ' }, 3);
+                            if (requestLine.Length != 3)
                             {
-                                context.Request.Query = new QueryCollection(result);
+                                throw new Exception("Expected first line to contain three words in accordance HTTP specification.");
+                            }
+
+                            if (!requestLine[2].ToLower().StartsWith("http/"))
+                            {
+                                throw new Exception($"Status line for requests should end with the HTTP version. Your line ended with { requestLine[2] }.");
+                            }
+
+                            context.Request.Method = requestLine[0];
+                            context.Request.Path = requestLine[1];
+
+                            if (requestLine[1].Contains("?"))
+                            {
+                                var parameters = requestLine[1].Split('?')[1];
+
+                                var parsed = QueryValue.TryParseList(parameters, out ArrayList result);
+                                if (parsed)
+                                {
+                                    context.Request.Query = new QueryCollection(result);
+                                }
+
+                                context.Request.Path = requestLine[1].Split('?')[0];
+                            }
+                            else
+                            {
+                                context.Request.Path = requestLine[1];
                             }
 
                             context.Request.Path = requestLine[1].Split('?')[0];
-                        }
-                        else
-                        {
-                            context.Request.Path = requestLine[1];
-                        }
 
-                        context.Request.Path = requestLine[1].Split('?')[0];
+                            if (requestLine.Length >= 3)
+                            {
+                                context.Request.Protocol = requestLine[2];
+                            }
+                            else
+                            {
+                                context.Request.Protocol = HttpProtocol.Http11;
+                            }
 
-                        if (requestLine.Length >= 3)
-                        {
-                            context.Request.Protocol = requestLine[2];
-                        }
-                        else
-                        {
-                            context.Request.Protocol = HttpProtocol.Http11;
-                        }
+                            mode = ParserMode.Headers;
 
-                        mode = ParserMode.Headers;
+                            break;
 
-                        break;
+                        case ParserMode.Headers:
 
-                    case ParserMode.Headers:
+                            if (string.IsNullOrEmpty(line))
+                            {
+                                // Set request body is empty line detected
+                                var contentLength = context.Request.ContentLength;
+                                if (contentLength > 0)
+                                {
+                                    var buffer = new byte[contentLength];
 
-                        line = reader.ReadLine();
+                                    reader.Read(buffer);
+                                    context.Request.Body.Write(buffer, 0, buffer.Length);
+                                    context.Request.Body.Position = 0;
+                                }
+                            }
 
-                        if (string.IsNullOrEmpty(line))
-                        {
-                            mode = ParserMode.Body;
-                            continue;
-                        }
+                            int seperatorIndex = line.IndexOf(": ");
 
-                        int seperatorIndex = line.IndexOf(": ");
+                            if (seperatorIndex > 1)
+                            {
+                                var name = line.Substring(0, seperatorIndex);
+                                var value = line.Substring(seperatorIndex + 1);
 
-                        if (seperatorIndex > 1)
-                        {
-                            var name = line.Substring(0, seperatorIndex);
-                            var value = line.Substring(seperatorIndex + 1);
+                                context.Request.Headers[name] = value;
+                            }
 
-                            context.Request.Headers[name] = value;
-                        }
+                            break;
+                    }
 
-                        break;
-
-                    case ParserMode.Body:
-                        var buffer = new byte[context.Request.ContentLength];
-
-                        int bytesRead;
-                        while ((bytesRead = reader.BaseStream.Read(buffer, 0, buffer.Length)) > 0)
-                        {
-                            context.Request.Body.Write(buffer, 0, bytesRead);
-                        }
-
-                        context.Request.Body.Position = 0;
-                        reader.Close();
-
-                        break;
-                }
-
-                Debug.WriteLine(line);
-            } 
-
-            using (var sr = new StreamReader(context.Request.Body))
-            {
-                
-                Debug.WriteLine(sr.ReadToEnd());
+                } while (!reader.EOF);
             }
-
         }
 
         public void Encode(HttpContext context)
@@ -183,6 +170,30 @@ namespace Bytewizer.TinyCLR.Http.Internal
 }
 
 
+
+
+//    // Set request body is empty line detected
+//    //var contentLength = context.Request.ContentLength;
+//    //if (contentLength > 0)
+//    //{
+//        //var buffer = new char[contentLength];
+
+//        //input.Read();
+//        //input.ReadBlock(buffer, 0, buffer.Length);
+
+//        //input.ReadBuffer(buffer);
+//        //context.Request.Body.Write(Convert.FromBase64CharArray(buffer, 0, buffer.Length));
+//        //context.Request.Body.Position = 0;
+//    //}
+
+//var bodyIndex = (int)(context.Channel.InputStream.Length - context.Request.ContentLength);
+//var buffer = new byte[context.Request.ContentLength];
+
+//int bytesRead;
+//while ((bytesRead = context.Channel.InputStream.Read(buffer, 0, buffer.Length)) > 0)
+//{
+//    context.Request.Body.Write(buffer, 0, bytesRead);
+//}
 
 //var buffer = new byte[context.Request.ContentLength];
 
