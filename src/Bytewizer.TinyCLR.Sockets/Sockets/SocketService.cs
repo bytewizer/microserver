@@ -3,8 +3,6 @@ using System.Diagnostics;
 using System.Net.Sockets;
 
 using Bytewizer.TinyCLR.Logging;
-using Bytewizer.TinyCLR.Pipeline;
-using Bytewizer.TinyCLR.Pipeline.Builder;
 using Bytewizer.TinyCLR.Sockets.Channel;
 using Bytewizer.TinyCLR.Sockets.Listener;
 
@@ -28,46 +26,26 @@ namespace Bytewizer.TinyCLR.Sockets
         /// <summary>
         /// The configuration options of server specific features.
         /// </summary>
-        protected readonly ServerOptions _options;
-
-        /// <summary>
-        /// The application pipeline used to invoke pipeline middleware.
-        /// </summary>
-        protected readonly IApplication _application;
+        protected readonly IServerOptions _options;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SocketService"/> class.
         /// </summary>
         /// <param name="loggerFactory">The factory used to create loggers.</param>
-        /// <param name="middleware">The <see cref="IMiddleware"/> to include first in the application pipeline.</param>
-        /// <param name="configure">The configuration options of <see cref="SocketService"/> specific features.</param>
-        public SocketService(ILoggerFactory loggerFactory, IMiddleware middleware, ServerOptionsDelegate configure)
+        /// <param name="options">The configuration options of <see cref="SocketService"/> specific features.</param>
+        public SocketService(ILoggerFactory loggerFactory, ServerOptions options)
         {
             if (loggerFactory == null)
             {
                 throw new ArgumentNullException(nameof(loggerFactory));
             }
 
-            if (configure == null)
+            if (options == null)
             {
-                throw new ArgumentNullException(nameof(configure));
+                throw new ArgumentNullException(nameof(options));
             }
 
             _logger = loggerFactory.CreateLogger("Bytewizer.TinyCLR.Sockets");
-
-            var options = new ServerOptions();
-
-            if (middleware != null)
-            {
-                options.Pipeline(app =>
-                {
-                    app.Use(middleware);
-                });
-            }
-
-            configure(options);
-
-            _application = options.Application;
 
             switch (options.Listener.ProtocolType)
             {
@@ -93,13 +71,13 @@ namespace Bytewizer.TinyCLR.Sockets
             try
             {
                 var status = _listener.Start();
-                WriteMessage($"Started socket listener bound to {_listener.Options.EndPoint}");
+                WriteMessage($"Started socket listener bound to port {_listener.ActivePort}");
 
                 return status;
             }
             catch (Exception ex)
             {
-                WriteExecption(ex, $"Error starting listerner bound to {_listener.Options.EndPoint}");
+                WriteExecption(ex, $"Error starting listerner bound to port {_listener.ActivePort}");
                 return false;
             }
         }
@@ -110,13 +88,13 @@ namespace Bytewizer.TinyCLR.Sockets
             try
             {
                 var status = _listener.Stop();
-                WriteMessage($"Stopping socket listener bound to {_listener.Options.EndPoint}");
+                WriteMessage($"Stopping socket listener bound to port {_listener.ActivePort}");
 
                 return status;
             }
             catch (Exception ex)
             {
-                WriteExecption(ex, $"Error stopping listener bound to {_listener.Options.EndPoint}");
+                WriteExecption(ex, $"Error stopping listener bound to port {_listener.ActivePort}");
                 return false;
             }
         }

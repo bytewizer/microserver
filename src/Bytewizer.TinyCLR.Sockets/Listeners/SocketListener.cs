@@ -6,6 +6,7 @@ using System.Diagnostics;
 using Bytewizer.TinyCLR.Sockets.Channel;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
+using System.Net;
 
 namespace Bytewizer.TinyCLR.Sockets.Listener
 {
@@ -31,6 +32,23 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
         public SocketListener(SocketListenerOptions options)
         {
             _options = options;
+        }
+
+        /// <summary>
+        /// The port that the server is actively listening on.
+        /// </summary>
+        /// <remarks>
+        /// You can use port <c>0</c> to let the OS assign a port. This method will then give you the assigned port.
+        /// </remarks>
+        public int ActivePort
+        {
+            get
+            {
+                if (_listenSocket == null)
+                    return -1;
+
+                return ((IPEndPoint)_listenSocket.LocalEndPoint).Port;
+            }
         }
 
         /// <summary>

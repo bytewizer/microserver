@@ -19,6 +19,7 @@ namespace Bytewizer.Playground.Sockets
 
             IServer server = new SocketServer(loggerFactory, options =>
             {
+                //options.Listen(80);
                 options.Pipeline(app =>
                 {
                     app.UseMemoryInfo();

@@ -2,7 +2,6 @@
 using System.IO;
 using System.Net;
 using System.Text;
-using System.Collections;
 using System.Net.Sockets;
 using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
@@ -32,12 +31,12 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
         /// <summary>
         /// Gets a <see cref="NetworkStream"/> object representing the contents of the socket channel.
         /// </summary>
-        public NetworkStream InputStream { get; internal set; }
+        public Stream InputStream { get; internal set; }
 
         /// <summary>
         /// Gets a <see cref="NetworkStream"/> object representing the contents of the socket channel.
         /// </summary>
-        public NetworkStream OutputStream { get; internal set; }
+        public Stream OutputStream { get; internal set; }
 
         /// <summary>
         /// Assign a socket to this channel.
@@ -66,8 +65,8 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
                 throw new ArgumentNullException(nameof(socket));
 
             Socket = socket;
-            //InputStream = new MemoryStream(buffer);
-            //OutputStream = new MemoryStream();
+            InputStream = new MemoryStream(buffer);
+            OutputStream = new MemoryStream();
             Connection = ConnectionInfo.Set(socket, endpoint);
         }
 

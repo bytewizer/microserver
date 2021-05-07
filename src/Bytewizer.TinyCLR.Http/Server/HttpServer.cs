@@ -14,15 +14,17 @@ namespace Bytewizer.TinyCLR.Http
     public class HttpServer : SocketService, IServer
     {
         private readonly ILogger _logger;
-        private readonly ContextPool _ContextPool;
+        private readonly ContextPool _contextPool;
+        private readonly HttpServerOptions _httpOptions;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HttpServer"/> class.
         /// </summary>
         /// <param name="configure">The configuration options of <see cref="HttpServer"/> specific features.</param>
         public HttpServer(ServerOptionsDelegate configure)
-            : this(NullLoggerFactory.Instance, new HttpMiddleware(), configure)
+            : this(NullLoggerFactory.Instance, new HttpServerOptions())
         {
+            ConfigOptions(configure);
         }
 
         /// <summary>
@@ -31,21 +33,33 @@ namespace Bytewizer.TinyCLR.Http
         /// <param name="loggerFactory">The factory used to create loggers.</param>
         /// <param name="configure">The configuration options of <see cref="SocketServer"/> specific features.</param>
         public HttpServer(ILoggerFactory loggerFactory, ServerOptionsDelegate configure)
-            : this(loggerFactory, new HttpMiddleware(), configure)
+            : this(loggerFactory, new HttpServerOptions())
         {
+            ConfigOptions(configure);
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HttpServer"/> class.
         /// </summary>
         /// <param name="loggerFactory">The factory used to create loggers.</param>
-        /// <param name="middleware">The <see cref="IMiddleware"/> to include in the application pipeline.</param>
-        /// <param name="configure">The configuration options of <see cref="HttpServer"/> specific features.</param>
-        public HttpServer(ILoggerFactory loggerFactory, IMiddleware middleware, ServerOptionsDelegate configure)
-            : base(loggerFactory, middleware, configure)
+        /// <param name="options">The options of <see cref="HttpServer"/> specific features.</param>
+        public HttpServer(ILoggerFactory loggerFactory, ServerOptions options)
+            : base(loggerFactory, options)
         {
-            _ContextPool = new ContextPool();
+            _contextPool = new ContextPool();
             _logger = loggerFactory.CreateLogger("Bytewizer.TinyCLR.Http");
+            _httpOptions = _options as HttpServerOptions;
+        }
+
+        private void ConfigOptions(ServerOptionsDelegate configure)
+        {
+            _options.Listen(80);
+            _options.Pipeline(app =>
+            {
+                app.Use(new HttpMiddleware());
+            });
+
+            configure(_options);
         }
 
         /// <summary>
@@ -58,23 +72,23 @@ namespace Bytewizer.TinyCLR.Http
             try
             {
                 // get context from context pool
-                var context = _ContextPool.GetContext(typeof(HttpContext)) as HttpContext;
+                var context = _contextPool.GetContext(typeof(HttpContext)) as HttpContext;
                 
                 // assign channel
                 context.Channel = channel;
 
                 // set server header name
-                context.Response.Headers[HeaderNames.Server] = _options.Name;
+                context.Response.Headers[HeaderNames.Server] = _httpOptions.Name;
 
                 // check to make sure channel contains data
                 if (context.Channel.InputStream.Length > 0)
                 {   
                     // invoke pipeline 
-                    _application.Invoke(context);
+                    _options.Application.Invoke(context);
                 }
 
                 // release context back to pool and close connection once pipeline is complete
-                _ContextPool.Release(context);
+                _contextPool.Release(context);
             }
             catch (Exception ex)
             {

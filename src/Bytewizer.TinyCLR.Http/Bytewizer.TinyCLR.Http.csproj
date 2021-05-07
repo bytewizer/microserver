@@ -123,6 +123,7 @@
     <Compile Include="Routing\RouteEndpoint.cs" />
     <Compile Include="Routing\RouteEndpointBuilder.cs" />
     <Compile Include="Server\HttpServer.cs" />
+    <Compile Include="Server\HttpServerOptions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bytewizer.TinyCLR.Pipeline\Bytewizer.TinyCLR.Pipeline.csproj">

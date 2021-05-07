@@ -19,8 +19,9 @@ namespace Bytewizer.TinyCLR.Sockets
         /// </summary>
         /// <param name="configure">The configuration options of <see cref="SocketServer"/> specific features.</param>
         public SocketServer(ServerOptionsDelegate configure)
-            : this(NullLoggerFactory.Instance, null, configure)
+            : this(NullLoggerFactory.Instance, new ServerOptions())
         {
+            configure(_options);
         }
 
         /// <summary>
@@ -29,18 +30,18 @@ namespace Bytewizer.TinyCLR.Sockets
         /// <param name="loggerFactory">The factory used to create loggers.</param>
         /// <param name="configure">The configuration options of <see cref="SocketServer"/> specific features.</param>
         public SocketServer(ILoggerFactory loggerFactory, ServerOptionsDelegate configure)
-            : this(loggerFactory, null, configure)
+            : this(loggerFactory, new ServerOptions())
         {
+            configure(_options);
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SocketServer"/> class.
         /// </summary>
         /// <param name="loggerFactory">The factory used to create loggers.</param>
-        /// <param name="middleware">The <see cref="IMiddleware"/> to include in the application pipeline.</param>
-        /// <param name="configure">The configuration options of <see cref="SocketServer"/> specific features.</param>
-        public SocketServer(ILoggerFactory loggerFactory, IMiddleware middleware, ServerOptionsDelegate configure)
-            : base(loggerFactory, middleware, configure)
+        /// <param name="options">The configuration options of <see cref="SocketServer"/> specific features.</param>
+        public SocketServer(ILoggerFactory loggerFactory, ServerOptions options)
+            : base(loggerFactory, options)
         {
             _contextPool = new ContextPool();
             _logger = loggerFactory.CreateLogger("Bytewizer.TinyCLR.Sockets");
@@ -65,7 +66,7 @@ namespace Bytewizer.TinyCLR.Sockets
                 if (context.Channel.InputStream.Length > 0)
                 {
                     // Invoke pipeline 
-                    _application.Invoke(context);
+                    _options.Application.Invoke(context);
                 }
 
                 // Release context back to pool and close connection once pipeline is complete

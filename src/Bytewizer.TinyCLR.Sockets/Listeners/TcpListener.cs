@@ -21,7 +21,7 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
         }
 
         private int _listeningSockets = 0;
-        private static readonly Random _random = new Random();
+        //private static readonly Random _random = new Random();
 
         /// <summary>
         /// Accepted connection listening thread

@@ -116,7 +116,7 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
    
         internal SocketListenerOptions()
         {
-            EndPoint = new IPEndPoint(IPAddress.Any, 80);
+            EndPoint = new IPEndPoint(IPAddress.Any, 0);
         }
 
         internal SocketListenerOptions(IPEndPoint endPoint)

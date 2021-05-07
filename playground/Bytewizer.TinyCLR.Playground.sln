@@ -51,6 +51,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Json
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.Playground.Json", "json\Bytewizer.Playground.Json.csproj", "{C8FD4459-169D-48C9-9CB8-E94FEE8AEEED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Ftp", "..\src\Bytewizer.TinyCLR.Ftp\Bytewizer.TinyCLR.Ftp.csproj", "{1065CFB2-B830-4F98-8672-07DE293D8366}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.Playground.Ftp", "ftp\Bytewizer.Playground.Ftp.csproj", "{49576B64-3EE7-4597-A684-C3036A7F95C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -169,6 +173,16 @@ Global
 		{C8FD4459-169D-48C9-9CB8-E94FEE8AEEED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8FD4459-169D-48C9-9CB8-E94FEE8AEEED}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C8FD4459-169D-48C9-9CB8-E94FEE8AEEED}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{1065CFB2-B830-4F98-8672-07DE293D8366}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1065CFB2-B830-4F98-8672-07DE293D8366}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1065CFB2-B830-4F98-8672-07DE293D8366}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1065CFB2-B830-4F98-8672-07DE293D8366}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49576B64-3EE7-4597-A684-C3036A7F95C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49576B64-3EE7-4597-A684-C3036A7F95C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49576B64-3EE7-4597-A684-C3036A7F95C3}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{49576B64-3EE7-4597-A684-C3036A7F95C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49576B64-3EE7-4597-A684-C3036A7F95C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49576B64-3EE7-4597-A684-C3036A7F95C3}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -185,6 +199,7 @@ Global
 		{395CAB3E-5CC1-4B73-9883-1EA0114896D0} = {4E3B2537-B6D2-419B-AACF-F243DC0F8A68}
 		{7B10DA7D-3137-4053-8E07-E284988CF3FF} = {4E3B2537-B6D2-419B-AACF-F243DC0F8A68}
 		{C8FD4459-169D-48C9-9CB8-E94FEE8AEEED} = {4E3B2537-B6D2-419B-AACF-F243DC0F8A68}
+		{49576B64-3EE7-4597-A684-C3036A7F95C3} = {4E3B2537-B6D2-419B-AACF-F243DC0F8A68}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C04E0A8C-D974-4A4F-9D49-9E9AC9A78F05}

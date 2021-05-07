@@ -13,6 +13,7 @@ namespace Bytewizer.Playground.Http
 
             var server = new HttpServer(options =>
             {
+                options.Listen(8080);
                 options.Pipeline(app =>
                 {
                     app.UseRouting();
