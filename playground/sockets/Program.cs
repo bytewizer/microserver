@@ -2,7 +2,6 @@
 
 using Bytewizer.TinyCLR.Logging;
 using Bytewizer.TinyCLR.Logging.Debug;
-using Bytewizer.TinyCLR.Netbios;
 
 namespace Bytewizer.Playground.Sockets
 {

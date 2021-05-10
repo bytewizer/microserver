@@ -51,7 +51,7 @@ namespace Bytewizer.TinyCLR.Http
         /// </summary>
         public void Abort()
         {
-            Channel?.Socket?.Close();
+            Channel?.Client?.Close();
         }
 
         /// <summary>

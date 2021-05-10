@@ -1,10 +1,14 @@
-﻿namespace Bytewizer.TinyCLR.Ftp
+﻿using System;
+
+namespace Bytewizer.TinyCLR.Ftp
 {
     /// <summary>
     /// Represents the outgoing side of an individual FTP request.
     /// </summary>
     public class FtpResponse 
     {
+        private int _code = 0;
+
         /// <summary>
         /// Initializes an instance of the <see cref="FtpResponse" /> class.
         /// </summary>
@@ -12,24 +16,27 @@
         {
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FtpResponse"/> class.
-        /// </summary>
-        /// <param name="code">The response code.</param>
-        /// <param name="message">The response message.</param>
-        public FtpResponse(int code, string message)
-        {
-            Code = code;
-            Message = message;
-        }
-
         /// <inheritdoc />
-        public int Code { get; private set; }
+        public int Code
+        {
+            get
+            {
+                return _code;
+            }
+            set
+            {
+                if (value < 100 || value > 999)
+                {
+                    throw new ArgumentException("Protocol violation no such status code.");
+                }
+                _code = value;
+            }
+        }
 
         /// <summary>
         /// Gets the response message.
         /// </summary>
-        public string Message { get; private set; }
+        public string Message { get; set; }
 
         /// <summary>
         /// Gets the response code.
@@ -44,7 +51,7 @@
         /// </summary>
         public void Clear()
         {
-            Code = default;
+            _code = default;
             Message = default;
         }
     } 

@@ -33,7 +33,7 @@ namespace Bytewizer.TinyCLR.Sockets
         /// </summary>
         /// <param name="loggerFactory">The factory used to create loggers.</param>
         /// <param name="options">The configuration options of <see cref="SocketService"/> specific features.</param>
-        public SocketService(ILoggerFactory loggerFactory, ServerOptions options)
+        public SocketService(ILoggerFactory loggerFactory, IServerOptions options)
         {
             if (loggerFactory == null)
             {
@@ -45,15 +45,17 @@ namespace Bytewizer.TinyCLR.Sockets
                 throw new ArgumentNullException(nameof(options));
             }
 
+            var serverOptions = options as ServerOptions;
+
             _logger = loggerFactory.CreateLogger("Bytewizer.TinyCLR.Sockets");
 
-            switch (options.Listener.ProtocolType)
+            switch (serverOptions.Listener.ProtocolType)
             {
                 case ProtocolType.Tcp:
-                    _listener = new TcpListener(options.Listener);
+                    _listener = new TcpListener(serverOptions.Listener);
                     break;
                 case ProtocolType.Udp:
-                    _listener = new UdpListener(options.Listener);
+                    _listener = new UdpListener(serverOptions.Listener);
                     break;
                 default:
                     throw new NotSupportedException();
@@ -61,7 +63,7 @@ namespace Bytewizer.TinyCLR.Sockets
             
             _listener.Connected += ClientConnected;
             _listener.Disconnected += ClientDisconnected;
-
+            
             _options = options;
         }
 

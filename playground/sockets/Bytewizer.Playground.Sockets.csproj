@@ -44,10 +44,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.NetBios\Bytewizer.TinyCLR.Netbios.csproj">
-      <Project>{C21AFDC5-13EB-4B0C-8CC7-372C96E0870F}</Project>
-      <Name>Bytewizer.TinyCLR.Netbios</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Pipeline\Bytewizer.TinyCLR.Pipeline.csproj">
       <Project>{8470EE70-1C41-45E4-8EDF-0D20CFEBFFD1}</Project>
       <Name>Bytewizer.TinyCLR.Pipeline</Name>

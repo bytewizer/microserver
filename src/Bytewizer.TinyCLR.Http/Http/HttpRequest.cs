@@ -19,7 +19,6 @@ namespace Bytewizer.TinyCLR.Http
             Headers = new HeaderDictionary();
             Query = new QueryCollection();
             Body = new MemoryStream();
-
             Path = string.Empty;
             PathBase = string.Empty;
         }

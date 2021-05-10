@@ -31,8 +31,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Auth
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.Playground.Authentication", "auth\Bytewizer.Playground.Authentication.csproj", "{FA56181A-1BA1-4006-A639-33778CCF9210}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Netbios", "..\src\Bytewizer.TinyCLR.NetBios\Bytewizer.TinyCLR.Netbios.csproj", "{C21AFDC5-13EB-4B0C-8CC7-372C96E0870F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Cors", "..\src\Bytewizer.TinyCLR.Http.Cors\Bytewizer.TinyCLR.Http.Cors.csproj", "{43458F16-E5CE-4731-BAB3-EF9B60D26A28}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.Playground.Blazor", "blazor\Bytewizer.Playground.Blazor.csproj", "{1163838B-7F9B-46E1-97D4-405BC5853C3B}"
@@ -125,10 +123,6 @@ Global
 		{FA56181A-1BA1-4006-A639-33778CCF9210}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA56181A-1BA1-4006-A639-33778CCF9210}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FA56181A-1BA1-4006-A639-33778CCF9210}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{C21AFDC5-13EB-4B0C-8CC7-372C96E0870F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C21AFDC5-13EB-4B0C-8CC7-372C96E0870F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C21AFDC5-13EB-4B0C-8CC7-372C96E0870F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C21AFDC5-13EB-4B0C-8CC7-372C96E0870F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{43458F16-E5CE-4731-BAB3-EF9B60D26A28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{43458F16-E5CE-4731-BAB3-EF9B60D26A28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43458F16-E5CE-4731-BAB3-EF9B60D26A28}.Release|Any CPU.ActiveCfg = Release|Any CPU

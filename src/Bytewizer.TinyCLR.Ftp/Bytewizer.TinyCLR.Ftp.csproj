@@ -62,15 +62,22 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\StreamExtensions.cs" />
     <Compile Include="Ftp\FtpCommand.cs" />
     <Compile Include="Ftp\FtpContext.cs" />
-    <Compile Include="Ftp\Middleware.cs" />
+    <Compile Include="Channel\ChannelExtensions.cs" />
+    <Compile Include="Ftp\FtpReplyCodes.cs" />
+    <Compile Include="Ftp\FtpResponseExtensions.cs" />
+    <Compile Include="Middleware\Middleware.cs" />
     <Compile Include="Ftp\RequestDelegate.cs" />
+    <Compile Include="Internal\ControlConnection.cs" />
     <Compile Include="Internal\FtpMiddleware.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Server\FtpServer.cs" />
     <Compile Include="Ftp\FtpRequest.cs" />
     <Compile Include="Ftp\FtpResponse.cs" />
+    <Compile Include="Server\FtpServerOptions.cs" />
+    <Compile Include="Server\FtpServerOptionsDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bytewizer.TinyCLR.Pipeline\Bytewizer.TinyCLR.Pipeline.csproj">
@@ -100,9 +107,6 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Middleware\" />
-    <Folder Include="Sockets\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

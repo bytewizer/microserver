@@ -62,9 +62,11 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Listeners\DisconnectedHandler.cs" />
-    <Compile Include="Listeners\ConnectedHandler.cs" />
-    <Compile Include="Listeners\SocketExceptionExtensions.cs" />
+    <Compile Include="Client\TcpClient.cs" />
+    <Compile Include="Handlers\SocketErrorHandler.cs" />
+    <Compile Include="Handlers\DisconnectedHandler.cs" />
+    <Compile Include="Handlers\ConnectedHandler.cs" />
+    <Compile Include="Extensions\SocketExceptionExtensions.cs" />
     <Compile Include="Listeners\SocketListenerOptionsDelegate.cs" />
     <Compile Include="Listeners\TcpListener.cs" />
     <Compile Include="Listeners\UdpListener.cs" />
@@ -87,9 +89,6 @@
   <ItemGroup>
     <PackageReference Include="Bytewizer.TinyCLR.Logging.Abstractions">
       <Version>2.0.0-prebuild.12</Version>
-    </PackageReference>
-    <PackageReference Include="GHIElectronics.TinyCLR.Data.Json">
-      <Version>2.1.0-rc1</Version>
     </PackageReference>
     <PackageReference Include="GHIElectronics.TinyCLR.IO">
       <Version>2.1.0-rc1</Version>
@@ -114,5 +113,6 @@
       <Name>Bytewizer.TinyCLR.Pipeline</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

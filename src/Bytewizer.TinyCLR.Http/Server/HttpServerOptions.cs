@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections;
-using System.Text;
-using System.Threading;
-
-using Bytewizer.TinyCLR.Sockets;
-
+﻿using Bytewizer.TinyCLR.Sockets;
 
 namespace Bytewizer.TinyCLR.Http
 {
-    class HttpServerOptions : ServerOptions
+    /// <summary>
+    /// Represents configuration options of server specific features.
+    /// </summary>
+    public class HttpServerOptions : ServerOptions
     {
+        /// <summary>
+        /// Provides access to request limit options.
+        /// </summary>
+        public HttpServerLimits Limits { get; } = new HttpServerLimits();
+
         /// <summary>
         /// Specifies the name the server represents.
         /// </summary>

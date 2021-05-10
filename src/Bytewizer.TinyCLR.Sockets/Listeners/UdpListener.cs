@@ -4,6 +4,7 @@ using System.Threading;
 using System.Net.Sockets;
 
 using Bytewizer.TinyCLR.Sockets.Channel;
+using Bytewizer.TinyCLR.Sockets.Extensions;
 
 namespace Bytewizer.TinyCLR.Sockets.Listener
 {
@@ -31,7 +32,7 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
             // Signal the start method to continue
             _startedEvent.Set();
 
-            while (IsActive)
+            while (Active)
             {
                 retry = 0;
 

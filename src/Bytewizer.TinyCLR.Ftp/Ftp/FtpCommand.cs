@@ -21,8 +21,8 @@
         /// <param name="commandArgument">The command argument.</param>
         public FtpCommand(string commandName, string commandArgument)
         {
-            Name = commandName;
-            Argument = commandArgument ?? string.Empty;
+            Name = commandName.Replace("\r\n", "");
+            Argument = commandArgument.Replace("\r\n", "") ?? string.Empty;
         }
 
         /// <summary>

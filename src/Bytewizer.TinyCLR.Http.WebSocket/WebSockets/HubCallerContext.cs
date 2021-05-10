@@ -41,7 +41,7 @@
         /// </summary>
         public void Abort()
         {
-            _context?.Channel.Socket.Close();
+            _context?.Channel?.Client?.Close();
         }
     }
 }

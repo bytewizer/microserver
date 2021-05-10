@@ -6,6 +6,9 @@ using System.Net.Sockets;
 using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
 
+using Bytewizer.TinyCLR.Sockets.Client;
+using Bytewizer.TinyCLR.Sockets.Handlers;
+
 namespace Bytewizer.TinyCLR.Sockets.Channel
 {
     /// <summary>
@@ -16,7 +19,12 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
         /// <summary>
         /// Gets socket for the connected endpoint.
         /// </summary>
-        public Socket Socket { get; internal set; }
+        public TcpClient Client { get; internal set; }
+
+        /// <summary>
+        /// Gets or sets a value that indicates whether a connection has been made.
+        /// </summary>
+        protected bool Active => Client.Active;
 
         /// <summary>
         /// Gets socket information for the connected endpoint.  
@@ -47,7 +55,7 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
             if (socket == null)
                 throw new ArgumentNullException(nameof(socket));
 
-            Socket = socket;
+            Client = new TcpClient(socket);
             InputStream = new NetworkStream(socket);
             OutputStream = new NetworkStream(socket);
             Connection = ConnectionInfo.Set(socket);
@@ -64,7 +72,7 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
             if (socket == null)
                 throw new ArgumentNullException(nameof(socket));
 
-            Socket = socket;
+            Client = new TcpClient(socket);
             InputStream = new MemoryStream(buffer);
             OutputStream = new MemoryStream();
             Connection = ConnectionInfo.Set(socket, endpoint);
@@ -83,7 +91,7 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
 
             var streamBuilder = new SslStreamBuilder(certificate, allowedProtocols);
 
-            Socket = socket;
+            Client = new TcpClient(socket);
             InputStream = streamBuilder.Build(socket);
             OutputStream = new NetworkStream(socket);
             Connection = ConnectionInfo.Set(socket);
@@ -108,33 +116,46 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
         public void Clear()
         {
             Connection = null;
-            OutputStream?.Dispose();
+            Client?.Dispose();
             InputStream?.Dispose();
-            Socket?.Close();
+            OutputStream?.Dispose();
+        }
+
+        /// <summary>
+        /// Writes a new response to the connected socket channel. UTF-8 encoding will be used.
+        /// </summary>
+        /// <param name="text">A <see cref="string"/> that contains data to be UTF8 encoded and sent.</param>
+        public int Write(string text)
+        {
+            return Write(text, Encoding.UTF8);
         }
 
         /// <summary>
         /// Writes a new response to the connected socket channel.
         /// </summary>
-        /// <param name="text">A <see cref="string"/> that contains data to be UTF8 encoded and sent.</param>
-        public int Write(string text)
+        /// <param name="text">A <see cref="string"/> that contains data to be sent.</param>
+        /// <param name="encoding">The encoding to use.</param>
+        public int Write(string text, Encoding encoding)
         {
-            if (text == null)
+            if (string.IsNullOrEmpty(text))
             {
                 throw new ArgumentNullException(nameof(text));
+            }
+
+            if (encoding == null)
+            {
+                throw new ArgumentNullException(nameof(encoding));
             }
 
             int bytesSent = 0;
             try
             {
-                var bytes = Encoding.UTF8.GetBytes(text);
+                var bytes = encoding.GetBytes(text);
                 bytesSent += Write(bytes);
-                //OutputStream?.Write(bytes, 0, bytes.Length);
-                //bytesSent += bytes.Length;
             }
-            catch
+            catch (Exception ex)
             {
-                throw;  //TODO: Best way to handle?
+                OnChannelError(this, ex);
             }
 
             return bytesSent;
@@ -152,123 +173,63 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
                 throw new ArgumentNullException(nameof(bytes));
             }
 
-            using (Stream output = new MemoryStream(bytes))
+            int bytesSent = 0;
+            try
             {
-                return Write(output);
+                OutputStream?.Write(bytes, 0, bytes.Length);
+                OutputStream.Flush();
+
+                bytesSent = bytes.Length;
+            }
+            catch (Exception ex)
+            {
+                OnChannelError(this, ex);
             }
 
-            //int bytesSent = 0;
-            //try
-            //{
-            //    OutputStream?.Write(bytes, 0, bytes.Length);
-            //    bytesSent += bytes.Length;
-            //}
-            //catch 
-            //{
-            //    throw;  //TODO: Best way to handle?
-            //}
-
-            //return bytesSent;
+            return bytesSent;
         }
 
         /// <summary>
         /// Writes a new response to the connected socket channel.
         /// </summary>
         /// <param name="stream">A <see cref="Stream"/> that contains data to be sent.</param>
-        public int Write(Stream stream)
+        public long Write(Stream stream)
         {
             if (stream == null)
             {
                 throw new ArgumentNullException(nameof(stream));
             }
 
-            byte[] sendBuffer = new byte[1460];
-            int bytesSent = 0;
+            long bytesSent = 0;
             try
             {
                 if (stream.Length > 0)
                 {
-                    int sentBytes = 0;
-                    stream.Position = 0;
-                    while ((sentBytes = stream.Read(sendBuffer, 0, sendBuffer.Length)) > 0)
-                    {
-                        OutputStream?.Write(sendBuffer, 0, sentBytes);
-                        bytesSent += sentBytes;
-                    }
+                    stream?.CopyTo(OutputStream);
+                    OutputStream.Flush();
+                    bytesSent = stream.Length;
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                throw; //TODO: Best way to handle?
+                OnChannelError(this, ex);
             }
 
             return bytesSent;
-        }
 
-
-        /// <summary>
-        /// Send a new message to a connected socket.
-        /// </summary>
-        /// <param name="message">An array of type byte that contains the data to be sent.</param>
-        public int Send(byte[] message)
-        {
-            int bytesSent;
-            try
-            {
-                bytesSent = Socket.Send(message);
-            }
-            catch
-            {
-                throw; //TODO: Best way to handle?
-            }
-            return bytesSent;
         }
 
         /// <summary>
-        /// Sends data to connected socket channel.
+        /// An internal channel error occured.
         /// </summary>
-        /// <param name="buffer">An array of type <see cref="byte"/> that contains the data to be sent.</param>
-        /// <param name="size">The number of bytes to send.</param>
-        /// <param name="offset">The position in the data buffer at which to begin sending data.</param>
-        /// <param name="socketFlags">A bitwise combination of the <see cref="SocketFlags"/> values.</param>
-        /// <returns>The number of bytes sent to the <see cref="Socket"/>.</returns>
-        public int Send(byte[] buffer, int size, int offset, SocketFlags socketFlags)
+        protected virtual void OnChannelError(SocketChannel channel, Exception execption)
         {
-            int bytesSent;
-            try
-            {
-                bytesSent = Socket.Send(buffer, size, offset, socketFlags);
-            }
-            catch
-            {
-                throw; //TODO: Best way to handle?
-            }
-
-            return bytesSent;
+            ChannelError(this, execption);
         }
 
         /// <summary>
-        /// Sends data to a specific remote endpoint.
+        /// An event that is raised when an interanl channel error occured.
         /// </summary>
-        /// <param name="buffer">An array of type <see cref="byte"/> that contains the data to be sent.</param>
-        /// <param name="size">The number of bytes to send.</param>
-        /// <param name="offset">The position in the data buffer at which to begin sending data.</param>
-        /// <param name="socketFlags">A bitwise combination of the <see cref="SocketFlags"/> values.</param>
-        /// <param name="remoteEP">The <see cref="EndPoint"/> that represents the destination location for the data.</param>
-        /// <returns>The number of bytes sent.</returns>
-        public int SendTo(byte[] buffer, int size, int offset, SocketFlags socketFlags, EndPoint remoteEP)
-        {
-            int bytesSent;
-            try
-            {
-                bytesSent = Socket.SendTo(buffer, size, offset, socketFlags, remoteEP);
-            }
-            catch
-            {
-                throw; //TODO: Best way to handle?
-            }
-
-            return bytesSent;
-        }
+        public event SocketErrorHandler ChannelError = delegate { };
     }
 }

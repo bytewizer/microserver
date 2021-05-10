@@ -2,7 +2,9 @@
 using System.Threading;
 using System.Net.Sockets;
 using System.Diagnostics;
+
 using Bytewizer.TinyCLR.Sockets.Channel;
+using Bytewizer.TinyCLR.Sockets.Extensions;
 
 namespace Bytewizer.TinyCLR.Sockets.Listener
 {
@@ -11,6 +13,8 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
     /// </summary>
     public class TcpListener : SocketListener
     {
+        private int _listeningSockets = 0;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="TcpListener"/> class.
         /// <param name="options">Factory used to create objects used in this library.</param>
@@ -19,9 +23,6 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
            : base(options)
         {
         }
-
-        private int _listeningSockets = 0;
-        //private static readonly Random _random = new Random();
 
         /// <summary>
         /// Accepted connection listening thread
@@ -33,7 +34,7 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
             // Signal the start method to continue
             _startedEvent.Set();
 
-            while (IsActive)
+            while (Active)
             {
                 retry = 0;
 

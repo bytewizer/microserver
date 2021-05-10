@@ -69,6 +69,10 @@ namespace Bytewizer.TinyCLR.Http
         /// <param name="channel">The socket channel for the connected end point.</param>
         protected override void ClientConnected(object sender, SocketChannel channel)
         {
+       
+            // Set channel error handler
+            channel.ChannelError += ChannelError;
+
             try
             {
                 // get context from context pool
@@ -95,6 +99,16 @@ namespace Bytewizer.TinyCLR.Http
                 _logger.LogCritical(ex, $"Unexpcted exception in {nameof(HttpServer)}.{nameof(ClientConnected)}");
                 return;
             }
+        }
+
+        /// <summary>
+        /// An internal channel error occured.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="execption">The <see cref="Exception"/> for the channel error.</param>
+        private void ChannelError(object sender, Exception execption)
+        {
+            _logger.LogError(execption, $"Unexpcted channel exception in {nameof(SocketServer)}");
         }
     }
 }

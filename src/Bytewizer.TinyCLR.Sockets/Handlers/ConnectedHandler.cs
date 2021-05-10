@@ -1,6 +1,6 @@
 ﻿using Bytewizer.TinyCLR.Sockets.Channel;
 
-namespace Bytewizer.TinyCLR.Sockets.Listener
+namespace Bytewizer.TinyCLR.Sockets.Handlers
 {
     /// <summary>
     /// A delegate which is executed when a client has connected.

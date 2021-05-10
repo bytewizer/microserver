@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Net;
 using System.Threading;
 using System.Net.Sockets;
 using System.Diagnostics;
 
 using Bytewizer.TinyCLR.Sockets.Channel;
-using System.IO;
-using System.Security.Cryptography.X509Certificates;
-using System.Net;
+using Bytewizer.TinyCLR.Sockets.Handlers;
+using Bytewizer.TinyCLR.Sockets.Client;
 
 namespace Bytewizer.TinyCLR.Sockets.Listener
 {
@@ -52,9 +52,9 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
         }
 
         /// <summary>
-        /// Gets if listener has been started.
+        /// Gets a value that indicates whether <see cref="TcpListener"/> is actively listening for client connections.
         /// </summary>
-        public bool IsActive { get; private set; } = false;
+        protected bool Active { get; private set; } = false;
 
         /// <summary>
         /// Gets the <see cref="SocketListenerOptions"/> used to configure <see cref="SocketListener"/>.
@@ -67,9 +67,11 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
         public bool Start()
         {
             // If service was already started the call has no effect
-            Debug.Assert(!IsActive, "Server is already started!");
-            if (IsActive)
+            Debug.Assert(!Active, "Server is already started!");
+            if (Active)
+            {
                 return true;
+            }
 
             ThreadPool.SetMinThreads(_options.MaxThreads);
             ThreadPool.SetMaxThreads(_options.MaxThreads);
@@ -110,7 +112,7 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
                     {
                         if (_listenSocket != null)
                         {
-                            IsActive = true;
+                            Active = true;
                             AcceptConnection();
                         }
                     });
@@ -122,7 +124,7 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
                 }
                 catch
                 {
-                    IsActive = false;
+                    Active = false;
                     throw;
                 }
 
@@ -136,15 +138,15 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
         public bool Stop()
         {
             // If service was already started the call has no effect
-            Debug.Assert(IsActive, "Service is not started!");
-            if (!IsActive)
+            Debug.Assert(Active, "Service is not started!");
+            if (!Active)
                 return true;
 
             ThreadPool.Shutdown();
 
             lock (_lock)
             {
-                IsActive = false;
+                Active = false;
 
                 try
                 {
@@ -167,7 +169,7 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
                 }
                 catch
                 {
-                    IsActive = false;
+                    Active = false;
                     throw;
                 }
 
@@ -177,14 +179,44 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
 
 
         /// <summary>
-        /// Accepted connection listening thread
+        /// Accepts a pending connection request.
+        /// </summary>
+        /// <returns>A <see cref="Socket"/> used to send and receive data.</returns>
+        public Socket AcceptSocket()
+        {
+            if (!Active)
+            {
+                throw new InvalidOperationException();
+            }
+
+            return _listenSocket.Accept();
+        }
+
+        /// <summary>
+        /// Accepts a pending connection request.
+        /// </summary>
+        /// <returns>A <see cref="TcpClient"/> used to send and receive data.</returns>
+        public TcpClient AcceptTcpClient()
+        {
+            if (!Active)
+            {
+                throw new InvalidOperationException();
+            }
+
+            Socket acceptedSocket = _listenSocket.Accept();
+
+            return new TcpClient(acceptedSocket);
+        }
+
+        /// <summary>
+        /// Accepted connection listening thread.
         /// </summary>
         internal virtual void AcceptConnection()
         {
         }
 
         /// <summary>
-        /// A client has connected.
+        /// Client has connected.
         /// </summary>
         protected virtual void OnConnected(SocketChannel channel)
         {
@@ -192,7 +224,7 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
         }
 
         /// <summary>
-        /// A client has disconnected.
+        /// Client has disconnected.
         /// </summary>
         protected virtual void OnDisconnected(Exception exception)
         {

@@ -13,16 +13,10 @@ namespace Bytewizer.TinyCLR.Ftp
         /// </summary>
         public FtpContext() 
         {
-            Command = new FtpCommand();
             Request = new FtpRequest();
             Response = new FtpResponse();
             Channel = new SocketChannel();
         }
-
-        /// <summary>
-        /// Gets the FTP command to be executed.
-        /// </summary>
-        public FtpCommand Command { get; private set; }
 
         /// <summary>
         /// Gets the <see cref="FtpRequest"/> object for this request.
@@ -40,6 +34,11 @@ namespace Bytewizer.TinyCLR.Ftp
         public SocketChannel Channel { get; set; }
 
         /// <summary>
+        /// Gets the user name allow for login.
+        /// </summary>
+        public string User { get; set; }
+
+        /// <summary>
         /// Gets information about the underlying connection for this request.
         /// </summary>
         public ConnectionInfo Connection => Channel?.Connection;
@@ -49,7 +48,7 @@ namespace Bytewizer.TinyCLR.Ftp
         /// </summary>
         public void Abort()
         {
-            Channel?.Socket?.Close();
+            Channel?.Client?.Close();
         }
 
         /// <summary>
@@ -57,7 +56,6 @@ namespace Bytewizer.TinyCLR.Ftp
         /// </summary>
         public void Clear()
         {
-            Command.Clear();
             Request.Clear();
             Response.Clear();      
             Channel.Clear();

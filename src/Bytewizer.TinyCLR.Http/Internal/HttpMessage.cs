@@ -14,7 +14,7 @@ namespace Bytewizer.TinyCLR.Http.Internal
             ParserMode mode = ParserMode.FirstLine;
 
             using (var input =  context.Channel.InputStream)
-            {
+            {       
                 var reader = new BufferReader(input);
 
                 string line;
@@ -154,7 +154,7 @@ namespace Bytewizer.TinyCLR.Http.Internal
                 if (response.Body.Length > 0)
                 {
                     context.Response.Body.Position = 0;
-                    context.Response.Body.CopyTo(context.Channel.OutputStream);
+                    context.Channel.Write(context.Response.Body);
                     context.Response.Body.Dispose();
                 }
             }

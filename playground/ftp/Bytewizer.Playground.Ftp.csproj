@@ -64,6 +64,9 @@
     <Reference Include="GHIElectronics.TinyCLR.Devices.Storage, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GHIElectronics.TinyCLR.Devices.Storage.2.1.0-rc1\lib\net452\GHIElectronics.TinyCLR.Devices.Storage.dll</HintPath>
     </Reference>
+    <Reference Include="GHIElectronics.TinyCLR.IO, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GHIElectronics.TinyCLR.IO.2.1.0-rc1\lib\net452\GHIElectronics.TinyCLR.IO.dll</HintPath>
+    </Reference>
     <Reference Include="GHIElectronics.TinyCLR.Native, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GHIElectronics.TinyCLR.Native.2.1.0-rc1\lib\net452\GHIElectronics.TinyCLR.Native.dll</HintPath>
     </Reference>
