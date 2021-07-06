@@ -3,7 +3,7 @@
 [![Release](https://github.com/microcompiler/microserver/actions/workflows/release.yml/badge.svg)](https://github.com/microcompiler/microserver/actions/workflows/release.yml)
 [![Build](https://github.com/microcompiler/microserver/actions/workflows/actions.yml/badge.svg)](https://github.com/microcompiler/microserver/actions/workflows/actions.yml)
 
-Microserver is a modular server built for TinyCLR OS IoT devices inspired by AspNetCore.  Be sure to follow this project with videos on [YouTube](https://youtu.be/EDGo3NpBOpk).
+Microserver is an embedded modular server built for TinyCLR OS IoT devices inspired by AspNetCore.  Be sure to follow this project with videos on [YouTube](https://youtu.be/EDGo3NpBOpk).
 
 ## Socket Services
 

@@ -48,9 +48,9 @@ namespace Bytewizer.TinyCLR.Pipeline.Builder
         public IServiceProvider ApplicationServices { get; set; }
 
         /// <inheritdoc/>
-        public bool TryGetValue(string key, out object obj)
+        public bool TryGetProperty(string key, out object value)
         {
-            obj = default;
+            value = default;
             
             if (_properties == null)
             {
@@ -59,7 +59,7 @@ namespace Bytewizer.TinyCLR.Pipeline.Builder
 
             if (_properties.Contains(key))
             {
-                obj = _properties[key];
+                value = _properties[key];
                 return true;
             }
 

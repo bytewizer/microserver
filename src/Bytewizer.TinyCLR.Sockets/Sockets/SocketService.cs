@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Net.Sockets;
 
 using Bytewizer.TinyCLR.Logging;
@@ -16,55 +15,52 @@ namespace Bytewizer.TinyCLR.Sockets
         /// <summary>
         /// The <see cref="SocketListener"/> which listens for remote clients.
         /// </summary>
-        private readonly SocketListener _listener;
+        private SocketListener _listener;
 
         /// <summary>
-        /// The logger used to write to.
+        /// The logger used to write messages.
         /// </summary>
         private readonly ILogger _logger;
 
         /// <summary>
-        /// The configuration options of server specific features.
+        /// The logger factory used to write to.
         /// </summary>
-        protected readonly IServerOptions _options;
+        protected ILoggerFactory _loggerFactory;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SocketService"/> class.
+        /// The configuration options of server specific features.
+        /// </summary>
+        protected ServerOptions _options = new ServerOptions();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SocketServer"/> class.
         /// </summary>
         /// <param name="loggerFactory">The factory used to create loggers.</param>
-        /// <param name="options">The configuration options of <see cref="SocketService"/> specific features.</param>
-        public SocketService(ILoggerFactory loggerFactory, IServerOptions options)
+        public SocketService(ILoggerFactory loggerFactory)
         {
-            if (loggerFactory == null)
-            {
-                throw new ArgumentNullException(nameof(loggerFactory));
-            }
-
-            if (options == null)
-            {
-                throw new ArgumentNullException(nameof(options));
-            }
-
-            var serverOptions = options as ServerOptions;
-
+            _loggerFactory = loggerFactory;
             _logger = loggerFactory.CreateLogger("Bytewizer.TinyCLR.Sockets");
+        }
 
-            switch (serverOptions.Listener.ProtocolType)
+        /// <summary>
+        /// Set <see cref="SocketListener"/> based on <see cref="ProtocolType"/>.
+        /// </summary>
+        public void SetListener()
+        {
+            switch (_options.Listener.ProtocolType)
             {
                 case ProtocolType.Tcp:
-                    _listener = new TcpListener(serverOptions.Listener);
+                    _listener = new TcpListener(_options.Listener);
                     break;
                 case ProtocolType.Udp:
-                    _listener = new UdpListener(serverOptions.Listener);
+                    _listener = new UdpListener(_options.Listener);
                     break;
                 default:
                     throw new NotSupportedException();
             }
-            
+
             _listener.Connected += ClientConnected;
             _listener.Disconnected += ClientDisconnected;
-            
-            _options = options;
         }
 
         ///<inheritdoc/>
@@ -73,13 +69,13 @@ namespace Bytewizer.TinyCLR.Sockets
             try
             {
                 var status = _listener.Start();
-                WriteMessage($"Started socket listener bound to port {_listener.ActivePort}");
+                _logger.StartingService(_listener.ActivePort);
 
                 return status;
             }
             catch (Exception ex)
             {
-                WriteExecption(ex, $"Error starting listerner bound to port {_listener.ActivePort}");
+                _logger.StartingService(_listener.ActivePort, ex);
                 return false;
             }
         }
@@ -90,38 +86,14 @@ namespace Bytewizer.TinyCLR.Sockets
             try
             {
                 var status = _listener.Stop();
-                WriteMessage($"Stopping socket listener bound to port {_listener.ActivePort}");
+                _logger.StoppingService(_listener.ActivePort);
 
                 return status;
             }
             catch (Exception ex)
             {
-                WriteExecption(ex, $"Error stopping listener bound to port {_listener.ActivePort}");
+                _logger.StoppingService(_listener.ActivePort, ex);
                 return false;
-            }
-        }
-
-        private void WriteMessage(string message)
-        {
-            if (_logger.GetType() == typeof(NullLogger))
-            {
-                Debug.WriteLine(message);
-            }
-            else
-            {
-                _logger.LogInformation(message);
-            }
-        }
-
-        private void WriteExecption(Exception execption, string message)
-        {
-            if (_logger.GetType() == typeof(NullLogger))
-            {
-                Debug.WriteLine($"{message} : {execption}");
-            }
-            else
-            {
-                _logger.LogError(execption, message);
             }
         }
 

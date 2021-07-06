@@ -79,17 +79,17 @@ namespace Bytewizer.TinyCLR.Http
                 if (!ValidateMethod(context))
                 {
                     var method = context.Request.Method;
-                    _logger.LogDebug($"The request method {method} are not supported");
+                    _logger.InvalidRequestMethod(method);
                 }
                 else if (!ValidatePath(matchUrl, out var subPath))
                 {
                     var path = context.Request.Path;
-                    _logger.LogDebug($"The request path {path} does not match the path filter");
+                    _logger.InvalidRequestPath(path);
                 }
                 else if (!LookupContentType(_contentTypeProvider, _options, subPath, out var contentType))
                 {
                     var path = context.Request.Path;
-                    _logger.LogDebug($"The request path {path} does not match a supported file type");
+                    _logger.InvalidFileType(path);
                 }
                 else
                 {
@@ -107,7 +107,7 @@ namespace Bytewizer.TinyCLR.Http
         {
             if (!LookupFileInfo(subPath, out var lastModified))
             {
-                _logger.LogDebug($"The request path {subPath} does not match an existing file");
+                _logger.InvalidFilePath(subPath);
             }
             else
             {

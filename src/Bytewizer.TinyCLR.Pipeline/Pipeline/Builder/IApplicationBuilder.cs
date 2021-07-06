@@ -16,10 +16,10 @@ namespace Bytewizer.TinyCLR.Pipeline.Builder
         /// Gets the value of a property from the <see cref="ApplicationBuilder.Properties"/> collection
         /// using the provided value as the key.
         /// <param name="key">The key of the value to get.</param>
-        /// <param name="obj">When this method returns, the value associated with the specified key, if the
+        /// <param name="value">When this method returns, the value associated with the specified key, if the
         /// key is found; otherwise, the default value for the type of the value parameter. This parameter is passed uninitialized.
         /// </param>
-        bool TryGetValue(string key, out object obj);
+        bool TryGetProperty(string key, out object value);
 
         /// <summary>
         /// Gets the value of a property from the <see cref="ApplicationBuilder.Properties"/> collection

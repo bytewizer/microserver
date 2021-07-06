@@ -59,8 +59,9 @@ namespace Bytewizer.TinyCLR.Ftp
         /// <param name="loggerFactory">The factory used to create loggers.</param>
         /// <param name="options">The options of <see cref="FtpServer"/> specific features.</param>
         public FtpServer(ILoggerFactory loggerFactory, ServerOptions options)
-            : base(loggerFactory, options)
+            : base(loggerFactory)
         {
+            _options = options;
             _contextPool = new ContextPool();
             _logger = loggerFactory.CreateLogger("Bytewizer.TinyCLR.Http");
             _ftpOptions = _options as FtpServerOptions;
@@ -93,10 +94,10 @@ namespace Bytewizer.TinyCLR.Ftp
 
                 while (true)
                 {
-                    if (!context.Channel.Client.Active)
-                    {
-                        break;
-                    }
+                    //if (!context.Channel.Active)
+                    //{
+                    //    break;
+                    //}
 
                     // Update command
                     var bytes = context.Channel.InputStream.Read(buffer, 0, buffer.Length);
@@ -128,7 +129,7 @@ namespace Bytewizer.TinyCLR.Ftp
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex, $"Unexpcted exception in {nameof(FtpServer)}.{nameof(ClientConnected)}");
+                _logger.UnhandledException(ex);
                 return;
             }
         }
@@ -140,7 +141,7 @@ namespace Bytewizer.TinyCLR.Ftp
         /// <param name="execption">The <see cref="Exception"/> for the channel error.</param>
         private void ChannelError(object sender, Exception execption)
         {
-            _logger.LogError(execption, $"Unexpcted channel exception in {nameof(SocketServer)}");
+            _logger.ChannelExecption(execption);
         }
     }
 }

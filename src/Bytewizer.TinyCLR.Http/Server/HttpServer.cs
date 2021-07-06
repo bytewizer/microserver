@@ -24,7 +24,7 @@ namespace Bytewizer.TinyCLR.Http
         public HttpServer(ServerOptionsDelegate configure)
             : this(NullLoggerFactory.Instance, new HttpServerOptions())
         {
-            ConfigOptions(configure);
+            Initialize(configure);
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace Bytewizer.TinyCLR.Http
         public HttpServer(ILoggerFactory loggerFactory, ServerOptionsDelegate configure)
             : this(loggerFactory, new HttpServerOptions())
         {
-            ConfigOptions(configure);
+            Initialize(configure);
         }
 
         /// <summary>
@@ -44,14 +44,17 @@ namespace Bytewizer.TinyCLR.Http
         /// <param name="loggerFactory">The factory used to create loggers.</param>
         /// <param name="options">The options of <see cref="HttpServer"/> specific features.</param>
         public HttpServer(ILoggerFactory loggerFactory, ServerOptions options)
-            : base(loggerFactory, options)
+            : base(loggerFactory)
         {
+            _options = options;
             _contextPool = new ContextPool();
             _logger = loggerFactory.CreateLogger("Bytewizer.TinyCLR.Http");
             _httpOptions = _options as HttpServerOptions;
+
+            SetListener();
         }
 
-        private void ConfigOptions(ServerOptionsDelegate configure)
+        private void Initialize(ServerOptionsDelegate configure)
         {
             _options.Listen(80);
             _options.Pipeline(app =>
@@ -69,7 +72,20 @@ namespace Bytewizer.TinyCLR.Http
         /// <param name="channel">The socket channel for the connected end point.</param>
         protected override void ClientConnected(object sender, SocketChannel channel)
         {
-       
+            // Check message size
+            if (channel.InputStream.Length < _options.Limits.MinMessageSize
+                || channel.InputStream.Length > _options.Limits.MaxMessageSize)
+            {
+                _logger.InvalidMessageLimit(
+                    channel.InputStream.Length,
+                    _options.Limits.MinMessageSize,
+                    _options.Limits.MaxMessageSize
+                    );
+
+                channel.Clear();
+                return;
+            }
+
             // Set channel error handler
             channel.ChannelError += ChannelError;
 
@@ -77,7 +93,7 @@ namespace Bytewizer.TinyCLR.Http
             {
                 // get context from context pool
                 var context = _contextPool.GetContext(typeof(HttpContext)) as HttpContext;
-                
+
                 // assign channel
                 context.Channel = channel;
 
@@ -86,19 +102,31 @@ namespace Bytewizer.TinyCLR.Http
 
                 // check to make sure channel contains data
                 if (context.Channel.InputStream.Length > 0)
-                {   
+                {
                     // invoke pipeline 
                     _options.Application.Invoke(context);
                 }
+
+                context.Channel.Client.Close();  // TODO: Figure out how to close in release
 
                 // release context back to pool and close connection once pipeline is complete
                 _contextPool.Release(context);
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex, $"Unexpcted exception in {nameof(HttpServer)}.{nameof(ClientConnected)}");
+                _logger.UnhandledException(ex);
                 return;
             }
+        }
+
+        /// <summary>
+        /// A client has disconnected.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="execption">The socket <see cref="Exception"/> for the disconnected endpoint.</param>
+        protected override void ClientDisconnected(object sender, Exception execption)
+        {
+            _logger.RemoteDisconnect(execption);
         }
 
         /// <summary>
@@ -108,7 +136,7 @@ namespace Bytewizer.TinyCLR.Http
         /// <param name="execption">The <see cref="Exception"/> for the channel error.</param>
         private void ChannelError(object sender, Exception execption)
         {
-            _logger.LogError(execption, $"Unexpcted channel exception in {nameof(SocketServer)}");
+            _logger.ChannelExecption(execption);
         }
     }
 }

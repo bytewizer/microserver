@@ -20,6 +20,9 @@ namespace Bytewizer.TinyCLR.Sockets
         internal SocketListenerOptions Listener { get; private set; } = new SocketListenerOptions();
 
         /// <inheritdoc/>
+        public ServerLimits Limits { get; } = new ServerLimits();
+
+        /// <inheritdoc/>
         public IApplication Application { get; private set; }
 
         /// <inheritdoc/>

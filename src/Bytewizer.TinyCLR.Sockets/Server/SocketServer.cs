@@ -12,16 +12,18 @@ namespace Bytewizer.TinyCLR.Sockets
     public class SocketServer : SocketService, IServer
     {
         private readonly ILogger _logger;
-        private readonly ContextPool _contextPool;
+        private readonly ContextPool _contextPool = new ContextPool();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SocketServer"/> class.
         /// </summary>
         /// <param name="configure">The configuration options of <see cref="SocketServer"/> specific features.</param>
         public SocketServer(ServerOptionsDelegate configure)
-            : this(NullLoggerFactory.Instance, new ServerOptions())
+            : base (NullLoggerFactory.Instance)
         {
             configure(_options);
+
+            SetListener();
         }
 
         /// <summary>
@@ -30,9 +32,13 @@ namespace Bytewizer.TinyCLR.Sockets
         /// <param name="loggerFactory">The factory used to create loggers.</param>
         /// <param name="configure">The configuration options of <see cref="SocketServer"/> specific features.</param>
         public SocketServer(ILoggerFactory loggerFactory, ServerOptionsDelegate configure)
-            : this(loggerFactory, new ServerOptions())
+            : base (loggerFactory)
         {
+            _logger = loggerFactory.CreateLogger("Bytewizer.TinyCLR.Sockets");
+
             configure(_options);
+
+            SetListener();
         }
 
         /// <summary>
@@ -41,10 +47,12 @@ namespace Bytewizer.TinyCLR.Sockets
         /// <param name="loggerFactory">The factory used to create loggers.</param>
         /// <param name="options">The configuration options of <see cref="SocketServer"/> specific features.</param>
         public SocketServer(ILoggerFactory loggerFactory, ServerOptions options)
-            : base(loggerFactory, options)
+            : base (loggerFactory)
         {
-            _contextPool = new ContextPool();
-            _logger = loggerFactory.CreateLogger("Bytewizer.TinyCLR.Sockets");
+            _logger = loggerFactory.CreateLogger("Bytewizer.TinyCLR.Sockets"); 
+            _options = options;
+            
+            SetListener();
         }
 
         /// <summary>
@@ -54,6 +62,20 @@ namespace Bytewizer.TinyCLR.Sockets
         /// <param name="channel">The socket channel for the connected end point.</param>
         protected override void ClientConnected(object sender, SocketChannel channel)
         {
+            // Check message size
+            if (channel.InputStream.Length < _options.Limits.MinMessageSize
+                || channel.InputStream.Length > _options.Limits.MaxMessageSize)
+            {
+                _logger.InvalidMessageLimit(
+                    channel.InputStream.Length,
+                    _options.Limits.MinMessageSize,
+                    _options.Limits.MaxMessageSize
+                    );
+                
+                channel.Clear();
+                return;
+            }
+
             // Set channel error handler
             channel.ChannelError += ChannelError;
             
@@ -77,7 +99,7 @@ namespace Bytewizer.TinyCLR.Sockets
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex, $"Unexpcted exception in {nameof(SocketServer)}.{nameof(ClientConnected)}");
+                _logger.UnhandledException(ex);
                 return;
             }
         }
@@ -89,7 +111,7 @@ namespace Bytewizer.TinyCLR.Sockets
         /// <param name="execption">The socket <see cref="Exception"/> for the disconnected endpoint.</param>
         protected override void ClientDisconnected(object sender, Exception execption)
         {
-            _logger.LogError(execption, $"Remote client disconnected connection");
+            _logger.RemoteDisconnect(execption);
         }
 
         /// <summary>
@@ -99,7 +121,7 @@ namespace Bytewizer.TinyCLR.Sockets
         /// <param name="execption">The <see cref="Exception"/> for the channel error.</param>
         private void ChannelError(object sender, Exception execption)
         {
-            _logger.LogError(execption, $"Unexpcted channel exception in {nameof(SocketServer)}");
+            _logger.ChannelExecption(execption);
         }
     }
 }

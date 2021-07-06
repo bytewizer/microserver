@@ -2,7 +2,6 @@
 using System.Net;
 using System.Threading;
 using Bytewizer.TinyCLR.Ftp;
-using Bytewizer.TinyCLR.Sockets.Client;
 
 namespace Bytewizer.Playground.Ftp
 {

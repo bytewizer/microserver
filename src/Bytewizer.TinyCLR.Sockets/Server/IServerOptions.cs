@@ -12,6 +12,11 @@ namespace Bytewizer.TinyCLR.Sockets
     public interface IServerOptions
     {
         /// <summary>
+        /// Provides access to message limit options.
+        /// </summary>
+        ServerLimits Limits { get; }
+
+        /// <summary>
         /// An application pipeline for registered middleware. 
         /// </summary>
         IApplication Application { get; }

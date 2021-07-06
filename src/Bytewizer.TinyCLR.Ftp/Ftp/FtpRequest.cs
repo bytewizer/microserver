@@ -19,9 +19,14 @@
         public FtpCommand Command { get; set; }
 
         /// <summary>
+        /// Gets or sets the root directory path.
+        /// </summary>
+        public string RootPath { get; set; } = "A:\\";
+
+        /// <summary>
         /// Gets or sets the working directory path.
         /// </summary>
-        public string Path { get; set; } = "A:\\";
+        public string UserPath { get; set; } = "A:\\";
 
         /// <summary>
         /// Gets a value indicating whether the request has been authenticated.

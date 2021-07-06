@@ -18,17 +18,12 @@ namespace Bytewizer.Playground.Sockets
 
             IServer server = new SocketServer(loggerFactory, options =>
             {
-                //options.Listen(80);
+                options.Listen(80);
                 options.Pipeline(app =>
                 {
-                    app.UseMemoryInfo();
+                    //app.UseMemoryInfo();
                     app.UseHttpResponse();
-                    //app.UseNetBios("mydevice", new byte[] { 192, 168, 1, 145 });
                 });
-                //options.Listen(137, listener =>
-                //{
-                //    listener.UseUdp();
-                //});
             });
             server.Start();
         }

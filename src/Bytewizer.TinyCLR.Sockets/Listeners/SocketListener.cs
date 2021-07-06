@@ -5,8 +5,6 @@ using System.Net.Sockets;
 using System.Diagnostics;
 
 using Bytewizer.TinyCLR.Sockets.Channel;
-using Bytewizer.TinyCLR.Sockets.Handlers;
-using Bytewizer.TinyCLR.Sockets.Client;
 
 namespace Bytewizer.TinyCLR.Sockets.Listener
 {
@@ -45,7 +43,9 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
             get
             {
                 if (_listenSocket == null)
+                {
                     return -1;
+                }
 
                 return ((IPEndPoint)_listenSocket.LocalEndPoint).Port;
             }
@@ -178,35 +178,35 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
         }
 
 
-        /// <summary>
-        /// Accepts a pending connection request.
-        /// </summary>
-        /// <returns>A <see cref="Socket"/> used to send and receive data.</returns>
-        public Socket AcceptSocket()
-        {
-            if (!Active)
-            {
-                throw new InvalidOperationException();
-            }
+        ///// <summary>
+        ///// Accepts a pending connection request.
+        ///// </summary>
+        ///// <returns>A <see cref="Socket"/> used to send and receive data.</returns>
+        //public Socket AcceptSocket()
+        //{
+        //    if (!Active)
+        //    {
+        //        throw new InvalidOperationException();
+        //    }
 
-            return _listenSocket.Accept();
-        }
+        //    return _listenSocket.Accept();
+        //}
 
-        /// <summary>
-        /// Accepts a pending connection request.
-        /// </summary>
-        /// <returns>A <see cref="TcpClient"/> used to send and receive data.</returns>
-        public TcpClient AcceptTcpClient()
-        {
-            if (!Active)
-            {
-                throw new InvalidOperationException();
-            }
+        ///// <summary>
+        ///// Accepts a pending connection request.
+        ///// </summary>
+        ///// <returns>A <see cref="TcpClient"/> used to send and receive data.</returns>
+        //public TcpClient AcceptTcpClient()
+        //{
+        //    if (!Active)
+        //    {
+        //        throw new InvalidOperationException();
+        //    }
 
-            Socket acceptedSocket = _listenSocket.Accept();
+        //    Socket acceptedSocket = _listenSocket.Accept();
 
-            return new TcpClient(acceptedSocket);
-        }
+        //    return new TcpClient(acceptedSocket);
+        //}
 
         /// <summary>
         /// Accepted connection listening thread.

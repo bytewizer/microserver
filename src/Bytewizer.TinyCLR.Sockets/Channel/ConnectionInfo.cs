@@ -15,46 +15,88 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
         public string Id { get; internal set; }
 
         /// <summary>
+        /// Gets endpoint of the local end point.
+        /// </summary>
+        public EndPoint LocalEndpoint { get; internal set; }
+
+        /// <summary>
         /// Gets address of the local end point.
         /// </summary>
-        public IPAddress LocalIpAddress { get; internal set; }
+        public IPAddress LocalIpAddress 
+        {
+            get { return ((IPEndPoint)LocalEndpoint).Address; }
+        }
 
         /// <summary>
         /// Gets port of the local end point.
         /// </summary>
-        public int LocalPort { get; internal set; }
+        public int LocalPort
+        {
+            get { return ((IPEndPoint)LocalEndpoint).Port; }
+        }
+
+        /// <summary>
+        /// Gets endpoint of the connected end point.
+        /// </summary>
+        public EndPoint RemoteEndpoint { get; internal set; }
 
         /// <summary>
         /// Gets address of the connected end point.
         /// </summary>
-        public IPAddress RemoteIpAddress { get; internal set; }
+        public IPAddress RemoteIpAddress
+        {
+            get { return ((IPEndPoint)RemoteEndpoint).Address; }
+        }
 
         /// <summary>
         /// Gets port of the connected end point.
         /// </summary>
-        public int RemotePort { get; internal set; }
-        
-        internal static ConnectionInfo Set(Socket socket)
+        public int RemotePort
         {
-            return new ConnectionInfo()
-            {
-                Id = DateTime.Now.Ticks.ToString(), //TODO: Switch to Guid - GHI Github issue #476,
-                LocalIpAddress = ((IPEndPoint)socket.LocalEndPoint).Address,
-                LocalPort = ((IPEndPoint)socket.LocalEndPoint).Port,
-                RemoteIpAddress = ((IPEndPoint)socket.RemoteEndPoint).Address,
-                RemotePort = ((IPEndPoint)socket.RemoteEndPoint).Port
-            };
+            get { return ((IPEndPoint)RemoteEndpoint).Port; }
         }
-        internal static ConnectionInfo Set(Socket socket, EndPoint endpoint)
+
+        /// <summary>
+        /// Assign a connection information to this channel.
+        /// </summary>
+        /// <param name="socket">The connected socket for channel.</param>
+        internal void Assign(Socket socket)
         {
-            return new ConnectionInfo()
-            {
-                Id = DateTime.Now.Ticks.ToString(), //TODO: Switch to Guid - GHI Github issue #476,
-                LocalIpAddress = ((IPEndPoint)socket.LocalEndPoint).Address,
-                LocalPort = ((IPEndPoint)socket.LocalEndPoint).Port,
-                RemoteIpAddress = ((IPEndPoint)endpoint).Address,
-                RemotePort = ((IPEndPoint)endpoint).Port
-            };
+            Id = DateTime.Now.Ticks.ToString(); //TODO: Switch to Guid - GHI Github issue #476,
+            LocalEndpoint = socket.LocalEndPoint;
+            RemoteEndpoint = socket.RemoteEndPoint;
         }
+
+        /// <summary>
+        /// Assign a connection information to this channel.
+        /// </summary>
+        /// <param name="socket">The connected socket for channel. </param>
+        /// <param name="endpoint">The remote endpoint of the connected socket. </param>
+        internal void Assign(Socket socket, EndPoint endpoint)
+        {
+            Id = DateTime.Now.Ticks.ToString(); //TODO: Switch to Guid - GHI Github issue #476,
+            LocalEndpoint = socket.LocalEndPoint;
+            RemoteEndpoint = endpoint;
+        }
+
+
+        //    internal static ConnectionInfo Set(Socket socket)
+        //{
+        //    return new ConnectionInfo()
+        //    {
+        //        Id = DateTime.Now.Ticks.ToString(), //TODO: Switch to Guid - GHI Github issue #476,
+        //        LocalEndpoint = socket.LocalEndPoint,
+        //        RemoteEndpoint = socket.RemoteEndPoint,
+        //    };
+        //}
+        //internal static ConnectionInfo Set(Socket socket, EndPoint endpoint)
+        //{
+        //    return new ConnectionInfo()
+        //    {
+        //        Id = DateTime.Now.Ticks.ToString(), //TODO: Switch to Guid - GHI Github issue #476,
+        //        LocalEndpoint = socket.LocalEndPoint,
+        //        RemoteEndpoint = endpoint,
+        //    };
+        //}
     }
 }

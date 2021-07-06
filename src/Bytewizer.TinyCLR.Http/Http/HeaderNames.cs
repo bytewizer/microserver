@@ -92,5 +92,4 @@
         public static readonly string WWWAuthenticate = "WWW-Authenticate";
         //public static readonly string XFrameOptions = "X-Frame-Options";
     }
-#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 }

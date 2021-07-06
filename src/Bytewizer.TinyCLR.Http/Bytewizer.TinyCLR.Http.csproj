@@ -71,17 +71,13 @@
     <Compile Include="Middleware\UsePathBaseExtensions.cs" />
     <Compile Include="Middleware\UsePathBaseMiddleware.cs" />
     <Compile Include="Routing\Endpoint.cs" />
-    <Compile Include="Http\Features\FeatureCollection.cs" />
-    <Compile Include="Http\Features\FeatureEnumerator.cs" />
-    <Compile Include="Http\Features\FeatureValue.cs" />
-    <Compile Include="Http\Features\IFeatureCollection.cs" />
     <Compile Include="Http\Header\IHeaderDictionary.cs" />
     <Compile Include="Http\HttpContextExtensions.cs" />
     <Compile Include="Http\Query\IQueryCollection.cs" />
     <Compile Include="Internal\HttpMessage.cs" />
     <Compile Include="Internal\UriHelper.cs" />
     <Compile Include="Http\RequestDelegate.cs" />
-    <Compile Include="Internal\DiagnosticsLoggerExtensions.cs" />
+    <Compile Include="Extensions\DiagnosticsLoggerExtensions.cs" />
     <Compile Include="Routing\Internal\DefaultEndpointRouteBuilder.cs" />
     <Compile Include="Routing\EndpointBuilder.cs" />
     <Compile Include="Routing\EndpointRouteBuilderExtensions.cs" />
@@ -137,14 +133,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="GHIElectronics.TinyCLR.Data.Json">
-      <Version>2.1.0-rc1</Version>
+    <PackageReference Include="GHIElectronics.TinyCLR.Core">
+      <Version>2.1.0</Version>
     </PackageReference>
     <PackageReference Include="GHIElectronics.TinyCLR.IO">
-      <Version>2.1.0-rc1</Version>
+      <Version>2.1.0</Version>
     </PackageReference>
     <PackageReference Include="GHIElectronics.TinyCLR.Networking">
-      <Version>2.1.0-rc1</Version>
+      <Version>2.1.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.SourceLink.GitHub">
       <Version>1.0.0</Version>
@@ -152,7 +148,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="NuGet.Build.Tasks.Pack">
-      <Version>5.9.0</Version>
+      <Version>5.10.0</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>

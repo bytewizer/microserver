@@ -38,12 +38,15 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
 
                 try
                 {
-                    if (_listenSocket.Poll(-1, SelectMode.SelectRead))
+                    if (_listenSocket.Poll(Timeout.Infinite, SelectMode.SelectRead))
                     {
                         if (_listenSocket.Available == 0)
+                        {
                             return;
+                        }
 
                         var remoteEndPoint = new IPEndPoint(0, 0) as EndPoint;
+
                         var buffer = new byte[_listenSocket.Available];
                         _listenSocket.ReceiveFrom(buffer, SocketFlags.None, ref remoteEndPoint);
 
@@ -58,15 +61,15 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
                         }
 
                         ThreadPool.QueueUserWorkItem(
-                        new WaitCallback(delegate (object state)
-                        {
-                            // Signal the accept thread to continue
-                            _acceptEvent.Set();
+                            new WaitCallback(delegate (object state)
+                            {
+                                // Signal the accept thread to continue
+                                _acceptEvent.Set();
 
-                            // Invoke the connected handler
-                            OnConnected(channel);
+                                // Invoke the connected handler
+                                OnConnected(channel);
 
-                        }));
+                            }));
                     }
                 }
                 catch (SocketException ex)

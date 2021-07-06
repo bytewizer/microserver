@@ -2,7 +2,6 @@
 using System.Text;
 
 using Bytewizer.TinyCLR.Http.Features;
-
 using GHIElectronics.TinyCLR.Cryptography;
 
 namespace Bytewizer.TinyCLR.Http.Authenticator

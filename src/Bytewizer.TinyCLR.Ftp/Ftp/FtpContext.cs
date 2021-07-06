@@ -1,4 +1,5 @@
-﻿using Bytewizer.TinyCLR.Pipeline;
+﻿using Bytewizer.TinyCLR.Features;
+using Bytewizer.TinyCLR.Pipeline;
 using Bytewizer.TinyCLR.Sockets.Channel;
 
 namespace Bytewizer.TinyCLR.Ftp
@@ -13,10 +14,17 @@ namespace Bytewizer.TinyCLR.Ftp
         /// </summary>
         public FtpContext() 
         {
+            Features = new FeatureCollection();
             Request = new FtpRequest();
             Response = new FtpResponse();
             Channel = new SocketChannel();
         }
+
+        /// <summary>
+        /// Gets the collection of HTTP features provided by the server 
+        /// and middleware available on this request.
+        /// </summary>
+        public IFeatureCollection Features { get; }
 
         /// <summary>
         /// Gets the <see cref="FtpRequest"/> object for this request.
@@ -56,6 +64,7 @@ namespace Bytewizer.TinyCLR.Ftp
         /// </summary>
         public void Clear()
         {
+            ((FeatureCollection)Features).Clear();
             Request.Clear();
             Response.Clear();      
             Channel.Clear();

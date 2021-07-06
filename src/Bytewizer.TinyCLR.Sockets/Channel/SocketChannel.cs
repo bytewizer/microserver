@@ -6,9 +6,6 @@ using System.Net.Sockets;
 using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
 
-using Bytewizer.TinyCLR.Sockets.Client;
-using Bytewizer.TinyCLR.Sockets.Handlers;
-
 namespace Bytewizer.TinyCLR.Sockets.Channel
 {
     /// <summary>
@@ -19,17 +16,12 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
         /// <summary>
         /// Gets socket for the connected endpoint.
         /// </summary>
-        public TcpClient Client { get; internal set; }
-
-        /// <summary>
-        /// Gets or sets a value that indicates whether a connection has been made.
-        /// </summary>
-        protected bool Active => Client.Active;
+        public Socket Client { get; internal set; }
 
         /// <summary>
         /// Gets socket information for the connected endpoint.  
         /// </summary>
-        public ConnectionInfo Connection { get; internal set; }
+        public ConnectionInfo Connection { get; internal set; } = new ConnectionInfo();
 
         /// <summary>
         /// Gets or sets a byte array that can be used to share data within the scope of this channel.
@@ -55,10 +47,10 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
             if (socket == null)
                 throw new ArgumentNullException(nameof(socket));
 
-            Client = new TcpClient(socket);
-            InputStream = new NetworkStream(socket);
-            OutputStream = new NetworkStream(socket);
-            Connection = ConnectionInfo.Set(socket);
+            Client = socket;
+            InputStream = new NetworkStream(socket, false);
+            OutputStream = new NetworkStream(socket, false);
+            Connection.Assign(socket);
         }
 
         /// <summary>
@@ -72,10 +64,10 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
             if (socket == null)
                 throw new ArgumentNullException(nameof(socket));
 
-            Client = new TcpClient(socket);
-            InputStream = new MemoryStream(buffer);
+            Client = socket;
+            InputStream = new MemoryStream(buffer, false);
             OutputStream = new MemoryStream();
-            Connection = ConnectionInfo.Set(socket, endpoint);
+            Connection.Assign(socket, endpoint);
         }
 
         /// <summary>
@@ -91,10 +83,10 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
 
             var streamBuilder = new SslStreamBuilder(certificate, allowedProtocols);
 
-            Client = new TcpClient(socket);
+            Client = socket;
             InputStream = streamBuilder.Build(socket);
             OutputStream = new NetworkStream(socket);
-            Connection = ConnectionInfo.Set(socket);
+            Connection.Assign(socket);
         }
 
         /// <summary>
@@ -116,7 +108,7 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
         public void Clear()
         {
             Connection = null;
-            Client?.Dispose();
+            //Client?.Close();
             InputStream?.Dispose();
             OutputStream?.Dispose();
         }
@@ -176,7 +168,7 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
             int bytesSent = 0;
             try
             {
-                OutputStream?.Write(bytes, 0, bytes.Length);
+                OutputStream?.Write(bytes);
                 OutputStream.Flush();
 
                 bytesSent = bytes.Length;
@@ -217,6 +209,49 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
 
             return bytesSent;
 
+        }
+
+        /// <summary>
+        /// Send a new message to a connected channel client.
+        /// </summary>
+        /// <param name="message">An array of type byte that contains the data to be sent.</param>
+        /// <param name="offSet">The position in the data buffer at which to begin sending data.</param>
+        /// <param name="size">The number of bytes to send.</param>
+        /// <param name="socketFlags">A bitwise combination of the SocketFlags values.</param>
+        public int Send(byte[] message, int offSet, int size, SocketFlags socketFlags)
+        {
+            int bytesSent = 0;
+            try
+            {
+                bytesSent = Client.Send(message, offSet, size, socketFlags);
+            }
+            catch (Exception ex)
+            {
+                OnChannelError(this, ex);
+            }
+            return bytesSent;
+        }
+
+        /// <summary>
+        /// Send a new message to a connected remote device.
+        /// </summary>
+        /// <param name="message">An array of type byte that contains the data to be sent.</param>
+        /// <param name="offset">The position in the data buffer at which to begin sending data.</param>
+        /// <param name="size">The number of bytes to send.</param>
+        /// <param name="socketFlags">A bitwise combination of the SocketFlags values.</param>
+        /// <param name="endPoint">An EndPoint that represents the remote device. </param>
+        public int SendTo(byte[] message, int offset, int size, SocketFlags socketFlags, EndPoint endPoint)
+        {
+            int bytesSent = 0;
+            try
+            {
+                bytesSent = Client.SendTo(message, offset, size, socketFlags, endPoint);
+            }
+            catch (Exception ex)
+            {
+                OnChannelError(this, ex);
+            }
+            return bytesSent;
         }
 
         /// <summary>

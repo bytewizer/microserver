@@ -1,5 +1,5 @@
 ﻿using Bytewizer.TinyCLR.Pipeline;
-using Bytewizer.TinyCLR.Http.Features;
+using Bytewizer.TinyCLR.Features;
 using Bytewizer.TinyCLR.Sockets.Channel;
 
 namespace Bytewizer.TinyCLR.Http

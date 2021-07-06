@@ -53,7 +53,7 @@ namespace Bytewizer.TinyCLR.Http
 
         private static void VerifyEndpointRoutingMiddlewareIsRegistered(IApplicationBuilder app, out DefaultEndpointRouteBuilder endpointRouteBuilder)
         {
-            if (!app.TryGetValue(EndpointRouteBuilder, out var obj))
+            if (!app.TryGetProperty(EndpointRouteBuilder, out var obj))
             {
                 var message =
                     $"{nameof(EndpointRoutingMiddleware)} matches endpoints setup by {nameof(EndpointMiddleware)} and so must be added to the request " +

@@ -35,6 +35,5 @@ namespace Bytewizer.TinyCLR.Ftp
         public const int FileActionPendingInfo = 350;
         public const int NotSupportedProtocal = 522;
         public const int ProceedWithNegotiation = 234;
-
     }
 }

@@ -1,12 +1,12 @@
-﻿using Bytewizer.TinyCLR.Logging;
-using Bytewizer.TinyCLR.Sockets.Client;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+
+using Bytewizer.TinyCLR.Logging;
 
 namespace Bytewizer.TinyCLR.Ftp.Internal
 {
@@ -16,7 +16,6 @@ namespace Bytewizer.TinyCLR.Ftp.Internal
         private readonly FtpServerOptions _ftpOptions;
 
         private FtpContext _context;
-
 
         public FtpMiddleware(ILogger logger, FtpServerOptions options)
         {
