@@ -6,6 +6,7 @@ using GHIElectronics.TinyCLR.Pins;
 using GHIElectronics.TinyCLR.Devices.Spi;
 using GHIElectronics.TinyCLR.Devices.Gpio;
 using GHIElectronics.TinyCLR.Devices.Network;
+using System.Threading;
 
 namespace Bytewizer.Playground
 {
@@ -16,20 +17,33 @@ namespace Bytewizer.Playground
         /// </summary>
         public static void InitializeEthernet()
         {
+            var gpioController = GpioController.GetDefault();
+            var resetPin = gpioController.OpenPin(SC20260.GpioPin.PG3);
+
+            resetPin.SetDriveMode(GpioPinDriveMode.Output);
+
+            resetPin.Write(GpioPinValue.Low);
+            Thread.Sleep(100);
+
+            resetPin.Write(GpioPinValue.High);
+            Thread.Sleep(100);
+
             var networkController = NetworkController.FromName(SC20260.NetworkController.EthernetEmac);
 
             var networkInterfaceSetting = new EthernetNetworkInterfaceSettings
             {
-                MacAddress = new byte[] { 0x00, 0x8D, 0xB4, 0x49, 0xAD, 0xBD },
-                DhcpEnable = true,
-                DynamicDnsEnable = true,
-
-                //DhcpEnable = false,
-                //DynamicDnsEnable = false,
-                //Address = new IPAddress(new byte[] { 192, 168, 1, 200 }),
-                //SubnetMask = new IPAddress(new byte[] { 255, 255, 255, 0 }),
-                //GatewayAddress = new IPAddress(new byte[] { 192, 168, 1, 1 }),
-                //DnsAddresses = new IPAddress[] { new IPAddress(new byte[] { 8, 8, 8, 8 }) }
+                //MacAddress = new byte[] { 0x00, 0x8D, 0xB4, 0x49, 0xAD, 0xBD },
+                MacAddress = new byte[] { 0x00, 0x4, 0x00, 0x00, 0x00, 0x00 },
+                
+                DhcpEnable = false,
+                DynamicDnsEnable = false,
+                Address = new IPAddress(new byte[] { 192, 168, 1, 200 }),
+                SubnetMask = new IPAddress(new byte[] { 255, 255, 255, 0 }),
+                GatewayAddress = new IPAddress(new byte[] { 192, 168, 1, 1 }),
+                DnsAddresses = new IPAddress[]{
+                    new IPAddress(new byte[] { 8, 8, 8, 8 }),
+                    new IPAddress(new byte[] { 8, 8, 4, 4 })
+                    }
             };
 
             networkController.SetInterfaceSettings(networkInterfaceSetting);

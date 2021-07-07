@@ -1,13 +1,23 @@
-﻿using Bytewizer.TinyCLR.Sockets;
+﻿using System;
+using System.Net;
+using System.Threading;
+
+using Bytewizer.TinyCLR.Sockets;
 using Bytewizer.TinyCLR.Logging;
+
+using Bytewizer.TinyCLR.Sntp.Internal;
 
 namespace Bytewizer.TinyCLR.Sntp
 {
     /// <summary>
     /// Represents an implementation of the <see cref="SntpServer"/> for creating web servers.
     /// </summary>
-    public class SntpServer :  IServer
+    public class SntpServer : IServer
     {
+        private Timer _pollingTimer;
+        private readonly int _pollingDelay = 1000; // 10000;
+
+        private readonly ILogger _logger;
         private readonly SocketServer _sntpServer;
         private readonly ILoggerFactory _loggerFactory = NullLoggerFactory.Instance;
         private readonly SntpServerOptions _sntpOptions = new SntpServerOptions();
@@ -41,7 +51,8 @@ namespace Bytewizer.TinyCLR.Sntp
         public SntpServer(ILoggerFactory loggerFactory, ServerOptionsDelegate configure)
         {
             _loggerFactory = loggerFactory;
-            
+            _logger = loggerFactory.CreateLogger("Bytewizer.TinyCLR.Sntp");
+
             Initialize();
 
             configure(_sntpOptions);
@@ -56,6 +67,7 @@ namespace Bytewizer.TinyCLR.Sntp
         /// <param name="options">The options of <see cref="SntpServer"/> specific features.</param>
         public SntpServer(ILoggerFactory loggerFactory, ServerOptions options)
         {
+            _logger = loggerFactory.CreateLogger("Bytewizer.TinyCLR.Sntp");
             _sntpServer = new SocketServer(loggerFactory, options);
         }
 
@@ -81,132 +93,74 @@ namespace Bytewizer.TinyCLR.Sntp
 
         /// <inheritdoc/>
         public bool Start()
-        {
+        {               
+            if (!string.IsNullOrEmpty(_sntpOptions.Server))
+            {
+                if (_sntpOptions.Stratum == Stratum.Unspecified)
+                {
+                    _sntpOptions.Stratum = Stratum.Secondary;
+                }
+
+                if(IPAddressHelper.TryResolve(_sntpOptions.Server, out IPAddress address))
+                {
+                    _sntpOptions.ReferenceIPAddress = address;
+                    _pollingTimer = new Timer(new TimerCallback(Synchronize), null, _pollingDelay, (int)_sntpOptions.SyncInterval.TotalMilliseconds);
+                }
+                else
+                {
+                    _logger.InvalidNameResolve(_sntpOptions.Server);
+                }
+            }
+
             return _sntpServer.Start();
         }
 
         /// <inheritdoc/>
         public bool Stop()
         {
+            if (_pollingTimer != null)
+            {
+                _pollingTimer.Dispose();
+            }
+
             return _sntpServer.Stop();
-        }   
+        }
+
+        private void Synchronize(object state)
+        {
+            int retry;
+
+            while (true)
+            {
+                retry = 0;
+
+                try
+                {
+                    using (var ntp = new NtpClient(_sntpOptions.Server, 123))
+                    {
+                        ntp.Timeout = _sntpOptions.SyncTimeout;
+
+                        var accurateTime = DateTime.UtcNow + ntp.GetCorrectionOffset();
+
+                        _sntpOptions.TimeSource = accurateTime;
+
+                        _logger.TimesyncMessage(accurateTime, _sntpOptions.Server);
+
+                        return;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    if (retry > 3)
+                    {
+                        _logger.TimesyncException(ex);
+                        break;
+                    }
+
+                    retry++;
+                    continue;
+                }
+            }
+        }
     }
 }
-
-
-
-
-
-///// <summary>
-///// A client has connected.
-///// </summary>
-///// <param name="sender">The source of the event.</param>
-///// <param name="channel">The socket channel for the connected end point.</param>
-//protected void ClientConnected(object sender, SocketChannel channel)
-//{
-//    if (channel.InputStream.Length < _sntpOptions.Limits.MinMessageSize
-//        || channel.InputStream.Length > _sntpOptions.Limits.MaxMessageSize)
-//    {
-//        channel.Clear();
-//        return;
-//    }
-
-//    // Set channel error handler
-//    channel.ChannelError += ChannelError;
-
-//    try
-//    {
-//        // get context from context pool
-//        var context = _contextPool.GetContext(typeof(SocketContext)) as SocketContext;
-
-//        // assign channel
-//        context.Channel = channel;
-
-//        // Check to make sure channel contains data
-//        if (context.Channel.InputStream.Length > 0)
-//        {
-//            // Invoke pipeline 
-//            _sntpServer.Application.Invoke(context);
-//        }
-
-//        // release context back to pool and close connection once pipeline is complete
-//        //_contextPool.Release(context);
-//    }
-//    catch (Exception ex)
-//    {
-//        _logger.LogCritical(ex, $"Unexpcted exception in {nameof(SntpServer)}.{nameof(ClientConnected)}");
-//        return;
-//    }
-//}
-
-///// <summary>
-///// An internal channel error occured.
-///// </summary>
-///// <param name="sender">The source of the event.</param>
-///// <param name="execption">The <see cref="Exception"/> for the channel error.</param>
-//private void ChannelError(object sender, Exception execption)
-//{
-//    _logger.LogError(execption, $"Unexpcted channel exception in {nameof(SocketServer)}");
-//}
-
-
-//private readonly ILogger _logger;
-//private readonly ContextPool _contextPool;
-//private readonly SntpServerOptions _sntpOptions;
-
-///// <summary>
-///// Initializes a new instance of the <see cref="SntpServer"/> class.
-///// </summary>
-///// <param name="configure">The configuration options of <see cref="SntpServer"/> specific features.</param>
-//public SntpServer(ServerOptionsDelegate configure)
-//            : this(NullLoggerFactory.Instance, new SntpServerOptions())
-//        {
-//    Initialize(configure);
-//}
-
-///// <summary>
-///// Initializes a new instance of the <see cref="SntpServer"/> class.
-///// </summary>
-///// <param name="loggerFactory">The factory used to create loggers.</param>
-///// <param name="configure">The configuration options of <see cref="SntpServer"/> specific features.</param>
-//public SntpServer(ILoggerFactory loggerFactory, ServerOptionsDelegate configure)
-//            : this(loggerFactory, new SntpServerOptions())
-//        {
-//    Initialize(configure);
-//}
-
-///// <summary>
-///// Initializes a new instance of the <see cref="SntpServer"/> class.
-///// </summary>
-///// <param name="loggerFactory">The factory used to create loggers.</param>
-///// <param name="options">The options of <see cref="SntpServer"/> specific features.</param>
-//private SntpServer(ILoggerFactory loggerFactory, ServerOptions options)
-//            : base(loggerFactory, options)
-//        {
-//    _logger = loggerFactory.CreateLogger("Bytewizer.TinyCLR.Sntp");
-
-//    _contextPool = new ContextPool();
-//    _sntpOptions = _options as SntpServerOptions;
-
-//    SetListener();
-//}
-
-///// <summary>
-///// Initializes a new instance of the <see cref="SntpServer"/> class specific features.
-///// </summary>
-///// <param name="configure">The configuration options of <see cref="SntpServer"/> specific features.</param>
-//private void Initialize(ServerOptionsDelegate configure)
-//{
-//    _options.Pipeline(app =>
-//    {
-//        app.Use(new SntpMiddleware(_logger, _sntpOptions));
-//    });
-//    _options.Listen(123, listener =>
-//    {
-//        listener.UseUdp();
-//    });
-
-//    configure(_options as SntpServerOptions);
-
-//    //SetListener();
-//}

@@ -104,7 +104,7 @@ namespace Bytewizer.TinyCLR.Sntp
         /// </value>
         public int Precision
         {
-            get { return (sbyte)Bytes[3]; }
+            get { return Bytes[3]; }
             set { Bytes[3] = (byte)value; } 
         }
 
@@ -176,7 +176,7 @@ namespace Bytewizer.TinyCLR.Sntp
         /// this property contains so called kiss code that instructs the client to stop querying the server.
         /// </para>
         /// </value>
-        public uint ReferenceIdAddress
+        public uint ReferenceIPAddress
         {
             get { return GetUInt32BE(12); }
             set { SetUInt32BE(12, value); }
@@ -320,26 +320,24 @@ namespace Bytewizer.TinyCLR.Sntp
         public static string Print(NtpPacket packet)
         {
             var sb = new StringBuilder();
-            sb.AppendLine();
             sb.AppendLine($"Received {packet.Bytes.Length}B packet");
             sb.AppendLine("-------------------------------------");
             //sb.AppendLine($"Correction offset: {packet.CorrectionOffset}");
             //sb.AppendLine($"Round-trip time:   {packet.RoundTripTime}");
-            sb.AppendLine($"Origin time:       {packet.OriginTimestamp:hh:mm:ss.fff}");
-            sb.AppendLine($"Receive time:      {packet.ReceiveTimestamp:hh:mm:ss.fff}");
-            sb.AppendLine($"Transmit time:     {packet.TransmitTimestamp:hh:mm:ss.fff}");
-            sb.AppendLine($"Destination time:  {packet.DestinationTimestamp:hh:mm:ss.fff}");
+            sb.AppendLine($"Origin time:       {packet.OriginTimestamp:dd/MM/yyyy hh:mm:ss.fff}");
+            sb.AppendLine($"Receive time:      {packet.ReceiveTimestamp:dd/MM/yyyy hh:mm:ss.fff}");
+            sb.AppendLine($"Transmit time:     {packet.TransmitTimestamp:dd/MM/yyyy hh:mm:ss.fff}");
+            sb.AppendLine($"Destination time:  {packet.DestinationTimestamp:dd/MM/yyyy hh:mm:ss.fff}");
             sb.AppendLine($"Protocol version:  {packet.VersionNumber}");
             sb.AppendLine($"Protocol mode:     {packet.Mode}");
             sb.AppendLine($"Leap second:       {packet.LeapIndicator}");
             sb.AppendLine($"Stratum:           {packet.Stratum}");
             sb.AppendLine($"Reference ID:      0x{packet.ReferenceId:x}");
-            sb.AppendLine($"Reference time:    {packet.ReferenceTimestamp:hh:mm:ss.fff}");
+            sb.AppendLine($"Reference time:    {packet.ReferenceTimestamp:dd/MM/yyyy hh:mm:ss.fff}");
             sb.AppendLine($"Root delay:        {packet.RootDelay.TotalMilliseconds}ms");
             sb.AppendLine($"Root dispersion:   {packet.RootDispersion.TotalMilliseconds}ms");
             sb.AppendLine($"Poll interval:     2^{packet.Poll}s");
             sb.AppendLine($"Precision:         2^{packet.Precision}s");
-            sb.AppendLine();
 
             return sb.ToString();
         }

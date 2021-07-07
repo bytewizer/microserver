@@ -66,5 +66,46 @@ namespace Bytewizer.TinyCLR.Sntp.Internal
                 return BitConverter.ToUInt32(new IPAddress(new byte[4] { 0, 0, 0, 0 }).GetAddressBytes(), 0);
             }
         }
+
+        public static bool TryResolve(string hostName, out IPAddress address)
+        {
+            int retry;
+
+            address = IPAddress.Any;
+
+            while (true)
+            {
+                retry = 0;
+
+                try
+                {
+                    var hostEntry = Dns.GetHostEntry(hostName);
+
+                    if ((hostEntry != null) && (hostEntry.AddressList.Length > 0))
+                    {
+                        var i = 0;
+                        while (hostEntry.AddressList[i] == null) i++;
+                        {
+                            address = hostEntry.AddressList[i];
+                            return true;
+                        }
+                    }
+                    else 
+                    {
+                        return false;
+                    }
+                }
+                catch
+                {
+                    if (retry > 3)
+                    {
+                        return false;
+                    }
+
+                    retry++;
+                    continue;
+                }
+            }
+        }
     }
 }

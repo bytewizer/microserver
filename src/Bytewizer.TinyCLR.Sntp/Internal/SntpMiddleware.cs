@@ -34,94 +34,53 @@ namespace Bytewizer.TinyCLR.Sntp.Internal
 
             var request = new NtpPacket(buffer);
 
-            _logger.Log( // Make packet logger
-                LogLevel.Information,
-                new EventId(100, "Unhandled Exception"),
-                NtpPacket.Print(request),
-                null
-                );
+            _logger.SocketTransport(NtpPacket.Print(request));
 
             if (request.Mode == NtpMode.Client)
             {
-                if (string.IsNullOrEmpty(_sntpOptions.Server))
+                var response = new NtpPacket
                 {
-                    var response = new NtpPacket
-                    {
-                        Mode = NtpMode.Server,
-                        //LeapIndicator = LeapIndicator.NoWarning,  TODO: Not working
-                        Stratum = _sntpOptions.Stratum,
-                        VersionNumber = _sntpOptions.VersionNumber,
-                        Poll = _sntpOptions.PollInterval,
-                        Precision = _sntpOptions.Precision,
-                        
-                        // Time at the client when the request departed for the server
-                        OriginTimestamp = request.TransmitTimestamp,
+                    Mode = NtpMode.Server,
+                    //LeapIndicator = LeapIndicator.NoWarning,  TODO: Not working
+                    Stratum = _sntpOptions.Stratum,
+                    VersionNumber = _sntpOptions.VersionNumber,
+                    Poll = _sntpOptions.PollInterval,
+                    Precision = _sntpOptions.Precision,
 
-                        // Time when the system clock was last set or corrected
-                        ReferenceTimestamp = _sntpOptions.ReferenceTimestamp,
+                    // Time at the client when the request departed for the server
+                    OriginTimestamp = request.TransmitTimestamp,
 
-                        // Time at the server when the request arrived from the client
-                        ReceiveTimestamp = receiveTimestamp,
+                    // Time when the system clock was last set or corrected
+                    ReferenceTimestamp = _sntpOptions.ReferenceTimestamp,
 
-                        // Time at the client when the reply arrived from the server
-                        DestinationTimestamp = _sntpOptions.TimeSource     
-                    };
+                    // Time at the server when the request arrived from the client
+                    ReceiveTimestamp = receiveTimestamp,
 
-                    if (response.Stratum == Stratum.Primary)
-                    {
-                        response.ReferenceId = _sntpOptions.ReferenceId;
-                    }
-                    else
-                    {
-                        var ip = new IPAddress(new byte[4] { 0, 0, 0, 0 });
-                        response.ReferenceIdAddress = IPAddressHelper.FromIPAddress(ip);
-                    }
+                    // Time at the client when the reply arrived from the server
+                    DestinationTimestamp = _sntpOptions.TimeSource
+                };
 
-                    // Time at the server when the response left for the client
-                    response.TransmitTimestamp = _sntpOptions.TimeSource;
-
-                    ctx.Channel.SendTo(
-                            response.Bytes,
-                            0,
-                            response.Bytes.Length,
-                            SocketFlags.None,
-                            remoteEndpoint
-                        );
-
-                    next(ctx);
+                if (response.Stratum == Stratum.Primary)
+                {
+                    response.ReferenceId = _sntpOptions.ReferenceId;
                 }
                 else
                 {
-                    NtpPacket packet;
-
-                    if (IPAddressHelper.TryParse(_sntpOptions.Server, out IPAddress ip))
-                    {
-                        var endpoint = new IPEndPoint(ip, 123);
-                        using (var ntp = new NtpClient(endpoint))
-                        {
-                            ntp.Timeout = TimeSpan.FromSeconds(5);
-                            packet = ntp.Query(request);
-                        }
-                    }
-                    else
-                    {
-                        using (var ntp = new NtpClient(_sntpOptions.Server, 123))
-                        {
-                            ntp.Timeout = TimeSpan.FromSeconds(5);
-                            packet = ntp.Query(request);
-                        }
-                    }
-
-                    ctx.Channel.SendTo(
-                            packet.Bytes,
-                            0,
-                            packet.Bytes.Length,
-                            SocketFlags.None,
-                            remoteEndpoint
-                        );
-
-                    next(ctx);
+                    response.ReferenceIPAddress = IPAddressHelper.FromIPAddress(_sntpOptions.ReferenceIPAddress);
                 }
+
+                // Time at the server when the response left for the client (in local time)
+                response.TransmitTimestamp = _sntpOptions.TimeSource.ToLocalTime();
+
+                ctx.Channel.SendTo(
+                        response.Bytes,
+                        0,
+                        response.Bytes.Length,
+                        SocketFlags.None,
+                        remoteEndpoint
+                    );
+
+                next(ctx);
             }
         }
     }

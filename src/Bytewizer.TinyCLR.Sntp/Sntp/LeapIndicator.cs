@@ -11,14 +11,14 @@ namespace Bytewizer.TinyCLR.Sntp
         NoWarning = 0,
 
         /// <summary>
-        /// Warns the client that the last minute of the current day has 61 seconds.
+        /// Last minute has 61 seconds
         /// </summary>
-        LastMinuteHas61Seconds = 1,
+        LastMinute61 = 1,
 
         /// <summary>
-        /// Warns the client that the last minute of the current day has 59 seconds.
+        /// Last minute has 59 seconds
         /// </summary>
-        LastMinuteHas59Seconds = 2,
+        LastMinute59 = 2,
 
         /// <summary>
         /// Special value indicating that the server clock is unsynchronized and the returned time is unreliable.

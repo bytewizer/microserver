@@ -99,6 +99,11 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
         public int MaxPendingConnections { get; set; } = 128;
 
         /// <summary>
+        /// Specifies in micro seconds how long to block execution until the <see cref="UdpListener"/> poll will wait.
+        /// </summary>
+        public int PollUdpTimeout { get; set; } = 2000000; // -1 ;
+
+        /// <summary>
         /// Specifies the maximum number of  the  <see cref="SocketListener"/> open connections. 
         /// </summary>
         public int MaxConcurrentConnections { get; set; } = 10;

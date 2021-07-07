@@ -67,7 +67,7 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
         public bool Start()
         {
             // If service was already started the call has no effect
-            Debug.Assert(!Active, "Server is already started!");
+            //Debug.Assert(!Active, "Server is already started!");
             if (Active)
             {
                 return true;
@@ -138,7 +138,7 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
         public bool Stop()
         {
             // If service was already started the call has no effect
-            Debug.Assert(Active, "Service is not started!");
+            //Debug.Assert(Active, "Service is not started!");
             if (!Active)
                 return true;
 
@@ -176,37 +176,6 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
                 return true;
             }
         }
-
-
-        ///// <summary>
-        ///// Accepts a pending connection request.
-        ///// </summary>
-        ///// <returns>A <see cref="Socket"/> used to send and receive data.</returns>
-        //public Socket AcceptSocket()
-        //{
-        //    if (!Active)
-        //    {
-        //        throw new InvalidOperationException();
-        //    }
-
-        //    return _listenSocket.Accept();
-        //}
-
-        ///// <summary>
-        ///// Accepts a pending connection request.
-        ///// </summary>
-        ///// <returns>A <see cref="TcpClient"/> used to send and receive data.</returns>
-        //public TcpClient AcceptTcpClient()
-        //{
-        //    if (!Active)
-        //    {
-        //        throw new InvalidOperationException();
-        //    }
-
-        //    Socket acceptedSocket = _listenSocket.Accept();
-
-        //    return new TcpClient(acceptedSocket);
-        //}
 
         /// <summary>
         /// Accepted connection listening thread.

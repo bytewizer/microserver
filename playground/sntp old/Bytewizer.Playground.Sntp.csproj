@@ -36,8 +36,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Hardware\ClockProvider.cs" />
-    <Compile Include="Hardware\NetworkProvider.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -54,6 +52,10 @@
       <Project>{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}</Project>
       <Name>Bytewizer.TinyCLR.Sockets</Name>
     </ProjectReference>
+    <ProjectReference Include="..\hardware\Bytewizer.TinyCLR.Hardware.csproj">
+      <Project>{BA1C8D90-3F6E-446F-B2A6-6FA48A42838E}</Project>
+      <Name>Bytewizer.TinyCLR.Hardware</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -68,26 +70,11 @@
     <Reference Include="Bytewizer.TinyCLR.Logging.Debug, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Bytewizer.TinyCLR.Logging.Debug.2.0.0-prebuild.13\lib\net452\Bytewizer.TinyCLR.Logging.Debug.dll</HintPath>
     </Reference>
-    <Reference Include="Bytewizer.TinyCLR.Logging.Extensions, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bytewizer.TinyCLR.Logging.Extensions.2.0.0-prebuild.13\lib\net452\Bytewizer.TinyCLR.Logging.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="GHIElectronics.TinyCLR.Devices.Gpio, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GHIElectronics.TinyCLR.Devices.Gpio.2.1.0\lib\net452\GHIElectronics.TinyCLR.Devices.Gpio.dll</HintPath>
-    </Reference>
-    <Reference Include="GHIElectronics.TinyCLR.Devices.Network, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GHIElectronics.TinyCLR.Devices.Network.2.1.0\lib\net452\GHIElectronics.TinyCLR.Devices.Network.dll</HintPath>
-    </Reference>
     <Reference Include="GHIElectronics.TinyCLR.Devices.Rtc, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GHIElectronics.TinyCLR.Devices.Rtc.2.1.0\lib\net452\GHIElectronics.TinyCLR.Devices.Rtc.dll</HintPath>
     </Reference>
-    <Reference Include="GHIElectronics.TinyCLR.Devices.Spi, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GHIElectronics.TinyCLR.Devices.Spi.2.1.0\lib\net452\GHIElectronics.TinyCLR.Devices.Spi.dll</HintPath>
-    </Reference>
     <Reference Include="GHIElectronics.TinyCLR.Devices.Storage, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GHIElectronics.TinyCLR.Devices.Storage.2.1.0\lib\net452\GHIElectronics.TinyCLR.Devices.Storage.dll</HintPath>
-    </Reference>
-    <Reference Include="GHIElectronics.TinyCLR.Devices.Uart, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GHIElectronics.TinyCLR.Devices.Uart.2.1.0\lib\net452\GHIElectronics.TinyCLR.Devices.Uart.dll</HintPath>
     </Reference>
     <Reference Include="GHIElectronics.TinyCLR.IO, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GHIElectronics.TinyCLR.IO.2.1.0\lib\net452\GHIElectronics.TinyCLR.IO.dll</HintPath>
@@ -97,9 +84,6 @@
     </Reference>
     <Reference Include="GHIElectronics.TinyCLR.Networking, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GHIElectronics.TinyCLR.Networking.2.1.0\lib\net452\GHIElectronics.TinyCLR.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="GHIElectronics.TinyCLR.Pins, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GHIElectronics.TinyCLR.Pins.2.1.0\lib\net452\GHIElectronics.TinyCLR.Pins.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -32,22 +32,23 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
             // Signal the start method to continue
             _startedEvent.Set();
 
+            var remoteEndPoint = new IPEndPoint(IPAddress.Any, 0) as EndPoint;
+
             while (Active)
             {
                 retry = 0;
 
                 try
                 {
-                    if (_listenSocket.Poll(Timeout.Infinite, SelectMode.SelectRead))
+                    if (_listenSocket.Poll(_options.PollUdpTimeout, SelectMode.SelectRead))
                     {
                         if (_listenSocket.Available == 0)
                         {
                             return;
                         }
 
-                        var remoteEndPoint = new IPEndPoint(0, 0) as EndPoint;
-
-                        var buffer = new byte[_listenSocket.Available];
+                        //var buffer = new byte[_listenSocket.Available];
+                        var buffer = new byte[48];
                         _listenSocket.ReceiveFrom(buffer, SocketFlags.None, ref remoteEndPoint);
 
                         var channel = new SocketChannel();

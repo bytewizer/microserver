@@ -1,53 +1,55 @@
-﻿using System;
-using System.Threading;
-using System.Diagnostics;
-
-using Bytewizer.TinyCLR.Sntp;
+﻿using Bytewizer.TinyCLR.Sntp;
+using Bytewizer.TinyCLR.Sockets;
 using Bytewizer.TinyCLR.Logging;
 using Bytewizer.TinyCLR.Logging.Debug;
 
-using GHIElectronics.TinyCLR.Native;
+using GHIElectronics.TinyCLR.Devices.Network;
 
 namespace Bytewizer.Playground.Sntp
 {
     class Program
     {
-        private static DateTime _timeSource;
-        private static readonly ILoggerFactory loggerFactory = new LoggerFactory();
-
+        private static IServer _server;
+        private static ILogger _logger;
+        private static readonly ILoggerFactory _loggerFactory = new LoggerFactory();
+        
         static void Main()
         {
+            ClockProvider.Initialize();
+
             NetworkProvider.InitializeEthernet();
+            NetworkProvider.Controller.NetworkAddressChanged += Controller_NetworkAddressChanged;
+            
+            _loggerFactory.AddDebug(LogLevel.Debug);
+            _logger = _loggerFactory.CreateLogger("Bytewizer.Playground.Time");
 
-            // Get the time close to current time
-            var time = new DateTime(2021, 7, 5, 18, 18, 0);
-            SystemTime.SetTime(time);
-
-            // Wait for network to connect then set time every 10 seconds
-            Timer timer = new Timer(SetTime, null, 10000, 10000);
-
-            loggerFactory.AddDebug(LogLevel.Information);
-
-            var server = new SntpServer(loggerFactory, options =>
+            _server = new SntpServer(_loggerFactory, options =>
             {
-                // Local time source 
-                //options.TimeSource = _timeSource; 
-                //options.Stratum = Stratum.Secondary;
-
-                // Relay from remote time source
+                // Set server to secondary status pulling time from an upstream server
                 options.Server = "pool.ntp.org";
 
-            }).Start();
+                // Set realtime clock provider to get timestamp data from
+                options.RealtimeClock = ClockProvider.Controller;
+
+            });
         }
 
-        static void SetTime(object obj)
+        private static void Controller_NetworkAddressChanged(
+            NetworkController sender, 
+            NetworkAddressChangedEventArgs e)
         {
-            using (var ntp = new NtpClient("pool.ntp.org", 123)) // This could be set by GPS time
+            var ipProperties = sender.GetIPProperties();
+            var address = ipProperties.Address.GetAddressBytes();
+
+            if (address != null && address[0] != 0 && address.Length > 0)
             {
-                ntp.Timeout = TimeSpan.FromSeconds(5);
-                _timeSource = DateTime.UtcNow + ntp.GetCorrectionOffset();
-                SystemTime.SetTime(_timeSource);
-                Debug.WriteLine(NtpPacket.Print(ntp.Query()));
+                _logger.LogInformation($"Interface Address: {ipProperties.Address}");
+                _server.Start();
+            }
+            else
+            {
+                _logger.LogInformation($"Interface Address: {ipProperties.Address}");
+                _server.Stop();
             }
         }
     }

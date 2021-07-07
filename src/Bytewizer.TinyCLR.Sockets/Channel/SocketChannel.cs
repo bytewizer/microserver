@@ -107,7 +107,7 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
         /// </summary>
         public void Clear()
         {
-            Connection = null;
+            Connection = null;     
             //Client?.Close();
             InputStream?.Dispose();
             OutputStream?.Dispose();

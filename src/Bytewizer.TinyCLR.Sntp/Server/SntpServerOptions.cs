@@ -1,6 +1,8 @@
 ﻿using System;
-
+using System.Net;
 using Bytewizer.TinyCLR.Sockets;
+
+using GHIElectronics.TinyCLR.Devices.Rtc;
 using GHIElectronics.TinyCLR.Native;
 
 namespace Bytewizer.TinyCLR.Sntp
@@ -18,22 +20,35 @@ namespace Bytewizer.TinyCLR.Sntp
         public string Server { get; set; }
 
         /// <summary>
-        /// Specifies local coordinated universal time ‎(UTC)‎ time to use for timestamp.
+        /// Specifies local coordinated universal time ‎(UTC)‎ time to use for timestamps.
         /// </summary>
         public DateTime TimeSource
         {
-            get =>  DateTime.UtcNow.ToUniversalTime();
-            set 
+            get
             {
+                return DateTime.UtcNow;
+            }
+            set
+            {
+                if (RealtimeClock != null)
+                {
+                    RealtimeClock.Now = value;
+                }
+
                 SystemTime.SetTime(value);
-                ReferenceTimestamp = value.ToUniversalTime();
+                ReferenceTimestamp = value;
             }
         }
 
         /// <summary>
+        /// Specifies real time clock (RTC) to use for timestamps.
+        /// </summary>
+        public RtcController RealtimeClock { get; set; } = null;
+
+        /// <summary>
         /// Gets the time when the system clock was last set or corrected.
         /// </summary>
-        public DateTime ReferenceTimestamp { get; private set; }
+        public DateTime ReferenceTimestamp { get; private set; } = DateTime.UtcNow;
 
         /// <summary>
         /// Specifies protocol version number.
@@ -43,7 +58,7 @@ namespace Bytewizer.TinyCLR.Sntp
         /// <summary>
         /// Specifies server's distance from the reference clock.
         /// </summary>
-        public Stratum Stratum { get; set; } = Stratum.Primary;
+        public Stratum Stratum { get; set; } = Stratum.Unspecified;
 
         /// <summary>
         /// Specifies the ID of the time source used by the server or Kiss-o'-Death code sent by the server.
@@ -65,7 +80,13 @@ namespace Bytewizer.TinyCLR.Sntp
         /// this property contains so called kiss code that instructs the client to stop querying the server.
         /// </para>
         /// </value>
-        public ReferenceId ReferenceId { get; set; } = ReferenceId.LOCL ;
+        public ReferenceId ReferenceId { get; set; } = ReferenceId.LOCL;
+
+        /// <summary>
+        /// Specifies the ID of the time source used by the server or Kiss-o'-Death code sent by the server.
+        /// Stratum 2 and lower servers set this property to IPv4 address of their upstream server.
+        /// </summary>
+        public IPAddress ReferenceIPAddress { get; set; } = IPAddress.Any;
 
         /// <summary>
         /// Specifies server's preferred polling interval in log₂ seconds.
@@ -82,5 +103,15 @@ namespace Bytewizer.TinyCLR.Sntp
         /// Clock precision in log₂ seconds, e.g. -20 for microsecond precision.
         /// </value>
         public int Precision { get; set; } = -20;
+
+        /// <summary>
+        /// Specifies .....
+        /// </summary>
+        public TimeSpan SyncInterval { get; set; } = TimeSpan.FromSeconds(8192);
+
+        /// <summary>
+        /// Specifies .....
+        /// </summary>
+        public TimeSpan SyncTimeout { get; set; } = TimeSpan.FromSeconds(5);
     }
 }
