@@ -40,7 +40,7 @@ namespace Bytewizer.TinyCLR.Sockets
 
         public static void StartingService(this ILogger logger, int port)
         {
-            var message = $"Started socket listener bound to port {port}";
+            var message = $"Started socket listener bound to port {port}.";
 
             if (logger.GetType() == typeof(NullLogger))
             {
@@ -60,14 +60,14 @@ namespace Bytewizer.TinyCLR.Sockets
             logger.Log(
                 LogLevel.Error,
                 new EventId(111, "Starting Service"),
-                $"Error starting socket listener bound to port {port}",
+                $"Error starting socket listener bound to port {port}.",
                 exception
                 );
         }
 
         public static void StoppingService(this ILogger logger, int port)
         {
-            var message = $"Stopping socket listener bound to port {port}";
+            var message = $"Stopping socket listener bound to port {port}.";
             
             if (logger.GetType() == typeof(NullLogger))
             {
@@ -87,7 +87,7 @@ namespace Bytewizer.TinyCLR.Sockets
             logger.Log(
                 LogLevel.Error,
                 new EventId(112, "Starting Service"),
-                $"Error stopping socket listener bound to port {port}",
+                $"Error stopping socket listener bound to port {port}.",
                 exception
                 );
         }
@@ -117,7 +117,7 @@ namespace Bytewizer.TinyCLR.Sockets
             logger.Log(
                 LogLevel.Debug,
                 new EventId(114, "Invalid Message Limit"),
-                $"Invalid message limit reached: length:{length} min:{min} max:{max}.",
+                $"Invalid message limit length:{length} min:{min} max:{max}.",
                 null
                 );
         }

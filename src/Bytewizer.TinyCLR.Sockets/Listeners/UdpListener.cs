@@ -2,6 +2,7 @@
 using System.Net;
 using System.Threading;
 using System.Net.Sockets;
+using System.Diagnostics;
 
 using Bytewizer.TinyCLR.Sockets.Channel;
 using Bytewizer.TinyCLR.Sockets.Extensions;
@@ -13,6 +14,8 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
     /// </summary>
     public class UdpListener : SocketListener
     {
+        private int _listeningSockets = 0;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="UdpListener"/> class.
         /// <param name="options">Factory used to create objects used in this library.</param>
@@ -32,34 +35,37 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
             // Signal the start method to continue
             _startedEvent.Set();
 
-            var remoteEndPoint = new IPEndPoint(IPAddress.Any, 0) as EndPoint;
-
             while (Active)
             {
                 retry = 0;
 
                 try
                 {
-                    if (_listenSocket.Poll(_options.PollUdpTimeout, SelectMode.SelectRead))
+                    // Set the accept event to nonsignaled state
+                    _acceptEvent.Reset();
+
+                    while (_listenSocket.Poll(_options.PollUdpTimeout, SelectMode.SelectRead))
                     {
-                        if (_listenSocket.Available == 0)
+                        if (_listenSocket.Available <= 0)
                         {
                             return;
                         }
 
-                        //var buffer = new byte[_listenSocket.Available];
-                        var buffer = new byte[48];
-                        _listenSocket.ReceiveFrom(buffer, SocketFlags.None, ref remoteEndPoint);
+                        // Delay request response if max connections is reached             
+                        while (_listeningSockets >= _options.MaxConcurrentConnections)
+                        {
+                            Debug.WriteLine($"Maxium number of concurrent connections of {_listeningSockets} reached.");
+                            Thread.Sleep(100);
+                        }
+
+                        // Allow remote connections from all endponts
+                        var remoteEndPoint = new IPEndPoint(IPAddress.Any, 0) as EndPoint;
+
+                        var buffer = new byte[_listenSocket.Available];
+                        _listenSocket.ReceiveFrom(buffer, ref remoteEndPoint);
 
                         var channel = new SocketChannel();
-                        if (_options.IsTls)
-                        {
-
-                        }
-                        else
-                        {
-                            channel.Assign(_listenSocket, buffer, remoteEndPoint);
-                        }
+                        channel.Assign(_listenSocket, buffer, remoteEndPoint);
 
                         ThreadPool.QueueUserWorkItem(
                             new WaitCallback(delegate (object state)
@@ -67,8 +73,14 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
                                 // Signal the accept thread to continue
                                 _acceptEvent.Set();
 
+                                // Increment request count
+                                Interlocked.Increment(ref _listeningSockets);
+
                                 // Invoke the connected handler
                                 OnConnected(channel);
+
+                                // Decrease request count
+                                Interlocked.Decrement(ref _listeningSockets);
 
                             }));
                     }
@@ -83,7 +95,9 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
                     }
 
                     if (retry > _options.SocketRetry)
+                    {
                         throw;
+                    }
 
                     retry++;
                     continue;
@@ -91,13 +105,17 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
                 catch (Exception ex)
                 {
                     if (ex is ObjectDisposedException || ex is NullReferenceException)
+                    {
                         break;
+                    }
 
                     OnDisconnected(ex);
 
                     // try again
                     continue;
                 }
+
+                Thread.Sleep(100);
             }
         }
     }

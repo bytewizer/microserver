@@ -5,18 +5,20 @@
 
 Microserver is an embedded modular server built for TinyCLR OS IoT devices inspired by AspNetCore.  Be sure to follow this project with videos on [YouTube](https://youtu.be/EDGo3NpBOpk).
 
-## Socket Services
+## Network Services
 
 Build on a modular tcp/udp service with an extendable pipeline and SSL transport security.
 
-* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Sockets">Socket Services</a>
 * <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Pipeline">Extendable Pipeline</a> 
+* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Sockets">TCP/UDP Socket Server</a>
+* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Sntp">Simple Network Time Protocol (SNTP) Server</a>
+
 
 ## Web Services
 
 Create a modular web services including middleware, moduler routing, digest authentication, controllers, action results, view engine, storage / resource file serving, default file routing, JSON integration, and websockets.
 
-* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http">Http Server</a>
+* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http">HTTP Server</a>
 * <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.WebSocket">WebSockets</a>
 * <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Diagnostics">Diagnostics</a> 
 * <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Authentication">Authentication</a>
@@ -24,7 +26,7 @@ Create a modular web services including middleware, moduler routing, digest auth
 * <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.StaticFiles">Static File Handling</a> 
 * <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Mvc">Model-View-Controllers (MVC)</a> 
 * <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Json">JavaScript Object Notation (JSON)</a>
-* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Cors">Cross-origin Resource Sharing (Cors)</a>
+* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Cors">Cross-origin Resource Sharing (CORS)</a>
 
 ## Runtime libraries
 This repo contains several runtime libraries that provide implementations for many general and app-specific types, algorithms, and utility functionality. <a href="https://github.com/microcompiler/runtime">More Information</a>

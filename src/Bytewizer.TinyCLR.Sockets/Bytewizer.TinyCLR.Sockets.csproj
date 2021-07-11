@@ -64,7 +64,6 @@
   <ItemGroup>
     <Compile Include="Extensions\DiagnosticsLoggerExtensions.cs" />
     <Compile Include="Server\ServerLimits.cs" />
-    <Compile Include="Sockets\UdpClient.cs" />
     <Compile Include="Sockets\TcpClient.cs" />
     <Compile Include="Features\FeatureCollection.cs" />
     <Compile Include="Features\FeatureEnumerator.cs" />

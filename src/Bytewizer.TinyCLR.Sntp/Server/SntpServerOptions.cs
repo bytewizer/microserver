@@ -105,6 +105,11 @@ namespace Bytewizer.TinyCLR.Sntp
         public int Precision { get; set; } = -20;
 
         /// <summary>
+        /// Specifies server's interface status from which packets are to be received.
+        /// </summary>
+        public bool Listening { get; set; } = true;
+
+        /// <summary>
         /// Specifies .....
         /// </summary>
         public TimeSpan SyncInterval { get; set; } = TimeSpan.FromSeconds(8192);

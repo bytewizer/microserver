@@ -107,8 +107,6 @@ namespace Bytewizer.TinyCLR.Http
                     _options.Application.Invoke(context);
                 }
 
-                context.Channel.Client.Close();  // TODO: Figure out how to close in release
-
                 // release context back to pool and close connection once pipeline is complete
                 _contextPool.Release(context);
             }

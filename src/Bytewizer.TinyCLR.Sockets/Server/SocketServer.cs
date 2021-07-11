@@ -19,7 +19,7 @@ namespace Bytewizer.TinyCLR.Sockets
         /// </summary>
         /// <param name="configure">The configuration options of <see cref="SocketServer"/> specific features.</param>
         public SocketServer(ServerOptionsDelegate configure)
-            : base (NullLoggerFactory.Instance)
+            : base(NullLoggerFactory.Instance)
         {
             configure(_options);
 
@@ -32,10 +32,9 @@ namespace Bytewizer.TinyCLR.Sockets
         /// <param name="loggerFactory">The factory used to create loggers.</param>
         /// <param name="configure">The configuration options of <see cref="SocketServer"/> specific features.</param>
         public SocketServer(ILoggerFactory loggerFactory, ServerOptionsDelegate configure)
-            : base (loggerFactory)
+            : base(loggerFactory)
         {
             _logger = loggerFactory.CreateLogger("Bytewizer.TinyCLR.Sockets");
-
             configure(_options);
 
             SetListener();
@@ -47,11 +46,11 @@ namespace Bytewizer.TinyCLR.Sockets
         /// <param name="loggerFactory">The factory used to create loggers.</param>
         /// <param name="options">The configuration options of <see cref="SocketServer"/> specific features.</param>
         public SocketServer(ILoggerFactory loggerFactory, ServerOptions options)
-            : base (loggerFactory)
+            : base(loggerFactory)
         {
-            _logger = loggerFactory.CreateLogger("Bytewizer.TinyCLR.Sockets"); 
+            _logger = loggerFactory.CreateLogger("Bytewizer.TinyCLR.Sockets");
             _options = options;
-            
+
             SetListener();
         }
 
@@ -62,8 +61,9 @@ namespace Bytewizer.TinyCLR.Sockets
         /// <param name="channel">The socket channel for the connected end point.</param>
         protected override void ClientConnected(object sender, SocketChannel channel)
         {
-            // Check message size
-            if (channel.InputStream.Length < _options.Limits.MinMessageSize
+            // Check to make sure channel contains data and valid message size
+            if (channel.InputStream.Length == 0 
+                ||channel.InputStream.Length < _options.Limits.MinMessageSize
                 || channel.InputStream.Length > _options.Limits.MaxMessageSize)
             {
                 _logger.InvalidMessageLimit(
@@ -71,28 +71,24 @@ namespace Bytewizer.TinyCLR.Sockets
                     _options.Limits.MinMessageSize,
                     _options.Limits.MaxMessageSize
                     );
-                
+
                 channel.Clear();
                 return;
             }
 
             // Set channel error handler
             channel.ChannelError += ChannelError;
-            
+
             try
             {
                 // Get context from context pool
                 var context = _contextPool.GetContext(typeof(SocketContext)) as SocketContext;
-                
+
                 // Assign channel
                 context.Channel = channel;
 
-                // Check to make sure channel contains data
-                if (context.Channel.InputStream.Length > 0)
-                {
-                    // Invoke pipeline 
-                    _options.Application.Invoke(context);
-                }
+                // Invoke pipeline 
+                _options.Application.Invoke(context);
 
                 // Release context back to pool and close connection once pipeline is complete
                 _contextPool.Release(context);

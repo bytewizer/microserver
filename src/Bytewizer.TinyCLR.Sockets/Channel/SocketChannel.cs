@@ -13,6 +13,8 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
     /// </summary>
     public class SocketChannel
     {
+        private bool _cleared = true;
+
         /// <summary>
         /// Gets socket for the connected endpoint.
         /// </summary>
@@ -29,12 +31,12 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
         public byte[] Data { get; set; }
 
         /// <summary>
-        /// Gets a <see cref="NetworkStream"/> object representing the contents of the socket channel.
+        /// Gets a <see cref="Stream"/> object representing the contents of the socket channel.
         /// </summary>
         public Stream InputStream { get; internal set; }
 
         /// <summary>
-        /// Gets a <see cref="NetworkStream"/> object representing the contents of the socket channel.
+        /// Gets a <see cref="Stream"/> object representing the contents of the socket channel.
         /// </summary>
         public Stream OutputStream { get; internal set; }
 
@@ -51,6 +53,8 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
             InputStream = new NetworkStream(socket, false);
             OutputStream = new NetworkStream(socket, false);
             Connection.Assign(socket);
+            
+            _cleared = false;
         }
 
         /// <summary>
@@ -66,8 +70,10 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
 
             Client = socket;
             InputStream = new MemoryStream(buffer, false);
-            OutputStream = new MemoryStream();
+            OutputStream = null;
             Connection.Assign(socket, endpoint);
+
+            _cleared = false;
         }
 
         /// <summary>
@@ -87,6 +93,8 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
             InputStream = streamBuilder.Build(socket);
             OutputStream = new NetworkStream(socket);
             Connection.Assign(socket);
+
+            _cleared = false;
         }
 
         /// <summary>
@@ -94,12 +102,7 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
         /// </summary>
         public bool IsCleared()
         {
-            if (Connection == null)
-            {
-                return true;
-            }
-
-            return false;
+            return _cleared;
         }
 
         /// <summary>
@@ -107,10 +110,15 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
         /// </summary>
         public void Clear()
         {
-            Connection = null;     
-            //Client?.Close();
+            if (InputStream.GetType() == typeof(NetworkStream)) // TODO: This feels like a hack.  Better way?
+            {
+                Client?.Close();
+            }
+            
             InputStream?.Dispose();
             OutputStream?.Dispose();
+
+            _cleared = true;
         }
 
         /// <summary>

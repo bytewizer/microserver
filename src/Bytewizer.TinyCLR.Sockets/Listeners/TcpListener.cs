@@ -43,17 +43,18 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
                     // Set the accept event to nonsignaled state
                     _acceptEvent.Reset();
 
-                    // Immediately do somthing with request response if max connections is reached             
+                    // Delay request response if max connections is reached             
                     while (_listeningSockets >= _options.MaxConcurrentConnections)
                     {
-                        Debug.WriteLine($"Maxium number of concurrent connections of {_listeningSockets} reached");
-                        //Thread.Sleep(_random.Next(100));
+                        Debug.WriteLine($"Maxium number of concurrent connections of {_listeningSockets} reached.");
+                        Thread.Sleep(100);
                     }
 
                     // Waiting for a connection
                     var remoteSocket = _listenSocket.Accept();
 
                     var channel = new SocketChannel();
+                    
                     if (_options.IsTls)
                     {
                         channel.Assign(
@@ -67,21 +68,21 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
                     }
 
                     ThreadPool.QueueUserWorkItem(
-                    new WaitCallback(delegate (object state)
-                    {
-                        // Signal the accept thread to continue
-                        _acceptEvent.Set();
+                        new WaitCallback(delegate (object state)
+                        {
+                            // Signal the accept thread to continue
+                            _acceptEvent.Set();
 
-                        // Increment request count
-                        Interlocked.Increment(ref _listeningSockets);
+                            // Increment request count
+                            Interlocked.Increment(ref _listeningSockets);
 
-                        // Invoke the connected handler
-                        OnConnected(channel);
+                            // Invoke the connected handler
+                            OnConnected(channel);
 
-                        // Decrease request count
-                        Interlocked.Decrement(ref _listeningSockets);
+                            // Decrease request count
+                            Interlocked.Decrement(ref _listeningSockets);
 
-                    }));
+                        }));
 
                     // Wait until a connection is made before continuing
                     _acceptEvent.WaitOne();
@@ -96,7 +97,9 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
                     }
 
                     if (retry > _options.SocketRetry)
+                    {
                         throw;
+                    }
 
                     retry++;
                     continue;
@@ -104,7 +107,9 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
                 catch (Exception ex)
                 {
                     if (ex is ObjectDisposedException || ex is NullReferenceException)
+                    {
                         break;
+                    }
 
                     OnDisconnected(ex);
 
@@ -114,6 +119,8 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
                     // try again
                     continue;
                 }
+
+                Thread.Sleep(100);
             }
         }
     }

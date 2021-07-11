@@ -5,8 +5,6 @@ using System.Threading;
 using Bytewizer.TinyCLR.Sockets;
 using Bytewizer.TinyCLR.Logging;
 
-using Bytewizer.TinyCLR.Sntp.Internal;
-
 namespace Bytewizer.TinyCLR.Sntp
 {
     /// <summary>
@@ -15,10 +13,10 @@ namespace Bytewizer.TinyCLR.Sntp
     public class SntpServer : IServer
     {
         private Timer _pollingTimer;
-        private readonly int _pollingDelay = 1000; // 10000;
+        private readonly int _pollingDelay = 1000;
 
-        private readonly ILogger _logger;
         private readonly SocketServer _sntpServer;
+        private readonly ILogger _logger = NullLogger.Instance;
         private readonly ILoggerFactory _loggerFactory = NullLoggerFactory.Instance;
         private readonly SntpServerOptions _sntpOptions = new SntpServerOptions();
 
@@ -28,6 +26,8 @@ namespace Bytewizer.TinyCLR.Sntp
         public SntpServer()
         {
             Initialize();
+            _sntpOptions.Server = "pool.ntp.org";
+            _sntpServer = new SocketServer(NullLoggerFactory.Instance, _sntpOptions);
         }
 
         /// <summary>
@@ -93,26 +93,56 @@ namespace Bytewizer.TinyCLR.Sntp
 
         /// <inheritdoc/>
         public bool Start()
-        {               
+        {
+            bool state = false;
+
             if (!string.IsNullOrEmpty(_sntpOptions.Server))
             {
-                if (_sntpOptions.Stratum == Stratum.Unspecified)
-                {
-                    _sntpOptions.Stratum = Stratum.Secondary;
-                }
+                int retry = 0;
 
-                if(IPAddressHelper.TryResolve(_sntpOptions.Server, out IPAddress address))
+                while (true)
                 {
-                    _sntpOptions.ReferenceIPAddress = address;
-                    _pollingTimer = new Timer(new TimerCallback(Synchronize), null, _pollingDelay, (int)_sntpOptions.SyncInterval.TotalMilliseconds);
-                }
-                else
-                {
-                    _logger.InvalidNameResolve(_sntpOptions.Server);
+                    try
+                    {
+                        var hostEntry = Dns.GetHostEntry(_sntpOptions.Server);
+
+                        if ((hostEntry != null) && (hostEntry.AddressList.Length > 0))
+                        {
+                            var i = 0;
+                            while (hostEntry.AddressList[i] == null) i++;
+                            {
+                                var address = hostEntry.AddressList[i];
+                                state = StartPolling(address);
+                                break;
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        if (retry >= 3)
+                        {
+                            _logger.TimesyncException(ex);
+                            break;
+                        }
+
+                        _logger.InvalidNameResolve(_sntpOptions.Server);
+
+                        retry++;
+                        continue;
+                    }
                 }
             }
+            else
+            {
+                state = true;
+            }
+            
+            if (state == true && _sntpOptions.Listening)
+            {
+                state = _sntpServer.Start();
+            }
 
-            return _sntpServer.Start();
+            return state;
         }
 
         /// <inheritdoc/>
@@ -126,24 +156,44 @@ namespace Bytewizer.TinyCLR.Sntp
             return _sntpServer.Stop();
         }
 
+        private bool StartPolling(IPAddress address)
+        {
+            _sntpOptions.ReferenceIPAddress = address;
+
+            if (_sntpOptions.Stratum == Stratum.Unspecified)
+            {
+                _sntpOptions.Stratum = Stratum.Secondary;
+            }
+
+            try
+            {
+                _pollingTimer = new Timer(new TimerCallback(Synchronize), address, _pollingDelay, (int)_sntpOptions.SyncInterval.TotalMilliseconds);
+
+            }
+            catch (Exception ex)
+            {
+                _logger.ServiceExecption("Error starting time synchronization polling timer.", ex);
+                return false;
+            }
+
+            return true;
+        }
+
         private void Synchronize(object state)
         {
-            int retry;
+            int retry = 0;
+
+            IPEndPoint endpoint = new IPEndPoint((IPAddress)state, 123);
 
             while (true)
             {
-                retry = 0;
-
                 try
                 {
-                    using (var ntp = new NtpClient(_sntpOptions.Server, 123))
+                    using (var ntp = new NtpClient(endpoint, _sntpOptions.SyncTimeout))
                     {
-                        ntp.Timeout = _sntpOptions.SyncTimeout;
-
                         var accurateTime = DateTime.UtcNow + ntp.GetCorrectionOffset();
 
                         _sntpOptions.TimeSource = accurateTime;
-
                         _logger.TimesyncMessage(accurateTime, _sntpOptions.Server);
 
                         return;
@@ -151,7 +201,7 @@ namespace Bytewizer.TinyCLR.Sntp
                 }
                 catch (Exception ex)
                 {
-                    if (retry > 3)
+                    if (retry >= 3)
                     {
                         _logger.TimesyncException(ex);
                         break;

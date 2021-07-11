@@ -1,6 +1,4 @@
-﻿using System;
-using System.Net;
-using System.Net.Sockets;
+﻿using System.Net.Sockets;
 
 using Bytewizer.TinyCLR.Sockets;
 using Bytewizer.TinyCLR.Logging;
@@ -8,17 +6,24 @@ using Bytewizer.TinyCLR.Pipeline;
 
 namespace Bytewizer.TinyCLR.Sntp.Internal
 {
-    internal class SntpMiddleware : Middleware
+    /// <summary>
+    /// A middleware for creating SNTP packet used for communication to and from a network time server.
+    /// </summary>
+    public class SntpMiddleware : Middleware
     {
         private readonly ILogger _logger;
         private readonly SntpServerOptions _sntpOptions;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SntpMiddleware"/> class.
+        /// </summary>
         public SntpMiddleware(ILoggerFactory loggerFactory, SntpServerOptions options)
         {
             _logger = loggerFactory.CreateLogger("Bytewizer.TinyCLR.Sntp");
             _sntpOptions = options;
         }
 
+        /// <inheritdoc/>
         protected override void Invoke(IContext context, RequestDelegate next)
         {
             //Time at the server when the request arrived from the client

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net;
 using System.Threading;
 
 using GHIElectronics.TinyCLR.Pins;
@@ -46,15 +45,15 @@ namespace Bytewizer.Playground
                 {
                     MacAddress = new byte[] { 0x00, 0x8D, 0xB4, 0x49, 0xAD, 0xBD },
 
-                    DhcpEnable = false,
-                    DynamicDnsEnable = false,
-                    Address = new IPAddress(new byte[] { 192, 168, 1, 200 }),
-                    SubnetMask = new IPAddress(new byte[] { 255, 255, 255, 0 }),
-                    GatewayAddress = new IPAddress(new byte[] { 192, 168, 1, 1 }),
-                    DnsAddresses = new IPAddress[]{
-                    new IPAddress(new byte[] { 8, 8, 8, 8 }),
-                    new IPAddress(new byte[] { 8, 8, 4, 4 })
-                    }
+                    DhcpEnable = true,
+                    //DynamicDnsEnable = true,
+                    //Address = new IPAddress(new byte[] { 192, 168, 1, 200 }),
+                    //SubnetMask = new IPAddress(new byte[] { 255, 255, 255, 0 }),
+                    //GatewayAddress = new IPAddress(new byte[] { 192, 168, 1, 1 }),
+                    //DnsAddresses = new IPAddress[]{
+                    //new IPAddress(new byte[] { 8, 8, 8, 8 }),
+                    //new IPAddress(new byte[] { 8, 8, 4, 4 })
+                    //}
                 };
 
                 Controller.SetInterfaceSettings(networkInterfaceSetting);

@@ -78,25 +78,5 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
             LocalEndpoint = socket.LocalEndPoint;
             RemoteEndpoint = endpoint;
         }
-
-
-        //    internal static ConnectionInfo Set(Socket socket)
-        //{
-        //    return new ConnectionInfo()
-        //    {
-        //        Id = DateTime.Now.Ticks.ToString(), //TODO: Switch to Guid - GHI Github issue #476,
-        //        LocalEndpoint = socket.LocalEndPoint,
-        //        RemoteEndpoint = socket.RemoteEndPoint,
-        //    };
-        //}
-        //internal static ConnectionInfo Set(Socket socket, EndPoint endpoint)
-        //{
-        //    return new ConnectionInfo()
-        //    {
-        //        Id = DateTime.Now.Ticks.ToString(), //TODO: Switch to Guid - GHI Github issue #476,
-        //        LocalEndpoint = socket.LocalEndPoint,
-        //        RemoteEndpoint = endpoint,
-        //    };
-        //}
     }
 }
