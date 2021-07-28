@@ -40,7 +40,7 @@ jobs:
         echo copyright=${{ steps.info.outputs.copyright }}
     
     - name: Setup msbuild
-      uses: microsoft/setup-msbuild@v1.0.0
+      uses: microsoft/setup-msbuild@v1.0.2
       with:
         vs-version: ${{ matrix.vs-version }}       
     
@@ -66,7 +66,7 @@ jobs:
         -p:EmbedUntrackedSources=true
             
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2
       with:
-        name: Build Package
+        name: Build Package ${{ steps.info.outputs.build }}
         path: \builds\artifacts
