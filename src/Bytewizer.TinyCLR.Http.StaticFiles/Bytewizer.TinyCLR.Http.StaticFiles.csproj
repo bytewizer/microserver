@@ -24,23 +24,22 @@
     <VersionPrefix>2.0.0</VersionPrefix>
     <Version Condition=" '$(Version)' == '' and '$(VersionSuffix)' != '' ">$(VersionPrefix)-$(VersionSuffix)</Version>
     <Version Condition=" '$(Version)' == '' ">$(VersionPrefix)</Version>
-    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <Authors>Microcompiler</Authors>
-    <Company>Bytewizer Inc.</Company>
+    <Company>Bytewizer Technology</Company>
+    <Description>Hypertext Transfer Protocol(Http) static file extension library built for TinyCLR IoT devices.</Description>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <BuildNumber Condition=" '$(BuildNumber)' == '' ">0</BuildNumber>
     <AssemblyVersion>$(VersionPrefix).$(BuildNumber)</AssemblyVersion>
     <FileVersion>$(VersionPrefix).$(BuildNumber)</FileVersion>
     <PackageId>$(AssemblyName)</PackageId>
-    <PackageTags>
-    </PackageTags>
+    <PackageTags>"ghi tinyclr tinyclros sitcore iot http-server http https"</PackageTags>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageIcon>package-logo.png</PackageIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
+    <DebugType>portable</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
@@ -49,7 +48,7 @@
     <DocumentationFile>bin\Debug\Bytewizer.TinyCLR.Http.StaticFiles.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+    <DebugType>portable</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
@@ -113,4 +112,36 @@
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="BeforeBuild">
+		<Message Text="Updating AssemblyInfo to Version $(VersionPrefix).$(BuildNumber)"></Message>
+		<ItemGroup>
+			<AssemblyAttributes Include="AssemblyCompany">
+				<_Parameter1_TypeName>System.String</_Parameter1_TypeName>
+				<_Parameter1>$(Company)</_Parameter1>
+			</AssemblyAttributes>
+			<AssemblyAttributes Include="AssemblyDescription">
+				<_Parameter1_TypeName>System.String</_Parameter1_TypeName>
+				<_Parameter1>$(Description)</_Parameter1>
+			</AssemblyAttributes>
+			<AssemblyAttributes Include="AssemblyCopyright">
+				<_Parameter1_TypeName>System.String</_Parameter1_TypeName>
+				<_Parameter1>$(Copyright)</_Parameter1>
+			</AssemblyAttributes>
+			<AssemblyAttributes Include="AssemblyVersion">
+				<_Parameter1_TypeName>System.String</_Parameter1_TypeName>
+				<_Parameter1>$(VersionPrefix).$(BuildNumber)</_Parameter1>
+			</AssemblyAttributes>
+			<AssemblyAttributes Include="AssemblyFileVersionAttribute">
+				<_Parameter1_TypeName>System.String</_Parameter1_TypeName>
+				<_Parameter1>$(VersionPrefix).$(BuildNumber)</_Parameter1>
+			</AssemblyAttributes>
+		</ItemGroup>
+		<MakeDir Directories="$(IntermediateOutputPath)" />
+		<WriteCodeFragment Language="C#"
+			OutputFile="$(IntermediateOutputPath)CustomAssemblyInfo.cs"
+			AssemblyAttributes="@(AssemblyAttributes)" />
+		<ItemGroup>
+			<Compile Include="$(IntermediateOutputPath)CustomAssemblyInfo.cs" />
+		</ItemGroup>
+	</Target>
 </Project>
