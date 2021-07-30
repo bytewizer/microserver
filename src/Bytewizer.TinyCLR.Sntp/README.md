@@ -1,6 +1,6 @@
 # SNTP
 
-Privides a simple NTP (SNTP) server and client to provide accurate network time.
+Privides a simple NTP (SNTP) server and client to provide accurate network time built for TinyCLR OS.
 
 ## Simple SNTP Server Example
 

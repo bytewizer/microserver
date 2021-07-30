@@ -37,6 +37,7 @@ namespace Bytewizer.Playground.Cookies
                     });
                 });
             });
+
             server.Start();
         }
     }

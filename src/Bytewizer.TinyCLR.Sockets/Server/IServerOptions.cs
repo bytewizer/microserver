@@ -62,7 +62,7 @@ namespace Bytewizer.TinyCLR.Sockets
         /// Bind to the given ip address, port and configuration.
         /// </summary>
         /// <param name="address">The ip address for receiving data.</param>
-        /// <param name="port">The port for receiving data.</param>
+        /// <param name="port">The port for receiving data. You can use port <c>0</c> to let the OS assign a port.</param>
         /// <param name="configure">The <see cref="SocketListener"/> configuration options features.</param>
         /// <remarks>
         /// You can use <see cref="SocketListener.ActivePort" /> to give you the assigned port.

@@ -56,10 +56,10 @@ jobs:
         -p:PackageOutputPath=\builds\artifacts
         -p:BuildNumber="${{ steps.info.outputs.build }}" 
         -p:Copyright="${{ steps.info.outputs.copyright }}"
+        -p:VersionPrefix="2.1.0"
         -p:VersionSuffix=prebuild.${{ steps.info.outputs.build }} 
         -p:Configuration=${env:CONFIGURATION}
-        -p:RepositoryUrl="https://github.com/microcompiler/microserver"
-        -p:PackageTags="tcp-server udp-server socket-server http-server http https tinyclr tinyclros sitcore iot"
+        -p:RepositoryUrl="https://github.com/${{ github.repository }}"
         -p:IncludeSymbols=true 
         -p:SymbolPackageFormat="snupkg"
         -p:PublishRepositoryUrl=true
@@ -68,5 +68,15 @@ jobs:
     - name: Upload build artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: Build Package ${{ steps.info.outputs.build }}
+        name: Build Packages ${{ steps.info.outputs.build }}
         path: \builds\artifacts
+
+    - name: Setup nuget
+      uses: nuget/setup-nuget@v1
+      with:
+        nuget-version: 'latest' 
+    
+    - name: Publish package to github.com
+      run: |
+        nuget sources add -name github.com -source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" -username ${{ github.actor }} -password ${{secrets.PACKAGE_API_KEY}}
+        nuget push \builds\artifacts\**\*.nupkg -source github.com -apikey ${{secrets.PACKAGE_API_KEY}} -skipduplicate

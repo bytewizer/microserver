@@ -27,12 +27,13 @@ Create a modular web services including middleware, moduler routing, digest auth
 * <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Cors">Cross-origin Resource Sharing (CORS)</a>
 
 ## Runtime libraries
-This repo contains several runtime libraries that provide implementations for many general and app-specific types, algorithms, and utility functionality. <a href="https://github.com/bytewizer/runtime">More Information</a>
+This repo contains several runtime libraries built for TinyCLR OS. These libraries provide implementations for many general and app-specific types, algorithms, and utility functionality.
+
 
 * <a href="https://github.com/bytewizer/runtime/tree/develop/src/Bytewizer.TinyCLR.Core">Core</a> 
 * <a href="https://github.com/bytewizer/runtime/tree/develop/src/Bytewizer.TinyCLR.Logging">Logging</a> 
 * <a href="https://github.com/bytewizer/runtime/tree/develop/src/Bytewizer.TinyCLR.Pipeline">Middleware Pipeline</a> 
-* <a href="https://github.com/bytewizer/runtime/tree/develop/src/Bytewizer.TinyCLR.DependencyInjection">Dependency Injection (DI)</a>  
+* <a href="https://github.com/bytewizer/runtime/tree/develop/src/Bytewizer.TinyCLR.DependencyInjection">Dependency Injection (DI)</a> 
 
 ## Requirements
 
@@ -41,7 +42,7 @@ This repo contains several runtime libraries that provide implementations for ma
 **External RAM:** Devices with external RAM have the option of extending managed heap into **unsecure** external memory. TinyCLR Config can be used to extend the heap into external SDRAM increasing performance for simultaneous sessions. Please note this feature provides a large amount of managed heap space but data is stored outside of the microcontroller chip where it's less secure.
 
 ## Nuget Packages
-Prebuild packages are available as attached artifacts on successful [workflow builds](https://github.com/bytewizer/microserver/actions).
+Install release package from [NuGet](https://www.nuget.org/packages?q=bytewizer.tinyclr). Prebuild packages are available as attached artifacts on successful [workflow builds](https://github.com/bytewizer/microserver/actions).
 
 ## Give a Star! :star:
 

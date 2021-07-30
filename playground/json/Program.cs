@@ -64,6 +64,7 @@ namespace Bytewizer.Playground.Json
                     });
                 });
             });
+
             server.Start();
         }
 

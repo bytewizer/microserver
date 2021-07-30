@@ -5,6 +5,7 @@ using Bytewizer.TinyCLR.Logging;
 using Bytewizer.TinyCLR.Pipeline;
 using Bytewizer.TinyCLR.Http.Internal;
 using Bytewizer.TinyCLR.Sockets.Channel;
+using Bytewizer.TinyCLR.Sockets.Listener;
 
 namespace Bytewizer.TinyCLR.Http
 {
@@ -64,6 +65,16 @@ namespace Bytewizer.TinyCLR.Http
 
             configure(_options);
         }
+
+        /// <summary>
+        /// Gets configuration options of socket specific features.
+        /// </summary>
+        public SocketListenerOptions ListenerOptions { get => _listener?.Options; }
+
+        /// <summary>
+        /// Gets port that the server is actively listening on.
+        /// </summary>
+        public int ActivePort { get => _listener.ActivePort; }
 
         /// <summary>
         /// A client has connected.

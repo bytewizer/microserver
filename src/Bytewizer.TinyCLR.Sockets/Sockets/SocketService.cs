@@ -13,14 +13,14 @@ namespace Bytewizer.TinyCLR.Sockets
     public abstract class SocketService : IServer
     {
         /// <summary>
-        /// The <see cref="SocketListener"/> which listens for remote clients.
-        /// </summary>
-        private SocketListener _listener;
-
-        /// <summary>
         /// The logger used to write messages.
         /// </summary>
         private readonly ILogger _logger;
+
+        /// <summary>
+        /// The <see cref="SocketListener"/> which listens for remote clients.
+        /// </summary>
+        protected SocketListener _listener;
 
         /// <summary>
         /// The logger factory used to write to.

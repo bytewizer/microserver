@@ -1,17 +1,23 @@
 ﻿using System;
+using System.Diagnostics;
+
 using Bytewizer.TinyCLR.Http;
+
+using GHIElectronics.TinyCLR.Devices.Network;
 
 namespace Bytewizer.Playground.Http
 {
     class Program
     {
+        private static HttpServer _server;
+
         static void Main()
         {
             StorageProvider.Initialize();
-            NetworkProvider.InitializeWiFiClick("crytek", "!therices!");
-            //NetworkProvider.InitializeEthernet();
-
-            var server = new HttpServer(options =>
+            NetworkProvider.InitializeEthernet();
+            NetworkProvider.Controller.NetworkAddressChanged += NetworkAddressChanged;
+            
+            _server = new HttpServer(options =>
             {
                 options.Pipeline(app =>
                 {
@@ -29,7 +35,28 @@ namespace Bytewizer.Playground.Http
                     });
                 });
             });
-            server.Start();
+        }
+
+        private static void NetworkAddressChanged(
+           NetworkController sender,
+           NetworkAddressChangedEventArgs e)
+        {
+            var ipProperties = sender.GetIPProperties();
+            var address = ipProperties.Address.GetAddressBytes();
+
+            if (address != null && address[0] != 0 && address.Length > 0)
+            {
+                Debug.WriteLine(NetworkProvider.Info(sender));
+
+                _server.Start();
+                  
+                var scheme = _server.ListenerOptions.IsTls ? "https" : "http";
+                Debug.WriteLine($"Launch On: {scheme}://{ipProperties.Address}:{_server.ActivePort}");
+            }
+            else
+            {
+                _server.Stop();
+            }
         }
     }
 }

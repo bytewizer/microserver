@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text;
-using System.Threading;
 
 using Bytewizer.TinyCLR.Sntp;
 using Bytewizer.TinyCLR.Sockets;
@@ -20,10 +19,8 @@ namespace Bytewizer.Playground.Sntp
         static void Main()
         {
             ClockProvider.Initialize();
-
-            NetworkProvider.InitializeWiFiClick("crytek", "!therices!");
-            //NetworkProvider.InitializeEthernet();
-            NetworkProvider.Controller.NetworkAddressChanged += Controller_NetworkAddressChanged;
+            NetworkProvider.InitializeEthernet();
+            NetworkProvider.Controller.NetworkAddressChanged += NetworkAddressChanged;
 
             _loggerFactory.AddDebug(LogLevel.Debug);
             _logger = _loggerFactory.CreateLogger("Bytewizer.Playground.Time");
@@ -41,32 +38,20 @@ namespace Bytewizer.Playground.Sntp
             });
         }
 
-        private static void Controller_NetworkAddressChanged(
+        private static void NetworkAddressChanged(
             NetworkController sender,
             NetworkAddressChangedEventArgs e)
         {
             var ipProperties = sender.GetIPProperties();
             var address = ipProperties.Address.GetAddressBytes();
 
-            var sb = new StringBuilder();
-
-            sb.Append($"Interface Address: {ipProperties.Address} ");
-            sb.Append($"Subnet: {ipProperties.SubnetMask} ");
-            sb.Append($"Gateway: {ipProperties.Address} ");
-
-            for (int i = 0; i < ipProperties.DnsAddresses.Length; i++)
-            {
-                sb.Append($"DNS: {ipProperties.DnsAddresses[i]} ");
-            }
-
             if (address != null && address[0] != 0 && address.Length > 0)
             {
-                _logger.LogInformation(sb.ToString());
+                _logger.LogInformation(NetworkProvider.Info(sender));
                 _server.Start();
             }
             else
             {
-                _logger.LogInformation($"Interface Address: {ipProperties.Address}");
                 _server.Stop();
             }
         }

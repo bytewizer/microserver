@@ -1,9 +1,6 @@
 ﻿using System.Collections;
-using System.Security.Cryptography.X509Certificates;
 
 using Bytewizer.TinyCLR.Http;
-using Bytewizer.TinyCLR.Sockets;
-
 
 using Bytewizer.Playground.StaticFiles.Properties;
 
@@ -417,25 +414,8 @@ namespace Bytewizer.Playground.StaticFiles
                     }));
                 });
             });
+
             server.Start();
-
-            //var X509cert = new X509Certificate(Resources.GetBytes(Resources.BinaryResources.DeviceCert))
-            //{
-            //    PrivateKey = Resources.GetBytes(Resources.BinaryResources.DeviceKey)
-            //};
-
-            //var sslServer = new HttpServer(options =>
-            //{
-            //    options.Pipeline(app =>
-            //    {
-            //        app.UseFileServer();
-            //    });
-            //    options.Listen(443, listener =>
-            //    {
-            //        listener.UseHttps(X509cert);
-            //    });
-            //});
-            //sslServer.Start();
         }
     }
 }

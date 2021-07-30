@@ -25,7 +25,7 @@
     <Version Condition=" '$(Version)' == '' and '$(VersionSuffix)' != '' ">$(VersionPrefix)-$(VersionSuffix)</Version>
     <Version Condition=" '$(Version)' == '' ">$(VersionPrefix)</Version>
     <Authors>Microcompiler</Authors>
-		<Company>Bytewizer Technology</Company>
+	<Company>Bytewizer Technology</Company>
     <Description>Hypertext Transfer Protocol(Http) server library built for TinyCLR IoT devices.</Description>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>

@@ -62,10 +62,8 @@
     <None Include="..\..\images\package-logo.png" Pack="true" PackagePath="\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Hardware\AddressChangedHandler.cs" />
-    <Compile Include="Hardware\LinkChangedHandler.cs" />
-    <Compile Include="Hardware\NetworkProvider.cs" />
     <Compile Include="Hardware\StorageProvider.cs" />
+    <Compile Include="Hardware\NetworkProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
