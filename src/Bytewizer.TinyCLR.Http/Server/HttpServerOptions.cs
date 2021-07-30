@@ -10,7 +10,7 @@ namespace Bytewizer.TinyCLR.Http
         /// <summary>
         /// Provides access to request limit options.
         /// </summary>
-        public HttpServerLimits Limits { get; } = new HttpServerLimits();
+        public new HttpServerLimits Limits { get; } = new HttpServerLimits();
 
         /// <summary>
         /// Specifies the name the server represents.

@@ -42,6 +42,7 @@ namespace Bytewizer.TinyCLR.Http
         /// <param name="contentType">The content MIME type.</param>
         /// <param name="statusCode">The status code to set on the response.</param>
         /// <param name="encoding">The encoding to use.</param>
+        /// <param name="options">Specifies the options on a JsonSerializer object.</param> 
         /// <param name="settings">Specifies the settings on a JsonSerializer object.</param> 
         public static void WriteJson(this HttpResponse response, object value, string contentType, int statusCode, Encoding encoding, JsonSerializationOptions options,  JsonSerializerSettings settings = null)
         {

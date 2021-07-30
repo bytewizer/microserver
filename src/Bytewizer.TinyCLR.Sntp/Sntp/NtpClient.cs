@@ -5,9 +5,9 @@ using System.Net.Sockets;
 namespace Bytewizer.TinyCLR.Sntp
 {
     /// <summary>
-    /// Represents UDP socket used to communicate with RFC4330-compliant SNTP/NTP server.
+    /// Represents UDP socket used to communicate with SNTP server.
     /// </summary>
-    public class NtpClient : IDisposable
+    public class SntpClient : IDisposable
     {
         readonly Socket socket;
 
@@ -31,18 +31,18 @@ namespace Bytewizer.TinyCLR.Sntp
         }
 
         /// <summary>
-        /// Creates new <see cref="NtpClient" /> from server endpoint.
+        /// Creates new <see cref="SntpClient" /> from server endpoint.
         /// </summary>
         /// <param name="endpoint">Endpoint of the remote SNTP server.</param>
-        public NtpClient(IPEndPoint endpoint)
+        public SntpClient(IPEndPoint endpoint)
             : this(endpoint, TimeSpan.FromSeconds(1)) { }
 
         /// <summary>
-        /// Creates new <see cref="NtpClient" /> from server endpoint.
+        /// Creates new <see cref="SntpClient" /> from server endpoint.
         /// </summary>
         /// <param name="endpoint">Endpoint of the remote SNTP server.</param>
         /// <param name="timeout">Timeout for SNTP queries.</param>
-        public NtpClient(IPEndPoint endpoint, TimeSpan timeout)
+        public SntpClient(IPEndPoint endpoint, TimeSpan timeout)
         {
             socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
 
@@ -60,11 +60,11 @@ namespace Bytewizer.TinyCLR.Sntp
         }
 
         /// <summary>
-        /// Creates new <see cref="NtpClient" /> to the specified port on the specified host.
+        /// Creates new <see cref="SntpClient" /> to the specified port on the specified host.
         /// </summary>
         /// <param name="hostname">The DNS name of the remote host to which you intend to connect.</param>
         /// <param name="port">The port number of the remote host to which you intend to connect.</param>
-        public NtpClient(string hostname, int port)
+        public SntpClient(string hostname, int port)
         {
             if (string.IsNullOrEmpty(hostname))
             {
@@ -101,24 +101,24 @@ namespace Bytewizer.TinyCLR.Sntp
 
 
         /// <summary>
-        /// Creates new <see cref="NtpClient" /> from server's IP address and optional port.
+        /// Creates new <see cref="SntpClient" /> from server's IP address and optional port.
         /// </summary>
         /// <param name="address">IP address of remote SNTP server</param>
         /// <param name="port">Port of remote SNTP server. Default is 123 (standard NTP port).</param>
-        public NtpClient(IPAddress address, int port = 123)
+        public SntpClient(IPAddress address, int port = 123)
             : this(new IPEndPoint(address, port)) { }
 
         /// <summary>
-        /// Creates new <see cref="NtpClient" /> from server's IP address and optional port.
+        /// Creates new <see cref="SntpClient" /> from server's IP address and optional port.
         /// </summary>
         /// <param name="address">IP address of remote SNTP server</param>
         /// <param name="timeout">Timeout for SNTP queries.</param>
         /// <param name="port">Port of remote SNTP server. Default is 123 (standard NTP port).</param>
-        public NtpClient(IPAddress address, TimeSpan timeout, int port = 123)
+        public SntpClient(IPAddress address, TimeSpan timeout, int port = 123)
             : this(new IPEndPoint(address, port), timeout) { }
 
         /// <summary>
-        /// Releases all resources held by <see cref="NtpClient" />.
+        /// Releases all resources held by <see cref="SntpClient" />.
         /// </summary>
         public void Dispose()
         {

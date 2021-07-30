@@ -189,7 +189,7 @@ namespace Bytewizer.TinyCLR.Sntp
             {
                 try
                 {
-                    using (var ntp = new NtpClient(endpoint, _sntpOptions.SyncTimeout))
+                    using (var ntp = new SntpClient(endpoint, _sntpOptions.SyncTimeout))
                     {
                         var accurateTime = DateTime.UtcNow + ntp.GetCorrectionOffset();
 

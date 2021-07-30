@@ -1,5 +1,7 @@
 # HTTP Web Server
 
+Privides a modular web server built for TinyCLR OS.
+
 ## Custom Endpoint Routing
 ```CSharp
 var server = new HttpServer(options =>

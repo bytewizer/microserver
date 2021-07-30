@@ -1,5 +1,7 @@
 # Model-View-Controller (MVC)
 
+Enables model view controller style interface for creating advanced webpages.
+
 ## Controllers
 The controller takes the result of the model's processing and returns either the proper view and its associated view data or the result of the API call. Controller Actions can return anything that produces a response. The action method is responsible for choosing what kind of response. The action result does the responding.  Controllers include the following features:
 

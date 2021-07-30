@@ -12,9 +12,9 @@ on:
       - '!*.md'
       - '!LICENSE'
 env:
-  ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
-  CONFIGURATION: 'Debug'
   VERBOSITY:  'Normal'
+  CONFIGURATION: 'Debug'
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
 
 jobs: 
   Build:

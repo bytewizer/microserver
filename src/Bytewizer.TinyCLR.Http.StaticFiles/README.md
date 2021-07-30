@@ -1,5 +1,5 @@
 # Static File Handling
-Static files when found are served and sent back as-is to the client. 
+Enables static files inteface for serving files to a client. 
 
 ## Static File Server
 The UseFileServer() combines the functionality of UseStaticFiles() and UseDefaultFiles() middleware.

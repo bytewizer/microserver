@@ -1,6 +1,6 @@
 # SocketServer
 
-SocketServer is a modular socket server built for TinyCLR OS.
+Provides a modular socket server built for TinyCLR OS.
 
 ## Simple Http Response Example
 

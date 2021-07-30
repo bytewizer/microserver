@@ -117,10 +117,6 @@
       <Project>{EB778176-633A-4997-A683-2C891C5DB436}</Project>
       <Name>Bytewizer.TinyCLR.Http</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bytewizer.TinyCLR.Pipeline\Bytewizer.TinyCLR.Pipeline.csproj">
-      <Project>{8470EE70-1C41-45E4-8EDF-0D20CFEBFFD1}</Project>
-      <Name>Bytewizer.TinyCLR.Pipeline</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Bytewizer.TinyCLR.Sockets\Bytewizer.TinyCLR.Sockets.csproj">
       <Project>{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}</Project>
       <Name>Bytewizer.TinyCLR.Sockets</Name>

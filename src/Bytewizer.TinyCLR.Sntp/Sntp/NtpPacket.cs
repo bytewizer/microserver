@@ -250,7 +250,7 @@ namespace Bytewizer.TinyCLR.Sntp
         /// </value>
         /// <remarks>
         /// This property is not part of the protocol.
-        /// It is set by <see cref="NtpClient" /> when reply packet is received.
+        /// It is set by <see cref="SntpClient" /> when reply packet is received.
         /// </remarks>
         public DateTime DestinationTimestamp { get; set; }
 
@@ -300,7 +300,7 @@ namespace Bytewizer.TinyCLR.Sntp
         /// Initializes default request packet.
         /// </summary>
         /// <remarks>
-        /// Created request packet can be passed to <see cref="NtpClient.Query(NtpPacket)" />.
+        /// Created request packet can be passed to <see cref="SntpClient.Query(NtpPacket)" />.
         /// Properties <see cref="Mode" /> and <see cref="VersionNumber" />
         /// are set appropriately for request packet. Property <see cref="TransmitTimestamp" />
         /// is set to <see cref="DateTime.UtcNow" />.

@@ -21,7 +21,8 @@ namespace Bytewizer.Playground.Sntp
         {
             ClockProvider.Initialize();
 
-            NetworkProvider.InitializeEthernet();
+            NetworkProvider.InitializeWiFiClick("crytek", "!therices!");
+            //NetworkProvider.InitializeEthernet();
             NetworkProvider.Controller.NetworkAddressChanged += Controller_NetworkAddressChanged;
 
             _loggerFactory.AddDebug(LogLevel.Debug);
@@ -38,13 +39,6 @@ namespace Bytewizer.Playground.Sntp
                 options.RealtimeClock = ClockProvider.Controller;
 
             });
-
-            while(true)
-            {
-                //  This could be an external time source like a GPS.
-                timesource = DateTime.UtcNow;
-                Thread.Sleep(10000);
-            }
         }
 
         private static void Controller_NetworkAddressChanged(

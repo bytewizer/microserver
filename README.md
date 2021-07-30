@@ -1,7 +1,7 @@
 # Microserver for TinyCLR OS
 
-[![Release](https://github.com/microcompiler/microserver/actions/workflows/release.yml/badge.svg)](https://github.com/microcompiler/microserver/actions/workflows/release.yml)
-[![Build](https://github.com/microcompiler/microserver/actions/workflows/actions.yml/badge.svg)](https://github.com/microcompiler/microserver/actions/workflows/actions.yml)
+[![Release](https://github.com/bytewizer/microserver/actions/workflows/release.yml/badge.svg)](https://github.com/bytewizer/microserver/actions/workflows/release.yml)
+[![Build](https://github.com/bytewizer/microserver/actions/workflows/actions.yml/badge.svg)](https://github.com/bytewizer/microserver/actions/workflows/actions.yml)
 
 Microserver is an embedded modular server built for TinyCLR OS IoT devices inspired by AspNetCore.  Be sure to follow this project with videos on [YouTube](https://youtu.be/EDGo3NpBOpk).
 
@@ -9,33 +9,30 @@ Microserver is an embedded modular server built for TinyCLR OS IoT devices inspi
 
 Build on a modular tcp/udp service with an extendable pipeline and SSL transport security.
 
-* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Pipeline">Extendable Pipeline</a> 
-* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Sockets">TCP/UDP Socket Server</a>
-* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Sntp">Simple Network Time Protocol (SNTP) Server</a>
+* <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Sockets">TCP/UDP Socket Server</a>
+* <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Sntp">Simple Network Time Protocol (SNTP) Server</a>
 
 
 ## Web Services
 
 Create a modular web services including middleware, moduler routing, digest authentication, controllers, action results, view engine, storage / resource file serving, default file routing, JSON integration, and websockets.
 
-* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http">HTTP Server</a>
-* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.WebSocket">WebSockets</a>
-* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Diagnostics">Diagnostics</a> 
-* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Authentication">Authentication</a>
-* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Cookies">Cookie Support</a>
-* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.StaticFiles">Static File Handling</a> 
-* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Mvc">Model-View-Controllers (MVC)</a> 
-* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Json">JavaScript Object Notation (JSON)</a>
-* <a href="https://github.com/microcompiler/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Cors">Cross-origin Resource Sharing (CORS)</a>
+* <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Http">HTTP Server</a>
+* <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Diagnostics">Diagnostics</a> 
+* <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Authentication">Authentication</a>
+* <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Cookies">Cookie Support</a>
+* <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.StaticFiles">Static File Handling</a> 
+* <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Mvc">Model-View-Controllers (MVC)</a> 
+* <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Json">JavaScript Object Notation (JSON)</a>
+* <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Cors">Cross-origin Resource Sharing (CORS)</a>
 
 ## Runtime libraries
-This repo contains several runtime libraries that provide implementations for many general and app-specific types, algorithms, and utility functionality. <a href="https://github.com/microcompiler/runtime">More Information</a>
+This repo contains several runtime libraries that provide implementations for many general and app-specific types, algorithms, and utility functionality. <a href="https://github.com/bytewizer/runtime">More Information</a>
 
-* <a href="https://github.com/microcompiler/runtime/tree/develop/src/Bytewizer.TinyCLR.Core">Core</a> 
-* <a href="https://github.com/microcompiler/runtime/tree/develop/src/Bytewizer.TinyCLR.Logging">Logging</a> 
-* <a href="https://github.com/microcompiler/runtime/tree/develop/src/Bytewizer.TinyCLR.IO.Compression">Compression</a> 
-* <a href="https://github.com/microcompiler/runtime/tree/develop/src/Bytewizer.TinyCLR.Cryptography">Cryptography</a> 
-* <a href="https://github.com/microcompiler/runtime/tree/develop/src/Bytewizer.TinyCLR.DependencyInjection">Dependency Injection (DI)</a> 
+* <a href="https://github.com/bytewizer/runtime/tree/develop/src/Bytewizer.TinyCLR.Core">Core</a> 
+* <a href="https://github.com/bytewizer/runtime/tree/develop/src/Bytewizer.TinyCLR.Logging">Logging</a> 
+* <a href="https://github.com/bytewizer/runtime/tree/develop/src/Bytewizer.TinyCLR.Pipeline">Middleware Pipeline</a> 
+* <a href="https://github.com/bytewizer/runtime/tree/develop/src/Bytewizer.TinyCLR.DependencyInjection">Dependency Injection (DI)</a>  
 
 ## Requirements
 
@@ -44,7 +41,7 @@ This repo contains several runtime libraries that provide implementations for ma
 **External RAM:** Devices with external RAM have the option of extending managed heap into **unsecure** external memory. TinyCLR Config can be used to extend the heap into external SDRAM increasing performance for simultaneous sessions. Please note this feature provides a large amount of managed heap space but data is stored outside of the microcontroller chip where it's less secure.
 
 ## Nuget Packages
-Prebuild packages are available as attached artifacts on successful [workflow builds](https://github.com/microcompiler/microserver/actions).
+Prebuild packages are available as attached artifacts on successful [workflow builds](https://github.com/bytewizer/microserver/actions).
 
 ## Give a Star! :star:
 
@@ -52,7 +49,7 @@ If you like or are using this project to start your solution, please give it a s
 
 ## Getting Started
 
-As we encourage users to play with the samples and test programs this project has not yet reached a release state. See the working [Samples](https://github.com/microcompiler/microserver/tree/master/samples) for an example of how to use packages. The [Playground](https://github.com/microcompiler/microserver/tree/master/playground) also includes many working examples.
+As we encourage users to play with the samples and test programs this project has not yet reached a release state. See the working [Samples](https://github.com/bytewizer/microserver/tree/master/samples) for an example of how to use packages. The [Playground](https://github.com/bytewizer/microserver/tree/master/playground) also includes many working examples.
 
 ### Simple Example
 
@@ -153,11 +150,11 @@ public class ExampleController : Controller
 
 **main** :: This is the branch containing the latest release build. No contributions should be made directly to this branch. The development branch will periodically be merged to the master branch, and be released to [NuGet Gallery](https://www.nuget.org).
 
-**develop** :: This is the development branch to which contributions should be proposed by contributors as pull requests. Development build packages are available as attached artifacts on successful [Build](https://github.com/microcompiler/microserver/actions/workflows/actions.yml) workflows.
+**develop** :: This is the development branch to which contributions should be proposed by contributors as pull requests. Development build packages are available as attached artifacts on successful [Build](https://github.com/bytewizer/microserver/actions/workflows/actions.yml) workflows.
 
 ## Microsoft .NET Micro Framework (NETMF)
 
-Have a look <a href="https://github.com/microcompiler/microserver/releases/tag/v1.1.0"> here </a> if your looking for the original MicroServer built for Microsoft .NET Micro Framework (NETMF).
+Have a look <a href="https://github.com/bytewizer/microserver/releases/tag/v1.1.0"> here </a> if your looking for the original MicroServer built for Microsoft .NET Micro Framework (NETMF).
 
 ## Contributions
 

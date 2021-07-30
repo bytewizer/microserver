@@ -8,7 +8,8 @@ namespace Bytewizer.Playground.Http
         static void Main()
         {
             StorageProvider.Initialize();
-            NetworkProvider.InitializeEthernet();
+            NetworkProvider.InitializeWiFiClick("crytek", "!therices!");
+            //NetworkProvider.InitializeEthernet();
 
             var server = new HttpServer(options =>
             {

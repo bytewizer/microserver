@@ -1,6 +1,6 @@
 # SNTP
 
-Enable a simple NTP (SNTP) server and client to provide accurate network time.
+Privides a simple NTP (SNTP) server and client to provide accurate network time.
 
 ## Simple SNTP Server Example
 
@@ -21,7 +21,7 @@ static void Main()
 {
     // Synchronizes device with remote time but do not allow clients to connect 
     
-    var server = new SntpServer(_loggerFactory, options =>
+    var server = new SntpServer(options =>
     {
         // Set server to secondary status pulling time from an upstream server
         options.Server = "time.google.com";
@@ -35,6 +35,18 @@ static void Main()
 }
 ```
 
+## Simple SNTP Client 
+
+```CSharp
+static void Main()
+{
+    // Synchronizes device with remote time server
+    
+    var sntpClient = new SntpClient("time.google.com", 123);
+    var accurateTime = DateTime.UtcNow + sntpClient.GetCorrectionOffset();
+}
+```
+
 ## Simple SNTP Server with External Time Source Support
 
 ```CSharp
@@ -43,7 +55,7 @@ static void Main()
     // local time source used to update clock
     var timeSource = DateTime.UtcNow;
 
-    var server = new SntpServer(_loggerFactory, options =>
+    var server = new SntpServer(options =>
     {
         // Set server to respond a primary time stratum 
         options.Stratum = Stratum.Primary;
@@ -87,7 +99,7 @@ static void Main()
         options.Server = "time.google.com";
 
         // Set realtime clock provider to get timestamp data from
-        options.RealtimeClock = ClockProvider.Controller;
+        options.RealtimeClock = controller;
     });
 
     server.Start();
