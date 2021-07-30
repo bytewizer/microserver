@@ -76,7 +76,7 @@ jobs:
         path: \builds\artifacts
     
     - name: Create release asset
-      run: Compress-Archive -DestinationPath \builds\packages.zip -Path \builds\artifacts\*.*nupkg
+      run: Compress-Archive -DestinationPath \builds\nuget-packages.zip -Path \builds\artifacts\*.*nupkg
       
     - name: Upload release asset
       uses: actions/upload-release-asset@v1.0.1
