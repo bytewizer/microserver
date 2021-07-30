@@ -26,7 +26,7 @@
     <Version Condition=" '$(Version)' == '' ">$(VersionPrefix)</Version>
     <Authors>Microcompiler</Authors>
     <Company>Bytewizer Technology</Company>
-    <Description>Hypertext Transfer Protocol(Http) JavaScript Object Notation (Json) extension library built for TinyCLR IoT devices.</Description>
+    <Description>Hypertext Transfer Protocol (Http) JavaScript Object Notation (Json) extension library built for TinyCLR IoT devices.</Description>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <BuildNumber Condition=" '$(BuildNumber)' == '' ">0</BuildNumber>

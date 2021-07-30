@@ -3,7 +3,7 @@
 [![Release](https://github.com/bytewizer/microserver/actions/workflows/release.yml/badge.svg)](https://github.com/bytewizer/microserver/actions/workflows/release.yml)
 [![Build](https://github.com/bytewizer/microserver/actions/workflows/actions.yml/badge.svg)](https://github.com/bytewizer/microserver/actions/workflows/actions.yml)
 
-Microserver is an embedded modular server built for TinyCLR OS IoT devices inspired by AspNetCore.  Be sure to follow this project with videos on [YouTube](https://youtu.be/EDGo3NpBOpk).
+Microserver is a modular embedded server built for TinyCLR OS IoT devices.  Be sure to follow this project with videos on [YouTube](https://youtu.be/EDGo3NpBOpk).
 
 ## Network Services
 
@@ -28,7 +28,6 @@ Create a modular web services including middleware, moduler routing, digest auth
 
 ## Runtime libraries
 This repo contains several runtime libraries built for TinyCLR OS. These libraries provide implementations for many general and app-specific types, algorithms, and utility functionality.
-
 
 * <a href="https://github.com/bytewizer/runtime/tree/develop/src/Bytewizer.TinyCLR.Core">Core</a> 
 * <a href="https://github.com/bytewizer/runtime/tree/develop/src/Bytewizer.TinyCLR.Logging">Logging</a> 
