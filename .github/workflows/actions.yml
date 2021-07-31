@@ -59,6 +59,7 @@ jobs:
         -p:VersionSuffix=prebuild.${{ steps.info.outputs.build }} 
         -p:Configuration=${env:CONFIGURATION}
         -p:RepositoryUrl="https://github.com/${{ github.repository }}"
+        -p:ContinuousIntegrationBuild=true 
         -p:SourceLinkCreate=true
         -p:IncludeSymbols=true 
         -p:SymbolPackageFormat="snupkg"
