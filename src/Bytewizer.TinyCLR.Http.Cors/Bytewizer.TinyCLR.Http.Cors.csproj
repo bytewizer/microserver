@@ -50,6 +50,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Bytewizer.TinyCLR.Http.Cors.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <None Include="..\..\LICENSE.md" Pack="true" PackagePath="$(PackageLicenseFile)" />
@@ -91,35 +92,34 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="BeforeBuild">
-		<Message Text="Updating AssemblyInfo to Version $(VersionPrefix).$(BuildNumber)"></Message>
-		<ItemGroup>
-			<AssemblyAttributes Include="AssemblyCompany">
-				<_Parameter1_TypeName>System.String</_Parameter1_TypeName>
-				<_Parameter1>$(Company)</_Parameter1>
-			</AssemblyAttributes>
-			<AssemblyAttributes Include="AssemblyDescription">
-				<_Parameter1_TypeName>System.String</_Parameter1_TypeName>
-				<_Parameter1>$(Description)</_Parameter1>
-			</AssemblyAttributes>
-			<AssemblyAttributes Include="AssemblyCopyright">
-				<_Parameter1_TypeName>System.String</_Parameter1_TypeName>
-				<_Parameter1>$(Copyright)</_Parameter1>
-			</AssemblyAttributes>
-			<AssemblyAttributes Include="AssemblyVersion">
-				<_Parameter1_TypeName>System.String</_Parameter1_TypeName>
-				<_Parameter1>$(VersionPrefix)</_Parameter1>
-			</AssemblyAttributes>
-			<AssemblyAttributes Include="AssemblyFileVersionAttribute">
-				<_Parameter1_TypeName>System.String</_Parameter1_TypeName>
-				<_Parameter1>$(VersionPrefix).$(BuildNumber)</_Parameter1>
-			</AssemblyAttributes>
-		</ItemGroup>
-		<MakeDir Directories="$(IntermediateOutputPath)" />
-		<WriteCodeFragment Language="C#"
-			OutputFile="$(IntermediateOutputPath)CustomAssemblyInfo.cs"
-			AssemblyAttributes="@(AssemblyAttributes)" />
-		<ItemGroup>
-			<Compile Include="$(IntermediateOutputPath)CustomAssemblyInfo.cs" />
-		</ItemGroup>
-	</Target>
+    <Message Text="Updating AssemblyInfo to Version $(VersionPrefix).$(BuildNumber)">
+    </Message>
+    <ItemGroup>
+      <AssemblyAttributes Include="AssemblyCompany">
+        <_Parameter1_TypeName>System.String</_Parameter1_TypeName>
+        <_Parameter1>$(Company)</_Parameter1>
+      </AssemblyAttributes>
+      <AssemblyAttributes Include="AssemblyDescription">
+        <_Parameter1_TypeName>System.String</_Parameter1_TypeName>
+        <_Parameter1>$(Description)</_Parameter1>
+      </AssemblyAttributes>
+      <AssemblyAttributes Include="AssemblyCopyright">
+        <_Parameter1_TypeName>System.String</_Parameter1_TypeName>
+        <_Parameter1>$(Copyright)</_Parameter1>
+      </AssemblyAttributes>
+      <AssemblyAttributes Include="AssemblyVersion">
+        <_Parameter1_TypeName>System.String</_Parameter1_TypeName>
+        <_Parameter1>$(VersionPrefix)</_Parameter1>
+      </AssemblyAttributes>
+      <AssemblyAttributes Include="AssemblyFileVersionAttribute">
+        <_Parameter1_TypeName>System.String</_Parameter1_TypeName>
+        <_Parameter1>$(VersionPrefix).$(BuildNumber)</_Parameter1>
+      </AssemblyAttributes>
+    </ItemGroup>
+    <MakeDir Directories="$(IntermediateOutputPath)" />
+    <WriteCodeFragment Language="C#" OutputFile="$(IntermediateOutputPath)CustomAssemblyInfo.cs" AssemblyAttributes="@(AssemblyAttributes)" />
+    <ItemGroup>
+      <Compile Include="$(IntermediateOutputPath)CustomAssemblyInfo.cs" />
+    </ItemGroup>
+  </Target>
 </Project>

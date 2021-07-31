@@ -35,5 +35,11 @@ var server = new HttpServer(options =>
 server.Start();
 ```
 
+## TinyCLR Packages
+Install release package from [NuGet](https://www.nuget.org/packages?q=bytewizer.tinyclr) or using the Package Manager Console :
+```powershell
+PM> Install-Package Bytewizer.TinyCLR.Http.Cookies
+```
+
 ## RFC - Related Request for Comments 
 - [RFC 6265, section 5.4: Cookie](https://tools.ietf.org/html/rfc6265#section-5.4)

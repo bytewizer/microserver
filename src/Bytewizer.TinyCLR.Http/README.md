@@ -1,6 +1,6 @@
 # HTTP Web Server
 
-Privides a modular web server built for TinyCLR OS.
+Privides a modular web server built for TinyCLR OS IoT devices.
 
 ## Custom Endpoint Routing
 ```CSharp
@@ -117,3 +117,12 @@ options.Pipeline(app =>
     });
 });
 ```
+
+## TinyCLR Packages
+Install release package from [NuGet](https://www.nuget.org/packages?q=bytewizer.tinyclr) or using the Package Manager Console :
+```powershell
+PM> Install-Package Bytewizer.TinyCLR.Http
+```
+
+## RFC - Related Request for Comments 
+- [RFC 2616 - Hypertext Transfer Protocol -- HTTP/1.1](https://tools.ietf.org/html/rfc2616)

@@ -139,6 +139,12 @@ var server = new HttpServer(options =>
 server.Start();
 ```
 
+## TinyCLR Packages
+Install release package from [NuGet](https://www.nuget.org/packages?q=bytewizer.tinyclr) or using the Package Manager Console :
+```powershell
+PM> Install-Package Bytewizer.TinyCLR.Http.Authentication
+```
+
 ## RFC - Related Request for Comments 
 - [RFC 2617 - HTTP Authentication: Basic and Digest Access Authentication](https://tools.ietf.org/html/rfc2617)
 - [RFC 2069 - Digest Access Authentication](https://www.ietf.org/rfc/rfc2069.txt)
