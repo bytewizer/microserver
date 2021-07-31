@@ -52,16 +52,15 @@ jobs:
       working-directory: src
       run: >- 
         msbuild -t:pack -verbosity:${env:VERBOSITY}
-        -p:Deterministic=true
         -p:PackageOutputPath=\builds\artifacts
-        -p:BuildNumber="${{ steps.info.outputs.build }}" 
+        -p:BuildNumber="${{ steps.info.outputs.build }}"
         -p:Copyright="${{ steps.info.outputs.copyright }}"
         -p:VersionPrefix="2.1.1"
-        -p:VersionSuffix=prebuild.${{ steps.info.outputs.build }} 
+        -p:VersionSuffix=preview.${{ steps.info.outputs.build }}
         -p:Configuration=${env:CONFIGURATION}
         -p:RepositoryUrl="https://github.com/${{ github.repository }}"
         -p:SourceLinkCreate=true
-        -p:IncludeSymbols=true 
+        -p:IncludeSymbols=true
         -p:SymbolPackageFormat="snupkg"
         -p:PublishRepositoryUrl=true
         -p:EmbedUntrackedSources=true

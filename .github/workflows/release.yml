@@ -57,8 +57,7 @@ jobs:
     - name: Release Build and pack libraries
       working-directory: src
       run: >- 
-        msbuild -t:pack -verbosity:${env:VERBOSITY} 
-        -p:Deterministic=true
+        msbuild -t:pack -verbosity:${env:VERBOSITY}
         -p:PackageOutputPath=\builds\artifacts
         -p:BuildNumber="${{ steps.info.outputs.build }}" 
         -p:Copyright="${{ steps.info.outputs.copyright }}"

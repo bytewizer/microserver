@@ -111,7 +111,7 @@
 			</AssemblyAttributes>
 			<AssemblyAttributes Include="AssemblyVersion">
 				<_Parameter1_TypeName>System.String</_Parameter1_TypeName>
-				<_Parameter1>$(VersionPrefix).$(BuildNumber)</_Parameter1>
+				<_Parameter1>$(VersionPrefix)</_Parameter1>
 			</AssemblyAttributes>
 			<AssemblyAttributes Include="AssemblyFileVersionAttribute">
 				<_Parameter1_TypeName>System.String</_Parameter1_TypeName>

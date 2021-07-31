@@ -22,7 +22,7 @@ namespace Bytewizer.TinyCLR.DuinoSntp
             ClockProvider.Initialize();
             
             NetworkProvider.Initialize("ssid", "password");
-            //NetworkProvider.Controller.NetworkAddressChanged += NetworkAddressChanged;
+            NetworkProvider.Controller.NetworkAddressChanged += NetworkAddressChanged;
 
             _loggerFactory.AddDebug();
             _logger = _loggerFactory.CreateLogger(nameof(Program));
