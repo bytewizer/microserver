@@ -7,7 +7,7 @@ using Bytewizer.TinyCLR.Logging.Debug;
 
 using GHIElectronics.TinyCLR.Devices.Network;
 
-namespace Bytewizer.TinyCLR.DuinoSntp
+namespace Bytewizer.TinyCLR.DuinoWeb
 {
     class Program
     {   
@@ -27,7 +27,7 @@ namespace Bytewizer.TinyCLR.DuinoSntp
             NetworkProvider.Controller.NetworkAddressChanged += NetworkAddressChanged;
 
             _loggerFactory.AddDebug();
-            _logger = _loggerFactory.CreateLogger(nameof(Program));
+            _logger = _loggerFactory.CreateLogger(nameof(Main));
 
             _sntpServer = new SntpServer(_loggerFactory, options =>
             {

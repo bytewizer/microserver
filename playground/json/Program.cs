@@ -12,7 +12,8 @@ namespace Bytewizer.Playground.Json
 
         static void Main()
         {
-            NetworkProvider.InitializeEthernet();
+            //NetworkProvider.InitializeEthernet();
+            NetworkProvider.InitializeWiFiClick("crytek", "!therices!");
 
             InitJson();
 
@@ -25,7 +26,7 @@ namespace Bytewizer.Playground.Json
                     {
                         endpoints.Map("/", context =>
                         {
-                            string response = "<doctype !html><html><head><meta http-equiv='refresh' content='1'><title>Hello, world!</title>" +
+                            string response = "<doctype !html><html><head><meta http-equiv='refresh' content='5'><title>Hello, world!</title>" +
                                               "<style>body { background-color: #43bc69 } h1 { font-size:2cm; text-align: center; color: white;}</style></head>" +
                                               "<body><h1>" + DateTime.Now.Ticks.ToString() + "</h1></body></html>";
                             
@@ -60,6 +61,11 @@ namespace Bytewizer.Playground.Json
                         endpoints.Map("/json", context =>
                         {
                             context.Response.WriteJson(_persons, true);
+                        });
+                        endpoints.Map("/info", context =>
+                        {
+                            var deviceInfo = new DeviceModel();
+                            context.Response.WriteJson(deviceInfo, true);
                         });
                     });
                 });
