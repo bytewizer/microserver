@@ -33,7 +33,7 @@
     <AssemblyVersion>$(VersionPrefix).$(BuildNumber)</AssemblyVersion>
     <FileVersion>$(VersionPrefix).$(BuildNumber)</FileVersion>
     <PackageId>$(AssemblyName)</PackageId>
-    <PackageTags>"ghi tinyclr tinyclros sitcore iot http-server http https basic digest authentication"</PackageTags>
+    <PackageTags>ghi tinyclr tinyclros sitcore iot http-server http https basic digest authentication</PackageTags>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageIcon>package-logo.png</PackageIcon>
   </PropertyGroup>
