@@ -1,13 +1,15 @@
 # Microserver for TinyCLR OS
 
+[![NuGet Status](http://img.shields.io/nuget/v/Bytewizer.TinyCLR.Core.svg?style=flat&logo=nuget)](https://www.nuget.org/packages?q=bytewizer.tinyclr)
 [![Release](https://github.com/bytewizer/microserver/actions/workflows/release.yml/badge.svg)](https://github.com/bytewizer/microserver/actions/workflows/release.yml)
 [![Build](https://github.com/bytewizer/microserver/actions/workflows/actions.yml/badge.svg)](https://github.com/bytewizer/microserver/actions/workflows/actions.yml)
 
-Microserver is a modular embedded server built for TinyCLR OS IoT devices.  Be sure to follow this project with videos on [YouTube](https://youtu.be/EDGo3NpBOpk).
+
+Microserver is a modular embedded server built for TinyCLR OS IoT devices.  Be sure to follow this project on our [YouTube](https://www.youtube.com/channel/UCfFRHPY9XEsfIC0pLTSJ8kw) channel. 
 
 ## Network Services
 
-Build on a modular tcp/udp service with an extendable pipeline and SSL transport security.
+Build modular tcp/udp service with an extendable pipeline and SSL transport security.
 
 * <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Sockets">TCP/UDP Socket Server</a>
 * <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Sntp">Simple Network Time Protocol (SNTP) Server</a>
@@ -27,12 +29,10 @@ Create a modular web services including middleware, moduler routing, digest auth
 * <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Cors">Cross-origin Resource Sharing (CORS)</a>
 
 ## Runtime libraries
-This repo contains several runtime libraries built for TinyCLR OS. These libraries provide implementations for many general and app-specific types, algorithms, and utility functionality.
+This  <a href="https://github.com/bytewizer/runtime">repo</a> contains several runtime libraries built for TinyCLR OS. These libraries provide implementations for logging, middleware and dependency injection.
 
-* <a href="https://github.com/bytewizer/runtime/tree/develop/src/Bytewizer.TinyCLR.Core">Core</a> 
-* <a href="https://github.com/bytewizer/runtime/tree/develop/src/Bytewizer.TinyCLR.Logging">Logging</a> 
-* <a href="https://github.com/bytewizer/runtime/tree/develop/src/Bytewizer.TinyCLR.Pipeline">Middleware Pipeline</a> 
-* <a href="https://github.com/bytewizer/runtime/tree/develop/src/Bytewizer.TinyCLR.DependencyInjection">Dependency Injection (DI)</a> 
+## Nuget Packages
+Install release package from [NuGet](https://www.nuget.org/packages?q=bytewizer.tinyclr). Preview packages are available as attached artifacts on successful build [workflow](https://github.com/bytewizer/microserver/actions).
 
 ## Requirements
 
@@ -40,16 +40,13 @@ This repo contains several runtime libraries built for TinyCLR OS. These librari
 **Hardware:** Project tested using FEZ Portal single board computers and SCD-20260D development board.  
 **External RAM:** Devices with external RAM have the option of extending managed heap into **unsecure** external memory. TinyCLR Config can be used to extend the heap into external SDRAM increasing performance for simultaneous sessions. Please note this feature provides a large amount of managed heap space but data is stored outside of the microcontroller chip where it's less secure.
 
-## Nuget Packages
-Install release package from [NuGet](https://www.nuget.org/packages?q=bytewizer.tinyclr). Prebuild packages are available as attached artifacts on successful [workflow builds](https://github.com/bytewizer/microserver/actions).
-
 ## Give a Star! :star:
 
 If you like or are using this project to start your solution, please give it a star. Thanks!
 
 ## Getting Started
 
-As we encourage users to play with the samples and test programs this project has not yet reached a release state. See the working [Samples](https://github.com/bytewizer/microserver/tree/master/samples) for an example of how to use packages. The [Playground](https://github.com/bytewizer/microserver/tree/master/playground) also includes many working examples.
+We encourage you to play with the samples and test programs. See the working [Samples](https://github.com/bytewizer/microserver/tree/master/samples) for an example of how to use packages. The [Playground](https://github.com/bytewizer/microserver/tree/master/playground) also includes many working examples.
 
 ### Simple Example
 
@@ -148,9 +145,12 @@ public class ExampleController : Controller
 }
 ```
 
-**main** :: This is the branch containing the latest release build. No contributions should be made directly to this branch. The development branch will periodically be merged to the master branch, and be released to [NuGet Gallery](https://www.nuget.org).
+## Continuous Integration
 
-**develop** :: This is the development branch to which contributions should be proposed by contributors as pull requests. Development build packages are available as attached artifacts on successful [Build](https://github.com/bytewizer/microserver/actions/workflows/actions.yml) workflows.
+**master** :: This is the branch containing the latest release build. No contributions should be made directly to this branch. The development branch will periodically be merged to the master branch, and be released to [NuGet](https://www.nuget.org/packages?q=bytewizer.tinyclr).
+
+**develop** :: This is the development branch to which contributions should be proposed by contributors as pull requests. Development build packages are available as attached artifacts on successful build [workflows](https://github.com/bytewizer/microserver/actions/workflows/actions.yml).
+
 
 ## Microsoft .NET Micro Framework (NETMF)
 

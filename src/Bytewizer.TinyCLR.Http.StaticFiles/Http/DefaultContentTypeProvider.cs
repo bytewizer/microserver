@@ -16,6 +16,7 @@ namespace Bytewizer.TinyCLR.Http
             : this(new Hashtable()
             {
                 { ".css", "text/css" },
+                { ".map", "text/plain" },
                 { ".gif", "image/gif" },
                 { ".gz", "application/x-gzip" },
                 { ".htm", "text/html" },
