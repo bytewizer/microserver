@@ -1,6 +1,7 @@
 ﻿using GHIElectronics.TinyCLR.IO;
 using GHIElectronics.TinyCLR.Pins;
 using GHIElectronics.TinyCLR.Devices.Storage;
+using GHIElectronics.TinyCLR.Native;
 
 namespace Bytewizer.Playground
 {
@@ -24,7 +25,15 @@ namespace Bytewizer.Playground
                 if (_initialized)
                     return;
 
-                Controller = StorageController.FromName(SC20260.StorageController.SdCard);
+                if (DeviceInformation.DeviceName == "SC20100")
+                {
+                    Controller = StorageController.FromName(SC20100.StorageController.SdCard);
+                }
+                else
+                { 
+                    Controller = StorageController.FromName(SC20260.StorageController.SdCard);
+                }
+
                 Drive = FileSystem.Mount(Controller.Hdc);
             }
 

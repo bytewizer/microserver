@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Text;
+using System.Diagnostics;
 using System.Threading;
 
 using GHIElectronics.TinyCLR.Pins;
 using GHIElectronics.TinyCLR.Devices.Spi;
 using GHIElectronics.TinyCLR.Devices.Gpio;
 using GHIElectronics.TinyCLR.Devices.Network;
-using System.Text;
-using System.Diagnostics;
 
 namespace Bytewizer.Playground
 {
@@ -170,6 +170,65 @@ namespace Bytewizer.Playground
                 Controller.NetworkAddressChanged += NetworkAddressChanged;
 
                 Controller.Enable();
+            }
+        }
+
+        /// <summary>
+        /// Initialize onboard Wifi installed on FEZ Duino/Feather single board computers.
+        /// </summary>
+        public static void Initialize(string ssid, string password)
+        {
+            if (_initialized)
+                return;
+
+            lock (_lock)
+            {
+                if (_initialized)
+                    return;
+
+                var enablePin = GpioController.GetDefault().OpenPin(SC20100.GpioPin.PA8);
+                enablePin.SetDriveMode(GpioPinDriveMode.Output);
+                enablePin.Write(GpioPinValue.High);
+
+                Controller = NetworkController.FromName(SC20100.NetworkController.ATWinc15x0);
+
+                Controller.SetCommunicationInterfaceSettings(new SpiNetworkCommunicationInterfaceSettings()
+                {
+                    SpiApiName = SC20100.SpiBus.Spi3,
+                    GpioApiName = SC20100.GpioPin.Id,
+                    InterruptPin = GpioController.GetDefault().OpenPin(SC20100.GpioPin.PB12),
+                    InterruptEdge = GpioPinEdge.FallingEdge,
+                    InterruptDriveMode = GpioPinDriveMode.InputPullUp,
+                    ResetPin = GpioController.GetDefault().OpenPin(SC20100.GpioPin.PB13),
+                    ResetActiveState = GpioPinValue.Low,
+                    SpiSettings = new SpiConnectionSettings()
+                    {
+                        ChipSelectLine = GpioController.GetDefault().OpenPin(SC20100.GpioPin.PD15),
+                        ClockFrequency = 4000000,
+                        Mode = SpiMode.Mode0,
+                        ChipSelectType = SpiChipSelectType.Gpio,
+                        ChipSelectHoldTime = TimeSpan.FromTicks(10),
+                        ChipSelectSetupTime = TimeSpan.FromTicks(10)
+                    }
+                });
+
+                Controller.SetInterfaceSettings(new WiFiNetworkInterfaceSettings()
+                {
+                    Ssid = ssid,
+                    Password = password,
+                });
+
+                Controller.SetAsDefaultController();
+
+                try
+                {
+                    Controller.Enable();
+                    _initialized = true;
+                }
+                catch
+                {
+                    throw;
+                }
             }
         }
 

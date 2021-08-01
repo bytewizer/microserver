@@ -55,7 +55,7 @@ jobs:
         -p:PackageOutputPath=\builds\artifacts
         -p:BuildNumber="${{ steps.info.outputs.build }}"
         -p:Copyright="${{ steps.info.outputs.copyright }}"
-        -p:VersionPrefix="2.1.1"
+        -p:VersionPrefix="2.1.3"
         -p:VersionSuffix=preview.${{ steps.info.outputs.build }}
         -p:Configuration=${env:CONFIGURATION}
         -p:RepositoryUrl="https://github.com/${{ github.repository }}"
@@ -80,3 +80,8 @@ jobs:
       run: |
         nuget sources add -name github.com -source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" -username ${{ github.actor }} -password ${{secrets.PACKAGE_API_KEY}}
         nuget push \builds\artifacts\**\*.nupkg -source github.com -apikey ${{secrets.PACKAGE_API_KEY}} -skipduplicate
+
+    - name: Publish package to test nuget.org
+      run: |
+        nuget sources add -name nugettest.org -source "https://apiint.nugettest.org/v3/index.json" -username ${{ github.actor }} -password ${{secrets.NUGET_BUILD_API_KEY}}
+        nuget push \builds\artifacts\**\*.nupkg -source nugettest.org -apikey ${{secrets.NUGET_BUILD_API_KEY}} -skipduplicate

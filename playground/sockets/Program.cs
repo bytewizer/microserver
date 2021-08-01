@@ -26,7 +26,6 @@ namespace Bytewizer.Playground.Sockets
                 options.Listen(8080);
                 options.Pipeline(app =>
                 {
-                    //app.UseMemoryInfo();
                     app.UseHttpResponse();
                 });
             });

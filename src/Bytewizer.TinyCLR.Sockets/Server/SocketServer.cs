@@ -73,8 +73,7 @@ namespace Bytewizer.TinyCLR.Sockets
         protected override void ClientConnected(object sender, SocketChannel channel)
         {
             // Check to make sure channel contains data and valid message size
-            if (channel.InputStream.Length == 0 
-                ||channel.InputStream.Length < _options.Limits.MinMessageSize
+            if (channel.InputStream.Length < _options.Limits.MinMessageSize
                 || channel.InputStream.Length > _options.Limits.MaxMessageSize)
             {
                 _logger.InvalidMessageLimit(
