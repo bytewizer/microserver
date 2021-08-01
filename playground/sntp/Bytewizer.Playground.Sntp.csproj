@@ -58,17 +58,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Bytewizer.TinyCLR.Logging, Version=2.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bytewizer.TinyCLR.Logging.2.1.2\lib\net452\Bytewizer.TinyCLR.Logging.dll</HintPath>
+    <Reference Include="Bytewizer.TinyCLR.Logging, Version=2.1.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bytewizer.TinyCLR.Logging.2.1.3-preview.86\lib\net452\Bytewizer.TinyCLR.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="Bytewizer.TinyCLR.Logging.Abstractions, Version=2.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bytewizer.TinyCLR.Logging.Abstractions.2.1.2\lib\net452\Bytewizer.TinyCLR.Logging.Abstractions.dll</HintPath>
+    <Reference Include="Bytewizer.TinyCLR.Logging.Abstractions, Version=2.1.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bytewizer.TinyCLR.Logging.Abstractions.2.1.3-preview.86\lib\net452\Bytewizer.TinyCLR.Logging.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Bytewizer.TinyCLR.Logging.Debug, Version=2.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bytewizer.TinyCLR.Logging.Debug.2.1.2\lib\net452\Bytewizer.TinyCLR.Logging.Debug.dll</HintPath>
+    <Reference Include="Bytewizer.TinyCLR.Logging.Debug, Version=2.1.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bytewizer.TinyCLR.Logging.Debug.2.1.3-preview.86\lib\net452\Bytewizer.TinyCLR.Logging.Debug.dll</HintPath>
     </Reference>
-    <Reference Include="Bytewizer.TinyCLR.Logging.Extensions, Version=2.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bytewizer.TinyCLR.Logging.Extensions.2.1.2\lib\net452\Bytewizer.TinyCLR.Logging.Extensions.dll</HintPath>
+    <Reference Include="Bytewizer.TinyCLR.Logging.Extensions, Version=2.1.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bytewizer.TinyCLR.Logging.Extensions.2.1.3-preview.86\lib\net452\Bytewizer.TinyCLR.Logging.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="GHIElectronics.TinyCLR.Devices.Gpio, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GHIElectronics.TinyCLR.Devices.Gpio.2.1.0\lib\net452\GHIElectronics.TinyCLR.Devices.Gpio.dll</HintPath>
