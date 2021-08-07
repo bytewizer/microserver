@@ -41,13 +41,8 @@ namespace Bytewizer.TinyCLR.DuinoWeb
 
             _httpServer = new HttpServer(_loggerFactory, options =>
             {
-                string response = "<doctype !html><html lang='en'><head><title>Network Time</title>" +
-                  "<style>body { background-color: #DCE1E3 } h1 { font-size:2cm; text-align: center; color: #004E7C;}</style></head>" +
-                  "<body><h1>" + DateTime.Now.ToString("F") + "(UTC)</h1></body></html>";
-                
                 options.Pipeline(app =>
-                {
-                    
+                {       
                     // Unzip microsd-root.zip content to the root of your micro sd card
                     app.UseFileServer();
 
@@ -56,6 +51,10 @@ namespace Bytewizer.TinyCLR.DuinoWeb
                     {
                         endpoints.Map("/time", context =>
                         {
+                            string response = "<doctype !html><html lang='en'><head><title>Network Time</title>" +
+                              "<style>body { background-color: #DCE1E3 } h1 { font-size:2cm; text-align: center; color: #004E7C;}</style></head>" +
+                              "<body><h1>" + DateTime.Now.ToString("F") + "(UTC)</h1></body></html>";
+
                             context.Response.Headers.Add(HeaderNames.CacheControl, "no-store");
                             context.Response.Write(response);
                         });

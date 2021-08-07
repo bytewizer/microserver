@@ -26,8 +26,6 @@
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <BuildNumber Condition=" '$(BuildNumber)' == '' ">0</BuildNumber>
-    <AssemblyVersion>$(VersionPrefix).$(BuildNumber)</AssemblyVersion>
-    <FileVersion>$(VersionPrefix).$(BuildNumber)</FileVersion>
     <PackageId>$(AssemblyName)</PackageId>
     <PackageTags>ghi tinyclr tinyclros sitcore iot http-server http https mvc</PackageTags>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
@@ -157,9 +155,13 @@
         <_Parameter1_TypeName>System.String</_Parameter1_TypeName>
         <_Parameter1>$(VersionPrefix)</_Parameter1>
       </AssemblyAttributes>
-      <AssemblyAttributes Include="AssemblyFileVersionAttribute">
+      <AssemblyAttributes Include="AssemblyFileVersion">
         <_Parameter1_TypeName>System.String</_Parameter1_TypeName>
         <_Parameter1>$(VersionPrefix).$(BuildNumber)</_Parameter1>
+      </AssemblyAttributes>
+      <AssemblyAttributes Include="AssemblyInformationalVersion">
+        <_Parameter1_TypeName>System.String</_Parameter1_TypeName>
+        <_Parameter1>$(Version)</_Parameter1>
       </AssemblyAttributes>
     </ItemGroup>
     <MakeDir Directories="$(IntermediateOutputPath)" />

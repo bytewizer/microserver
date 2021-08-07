@@ -130,31 +130,5 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
                 Thread.Sleep(100);
             }
         }
-
-
-        //private int WaitForRequestBytes()
-        //{
-        //    int availBytes = 0;
-
-        //    try
-        //    {
-        //        if (_socket.Available == 0)
-        //        {
-        //            // poll until there is data
-        //            _socket.Poll(100000 /* 100ms */, SelectMode.SelectRead);
-        //            if (_socket.Available == 0 && _socket.Connected)
-        //            {
-        //                _socket.Poll(30000000 /* 30sec */, SelectMode.SelectRead);
-        //            }
-        //        }
-
-        //        availBytes = _socket.Available;
-        //    }
-        //    catch
-        //    {
-        //    }
-
-        //    return availBytes;
-        //}
     }
 }

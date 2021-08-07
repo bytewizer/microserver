@@ -82,7 +82,7 @@ namespace Bytewizer.TinyCLR
 
             sb.Append($"Interface Address: {ipProperties.Address} ");
             sb.Append($"Subnet: {ipProperties.SubnetMask} ");
-            sb.Append($"Gateway: {ipProperties.Address} ");
+            sb.Append($"Gateway: {ipProperties.GatewayAddress} ");
 
             for (int i = 0; i < ipProperties.DnsAddresses.Length; i++)
             {
