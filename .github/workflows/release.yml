@@ -2,7 +2,8 @@ name: Release
 
 on:
   release:
-    branches: [master]
+    branches: 
+    - master
     types: [published]
 
 env:
@@ -61,10 +62,9 @@ jobs:
         -p:PackageOutputPath=\builds\artifacts
         -p:BuildNumber="${{ steps.info.outputs.build }}" 
         -p:Copyright="${{ steps.info.outputs.copyright }}"
-        -p:VersionPrefix="2.1.4"
+        -p:VersionPrefix="${{ steps.info.outputs.version }}"
         -p:PackageVersion="${{ steps.info.outputs.version }}"
         -p:Configuration=${env:CONFIGURATION}
-        -p:RepositoryUrl="https://github.com/${{ github.repository }}"
    
     - name: Upload release artifacts
       uses: actions/upload-artifact@v2
