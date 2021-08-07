@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 
 namespace Bytewizer.TinyCLR
@@ -79,7 +80,8 @@ namespace Bytewizer.TinyCLR
                 throw new ArgumentNullException(nameof(destination));
             }
 
-            int size = (source.CanSeek) ? Math.Min((int)(source.Length - source.Position), 4096) : 4096;
+            int size = (source.CanSeek) ? Math.Min((int)(source.Length - source.Position), 2048) : 2048;
+
             var buffer = new byte[size];
 
             int read;

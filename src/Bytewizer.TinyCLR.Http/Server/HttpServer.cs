@@ -83,20 +83,6 @@ namespace Bytewizer.TinyCLR.Http
         /// <param name="channel">The socket channel for the connected end point.</param>
         protected override void ClientConnected(object sender, SocketChannel channel)
         {
-            // Check message size
-            if (channel.InputStream.Length < _options.Limits.MinMessageSize
-                || channel.InputStream.Length > _options.Limits.MaxMessageSize)
-            {
-                _logger.InvalidMessageLimit(
-                    channel.InputStream.Length,
-                    _options.Limits.MinMessageSize,
-                    _options.Limits.MaxMessageSize
-                    );
-
-                channel.Clear();
-                return;
-            }
-
             // Set channel error handler
             channel.ChannelError += ChannelError;
 
@@ -111,8 +97,17 @@ namespace Bytewizer.TinyCLR.Http
                 // set server header name
                 context.Response.Headers[HeaderNames.Server] = _httpOptions.Name;
 
-                // check to make sure channel contains data
-                if (context.Channel.InputStream.Length > 0)
+                // Check message size
+                if (context.Channel.InputStream.Length < _options.Limits.MinMessageSize
+                || context.Channel.InputStream.Length > _options.Limits.MaxMessageSize)
+                {
+                    _logger.InvalidMessageLimit(
+                        context.Channel.InputStream.Length,
+                        _options.Limits.MinMessageSize,
+                        _options.Limits.MaxMessageSize
+                        );
+                }
+                else
                 {
                     // invoke pipeline 
                     _options.Application.Invoke(context);

@@ -1,4 +1,7 @@
-﻿namespace Bytewizer.TinyCLR.Http.Mvc.Filters
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+
+namespace Bytewizer.TinyCLR.Http.Mvc.Filters
 {
     /// <summary>
     /// An abstract context for filters.

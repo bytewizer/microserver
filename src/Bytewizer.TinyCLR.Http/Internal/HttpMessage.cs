@@ -21,7 +21,6 @@ namespace Bytewizer.TinyCLR.Http.Internal
                 do
                 {
                     line = reader.ReadLine();
-                    //Debug.WriteLine(line);
 
                     switch (mode)
                     {

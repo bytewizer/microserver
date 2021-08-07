@@ -12,8 +12,7 @@ namespace Bytewizer.Playground.Json
 
         static void Main()
         {
-            //NetworkProvider.InitializeEthernet();
-            NetworkProvider.InitializeWiFiClick("crytek", "!therices!");
+            NetworkProvider.InitializeEthernet();
 
             InitJson();
 

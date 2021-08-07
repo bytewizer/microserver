@@ -1,4 +1,6 @@
-﻿namespace Bytewizer.TinyCLR.Http.Internal
+﻿using System.Diagnostics;
+
+namespace Bytewizer.TinyCLR.Http.Internal
 {
     internal class HttpMiddleware : Middleware
     {
@@ -11,16 +13,12 @@
 
         protected override void Invoke(HttpContext context, RequestDelegate next)
         {
-
-            // TODO: Threading issues? Hangs When pushing 10+ session per second - Rethinking? 
             _httpMessage.Decode(context);
 
             next(context);
 
-            if (!context.Channel.IsCleared())
-            { 
-                _httpMessage.Encode(context);
-            }
+           _httpMessage.Encode(context);
+
         }
     }
 }

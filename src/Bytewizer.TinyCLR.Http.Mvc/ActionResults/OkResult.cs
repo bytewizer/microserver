@@ -1,4 +1,7 @@
-﻿namespace Bytewizer.TinyCLR.Http.Mvc
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+
+namespace Bytewizer.TinyCLR.Http.Mvc
 {
     /// <summary>
     /// An <see cref="StatusCodeResult"/> that when executed will produce an empty <see cref="StatusCodes.Status200OK"/> response.

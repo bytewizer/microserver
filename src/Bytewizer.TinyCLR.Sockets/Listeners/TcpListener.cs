@@ -27,7 +27,7 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
         /// <summary>
         /// Accepted connection listening thread
         /// </summary>
-        internal override void  AcceptConnection()
+        internal override void AcceptConnection()
         {
             int retry;
 
@@ -54,7 +54,7 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
                     var remoteSocket = _listenSocket.Accept();
 
                     var channel = new SocketChannel();
-                    
+
                     if (_options.IsTls)
                     {
                         channel.Assign(
@@ -75,6 +75,13 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
 
                             // Increment request count
                             Interlocked.Increment(ref _listeningSockets);
+
+                            // Wait for request bytes
+                            while (remoteSocket.Available == 0)
+                            {
+                                remoteSocket.Poll(100000, SelectMode.SelectRead);
+                                Thread.Sleep(10);
+                            };
 
                             // Invoke the connected handler
                             OnConnected(channel);
@@ -123,5 +130,31 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
                 Thread.Sleep(100);
             }
         }
+
+
+        //private int WaitForRequestBytes()
+        //{
+        //    int availBytes = 0;
+
+        //    try
+        //    {
+        //        if (_socket.Available == 0)
+        //        {
+        //            // poll until there is data
+        //            _socket.Poll(100000 /* 100ms */, SelectMode.SelectRead);
+        //            if (_socket.Available == 0 && _socket.Connected)
+        //            {
+        //                _socket.Poll(30000000 /* 30sec */, SelectMode.SelectRead);
+        //            }
+        //        }
+
+        //        availBytes = _socket.Available;
+        //    }
+        //    catch
+        //    {
+        //    }
+
+        //    return availBytes;
+        //}
     }
 }

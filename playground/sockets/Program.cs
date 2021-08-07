@@ -23,7 +23,7 @@ namespace Bytewizer.Playground.Sockets
 
             _server = new SocketServer(loggerFactory, options =>
             {
-                options.Listen(8080);
+                options.Listen(80);
                 options.Pipeline(app =>
                 {
                     app.UseHttpResponse();

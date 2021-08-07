@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using System.Resources;
 
 namespace Bytewizer.TinyCLR.Http
 {
@@ -142,6 +143,23 @@ namespace Bytewizer.TinyCLR.Http
             response.Body = fileStream;
             response.ContentLength = fileStream.Length;
             response.StatusCode = StatusCodes.Status200OK;
+        }
+
+        /// <summary>
+        /// Sends the given file to the response body.
+        /// </summary>
+        /// <param name="response">The <see cref="HttpResponse"/>.</param>
+        /// <param name="bytes">A <see cref="byte"/> array that contains data to be sent.</param>
+        /// <param name="contentType">The Content-Type header of the file response.</param>
+        /// <param name="fileName">The file name that will be used in the Content-Disposition header of the response.</param>
+        public static void SendFile(this HttpResponse response, byte[] bytes, string contentType, string fileName)
+        {
+            if (response == null)
+            {
+                throw new ArgumentNullException(nameof(response));
+            }
+
+            response.SendFile(new MemoryStream(bytes), contentType, fileName);
         }
     }
 }

@@ -8,11 +8,6 @@ namespace Bytewizer.TinyCLR.Http
     public class HttpServerOptions : ServerOptions
     {
         /// <summary>
-        /// Provides access to request limit options.
-        /// </summary>
-        public new HttpServerLimits Limits { get; } = new HttpServerLimits();
-
-        /// <summary>
         /// Specifies the name the server represents.
         /// </summary>
         public string Name { get; set; } = "Microserver";

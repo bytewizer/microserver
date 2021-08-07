@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Text;
 using System.Diagnostics;
 using System.Threading;
@@ -48,14 +49,14 @@ namespace Bytewizer.Playground
                     MacAddress = new byte[] { 0x00, 0x8D, 0xB4, 0x49, 0xAD, 0xBD },
 
                     DhcpEnable = true,
-                    //DynamicDnsEnable = true,
-                    //Address = new IPAddress(new byte[] { 192, 168, 1, 200 }),
-                    //SubnetMask = new IPAddress(new byte[] { 255, 255, 255, 0 }),
-                    //GatewayAddress = new IPAddress(new byte[] { 192, 168, 1, 1 }),
-                    //DnsAddresses = new IPAddress[]{
-                    //new IPAddress(new byte[] { 8, 8, 8, 8 }),
-                    //new IPAddress(new byte[] { 8, 8, 4, 4 })
-                    //}
+                    DynamicDnsEnable = true,
+                    Address = new IPAddress(new byte[] { 192, 168, 1, 200 }),
+                    SubnetMask = new IPAddress(new byte[] { 255, 255, 255, 0 }),
+                    GatewayAddress = new IPAddress(new byte[] { 192, 168, 1, 1 }),
+                    DnsAddresses = new IPAddress[]{
+                    new IPAddress(new byte[] { 8, 8, 8, 8 }),
+                    new IPAddress(new byte[] { 8, 8, 4, 4 })
+                    }
                 };
 
                 Controller.SetInterfaceSettings(networkInterfaceSetting);
@@ -70,6 +71,15 @@ namespace Bytewizer.Playground
 
         /// <summary>
         /// Initialize Wifi click installed in slot 1 on SC20260D development board.
+        /// </summary>
+        public static void InitializeWiFiClick()
+        {
+            SettingsProvider.Initialize();
+            InitializeWiFiClick(SettingsProvider.Flash.Ssid, SettingsProvider.Flash.Password);
+        }
+
+        /// <summary>
+        /// Initialize Wifi click from secure storage installed in slot 1 on SC20260D development board.
         /// </summary>
         public static void InitializeWiFiClick(string ssid, string password)
         {
@@ -122,9 +132,18 @@ namespace Bytewizer.Playground
         }
 
         /// <summary>
+        /// Initialize onboard Wifi from secure storage installed on FEZ Portal single board computers.
+        /// </summary>
+        public static void InitializeWiFi1()
+        {
+            SettingsProvider.Initialize();
+            InitializeWiFi1(SettingsProvider.Flash.Ssid, SettingsProvider.Flash.Password);
+        }
+
+        /// <summary>
         /// Initialize onboard Wifi installed on FEZ Portal single board computers.
         /// </summary>
-        public static void InitializeWiFi(string ssid, string password)
+        public static void InitializeWiFi1(string ssid, string password)
         {
             if (_initialized)
                 return;
@@ -174,9 +193,18 @@ namespace Bytewizer.Playground
         }
 
         /// <summary>
+        /// Initialize onboard Wifi from secure storage installed on FEZ Duino/Feather single board computers.
+        /// </summary>
+        public static void InitializeWiFi2()
+        {
+            SettingsProvider.Initialize();
+            InitializeWiFi2(SettingsProvider.Flash.Ssid, SettingsProvider.Flash.Password);
+        }
+
+        /// <summary>
         /// Initialize onboard Wifi installed on FEZ Duino/Feather single board computers.
         /// </summary>
-        public static void Initialize(string ssid, string password)
+        public static void InitializeWiFi2(string ssid, string password)
         {
             if (_initialized)
                 return;
@@ -240,11 +268,15 @@ namespace Bytewizer.Playground
 
             sb.Append($"Interface Address: {ipProperties.Address} ");
             sb.Append($"Subnet: {ipProperties.SubnetMask} ");
-            sb.Append($"Gateway: {ipProperties.Address} ");
+            sb.Append($"Gateway: {ipProperties.GatewayAddress} ");
 
             for (int i = 0; i < ipProperties.DnsAddresses.Length; i++)
             {
-                sb.Append($"DNS: {ipProperties.DnsAddresses[i]} ");
+                var address = ipProperties.DnsAddresses[i].GetAddressBytes();
+                if (address[0] != 0)
+                {
+                    sb.Append($"DNS: {ipProperties.DnsAddresses[i]} ");
+                }
             }
 
             return sb.ToString();

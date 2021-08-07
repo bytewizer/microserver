@@ -64,10 +64,6 @@ jobs:
         -p:PackageVersion="${{ steps.info.outputs.version }}"
         -p:Configuration=${env:CONFIGURATION}
         -p:RepositoryUrl="https://github.com/${{ github.repository }}"
-        -p:IncludeSymbols=true 
-        -p:SymbolPackageFormat="snupkg"
-        -p:PublishRepositoryUrl=true
-        -p:EmbedUntrackedSources=true
    
     - name: Upload release artifacts
       uses: actions/upload-artifact@v2

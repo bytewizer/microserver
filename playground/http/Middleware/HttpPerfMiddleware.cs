@@ -11,7 +11,7 @@ namespace Bytewizer.Playground.Http
         protected override void Invoke(HttpContext context, RequestDelegate next)
         {
             if (context.Request.Method == HttpMethods.Get
-                && context.Request.Path == "/")
+                && context.Request.Path == "/httperf")
             {
                 string response = $"<doctype !html><html><head><title>HttpPerf</title></head><body>{GenerateBody()}</body></html>";
 
@@ -21,9 +21,10 @@ namespace Bytewizer.Playground.Http
 
             next(context);
         }
+
         public static string GenerateBody()
         {
-            var length = _random.Next(10000);       
+            var length = _random.Next(5 * 1024);       
             string characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
             StringBuilder result = new StringBuilder(length);
             for (int i = 0; i < length; i++)
