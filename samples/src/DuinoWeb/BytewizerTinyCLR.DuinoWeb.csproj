@@ -47,35 +47,35 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Bytewizer.TinyCLR.Core, Version=2.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Bytewizer.TinyCLR.Core.2.1.3\lib\net452\Bytewizer.TinyCLR.Core.dll</HintPath>
+    <Reference Include="Bytewizer.TinyCLR.Core, Version=2.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Bytewizer.TinyCLR.Core.2.1.4\lib\net452\Bytewizer.TinyCLR.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Bytewizer.TinyCLR.Http, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Bytewizer.TinyCLR.Http.2.1.3\lib\net452\Bytewizer.TinyCLR.Http.dll</HintPath>
+    <Reference Include="Bytewizer.TinyCLR.Http, Version=2.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Bytewizer.TinyCLR.Http.2.1.4\lib\net452\Bytewizer.TinyCLR.Http.dll</HintPath>
     </Reference>
-    <Reference Include="Bytewizer.TinyCLR.Http.StaticFiles, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Bytewizer.TinyCLR.Http.StaticFiles.2.1.3\lib\net452\Bytewizer.TinyCLR.Http.StaticFiles.dll</HintPath>
+    <Reference Include="Bytewizer.TinyCLR.Http.StaticFiles, Version=2.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Bytewizer.TinyCLR.Http.StaticFiles.2.1.4\lib\net452\Bytewizer.TinyCLR.Http.StaticFiles.dll</HintPath>
     </Reference>
-    <Reference Include="Bytewizer.TinyCLR.Logging, Version=2.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Bytewizer.TinyCLR.Logging.2.1.3\lib\net452\Bytewizer.TinyCLR.Logging.dll</HintPath>
+    <Reference Include="Bytewizer.TinyCLR.Logging, Version=2.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Bytewizer.TinyCLR.Logging.2.1.4\lib\net452\Bytewizer.TinyCLR.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="Bytewizer.TinyCLR.Logging.Abstractions, Version=2.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Bytewizer.TinyCLR.Logging.Abstractions.2.1.3\lib\net452\Bytewizer.TinyCLR.Logging.Abstractions.dll</HintPath>
+    <Reference Include="Bytewizer.TinyCLR.Logging.Abstractions, Version=2.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Bytewizer.TinyCLR.Logging.Abstractions.2.1.4\lib\net452\Bytewizer.TinyCLR.Logging.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Bytewizer.TinyCLR.Logging.Debug, Version=2.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Bytewizer.TinyCLR.Logging.Debug.2.1.3\lib\net452\Bytewizer.TinyCLR.Logging.Debug.dll</HintPath>
+    <Reference Include="Bytewizer.TinyCLR.Logging.Debug, Version=2.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Bytewizer.TinyCLR.Logging.Debug.2.1.4\lib\net452\Bytewizer.TinyCLR.Logging.Debug.dll</HintPath>
     </Reference>
-    <Reference Include="Bytewizer.TinyCLR.Logging.Extensions, Version=2.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Bytewizer.TinyCLR.Logging.Extensions.2.1.3\lib\net452\Bytewizer.TinyCLR.Logging.Extensions.dll</HintPath>
+    <Reference Include="Bytewizer.TinyCLR.Logging.Extensions, Version=2.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Bytewizer.TinyCLR.Logging.Extensions.2.1.4\lib\net452\Bytewizer.TinyCLR.Logging.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="Bytewizer.TinyCLR.Pipeline, Version=2.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Bytewizer.TinyCLR.Pipeline.2.1.3\lib\net452\Bytewizer.TinyCLR.Pipeline.dll</HintPath>
+    <Reference Include="Bytewizer.TinyCLR.Pipeline, Version=2.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Bytewizer.TinyCLR.Pipeline.2.1.4\lib\net452\Bytewizer.TinyCLR.Pipeline.dll</HintPath>
     </Reference>
-    <Reference Include="Bytewizer.TinyCLR.Sntp, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Bytewizer.TinyCLR.Sntp.2.1.3\lib\net452\Bytewizer.TinyCLR.Sntp.dll</HintPath>
+    <Reference Include="Bytewizer.TinyCLR.Sntp, Version=2.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Bytewizer.TinyCLR.Sntp.2.1.4\lib\net452\Bytewizer.TinyCLR.Sntp.dll</HintPath>
     </Reference>
-    <Reference Include="Bytewizer.TinyCLR.Sockets, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Bytewizer.TinyCLR.Sockets.2.1.3\lib\net452\Bytewizer.TinyCLR.Sockets.dll</HintPath>
+    <Reference Include="Bytewizer.TinyCLR.Sockets, Version=2.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Bytewizer.TinyCLR.Sockets.2.1.4\lib\net452\Bytewizer.TinyCLR.Sockets.dll</HintPath>
     </Reference>
     <Reference Include="GHIElectronics.TinyCLR.Data.Json, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\GHIElectronics.TinyCLR.Data.Json.2.1.0\lib\net452\GHIElectronics.TinyCLR.Data.Json.dll</HintPath>

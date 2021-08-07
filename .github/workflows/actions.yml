@@ -2,7 +2,9 @@ name: Build
 
 on:
   push:
-    branches: [master, develop]
+    branches: 
+    - master
+    - develop
     paths: 
       - '**'
       - '!.editorconfig'
@@ -55,10 +57,11 @@ jobs:
         -p:PackageOutputPath=\builds\artifacts
         -p:BuildNumber="${{ steps.info.outputs.build }}"
         -p:Copyright="${{ steps.info.outputs.copyright }}"
-        -p:VersionPrefix="2.1.4"
+        -p:VersionPrefix="2.1.5"
         -p:VersionSuffix=preview.${{ steps.info.outputs.build }}
         -p:Configuration=${env:CONFIGURATION}
-        -p:RepositoryUrl="https://github.com/${{ github.repository }}"
+        -p:ContinuousIntegrationBuild=true
+        -p:Deterministic=true
             
     - name: Upload build artifacts
       uses: actions/upload-artifact@v2
