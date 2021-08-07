@@ -2,7 +2,7 @@ name: Release
 
 on:
   release:
-    branches: [main]
+    branches: [master]
     types: [published]
 
 env:
