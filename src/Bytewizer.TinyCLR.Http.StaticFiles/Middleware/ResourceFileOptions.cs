@@ -20,6 +20,7 @@ namespace Bytewizer.TinyCLR.Http
         /// The resource manager that provides access resources at run time.
         /// </summary>
         public ResourceManager ResourceManager { get; set; }
+        
         /// <summary>
         /// Used to map files to content-types.
         /// </summary>

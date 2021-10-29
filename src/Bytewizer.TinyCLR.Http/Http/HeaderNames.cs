@@ -94,5 +94,6 @@ namespace Bytewizer.TinyCLR.Http
         //public static readonly string WebSocketSubProtocols = "Sec-WebSocket-Protocol";
         public static readonly string WWWAuthenticate = "WWW-Authenticate";
         //public static readonly string XFrameOptions = "X-Frame-Options";
+        public static readonly string XContentTypeOptions = "X-Content-Type-Options";
     }
 }
