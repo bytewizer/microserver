@@ -13,6 +13,8 @@
     <PackageId>$(AssemblyName)</PackageId>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <PackageOutputPath>\builds\artifacts</PackageOutputPath>
     <Copyright>Bytewizer. All rights reserved.</Copyright>
     <NoWarn>$(NoWarn);1591;5101;5128</NoWarn>
