@@ -1,0 +1,24 @@
+<Project>
+  <PropertyGroup>
+    <VersionPrefix>2.1.0</VersionPrefix>
+    <BuildNumber Condition=" '$(BuildNumber)' == '' ">0</BuildNumber>
+    <Version Condition=" '$(Version)' == '' and '$(VersionSuffix)' != '' ">$(VersionPrefix)-$(VersionSuffix)</Version>
+    <Version Condition=" '$(Version)' == '' ">$(VersionPrefix)</Version>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Authors>Microcompiler</Authors>
+    <Company>Bytewizer Technology</Company>
+    <PackageIcon>package-logo.png</PackageIcon>
+    <RepositoryUrl>https://github.com/bytewizer/microserver.git</RepositoryUrl>
+    <PackageId>$(AssemblyName)</PackageId>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageOutputPath>\builds\artifacts</PackageOutputPath>
+    <Copyright>Bytewizer. All rights reserved.</Copyright>
+    <NoWarn>$(NoWarn);1591;5101;5128</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\..\LICENSE.md" Pack="true" PackagePath="$(PackageLicenseFile)" />
+    <None Include="..\..\images\package-logo.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,45 @@
+<Project>
+  <Target Name="GenerateCustomAssemblyInfo" BeforeTargets="BeforeBuild">
+    <Message Text="Updating AssemblyInfo to Version $(VersionPrefix).$(BuildNumber)">
+    </Message>
+    <ItemGroup>
+      <AssemblyAttributes Include="AssemblyTitle">
+        <_Parameter1_TypeName>System.String</_Parameter1_TypeName>
+        <_Parameter1>$(AssemblyName)</_Parameter1>
+      </AssemblyAttributes>
+      <AssemblyAttributes Include="AssemblyCompany">
+        <_Parameter1_TypeName>System.String</_Parameter1_TypeName>
+        <_Parameter1>$(Company)</_Parameter1>
+      </AssemblyAttributes>
+      <AssemblyAttributes Include="AssemblyProduct">
+        <_Parameter1_TypeName>System.String</_Parameter1_TypeName>
+        <_Parameter1>TinyCLR OS</_Parameter1>
+      </AssemblyAttributes>
+      <AssemblyAttributes Include="AssemblyDescription">
+        <_Parameter1_TypeName>System.String</_Parameter1_TypeName>
+        <_Parameter1>$(Description)</_Parameter1>
+      </AssemblyAttributes>
+      <AssemblyAttributes Include="AssemblyCopyright">
+        <_Parameter1_TypeName>System.String</_Parameter1_TypeName>
+        <_Parameter1>$(Copyright)</_Parameter1>
+      </AssemblyAttributes>
+      <AssemblyAttributes Include="AssemblyVersion">
+        <_Parameter1_TypeName>System.String</_Parameter1_TypeName>
+        <_Parameter1>$(VersionPrefix)</_Parameter1>
+      </AssemblyAttributes>
+      <AssemblyAttributes Include="AssemblyFileVersion">
+        <_Parameter1_TypeName>System.String</_Parameter1_TypeName>
+        <_Parameter1>$(VersionPrefix).$(BuildNumber)</_Parameter1>
+      </AssemblyAttributes>
+      <AssemblyAttributes Include="AssemblyInformationalVersion">
+        <_Parameter1_TypeName>System.String</_Parameter1_TypeName>
+        <_Parameter1>$(Version)</_Parameter1>
+      </AssemblyAttributes>
+    </ItemGroup>
+    <MakeDir Directories="$(IntermediateOutputPath)" />
+    <WriteCodeFragment Language="C#" OutputFile="$(IntermediateOutputPath)CustomAssemblyInfo.cs" AssemblyAttributes="@(AssemblyAttributes)" />
+    <ItemGroup>
+      <Compile Include="$(IntermediateOutputPath)CustomAssemblyInfo.cs" />
+    </ItemGroup>
+  </Target>
+</Project>
