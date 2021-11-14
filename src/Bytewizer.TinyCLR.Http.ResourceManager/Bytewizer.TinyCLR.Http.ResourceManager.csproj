@@ -17,7 +17,7 @@
     </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup>
-    <Description>Embedded resource file serving extension library built for TinyCLR IoT devices.</Description>
+    <Description>Assembly embedded resource file serving extension library built for TinyCLR IoT devices.</Description>
     <PackageTags>ghi tinyclr tinyclros sitcore iot http-server http https json</PackageTags>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

@@ -5,7 +5,6 @@ using System;
 
 using Bytewizer.TinyCLR.Pipeline.Builder;
 
-
 namespace Bytewizer.TinyCLR.Http
 {
     /// <summary>
@@ -29,6 +28,8 @@ namespace Bytewizer.TinyCLR.Http
             {
                 throw new ArgumentNullException(nameof(options));
             }
+
+            app.UseResources(options.ResourceManager);
 
             return app.UseMiddleware(typeof(ResourceFileMiddleware), options);
         }

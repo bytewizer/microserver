@@ -3,8 +3,6 @@
 
 using System;
 using System.IO;
-using System.Text;
-using System.Resources;
 using System.Collections;
 
 using Bytewizer.TinyCLR.Logging;
@@ -19,7 +17,6 @@ namespace Bytewizer.TinyCLR.Http
         private readonly ResourceFileOptions _options;
         private readonly DateTime _lastModified;
         private readonly Hashtable _resources;
-        //private readonly ResourceManager _resourceManager;
         private readonly ILogger _logger;
         private readonly IContentTypeProvider _contentTypeProvider;
 
@@ -47,7 +44,6 @@ namespace Bytewizer.TinyCLR.Http
         /// <param name="options">The <see cref="ResourceFileOptions"/> used to configure the middleware.</param>
         public ResourceFileMiddleware(ILoggerFactory loggerFactory, ResourceFileOptions options)
         {
-            //var rm = new System.Resources.ResourceManager("Bytewizer.TinyCLR.WebServer.Properties.Resources", _options.Assembly);
             if (loggerFactory == null)
             {
                 throw new ArgumentNullException(nameof(loggerFactory));
@@ -62,7 +58,6 @@ namespace Bytewizer.TinyCLR.Http
 
             _options = options;
             _resources = _options.Resources ?? new Hashtable();
-            //_resourceManager = _options.ResourceManager;
             _contentTypeProvider = _options.ContentTypeProvider ?? new DefaultContentTypeProvider();
             _lastModified = DateTime.Now;
 
@@ -147,26 +142,10 @@ namespace Bytewizer.TinyCLR.Http
 
                 var filename = Path.GetFileName(subPath);
                 context.Response.Headers[HeaderNames.LastModified] = _lastModified.ToString("R");
-                context.Response.Headers[HeaderNames.ContentDisposition] = $"inline; filename={filename}";
-                context.Response.ContentType = contentType;
-                context.Response.StatusCode = StatusCodes.Status200OK;
 
                 if (context.Request.Method == HttpMethods.Get)
                 {
-                    // TODO:  Chunked resource using GetObject(idResource, offset, size) - GHI #761
-                    var fileObject = _options.ResourceManager.GetObject(resourceId);
-                    if (fileObject.GetType() == typeof(string))
-                    {
-                        var file = fileObject as string;
-                        var fileBytes = Encoding.UTF8.GetBytes(file);
-                        context.Response.Body = new MemoryStream(fileBytes);
-                    }
-                    else if (fileObject.GetType() == typeof(byte[]))
-                    {
-                        var file = fileObject as byte[];
-                        context.Response.Body = new MemoryStream(file);
-                    }
-                    context.Response.ContentLength = context.Response.Body.Length;
+                    context.Response.SendResource(resourceId, contentType, filename);
                 }
 
                 return;

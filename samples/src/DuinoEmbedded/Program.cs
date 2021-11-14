@@ -49,7 +49,7 @@ namespace Bytewizer.TinyCLR.DuinoEmbedded
                 options.Pipeline(app =>
                 {
                     app.UseRouting();
-                    app.UseResource(resources);
+                    app.UseResources(resources);
                     app.UseEndpoints(endpoints =>
                     {
                         endpoints.Map("/favicon.ico", context =>

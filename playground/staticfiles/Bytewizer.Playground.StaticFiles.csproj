@@ -45,6 +45,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Http.StaticFiles.Resources\Bytewizer.TinyCLR.Http.StaticFiles.Resources.csproj">
+      <Project>{659DD6F5-1932-4159-8A4C-F4409362032A}</Project>
+      <Name>Bytewizer.TinyCLR.Http.StaticFiles.Resources</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Http.StaticFiles\Bytewizer.TinyCLR.Http.StaticFiles.csproj">
       <Project>{2DD3D5AB-D849-4898-B6E9-1A49683955B2}</Project>
       <Name>Bytewizer.TinyCLR.Http.StaticFiles</Name>
@@ -65,17 +69,14 @@
   <ItemGroup>
     <None Include="microsd-root.zip" />
     <None Include="packages.config" />
-    <None Include="Resources\bytewizer.local.pem" />
-    <None Include="Resources\bytewizer.local_key.pem" />
+    <None Include="Resources\favicon.bin" />
+    <None Include="Resources\image.bin" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\resource.html" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Bytewizer.TinyCLR.Core, Version=2.1.6.0, Culture=neutral, processorArchitecture=MSIL">

@@ -25,24 +25,15 @@ namespace Bytewizer.Playground.StaticFiles.Properties
                 return Resources.manager;
             }
         }
-        internal static string GetString(Resources.StringResources id)
-        {
-            return ((string)(ResourceManager.GetObject(((short)(id)))));
-        }
         internal static byte[] GetBytes(Resources.BinaryResources id)
         {
             return ((byte[])(ResourceManager.GetObject(((short)(id)))));
         }
         [System.SerializableAttribute()]
-        internal enum StringResources : short
-        {
-            ResourceFile = 1805,
-        }
-        [System.SerializableAttribute()]
         internal enum BinaryResources : short
         {
-            DeviceCert = 12948,
-            DeviceKey = 20123,
+            Image = -3844,
+            Favicon = 8815,
         }
     }
 }

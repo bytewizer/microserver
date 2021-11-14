@@ -15,14 +15,14 @@ static void Main()
 {
     //Initialize networking
     
-    var resourceManager = Resources.ResourceManager;
+    var resources = Resources.ResourceManager;
 
     var server = new HttpServer(options =>
     {
         options.Pipeline(app =>
         {
             app.UseRouting();
-            app.UseResource(resourceManager);
+            app.UseResources(resources);
             app.UseEndpoints(endpoints =>
             {          
                 endpoints.Map("/favicon.ico", context =>

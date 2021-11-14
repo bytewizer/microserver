@@ -58,10 +58,10 @@
       <HintPath>packages\Bytewizer.TinyCLR.Core.2.1.6\lib\net452\Bytewizer.TinyCLR.Core.dll</HintPath>
     </Reference>
     <Reference Include="Bytewizer.TinyCLR.Http, Version=2.1.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Bytewizer.TinyCLR.Http.2.1.7-preview.159\lib\net452\Bytewizer.TinyCLR.Http.dll</HintPath>
+      <HintPath>packages\Bytewizer.TinyCLR.Http.2.1.7-preview.160\lib\net452\Bytewizer.TinyCLR.Http.dll</HintPath>
     </Reference>
     <Reference Include="Bytewizer.TinyCLR.Http.ResourceManager, Version=2.1.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Bytewizer.TinyCLR.Http.ResourceManager.2.1.7-preview.159\lib\net452\Bytewizer.TinyCLR.Http.ResourceManager.dll</HintPath>
+      <HintPath>packages\Bytewizer.TinyCLR.Http.ResourceManager.2.1.7-preview.160\lib\net452\Bytewizer.TinyCLR.Http.ResourceManager.dll</HintPath>
     </Reference>
     <Reference Include="Bytewizer.TinyCLR.Logging, Version=2.1.6.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Bytewizer.TinyCLR.Logging.2.1.6\lib\net452\Bytewizer.TinyCLR.Logging.dll</HintPath>
@@ -79,10 +79,10 @@
       <HintPath>packages\Bytewizer.TinyCLR.Pipeline.2.1.6\lib\net452\Bytewizer.TinyCLR.Pipeline.dll</HintPath>
     </Reference>
     <Reference Include="Bytewizer.TinyCLR.Sntp, Version=2.1.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Bytewizer.TinyCLR.Sntp.2.1.7-preview.159\lib\net452\Bytewizer.TinyCLR.Sntp.dll</HintPath>
+      <HintPath>packages\Bytewizer.TinyCLR.Sntp.2.1.7-preview.160\lib\net452\Bytewizer.TinyCLR.Sntp.dll</HintPath>
     </Reference>
     <Reference Include="Bytewizer.TinyCLR.Sockets, Version=2.1.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Bytewizer.TinyCLR.Sockets.2.1.7-preview.159\lib\net452\Bytewizer.TinyCLR.Sockets.dll</HintPath>
+      <HintPath>packages\Bytewizer.TinyCLR.Sockets.2.1.7-preview.160\lib\net452\Bytewizer.TinyCLR.Sockets.dll</HintPath>
     </Reference>
     <Reference Include="GHIElectronics.TinyCLR.Data.Json, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\GHIElectronics.TinyCLR.Data.Json.2.1.0\lib\net452\GHIElectronics.TinyCLR.Data.Json.dll</HintPath>

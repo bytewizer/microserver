@@ -49,6 +49,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.Playground.Embedd
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.ResourceManager", "..\src\Bytewizer.TinyCLR.Http.ResourceManager\Bytewizer.TinyCLR.Http.ResourceManager.csproj", "{4F2FCDC6-179E-45AC-A95A-360A02D05E15}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.StaticFiles.Resources", "..\src\Bytewizer.TinyCLR.Http.StaticFiles.Resources\Bytewizer.TinyCLR.Http.StaticFiles.Resources.csproj", "{659DD6F5-1932-4159-8A4C-F4409362032A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.StaticFiles.Blazor", "..\src\Bytewizer.TinyCLR.Http.StaticFiles.Blazor\Bytewizer.TinyCLR.Http.StaticFiles.Blazor.csproj", "{DAB5B7A6-A97E-46B3-8A56-200C1163C7F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -163,6 +167,14 @@ Global
 		{4F2FCDC6-179E-45AC-A95A-360A02D05E15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F2FCDC6-179E-45AC-A95A-360A02D05E15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F2FCDC6-179E-45AC-A95A-360A02D05E15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{659DD6F5-1932-4159-8A4C-F4409362032A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{659DD6F5-1932-4159-8A4C-F4409362032A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{659DD6F5-1932-4159-8A4C-F4409362032A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{659DD6F5-1932-4159-8A4C-F4409362032A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAB5B7A6-A97E-46B3-8A56-200C1163C7F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAB5B7A6-A97E-46B3-8A56-200C1163C7F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAB5B7A6-A97E-46B3-8A56-200C1163C7F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAB5B7A6-A97E-46B3-8A56-200C1163C7F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

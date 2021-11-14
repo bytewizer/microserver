@@ -118,13 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="DeviceCert" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bytewizer.local.pem;System.Byte[], mscorlib, Version=2.1.0.0, Culture=neutral, PublicKeyToken=null</value>
+  <data name="Favicon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\favicon.bin;System.Byte[], mscorlib, Version=2.1.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="DeviceKey" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bytewizer.local_key.pem;System.Byte[], mscorlib, Version=2.1.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="ResourceFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\resource.html;System.String, mscorlib, Version=2.1.0.0, Culture=neutral, PublicKeyToken=null;Windows-1252</value>
+  <data name="Image" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\image.bin;System.Byte[], mscorlib, Version=2.1.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>
