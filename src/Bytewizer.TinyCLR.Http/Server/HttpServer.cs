@@ -94,6 +94,10 @@ namespace Bytewizer.TinyCLR.Http
                 // assign channel
                 context.Channel = channel;
 
+                // set convenience context pointers
+                context.Request.HttpContext = context;
+                context.Response.HttpContext = context;
+
                 // set server header name
                 context.Response.Headers[HeaderNames.Server] = _httpOptions.Name;
 

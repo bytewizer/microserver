@@ -132,10 +132,10 @@ namespace Bytewizer.TinyCLR.Http.Internal
                 }
 
                 // Set response content length if not found in headers
-                if (response.Headers[HeaderNames.ContentLength] == null)
-                {
-                    response.Headers[HeaderNames.ContentLength] = "0";
-                }
+                //if (response.Headers[HeaderNames.ContentLength] == null)
+                //{
+                //    response.Headers[HeaderNames.ContentLength] = "0";
+                //}
 
                 // Process headers
                 if (response.Headers != null && response.Headers.Count > 0)

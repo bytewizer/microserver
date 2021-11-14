@@ -14,7 +14,7 @@ namespace Bytewizer.Playground.Mvc
         static void Main()
         {
             StorageProvider.Initialize();
-            NetworkProvider.InitializeEthernet();
+            NetworkProvider.InitializeWiFiClick();
             NetworkProvider.Controller.NetworkAddressChanged += NetworkAddressChanged;
 
             _server = new HttpServer(options =>
@@ -38,6 +38,8 @@ namespace Bytewizer.Playground.Mvc
                     });
                 });
             });
+
+            _server.Start();
         }
 
         private static void NetworkAddressChanged(
@@ -51,14 +53,14 @@ namespace Bytewizer.Playground.Mvc
             {
                 Debug.WriteLine(NetworkProvider.Info(sender));
 
-                _server.Start();
+                //_server.Start();
 
                 var scheme = _server.ListenerOptions.IsTls ? "https" : "http";
                 Debug.WriteLine($"Launch On: {scheme}://{ipProperties.Address}:{_server.ActivePort}");
             }
             else
             {
-                _server.Stop();
+                //_server.Stop();
             }
         }
     }

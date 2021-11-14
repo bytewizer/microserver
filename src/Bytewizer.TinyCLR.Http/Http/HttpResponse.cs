@@ -2,7 +2,6 @@
 using System.IO;
 
 using Bytewizer.TinyCLR.Http.Header;
-//using Bytewizer.TinyCLR.Http.Cookies;
 
 namespace Bytewizer.TinyCLR.Http
 {
@@ -19,6 +18,11 @@ namespace Bytewizer.TinyCLR.Http
             Headers = new HeaderDictionary();
             Body = new MemoryStream();
         }
+
+        /// <summary>
+        /// Gets the <see cref="HttpContext"/> for this request.
+        /// </summary>
+        public HttpContext HttpContext { get; internal set; }
 
         /// <summary>
         /// Gets the response headers.
@@ -60,6 +64,7 @@ namespace Bytewizer.TinyCLR.Http
         {
             ((HeaderDictionary)Headers).Clear();
             Body = new MemoryStream();
+            HttpContext = null;
             StatusCode = 0;
         }
     } 

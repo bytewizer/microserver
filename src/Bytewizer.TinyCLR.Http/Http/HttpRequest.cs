@@ -24,6 +24,11 @@ namespace Bytewizer.TinyCLR.Http
         }
 
         /// <summary>
+        /// Gets the <see cref="HttpContext"/> for this request.
+        /// </summary>
+        public HttpContext HttpContext { get; internal set; }
+
+        /// <summary>
         /// Gets the request headers.
         /// </summary>
         public IHeaderDictionary Headers { get; set; }
@@ -94,7 +99,7 @@ namespace Bytewizer.TinyCLR.Http
             ((HeaderDictionary)Headers).Clear();
             ((QueryCollection)Query).Clear();
             Body = new MemoryStream();
-
+            HttpContext = null;
             Path = string.Empty;
             PathBase = string.Empty;
         }

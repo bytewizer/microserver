@@ -63,11 +63,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Bytewizer.TinyCLR.Core, Version=2.1.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bytewizer.TinyCLR.Core.2.1.4\lib\net452\Bytewizer.TinyCLR.Core.dll</HintPath>
+    <Reference Include="Bytewizer.TinyCLR.Core, Version=2.1.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bytewizer.TinyCLR.Core.2.1.6\lib\net452\Bytewizer.TinyCLR.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Bytewizer.TinyCLR.Pipeline, Version=2.1.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bytewizer.TinyCLR.Pipeline.2.1.4\lib\net452\Bytewizer.TinyCLR.Pipeline.dll</HintPath>
+    <Reference Include="Bytewizer.TinyCLR.Pipeline, Version=2.1.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bytewizer.TinyCLR.Pipeline.2.1.6\lib\net452\Bytewizer.TinyCLR.Pipeline.dll</HintPath>
     </Reference>
     <Reference Include="GHIElectronics.TinyCLR.Devices.Gpio, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GHIElectronics.TinyCLR.Devices.Gpio.2.1.0\lib\net452\GHIElectronics.TinyCLR.Devices.Gpio.dll</HintPath>

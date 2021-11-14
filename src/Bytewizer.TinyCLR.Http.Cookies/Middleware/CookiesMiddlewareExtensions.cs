@@ -10,7 +10,7 @@ namespace Bytewizer.TinyCLR.Http
     public static class CookiesMiddlewareExtensions
     {
         /// <summary>
-        /// Enable cross-origin resource sharing (CORS) control capabilities.
+        /// Enable cookie capabilities.
         /// </summary>
         /// <param name="app">The <see cref="IApplicationBuilder"/> instance this method extends.</param>
         public static IApplicationBuilder UseCookies(this IApplicationBuilder app)
