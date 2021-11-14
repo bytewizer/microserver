@@ -45,9 +45,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Http.Resource\Bytewizer.TinyCLR.Http.Resources.csproj">
+    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Http.ResourceManager\Bytewizer.TinyCLR.Http.ResourceManager.csproj">
       <Project>{4F2FCDC6-179E-45AC-A95A-360A02D05E15}</Project>
-      <Name>Bytewizer.TinyCLR.Http.Resources</Name>
+      <Name>Bytewizer.TinyCLR.Http.ResourceManager</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Http\Bytewizer.TinyCLR.Http.csproj">
       <Project>{EB778176-633A-4997-A683-2C891C5DB436}</Project>

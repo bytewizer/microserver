@@ -1,21 +1,23 @@
-# Embedded File Handling
+# Embedded Resource File Handling
 
 Enables functionality for serving embedded files within assemblies to a client.
 
 ### Resource Properties
 
-Embedded resources must be uploaed in the resource designer as binary file types. Rename all files to upload with a ".bin" extention.  Under the "Add Resource" => "Add Exiting Files"  menu  select "All Files (*.*)" to add files to your assemblies.     
+Embedded resources must be uploaed in the resource designer as *binary file* types. Rename all files to upload with a ".bin" extention.  Under the "Add Resource" => "Add Exiting Files"  menu  select "All Files (*.*)" to add files to your assemblies.     
+
+![Resource Designer](/images/resources.jpg)
 
 ### Simple Example
 ```CSharp
 
-//Initialize networking
-
 static void Main()
 {
+    //Initialize networking
+    
     var resourceManager = Resources.ResourceManager;
 
-    _server = new HttpServer(options =>
+    var server = new HttpServer(options =>
     {
         options.Pipeline(app =>
         {
@@ -74,5 +76,5 @@ static void Main()
 ## TinyCLR Packages
 Install release package from [NuGet](https://www.nuget.org/packages?q=bytewizer.tinyclr) or using the Package Manager Console :
 ```powershell
-PM> Install-Package Bytewizer.TinyCLR.Http.Resource
+PM> Install-Package Bytewizer.TinyCLR.Http.ResourceManager
 ```
