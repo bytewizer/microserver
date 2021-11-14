@@ -47,7 +47,7 @@
     <Compile Include="Middleware\Features\IResourceManagerFeature.cs" />
     <Compile Include="Middleware\Features\ResourceManagerFeature.cs" />
     <Compile Include="Middleware\ResourceMiddleware.cs" />
-    <Compile Include="Middleware\UseResourceExtensions.cs" />
+    <Compile Include="Middleware\UseResourcesExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

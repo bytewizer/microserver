@@ -8,7 +8,7 @@ namespace Bytewizer.TinyCLR.Http
     /// <summary>
     /// Extension methods for <see cref="IApplicationBuilder"/>.
     /// </summary>
-    public static class UseResourceExtensions
+    public static class UseResourcesExtensions
     {
         /// <summary>
         /// Adds a middleware that includes a <see cref="ResourceManager"/> in the request.
@@ -16,7 +16,7 @@ namespace Bytewizer.TinyCLR.Http
         /// <param name="builder">The <see cref="IApplicationBuilder"/> instance.</param>
         /// <param name="resourceManager">The <see cref="ResourceManager"/> for configuring the middleware.</param>
         /// <returns>The <see cref="IApplicationBuilder"/> instance.</returns>
-        public static IApplicationBuilder UseResource(this IApplicationBuilder builder, ResourceManager resourceManager)
+        public static IApplicationBuilder UseResources(this IApplicationBuilder builder, ResourceManager resourceManager)
         {
             if (builder == null)
             {

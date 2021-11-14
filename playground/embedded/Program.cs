@@ -28,7 +28,7 @@ namespace Bytewizer.Playground.Embedded
                 options.Pipeline(app =>
                 {
                     app.UseRouting();
-                    app.UseResource(resourceManager);
+                    app.UseResources(resourceManager);
                     app.UseEndpoints(endpoints =>
                     {          
                         endpoints.Map("/favicon.ico", context =>

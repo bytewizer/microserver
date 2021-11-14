@@ -5,7 +5,10 @@ using Bytewizer.TinyCLR.Http;
 using Bytewizer.TinyCLR.Logging;
 using Bytewizer.TinyCLR.Logging.Debug;
 
+using Bytewizer.TinyCLR.DuinoEmbedded.Properties;
+
 using GHIElectronics.TinyCLR.Devices.Network;
+
 
 namespace Bytewizer.TinyCLR.DuinoEmbedded
 {
@@ -23,7 +26,7 @@ namespace Bytewizer.TinyCLR.DuinoEmbedded
             StorageProvider.Initialize();
             
             // Set your ssid and password
-            NetworkProvider.Initialize("crytek", "!therices!");
+            NetworkProvider.Initialize("ssid", "password");
             NetworkProvider.Controller.NetworkAddressChanged += NetworkAddressChanged;
 
             _loggerFactory.AddDebug();
@@ -39,24 +42,56 @@ namespace Bytewizer.TinyCLR.DuinoEmbedded
 
             });
 
+            var resources = Resources.ResourceManager;
+
             _httpServer = new HttpServer(_loggerFactory, options =>
             {
                 options.Pipeline(app =>
-                {       
-                    // Unzip microsd-root.zip content to the root of your micro sd card
-                    Bytewizer.TinyCLR.Http
-
+                {
                     app.UseRouting();
-                    
+                    app.UseResource(resources);
                     app.UseEndpoints(endpoints =>
                     {
-                        endpoints.Map("/time", context =>
+                        endpoints.Map("/favicon.ico", context =>
                         {
-                            string response = "<doctype !html><html lang='en'><head><title>Network Time</title>" +
-                              "<style>body { background-color: #DCE1E3 } h1 { font-size:2cm; text-align: center; color: #004E7C;}</style></head>" +
-                              "<body><h1>" + DateTime.Now.ToString("F") + "(UTC)</h1></body></html>";
+                            context.Response.SendResource(
+                                    (short)Resources.BinaryResources.Favicon,
+                                    "image/x-icon",
+                                    "favicon.ico"
+                                );
+                        });
 
-                            context.Response.Headers.Add(HeaderNames.CacheControl, "no-store");
+                        endpoints.Map("/image.jpg", context =>
+                        {
+                            context.Response.SendResource(
+                                    (short)Resources.BinaryResources.Image,
+                                    "image/jpeg",
+                                    "image.jpg"
+                                );
+                        });
+
+                        endpoints.Map("/", context =>
+                        {
+                            string response = @"
+                                    <!DOCTYPE html>
+                                    <html lang=""en"">
+                                        <head>
+                                        <meta charset=""utf-8"">
+                                        <title>Bytewizer Resorces</title>
+                                        <style>
+                                            .item {
+                                                text-align: center;
+                                            }
+                                            </style>
+                                        </head>
+                                        <body>
+                                        <p class=""item"">
+                                            <img src=""/image.jpg"" />
+                                        </p>
+                                        </body>
+                                    </html>
+                                    ";
+
                             context.Response.Write(response);
                         });
                     });

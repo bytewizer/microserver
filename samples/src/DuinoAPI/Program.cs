@@ -16,7 +16,7 @@ namespace Bytewizer.TinyCLR.DuinoAPI
         static void Main()
         {
             // Set your ssid and password
-            NetworkProvider.Initialize("crytek", "!therices!");
+            NetworkProvider.Initialize("ssid", "password");
             NetworkProvider.Controller.NetworkAddressChanged += NetworkAddressChanged;
 
             _loggerFactory.AddDebug();
