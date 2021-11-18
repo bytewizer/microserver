@@ -11,7 +11,7 @@ namespace Bytewizer.Playground.StaticFiles
         static void Main()
         {
             StorageProvider.Initialize();
-            NetworkProvider.InitializeWiFiClick("crytek","!therices!");
+            NetworkProvider.InitializeWiFiClick();
 
             var server = new HttpServer(options =>
             {

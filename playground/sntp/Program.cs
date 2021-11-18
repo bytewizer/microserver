@@ -36,6 +36,7 @@ namespace Bytewizer.Playground.Sntp
                 options.RealtimeClock = ClockProvider.Controller;
 
             });
+            _server.Start();
         }
 
         private static void NetworkAddressChanged(
@@ -48,11 +49,16 @@ namespace Bytewizer.Playground.Sntp
             if (address != null && address[0] != 0 && address.Length > 0)
             {
                 _logger.LogInformation(NetworkProvider.Info(sender));
+                if (_server == null)
+                {
+                    return;
+                    
+                }
                 _server.Start();
             }
             else
             {
-                _server.Stop();
+                //_server.Stop();
             }
         }
     }

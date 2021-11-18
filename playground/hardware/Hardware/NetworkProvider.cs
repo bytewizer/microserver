@@ -36,11 +36,11 @@ namespace Bytewizer.Playground
 
                 resetPin.SetDriveMode(GpioPinDriveMode.Output);
 
-                resetPin.Write(GpioPinValue.Low);
-                Thread.Sleep(100);
+                //resetPin.Write(GpioPinValue.Low);
+                //Thread.Sleep(100);
 
                 resetPin.Write(GpioPinValue.High);
-                Thread.Sleep(100);
+                //Thread.Sleep(100);
 
                 Controller = NetworkController.FromName(SC20260.NetworkController.EthernetEmac);
 

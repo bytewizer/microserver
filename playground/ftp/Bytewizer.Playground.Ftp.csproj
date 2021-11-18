@@ -5,10 +5,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1163838B-7F9B-46E1-97D4-405BC5853C3B}</ProjectGuid>
+    <ProjectGuid>{49576B64-3EE7-4597-A684-C3036A7F95C3}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Bytewizer.Playground.Blazor</RootNamespace>
-    <AssemblyName>Bytewizer.Playground.Blazor</AssemblyName>
+    <RootNamespace>Bytewizer.Playground.Ftp</RootNamespace>
+    <AssemblyName>Bytewizer.Playground.Ftp</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -38,24 +38,11 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Http.StaticFiles.Blazor\Bytewizer.TinyCLR.Http.StaticFiles.Blazor.csproj">
-      <Project>{DAB5B7A6-A97E-46B3-8A56-200C1163C7F0}</Project>
-      <Name>Bytewizer.TinyCLR.Http.StaticFiles.Blazor</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Http.StaticFiles\Bytewizer.TinyCLR.Http.StaticFiles.csproj">
-      <Project>{2DD3D5AB-D849-4898-B6E9-1A49683955B2}</Project>
-      <Name>Bytewizer.TinyCLR.Http.StaticFiles</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Http\Bytewizer.TinyCLR.Http.csproj">
-      <Project>{EB778176-633A-4997-A683-2C891C5DB436}</Project>
-      <Name>Bytewizer.TinyCLR.Http</Name>
+    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Ftp\Bytewizer.TinyCLR.Ftp.csproj">
+      <Project>{241C841E-427B-4C2D-BCAE-E5DD99B9DD3A}</Project>
+      <Name>Bytewizer.TinyCLR.Ftp</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Sockets\Bytewizer.TinyCLR.Sockets.csproj">
       <Project>{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}</Project>
@@ -67,14 +54,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="microsd-root.zip" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Bytewizer.TinyCLR.Core, Version=2.1.6.0, Culture=neutral, processorArchitecture=MSIL">
@@ -83,11 +63,17 @@
     <Reference Include="Bytewizer.TinyCLR.Pipeline, Version=2.1.6.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Bytewizer.TinyCLR.Pipeline.2.1.6\lib\net452\Bytewizer.TinyCLR.Pipeline.dll</HintPath>
     </Reference>
-    <Reference Include="GHIElectronics.TinyCLR.Data.Json, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GHIElectronics.TinyCLR.Data.Json.2.1.0\lib\net452\GHIElectronics.TinyCLR.Data.Json.dll</HintPath>
+    <Reference Include="GHIElectronics.TinyCLR.Devices.Storage, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GHIElectronics.TinyCLR.Devices.Storage.2.1.0\lib\net452\GHIElectronics.TinyCLR.Devices.Storage.dll</HintPath>
     </Reference>
     <Reference Include="GHIElectronics.TinyCLR.IO, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GHIElectronics.TinyCLR.IO.2.1.0\lib\net452\GHIElectronics.TinyCLR.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="GHIElectronics.TinyCLR.Native, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GHIElectronics.TinyCLR.Native.2.1.0\lib\net452\GHIElectronics.TinyCLR.Native.dll</HintPath>
+    </Reference>
+    <Reference Include="GHIElectronics.TinyCLR.Networking, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GHIElectronics.TinyCLR.Networking.2.1.0\lib\net452\GHIElectronics.TinyCLR.Networking.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

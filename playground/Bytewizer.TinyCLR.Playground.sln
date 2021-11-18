@@ -1,7 +1,6 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30002.166
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Playground", "Playground", "{4E3B2537-B6D2-419B-AACF-F243DC0F8A68}"
 EndProject
@@ -52,6 +51,18 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.StaticFiles.Resources", "..\src\Bytewizer.TinyCLR.Http.StaticFiles.Resources\Bytewizer.TinyCLR.Http.StaticFiles.Resources.csproj", "{659DD6F5-1932-4159-8A4C-F4409362032A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.StaticFiles.Blazor", "..\src\Bytewizer.TinyCLR.Http.StaticFiles.Blazor\Bytewizer.TinyCLR.Http.StaticFiles.Blazor.csproj", "{DAB5B7A6-A97E-46B3-8A56-200C1163C7F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.Playground.Hosting", "hosting\Bytewizer.Playground.Hosting.csproj", "{A3A122A6-C4B1-4FEA-9D4C-5A1FE31FCA8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Hosting", "..\src\Bytewizer.TinyCLR.Hosting\Bytewizer.TinyCLR.Hosting.csproj", "{449E7C7C-05EE-4224-A8A0-121662C21324}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Ftp", "..\src\Bytewizer.TinyCLR.Ftp\Bytewizer.TinyCLR.Ftp.csproj", "{241C841E-427B-4C2D-BCAE-E5DD99B9DD3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.Playground.Ftp", "ftp\Bytewizer.Playground.Ftp.csproj", "{49576B64-3EE7-4597-A684-C3036A7F95C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.Playground.PageBuilder", "pagebuilder\Bytewizer.Playground.PageBuilder.csproj", "{56F4B46E-7BE5-48E7-9EFB-F9E0240AFD64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.PageBuilder", "..\src\Bytewizer.TinyCLR.Http.PageBuilder\Bytewizer.TinyCLR.Http.PageBuilder.csproj", "{8A73C390-EB11-421E-BF6D-63E283A97458}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -175,6 +186,36 @@ Global
 		{DAB5B7A6-A97E-46B3-8A56-200C1163C7F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAB5B7A6-A97E-46B3-8A56-200C1163C7F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAB5B7A6-A97E-46B3-8A56-200C1163C7F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3A122A6-C4B1-4FEA-9D4C-5A1FE31FCA8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3A122A6-C4B1-4FEA-9D4C-5A1FE31FCA8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3A122A6-C4B1-4FEA-9D4C-5A1FE31FCA8F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{A3A122A6-C4B1-4FEA-9D4C-5A1FE31FCA8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3A122A6-C4B1-4FEA-9D4C-5A1FE31FCA8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3A122A6-C4B1-4FEA-9D4C-5A1FE31FCA8F}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{449E7C7C-05EE-4224-A8A0-121662C21324}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{449E7C7C-05EE-4224-A8A0-121662C21324}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{449E7C7C-05EE-4224-A8A0-121662C21324}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{449E7C7C-05EE-4224-A8A0-121662C21324}.Release|Any CPU.Build.0 = Release|Any CPU
+		{241C841E-427B-4C2D-BCAE-E5DD99B9DD3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{241C841E-427B-4C2D-BCAE-E5DD99B9DD3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{241C841E-427B-4C2D-BCAE-E5DD99B9DD3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{241C841E-427B-4C2D-BCAE-E5DD99B9DD3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49576B64-3EE7-4597-A684-C3036A7F95C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49576B64-3EE7-4597-A684-C3036A7F95C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49576B64-3EE7-4597-A684-C3036A7F95C3}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{49576B64-3EE7-4597-A684-C3036A7F95C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49576B64-3EE7-4597-A684-C3036A7F95C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49576B64-3EE7-4597-A684-C3036A7F95C3}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{56F4B46E-7BE5-48E7-9EFB-F9E0240AFD64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56F4B46E-7BE5-48E7-9EFB-F9E0240AFD64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56F4B46E-7BE5-48E7-9EFB-F9E0240AFD64}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{56F4B46E-7BE5-48E7-9EFB-F9E0240AFD64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56F4B46E-7BE5-48E7-9EFB-F9E0240AFD64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56F4B46E-7BE5-48E7-9EFB-F9E0240AFD64}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{8A73C390-EB11-421E-BF6D-63E283A97458}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A73C390-EB11-421E-BF6D-63E283A97458}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A73C390-EB11-421E-BF6D-63E283A97458}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A73C390-EB11-421E-BF6D-63E283A97458}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -191,6 +232,9 @@ Global
 		{C8FD4459-169D-48C9-9CB8-E94FEE8AEEED} = {4E3B2537-B6D2-419B-AACF-F243DC0F8A68}
 		{CDD9F7B7-CE56-42B1-B3E6-A30D4BDBB7B6} = {4E3B2537-B6D2-419B-AACF-F243DC0F8A68}
 		{93885F5D-E68F-4321-B7B4-B0D88A691E53} = {4E3B2537-B6D2-419B-AACF-F243DC0F8A68}
+		{A3A122A6-C4B1-4FEA-9D4C-5A1FE31FCA8F} = {4E3B2537-B6D2-419B-AACF-F243DC0F8A68}
+		{49576B64-3EE7-4597-A684-C3036A7F95C3} = {4E3B2537-B6D2-419B-AACF-F243DC0F8A68}
+		{56F4B46E-7BE5-48E7-9EFB-F9E0240AFD64} = {4E3B2537-B6D2-419B-AACF-F243DC0F8A68}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C04E0A8C-D974-4A4F-9D49-9E9AC9A78F05}

@@ -2,11 +2,13 @@
 using System.Diagnostics;
 
 using Bytewizer.TinyCLR.Http;
-using Bytewizer.Playground.Http.Properties;
+using Bytewizer.TinyCLR.Http.PageBuilder;
+
+using Bytewizer.Playground.PageBuilder.Properties;
 
 using GHIElectronics.TinyCLR.Devices.Network;
 
-namespace Bytewizer.Playground.Http
+namespace Bytewizer.Playground.PageBuilder
 {
     class Program
     {
@@ -22,28 +24,30 @@ namespace Bytewizer.Playground.Http
             NetworkProvider.InitializeEthernet();
             NetworkProvider.Controller.NetworkAddressChanged += NetworkAddressChanged;
 
-            var icon = Resources.GetBytes(Resources.BinaryResources.Favicon);
+            var resources = Resources.ResourceManager;
 
             _server = new HttpServer(options =>
             {
                 options.Pipeline(app =>
                 {
-                    app.UseHttpPerf();
                     app.UseRouting();
+                    app.UseResources(resources);
                     app.UseEndpoints(endpoints =>
                     {          
                         endpoints.Map("/favicon.ico", context =>
                         {
-                            context.Response.SendFile(icon, "image/x-icon", "favicon.ico");
+                            context.Response.SendResource((short)Resources.BinaryResources.Favicon, "image/x-icon", "favicon.ico");
                         });
 
                         endpoints.Map("/", context =>
                         {
-                            string response = "<doctype !html><html><head><meta http-equiv='refresh' content='1'><title>Hello, world!</title>" +
-                                 "<style>body { background-color: #68829E } h1 { font-size:2cm; text-align: center; color: #505160;}</style></head>" +
-                                 "<body><h1>" + DateTime.Now.Ticks.ToString() + "</h1></body></html>";
+                            var page = new HtmlPage();
+                            page.Head.Title = "Hello, world!";
+                            page.Head.AdditionalElements.Add("<meta http-equiv='refresh' content='5'>");
+                            page.Head.Style = "body { background-color: #68829E } h1 { font-size:2cm; text-align: center; color: #505160;}";
+                            page.Body.Content += page.Body.H1Text(DateTime.Now.Ticks.ToString());
 
-                            context.Response.Write(response);
+                            context.Response.Write(page);
                         });
                     });
                 });
