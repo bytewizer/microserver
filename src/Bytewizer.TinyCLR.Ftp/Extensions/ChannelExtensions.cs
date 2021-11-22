@@ -23,22 +23,6 @@ namespace Bytewizer.TinyCLR.Ftp
             channel.Write(sb.ToString());
         }
 
-        public static void Write(this SocketChannel channel, int code, string start, string[] lines, string end)
-        {
-            VerifyCode(code);
-
-            StringBuilder sb = new StringBuilder();
-
-            sb.AppendLine($"{code}-{start}");
-            foreach (string line in lines)
-            {
-                sb.AppendLine($" {line}");
-            }
-            sb.AppendLine($"{code} {end}");
-
-            channel.Write(sb.ToString());
-        }
-
         private static void VerifyCode(int code)
         {
             if (code < 100 || code > 999)
