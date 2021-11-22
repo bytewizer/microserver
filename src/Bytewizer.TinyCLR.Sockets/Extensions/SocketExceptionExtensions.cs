@@ -7,7 +7,7 @@ namespace Bytewizer.TinyCLR.Sockets.Extensions
     /// </summary>
     public static class SocketExceptionExtensions
     {
-        internal static bool IsIgnorableSocketException(this SocketException se)
+        public static bool IsIgnorableSocketException(this SocketException se)
         {
             // TODO: What final list of error codes should be ingorable on TinyCLR?
 

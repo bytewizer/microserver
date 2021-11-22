@@ -1,20 +1,53 @@
-﻿namespace Bytewizer.TinyCLR.Ftp
+﻿using System;
+using System.Text;
+
+namespace Bytewizer.TinyCLR.Ftp
 {
     /// <summary>
     /// Convenience methods for <see cref="FtpResponse"/>.
     /// </summary>
     public static class FtpResponseExtensions
     {
-        /// <summary>
-        /// Writes the given response using  UTF-8 encoding.
-        /// </summary>
-        /// <param name="response">The <see cref="FtpResponse"/>.</param>
-        /// <param name="code">The response code.</param>
-        /// <param name="message">The response message.</param>
+        public static void Write(this FtpResponse response, string message)
+        {
+            response.Message = message;
+        }
+
         public static void Write(this FtpResponse response, int code, string message)
         {
-            response.Code = code;
-            response.Message = message;
+            VerifyCode(code);
+
+            StringBuilder sb = new StringBuilder(6 + message.Length);
+
+            sb.Append($"{code:D3}");
+            sb.Append(" ");
+            sb.AppendLine(message);
+
+            response.Message = sb.ToString();
+        }
+
+        public static void Write(this FtpResponse response, int code, string start, string[] lines, string end)
+        {
+            VerifyCode(code);
+
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine($"{code}-{start}");
+            foreach (string line in lines)
+            {
+                sb.AppendLine($" {line}");
+            }
+            sb.AppendLine($"{code} {end}");
+
+            response.Message = sb.ToString();
+        }
+
+        private static void VerifyCode(int code)
+        {
+            if (code < 100 || code > 999)
+            {
+                throw new ArgumentException("Protocol violation no such status code.");
+            }
         }
     }
 }

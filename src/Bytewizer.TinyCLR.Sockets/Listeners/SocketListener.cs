@@ -139,7 +139,9 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
             // If service was already started the call has no effect
             //Debug.Assert(Active, "Service is not started!");
             if (!Active)
+            {
                 return true;
+            }
 
             ThreadPool.Shutdown();
 

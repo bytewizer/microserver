@@ -119,12 +119,12 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
         // Interal options
         internal IPEndPoint EndPoint { get; set; }
    
-        internal SocketListenerOptions()
+        public SocketListenerOptions()
         {
             EndPoint = new IPEndPoint(IPAddress.Any, 0);
         }
 
-        internal SocketListenerOptions(IPEndPoint endPoint)
+        public SocketListenerOptions(IPEndPoint endPoint)
         {
             EndPoint = endPoint;
         }

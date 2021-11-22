@@ -21,7 +21,7 @@ namespace Bytewizer.TinyCLR.Ftp
         }
 
         /// <summary>
-        /// Gets the collection of HTTP features provided by the server 
+        /// Gets the collection of FTP features provided by the server 
         /// and middleware available on this request.
         /// </summary>
         public IFeatureCollection Features { get; }
@@ -42,14 +42,14 @@ namespace Bytewizer.TinyCLR.Ftp
         public SocketChannel Channel { get; set; }
 
         /// <summary>
-        /// Gets the user name allow for login.
-        /// </summary>
-        public string User { get; set; }
-
-        /// <summary>
         /// Gets information about the underlying connection for this request.
         /// </summary>
         public ConnectionInfo Connection => Channel?.Connection;
+
+        /// <summary>
+        /// Gets the command argument.
+        /// </summary>
+        public string Argument { get => Request?.Command?.Argument; }
 
         /// <summary>
         /// Aborts the connection underlying this request.

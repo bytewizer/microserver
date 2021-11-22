@@ -7,32 +7,6 @@ namespace Bytewizer.TinyCLR.Ftp
     /// </summary>
     public class FtpResponse 
     {
-        private int _code = 0;
-
-        /// <summary>
-        /// Initializes an instance of the <see cref="FtpResponse" /> class.
-        /// </summary>
-        public FtpResponse()
-        {
-        }
-
-        /// <inheritdoc />
-        public int Code
-        {
-            get
-            {
-                return _code;
-            }
-            set
-            {
-                if (value < 100 || value > 999)
-                {
-                    throw new ArgumentException("Protocol violation no such status code.");
-                }
-                _code = value;
-            }
-        }
-
         /// <summary>
         /// Gets the response message.
         /// </summary>
@@ -43,15 +17,14 @@ namespace Bytewizer.TinyCLR.Ftp
         /// </summary>
         public override string ToString()
         {
-            return $"{Code:D3} {Message}".TrimEnd();
+            return Message.Replace("\r\n", string.Empty);
         }
 
         /// <summary>
-        /// Clears the <see cref="FtpResponse"/> code and message.
+        /// Clears the <see cref="FtpResponse"/> headers, cookies and body.
         /// </summary>
         public void Clear()
         {
-            _code = default;
             Message = default;
         }
     } 

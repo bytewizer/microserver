@@ -11,6 +11,9 @@
         public FtpRequest()
         {
             Command = new FtpCommand();
+            DataMode = DataMode.None;
+            DataType = DataType.Image;
+            ListFormat = ListFormat.Unix;
         }
 
         /// <summary>
@@ -18,15 +21,11 @@
         /// </summary>
         public FtpCommand Command { get; set; }
 
-        /// <summary>
-        /// Gets or sets the root directory path.
-        /// </summary>
-        public string RootPath { get; set; } = "A:\\";
+        public DataMode DataMode { get; set; }
 
-        /// <summary>
-        /// Gets or sets the working directory path.
-        /// </summary>
-        public string UserPath { get; set; } = "A:\\";
+        public DataType DataType { get; set; }
+
+        public ListFormat ListFormat { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether the request has been authenticated.
@@ -34,11 +33,15 @@
         public bool IsAuthenticated { get; internal set; }
 
         /// <summary>
-        /// Clears the <see cref="FtpResponse"/> code and message.
+        /// Clears the <see cref="FtpResponse"/> object.
         /// </summary>
         public void Clear()
         {
             Command.Clear();
+            DataMode = DataMode.None;
+            DataType = DataType.Image;
+            ListFormat = ListFormat.Unix;
+            IsAuthenticated = false;
         }
     }
 }

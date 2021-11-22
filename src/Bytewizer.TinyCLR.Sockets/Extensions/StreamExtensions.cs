@@ -79,7 +79,7 @@ namespace Bytewizer.TinyCLR
                 throw new ArgumentNullException(nameof(destination));
             }
 
-            int size = (source.CanSeek) ? Math.Min((int)(source.Length - source.Position), 2048) : 2048;
+            int size = (source.CanSeek) ? Math.Min((int)(source.Length - source.Position), 8 * 1024) : 8 * 1024;
 
             var buffer = new byte[size];
 

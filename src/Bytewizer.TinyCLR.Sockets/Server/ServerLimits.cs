@@ -13,6 +13,6 @@
         /// <summary>
         /// Gets the minimum size in bytes of the request message. 
         /// </summary>
-        public long MinMessageSize { get; set; } = 1;
+        public long MinMessageSize { get; set; } = 0;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using Bytewizer.TinyCLR.Logging;
+using Bytewizer.TinyCLR.Sockets.Channel;
 
 namespace Bytewizer.TinyCLR.Sockets
 {
@@ -89,6 +90,26 @@ namespace Bytewizer.TinyCLR.Sockets
                 new EventId(112, "Starting Service"),
                 $"Error stopping socket listener bound to port {port}.",
                 exception
+                );
+        }
+
+        public static void RemoteConnected(this ILogger logger, SocketChannel channel)
+        {
+            logger.Log(
+                LogLevel.Debug,
+                new EventId(113, "Remote Connect"),
+                $"Remote client {channel.Connection.RemoteIpAddress} has connected.",
+                null
+                );
+        }
+
+        public static void RemoteClosed(this ILogger logger, SocketChannel channel)
+        {
+            logger.Log(
+                LogLevel.Debug,
+                new EventId(113, "Remote Connect"),
+                $"Remote client {channel.Connection.RemoteIpAddress} has closed connection.",
+                null
                 );
         }
 

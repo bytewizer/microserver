@@ -1,40 +1,32 @@
-﻿using Bytewizer.TinyCLR.Sockets;
+﻿using System;
+using System.Text;
+using System.Threading;
+
+using Bytewizer.TinyCLR.Sockets;
 using Bytewizer.TinyCLR.Logging;
-using Bytewizer.TinyCLR.Ftp.Internal;
+using Bytewizer.TinyCLR.Pipeline;
+using Bytewizer.TinyCLR.Sockets.Channel;
+using Bytewizer.TinyCLR.Sockets.Listener;
 
 namespace Bytewizer.TinyCLR.Ftp
 {
     /// <summary>
     /// Represents an implementation of the <see cref="FtpServer"/> for creating web servers.
     /// </summary>
-    public class FtpServer : IServer
+    public class FtpServer : SocketService, IServer
     {
-        private readonly SocketServer _ftpServer;
-        private readonly FtpServerOptions _ftpOptions = new FtpServerOptions();
-
-        private readonly ILogger _logger = NullLogger.Instance;
-        private readonly ILoggerFactory _loggerFactory = NullLoggerFactory.Instance;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FtpServer"/> class.
-        /// </summary>
-        public FtpServer()
-        {
-            Initialize();
-
-            _ftpServer = new SocketServer(NullLoggerFactory.Instance, _ftpOptions);
-        }
+        private readonly ILogger _logger;
+        private readonly ContextPool _contextPool;
+        private readonly FtpServerOptions _ftpOptions;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FtpServer"/> class.
         /// </summary>
         /// <param name="configure">The configuration options of <see cref="FtpServer"/> specific features.</param>
         public FtpServer(ServerOptionsDelegate configure)
+            : this(NullLoggerFactory.Instance, new FtpServerOptions())
         {
-            Initialize();
-
-            configure(_ftpOptions);
-            _ftpServer = new SocketServer(NullLoggerFactory.Instance, _ftpOptions);
+            Initialize(configure);
         }
 
         /// <summary>
@@ -43,17 +35,10 @@ namespace Bytewizer.TinyCLR.Ftp
         /// <param name="loggerFactory">The factory used to create loggers.</param>
         /// <param name="configure">The configuration options of <see cref="FtpServer"/> specific features.</param>
         public FtpServer(ILoggerFactory loggerFactory, ServerOptionsDelegate configure)
+            : this(loggerFactory, new FtpServerOptions())
         {
-            _loggerFactory = loggerFactory;
-            _logger = loggerFactory.CreateLogger("Bytewizer.TinyCLR.Ftp");
-
-            Initialize();
-
-            configure(_ftpOptions);
-
-            _ftpServer = new SocketServer(_loggerFactory, _ftpOptions);
+            Initialize(configure);
         }
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FtpServer"/> class.
@@ -61,182 +46,154 @@ namespace Bytewizer.TinyCLR.Ftp
         /// <param name="loggerFactory">The factory used to create loggers.</param>
         /// <param name="options">The options of <see cref="FtpServer"/> specific features.</param>
         public FtpServer(ILoggerFactory loggerFactory, ServerOptions options)
+            : base(loggerFactory)
         {
+            _options = options;
+            _contextPool = new ContextPool();
             _logger = loggerFactory.CreateLogger("Bytewizer.TinyCLR.Ftp");
-            _ftpServer = new SocketServer(loggerFactory, options);
+            _ftpOptions = _options as FtpServerOptions;
+
+            SetListener();
         }
 
-        private void Initialize()
+        private void Initialize(ServerOptionsDelegate configure)
         {
-            // Set listening port 
-            _ftpOptions.Listen(21);
-
-            // Set pipleline options
-            _ftpOptions.Pipeline(app =>
+            _options.Listen(21);
+            _options.Pipeline(app =>
             {
                 app.Use(new FtpMiddleware(_logger, _ftpOptions));
             });
+
+            configure(_options as FtpServerOptions);
         }
 
-        /// <inheritdoc/>
-        public bool Start()
+        /// <summary>
+        /// Gets configuration options of socket specific features.
+        /// </summary>
+        public SocketListenerOptions ListenerOptions { get => _listener?.Options; }
+
+        /// <summary>
+        /// Gets port that the server is actively listening on.
+        /// </summary>
+        public int ActivePort { get => _listener.ActivePort; }
+
+        /// <summary>
+        /// A client has connected.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="channel">The socket channel for the connected end point.</param>
+        protected override void ClientConnected(object sender, SocketChannel channel)
         {
-            return _ftpServer.Start(); 
+            _logger.RemoteConnected(channel);
+
+            // Set channel error handler
+            channel.ChannelError += ChannelError;
+
+            try
+            {
+                // get context from context pool
+                var context = _contextPool.GetContext(typeof(FtpContext)) as FtpContext;
+
+                // assign channel
+                context.Channel = channel;
+
+                try
+                {
+                    // Invoke pipeline
+                    _options.Application.Invoke(context);
+                }
+                catch (Exception ex)
+                {
+                    var message = ex.Message.Replace("\r", " ").Replace("\n", "");
+                    context.Response.Write(451, $"Exception thrown, message: {message}.");
+                }
+
+                _logger.RemoteClosed(channel);
+
+                // release context back to pool and close connection once pipeline is complete
+                _contextPool.Release(context);
+            }
+            catch (Exception ex)
+            {
+                _logger.UnhandledException(ex);
+                return;
+            }
         }
 
-        /// <inheritdoc/>
-        public bool Stop()
+        /// <summary>
+        /// A client has disconnected.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="execption">The socket <see cref="Exception"/> for the disconnected endpoint.</param>
+        protected override void ClientDisconnected(object sender, Exception execption)
         {
-            return _ftpServer.Stop();
+            _logger.RemoteDisconnect(execption);
+        }
+
+        /// <summary>
+        /// An internal channel error occured.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="execption">The <see cref="Exception"/> for the channel error.</param>
+        private void ChannelError(object sender, Exception execption)
+        {
+            _logger.ChannelExecption(execption);
         }
     }
 }
 
 
 
-//using System;
-//using System.Text;
-//using System.Threading;
-
-//using Bytewizer.TinyCLR.Sockets;
-//using Bytewizer.TinyCLR.Logging;
-//using Bytewizer.TinyCLR.Pipeline;
-//using Bytewizer.TinyCLR.Ftp.Internal;
-//using Bytewizer.TinyCLR.Sockets.Channel;
 
 
-//namespace Bytewizer.TinyCLR.Ftp
+// check to make sure channel contains data
+//if (context.Channel.InputStream.Length > 0)
 //{
-//    /// <summary>
-//    /// Represents an implementation of the <see cref="FtpServer"/> for creating web servers.
-//    /// </summary>
-//    public class FtpServer : SocketService, IServer
+// invoke pipeline 
+//_options.Application.Invoke(context);
+//}
+
+//byte[] buffer = new byte[1024];
+//while (true)
+//{
+//    do
 //    {
-//        private readonly ILogger _logger;
-//        private readonly ContextPool _contextPool;
-//        private readonly FtpServerOptions _ftpOptions;
+//        inputStream.ReadSafely(buffer, 0, buffer.Length);
+//        var command = FtpCommand.Parse(Encoding.UTF8.GetString(buffer));
+//    } while (inputStream.DataAvailable);
+//}
 
-//        /// <summary>
-//        /// Initializes a new instance of the <see cref="FtpServer"/> class.
-//        /// </summary>
-//        /// <param name="configure">The configuration options of <see cref="FtpServer"/> specific features.</param>
-//        public FtpServer(ServerOptionsDelegate configure)
-//            : this(NullLoggerFactory.Instance, new FtpServerOptions())
+
+//byte[] buffer = new byte[256];
+
+//while (true)
+//{
+//    //if (!context.Channel.Active)
+//    //{
+//    //    break;
+//    //}
+
+//    // Update command
+//    var bytes = context.Channel.InputStream.Read(buffer, 0, buffer.Length);
+//    if (bytes > 0)
+//    {
+//        var commands = Encoding.UTF8.GetString(buffer, 0, bytes);
+
+//        try
 //        {
-//            Initialize(configure);
+//            context.Request.Command = FtpCommand.Parse(commands);
+
+//            // Invoke pipeline
+//            _options.Application.Invoke(context);
 //        }
-
-//        /// <summary>
-//        /// Initializes a new instance of the <see cref="FtpServer"/> class.
-//        /// </summary>
-//        /// <param name="loggerFactory">The factory used to create loggers.</param>
-//        /// <param name="configure">The configuration options of <see cref="FtpServer"/> specific features.</param>
-//        public FtpServer(ILoggerFactory loggerFactory, ServerOptionsDelegate configure)
-//            : this(loggerFactory, new FtpServerOptions())
+//        catch (Exception ex)
 //        {
-//            Initialize(configure);
-//        }
+//            var message = ex.Message.Replace("\r", " ").Replace("\n", "");
+//            context.Channel.Write(451, $"Exception thrown, message: {message}.");
 
-//        /// <summary>
-//        /// Initializes a new instance of the <see cref="FtpServer"/> class.
-//        /// </summary>
-//        /// <param name="loggerFactory">The factory used to create loggers.</param>
-//        /// <param name="options">The options of <see cref="FtpServer"/> specific features.</param>
-//        public FtpServer(ILoggerFactory loggerFactory, ServerOptions options)
-//            : base(loggerFactory)
-//        {
-//            _options = options;
-//            _contextPool = new ContextPool();
-//            _logger = loggerFactory.CreateLogger("Bytewizer.TinyCLR.ftp");
-//            _ftpOptions = _options as FtpServerOptions;
-
-//            SetListener();
-//        }
-
-//        private void Initialize(ServerOptionsDelegate configure)
-//        {
-//           _options.Listen(21);
-//            _options.Pipeline(app =>
-//            {
-//                app.Use(new FtpMiddleware(_logger, _ftpOptions));
-//            });
-
-//            configure(_ftpOptions);
-//        }
-
-//        /// <summary>
-//        /// A client has connected.
-//        /// </summary>
-//        /// <param name="sender">The source of the event.</param>
-//        /// <param name="channel">The socket channel for the connected end point.</param>
-//        protected override void ClientConnected(object sender, SocketChannel channel)
-//        {
-//            // Set channel error handler
-//            channel.ChannelError += ChannelError;
-
-//            try
-//            {
-//                // get context from context pool
-//                var context = _contextPool.GetContext(typeof(FtpContext)) as FtpContext;
-
-//                // assign channel
-//                context.Channel = channel;
-
-//                // Write ready message to channel output stream
-//                context.Channel.Write(220, _ftpOptions.BannerMessage);
-
-//                byte[] buffer = new byte[256];
-
-//                while (true)
-//                {
-//                    //if (!context.Channel.Active)
-//                    //{
-//                    //    break;
-//                    //}
-
-//                    // Update command
-//                    var bytes = context.Channel.InputStream.Read(buffer, 0, buffer.Length);
-//                    if (bytes > 0)
-//                    {
-//                        var commands = Encoding.UTF8.GetString(buffer, 0, bytes);
-
-//                        try
-//                        {
-//                            context.Request.Command = FtpCommand.Parse(commands);
-
-//                            // Invoke pipeline
-//                            _options.Application.Invoke(context);
-//                        }
-//                        catch (Exception ex)
-//                        {
-//                            var message = ex.Message.Replace("\r", " ").Replace("\n", "");
-//                            context.Channel.Write(451, $"Exception thrown, message: {message}.");
-
-//                            break;
-//                        }
-//                    }
-
-//                    Thread.Sleep(100);
-//                }
-
-//                // release context back to pool and close connection once pipeline is complete
-//                _contextPool.Release(context);
-//            }
-//            catch (Exception ex)
-//            {
-//                _logger.UnhandledException(ex);
-//                return;
-//            }
-//        }
-
-//        /// <summary>
-//        /// An internal channel error occured.
-//        /// </summary>
-//        /// <param name="sender">The source of the event.</param>
-//        /// <param name="execption">The <see cref="Exception"/> for the channel error.</param>
-//        private void ChannelError(object sender, Exception execption)
-//        {
-//            _logger.ChannelExecption(execption);
+//            break;
 //        }
 //    }
+
+//    Thread.Sleep(100);
 //}

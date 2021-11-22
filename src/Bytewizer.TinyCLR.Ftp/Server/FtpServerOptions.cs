@@ -19,6 +19,11 @@ namespace Bytewizer.TinyCLR.Ftp
         }
 
         /// <summary>
+        /// Gets or sets the root directory path.
+        /// </summary>
+        public string RootPath { get; set; } = @"A:\";
+
+        /// <summary>
         /// Specifies the server banner message.
         /// </summary>
         public string BannerMessage { get; private set; }

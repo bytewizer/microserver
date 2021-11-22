@@ -201,6 +201,7 @@ namespace Bytewizer.TinyCLR.Sockets
 
             Client.Connect(remoteEP);
 
+            _active = true;
             Connected = true;
         }
 

@@ -77,11 +77,11 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
                             Interlocked.Increment(ref _listeningSockets);
 
                             // Wait for request bytes
-                            while (remoteSocket.Available == 0)
-                            {
-                                remoteSocket.Poll(100000, SelectMode.SelectRead);
-                                Thread.Sleep(10);
-                            };
+                            //while (remoteSocket.Available == 0)
+                            //{
+                            //    remoteSocket.Poll(100000, SelectMode.SelectRead);
+                            //    Thread.Sleep(10);
+                            //};
 
                             // Invoke the connected handler
                             OnConnected(channel);
@@ -127,7 +127,7 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
                     continue;
                 }
 
-                Thread.Sleep(100);
+                Thread.Sleep(1);
             }
         }
     }

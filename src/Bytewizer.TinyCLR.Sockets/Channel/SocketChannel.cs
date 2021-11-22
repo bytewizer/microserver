@@ -98,12 +98,18 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
         }
 
         /// <summary>
+        /// Determine whether the socket channel is connected.
+        /// </summary>
+        public bool Connected
+        {
+            get { return !(Client.Poll(1000, SelectMode.SelectRead) && (Client.Available == 0)); }
+        }
+
+
+        /// <summary>
         /// Determine whether the socket channel is cleared.
         /// </summary>
-        public bool IsCleared()
-        {
-            return _cleared;
-        }
+        public bool Cleared { get { return _cleared; } }
 
         /// <summary>
         /// Closes and clears the connected socket channel.

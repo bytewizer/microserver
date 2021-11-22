@@ -1,4 +1,7 @@
-﻿namespace Bytewizer.TinyCLR.Ftp
+﻿using System;
+using System.Text;
+
+namespace Bytewizer.TinyCLR.Ftp
 {
     /// <summary>
     /// FTP command with argument.
@@ -10,9 +13,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="FtpCommand"/> class.
         /// </summary>
-        public FtpCommand()
-        {
-        }
+        public FtpCommand() { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FtpCommand"/> class.
@@ -21,8 +22,8 @@
         /// <param name="commandArgument">The command argument.</param>
         public FtpCommand(string commandName, string commandArgument)
         {
-            Name = commandName.Replace("\r\n", "");
-            Argument = commandArgument.Replace("\r\n", "") ?? string.Empty;
+            Name = commandName.Replace(Environment.NewLine, string.Empty).ToUpper();
+            Argument = commandArgument.Replace(Environment.NewLine, string.Empty) ?? string.Empty;
         }
 
         /// <summary>
@@ -40,15 +41,15 @@
         /// </summary>
         /// <param name="command">The command to split into name and arguments.</param>
         /// <returns>The created <see cref="FtpCommand"/>.</returns>
-        public static FtpCommand Parse(string command)
+        public static FtpCommand Parse(byte[] buffer, int offset, int count)
         {
+            var command = Encoding.UTF8.GetString(buffer, 0, count);
             var spaceIndex = command.IndexOfAny(_whiteSpaces);
             var commandName = spaceIndex == -1 ? command : command.Substring(0, spaceIndex);
             var commandArguments = spaceIndex == -1 ? string.Empty : command.Substring(spaceIndex + 1);
             return new FtpCommand(commandName, commandArguments);
         }
 
-        /// <inheritdoc/>
         public override string ToString()
         {
             var message =

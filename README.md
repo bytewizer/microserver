@@ -11,6 +11,7 @@ Microserver is a modular embedded server built for TinyCLR OS IoT devices.  Be s
 
 Build modular tcp/udp service with an extendable pipeline and SSL transport security.
 
+* <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.TcpClient">TCP Client Services</a>
 * <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Sockets">TCP/UDP Socket Server</a>
 * <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Sntp">Simple Network Time Protocol (SNTP) Server</a>
 
@@ -24,6 +25,7 @@ Create a modular web services including middleware, moduler routing, digest auth
 * <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Authentication">Authentication</a>
 * <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Cookies">Cookie Support</a>
 * <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.ResourceManager">Resource Manager Handling</a>
+* <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.PageBuilder">Html Response Builder</a>
 * <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.StaticFiles">Static File Handling</a>
 * <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.StaticFiles.Blazor">Blazor File Serving</a>  
 * <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.StaticFiles.Resource">Embedded Resource File Serving</a>

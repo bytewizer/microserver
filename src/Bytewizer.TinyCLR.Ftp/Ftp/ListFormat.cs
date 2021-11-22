@@ -1,6 +1,6 @@
 ﻿namespace Bytewizer.TinyCLR.Ftp
 {
-    enum ListFormat
+    public enum ListFormat
     {
         Unix,
         MsDos,
