@@ -38,13 +38,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Internal\Features\FtpAuthenticationFeature.cs" />
+    <Compile Include="Internal\Features\IFtpAuthenticationFeature.cs" />
     <Compile Include="Extensions\DiagnosticsLoggerExtensions.cs" />
     <Compile Include="Extensions\ChannelExtensions.cs" />
+    <Compile Include="Ftp\StructureType.cs" />
+    <Compile Include="Ftp\TransferMode.cs" />
     <Compile Include="Session\Commands\Help.cs" />
+    <Compile Include="Session\Commands\Stru.cs" />
     <Compile Include="Session\Commands\Noop.cs" />
     <Compile Include="Session\Commands\Pass.cs" />
     <Compile Include="Session\Commands\List.cs" />
     <Compile Include="Session\Commands\Dele.cs" />
+    <Compile Include="Session\Commands\Mode.cs" />
+    <Compile Include="Session\Commands\Mdmt.cs" />
     <Compile Include="Session\Commands\User.cs" />
     <Compile Include="Session\Commands\Stor.cs" />
     <Compile Include="Session\Commands\Retr.cs" />
@@ -66,7 +73,7 @@
     <Compile Include="Session\Commands\Syst.cs" />
     <Compile Include="Session\Commands\Quit.cs" />
     <Compile Include="Ftp\DataMode.cs" />
-    <Compile Include="Ftp\DataType.cs" />
+    <Compile Include="Ftp\TransferType.cs" />
     <Compile Include="Ftp\FtpCommand.cs" />
     <Compile Include="Ftp\FtpContext.cs" />
     <Compile Include="Ftp\FtpRequest.cs" />
@@ -99,6 +106,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bytewizer.TinyCLR.Identity.Abstractions\Bytewizer.TinyCLR.Identity.Abstractions.csproj">
+      <Project>{6FD1BF73-3383-4DA1-8F85-93D880DA9827}</Project>
+      <Name>Bytewizer.TinyCLR.Identity.Abstractions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bytewizer.TinyCLR.Sockets\Bytewizer.TinyCLR.Sockets.csproj">
       <Project>{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}</Project>
       <Name>Bytewizer.TinyCLR.Sockets</Name>

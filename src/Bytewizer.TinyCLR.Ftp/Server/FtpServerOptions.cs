@@ -18,6 +18,8 @@ namespace Bytewizer.TinyCLR.Ftp
             BannerMessage = $"TinyCLR FTP Server Ready [{version}]";
         }
 
+        public ListFormat ListFormat { get; set; } = ListFormat.Unix;
+
         /// <summary>
         /// Gets or sets the root directory path.
         /// </summary>
@@ -27,10 +29,5 @@ namespace Bytewizer.TinyCLR.Ftp
         /// Specifies the server banner message.
         /// </summary>
         public string BannerMessage { get; private set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether login is allowed by anonymous users.
-        /// </summary>
-        public bool AllowAnonymous { get; set; }
     }
 }

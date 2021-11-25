@@ -1,5 +1,6 @@
 ﻿using GHIElectronics.TinyCLR.Cryptography;
 using System;
+using System.Diagnostics;
 
 //using GHIElectronics.TinyCLR.Cryptography;
 
@@ -25,14 +26,17 @@ namespace Bytewizer.TinyCLR.Identity
         /// <returns>A hashed representation of the supplied <paramref name="password"/> for the specified <paramref name="user"/>.</returns>
         public byte[] HashPassword(IIdentityUser user, byte[] password)
         {
-            var sha256 = new HMACSHA256();
-            
-            var bytes = new byte[sha256.Key.Length + password.Length];
-            Array.Copy(sha256.Key, 0, bytes, 0, sha256.Key.Length);
-            Array.Copy(password, 0, bytes, sha256.Key.Length, password.Length);
+            Random rnd = new Random();
 
-            user.PasswordSalt = sha256.Key;
-            user.PasswordHash = sha256.ComputeHash(bytes);
+            var key  = new byte[32];
+            rnd.NextBytes(key);
+            
+            var bytes = new byte[key.Length + password.Length];
+            Array.Copy(key, 0, bytes, 0, key.Length);
+            Array.Copy(password, 0, bytes, key.Length, password.Length);
+
+            user.PasswordSalt = bytes;
+            user.PasswordHash = new HMACSHA256(bytes).ComputeHash(password);
 
             return user.PasswordHash;
         }

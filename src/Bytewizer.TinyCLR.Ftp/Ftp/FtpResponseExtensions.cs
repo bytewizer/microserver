@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Text;
 
 namespace Bytewizer.TinyCLR.Ftp
@@ -26,7 +27,7 @@ namespace Bytewizer.TinyCLR.Ftp
             response.Message = sb.ToString();
         }
 
-        public static void Write(this FtpResponse response, int code, string start, string[] lines, string end)
+        public static void Write(this FtpResponse response, int code, string start, ArrayList lines, string end)
         {
             VerifyCode(code);
 

@@ -12,25 +12,41 @@
         {
             Command = new FtpCommand();
             DataMode = DataMode.None;
-            DataType = DataType.Image;
+            TransferMode = TransferMode.Stream;
+            TransferType = TransferType.Image;
+            StructureType = StructureType.File;
             ListFormat = ListFormat.Unix;
         }
 
         /// <summary>
         /// Gets the FTP command to be executed.
         /// </summary>
-        public FtpCommand Command { get; set; }
+        public FtpCommand Command { get; internal set; }
 
-        public DataMode DataMode { get; set; }
+        public DataMode DataMode { get; internal set; }
 
-        public DataType DataType { get; set; }
+        public TransferMode TransferMode { get; internal set; }      
 
-        public ListFormat ListFormat { get; set; }
+        public TransferType TransferType { get; internal set; }
+
+        public StructureType StructureType { get; internal set; }
+
+        public ListFormat ListFormat { get; internal set; }
+
+        /// <summary>
+        /// Gets or sets the user name for this user.
+        /// </summary>
+        public string Name { get; internal set; }
 
         /// <summary>
         /// Gets a value indicating whether the request has been authenticated.
         /// </summary>
         public bool IsAuthenticated { get; internal set; }
+
+        /// <summary>
+        /// Gets the command argument in upper case.
+        /// </summary>
+        public string Argument { get => Command?.Argument.ToUpper(); }
 
         /// <summary>
         /// Clears the <see cref="FtpResponse"/> object.
@@ -39,8 +55,11 @@
         {
             Command.Clear();
             DataMode = DataMode.None;
-            DataType = DataType.Image;
+            TransferMode = TransferMode.Stream;
+            TransferType = TransferType.Image;
+            StructureType = StructureType.File;
             ListFormat = ListFormat.Unix;
+            Name = string.Empty;
             IsAuthenticated = false;
         }
     }

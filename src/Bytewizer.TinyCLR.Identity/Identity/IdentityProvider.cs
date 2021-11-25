@@ -6,24 +6,24 @@ namespace Bytewizer.TinyCLR.Identity
     /// <summary>
     /// Provides the APIs for managing user in a persistence store.
     /// </summary>
-    public class UserManager : IDisposable
+    public class IdentityProvider : IIdentityProvider
     {
-        private UserStore _userStore;
-        private RoleStore _roleStore;
+        private readonly UserStore _userStore;
+        private readonly RoleStore _roleStore;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="UserManager"/> class.
+        /// Initializes a new instance of the <see cref="IdentityProvider"/> class.
         /// </summary>
-        public UserManager()
+        public IdentityProvider()
             : this(new PasswordHasher())
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="UserManager"/> class.
+        /// Initializes a new instance of the <see cref="IdentityProvider"/> class.
         /// </summary>
         /// <param name="passwordHasher">The password hashing implementation to use when saving passwords.</param>
-        public UserManager(IPasswordHasher passwordHasher)
+        public IdentityProvider(IPasswordHasher passwordHasher)
         {
             PasswordHasher = passwordHasher;
 
@@ -75,7 +75,7 @@ namespace Bytewizer.TinyCLR.Identity
             {
                 errors.AddRange(passwordResults.Errors);
             }     
-            var updateResults  = UpdatePasswordHash(user, password, true);
+            var updateResults  = UpdatePasswordHash(user, password, false);
             if (!updateResults.Succeeded)
             {
                 errors.AddRange(updateResults.Errors);
@@ -367,7 +367,7 @@ namespace Bytewizer.TinyCLR.Identity
         /// </summary>
         /// <param name="user">The user whose password should be verified.</param>
         /// <param name="password">The password to verify.</param>
-        protected virtual IdentityResult VerifyPassword(IIdentityUser user, byte[] password)
+        public virtual IdentityResult VerifyPassword(IIdentityUser user, byte[] password)
         {
             var hash =  _userStore.GetPasswordHash(user);
             if (hash == null)
@@ -450,40 +450,6 @@ namespace Bytewizer.TinyCLR.Identity
                 return IdentityResult.Failed(errors);
             }
             return IdentityResult.Success;
-        }
-
-        /// <summary>
-        /// Frees resources used by the <see cref="UserManager"/> class.
-        /// </summary>
-        ~UserManager()
-        {
-            {
-                Dispose(false);
-            }
-        }
-
-        /// <summary>
-        /// Releases all resources used by the user manager.
-        /// </summary>
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        /// <summary>
-        /// Releases the unmanaged resources used by the <see cref="UserManager"/> and optionally releases the managed resources.
-        /// </summary>
-        /// <param name="disposing">Set to <c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                PasswordHasher = null;
-
-                _userStore = null;
-                _roleStore = null;
-            }
         }
     }
 }

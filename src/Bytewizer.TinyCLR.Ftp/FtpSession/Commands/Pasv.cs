@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Threading;
 
 namespace Bytewizer.TinyCLR.Ftp
 {
@@ -6,14 +7,12 @@ namespace Bytewizer.TinyCLR.Ftp
     {
         private void Pasv()
         {
-            var localEP = _context.Connection.LocalIpAddress;
-            var ipBytes = localEP.GetAddressBytes();
+            var localEndpoint = _context.Connection.LocalIpAddress;
+            var ipBytes = localEndpoint.GetAddressBytes();
 
-            //_listener.Start();
+            var port = _listener.ActivePort;
 
-            var port = ((IPEndPoint)_listenSocket.LocalEndPoint).Port;
-
-            var passiveEP =
+            var passiveEndpoint =
                 string.Format(
                     "{0},{1},{2},{3},{4},{5}",
                     ipBytes[0],
@@ -24,8 +23,7 @@ namespace Bytewizer.TinyCLR.Ftp
                     (port & 0x00FF));
 
             _context.Request.DataMode = DataMode.Passive;
-            _context.Channel.Write(227, $"Entering passive mode ({passiveEP})");
+            _context.Response.Write(227, $"Entering passive mode ({passiveEndpoint}).");
         }
-
     }
 }

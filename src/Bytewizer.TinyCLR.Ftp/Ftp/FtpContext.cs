@@ -47,11 +47,6 @@ namespace Bytewizer.TinyCLR.Ftp
         public ConnectionInfo Connection => Channel?.Connection;
 
         /// <summary>
-        /// Gets the command argument.
-        /// </summary>
-        public string Argument { get => Request?.Command?.Argument; }
-
-        /// <summary>
         /// Aborts the connection underlying this request.
         /// </summary>
         public void Abort()

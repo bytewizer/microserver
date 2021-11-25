@@ -46,9 +46,21 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Ftp.Authentication\Bytewizer.TinyCLR.Ftp.Authentication.csproj">
+      <Project>{372012BB-CAA0-4FEF-9EF4-2F5560E582EA}</Project>
+      <Name>Bytewizer.TinyCLR.Ftp.Authentication</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Ftp\Bytewizer.TinyCLR.Ftp.csproj">
       <Project>{A3819878-1D41-4369-A436-D36181AACEF3}</Project>
       <Name>Bytewizer.TinyCLR.Ftp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Identity.Abstractions\Bytewizer.TinyCLR.Identity.Abstractions.csproj">
+      <Project>{6FD1BF73-3383-4DA1-8F85-93D880DA9827}</Project>
+      <Name>Bytewizer.TinyCLR.Identity.Abstractions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Identity\Bytewizer.TinyCLR.Identity.csproj">
+      <Project>{6FD1BF73-3383-4DA1-8F85-94D880DA9827}</Project>
+      <Name>Bytewizer.TinyCLR.Identity</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Sockets\Bytewizer.TinyCLR.Sockets.csproj">
       <Project>{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}</Project>

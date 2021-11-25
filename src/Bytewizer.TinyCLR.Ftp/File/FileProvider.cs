@@ -214,6 +214,19 @@ namespace Bytewizer.TinyCLR.Ftp
             return string.Empty;
         }
 
+        public string GetLastWriteTime(string path)
+        {
+            string localPath = GetLocalPath(path);
+
+            if (File.Exists(localPath))
+            {
+                var fileInfo = new FileInfo(localPath);
+                return fileInfo.LastWriteTime.ToString("yyyyMMddHHmmss.fff");
+            }
+
+            return string.Empty;
+        }
+
         /// <summary>
         /// Gets the names of files and directories.
         /// </summary>
@@ -229,7 +242,7 @@ namespace Bytewizer.TinyCLR.Ftp
         private string GetLocalPath(string path)
         {
             //Debug.WriteLine($"PATH: {path}");
-            
+
             if (string.IsNullOrEmpty(path))
             {
                 return _baseDirectory;
@@ -242,29 +255,15 @@ namespace Bytewizer.TinyCLR.Ftp
             }
             else
             {
-                basePath = _localDirectory; 
+                basePath = _localDirectory;
             }
 
             var localPath = Path.Combine(basePath, path.Replace("/", "\\"));
 
-           // Debug.WriteLine($"LOCAL PATH: {localPath}");
+            // Debug.WriteLine($"LOCAL PATH: {localPath}");
 
             return localPath;
-
-            //if (Path.DirectorySeparatorChar != '/')
-            //{
-            //    char[] cArray = virtualPath.ToCharArray();
-
-            //    for (int i = 0; i < cArray.Length; i++)
-            //    {
-            //        if (cArray[i] == '/')
-            //        {
-            //            cArray[i] = Path.DirectorySeparatorChar;
-            //        }
-            //    }
-
-            //    virtualPath = new string(cArray);
-            }
+        }
 
         private string GetFtpPath(string localPath)
         {
@@ -306,3 +305,42 @@ namespace Bytewizer.TinyCLR.Ftp
 //{
 //    ftpPath = "/";
 //}
+
+
+
+// //Debug.WriteLine($"PATH: {path}");
+
+// if (string.IsNullOrEmpty(path))
+// {
+//     return _baseDirectory;
+// }
+
+// string basePath;
+// if (path.StartsWith("/"))
+// {
+//     basePath = _baseDirectory;
+// }
+// else
+// {
+//     basePath = _localDirectory; 
+// }
+
+// var localPath = Path.Combine(basePath, path.Replace("/", "\\"));
+
+//// Debug.WriteLine($"LOCAL PATH: {localPath}");
+
+// return localPath;
+
+//if (Path.DirectorySeparatorChar != '/')
+//{
+//    char[] cArray = virtualPath.ToCharArray();
+
+//    for (int i = 0; i < cArray.Length; i++)
+//    {
+//        if (cArray[i] == '/')
+//        {
+//            cArray[i] = Path.DirectorySeparatorChar;
+//        }
+//    }
+
+//    virtualPath = new string(cArray);

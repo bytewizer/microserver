@@ -43,6 +43,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Identity"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.WebSockets", "Bytewizer.TinyCLR.Http.WebSocket\Bytewizer.TinyCLR.Http.WebSockets.csproj", "{968603C1-8EA5-4E4B-B5BE-4943CEFFB04E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Ftp.Authentication", "Bytewizer.TinyCLR.Ftp.Authentication\Bytewizer.TinyCLR.Ftp.Authentication.csproj", "{A94E7792-6C79-44CD-ADC6-635521472E9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Identity.Abstractions", "Bytewizer.TinyCLR.Identity.Abstractions\Bytewizer.TinyCLR.Identity.Abstractions.csproj", "{6FD1BF73-3383-4DA1-8F85-93D880DA9827}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -129,6 +133,14 @@ Global
 		{968603C1-8EA5-4E4B-B5BE-4943CEFFB04E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{968603C1-8EA5-4E4B-B5BE-4943CEFFB04E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{968603C1-8EA5-4E4B-B5BE-4943CEFFB04E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A94E7792-6C79-44CD-ADC6-635521472E9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A94E7792-6C79-44CD-ADC6-635521472E9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A94E7792-6C79-44CD-ADC6-635521472E9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A94E7792-6C79-44CD-ADC6-635521472E9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FD1BF73-3383-4DA1-8F85-93D880DA9827}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FD1BF73-3383-4DA1-8F85-93D880DA9827}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FD1BF73-3383-4DA1-8F85-93D880DA9827}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FD1BF73-3383-4DA1-8F85-93D880DA9827}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

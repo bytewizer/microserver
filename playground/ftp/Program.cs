@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Diagnostics;
-using System.Text;
-using System.Threading;
+﻿using System.Text;
 
 using Bytewizer.TinyCLR.Ftp;
+using Bytewizer.TinyCLR.Identity;
 using Bytewizer.TinyCLR.Logging;
 using Bytewizer.TinyCLR.Logging.Debug;
 
@@ -19,11 +16,23 @@ namespace Bytewizer.Playground.Ftp
             StorageProvider.Initialize();
             NetworkProvider.InitializeEthernet();
 
-            _loggerFactory.AddDebug(LogLevel.Debug);
+            _loggerFactory.AddDebug(LogLevel.Trace);
+
+            var user = new IdentityUser("trice");
+            var password = Encoding.UTF8.GetBytes("naidar");
+            var identityProvider = new IdentityProvider();
+            identityProvider.Create(user, password);
 
             var server = new FtpServer(_loggerFactory, options =>
             {
-                options.AllowAnonymous = true;
+                options.Pipeline(app =>
+                {
+                    app.UseAuthentication(new AuthenticationOptions
+                    {
+                        IdentityProvider = identityProvider         
+                    }
+                );
+                });
             });
             server.Start();
         }

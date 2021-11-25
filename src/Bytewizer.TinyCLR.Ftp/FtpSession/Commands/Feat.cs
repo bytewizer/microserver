@@ -16,18 +16,18 @@ namespace Bytewizer.TinyCLR.Ftp
             StringBuilder sb = new StringBuilder();
 
             sb.AppendLine("211-Extensions supported:");
-            sb.AppendLine(" AUTH TLS;TLS-C");
-            sb.AppendLine(" MDTM");
-            sb.AppendLine(" MLST type*;size*;modify*;create*;");
+            //sb.AppendLine(" AUTH TLS;TLS-C");
+            //sb.AppendLine(" MLST type*;size*;modify*;create*;");
+            //sb.AppendLine(" PBSZ");
+            //sb.AppendLine(" PROT C;P;");
+            //sb.AppendLine(" Rest Stream");
+            sb.AppendLine(" UTF8");
             sb.AppendLine(" PASV");
-            sb.AppendLine(" PBSZ");
-            sb.AppendLine(" PROT C;P;");
-            sb.AppendLine(" Rest Stream");
+            sb.AppendLine(" MDTM");
             sb.AppendLine(" SIZE");
             sb.AppendLine("211 End");
 
             _context.Response.Write(sb.ToString());
-
         }
     }
 }

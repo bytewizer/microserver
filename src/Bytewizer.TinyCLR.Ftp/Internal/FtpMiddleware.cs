@@ -9,7 +9,6 @@ namespace Bytewizer.TinyCLR.Ftp
         private readonly FileProvider _fileProvider;
         private readonly FtpServerOptions _ftpOptions;
 
-
         public FtpMiddleware(ILogger logger, FtpServerOptions options)
         {
             _logger = logger;
@@ -31,6 +30,8 @@ namespace Bytewizer.TinyCLR.Ftp
 
                 return;
             }
+
+            next(context);
 
             _ = new FtpSession(_logger, context, _fileProvider, _ftpOptions);
         }

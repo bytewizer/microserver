@@ -4,7 +4,7 @@
     {
         private void Noop()
         {
-            _context.Response.Write(200, "200 NOOP command successfull.");
+            _context.Response.Write(200, "NOOP command successfull.");
         }
     }
 }

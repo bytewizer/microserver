@@ -1,8 +1,10 @@
 ﻿namespace Bytewizer.TinyCLR.Ftp
 {
-    public enum DataType
+    public enum TransferType
     {
         Ascii,
         Image,
+        Ebcdic,
+        Local
     }
 }

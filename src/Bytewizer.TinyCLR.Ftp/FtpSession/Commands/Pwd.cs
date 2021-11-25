@@ -1,4 +1,6 @@
-﻿namespace Bytewizer.TinyCLR.Ftp
+﻿using Bytewizer.TinyCLR.Ftp.Features;
+
+namespace Bytewizer.TinyCLR.Ftp
 {
     internal partial class FtpSession
     {

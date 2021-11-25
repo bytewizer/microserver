@@ -105,7 +105,7 @@ namespace Bytewizer.TinyCLR.Ftp
                 catch (Exception ex)
                 {
                     var message = ex.Message.Replace("\r", " ").Replace("\n", "");
-                    context.Response.Write(451, $"Exception thrown, message: {message}.");
+                    context.Channel.Write(451, $"Exception thrown, message: {message}.");
                 }
 
                 _logger.RemoteClosed(channel);

@@ -4,7 +4,7 @@
     {
         private void Opts()
         {  
-            switch (_context.Request.Command.Argument)
+            switch (_context.Request.Command.Argument.ToUpper())
             {
                 case "UTF8 ON":
                     _context.Response.Write(200, "UTF-8 is on.");

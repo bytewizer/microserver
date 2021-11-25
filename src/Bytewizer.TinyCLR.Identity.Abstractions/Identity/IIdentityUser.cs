@@ -1,7 +1,7 @@
 ﻿namespace Bytewizer.TinyCLR.Identity
 {
     /// <summary>
-    /// Represents the default implementation of the <see cref="IdentityUser"/> interface.
+    /// Represents the default implementation of the <see cref="IIdentityUser"/> interface.
     /// </summary>
     public interface IIdentityUser
     {

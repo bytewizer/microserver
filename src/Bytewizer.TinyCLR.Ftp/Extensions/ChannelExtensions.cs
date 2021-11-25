@@ -12,7 +12,10 @@ namespace Bytewizer.TinyCLR.Ftp
     {
         public static void Write(this SocketChannel channel, int code, string message)
         {
-            VerifyCode(code);
+            if (code < 100 || code > 999)
+            {
+                throw new ArgumentException("Protocol violation no such status code.");
+            }
 
             StringBuilder sb = new StringBuilder(6 + message.Length);
 
@@ -21,14 +24,6 @@ namespace Bytewizer.TinyCLR.Ftp
             sb.AppendLine(message);
 
             channel.Write(sb.ToString());
-        }
-
-        private static void VerifyCode(int code)
-        {
-            if (code < 100 || code > 999)
-            {
-                throw new ArgumentException("Protocol violation no such status code.");
-            }
         }
     }
 }

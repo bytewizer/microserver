@@ -3,7 +3,7 @@
 namespace Bytewizer.TinyCLR.Identity
 {
     /// <summary>
-    /// Represents the default implementation of the <see cref="IdentityRole"/> interface.
+    /// Represents the default implementation of the <see cref="IIdentityRole"/> interface.
     /// </summary>
     public interface IIdentityRole
     {

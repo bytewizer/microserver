@@ -2,17 +2,17 @@
 {
     internal partial class FtpSession
     {
-        private void Size()
+        private void Mdmt()
         {
             var argument = _context.Request.Command.Argument;
             var remotePath = $"{_fileProvider.GetWorkingDirectory()}/{_context.Request.Command.Argument}";
 
             try
             {
-                var size = _fileProvider.GetFileSize(argument);
-                if (string.IsNullOrEmpty(size))
+                var time = _fileProvider.GetLastWriteTime(argument);
+                if (!string.IsNullOrEmpty(time))
                 {
-                    _context.Response.Write(213, size);
+                    _context.Response.Write(213, time);
                 }
                 else
                 {
@@ -21,7 +21,7 @@
             }
             catch
             {
-                _context.Response.Write(550, $"SIZE command failed.");
+                _context.Response.Write(550, $"MDMT command failed.");
             }
         }
     }

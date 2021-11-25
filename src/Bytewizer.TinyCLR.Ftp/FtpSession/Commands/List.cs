@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Net.Sockets;
 
 namespace Bytewizer.TinyCLR.Ftp
@@ -18,9 +19,12 @@ namespace Bytewizer.TinyCLR.Ftp
 
                     while (enumerator.MoveNext())
                     {
-                        DirectoryInfo d = new DirectoryInfo((string)enumerator.Current);
-                        string date = d.LastWriteTime.ToString("MMM dd HH:mm");
-                        string line = "drwxr-xr-x    2 2003     2003     4096     " + date + " " + d.Name;
+                        DirectoryInfo directory = new DirectoryInfo((string)enumerator.Current);
+                        string date = directory.LastWriteTime < DateTime.Now - TimeSpan.FromDays(180) 
+                            ? directory.LastWriteTime.ToString("MMM dd  yyyy") 
+                            : directory.LastWriteTime.ToString("MMM dd HH:mm");
+
+                        string line = "drwxr-xr-x    2 2003     2003     4096     " + date + " " + directory.Name;
                         sw.WriteLine(line);
                         sw.Flush();
                     }
@@ -29,9 +33,12 @@ namespace Bytewizer.TinyCLR.Ftp
 
                     while (enumerator.MoveNext())
                     {
-                        FileInfo f = new FileInfo((string)enumerator.Current);
-                        string date = f.LastWriteTime.ToString("MMM dd HH:mm");
-                        string line = "-rw-r--r--    2 2003     2003     " + f.Length + " " + date + "  " + f.Name;
+                        FileInfo file = new FileInfo((string)enumerator.Current);
+                        string date = file.LastWriteTime < DateTime.Now - TimeSpan.FromDays(180) 
+                            ? file.LastWriteTime.ToString("MMM dd  yyyy") 
+                            : file.LastWriteTime.ToString("MMM dd HH:mm");
+                        
+                        string line = "-rw-r--r--    2 2003     2003     " + file.Length + " " + date + "  " + file.Name;
                         sw.WriteLine(line);
                         sw.Flush();
                     }
