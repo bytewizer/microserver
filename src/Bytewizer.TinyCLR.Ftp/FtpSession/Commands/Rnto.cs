@@ -17,6 +17,7 @@ namespace Bytewizer.TinyCLR.Ftp
             try
             {
                 _fileProvider.Rename(fromPath, toPath);
+                fromPath = null;
                 _context.Response.Write(250, $"Rename succeeded.");
 
             }

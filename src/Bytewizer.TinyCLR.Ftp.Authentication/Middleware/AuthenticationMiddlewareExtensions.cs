@@ -14,7 +14,7 @@ namespace Bytewizer.TinyCLR.Ftp
         /// Enable authentication capabilities.
         /// </summary>
         /// <param name="builder">The <see cref="IApplicationBuilder"/> instance this method extends.</param>
-        /// <param name="accountService">The <see cref="IAccountProvider"/> used to configure the middleware.</param>
+        /// <param name="idenityProvider">The <see cref="IIdentityProvider"/> used to configure the middleware.</param>
         public static IApplicationBuilder UseAuthentication(this IApplicationBuilder builder, IIdentityProvider idenityProvider)
         {
             var options = new AuthenticationOptions()

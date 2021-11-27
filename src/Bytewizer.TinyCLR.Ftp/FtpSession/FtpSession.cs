@@ -5,11 +5,8 @@ using System.Threading;
 
 using Bytewizer.TinyCLR.Logging;
 using Bytewizer.TinyCLR.Sockets;
-using Bytewizer.TinyCLR.Identity;
 using Bytewizer.TinyCLR.Sockets.Channel;
 using Bytewizer.TinyCLR.Sockets.Listener;
-using Bytewizer.TinyCLR.Ftp.Features;
-using System.Text;
 
 namespace Bytewizer.TinyCLR.Ftp
 {
@@ -42,19 +39,18 @@ namespace Bytewizer.TinyCLR.Ftp
             // Set root and user path option
             _fileProvider.SetWorkingDirectory(_ftpOptions.RootPath);
 
-            // Set list format option
-            _context.Request.ListFormat = _ftpOptions.ListFormat;
-
             // Write ready message to channel output stream
             _context.Channel.Write(220, _ftpOptions.BannerMessage);
 
             // Process command loop
             byte[] buffer = new byte[1024];
-            while (_context.Channel.Connected)
+            
+            while (_context.Active || _context.Channel.Connected)
             {
                 var bytes = _context.Channel.InputStream.Read(buffer, 0, buffer.Length);
                 if (bytes > 0)
                 {
+                    // parse input commands
                     _context.Request.Command = FtpCommand.Parse(buffer, 0, bytes);
 
                     // log request command
@@ -109,258 +105,168 @@ namespace Bytewizer.TinyCLR.Ftp
         {
             switch (_context.Request.Command.Name)
             {
-                
-                case "USER":
-                    User();
-                    break;
-
-                case "PASS":
-                    Pass();
-                    break;
-
-                case "QUIT":
-                    Quit();
-                    break;
-
                 case "HELP":
                     Help();
-                    break;
+                    return;
 
                 case "NOOP":
                     Noop();
-                    break;
-                
-                case "RNFR":
-                    Authorized(() =>
-                    {
-                        Rnfr();
-                    });
-                    break;
+                    return;
 
-                case "RNTO":
-                    Authorized(() =>
-                    {
-                        Rnto();
-                    });
-                    break;
+                case "PASS":
+                    Pass();
+                    return;
 
-                case "DELE":
-                    Authorized(() =>
-                    {
-                        Dele();
-                    });
-                    break;
+                case "QUIT":
+                    Quit();
+                    return;
 
-                case "XRMD":
-                case "RMD":
-                    Authorized(() =>
-                    {
-                        Rmd();
-                    });
-                    break;
-
-                case "XMKD":
-                case "MKD":
-                    Authorized(() =>
-                    {
-                        Mkd();
-                    });
-                    break;
-
-                case "XPWD":
-                case "PWD":
-                    Authorized(() =>
-                    {
-                        Pwd();
-                    });
-                    break;
-
-                case "SYST":
-                    Authorized(() =>
-                    {
-                        Syst();
-                    });
-                    break;
-
-                case "PORT":
-                    Authorized(() =>
-                    {
-                        Port();
-                    });
-                    break;
-
-                case "PASV":
-                    Authorized(() =>
-                    {
-                        Pasv();
-                    });
-                    break;
-
-                case "TYPE":
-                    Authorized(() =>
-                    {
-                        Type();
-                    });
-                    break;
-
-                case "MODE":
-                    Authorized(() =>
-                    {
-                        Mode();
-                    });
-                    break;
-
-                case "RETR":
-                    Authorized(() =>
-                    {
-                        Retr();
-                    });
-                    break;
-
-                case "STOR":
-                    Authorized(() =>
-                    {
-                        Stor();
-                    });
-                    break;
-
-                case "XCWD":
-                case "CWD":
-                    Authorized(() =>
-                    {
-                        Cwd();
-                    });
-                    break;
-
-                case "CDUP":
-                    Authorized(() =>
-                    {
-                        Cdup();
-                    });
-                    break;
-
-                case "NLST":
-                    Authorized(() =>
-                    {
-                        CommandNotImplemented();
-                    });
-                    break;
-
-                case "LIST":
-                    Authorized(() =>
-                    {
-                        List();
-                    });
-                    break;
-
-                case "STRU":
-                    Authorized(() =>
-                    {
-                        Stru();
-                    });
-                    break;
-
-                case "PROT":
-                    Authorized(() =>
-                    {
-                        CommandNotImplemented();
-                    });
-                    break;
-
-                case "AUTH": // Extensions defined by rfc 2228
-                    CommandNotImplemented();
-                    break;
-
-                case "MDMT": // Extensions defined by rfc 3659
-                    Authorized(() =>
-                    {
-                        Mdmt();
-                    });
-                    break;
-
-                case "SIZE": // Extensions defined by rfc 3659
-                    Authorized(() =>
-                    {
-                        Size();
-                    });
-                    break;
-
-                case "FEAT": // Extensions defined by rfc 2389
-                    Authorized(() =>
-                    {
-                        Feat();
-                    });
-                    break;
-
-                case "OPTS": // Extensions defined by rfc 2640
-                    Authorized(() =>
-                    {
-                        Opts();
-                    });
-                    break;
-
-                case "EPRT": // Extensions defined by rfc 2428
-                    Authorized(() =>
-                    {
-                        Eprt();
-                    });
-                    break;
-
-                case "EPSV": // Extensions defined by rfc 2428
-                    Authorized(() =>
-                    {
-                        Epsv();
-                    });
-                    break;
-
-                //TODO: Should they be added?
-
-                case "ALLO":
-                    CommandNotImplemented();
-                    break;
-
-                case "ACCT":
-                    CommandNotImplemented();
-                    break;
-
-                case "REIN":
-                    CommandNotImplemented();
-                    break;
-
-                case "APPE":
-                    CommandNotImplemented();
-                    break;
-
-                case "REST":
-                    CommandNotImplemented();
-                    break;
-
-                case "ABOR":
-                    CommandNotImplemented();
-                    break;
-
-                default:
-                    CommandNotImplemented();
-                    break;
+                case "USER":
+                    User();
+                    return;
             }
-        }
 
-        private void Authorized(Action action)
-        {
-            if (_context.Request.IsAuthenticated)
+            if(_context.Request.Authenticated)
             {
-                action();
+                switch (_context.Request.Command.Name)
+                {
+                    case "APPE":
+                        Appe();
+                        return;
+
+                    case "AUTH":
+                        Auth();
+                        return;
+
+                    case "CDUP":
+                        Cdup();
+                        return;
+
+                    case "CWD":
+                    case "XCWD":
+                        Cwd();
+                        return;
+
+                    case "DELE":
+                        Dele();
+                        return;
+
+                    case "EPRT":
+                        Eprt();
+                        return;
+
+                    case "EPSV":
+                        Epsv();
+                        return;
+
+                    case "FEAT":
+                        Feat();
+                        return;
+
+                    case "LIST":
+                        List();
+                        return;
+
+                    case "MDTM":
+                        Mdtm();
+                        return;
+
+                    case "MKD":
+                    case "XMKD":
+                        Mkd();
+                        return;
+
+                    case "MLSD":
+                        Mlsd();
+                        return;
+
+                    case "MLST":
+                        Mlst();
+                        return;
+
+                    case "MODE":
+                        Mode();
+                        return;
+
+                    case "NLST":
+                        Nlst();
+                        return;
+
+                    case "OPTS":
+                        Opts();
+                        return;
+
+                    case "PASV":
+                        Pasv();
+                        return;
+
+                    case "PBSZ":
+                        Pbsz();
+                        return;
+
+                    case "PORT":
+                        Port();
+                        return;
+
+                    case "PROT":
+                        Prot();
+                        return;
+
+                    case "PWD":
+                    case "XPWD":
+                        Pwd();
+                        return;
+
+                    case "RETR":
+                        Retr();
+                        return;
+
+                    case "RMD":
+                    case "XRMD":
+                        Rmd();
+                        return;
+
+                    case "RNFR":
+                        Rnfr();
+                        return;
+
+                    case "RNTO":
+                        Rnto();
+                        return;
+
+                    case "SIZE":
+                        Size();
+                        return;
+
+                    case "STOR":
+                        Stor();
+                        return;
+
+                    case "STRU":
+                        Stru();
+                        return;
+
+                    case "SYST":
+                        Syst();
+                        return;
+
+                    case "TYPE":
+                        Type();
+                        return;
+                }
             }
             else
             {
                 _context.Response.Write(530, "Please login with USER and PASS.");
+                return;
             }
+
+            CommandNotImplemented();
         }
 
         private NetworkStream GetNetworkStream()
         {
-            if (_context.Request.DataMode == DataMode.Active
-                || _context.Request.DataMode == DataMode.ExtendedActive)
+            if (_context.Request.DataMode == DataMode.Active)
             {
                 var client = new TcpClient();
                 client.NoDelay = true;
@@ -401,6 +307,11 @@ namespace Bytewizer.TinyCLR.Ftp
         private void ParameterNotRecognized()
         {
             _context.Response.Write(501, "Parameter not recognized.");
+        }
+
+        private void BadSequenceOfCommands()
+        {
+            _context.Response.Write(503, "Bad sequence of commands.");
         }
     }
 }

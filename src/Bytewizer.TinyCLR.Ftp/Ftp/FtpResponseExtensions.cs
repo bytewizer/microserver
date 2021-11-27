@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Text;
 
+using Bytewizer.TinyCLR.Sockets.Channel;
+
 namespace Bytewizer.TinyCLR.Ftp
 {
     /// <summary>
@@ -9,12 +11,52 @@ namespace Bytewizer.TinyCLR.Ftp
     /// </summary>
     public static class FtpResponseExtensions
     {
+        /// <summary>
+        /// Writes the given control message to the response.
+        /// </summary>
+        /// <param name="response">The <see cref="FtpResponse"/>.</param>
+        /// <param name="message">The control message to write to the response.</param>
         public static void Write(this FtpResponse response, string message)
         {
             response.Message = message;
         }
 
+        /// <summary>
+        /// Writes the given control message to the response.
+        /// </summary>
+        /// <param name="response">The <see cref="FtpResponse"/>.</param>
+        /// <param name="code">The control message response code to write to the response.</param>
+        /// <param name="message">The control message to write to the response.</param>
         public static void Write(this FtpResponse response, int code, string message)
+        {
+            response.Message = WriteResponse(code, message);
+        }
+
+        /// <summary>
+        /// Writes the given multi-line control message to the response.
+        /// </summary>
+        /// <param name="response">The <see cref="FtpResponse"/>.</param>
+        /// <param name="code">The control message response code to write to the response.</param>
+        /// <param name="start">The start control message to write to the response.</param>
+        /// <param name="lines">The control message lines to write to the response.</param>
+        /// <param name="end">The end control message to write to the response.</param>
+        public static void Write(this FtpResponse response, int code, string start, ArrayList lines, string end)
+        {
+            response.Message = WriteResponse(code, start, lines, end);
+        }
+
+        /// <summary>
+        /// Writes the given control message directly to the channel.
+        /// </summary>
+        /// <param name="channel">The <see cref="SocketChannel"/>.</param>
+        /// <param name="code">The control message response code to write to the response.</param>
+        /// <param name="message">The control message to write to the response.</param>
+        public static void Write(this SocketChannel channel, int code, string message)
+        {
+            channel.Write(WriteResponse(code, message));
+        }
+
+        private static string WriteResponse(int code, string message)
         {
             VerifyCode(code);
 
@@ -24,10 +66,10 @@ namespace Bytewizer.TinyCLR.Ftp
             sb.Append(" ");
             sb.AppendLine(message);
 
-            response.Message = sb.ToString();
+            return sb.ToString();
         }
 
-        public static void Write(this FtpResponse response, int code, string start, ArrayList lines, string end)
+        private static string WriteResponse(int code, string start, ArrayList lines, string end)
         {
             VerifyCode(code);
 
@@ -40,7 +82,7 @@ namespace Bytewizer.TinyCLR.Ftp
             }
             sb.AppendLine($"{code} {end}");
 
-            response.Message = sb.ToString();
+            return sb.ToString();
         }
 
         private static void VerifyCode(int code)

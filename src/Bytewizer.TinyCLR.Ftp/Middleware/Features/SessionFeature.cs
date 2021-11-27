@@ -1,6 +1,4 @@
-﻿using System.Net;
-
-namespace Bytewizer.TinyCLR.Ftp.Features
+﻿namespace Bytewizer.TinyCLR.Ftp.Features
 {
     /// <summary>
     /// Represents the <see cref="ISessionFeature"/> feature.
@@ -8,5 +6,8 @@ namespace Bytewizer.TinyCLR.Ftp.Features
     internal class SessionFeature : ISessionFeature
     {
         public string FromPath { get; set; }
+        public int TlsBlockSize { get; set; }
+        public string TlsProt { get; set; }
+        public int RestMarker { get; set; }
     }
 }

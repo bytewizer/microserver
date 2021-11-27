@@ -1,13 +1,11 @@
 ﻿using System.IO;
 using System.Net.Sockets;
 
-using Bytewizer.TinyCLR.Ftp.Features;
-
 namespace Bytewizer.TinyCLR.Ftp
 {
     internal partial class FtpSession
     {
-        private void Stor()
+        private void Appe()
         {
             if (_context.Request.DataMode == DataMode.None)
             {
@@ -17,9 +15,6 @@ namespace Bytewizer.TinyCLR.Ftp
 
             var path = _context.Request.Command.Argument;
 
-            var feature = (SessionFeature)_context.Features.Get(typeof(ISessionFeature));
-            var marker = feature.RestMarker;
-
             try
             {
                 // write to channel 
@@ -27,29 +22,17 @@ namespace Bytewizer.TinyCLR.Ftp
 
                 using (NetworkStream ns = GetNetworkStream())
                 {
-                    FileMode mode;
-                    if (marker == 0)
+                    using (FileStream fileStream = _fileProvider.OpenFileForWrite(path, FileMode.Append))
                     {
-                        mode = FileMode.Create;
-                    }
-                    else
-                    {
-                        mode = FileMode.Open;
-                    }
-
-                    using (FileStream fileStream = _fileProvider.OpenFileForWrite(path, mode))
-                    {
-                        ns.CopyTo(fileStream);
-                        fileStream.Flush();
+                        fileStream.CopyTo(ns);
                     }
                 }
 
                 _context.Response.Write(223, "Transfer complete.");
-
             }
             catch
             {
-                _context.Response.Write(500, "STOR command failed.");
+                _context.Response.Write(500, "APPE command failed.");
             }
         }
     }

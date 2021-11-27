@@ -1,4 +1,5 @@
-﻿using Bytewizer.TinyCLR.Logging;
+﻿using Bytewizer.TinyCLR.Ftp.Features;
+using Bytewizer.TinyCLR.Logging;
 using Bytewizer.TinyCLR.Sockets;
 
 namespace Bytewizer.TinyCLR.Ftp
@@ -30,6 +31,9 @@ namespace Bytewizer.TinyCLR.Ftp
 
                 return;
             }
+
+            var feature = new SessionFeature();
+            context.Features.Set(typeof(ISessionFeature), feature);
 
             next(context);
 

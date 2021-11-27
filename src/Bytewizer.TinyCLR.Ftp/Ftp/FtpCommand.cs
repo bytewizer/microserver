@@ -37,16 +37,21 @@ namespace Bytewizer.TinyCLR.Ftp
         public string Argument { get; private set; }
 
         /// <summary>
-        /// Splits the <paramref name="command"/> into the name and its arguments.
+        /// Splits the <paramref name="buffer"/> into the name and its arguments.
         /// </summary>
-        /// <param name="command">The command to split into name and arguments.</param>
-        /// <returns>The created <see cref="FtpCommand"/>.</returns>
+        /// <param name="buffer">The command to split into name and arguments.</param>
+        /// <param name="offset">The position in the data buffer at which to begin sending data.</param>
+        /// <param name="count">The number of bytes to parse.</param>
         public static FtpCommand Parse(byte[] buffer, int offset, int count)
         {
-            var command = Encoding.UTF8.GetString(buffer, 0, count);
+            var command = Encoding.UTF8.GetString(buffer, offset, count);
+
             var spaceIndex = command.IndexOfAny(_whiteSpaces);
+            
             var commandName = spaceIndex == -1 ? command : command.Substring(0, spaceIndex);
             var commandArguments = spaceIndex == -1 ? string.Empty : command.Substring(spaceIndex + 1);
+
+     
             return new FtpCommand(commandName, commandArguments);
         }
 

@@ -5,7 +5,7 @@
         private void Quit()
         {
             _context.Response.Write(221, "Goodbye.");
-            _context.Channel.Client.Close();
+            _context.Active = false;
         }
     }
 }

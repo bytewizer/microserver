@@ -6,12 +6,9 @@ namespace Bytewizer.TinyCLR.Ftp
     {
         private void Rnfr()
         {
-            var feature = new SessionFeature()
-            {
-                FromPath = _context.Request.Command.Argument
-            };
+            var feature = (SessionFeature)_context.Features.Get(typeof(ISessionFeature));
+            feature.FromPath = _context.Request.Command.Argument;
 
-            _context.Features.Set(typeof(ISessionFeature), feature);
             _context.Response.Write(350, $"Waiting for RNTO.");
         }
     }

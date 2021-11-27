@@ -1,11 +1,11 @@
-﻿using Bytewizer.TinyCLR.Features;
-using Bytewizer.TinyCLR.Pipeline;
+﻿using Bytewizer.TinyCLR.Pipeline;
+using Bytewizer.TinyCLR.Features;
 using Bytewizer.TinyCLR.Sockets.Channel;
 
 namespace Bytewizer.TinyCLR.Ftp
 {
     /// <summary>
-    /// Encapsulates all FTP-specific information about an individual FTP request.
+    /// Encapsulates all FTP pecific information about an individual FTP request.
     /// </summary>
     public class FtpContext : IContext
     {
@@ -47,12 +47,9 @@ namespace Bytewizer.TinyCLR.Ftp
         public ConnectionInfo Connection => Channel?.Connection;
 
         /// <summary>
-        /// Aborts the connection underlying this request.
+        /// Get the session state for this request.
         /// </summary>
-        public void Abort()
-        {
-            Channel?.Client?.Close();
-        }
+        public bool Active { get; internal set; } = true;
 
         /// <summary>
         /// Closes the connected socket channel and clears context.

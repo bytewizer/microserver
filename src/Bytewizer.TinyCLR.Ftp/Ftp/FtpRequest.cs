@@ -12,10 +12,10 @@
         {
             Command = new FtpCommand();
             DataMode = DataMode.None;
+            SecurityType = SecurityType.None;
             TransferMode = TransferMode.Stream;
             TransferType = TransferType.Image;
             StructureType = StructureType.File;
-            ListFormat = ListFormat.Unix;
         }
 
         /// <summary>
@@ -23,15 +23,30 @@
         /// </summary>
         public FtpCommand Command { get; internal set; }
 
+        /// <summary>
+        /// Gets the data mode for this request.
+        /// </summary>
         public DataMode DataMode { get; internal set; }
 
-        public TransferMode TransferMode { get; internal set; }      
+        /// <summary>
+        /// Gets the transport security type for this request.
+        /// </summary>
+        public SecurityType SecurityType { get; internal set; }
 
+        /// <summary>
+        /// Gets the transfer mode for this request.
+        /// </summary>
+        public TransferMode TransferMode { get; internal set; }
+
+        /// <summary>
+        /// Gets the file transfer type for this request.
+        /// </summary>
         public TransferType TransferType { get; internal set; }
 
+        /// <summary>
+        /// Gets the file structure for this request.
+        /// </summary>
         public StructureType StructureType { get; internal set; }
-
-        public ListFormat ListFormat { get; internal set; }
 
         /// <summary>
         /// Gets or sets the user name for this user.
@@ -41,7 +56,7 @@
         /// <summary>
         /// Gets a value indicating whether the request has been authenticated.
         /// </summary>
-        public bool IsAuthenticated { get; internal set; }
+        public bool Authenticated { get; internal set; }
 
         /// <summary>
         /// Gets the command argument in upper case.
@@ -54,13 +69,14 @@
         public void Clear()
         {
             Command.Clear();
+
             DataMode = DataMode.None;
+            SecurityType = SecurityType.None;
             TransferMode = TransferMode.Stream;
             TransferType = TransferType.Image;
             StructureType = StructureType.File;
-            ListFormat = ListFormat.Unix;
             Name = string.Empty;
-            IsAuthenticated = false;
+            Authenticated = false;
         }
     }
 }

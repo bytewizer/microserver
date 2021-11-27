@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Text;
-using System.Threading;
 
 using Bytewizer.TinyCLR.Sockets;
 using Bytewizer.TinyCLR.Logging;
@@ -104,8 +102,10 @@ namespace Bytewizer.TinyCLR.Ftp
                 }
                 catch (Exception ex)
                 {
-                    var message = ex.Message.Replace("\r", " ").Replace("\n", "");
-                    context.Channel.Write(451, $"Exception thrown, message: {message}.");
+                    _logger.UnhandledException(ex);
+
+                    //var message = ex.Message.Replace("\r", " ").Replace("\n", "");
+                    //context.Channel.Write(451, $"Exception thrown, message: {message}.");
                 }
 
                 _logger.RemoteClosed(channel);

@@ -29,7 +29,7 @@ namespace Bytewizer.TinyCLR.Ftp
 
             if (_context.Request.Name.ToUpper() == "ANONYMOUS" && allowAnonymous)
             {
-                _context.Request.IsAuthenticated = true;
+                _context.Request.Authenticated = true;
                 _context.Response.Write(230, "User logged in.");
                 return;
             }
@@ -45,7 +45,7 @@ namespace Bytewizer.TinyCLR.Ftp
                     var results = identityProvider.VerifyPassword(user, password);
                     if (results.Succeeded)
                     {
-                        _context.Request.IsAuthenticated = true;
+                        _context.Request.Authenticated = true;
                         _context.Response.Write(230, "User logged in.");
                     }
                     else

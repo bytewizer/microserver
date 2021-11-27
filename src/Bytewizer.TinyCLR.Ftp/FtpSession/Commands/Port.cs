@@ -12,7 +12,6 @@ namespace Bytewizer.TinyCLR.Ftp
                 var ip = $"{addr[0]}.{addr[1]}.{addr[2]}.{addr[3]}";
                 var port = (int.Parse(addr[4]) * 0x100) + int.Parse(addr[5]);
 
-                //_listener.Stop();
                 _endpoint = new IPEndPoint(IPAddress.Parse(ip), port);
 
                 _context.Request.DataMode = DataMode.Active;
@@ -20,8 +19,8 @@ namespace Bytewizer.TinyCLR.Ftp
             }
             catch
             {
+                _context.Request.DataMode = DataMode.None;
                 _context.Response.Write(500, "PORT command failed.");
-                _context.Response.Clear();
             }
         }
     }

@@ -28,6 +28,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Bytewizer.TinyCLR.Ftp.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -38,40 +39,50 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Internal\Features\FtpAuthenticationFeature.cs" />
-    <Compile Include="Internal\Features\IFtpAuthenticationFeature.cs" />
+    <Compile Include="Extensions\DateTimeExtensions.cs" />
+    <Compile Include="FtpSession\Commands\Eprt.cs" />
+    <Compile Include="FtpSession\Commands\Epsv.cs" />
+    <Compile Include="FtpSession\Commands\Mlsd.cs" />
+    <Compile Include="FtpSession\Commands\Appe.cs" />
+    <Compile Include="FtpSession\Commands\Auth.cs" />
+    <Compile Include="FtpSession\Commands\Rest.cs" />
+    <Compile Include="FtpSession\Commands\Prot.cs" />
+    <Compile Include="FtpSession\Commands\Pbsz.cs" />
+    <Compile Include="FtpSession\ListArguments.cs" />
+    <Compile Include="FtpSession\Commands\Mlst.cs" />
+    <Compile Include="FtpSession\Commands\Nlst.cs" />
+    <Compile Include="Ftp\SecurityType.cs" />
+    <Compile Include="Middleware\Features\FtpAuthenticationFeature.cs" />
+    <Compile Include="Middleware\Features\IFtpAuthenticationFeature.cs" />
     <Compile Include="Extensions\DiagnosticsLoggerExtensions.cs" />
-    <Compile Include="Extensions\ChannelExtensions.cs" />
     <Compile Include="Ftp\StructureType.cs" />
     <Compile Include="Ftp\TransferMode.cs" />
-    <Compile Include="Session\Commands\Help.cs" />
-    <Compile Include="Session\Commands\Stru.cs" />
-    <Compile Include="Session\Commands\Noop.cs" />
-    <Compile Include="Session\Commands\Pass.cs" />
-    <Compile Include="Session\Commands\List.cs" />
-    <Compile Include="Session\Commands\Dele.cs" />
-    <Compile Include="Session\Commands\Mode.cs" />
-    <Compile Include="Session\Commands\Mdmt.cs" />
-    <Compile Include="Session\Commands\User.cs" />
-    <Compile Include="Session\Commands\Stor.cs" />
-    <Compile Include="Session\Commands\Retr.cs" />
-    <Compile Include="Session\Commands\Size.cs" />
-    <Compile Include="Session\Commands\Rnfr.cs" />
-    <Compile Include="Session\Commands\Rnto.cs" />
-    <Compile Include="Session\Commands\Rmd.cs" />
-    <Compile Include="Session\Commands\Mkd.cs" />
-    <Compile Include="Session\Commands\Cdup.cs" />
-    <Compile Include="Session\Commands\Pwd.cs" />
-    <Compile Include="Session\Commands\Eprt.cs" />
-    <Compile Include="Session\Commands\Port.cs" />
-    <Compile Include="Session\Commands\Epsv.cs" />
-    <Compile Include="Session\Commands\Pasv.cs" />
-    <Compile Include="Session\Commands\Feat.cs" />
-    <Compile Include="Session\Commands\Opts.cs" />
-    <Compile Include="Session\Commands\Cwd.cs" />
-    <Compile Include="Session\Commands\Type.cs" />
-    <Compile Include="Session\Commands\Syst.cs" />
-    <Compile Include="Session\Commands\Quit.cs" />
+    <Compile Include="FtpSession\Commands\Help.cs" />
+    <Compile Include="FtpSession\Commands\Stru.cs" />
+    <Compile Include="FtpSession\Commands\Noop.cs" />
+    <Compile Include="FtpSession\Commands\Pass.cs" />
+    <Compile Include="FtpSession\Commands\List.cs" />
+    <Compile Include="FtpSession\Commands\Dele.cs" />
+    <Compile Include="FtpSession\Commands\Mode.cs" />
+    <Compile Include="FtpSession\Commands\Mdtm.cs" />
+    <Compile Include="FtpSession\Commands\User.cs" />
+    <Compile Include="FtpSession\Commands\Stor.cs" />
+    <Compile Include="FtpSession\Commands\Retr.cs" />
+    <Compile Include="FtpSession\Commands\Size.cs" />
+    <Compile Include="FtpSession\Commands\Rnfr.cs" />
+    <Compile Include="FtpSession\Commands\Rnto.cs" />
+    <Compile Include="FtpSession\Commands\Rmd.cs" />
+    <Compile Include="FtpSession\Commands\Mkd.cs" />
+    <Compile Include="FtpSession\Commands\Cdup.cs" />
+    <Compile Include="FtpSession\Commands\Pwd.cs" />
+    <Compile Include="FtpSession\Commands\Port.cs" />
+    <Compile Include="FtpSession\Commands\Pasv.cs" />
+    <Compile Include="FtpSession\Commands\Feat.cs" />
+    <Compile Include="FtpSession\Commands\Opts.cs" />
+    <Compile Include="FtpSession\Commands\Cwd.cs" />
+    <Compile Include="FtpSession\Commands\Type.cs" />
+    <Compile Include="FtpSession\Commands\Syst.cs" />
+    <Compile Include="FtpSession\Commands\Quit.cs" />
     <Compile Include="Ftp\DataMode.cs" />
     <Compile Include="Ftp\TransferType.cs" />
     <Compile Include="Ftp\FtpCommand.cs" />
@@ -79,13 +90,12 @@
     <Compile Include="Ftp\FtpRequest.cs" />
     <Compile Include="Ftp\FtpResponse.cs" />
     <Compile Include="Ftp\FtpResponseExtensions.cs" />
-    <Compile Include="Session\FtpSession.cs" />
-    <Compile Include="Ftp\ListFormat.cs" />
+    <Compile Include="FtpSession\FtpSession.cs" />
     <Compile Include="Ftp\RequestDelegate.cs" />
-    <Compile Include="Internal\Features\ISessionFeature.cs" />
-    <Compile Include="Internal\Features\SessionFeature.cs" />
-    <Compile Include="Internal\FtpMiddleware.cs" />
-    <Compile Include="Internal\Middleware.cs" />
+    <Compile Include="Middleware\Features\ISessionFeature.cs" />
+    <Compile Include="Middleware\Features\SessionFeature.cs" />
+    <Compile Include="Middleware\FtpMiddleware.cs" />
+    <Compile Include="Middleware\Middleware.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="File\FileProvider.cs" />
     <Compile Include="Server\FtpServer.cs" />

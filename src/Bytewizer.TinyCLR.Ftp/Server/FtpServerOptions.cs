@@ -18,8 +18,6 @@ namespace Bytewizer.TinyCLR.Ftp
             BannerMessage = $"TinyCLR FTP Server Ready [{version}]";
         }
 
-        public ListFormat ListFormat { get; set; } = ListFormat.Unix;
-
         /// <summary>
         /// Gets or sets the root directory path.
         /// </summary>

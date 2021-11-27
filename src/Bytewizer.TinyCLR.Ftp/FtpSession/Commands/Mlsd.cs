@@ -1,40 +1,38 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Net.Sockets;
 
 namespace Bytewizer.TinyCLR.Ftp
 {
     internal partial class FtpSession
     {
-        private void List()
+        private void Mlsd()
         {
             if (_context.Request.DataMode == DataMode.None)
             {
                 BadSequenceOfCommands();
-                return; 
+                return;
             }
-            
-            //var argument = new ListArguments(_context.Request.Command.Argument);
 
             try
             {
                 //write to channel
                 _context.Channel.Write(150, "Status okay, opening data connection.");
-
                 using (NetworkStream ns = GetNetworkStream())
                 {
                     using (StreamWriter sw = new StreamWriter(ns))
                     {
                         var enumerator = _fileProvider.EnumerateDirectories();
+                        var remotePath = _fileProvider.GetWorkingDirectory();
+
+                        sw.WriteLine($"250-Listing {_context.Request.Command.Argument}");
 
                         while (enumerator.MoveNext())
                         {
                             DirectoryInfo directory = new DirectoryInfo((string)enumerator.Current);
-                            string date = directory.LastWriteTime < DateTime.Now - TimeSpan.FromDays(180)
-                                ? directory.LastWriteTime.ToString("MMM dd  yyyy")
-                                : directory.LastWriteTime.ToString("MMM dd HH:mm");
+                            var lastWriteTime = directory.LastWriteTime.ToUniversalTime().ToTimeString();
+                            var creationTime = directory.LastWriteTime.ToUniversalTime().ToTimeString();
 
-                            sw.WriteLine($"drwxr-xr-x    2 2003     2003     4096 {date} {directory.Name}");
+                            sw.WriteLine($" Type=dir;Modify={lastWriteTime};Create={creationTime}; {directory.Name}");
                             sw.Flush();
                         }
 
@@ -43,13 +41,15 @@ namespace Bytewizer.TinyCLR.Ftp
                         while (enumerator.MoveNext())
                         {
                             FileInfo file = new FileInfo((string)enumerator.Current);
-                            string date = file.LastWriteTime < DateTime.Now - TimeSpan.FromDays(180)
-                                ? file.LastWriteTime.ToString("MMM dd  yyyy")
-                                : file.LastWriteTime.ToString("MMM dd HH:mm");
+                            var lastWriteTime = file.LastWriteTime.ToUniversalTime().ToTimeString();
+                            var creationTime = file.LastWriteTime.ToUniversalTime().ToTimeString();
 
-                            sw.WriteLine($"-rw-r--r--    2 2003     2003     {file.Length} {date} {file.Name}");
+                            sw.WriteLine($" Type=file;Size={file.Length};Modify={lastWriteTime};Create={creationTime}; {file.Name}");
                             sw.Flush();
                         }
+
+                        sw.WriteLine("250 End");
+                        sw.Flush();
                     }
                 }
 

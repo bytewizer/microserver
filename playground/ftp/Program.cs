@@ -29,7 +29,8 @@ namespace Bytewizer.Playground.Ftp
                 {
                     app.UseAuthentication(new AuthenticationOptions
                     {
-                        IdentityProvider = identityProvider         
+                        IdentityProvider = identityProvider,
+                        AllowAnonymous = true
                     }
                 );
                 });
