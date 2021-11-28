@@ -2,6 +2,9 @@
 {
     internal partial class FtpSession
     {
+        /// <summary>
+        /// The <c>PASV</c> command handler.
+        /// </summary>
         private void Pasv()
         {
             try

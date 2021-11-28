@@ -2,15 +2,20 @@
 {
     internal partial class FtpSession
     {
+        /// <summary>
+        /// Implements the <c>CWD</c> command.
+        /// </summary>
         private void Cwd()
-        {            
-            if (_fileProvider.SetWorkingDirectory(_context.Request.Command.Argument))
+        {
+            var path = _context.Request.Command.Argument;
+
+            if (_fileProvider.SetWorkingDirectory(path))
             {
-                _context.Response.Write(250, $"Working directory changed to {_fileProvider.GetWorkingDirectory()}.");
+                _context.Response.Write(250, $"Successful ({_fileProvider.GetWorkingDirectory()})");
             }
             else
             {
-                _context.Response.Write(550, "No such directory.");
+                _context.Response.Write(550, "Not a valid directory.");
             }
         }
     }

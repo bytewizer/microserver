@@ -45,7 +45,6 @@
     <Compile Include="Extensions\StreamExtensions.cs" />
     <Compile Include="Server\ServerLimits.cs" />
     <Compile Include="Features\FeatureCollection.cs" />
-    <Compile Include="Features\FeatureEnumerator.cs" />
     <Compile Include="Features\FeatureValue.cs" />
     <Compile Include="Features\IFeatureCollection.cs" />
     <Compile Include="Sockets\SocketErrorHandler.cs" />

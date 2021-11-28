@@ -2,6 +2,9 @@
 {
     internal partial class FtpSession
     {
+        /// <summary>
+        /// Implements the <c>EPSV</c> command.
+        /// </summary>
         private void Epsv()
         {
             var port = _listener.ActivePort;

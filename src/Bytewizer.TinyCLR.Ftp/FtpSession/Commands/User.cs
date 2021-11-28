@@ -4,6 +4,9 @@ namespace Bytewizer.TinyCLR.Ftp
 {
     internal partial class FtpSession
     {
+        /// <summary>
+        /// Implements the <c>USER</c> command.
+        /// </summary>
         private void User()
         {
             var AllowAnonymous = true;

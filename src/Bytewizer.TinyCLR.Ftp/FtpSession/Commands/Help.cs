@@ -4,6 +4,9 @@ namespace Bytewizer.TinyCLR.Ftp
 {
     internal partial class FtpSession
     {
+        /// <summary>
+        /// The <c>HELP</c> command handler.
+        /// </summary>
         private void Help()
         {
             StringBuilder sb = new StringBuilder();
@@ -14,6 +17,8 @@ namespace Bytewizer.TinyCLR.Ftp
             sb.AppendLine(" CDUP");
             sb.AppendLine(" CWD");
             sb.AppendLine(" DELE");
+            sb.AppendLine(" EPRT");
+            sb.AppendLine(" EPSV");
             sb.AppendLine(" FEAT");
             sb.AppendLine(" HELP");
             sb.AppendLine(" LIST");
@@ -31,6 +36,7 @@ namespace Bytewizer.TinyCLR.Ftp
             sb.AppendLine(" PROT");
             sb.AppendLine(" PWD");
             sb.AppendLine(" QUIT");
+            sb.AppendLine(" REST");
             sb.AppendLine(" RETR");
             sb.AppendLine(" RMD");
             sb.AppendLine(" RNFR");

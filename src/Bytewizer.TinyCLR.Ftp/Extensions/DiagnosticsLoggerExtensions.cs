@@ -13,9 +13,9 @@ namespace Bytewizer.TinyCLR.Ftp
         public static void CommandRequest(this ILogger logger, FtpContext context)
         {
             logger.Log(
-                LogLevel.Debug,
+                LogLevel.Trace,
                 _commandRequest,
-                $"Command Request:  {context.Request.Command}",
+                $"{context.Connection.LocalEndpoint} <= {context.Connection.RemoteEndpoint } Request:  {context.Request.Command}",
                 null
                 );
         }
@@ -23,9 +23,9 @@ namespace Bytewizer.TinyCLR.Ftp
         public static void CommandResponse(this ILogger logger, FtpContext context)
         {
             logger.Log(
-                LogLevel.Debug,
+                LogLevel.Trace,
                 _commandResponse,
-                 $"Command Response: {context.Response}",
+                 $"{context.Connection.LocalEndpoint} => {context.Connection.RemoteEndpoint } Response: {context.Response}",
                 null
                 );
         }

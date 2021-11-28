@@ -4,14 +4,17 @@ namespace Bytewizer.TinyCLR.Ftp
 {
     internal partial class FtpSession
     {
+        /// <summary>
+        /// Implements the <c>REST</c> command.
+        /// </summary>
         private void Rest()
         {
             try
             {
                 var feature = (SessionFeature)_context.Features.Get(typeof(ISessionFeature));
-                feature.RestMarker = int.Parse(_context.Request.Command.Argument);
+                feature.RestPosition = int.Parse(_context.Request.Command.Argument);
                 
-                _context.Response.Write(350, $"350 Restarting at {feature.RestMarker}. Send STORE or RETRIEVE to initiate transfer.");
+                _context.Response.Write(350, $"Restarting next transfer from position {feature.RestPosition}. Send STOR or RETR to initiate transfer.");
             }
             catch
             {

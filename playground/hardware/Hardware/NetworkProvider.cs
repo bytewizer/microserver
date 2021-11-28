@@ -53,10 +53,7 @@ namespace Bytewizer.Playground
                     Address = new IPAddress(new byte[] { 192, 168, 1, 200 }),
                     SubnetMask = new IPAddress(new byte[] { 255, 255, 255, 0 }),
                     GatewayAddress = new IPAddress(new byte[] { 192, 168, 1, 1 }),
-                    DnsAddresses = new IPAddress[]{
-                    new IPAddress(new byte[] { 8, 8, 8, 8 }),
-                    new IPAddress(new byte[] { 8, 8, 4, 4 })
-                    }
+                    DnsAddresses = new IPAddress[] { new IPAddress(new byte[] { 192, 168, 1, 1 }) },
                 };
 
                 Controller.SetInterfaceSettings(networkInterfaceSetting);

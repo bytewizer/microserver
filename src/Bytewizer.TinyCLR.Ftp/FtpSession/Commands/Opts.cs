@@ -2,6 +2,9 @@
 {
     internal partial class FtpSession
     {
+        /// <summary>
+        /// Implements the <c>OPTS</c> command.
+        /// </summary>
         private void Opts()
         {  
             switch (_context.Request.Command.Argument.ToUpper())

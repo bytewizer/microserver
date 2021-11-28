@@ -4,10 +4,20 @@ namespace Bytewizer.TinyCLR.Ftp
 {
     internal partial class FtpSession
     {
+        /// <summary>
+        /// Implements the <c>PWD</c> command.
+        /// </summary>
         private void Pwd()
         {
-            var path = _fileProvider.GetWorkingDirectory();
-            _context.Response.Write(257, $"\"{path}\" is current directory.");
+            try
+            {
+                var path = _fileProvider.GetWorkingDirectory();
+                _context.Response.Write(257, $"\"{path}\"");
+            }
+            catch
+            {
+                _context.Response.Write(500, "PWD command failed.");
+            }
         }
     }
 }

@@ -2,18 +2,21 @@
 {
     internal partial class FtpSession
     {
+        /// <summary>
+        /// Implements the <c>TYPE</c> command.
+        /// </summary>
         private void Type()
         {     
             switch (_context.Request.Argument)
             {
                 case "I":
                     _context.Request.TransferType = TransferType.Image;
-                    _context.Response.Write(215, $"TYPE set to IMAGE mode.");
+                    _context.Response.Write(200, "Binary transfer mode active.");
                     break;
 
                 case "A":
                     _context.Request.TransferType = TransferType.Ascii;
-                    _context.Response.Write(215, $"TYPE set to ASCII mode.");
+                    _context.Response.Write(200, "ASCII transfer mode active.");
                     break;
 
                 case "E":

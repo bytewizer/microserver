@@ -7,6 +7,9 @@ namespace Bytewizer.TinyCLR.Ftp
 {
     internal partial class FtpSession
     {
+        /// <summary>
+        /// Implements the <c>STOR</c> command.
+        /// </summary>
         private void Stor()
         {
             if (_context.Request.DataMode == DataMode.None)
@@ -15,37 +18,28 @@ namespace Bytewizer.TinyCLR.Ftp
                 return;
             }
 
-            var path = _context.Request.Command.Argument;
-
-            var feature = (SessionFeature)_context.Features.Get(typeof(ISessionFeature));
-            var marker = feature.RestMarker;
+            var file = _context.Request.Command.Argument;
 
             try
             {
+                var feature = (SessionFeature)_context.Features.Get(typeof(ISessionFeature));
+                var marker = feature.RestPosition;
+
                 // write to channel 
-                _context.Channel.Write(150, "Status okay, opening data connection.");
+                _context.Channel.Write(150, "Opening connection for data transfer.");
 
                 using (NetworkStream ns = GetNetworkStream())
                 {
-                    FileMode mode;
-                    if (marker == 0)
-                    {
-                        mode = FileMode.Create;
-                    }
-                    else
-                    {
-                        mode = FileMode.Open;
-                    }
+                    var mode = (marker == 0) ? FileMode.Create : FileMode.Open;
 
-                    using (FileStream fileStream = _fileProvider.OpenFileForWrite(path, mode))
+                    using (FileStream fileStream = _fileProvider.OpenFileForWrite(file, mode))
                     {
                         ns.CopyTo(fileStream);
                         fileStream.Flush();
                     }
                 }
 
-                _context.Response.Write(223, "Transfer complete.");
-
+                _context.Response.Write(226, "File upload succeeded.");
             }
             catch
             {

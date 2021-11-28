@@ -2,20 +2,22 @@
 {
     internal partial class FtpSession
     {
+        /// <summary>
+        /// Implements the <c>RMD</c> command.
+        /// </summary>
         private void Rmd()
         {
-            var localPath = $"{_fileProvider.GetLocalDirectory()}\\{_context.Request.Command.Argument}";
-            var remotePath = $"{_fileProvider.GetWorkingDirectory()}/{_context.Request.Command.Argument}";
+            var path = _context.Request.Command.Argument;
 
             try
             {
-                _fileProvider.DeleteDirectory(localPath);
-                _context.Response.Write(250, $"Directory {remotePath} deleted successfull.");
+                _fileProvider.DeleteDirectory(path);
+                _context.Response.Write(250, "Directory removed.");
 
             }
             catch
             {
-                _context.Response.Write(500, $"Directory {remotePath} not found.");
+                _context.Response.Write(550, "Not a valid directory.");
             }
         }
     }

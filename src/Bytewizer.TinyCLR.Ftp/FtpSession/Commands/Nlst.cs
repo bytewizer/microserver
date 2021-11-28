@@ -5,6 +5,9 @@ namespace Bytewizer.TinyCLR.Ftp
 {
     internal partial class FtpSession
     {
+        /// <summary>
+        /// Implements the <c>LIST</c> commands.
+        /// </summary>
         private void Nlst()
         {
             if (_context.Request.DataMode == DataMode.None)
@@ -13,34 +16,50 @@ namespace Bytewizer.TinyCLR.Ftp
                 return;
             }
 
-            //write to channel
-            _context.Channel.Write(150, "Status okay, opening data connection.");
-
-            using (NetworkStream ns = GetNetworkStream())
+            try
             {
-                using (StreamWriter sw = new StreamWriter(ns))
+                //write to channel
+                _context.Channel.Write(150, "Status okay, opening data connection.");
+
+                using (NetworkStream ns = GetNetworkStream())
                 {
-                    var enumerator = _fileProvider.EnumerateDirectories();
-
-                    while (enumerator.MoveNext())
+                    using (StreamWriter sw = new StreamWriter(ns) 
+                    { 
+                        NewLine = "\r\n" 
+                    })
                     {
-                        DirectoryInfo directory = new DirectoryInfo((string)enumerator.Current);
-                        sw.WriteLine($"{directory.Name}");
-                        sw.Flush();
-                    }
+                        var enumerator = _fileProvider.EnumerateDirectories("");
 
-                    enumerator = _fileProvider.EnumerateFiles();
+                        while (enumerator.MoveNext())
+                        {
+                            DirectoryInfo directory = new DirectoryInfo((string)enumerator.Current);
 
-                    while (enumerator.MoveNext())
-                    {
-                        FileInfo file = new FileInfo((string)enumerator.Current);                    
-                        sw.WriteLine($"{file.Name}");
-                        sw.Flush();
+                            if ((directory.Attributes & FileAttributes.System) == FileAttributes.System)
+                            {
+                                continue;
+                            }
+
+                            sw.WriteLine(directory.Name);
+                            sw.Flush();
+                        }
+
+                        enumerator = _fileProvider.EnumerateFiles("");
+
+                        while (enumerator.MoveNext())
+                        {
+                            FileInfo file = new FileInfo((string)enumerator.Current);
+                            sw.WriteLine(file.Name);
+                            sw.Flush();
+                        }
                     }
                 }
-            }
 
-            _context.Response.Write(223, "Transfer complete.");
+                _context.Response.Write(223, "Transfer complete.");
+            }
+            catch
+            {
+                _context.Response.Write(500, "NLST command failed.");
+            }
         }
     }
 }

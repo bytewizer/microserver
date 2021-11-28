@@ -4,6 +4,9 @@ namespace Bytewizer.TinyCLR.Ftp
 {
     internal partial class FtpSession
     {
+        /// <summary>
+        /// The <c>PROT</c> command handler.
+        /// </summary>
         private void Prot()
         {
             try

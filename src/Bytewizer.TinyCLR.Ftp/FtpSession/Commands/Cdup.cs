@@ -4,6 +4,9 @@ namespace Bytewizer.TinyCLR.Ftp
 {
     internal partial class FtpSession
     {
+        /// <summary>
+        /// Implements the <c>CDUP</c> command.
+        /// </summary>
         private void Cdup()
         {
             try
@@ -12,11 +15,11 @@ namespace Bytewizer.TinyCLR.Ftp
                 var directoryInfo = new DirectoryInfo(path);
 
                 _fileProvider.SetWorkingDirectory(directoryInfo.Parent.FullName);
-                _context.Response.Write(250, $"Working directory changed to {_fileProvider.GetWorkingDirectory()}.");
+                _context.Response.Write(200, $"Working directory changed to {_fileProvider.GetWorkingDirectory()}.");
             }
             catch
             {
-                _context.Response.Write(550, $"CDUP command failed.");
+                _context.Response.Write(550, "Not a valid directory.");
             }
         }
     }

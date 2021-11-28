@@ -2,13 +2,16 @@
 {
     internal partial class FtpSession
     {
+        /// <summary>
+        /// Implements the <c>MODE</c> command.
+        /// </summary>
         private void Mode()
         {            
             switch (_context.Request.Argument)
             {
                 case "S":
                     _context.Request.TransferMode = TransferMode.Stream;
-                    _context.Response.Write(215, $"MODE set to stream mode.");
+                    _context.Response.Write(200, $"MODE set to stream mode.");
                     break;
 
                 case "B":

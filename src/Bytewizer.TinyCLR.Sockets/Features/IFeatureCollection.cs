@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections;
 
 namespace Bytewizer.TinyCLR.Features
 {
     /// <summary>
     /// Represents a collection of features.
     /// </summary>
-    public interface IFeatureCollection : ICollection, IEnumerable
+    public interface IFeatureCollection
     {
         /// <summary>
         /// Gets or sets a given feature. Setting a null value removes the feature.
@@ -27,10 +26,5 @@ namespace Bytewizer.TinyCLR.Features
         /// <param name="type">The feature type.</param>
         /// <param name="instance">The feature value.</param>
         void Set(Type type, object instance);
-        
-        /// <summary>
-        /// Indicates if the collection can be modified.
-        /// </summary>
-        bool IsReadOnly { get; }
     }
 }

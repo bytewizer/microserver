@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Collections;
+using System.Diagnostics;
 
 namespace Bytewizer.TinyCLR.Ftp
 {
@@ -39,11 +40,20 @@ namespace Bytewizer.TinyCLR.Ftp
         }
 
         /// <summary>
-        /// Gets the FTP working directory.
+        /// Gets the FTP base directory.
+        /// </summary>
+        public string GetBaseDirectory()
+        {
+            //Debug.WriteLine($"DEBUG: GET LOCAL DIRECTORY: {_baseDirectory}");
+            return _baseDirectory;
+        }
+
+        /// <summary>
+        /// Gets the FTP local directory.
         /// </summary>
         public string GetLocalDirectory()
         {
-            //Debug.WriteLine($"LOCAL DIRECTORY: {_localDirectory}");
+            //Debug.WriteLine($"DEBUG: GET LOCAL DIRECTORY: {_localDirectory}");
             return _localDirectory;
         }
 
@@ -52,7 +62,7 @@ namespace Bytewizer.TinyCLR.Ftp
         /// </summary>
         public string GetWorkingDirectory()
         {
-            //Debug.WriteLine($"WORKING DIRECTORY: {_workingDirectory}");
+            //Debug.WriteLine($"DEBUG: GET WORKING DIRECTORY: {_workingDirectory}");
             return _workingDirectory;
         }
 
@@ -86,11 +96,15 @@ namespace Bytewizer.TinyCLR.Ftp
         /// <summary>
         /// Enumerate directory.
         /// </summary>
-        public IEnumerator EnumerateDirectories()
+        /// <param name="path">Absolute or relative FTP path of the directory.</param>
+        public IEnumerator EnumerateDirectories(string path)
         {
-            //var localPath = GetLocalPath(path);
+            if (string.IsNullOrEmpty(path))
+            {
+               path = GetLocalDirectory();
+            }
 
-            var localPath = GetLocalDirectory();
+            var localPath = GetLocalPath(path);
 
             return Directory.EnumerateDirectories(localPath).GetEnumerator();
         }
@@ -98,10 +112,15 @@ namespace Bytewizer.TinyCLR.Ftp
         /// <summary>
         /// Enumerate files.
         /// </summary>
-        public IEnumerator EnumerateFiles()
+        /// <param name="path">Absolute or relative FTP path of the directory.</param>
+        public IEnumerator EnumerateFiles(string path)
         {
-            //var localPath = GetLocalPath(path);
-            var localPath = GetLocalDirectory();
+            if (string.IsNullOrEmpty(path))
+            {
+                path = GetLocalDirectory();
+            }
+
+            var localPath = GetLocalPath(path);
 
             return Directory.EnumerateFiles(localPath).GetEnumerator();
         }
@@ -153,8 +172,20 @@ namespace Bytewizer.TinyCLR.Ftp
         {
             var fromLocalPath = GetLocalPath(fromPath);
             var toLocalPath = GetLocalPath(toPath);
-            
-            Directory.Move(fromLocalPath, toLocalPath);
+
+            if (Directory.Exists(fromLocalPath))
+            {
+                Directory.Move(fromLocalPath, toLocalPath);
+                return;
+            }
+
+            if (File.Exists(fromLocalPath))
+            {
+                File.Move(fromLocalPath, toLocalPath);
+                return;
+            }
+
+            throw new IOException("Invalid path");
         }
 
         /// <summary>
@@ -166,17 +197,6 @@ namespace Bytewizer.TinyCLR.Ftp
             string localPath = GetLocalPath(path);
                 
             return File.OpenRead(localPath);
-        }
-
-        /// <summary>
-        /// Opens a file for append.
-        /// </summary>
-        /// <param name="path">Absolute or relative FTP path of the file.</param>
-        public FileStream OpenFileForAppend(string path)
-        {
-            string localPath = GetLocalPath(path);
-
-            return File.Open(localPath, FileMode.Append);
         }
 
         /// <summary>
@@ -193,66 +213,47 @@ namespace Bytewizer.TinyCLR.Ftp
         }
 
         /// <summary>
-        /// Creates a new file for writing.
-        /// If the file already exists, replace it instead.
-        /// </summary>
-        /// <param name="path">Absolute or relative FTP path of the file.</param>
-        public Stream CreateFileForWrite(string path)
-        {
-            string localPath = GetLocalPath(path);
-
-            return File.Create(localPath);
-        }
-
-        /// <summary>
         /// Gets the size of the file.
         /// </summary>
         /// <param name="path">Absolute or relative FTP path of the file.</param>
-        public string GetFileSize(string path)
+        /// <param name="size">The size of the file.</param>
+        public bool GetFileSize(string path, out long size)
         {
             string localPath = GetLocalPath(path);
 
+            size = 0;
             if (File.Exists(localPath))
             {
                 var fileInfo = new FileInfo(localPath);
-                return fileInfo.Length.ToString();
+                size = fileInfo.Length;
+                return true;
             }
 
-            return string.Empty;
+            return false;
         }
 
         /// <summary>
         /// Gets the last write time of the file.
         /// </summary>
         /// <param name="path">Absolute or relative FTP path of the file.</param>
-        public DateTime GetLastWriteTime(string path)
+        /// <param name="dateTime">The last write time of the file.</param>
+        public bool GetLastWriteTime(string path, out DateTime dateTime)
         {
             string localPath = GetLocalPath(path);
 
+            dateTime = DateTime.MinValue;
             if (File.Exists(localPath))
             {
                 var fileInfo = new FileInfo(localPath);
-                return fileInfo.LastWriteTime;
+                dateTime = fileInfo.LastWriteTime;
+                return true;
             }
 
-            return DateTime.MaxValue;
-        }
-
-        /// <summary>
-        /// Gets the names of files and directories.
-        /// </summary>
-        /// <param name="path">Absolute or relative FTP path of the file.</param>
-        public IEnumerable GetNameListing(string path)
-        {
-            string localPath = GetLocalPath(path);
-
-            return Directory.EnumerateFileSystemEntries(localPath);
+            return false;
         }
 
         private string GetLocalPath(string path)
         {
-            //Debug.WriteLine($"PATH: {path}");
-
             if (string.IsNullOrEmpty(path))
             {
                 return _baseDirectory;
@@ -268,22 +269,20 @@ namespace Bytewizer.TinyCLR.Ftp
                 basePath = _localDirectory;
             }
 
-            var localPath = Path.Combine(basePath, path.Replace("/", "\\"));
+            var localPath = new DirectoryInfo(Path.Combine(basePath, path.Replace("/", "\\"))).FullName;
 
-            // Debug.WriteLine($"LOCAL PATH: {localPath}");
+            //Debug.WriteLine($"DEBUG: GET LOCAL PATH: {localPath}");
 
             return localPath;
         }
 
         private string GetFtpPath(string localPath)
         {
-            //Debug.WriteLine($"FTP LOCAL PATH: {localPath}");
-
             var root = Path.GetPathRoot(localPath).ToCharArray();
             var path = Path.GetFullPath(localPath).TrimStart(root).Replace("\\", "/");
             var ftpPath = $"/{path}";
 
-            //Debug.WriteLine($"FTP REMOTE PATH: {ftpPath}");
+            //Debug.WriteLine($"DEGUG: GET FTP PATH: {ftpPath}");
 
             return ftpPath;
         }

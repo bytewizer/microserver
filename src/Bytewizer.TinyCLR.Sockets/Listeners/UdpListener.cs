@@ -44,7 +44,7 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
                     // Set the accept event to nonsignaled state
                     _acceptEvent.Reset();
 
-                    while (_listenSocket.Poll(_options.PollUdpTimeout, SelectMode.SelectRead))
+                    while (_listenSocket.Poll(_options.PollTimeout, SelectMode.SelectRead))
                     {
                         if (_listenSocket.Available <= 0)
                         {

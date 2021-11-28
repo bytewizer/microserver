@@ -83,21 +83,8 @@ namespace Bytewizer.TinyCLR.Sockets
                 // Assign channel
                 context.Channel = channel;
 
-                // Check message size
-                //if (context.Channel.InputStream.Length < _options.Limits.MinMessageSize
-                //|| context.Channel.InputStream.Length > _options.Limits.MaxMessageSize)
-                //{
-                //    _logger.InvalidMessageLimit(
-                //        context.Channel.InputStream.Length,
-                //        _options.Limits.MinMessageSize,
-                //        _options.Limits.MaxMessageSize
-                //        );
-                //}
-                //else
-                //{
-                    // invoke pipeline 
-                    _options.Application.Invoke(context);
-                //}
+                // invoke pipeline 
+                _options.Application.Invoke(context);
 
                 // Release context back to pool and close connection once pipeline is complete
                 _contextPool.Release(context);

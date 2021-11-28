@@ -13,8 +13,8 @@ namespace Bytewizer.Playground.Cookies
             {
                 options.Pipeline(app =>
                 {
-                    app.UseCookies();
                     app.UseRouting();
+                    app.UseCookies();
                     app.UseEndpoints(endpoints =>
                     {
                         endpoints.Map("/", context =>
@@ -26,7 +26,7 @@ namespace Bytewizer.Playground.Cookies
                             responseCookies.Append("sux", "45a4ffgra8");
 
                             responseCookies.Append("sid", "38afes7a9", 86400,
-                                "/", "192.168.1.145", false, false);
+                                "/", "192.168.1.200", false, false);
 
                             // Remove/Expire a browser cookie 
                             //responseCookies.Append("sux", "45a4ffgra8", 0, // set max age = 0

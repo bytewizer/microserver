@@ -2,6 +2,9 @@
 {
     internal partial class FtpSession
     {
+        /// <summary>
+        /// The <c>AUTH</c> command handler.
+        /// </summary>
         private void Auth()
         {
             if (_context.Request.SecurityType != SecurityType.None)

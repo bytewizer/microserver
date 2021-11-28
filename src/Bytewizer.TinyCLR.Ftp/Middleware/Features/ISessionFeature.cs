@@ -8,6 +8,6 @@
         string FromPath { get; }
         int TlsBlockSize { get; }
         string TlsProt { get; set; }
-        int RestMarker { get;}
+        int RestPosition { get;}
     }
 }

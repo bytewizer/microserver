@@ -2,15 +2,17 @@
 {
     internal partial class FtpSession
     {
+        /// <summary>
+        /// Implements the <c>MKD</c> command.
+        /// </summary>
         private void Mkd()
         {
-            var localPath = $"{_fileProvider.GetLocalDirectory()}\\{_context.Request.Command.Argument}";
-            var remotePath = $"{_fileProvider.GetWorkingDirectory()}/{_context.Request.Command.Argument}";
+            var path = _context.Request.Command.Argument;
 
             try
             {
-                _fileProvider.CreateDirectory(localPath);
-                _context.Response.Write(250, $"Directory {remotePath} created successfull.");
+                _fileProvider.CreateDirectory(path);
+                _context.Response.Write(257, $"Directory created successfull.");
 
             }
             catch

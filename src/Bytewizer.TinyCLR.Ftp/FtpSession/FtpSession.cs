@@ -105,20 +105,36 @@ namespace Bytewizer.TinyCLR.Ftp
         {
             switch (_context.Request.Command.Name)
             {
-                case "HELP":
-                    Help();
+                case "AUTH":
+                    Auth();
                     return;
 
-                case "NOOP":
-                    Noop();
+                case "FEAT":
+                    Feat();
+                    return;
+
+                case "HELP":
+                    Help();
                     return;
 
                 case "PASS":
                     Pass();
                     return;
 
+                case "PBSZ":
+                    Pbsz();
+                    return;
+
+                case "PROT":
+                    Prot();
+                    return;
+
                 case "QUIT":
                     Quit();
+                    return;
+
+                case "SYST":
+                    Syst();
                     return;
 
                 case "USER":
@@ -132,10 +148,6 @@ namespace Bytewizer.TinyCLR.Ftp
                 {
                     case "APPE":
                         Appe();
-                        return;
-
-                    case "AUTH":
-                        Auth();
                         return;
 
                     case "CDUP":
@@ -157,10 +169,6 @@ namespace Bytewizer.TinyCLR.Ftp
 
                     case "EPSV":
                         Epsv();
-                        return;
-
-                    case "FEAT":
-                        Feat();
                         return;
 
                     case "LIST":
@@ -192,6 +200,10 @@ namespace Bytewizer.TinyCLR.Ftp
                         Nlst();
                         return;
 
+                    case "NOOP":
+                        Noop();
+                        return;
+
                     case "OPTS":
                         Opts();
                         return;
@@ -200,21 +212,17 @@ namespace Bytewizer.TinyCLR.Ftp
                         Pasv();
                         return;
 
-                    case "PBSZ":
-                        Pbsz();
-                        return;
-
                     case "PORT":
                         Port();
-                        return;
-
-                    case "PROT":
-                        Prot();
                         return;
 
                     case "PWD":
                     case "XPWD":
                         Pwd();
+                        return;
+
+                    case "REST":
+                        Rest();
                         return;
 
                     case "RETR":
@@ -246,10 +254,6 @@ namespace Bytewizer.TinyCLR.Ftp
                         Stru();
                         return;
 
-                    case "SYST":
-                        Syst();
-                        return;
-
                     case "TYPE":
                         Type();
                         return;
@@ -266,7 +270,8 @@ namespace Bytewizer.TinyCLR.Ftp
 
         private NetworkStream GetNetworkStream()
         {
-            if (_context.Request.DataMode == DataMode.Active)
+            if (_context.Request.DataMode == DataMode.Active 
+                || _context.Request.DataMode == DataMode.ExtendedActive)
             {
                 var client = new TcpClient();
                 client.NoDelay = true;

@@ -1,11 +1,15 @@
-﻿using Bytewizer.TinyCLR.Ftp.Features;
-using System.IO;
+﻿using System.IO;
 using System.Net.Sockets;
+
+using Bytewizer.TinyCLR.Ftp.Features;
 
 namespace Bytewizer.TinyCLR.Ftp
 {
     internal partial class FtpSession
     {
+        /// <summary>
+        /// Implements the <c>RETR</c> command.
+        /// </summary>
         private void Retr()
         {
             if (_context.Request.DataMode == DataMode.None)
@@ -14,31 +18,30 @@ namespace Bytewizer.TinyCLR.Ftp
                 return;
             }
 
-            var path = _context.Request.Command.Argument;
-            
-            var feature = (SessionFeature)_context.Features.Get(typeof(ISessionFeature));
-            var marker = feature.RestMarker; 
+            var file = _context.Request.Command.Argument;
 
             try
             {
+                var feature = (SessionFeature)_context.Features.Get(typeof(ISessionFeature));
+
                 // write to channel 
                 _context.Channel.Write(150, "Status okay, opening data connection.");
 
                 using (NetworkStream ns = GetNetworkStream())
                 {
-                    using (FileStream fileStream = _fileProvider.OpenFileForRead(path))
+                    using (FileStream fileStream = _fileProvider.OpenFileForRead(file))
                     {
-                        if(marker != 0)
+                        if (feature.RestPosition != 0)
                         {
-                            fileStream.Seek(marker, SeekOrigin.Begin);
-                            marker = 0;
+                            fileStream.Seek(feature.RestPosition, SeekOrigin.Begin);
+                            feature.RestPosition = 0;
                         }
                         
                         fileStream.CopyTo(ns);
                     }
                 }
 
-                _context.Response.Write(223, "Transfer complete.");
+                _context.Response.Write(226, "File download succeeded.");
             }
             catch
             {

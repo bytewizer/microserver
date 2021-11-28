@@ -60,7 +60,7 @@ namespace Bytewizer.TinyCLR.Http
             _options.Listen(80);
             _options.Pipeline(app =>
             {
-                app.Use(new HttpMiddleware());
+                app.Use(new HttpMiddleware(_logger, _httpOptions));
             });
 
             configure(_options);

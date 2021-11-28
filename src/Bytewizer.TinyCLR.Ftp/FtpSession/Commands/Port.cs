@@ -4,6 +4,9 @@ namespace Bytewizer.TinyCLR.Ftp
 {
     internal partial class FtpSession
     {
+        /// <summary>
+        /// Implements the <c>PORT</c> commands.
+        /// </summary>
         private void Port()
         {
             try
