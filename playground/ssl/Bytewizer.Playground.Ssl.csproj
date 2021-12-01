@@ -5,10 +5,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8A1BE3FA-45DC-41C0-98C8-3FBB31AF45E2}</ProjectGuid>
+    <ProjectGuid>{670AE2A1-7D8E-4A50-9E6A-C9E2CC33F6E8}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Bytewizer.Playground.Sockets</RootNamespace>
-    <AssemblyName>Bytewizer.Playground.Sockets</AssemblyName>
+    <RootNamespace>Bytewizer.Playground.Ssl</RootNamespace>
+    <AssemblyName>Bytewizer.Playground.Ssl</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -36,8 +36,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Middleware\HttpResponse.cs" />
-    <Compile Include="Middleware\HttpResponseExtensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -47,6 +45,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Http\Bytewizer.TinyCLR.Http.csproj">
+      <Project>{EB778176-633A-4997-A683-2C891C5DB436}</Project>
+      <Name>Bytewizer.TinyCLR.Http</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Sockets\Bytewizer.TinyCLR.Sockets.csproj">
       <Project>{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}</Project>
       <Name>Bytewizer.TinyCLR.Sockets</Name>
@@ -58,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Resources\favicon.bin" />
     <None Include="Resources\servercert.crt" />
     <None Include="Resources\serverkey.key" />
   </ItemGroup>
@@ -65,20 +68,8 @@
     <Reference Include="Bytewizer.TinyCLR.Core, Version=2.1.6.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Bytewizer.TinyCLR.Core.2.1.6\lib\net452\Bytewizer.TinyCLR.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Bytewizer.TinyCLR.Logging, Version=2.1.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bytewizer.TinyCLR.Logging.2.1.6\lib\net452\Bytewizer.TinyCLR.Logging.dll</HintPath>
-    </Reference>
-    <Reference Include="Bytewizer.TinyCLR.Logging.Abstractions, Version=2.1.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bytewizer.TinyCLR.Logging.Abstractions.2.1.6\lib\net452\Bytewizer.TinyCLR.Logging.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Bytewizer.TinyCLR.Logging.Debug, Version=2.1.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bytewizer.TinyCLR.Logging.Debug.2.1.6\lib\net452\Bytewizer.TinyCLR.Logging.Debug.dll</HintPath>
-    </Reference>
     <Reference Include="Bytewizer.TinyCLR.Pipeline, Version=2.1.6.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Bytewizer.TinyCLR.Pipeline.2.1.6\lib\net452\Bytewizer.TinyCLR.Pipeline.dll</HintPath>
-    </Reference>
-    <Reference Include="GHIElectronics.TinyCLR.Data.Json, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GHIElectronics.TinyCLR.Data.Json.2.1.0\lib\net452\GHIElectronics.TinyCLR.Data.Json.dll</HintPath>
     </Reference>
     <Reference Include="GHIElectronics.TinyCLR.Devices.Gpio, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GHIElectronics.TinyCLR.Devices.Gpio.2.1.0\lib\net452\GHIElectronics.TinyCLR.Devices.Gpio.dll</HintPath>
@@ -89,11 +80,11 @@
     <Reference Include="GHIElectronics.TinyCLR.Devices.Spi, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GHIElectronics.TinyCLR.Devices.Spi.2.1.0\lib\net452\GHIElectronics.TinyCLR.Devices.Spi.dll</HintPath>
     </Reference>
+    <Reference Include="GHIElectronics.TinyCLR.Devices.Storage, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GHIElectronics.TinyCLR.Devices.Storage.2.1.0\lib\net452\GHIElectronics.TinyCLR.Devices.Storage.dll</HintPath>
+    </Reference>
     <Reference Include="GHIElectronics.TinyCLR.Devices.Uart, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GHIElectronics.TinyCLR.Devices.Uart.2.1.0\lib\net452\GHIElectronics.TinyCLR.Devices.Uart.dll</HintPath>
-    </Reference>
-    <Reference Include="GHIElectronics.TinyCLR.IO, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GHIElectronics.TinyCLR.IO.2.1.0\lib\net452\GHIElectronics.TinyCLR.IO.dll</HintPath>
     </Reference>
     <Reference Include="GHIElectronics.TinyCLR.Native, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GHIElectronics.TinyCLR.Native.2.1.0\lib\net452\GHIElectronics.TinyCLR.Native.dll</HintPath>

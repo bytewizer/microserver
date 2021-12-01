@@ -5,7 +5,7 @@ using System.Diagnostics;
 using Bytewizer.TinyCLR.Sockets;
 using Bytewizer.TinyCLR.Pipeline;
 
-namespace Bytewizer.Playground.Sockets
+namespace Bytewizer.TinyCLR.Secure
 {
     public class HttpResponse : Middleware
     {
@@ -21,21 +21,20 @@ namespace Bytewizer.Playground.Sockets
                 using (var reader = new StreamReader(ctx.Channel.InputStream))
                 {
                     string line;
-                    while ((line = reader.ReadLine()) != null)
+                    do
                     {
-                        Debug.WriteLine(line);
-                    }
-
+                        line = reader.ReadLine();
+                        //Debug.WriteLine(line);
+                    } while (!reader.EndOfStream);
+                }
 
                 string response = "HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n" +
-                                  "<doctype !html><html><head><meta http-equiv='refresh' content='3'><title>Hello, world!</title>" +
+                                  "<doctype !html><html><head><meta http-equiv='refresh' content='1'><title>Hello, world!</title>" +
                                   "<style>body { background-color: #111 } h1 { font-size:2cm; text-align: center; color: white;}</style></head>" +
                                   "<body><h1>" + DateTime.Now.Ticks.ToString() + "</h1></body></html>";
                 
                 // send the response to browser
                 ctx.Channel.Write(response);
-
-                }
             }
             catch
             {

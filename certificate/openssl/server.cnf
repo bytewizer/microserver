@@ -1,0 +1,12 @@
+[req]
+default_bits = 2048
+prompt = no
+default_md = sha256
+distinguished_name = req_distinguished_name
+
+[req_distinguished_name]
+C = AT
+ST = CA
+L = Orange County
+O = Bytewizer
+CN = MS200

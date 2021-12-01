@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Bytewizer.TinyCLR.Http.Extensions
+namespace Bytewizer.TinyCLR.Http
 {
     /// <summary>
     /// Contains extension methods for <see cref="StreamReader"/>.

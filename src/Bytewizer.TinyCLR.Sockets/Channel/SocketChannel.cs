@@ -88,10 +88,11 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
                 throw new ArgumentNullException(nameof(socket));
 
             var streamBuilder = new SslStreamBuilder(certificate, allowedProtocols);
+            var stream = streamBuilder.Build(socket); 
 
             Client = socket;
-            InputStream = streamBuilder.Build(socket);
-            OutputStream = new NetworkStream(socket);
+            InputStream = stream;
+            OutputStream = stream;
             Connection.Assign(socket);
 
             _cleared = false;

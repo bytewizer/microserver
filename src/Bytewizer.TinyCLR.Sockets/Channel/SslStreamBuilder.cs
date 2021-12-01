@@ -26,19 +26,21 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
         /// Builds a new <see cref="SslStream"/> from a connected socket.
         /// </summary>
         /// <param name="socket">The connected socket to create a stream with.</param>
-        public SslStream Build(Socket socket)
+        public NetworkStream Build(Socket socket)
         {
-            SslStream stream;
+            NetworkStream stream;
 
             try
             {
-                stream = new SslStream(socket);
-                stream.AuthenticateAsServer(Certificate, Protocols);
-                stream.ReadTimeout = (int)HandshakeTimeout.TotalMilliseconds;
+                SslStream sslStream = new SslStream(socket);
+                sslStream.AuthenticateAsServer(Certificate, Protocols);
+                sslStream.ReadTimeout = (int)HandshakeTimeout.TotalMilliseconds;
+
+                stream = sslStream;
             }
             catch (InvalidOperationException)
             {
-               throw new InvalidOperationException($"Handshake was not completed within the given interval.");
+                throw new InvalidOperationException($"Handshake was not completed within the given interval.");
             }
             catch (Exception ex)
             {

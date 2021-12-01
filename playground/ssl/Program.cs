@@ -1,14 +1,14 @@
 ﻿using System;
-using System.Collections;
 using System.Diagnostics;
 
 using Bytewizer.TinyCLR.Http;
-using Bytewizer.Playground.Http.Properties;
+using Bytewizer.Playground.Ssl.Properties;
 
 using GHIElectronics.TinyCLR.Devices.Network;
-using Bytewizer.TinyCLR.Http.Query;
+using Bytewizer.TinyCLR.Sockets;
+using System.Security.Cryptography.X509Certificates;
 
-namespace Bytewizer.Playground.Http
+namespace Bytewizer.Playground.Ssl
 {
     class Program
     {
@@ -26,11 +26,19 @@ namespace Bytewizer.Playground.Http
 
             var icon = Resources.GetBytes(Resources.BinaryResources.Favicon);
 
+            var X509cert = new X509Certificate(Resources.GetBytes(Resources.BinaryResources.ServerCert))
+            {
+                PrivateKey = Resources.GetBytes(Resources.BinaryResources.ServerKey)
+            };
+
             _server = new HttpServer(options =>
             {
+                options.Listen(443, listener =>
+                {
+                    listener.UseCert(X509cert);
+                });
                 options.Pipeline(app =>
                 {
-                    app.UseHttpPerf();
                     app.UseRouting();
                     app.UseEndpoints(endpoints =>
                     {          
@@ -44,14 +52,6 @@ namespace Bytewizer.Playground.Http
                             string response = "<doctype !html><html><head><meta http-equiv='refresh' content='1'><title>Hello, world!</title>" +
                                  "<style>body { background-color: #68829E } h1 { font-size:2cm; text-align: center; color: #505160;}</style></head>" +
                                  "<body><h1>" + DateTime.Now.Ticks.ToString() + "</h1></body></html>";
-
-                            var tom = context.Request.ReadFromUrlEncoded();
-
-                            foreach (QueryValue item in tom)
-                            {
-                                Debug.WriteLine(item.Value.ToString());
-                            }
-
 
                             context.Response.Write(response);
                         });

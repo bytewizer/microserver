@@ -76,6 +76,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Identity.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Ftp.Authentication", "..\src\Bytewizer.TinyCLR.Ftp.Authentication\Bytewizer.TinyCLR.Ftp.Authentication.csproj", "{372012BB-CAA0-4FEF-9EF4-2F5560E582EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.Playground.Ssl", "ssl\Bytewizer.Playground.Ssl.csproj", "{670AE2A1-7D8E-4A50-9E6A-C9E2CC33F6E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -254,6 +256,12 @@ Global
 		{372012BB-CAA0-4FEF-9EF4-2F5560E582EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{372012BB-CAA0-4FEF-9EF4-2F5560E582EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{372012BB-CAA0-4FEF-9EF4-2F5560E582EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{670AE2A1-7D8E-4A50-9E6A-C9E2CC33F6E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{670AE2A1-7D8E-4A50-9E6A-C9E2CC33F6E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{670AE2A1-7D8E-4A50-9E6A-C9E2CC33F6E8}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{670AE2A1-7D8E-4A50-9E6A-C9E2CC33F6E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{670AE2A1-7D8E-4A50-9E6A-C9E2CC33F6E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{670AE2A1-7D8E-4A50-9E6A-C9E2CC33F6E8}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -274,6 +282,7 @@ Global
 		{827F2EE0-CF70-4254-8D63-23CEAEDA92E5} = {4E3B2537-B6D2-419B-AACF-F243DC0F8A68}
 		{56F4B46E-7BE5-48E7-9EFB-F9E0240AFD64} = {4E3B2537-B6D2-419B-AACF-F243DC0F8A68}
 		{395CAB3E-5CC1-4B73-9883-1EA0114896D0} = {4E3B2537-B6D2-419B-AACF-F243DC0F8A68}
+		{670AE2A1-7D8E-4A50-9E6A-C9E2CC33F6E8} = {4E3B2537-B6D2-419B-AACF-F243DC0F8A68}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C04E0A8C-D974-4A4F-9D49-9E9AC9A78F05}

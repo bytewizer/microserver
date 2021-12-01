@@ -23,7 +23,10 @@ namespace Bytewizer.TinyCLR.Http.Internal
         protected override void Invoke(HttpContext context, RequestDelegate next)
         {
             // Wait for request bytes
-            WaitForData(context.Channel.Client, 10000);
+            if (WaitForData(context.Channel.Client, 10000))
+            {
+                context.Response.StatusCode = StatusCodes.Status408RequestTimeout;
+            }
 
             // Check message size
             if (context.Channel.InputStream.Length < _httpOptions.Limits.MinMessageSize
@@ -45,7 +48,7 @@ namespace Bytewizer.TinyCLR.Http.Internal
            _httpMessage.Encode(context);
         }
 
-        protected void WaitForData(Socket socket, int timeout)
+        protected bool WaitForData(Socket socket, int timeout)
         {
             var startTicks = DateTime.UtcNow.Ticks;
 
@@ -53,13 +56,15 @@ namespace Bytewizer.TinyCLR.Http.Internal
             {
                 if ((DateTime.UtcNow.Ticks - startTicks) / TimeSpan.TicksPerMillisecond > timeout)
                 {
-                    return;
+                    return true;
                 }
 
                 socket.Poll(100000, SelectMode.SelectRead);
                 Thread.Sleep(10);
 
             } while (socket.Available == 0);
+
+            return false;
         }
     }
 }

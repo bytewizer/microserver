@@ -16,7 +16,7 @@ namespace Bytewizer.TinyCLR.Sockets
         /// </summary>
         /// <param name="listenOptions">The <see cref="SocketListenerOptions"/> to configure.</param>
         /// <param name="serverCertificate">The X.509 certificate.</param>
-        public static SocketListenerOptions UseHttps(this SocketListenerOptions listenOptions, X509Certificate serverCertificate)
+        public static SocketListenerOptions UseCert(this SocketListenerOptions listenOptions, X509Certificate serverCertificate)
         {
             if (listenOptions == null)
             {
