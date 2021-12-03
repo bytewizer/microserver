@@ -59,7 +59,6 @@ namespace Bytewizer.TinyCLR.Http.Internal
                     return true;
                 }
 
-                socket.Poll(100000, SelectMode.SelectRead);
                 Thread.Sleep(10);
 
             } while (socket.Available == 0);
