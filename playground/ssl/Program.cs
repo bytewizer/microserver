@@ -7,6 +7,8 @@ using Bytewizer.Playground.Ssl.Properties;
 using GHIElectronics.TinyCLR.Devices.Network;
 using Bytewizer.TinyCLR.Sockets;
 using System.Security.Cryptography.X509Certificates;
+using Bytewizer.TinyCLR.Http.Query;
+using System.Threading;
 
 namespace Bytewizer.Playground.Ssl
 {
@@ -52,6 +54,20 @@ namespace Bytewizer.Playground.Ssl
                             string response = "<doctype !html><html><head><meta http-equiv='refresh' content='1'><title>Hello, world!</title>" +
                                  "<style>body { background-color: #68829E } h1 { font-size:2cm; text-align: center; color: #505160;}</style></head>" +
                                  "<body><h1>" + DateTime.Now.Ticks.ToString() + "</h1></body></html>";
+
+                            var tom = context.Request.ReadFromUrlEncoded();
+                            if (tom == null)
+                            {
+                                throw new Exception();
+                            }
+
+                            //if (tom != null)
+                            //{
+                                //foreach (QueryValue item in tom)
+                                //{
+                                //    //Debug.WriteLine(item.ToString());
+                                //}
+                            //}
 
                             context.Response.Write(response);
                         });

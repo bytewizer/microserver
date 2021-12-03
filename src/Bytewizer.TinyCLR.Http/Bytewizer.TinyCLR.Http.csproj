@@ -41,7 +41,6 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Extensions\StreamExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Http\HttpRequestExtensions.cs" />
     <Compile Include="Middleware\UsePathBaseExtensions.cs" />

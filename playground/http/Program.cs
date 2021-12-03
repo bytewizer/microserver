@@ -46,12 +46,20 @@ namespace Bytewizer.Playground.Http
                                  "<body><h1>" + DateTime.Now.Ticks.ToString() + "</h1></body></html>";
 
                             var tom = context.Request.ReadFromUrlEncoded();
-
-                            foreach (QueryValue item in tom)
+                            if (tom == null)
                             {
-                                Debug.WriteLine(item.Value.ToString());
+                                throw new Exception();
                             }
 
+                            //Debug.WriteLine(context.Request.ToString());
+
+                            //if (tom != null)
+                            //{
+                            //foreach (QueryValue item in tom)
+                            //    {
+                            //        //Debug.WriteLine(item.ToString());
+                            //    }
+                           // }
 
                             context.Response.Write(response);
                         });

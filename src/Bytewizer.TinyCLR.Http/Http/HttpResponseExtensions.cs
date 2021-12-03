@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using System.Resources;
 
 namespace Bytewizer.TinyCLR.Http
 {
@@ -98,15 +97,22 @@ namespace Bytewizer.TinyCLR.Http
         /// <param name="contentType">The Content-Type header of the file response.</param>
         public static void SendFile(this HttpResponse response, string fullPath, string contentType)
         {
-            if (response == null)
-            {
-                throw new ArgumentNullException(nameof(response));
-            }
-
             var fileName = Path.GetFileName(fullPath);
             var fileStream = new FileStream(fullPath, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
 
-            response.SendFile(fileStream, contentType, fileName);
+            SendFile(response, fileStream, contentType, fileName);
+        }
+
+        /// <summary>
+        /// Sends the given file to the response body. Note: This method uses memory to buffer the file. Use a stream soruce when possable.
+        /// </summary>
+        /// <param name="response">The <see cref="HttpResponse"/>.</param>
+        /// <param name="bytes">A <see cref="byte"/> array that contains data to be sent.</param>
+        /// <param name="contentType">The Content-Type header of the file response.</param>
+        /// <param name="fileName">The file name that will be used in the Content-Disposition header of the response.</param>
+        public static void SendFile(this HttpResponse response, byte[] bytes, string contentType, string fileName)
+        {
+            SendFile(response, new MemoryStream(bytes), contentType, fileName);
         }
 
         /// <summary>
@@ -143,23 +149,6 @@ namespace Bytewizer.TinyCLR.Http
             response.Body = fileStream;
             response.ContentLength = fileStream.Length;
             response.StatusCode = StatusCodes.Status200OK;
-        }
-
-        /// <summary>
-        /// Sends the given file to the response body.
-        /// </summary>
-        /// <param name="response">The <see cref="HttpResponse"/>.</param>
-        /// <param name="bytes">A <see cref="byte"/> array that contains data to be sent.</param>
-        /// <param name="contentType">The Content-Type header of the file response.</param>
-        /// <param name="fileName">The file name that will be used in the Content-Disposition header of the response.</param>
-        public static void SendFile(this HttpResponse response, byte[] bytes, string contentType, string fileName)
-        {
-            if (response == null)
-            {
-                throw new ArgumentNullException(nameof(response));
-            }
-
-            response.SendFile(new MemoryStream(bytes), contentType, fileName);
         }
     }
 }

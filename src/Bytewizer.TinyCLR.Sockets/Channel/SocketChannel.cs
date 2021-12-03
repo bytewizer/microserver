@@ -106,7 +106,6 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
             get { return !(Client.Poll(1000, SelectMode.SelectRead) && (Client.Available == 0)); }
         }
 
-
         /// <summary>
         /// Determine whether the socket channel is cleared.
         /// </summary>
@@ -183,10 +182,13 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
             int bytesSent = 0;
             try
             {
-                OutputStream?.Write(bytes);
-                OutputStream.Flush();
+                if (Connected)
+                {
+                    OutputStream?.Write(bytes);
+                    OutputStream.Flush();
 
-                bytesSent = bytes.Length;
+                    bytesSent = bytes.Length;
+                }
             }
             catch (Exception ex)
             {
@@ -210,7 +212,7 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
             long bytesSent = 0;
             try
             {
-                if (stream.Length > 0)
+                if (stream.Length > 0 && Connected)
                 {
                     stream?.CopyTo(OutputStream);
                     OutputStream.Flush();
@@ -219,6 +221,7 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
             }
             catch (Exception ex)
             {
+                
                 OnChannelError(this, ex);
             }
 

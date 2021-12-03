@@ -4,6 +4,7 @@ using System.Collections;
 
 using Bytewizer.TinyCLR.Http.Header;
 using Bytewizer.TinyCLR.Http.Query;
+using System.Diagnostics;
 
 namespace Bytewizer.TinyCLR.Http.Internal
 {
@@ -14,6 +15,7 @@ namespace Bytewizer.TinyCLR.Http.Internal
             ParserMode mode = ParserMode.FirstLine;
 
             var reader = new StreamReader(context.Channel.InputStream);
+            reader.BaseStream.ReadTimeout = 50000;
 
             string line;
             do
@@ -79,22 +81,28 @@ namespace Bytewizer.TinyCLR.Http.Internal
                             var contentLength = context.Request.ContentLength;
                             if (contentLength > 0)
                             {
-                                var buffer = new byte[contentLength];
+                                var buffer = new byte[(int)contentLength];
 
+                                // TODO:  When processing at a fast rate using SSL a read will result in all zeros sometimes.
+                                // This in turn writes all zeros to the body creating an empty body of data.
+                                // As far as I can tell this is only happing when using SslStream.
                                 reader.BaseStream.Read(buffer, 0, buffer.Length);
                                 context.Request.Body.Write(buffer, 0, buffer.Length);
                                 context.Request.Body.Position = 0;
                             }
                         }
-
-                        int seperatorIndex = line.IndexOf(": ");
-
-                        if (seperatorIndex > 1)
+                        else
                         {
-                            var name = line.Substring(0, seperatorIndex);
-                            var value = line.Substring(seperatorIndex + 1);
 
-                            context.Request.Headers[name] = value;
+                            int seperatorIndex = line.IndexOf(": ");
+
+                            if (seperatorIndex > 1)
+                            {
+                                var name = line.Substring(0, seperatorIndex);
+                                var value = line.Substring(seperatorIndex + 1);
+
+                                context.Request.Headers[name] = value;
+                            }
                         }
 
                         break;

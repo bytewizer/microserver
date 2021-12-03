@@ -27,11 +27,12 @@ namespace Bytewizer.TinyCLR.Http
             {
                 if (request.Body.Length > 0)
                 {
-                    var bytes = new byte[request.Body.Length];
+                    var bytes = new byte[(int)request.Body.Length];
                     
                     request.Body.Position = 0;
                     request.Body.Read(bytes, 0, bytes.Length);
-                    
+                    request.Body.Position = 0;
+
                     var parsed = QueryValue.TryParseList(Encoding.UTF8.GetString(bytes), out ArrayList result);
                     if (parsed)
                     {

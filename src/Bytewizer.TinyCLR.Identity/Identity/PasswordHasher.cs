@@ -1,8 +1,6 @@
-﻿using GHIElectronics.TinyCLR.Cryptography;
-using System;
-using System.Diagnostics;
+﻿using System;
 
-//using GHIElectronics.TinyCLR.Cryptography;
+using GHIElectronics.TinyCLR.Cryptography;
 
 namespace Bytewizer.TinyCLR.Identity
 {

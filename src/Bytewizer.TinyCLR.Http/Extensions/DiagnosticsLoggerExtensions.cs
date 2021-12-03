@@ -1,5 +1,4 @@
-﻿using System;
-using Bytewizer.TinyCLR.Logging;
+﻿using Bytewizer.TinyCLR.Logging;
 
 namespace Bytewizer.TinyCLR.Http
 {

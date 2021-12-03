@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Bytewizer.TinyCLR.Http
 {
@@ -28,20 +27,6 @@ namespace Bytewizer.TinyCLR.Http
                 }
                 reader.Read();
             }
-        }
-        public static void ReadBuffer(this StreamReader reader, char[] buffer)
-        {
-            int count = 0;
-
-            do
-            {
-                int read = reader.Read(buffer, count, buffer.Length - count);
-
-                //if (read <= 0)
-                //    throw new Exception("Stream closed unexpectedly by the remote server");
-
-                count += read;
-            } while (count < buffer.Length);
         }
     }
 }
