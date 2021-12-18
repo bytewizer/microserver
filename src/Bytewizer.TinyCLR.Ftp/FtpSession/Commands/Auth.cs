@@ -1,4 +1,7 @@
-﻿namespace Bytewizer.TinyCLR.Ftp
+﻿using Bytewizer.TinyCLR.Sockets.Channel;
+using System.Security.Authentication;
+
+namespace Bytewizer.TinyCLR.Ftp
 {
     internal partial class FtpSession
     {
@@ -18,7 +21,16 @@
                 case "TLS-C":
                 case "TLS":
                     _context.Request.SecurityType = SecurityType.Tls;
-                    _context.Response.Write(215, $"Transport security set to TLS mode.");
+
+                    //write to channel
+                    _context.Channel.Write(234, "AUTH command OK. Initializing SSL connection.");
+
+                    var channel = new SocketChannel();
+                    channel.Assign(_context.Channel.Client, _ftpOptions.Certificate, SslProtocols.Tls12);
+                    _context.Channel = channel;
+
+                    //_context.Response.Write(334, "");
+
                     break;
 
                 case "TLS-P":

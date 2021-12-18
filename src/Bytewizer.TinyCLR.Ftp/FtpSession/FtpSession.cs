@@ -1,12 +1,16 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Security.Authentication;
 using System.Threading;
 
 using Bytewizer.TinyCLR.Logging;
 using Bytewizer.TinyCLR.Sockets;
+using Bytewizer.TinyCLR.Ftp.Features;
 using Bytewizer.TinyCLR.Sockets.Channel;
 using Bytewizer.TinyCLR.Sockets.Listener;
+
 
 namespace Bytewizer.TinyCLR.Ftp
 {
@@ -16,7 +20,7 @@ namespace Bytewizer.TinyCLR.Ftp
 
         private TcpListener _listener;
         private NetworkStream _listenerStream;
-      
+
         private readonly ILogger _logger;
         private readonly FtpContext _context;
         private readonly FileProvider _fileProvider;
@@ -43,10 +47,10 @@ namespace Bytewizer.TinyCLR.Ftp
             _context.Channel.Write(220, _ftpOptions.BannerMessage);
 
             // Process command loop
-            byte[] buffer = new byte[1024];
-            
             while (_context.Active || _context.Channel.Connected)
             {
+                byte[] buffer = new byte[128]; //128
+
                 var bytes = _context.Channel.InputStream.Read(buffer, 0, buffer.Length);
                 if (bytes > 0)
                 {
@@ -59,13 +63,16 @@ namespace Bytewizer.TinyCLR.Ftp
                     // process the command received
                     CommandReceived();
 
-                    // log response command
-                    _logger.CommandResponse(_context);
+                    if (_context.Response.Message != null)
+                    {
+                        // log response command
+                        _logger.CommandResponse(_context);
 
-                    // Write the response to the client
-                    _context.Channel.Write(
-                        _context.Response.Message
-                        );
+                        // Write the response to the client
+                        _context.Channel.Write(
+                            _context.Response.Message
+                            );
+                    }
 
                     // Clear request commands
                     _context.Request.Command.Clear();
@@ -87,7 +94,19 @@ namespace Bytewizer.TinyCLR.Ftp
         private void ClientConnected(object sender, SocketChannel channel)
         {
             channel.ChannelError += ChannelError;
-            _listenerStream = new NetworkStream(channel.Client, true);
+
+            var feature = (SessionFeature)_context.Features.Get(typeof(SessionFeature));
+            if (feature.TlsProt == null || feature.TlsProt == "C")
+            {
+                _listenerStream = channel.InputStream as NetworkStream;
+            }
+            else
+            {
+                var sslChannel = new SocketChannel();
+                sslChannel.Assign(channel.Client, _ftpOptions.Certificate, SslProtocols.Tls12);
+                _context.Channel = sslChannel;
+                _listenerStream = _context.Channel.InputStream as NetworkStream;
+            }
         }
 
         protected void ClientDisconnected(object sender, Exception execption)
@@ -142,7 +161,7 @@ namespace Bytewizer.TinyCLR.Ftp
                     return;
             }
 
-            if(_context.Request.Authenticated)
+            if (_context.Request.Authenticated)
             {
                 switch (_context.Request.Command.Name)
                 {
@@ -268,16 +287,30 @@ namespace Bytewizer.TinyCLR.Ftp
             CommandNotImplemented();
         }
 
-        private NetworkStream GetNetworkStream()
+        private Stream GetNetworkStream()
         {
-            if (_context.Request.DataMode == DataMode.Active 
+            if (_context.Request.DataMode == DataMode.Active
                 || _context.Request.DataMode == DataMode.ExtendedActive)
             {
-                var client = new TcpClient();
-                client.NoDelay = true;
+                var client = new TcpClient
+                {
+                    NoDelay = true
+                };
                 client.Connect(_endpoint);
 
-                return client.GetStream();
+                Stream stream;
+                var feature = (SessionFeature)_context.Features.Get(typeof(SessionFeature));
+                if (feature.TlsProt == null || feature.TlsProt == "C")
+                {
+                    stream = new LoggerStream(client.GetStream());
+                }
+                else
+                {
+                    var streamBuilder = new SslStreamBuilder(_ftpOptions.Certificate, SslProtocols.Tls12);
+                    stream = streamBuilder.Build(client.Client);
+                }
+
+                return stream;
             }
             else
             {

@@ -2,6 +2,7 @@
 using System.Diagnostics;
 
 using Bytewizer.TinyCLR.Http;
+using Bytewizer.TinyCLR.Identity;
 using Bytewizer.TinyCLR.Http.Authenticator;
 
 using GHIElectronics.TinyCLR.Devices.Network;
@@ -18,9 +19,10 @@ namespace Bytewizer.Playground.Authentication
             NetworkProvider.InitializeEthernet();
             NetworkProvider.Controller.NetworkAddressChanged += NetworkAddressChanged;
 
-            //var accountProvider = new AccountProvider();
-            var accountProvider = new DefaultAccountProvider();
-            accountProvider.CreateUser("admin", "password");
+            var identityProvider = new IdentityProvider();
+            
+            var user = new IdentityUser("administrator");
+            identityProvider.Create(user, AuthHelper.DefaultRealm, "password");
 
             _server = new HttpServer(options =>
             {
@@ -29,14 +31,14 @@ namespace Bytewizer.Playground.Authentication
                     app.UseRouting();
                     app.UseAuthentication(new AuthenticationOptions
                     {
-                        AuthenticationProvider = new DigestAuthenticationProvider(),
-                        AccountProvider = accountProvider
+                        AuthenticationProvider = new BasicAuthenticationProvider(),
+                        IdentityProvider= identityProvider
                     });
                     app.UseEndpoints(endpoints =>
                     {
                         endpoints.Map("/", context =>
                         {
-                            var username = context.GetCurrentUser().Username;
+                            var username = context.GetCurrentUser().UserName;
                             string response = "<doctype !html><html><head><meta http-equiv='refresh' content='1'><title>Hello, world!</title>" +
                                               "<style>body { background-color: #43bc69 } h1 { font-size:2cm; text-align: center; color: white;}</style></head>" +
                                               "<body><h1>" + DateTime.Now.Ticks.ToString() + "</h1><h1>" + username + "</h1></body></html>";

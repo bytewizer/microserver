@@ -50,7 +50,7 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
                 throw new ArgumentNullException(nameof(socket));
 
             Client = socket;
-            InputStream = new NetworkStream(socket, false);
+            InputStream =  new NetworkStream(socket, false);
             OutputStream = new NetworkStream(socket, false);
             Connection.Assign(socket);
             
@@ -125,6 +125,15 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
             OutputStream?.Dispose();
 
             _cleared = true;
+        }
+
+        /// <summary>
+        /// Writes a new response to the connected socket channel. UTF-8 encoding will be used.
+        /// </summary>
+        /// <param name="text">A <see cref="string"/> that contains data to be UTF8 encoded and sent.</param>
+        public int WriteLine(string text)
+        {
+            return Write($"{text}{Environment.NewLine}");
         }
 
         /// <summary>

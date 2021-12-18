@@ -1,4 +1,6 @@
-﻿namespace Bytewizer.TinyCLR.Http.Features
+﻿using Bytewizer.TinyCLR.Identity;
+
+namespace Bytewizer.TinyCLR.Http.Features
 {
     /// <summary>
     /// A feature interface for authentication. Use <see cref="HttpContext.Features"/>
@@ -9,6 +11,6 @@
         /// <summary>
         /// Gets or sets security information for the current HTTP request.
         /// </summary>
-        IUser User { get; set; }
+        IIdentityUser User { get; set; }
     }
 }

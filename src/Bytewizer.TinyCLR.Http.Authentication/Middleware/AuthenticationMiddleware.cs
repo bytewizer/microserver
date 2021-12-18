@@ -1,6 +1,7 @@
-﻿using Bytewizer.TinyCLR.Http.Authenticator;
-using System;
+﻿using System;
 using System.Diagnostics;
+
+using Bytewizer.TinyCLR.Http.Authenticator;
 
 namespace Bytewizer.TinyCLR.Http
 {
@@ -36,7 +37,10 @@ namespace Bytewizer.TinyCLR.Http
             else
             {
                 var results = _options.AuthenticationProvider.Authenticate(context, _options);
-                Debug.WriteLine(results.Failure);
+                if (!results.Succeeded)
+                {
+                    Debug.WriteLine(results.Failure);
+                }
                 if (results.Succeeded)
                 {
                     next(context);

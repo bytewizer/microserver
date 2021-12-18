@@ -4,7 +4,6 @@ using System.Collections;
 
 using Bytewizer.TinyCLR.Http.Header;
 using Bytewizer.TinyCLR.Http.Query;
-using System.Diagnostics;
 
 namespace Bytewizer.TinyCLR.Http.Internal
 {
@@ -93,7 +92,6 @@ namespace Bytewizer.TinyCLR.Http.Internal
                         }
                         else
                         {
-
                             int seperatorIndex = line.IndexOf(": ");
 
                             if (seperatorIndex > 1)
@@ -128,7 +126,7 @@ namespace Bytewizer.TinyCLR.Http.Internal
                 var reasonPhrase = HttpReasonPhrase.Get(statusCode);
 
                 // Write first line
-                writer.Write($"{protocol} {statusCode} {reasonPhrase}\r\n");
+                writer.WriteLine($"{protocol} {statusCode} {reasonPhrase}");
 
                 // Set response date if not found in headers
                 if (response.Headers[HeaderNames.Date] == null)
@@ -136,18 +134,12 @@ namespace Bytewizer.TinyCLR.Http.Internal
                     response.Headers[HeaderNames.Date] = DateTime.UtcNow.ToString("R");
                 }
 
-                // Set response content length if not found in headers
-                //if (response.Headers[HeaderNames.ContentLength] == null)
-                //{
-                //    response.Headers[HeaderNames.ContentLength] = "0";
-                //}
-
                 // Process headers
                 if (response.Headers != null && response.Headers.Count > 0)
                 {
                     foreach (HeaderValue header in response.Headers)
                     {
-                        writer.Write($"{header.Key}: {header.Value}\r\n");
+                        writer.WriteLine($"{header.Key}: {header.Value}");
                     }
                 }
 

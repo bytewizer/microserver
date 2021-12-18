@@ -28,13 +28,13 @@ namespace Bytewizer.TinyCLR.Ftp
         /// <inheritdoc/>
         protected override void Invoke(FtpContext context, RequestDelegate next)
         {
-            var feature = new FtpAuthenticationFeature()
+            var feature = new SessionFeature()
             {
                 IdentityProvider = _options.IdentityProvider,
                 AllowAnonymous = _options.AllowAnonymous
             };
             
-            context.Features.Set(typeof(IFtpAuthenticationFeature), feature);
+            context.Features.Set(typeof(SessionFeature), feature);
         }
     }
 }

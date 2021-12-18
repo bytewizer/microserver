@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using Bytewizer.TinyCLR.Logging;
+﻿using Bytewizer.TinyCLR.Logging;
 
 namespace Bytewizer.TinyCLR.Ftp
 {
@@ -9,6 +8,8 @@ namespace Bytewizer.TinyCLR.Ftp
     {
         private static readonly EventId _commandRequest = new EventId(112, "Request Command Message");
         private static readonly EventId _commandResponse = new EventId(113, "Response Command Message");
+        private static readonly EventId _loginSucceeded = new EventId(114, "Login Succeeded");
+        private static readonly EventId _loginFailed = new EventId(115, "Login Failed");
 
         public static void CommandRequest(this ILogger logger, FtpContext context)
         {
@@ -25,7 +26,27 @@ namespace Bytewizer.TinyCLR.Ftp
             logger.Log(
                 LogLevel.Trace,
                 _commandResponse,
-                 $"{context.Connection.LocalEndpoint} => {context.Connection.RemoteEndpoint } Response: {context.Response}",
+                 $"{context.Connection.LocalEndpoint} => {context.Connection.RemoteEndpoint} Response: {context.Response}",
+                null
+                );
+        }
+
+        public static void LoginSucceeded(this ILogger logger, FtpContext context)
+        {
+            logger.Log(
+                LogLevel.Information,
+                _loginSucceeded,
+                 $"{context.Connection.RemoteEndpoint} Login Succeeded",
+                null
+                );
+        }
+
+        public static void LoginFailed(this ILogger logger, FtpContext context, string message)
+        {
+            logger.Log(
+                LogLevel.Information,
+                _loginFailed,
+                 $"{context.Connection.RemoteEndpoint} Login Failed: {message}",
                 null
                 );
         }

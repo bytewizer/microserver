@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Text;
 
+using Bytewizer.TinyCLR.Identity;
 using Bytewizer.TinyCLR.Http.Features;
+
 using GHIElectronics.TinyCLR.Cryptography;
 
 namespace Bytewizer.TinyCLR.Http.Authenticator
@@ -58,9 +60,9 @@ namespace Bytewizer.TinyCLR.Http.Authenticator
                 string username = decoded.Substring(0, pos);
                 string password = decoded.Substring(pos + 1, decoded.Length - pos - 1);
 
-                if (options.AccountProvider.TryGetUser(username, out IUser user))
+                if (options.IdentityProvider.TryGetUser(username, out IIdentityUser user))
                 {
-                    if (user.HA1 == CreateHA1Hash(username, Realm, password))
+                    if ((string)user.Metadata == CreateHA1Hash(username, Realm, password))
                     {
                         var authenticationFeature = new HttpAuthenticationFeature
                         {

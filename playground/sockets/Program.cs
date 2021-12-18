@@ -7,6 +7,7 @@ using Bytewizer.TinyCLR.Logging.Debug;
 using Bytewizer.Playground.Sockets.Properties;
 
 using GHIElectronics.TinyCLR.Devices.Network;
+using System.Net;
 
 namespace Bytewizer.Playground.Sockets
 {
@@ -17,6 +18,7 @@ namespace Bytewizer.Playground.Sockets
 
         static void Main()
         {
+            
             StorageProvider.Initialize();
             NetworkProvider.InitializeEthernet();
             NetworkProvider.Controller.NetworkAddressChanged += NetworkAddressChanged;
@@ -34,10 +36,11 @@ namespace Bytewizer.Playground.Sockets
             {
                 options.Listen(443, listener =>
                 {
-                    listener.UseCert(X509cert);
+                    listener.UseTls(X509cert);
                 });
                 options.Pipeline(app =>
                 {
+                    app.UseIpFiltering("192.168.1.0/24");
                     app.UseHttpResponse();
                 });
             });

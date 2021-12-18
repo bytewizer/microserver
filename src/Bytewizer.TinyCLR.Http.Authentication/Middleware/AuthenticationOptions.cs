@@ -1,4 +1,5 @@
-﻿using Bytewizer.TinyCLR.Http.Authenticator;
+﻿using Bytewizer.TinyCLR.Identity;
+using Bytewizer.TinyCLR.Http.Authenticator;
 
 namespace Bytewizer.TinyCLR.Http
 {
@@ -12,8 +13,8 @@ namespace Bytewizer.TinyCLR.Http
         /// </summary>
         public AuthenticationOptions()
         {
-            AuthenticationProvider = new DigestAuthenticationProvider();      
-            AccountProvider = new DefaultAccountProvider();           
+            AuthenticationProvider = new DigestAuthenticationProvider();
+            IdentityProvider = new IdentityProvider();           
         }
 
         /// <summary>
@@ -24,6 +25,6 @@ namespace Bytewizer.TinyCLR.Http
         /// <summary>
         /// Account service for the specified authentication scheme.
         /// </summary>
-        public IAccountProvider AccountProvider { get; set; }
+        public IIdentityProvider IdentityProvider { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 
+using Bytewizer.TinyCLR.Identity;
 using Bytewizer.TinyCLR.Pipeline.Builder;
 
 namespace Bytewizer.TinyCLR.Http
@@ -13,26 +14,26 @@ namespace Bytewizer.TinyCLR.Http
         /// <summary>
         /// Enable authentication capabilities.
         /// </summary>
-        /// <param name="app">The <see cref="IApplicationBuilder"/> instance this method extends.</param>
-        /// <param name="accountService">The <see cref="IAccountProvider"/> used to configure the middleware.</param>
-        public static IApplicationBuilder UseAuthentication(this IApplicationBuilder app, IAccountProvider accountService)
+        /// <param name="builder">The <see cref="IApplicationBuilder"/> instance this method extends.</param>
+        /// <param name="identityProvider">The <see cref="IIdentityProvider"/> used to configure the middleware.</param>
+        public static IApplicationBuilder UseAuthentication(this IApplicationBuilder builder, IIdentityProvider identityProvider)
         {
-            if (app == null)
+            if (builder == null)
             {
-                throw new ArgumentNullException(nameof(app));
+                throw new ArgumentNullException(nameof(builder));
             }
 
-            if (accountService == null)
+            if (identityProvider == null)
             {
-                throw new ArgumentNullException(nameof(accountService));
+                throw new ArgumentNullException(nameof(identityProvider));
             }
 
             var options = new AuthenticationOptions()
             {
-                AccountProvider = accountService
+                IdentityProvider = identityProvider
             };
 
-            return app.UseMiddleware(typeof(AuthenticationMiddleware), options);
+            return builder.UseMiddleware(typeof(AuthenticationMiddleware), options);
         }
 
         /// <summary>

@@ -17,7 +17,14 @@ namespace Bytewizer.TinyCLR.Ftp
         /// </summary>
         public override string ToString()
         {
-            return Message.Replace("\r\n", string.Empty);
+            var message = "[null]";
+
+            if (Message != null)
+            {
+                message = Message.Replace("\r\n", string.Empty);
+            }
+
+            return message;
         }
 
         /// <summary>

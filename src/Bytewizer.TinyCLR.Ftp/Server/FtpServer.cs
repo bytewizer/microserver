@@ -5,6 +5,7 @@ using Bytewizer.TinyCLR.Logging;
 using Bytewizer.TinyCLR.Pipeline;
 using Bytewizer.TinyCLR.Sockets.Channel;
 using Bytewizer.TinyCLR.Sockets.Listener;
+using System.Net;
 
 namespace Bytewizer.TinyCLR.Ftp
 {
@@ -119,6 +120,55 @@ namespace Bytewizer.TinyCLR.Ftp
                 return;
             }
         }
+
+        ///// <summary>
+        ///// Retrieves the public IP address of the server to use in passive mode.
+        ///// </summary>
+        ///// <param name="localIpAddress">Local IP address of the server</param>
+        ///// <param name="serverOptions">FTP server options</param>
+        ///// <param name="logger">Current logger instance</param>
+        ///// <returns>Public IP address of the server.</returns>
+        //        private IPAddress GetPublicAddress(IPAddress localIpAddress, FtpServerOptions serverOptions, ILogger logger)
+        //        {
+        //            var publicIpAddress = localIpAddress;
+
+        //            if (!string.IsNullOrEmpty(serverOptions.PublicAddress)
+        //                && !IPAddress.TryParse(serverOptions.PublicAddress, out publicIpAddress))
+        //            {
+        //                // Try resolve provided host name to IPv4 address
+        //                try
+        //                {
+        //                    publicIpAddress =
+        //                        Dns.GetHostEntry(serverOptions.PublicAddress.ToString())
+        //;
+        //                }
+        //                catch (Exception error)
+        //                {
+        //                    //logger.WriteWarning(
+        //                    //    TraceResources.CouldNotResolvePublicAddressFormat,
+        //                    //    serverOptions.PublicAddress,
+        //                    //    error.Message,
+        //                    //    publicIpAddress = localIpAddress);
+        //                }
+        //            }
+
+        //            return publicIpAddress;
+        //        }
+
+
+        //public string GetMyExternalIp()
+        //{
+        //    if (myExternalIp == null)
+        //    {
+        //        using (var client = new WebClient())
+        //        {
+        //            myExternalIp = client.DownloadString("https://api.ipify.org/");
+        //        }
+        //    }
+        //    return myExternalIp;
+        //}
+
+
 
         /// <summary>
         /// A client has disconnected.

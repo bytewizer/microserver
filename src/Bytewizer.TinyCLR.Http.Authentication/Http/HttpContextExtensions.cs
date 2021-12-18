@@ -1,5 +1,6 @@
 ﻿using System;
 
+using Bytewizer.TinyCLR.Identity;
 using Bytewizer.TinyCLR.Http.Features;
 
 namespace Bytewizer.TinyCLR.Http
@@ -13,7 +14,7 @@ namespace Bytewizer.TinyCLR.Http
         /// Extension method for getting the current user name request.
         /// </summary>
         /// <param name="context">The <see cref="HttpContext"/> context.</param>
-        public static IUser GetCurrentUser(this HttpContext context)
+        public static IIdentityUser GetCurrentUser(this HttpContext context)
         {
             if (context == null)
             {

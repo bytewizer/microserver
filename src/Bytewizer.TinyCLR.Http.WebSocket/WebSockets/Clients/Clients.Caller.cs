@@ -1,5 +1,4 @@
-﻿using Bytewizer.TinyCLR.Http.Extensions;
-using System;
+﻿using System;
 using System.Collections;
 using System.IO;
 using System.Net.Sockets;

@@ -26,7 +26,7 @@ namespace Bytewizer.TinyCLR.Ftp
                 //write to channel
                 _context.Channel.Write(150, "Status okay, opening data connection.");
 
-                using (NetworkStream ns = GetNetworkStream())
+                using (Stream ns = GetNetworkStream())
                 {
                     using (StreamWriter sw = new StreamWriter(ns))
                     {

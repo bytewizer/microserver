@@ -33,7 +33,7 @@ namespace Bytewizer.TinyCLR.Ftp
             }
 
             var feature = new SessionFeature();
-            context.Features.Set(typeof(ISessionFeature), feature);
+            context.Features.Set(typeof(SessionFeature), feature);
 
             next(context);
 

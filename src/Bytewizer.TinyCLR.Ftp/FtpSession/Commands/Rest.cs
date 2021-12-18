@@ -11,7 +11,7 @@ namespace Bytewizer.TinyCLR.Ftp
         {
             try
             {
-                var feature = (SessionFeature)_context.Features.Get(typeof(ISessionFeature));
+                var feature = (SessionFeature)_context.Features.Get(typeof(SessionFeature));
                 feature.RestPosition = int.Parse(_context.Request.Command.Argument);
                 
                 _context.Response.Write(350, $"Restarting next transfer from position {feature.RestPosition}. Send STOR or RETR to initiate transfer.");

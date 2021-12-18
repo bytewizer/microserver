@@ -3,7 +3,6 @@ using System.Text;
 
 using Bytewizer.TinyCLR.Http.Header;
 using Bytewizer.TinyCLR.Http.WebSockets;
-using Bytewizer.TinyCLR.Http.Extensions;
 
 using GHIElectronics.TinyCLR.Cryptography;
 

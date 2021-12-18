@@ -10,6 +10,8 @@ namespace Bytewizer.TinyCLR.Ftp
         /// </summary>
         private void Mlsd()
         {
+            //CommandNotImplemented();
+
             if (_context.Request.DataMode == DataMode.None)
             {
                 BadSequenceOfCommands();
@@ -22,16 +24,14 @@ namespace Bytewizer.TinyCLR.Ftp
             {
                 //write to channel
                 _context.Channel.Write(150, "Status okay, opening data connection.");
-                
-                using (NetworkStream ns = GetNetworkStream())
+
+                using (Stream ns = GetNetworkStream())
                 {
                     using (StreamWriter sw = new StreamWriter(ns))
                     {
-                        //sw.WriteLine($"250-Listing {_context.Request.Command.Argument}");
-
                         //_fileProvider.SetWorkingDirectory(path);
                         var path = _fileProvider.GetLocalDirectory();
-                        
+
                         DirectoryInfo directory = new DirectoryInfo(path);
                         if (directory.Exists)
                         {
@@ -59,8 +59,8 @@ namespace Bytewizer.TinyCLR.Ftp
                                 var lastWriteTime = directory.LastWriteTime.ToTimeString();
                                 var creationTime = directory.LastWriteTime.ToTimeString();
 
-                                sw.WriteLine($"Type=dir;Modify={lastWriteTime};Create={creationTime}; {directory.Name}");
-                                sw.Flush();
+                                sw.WriteLine($"Type=dir;Modify={lastWriteTime}; {directory.Name}");
+                                //sw.Flush();
                             }
                         }
 
@@ -74,13 +74,10 @@ namespace Bytewizer.TinyCLR.Ftp
                                 var lastWriteTime = file.LastWriteTime.ToTimeString();
                                 var creationTime = file.LastWriteTime.ToTimeString();
 
-                                sw.WriteLine($"Type=file;Size={file.Length};Modify={lastWriteTime};Create={creationTime}; {file.Name}");
-                                sw.Flush();
+                                sw.WriteLine($"Type=file;Size={file.Length};Modify={lastWriteTime}; {file.Name}");
+                                //sw.Flush();
                             }
                         }
-
-                        //sw.WriteLine("250 End");
-                        //sw.Flush();
                     }
                 }
 

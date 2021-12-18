@@ -40,7 +40,7 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
             }
             catch (InvalidOperationException)
             {
-                throw new InvalidOperationException($"Handshake was not completed within the given interval.");
+                throw new InvalidOperationException($"Ssl handshake was not completed within the given interval.");
             }
             catch (Exception ex)
             {

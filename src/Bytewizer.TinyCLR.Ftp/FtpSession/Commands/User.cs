@@ -11,7 +11,7 @@ namespace Bytewizer.TinyCLR.Ftp
         {
             var AllowAnonymous = true;
 
-            var feature = (FtpAuthenticationFeature)_context.Features.Get(typeof(IFtpAuthenticationFeature));
+            var feature = (SessionFeature)_context.Features.Get(typeof(SessionFeature));
             if (feature != null)
             {
                 AllowAnonymous = feature.AllowAnonymous;

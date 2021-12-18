@@ -8,7 +8,7 @@ namespace Bytewizer.TinyCLR.Ftp
     {
         public static string ToTimeString( this DateTime dateTime)
         {
-            return dateTime.ToUniversalTime().ToString("yyyyMMddHHmmss.fff");
+            return dateTime.ToUniversalTime().ToString("yyyyMMddHHmmss");
         }
     }
 }

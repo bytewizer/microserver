@@ -11,7 +11,7 @@ Microserver is a modular embedded server built for TinyCLR OS IoT devices.  Be s
 
 Build modular tcp/udp service with an extendable pipeline and SSL transport security.
 
-* <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.TcpClient">TCP Client Services</a>
+* <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.TcpClient">TCP Client</a>
 * <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Sockets">TCP/UDP Socket Server</a>
 * <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Ftp">File Transfer Protocol (FTP) Server</a>
 * <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Sntp">Simple Network Time Protocol (SNTP) Server</a>

@@ -21,10 +21,11 @@ namespace Bytewizer.Playground.Sockets
                 using (var reader = new StreamReader(ctx.Channel.InputStream))
                 {
                     string line;
-                    while ((line = reader.ReadLine()) != null)
+                    do
                     {
+                        line = reader.ReadLine();
                         Debug.WriteLine(line);
-                    }
+                    }while (!reader.EndOfStream);
 
 
                 string response = "HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n" +

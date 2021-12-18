@@ -22,13 +22,13 @@ namespace Bytewizer.TinyCLR.Ftp
 
             try
             {
-                var feature = (SessionFeature)_context.Features.Get(typeof(ISessionFeature));
+                var feature = (SessionFeature)_context.Features.Get(typeof(SessionFeature));
                 var marker = feature.RestPosition;
 
                 // write to channel 
                 _context.Channel.Write(150, "Opening connection for data transfer.");
 
-                using (NetworkStream ns = GetNetworkStream())
+                using (Stream ns = GetNetworkStream())
                 {
                     var mode = (marker == 0) ? FileMode.Create : FileMode.Open;
 

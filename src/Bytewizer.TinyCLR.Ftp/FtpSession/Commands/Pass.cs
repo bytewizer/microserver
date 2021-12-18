@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using System.Collections;
 
 using Bytewizer.TinyCLR.Ftp.Features;
@@ -20,48 +21,66 @@ namespace Bytewizer.TinyCLR.Ftp
 
             try
             {
-                var feature = (FtpAuthenticationFeature)_context.Features.Get(typeof(IFtpAuthenticationFeature));
+                var feature = (SessionFeature)_context.Features.Get(typeof(SessionFeature));
 
-                var allowAnonymous = (feature == null) ? true : feature.AllowAnonymous;
-
-                if (_context.Request.Name.ToUpper() == "ANONYMOUS" && allowAnonymous)
+                if (_context.Request.Name.ToUpper() == "ANONYMOUS" && feature.AllowAnonymous)
                 {
                     _context.Request.Authenticated = true;
-                    _context.Response.Write(230, "User logged in.");
+                    SuccessfulLoginMessage();
                     return;
                 }
-
-                if (feature != null)
+                else
                 {
                     var identityProvider = feature.IdentityProvider;
 
-                    var user = identityProvider.FindByName(_context.Request.Name);
-                    if (user != null)
+                    if (identityProvider != null)
                     {
-                        var password = Encoding.UTF8.GetBytes(_context.Request.Command.Argument);
-                        var results = identityProvider.VerifyPassword(user, password);
-                        if (results.Succeeded)
+                        var user = identityProvider.FindByName(_context.Request.Name);
+                        if (user != null)
                         {
-                            _context.Request.Authenticated = true;
-                            _context.Response.Write(230, "User logged in.");
-                        }
-                        else
-                        {
-                            _context.Response.Write(530, "User cannot log in.", results.Errors, "End");
-                        }
+                            var password = Encoding.UTF8.GetBytes(_context.Request.Command.Argument);
 
-                        return;
+                            var results = identityProvider.VerifyPassword(user, password);
+                            if (results.Succeeded)
+                            {
+                                _context.Request.Authenticated = true;
+                                SuccessfulLoginMessage();
+                            }
+                            else
+                            {
+                                FailedLoginMessage(results.Errors);
+                            }
+                        }
                     }
-                }
 
-                ArrayList errors = new ArrayList();
-                errors.Add("Logon failure: Unknown user name or bad password.");
-                _context.Response.Write(530, "User cannot log in.", errors, "End");
+                    var errors = new ArrayList(1)
+                    {
+                        new Exception($"User '{_context.Request.Name}' cound not be located.")
+                    };
+
+                    FailedLoginMessage(errors);
+                }
             }
             catch
             {
                 _context.Response.Write(500, "PASS command failed.");
             }
+        }
+
+        private void SuccessfulLoginMessage()
+        {
+            _logger.LoginSucceeded(_context);
+            _context.Response.Write(230, "User logged in.");
+        }
+
+        private void FailedLoginMessage(ArrayList errors)
+        {
+            foreach (Exception error in errors)
+            {
+                _logger.LoginFailed(_context, error.Message);
+            }
+
+            _context.Response.Write(530, "Logon failure: Unknown user name or bad password.");
         }
     }
 }

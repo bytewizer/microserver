@@ -17,19 +17,8 @@
     </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup>
-    <VersionPrefix>2.0.0</VersionPrefix>
-    <Version Condition=" '$(Version)' == '' and '$(VersionSuffix)' != '' ">$(VersionPrefix)-$(VersionSuffix)</Version>
-    <Version Condition=" '$(Version)' == '' ">$(VersionPrefix)</Version>
-    <Authors>Microcompiler</Authors>
-    <Company>Bytewizer Technology</Company>
-    <Description>Hypertext Transfer Protocol (Http) cookie extension library built for TinyCLR IoT devices.</Description>
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <BuildNumber Condition=" '$(BuildNumber)' == '' ">0</BuildNumber>
-    <PackageId>$(AssemblyName)</PackageId>
+    <Description>Hypertext Transfer Protocol (Http) cookies extension library built for TinyCLR IoT devices.</Description>
     <PackageTags>ghi tinyclr tinyclros sitcore iot http-server http https cookies</PackageTags>
-    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-    <PackageIcon>package-logo.png</PackageIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -77,13 +66,13 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Bytewizer.TinyCLR.Core">
-      <Version>2.1.6</Version>
+      <Version>2.1.7-preview.107</Version>
     </PackageReference>
     <PackageReference Include="Bytewizer.TinyCLR.Logging.Abstractions">
-      <Version>2.1.6</Version>
+      <Version>2.1.7-preview.107</Version>
     </PackageReference>
     <PackageReference Include="Bytewizer.TinyCLR.Pipeline">
-      <Version>2.1.6</Version>
+      <Version>2.1.7-preview.107</Version>
     </PackageReference>
     <PackageReference Include="GHIElectronics.TinyCLR.Core">
       <Version>2.1.0</Version>

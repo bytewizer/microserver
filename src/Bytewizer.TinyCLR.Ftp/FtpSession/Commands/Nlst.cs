@@ -21,12 +21,9 @@ namespace Bytewizer.TinyCLR.Ftp
                 //write to channel
                 _context.Channel.Write(150, "Status okay, opening data connection.");
 
-                using (NetworkStream ns = GetNetworkStream())
+                using (Stream ns = GetNetworkStream())
                 {
-                    using (StreamWriter sw = new StreamWriter(ns) 
-                    { 
-                        NewLine = "\r\n" 
-                    })
+                    using (StreamWriter sw = new StreamWriter(ns))
                     {
                         var enumerator = _fileProvider.EnumerateDirectories("");
 
@@ -50,7 +47,7 @@ namespace Bytewizer.TinyCLR.Ftp
                             FileInfo file = new FileInfo((string)enumerator.Current);
                             sw.WriteLine(file.Name);
                             sw.Flush();
-                        }
+                        }                
                     }
                 }
 

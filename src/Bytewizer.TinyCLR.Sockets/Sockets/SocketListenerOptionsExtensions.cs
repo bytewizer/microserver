@@ -12,7 +12,31 @@ namespace Bytewizer.TinyCLR.Sockets
     public static class SocketListenerOptionsExtensions
     {
         /// <summary>
-        /// Configure <see cref="SocketListener"/> to use HTTPS.
+        /// Configure <see cref="SocketListener"/> to use a X509 certificate.
+        /// </summary>
+        /// <param name="listenOptions">The <see cref="SocketListenerOptions"/> to configure.</param>
+        /// <param name="serverCertificate">The X.509 certificate.</param>
+        public static SocketListenerOptions UseTls(this SocketListenerOptions listenOptions, X509Certificate serverCertificate)
+        {
+            if (listenOptions == null)
+            {
+                throw new ArgumentNullException(nameof(listenOptions));
+            }
+
+            if (serverCertificate == null)
+            {
+                throw new ArgumentNullException(nameof(serverCertificate));
+            }
+
+            listenOptions.Certificate = serverCertificate;
+            listenOptions.IsTls = true;
+            listenOptions.KeepAlive = true;
+            
+            return listenOptions;
+        }
+
+        /// <summary>
+        /// Configure <see cref="SocketListener"/> to use a X509 certificate.
         /// </summary>
         /// <param name="listenOptions">The <see cref="SocketListenerOptions"/> to configure.</param>
         /// <param name="serverCertificate">The X.509 certificate.</param>
@@ -29,9 +53,7 @@ namespace Bytewizer.TinyCLR.Sockets
             }
 
             listenOptions.Certificate = serverCertificate;
-            listenOptions.IsTls = true;
-            listenOptions.KeepAlive = true;
-            
+
             return listenOptions;
         }
 

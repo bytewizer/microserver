@@ -1,9 +1,11 @@
-﻿namespace Bytewizer.TinyCLR.Http.Features
+﻿using Bytewizer.TinyCLR.Identity;
+
+namespace Bytewizer.TinyCLR.Http.Features
 {
     ///<inheritdoc/>
     public class HttpAuthenticationFeature : IHttpAuthenticationFeature
     {
         ///<inheritdoc/>
-        public IUser User { get; set; }
+        public IIdentityUser User { get; set; }
     }
 }

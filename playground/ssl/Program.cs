@@ -37,7 +37,7 @@ namespace Bytewizer.Playground.Ssl
             {
                 options.Listen(443, listener =>
                 {
-                    listener.UseCert(X509cert);
+                    listener.UseTls(X509cert);
                 });
                 options.Pipeline(app =>
                 {

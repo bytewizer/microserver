@@ -26,6 +26,8 @@ namespace Bytewizer.TinyCLR.Http.Internal
             if (WaitForData(context.Channel.Client, 10000))
             {
                 context.Response.StatusCode = StatusCodes.Status408RequestTimeout;
+                _httpMessage.Encode(context);
+                return;
             }
 
             // Check message size
@@ -41,11 +43,18 @@ namespace Bytewizer.TinyCLR.Http.Internal
                 return;
             }
 
-            _httpMessage.Decode(context);
+            try
+            {
+                _httpMessage.Decode(context);
 
-            next(context);
+                next(context);
 
-           _httpMessage.Encode(context);
+                _httpMessage.Encode(context);
+            }
+            catch (Exception ex)
+            {
+                _logger.UnhandledException(ex);
+            }
         }
 
         protected bool WaitForData(Socket socket, int timeout)

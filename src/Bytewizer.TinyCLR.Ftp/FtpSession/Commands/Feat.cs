@@ -20,7 +20,7 @@ namespace Bytewizer.TinyCLR.Ftp
             sb.AppendLine(" PBSZ");
             sb.AppendLine(" MLST type*;size*;modify*;create*;");
             sb.AppendLine(" PROT C;P;");
-            sb.AppendLine(" MLSD");
+            //sb.AppendLine(" MLSD");
             sb.AppendLine(" MDTM");
             sb.AppendLine(" SIZE");
             sb.AppendLine(" REST STREAM");

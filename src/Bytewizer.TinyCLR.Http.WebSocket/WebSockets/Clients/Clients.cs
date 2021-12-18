@@ -4,7 +4,6 @@ using System.IO;
 using System.Text;
 using System.Threading;
 
-using Bytewizer.TinyCLR.Http.Extensions;
 using Bytewizer.TinyCLR.Sockets.Channel;
 
 namespace Bytewizer.TinyCLR.Http.WebSockets

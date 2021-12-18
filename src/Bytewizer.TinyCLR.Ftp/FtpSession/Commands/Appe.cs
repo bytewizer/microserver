@@ -23,7 +23,7 @@ namespace Bytewizer.TinyCLR.Ftp
                 // write to channel 
                 _context.Channel.Write(150, "Opening connection for data transfer.");
 
-                using (NetworkStream ns = GetNetworkStream())
+                using (Stream ns = GetNetworkStream())
                 {
                     using (FileStream fileStream = _fileProvider.OpenFileForWrite(file, FileMode.Append))
                     {

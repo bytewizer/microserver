@@ -1,6 +1,6 @@
-# Authentication
+# HTTP Web Server Authentication
 
-Enables implementation of basic and digest authentication.
+Enables an implementation of basic and digest authentication.
 
 >**_Caution_** Data sent with Basic and Digest Authentication is not encrypted so the data can be seen by an adversary. Additionally, Basic Authentication credentials are sent in the clear and can be intercepted. The the body of the HTTP communication is still in plaintext. To secure the body of your communication you should use Secure Sockets Layer (SSL).
 

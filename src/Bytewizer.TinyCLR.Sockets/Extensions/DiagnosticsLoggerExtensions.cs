@@ -5,7 +5,7 @@ using Bytewizer.TinyCLR.Sockets.Channel;
 
 namespace Bytewizer.TinyCLR.Sockets
 {
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+//#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
     public static class DiagnosticsLoggerExtensions
     {
@@ -98,7 +98,7 @@ namespace Bytewizer.TinyCLR.Sockets
             logger.Log(
                 LogLevel.Debug,
                 new EventId(113, "Remote Connect"),
-                $"Remote client {channel.Connection.RemoteIpAddress} has connected.",
+                $"Remote client {channel.Connection.RemoteIpAddress}:{channel.Connection.RemotePort} has connected.",
                 null
                 );
         }
@@ -108,7 +108,7 @@ namespace Bytewizer.TinyCLR.Sockets
             logger.Log(
                 LogLevel.Debug,
                 new EventId(113, "Remote Connect"),
-                $"Remote client {channel.Connection.RemoteIpAddress} has closed connection.",
+                $"Remote client {channel.Connection.RemoteIpAddress}:{channel.Connection.RemotePort} has closed connection.",
                 null
                 );
         }

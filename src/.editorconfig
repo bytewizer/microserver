@@ -2,3 +2,6 @@
 
 # IDE0016: Use 'throw' expression
 csharp_style_throw_expression = true:none
+
+# Microsoft.CodeAnalysis.CSharp.Features
+dotnet_diagnostic.IDE0090.severity = none      # Use new(...)

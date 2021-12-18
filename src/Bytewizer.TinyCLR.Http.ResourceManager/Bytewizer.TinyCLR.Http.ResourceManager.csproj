@@ -17,8 +17,8 @@
     </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup>
-    <Description>Assembly embedded resource file serving extension library built for TinyCLR IoT devices.</Description>
-    <PackageTags>ghi tinyclr tinyclros sitcore iot http-server http https json</PackageTags>
+    <Description>Hypertext Transfer Protocol (Http) embedded resource file serving extension library built for TinyCLR IoT devices.</Description>
+    <PackageTags>ghi tinyclr tinyclros sitcore iot http-server http https</PackageTags>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -52,10 +52,10 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Bytewizer.TinyCLR.Core">
-      <Version>2.1.6</Version>
+      <Version>2.1.7-preview.107</Version>
     </PackageReference>
     <PackageReference Include="Bytewizer.TinyCLR.Pipeline">
-      <Version>2.1.6</Version>
+      <Version>2.1.7-preview.107</Version>
     </PackageReference>
     <PackageReference Include="GHIElectronics.TinyCLR.Core">
       <Version>2.1.0</Version>

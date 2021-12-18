@@ -11,7 +11,7 @@ namespace Bytewizer.TinyCLR.Ftp
         {
             try
             {
-                var feature = (SessionFeature)_context.Features.Get(typeof(ISessionFeature));
+                var feature = (SessionFeature)_context.Features.Get(typeof(SessionFeature));
                 var fromPath = feature.FromPath;
                
                 if (string.IsNullOrEmpty(fromPath))

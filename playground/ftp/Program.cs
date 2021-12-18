@@ -7,7 +7,8 @@ using Bytewizer.TinyCLR.Logging;
 using Bytewizer.TinyCLR.Logging.Debug;
 
 using GHIElectronics.TinyCLR.Devices.Network;
-using System.Net;
+using Bytewizer.Playground.Ftp.Properties;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Bytewizer.Playground.Ftp
 {
@@ -24,22 +25,30 @@ namespace Bytewizer.Playground.Ftp
 
             _loggerFactory.AddDebug(LogLevel.Trace);
 
-            var user = new IdentityUser("bsmith");
-            var password = Encoding.UTF8.GetBytes("password");
-            var identityProvider = new IdentityProvider();
-            identityProvider.Create(user, password);
-
-            _ftpServer = new FtpServer(_loggerFactory, options =>
+            var X509cert = new X509Certificate(Resources.GetBytes(Resources.BinaryResources.ServerCert))
             {
-                options.Pipeline(app =>
-                {
-                    app.UseAuthentication(new AuthenticationOptions
-                    {
-                        IdentityProvider = identityProvider,
-                        AllowAnonymous = true
-                    }
-                );
-                });
+                PrivateKey = Resources.GetBytes(Resources.BinaryResources.ServerKey)
+            };
+
+
+            //var user = new IdentityUser("bsmith");
+            //var identityProvider = new IdentityProvider();
+
+            //identityProvider.Create(user, "password");
+
+            _ftpServer = new FtpServer(options =>
+            {
+                //options.UseImplicit(X509cert);
+                //options.UseExplicit(X509cert);
+                //options.Pipeline(app =>
+                //{
+                //    app.UseAuthentication(new AuthenticationOptions
+                //    {
+                //        IdentityProvider = identityProvider,
+                //        AllowAnonymous = true
+                //    }
+                //);
+                //});
             });
         }
 

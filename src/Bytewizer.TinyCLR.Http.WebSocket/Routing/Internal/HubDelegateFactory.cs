@@ -2,8 +2,6 @@
 using System.Collections;
 using System.Threading;
 
-using Bytewizer.TinyCLR.Http.Extensions;
-
 namespace Bytewizer.TinyCLR.Http.WebSockets.Middleware
 {
     internal class HubDelegateFactory

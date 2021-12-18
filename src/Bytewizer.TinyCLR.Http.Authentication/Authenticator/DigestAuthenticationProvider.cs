@@ -5,7 +5,7 @@ using System.Collections;
 using Bytewizer.TinyCLR.Http.Features;
 
 using GHIElectronics.TinyCLR.Cryptography;
-
+using Bytewizer.TinyCLR.Identity;
 
 namespace Bytewizer.TinyCLR.Http.Authenticator
 {
@@ -96,9 +96,9 @@ namespace Bytewizer.TinyCLR.Http.Authenticator
                         return AuthenticateResult.Fail($"The authentication nonce '{nonce}' was stale");
                     }
 
-                    if (options.AccountProvider.TryGetUser(username, out IUser user))
+                    if (options.IdentityProvider.TryGetUser(username, out IIdentityUser user))
                     {
-                        if (response == DigestResponse(parameters, context.Request.Method, user.HA1))
+                        if (response == DigestResponse(parameters, context.Request.Method, (string)user.Metadata))
                         {
                             var authenticationFeature = new HttpAuthenticationFeature
                             {
