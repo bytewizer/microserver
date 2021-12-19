@@ -97,13 +97,15 @@ namespace Bytewizer.Playground.Telnet.Commands
         {
             var sb = new StringBuilder();
             sb.AppendLine("Available Commands:");
+            sb.AppendLine();
             sb.AppendLine(" led");
             sb.AppendLine(" led help");
             sb.AppendLine(" led off");
             sb.AppendLine(" led on [--interval=0]");
             sb.AppendLine(" led blink [--timeon=100] [--timeoff=100] [--interval=0]");
+            sb.AppendLine();
 
-            return new ResponseResult(sb.ToString());
+            return new ResponseResult(sb.ToString()) { NewLine = false };
         }
     }
 }

@@ -19,14 +19,15 @@ namespace Bytewizer.Playground.Telnet
             NetworkProvider.InitializeEthernet();
             NetworkProvider.Controller.NetworkAddressChanged += NetworkAddressChanged;
 
-            _loggerFactory.AddDebug(LogLevel.Trace);
+            _loggerFactory.AddDebug(LogLevel.Information);
 
             StatusProvider.Initialize(SC20260.GpioPin.PH6);
+            
             _telnetServer = new TelnetServer(_loggerFactory, options =>
             {
                 options.Pipeline(app =>
                 {
-                    //app.UseAuthentication("bsmith", "password");
+                    app.UseAuthentication("bsmith", "password");
                 });
             });
         }  

@@ -11,14 +11,6 @@ namespace Bytewizer.Playground.Telnet.Commands
     public class HelpCommand : Command
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="HelpCommand"/> class.
-        /// </summary>
-        public HelpCommand()
-        {
-            Description = "Description of the interactive help system";
-        }
-
-        /// <summary>
         /// Description of the interactive help system.  This is the default action.
         /// </summary>
         public IActionResult Default()
@@ -26,15 +18,17 @@ namespace Bytewizer.Playground.Telnet.Commands
             var sb = new StringBuilder();
             sb.AppendLine("Usage:");
             sb.AppendLine(" command [action] [--flags]");
-            sb.AppendLine(string.Empty);
+            sb.AppendLine();
             sb.AppendLine("Available Commands:");
-            sb.AppendLine(string.Empty);
+            sb.AppendLine();
             foreach (DictionaryEntry item in CommandContext.GetCommands())
             {
-                sb.AppendLine(string.Format(" {0}          {1}", item.Key.ToString(), item.Value.ToString()));
+                sb.AppendLine(item.Key.ToString());
             }
+            //sb.AppendLine("Description of the interactive help system");
+            sb.AppendLine();
 
-            return Response(sb.ToString());
+            return new ResponseResult(sb.ToString()) { NewLine = false};
         }
     }
 }

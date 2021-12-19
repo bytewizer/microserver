@@ -18,7 +18,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <Description>Telnet server library built for TinyCLR IoT devices.</Description>
-    <PackageTags>ghi tinyclr tinyclros sitcore iot ftp-server ftp</PackageTags>
+    <PackageTags>ghi tinyclr tinyclros sitcore iot telnet-server telnet</PackageTags>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

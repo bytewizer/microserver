@@ -34,6 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Commands\HelloCommand.cs" />
     <Compile Include="Extensions\FilterContextExtensions.cs" />
     <Compile Include="Commands\LedCommand.cs" />
     <Compile Include="Hardware\GpioLed.cs" />

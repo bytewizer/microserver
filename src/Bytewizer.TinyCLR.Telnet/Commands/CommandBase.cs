@@ -10,11 +10,6 @@ namespace Bytewizer.TinyCLR.Telnet
         private CommandContext _commandContext;
 
         /// <summary>
-        /// Gets or sets friendly description for this command.
-        /// </summary>
-        public string Description { get; set; }
-
-        /// <summary>
         /// Gets or sets the <see cref="CommandContext"/>.
         /// </summary>
         public CommandContext CommandContext
@@ -37,15 +32,6 @@ namespace Bytewizer.TinyCLR.Telnet
 
                 _commandContext = value;
             }
-        }
-
-        /// <summary>
-        /// Creates a <see cref="ResponseResult"/> object by specifying a <paramref name="content"/> string.
-        /// </summary>
-        /// <param name="content">The content to write to the response.</param>
-        public virtual ResponseResult Response(string content)
-        {
-            return new ResponseResult(content);
         }
     }
 }

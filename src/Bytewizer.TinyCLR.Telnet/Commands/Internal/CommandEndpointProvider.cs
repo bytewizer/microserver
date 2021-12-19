@@ -54,9 +54,6 @@ namespace Bytewizer.TinyCLR.Telnet
         private void MapCommandActions(Type type)
         {
             var command = type.Name.Replace("Command", string.Empty).ToLower();
-            //var instance = (Command)Activator.CreateInstance(type);
-            //var description = instance?.Description ?? string.Empty;
-
             _commands.Add(command, string.Empty);
 
             foreach (MethodInfo method in type.GetMethods())

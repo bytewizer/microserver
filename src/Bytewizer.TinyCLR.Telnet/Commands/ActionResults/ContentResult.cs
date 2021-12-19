@@ -13,13 +13,18 @@ namespace Bytewizer.TinyCLR.Telnet
         /// </summary>
         public ResponseResult(string content)
         {
-            Content = content;
+            Response = content;
         }
 
         /// <summary>
-        /// Gets or set the response content representing.
+        /// Gets or set the content representing this response.
         /// </summary>
-        public string Content { get; set; }
+        public string Response { get; set; }
+
+        /// <summary>
+        /// Gets or set the whether to include a new line in this response.
+        /// </summary>
+        public bool NewLine { get; set; } = true;
 
 
         /// <inheritdoc />
@@ -30,7 +35,14 @@ namespace Bytewizer.TinyCLR.Telnet
                 throw new ArgumentNullException(nameof(context));
             }
 
-            context.TelnetContext.Response.WriteLine(Content);
+            if(NewLine)
+            {
+                context.TelnetContext.Response.WriteLine(Response);
+            }
+            else
+            {
+                context.TelnetContext.Response.Write(Response);
+            }         
         }
     }
 }

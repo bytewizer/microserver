@@ -17,8 +17,8 @@
     </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup>
-    <Description>File Transfer Protocol (ftp) server library built for TinyCLR IoT devices.</Description>
-    <PackageTags>ghi tinyclr tinyclros sitcore iot ftp-server ftp</PackageTags>
+    <Description>Telnet server library built for TinyCLR IoT devices.</Description>
+    <PackageTags>ghi tinyclr tinyclros sitcore iot telnet-server telnet</PackageTags>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,8 +43,10 @@
     <Compile Include="Commands\ActionContext.cs" />
     <Compile Include="Commands\ActionResults\ActionResult.cs" />
     <Compile Include="Commands\ActionDescriptor.cs" />
+    <Compile Include="Commands\ActionResults\ClearResult.cs" />
     <Compile Include="Commands\ActionResults\ContentResult.cs" />
     <Compile Include="Commands\ActionResults\EmptyResult.cs" />
+    <Compile Include="Commands\Builtin\ClearCommand.cs" />
     <Compile Include="Commands\Builtin\HelpCommand.cs" />
     <Compile Include="Commands\Builtin\ExitCommand.cs" />
     <Compile Include="Commands\CommandContextExtensions.cs" />
