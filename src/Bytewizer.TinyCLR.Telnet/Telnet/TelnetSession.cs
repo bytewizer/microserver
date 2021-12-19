@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Text;
 using System.Threading;
 
 using Bytewizer.TinyCLR.Logging;
 using Bytewizer.TinyCLR.Sockets;
 using Bytewizer.TinyCLR.Telnet.Features;
-using System.Collections;
 
 namespace Bytewizer.TinyCLR.Telnet
 {
@@ -15,8 +12,6 @@ namespace Bytewizer.TinyCLR.Telnet
         private readonly ILogger _logger;
         private readonly TelnetContext _context;
         private readonly TelnetServerOptions _telnetOptions;
-
-        private readonly CommandEndpointProvider _endpointProvider;
 
         public TelnetSession(
                 ILogger logger,
@@ -27,8 +22,18 @@ namespace Bytewizer.TinyCLR.Telnet
             _context = context;
             _telnetOptions = telnetOptions;
 
-           _endpointProvider = new CommandEndpointProvider();
+            // Send client protocol initialization
+            SendProtocolInit();
 
+            // Write welcome message
+            SendWelcomeMessage();
+
+            // Process command loop
+            CommandLoop();
+        }
+
+        private void SendProtocolInit()
+        {
             //var initBytes = new byte[] {
             //                0xff, 0xfd, 0x01,   // Do Echo
             //                0xff, 0xfd, 0x21,   // Do Remote Flow Control
@@ -37,11 +42,17 @@ namespace Bytewizer.TinyCLR.Telnet
             //            };
 
             //_context.Channel.OutputStream.Write(initBytes, 0, initBytes.Length);
+        }
 
-            // Write welcome message
+        private void SendWelcomeMessage()
+        {
             _context.Channel.WriteLine(_telnetOptions.WelcomeMessage);
+            _context.Channel.WriteLine(_telnetOptions.HelpMessage);
             _context.Channel.WriteLine(string.Empty);
+        }
 
+        private void CommandLoop()
+        {
             // Initialize command buffer
             byte[] buffer = new byte[_telnetOptions.BufferSize];
 
@@ -61,26 +72,30 @@ namespace Bytewizer.TinyCLR.Telnet
 
                 // Clear command buffer 
                 Array.Clear(buffer, 0, _telnetOptions.BufferSize);
-                
-                var bytes = _context.Channel.InputStream.Read(buffer, 0, buffer.Length);
-                if (bytes > 0)
+
+                var byteCount = _context.Channel.InputStream.Read(buffer, 0, buffer.Length);
+                if (byteCount > 0)
                 {
+                    // log request command
+                    _logger.CommandRequest(_context, buffer, byteCount);
+
                     // parse input commands
-                    _context.Request.Command = TelnetCommand.Parse(buffer, 0, bytes);
+                    _context.Request.Command = TelnetCommand.Parse(buffer, byteCount);
                     if (_context.Request.Command != null)
-                    { 
+                    {
                         CommandReceived();
                     }
 
                     if (_context.Response.Message != null)
                     {
+                        // log response command
+                        _logger.CommandResponse(_context);
+
                         // Write the response to the client
                         _context.Channel.Write(
                             _context.Response.Message
                             );
                     }
-
-                    Debug.WriteLine(Encoding.UTF8.GetString(buffer, 0, buffer.Length));
                 }
 
                 Thread.Sleep(1);
@@ -89,26 +104,32 @@ namespace Bytewizer.TinyCLR.Telnet
 
         private void CommandReceived()
         {
-            if (_endpointProvider.TryGetEndpoint(_context.Request.Command.ToString(), out RouteEndpoint endpoint))
+            if (_context.TryGetEndpoint(_context.Request.Command.ToString(), out RouteEndpoint endpoint))
             {
                 if (endpoint?.CommandDelegate != null)
                 {
                     try
                     {
-                        //_logger.LogDebug($"Executing command '{endpoint.DisplayName}'");
+                        _logger.CommandExecuted(_context, endpoint);
                         endpoint.CommandDelegate(_context);
                     }
                     catch (Exception ex)
                     {
-                        _logger.UnhandledException(ex); 
+                        _logger.UnhandledException(ex);
                     }
                 }
             }
             else
             {
-                _context.Channel.WriteLine("The specified value is invalid.");
+                if(_context.Request.Command.Action == "default")
+                {
+                    _context.Channel.WriteLine($"The specified '{_context.Request.Command.Name}' command is invalid.");
+                }
+                else 
+                {
+                    _context.Channel.WriteLine($"The specified '{_context.Request.Command.Name} {_context.Request.Command.Action}' command is invalid.");
+                }
                 _context.Channel.WriteLine(string.Empty);
-                return;
             }
         }
 
@@ -120,20 +141,21 @@ namespace Bytewizer.TinyCLR.Telnet
             {
                 byte[] buffer = new byte[_telnetOptions.BufferSize];
 
-                _context.Channel.Write("username:");
+                _context.Channel.WriteLine("User Access Verification");
+                _context.Channel.Write("username: ");
 
-                var bytes = _context.Channel.InputStream.Read(buffer, 0, buffer.Length);
-                if (bytes > 0)
+                var byteCount = _context.Channel.InputStream.Read(buffer, 0, buffer.Length);
+                if (byteCount > 0)
                 {
-                    feature.UserName = Encoding.UTF8.GetString(buffer, 0, buffer.Length).Replace(Environment.NewLine, string.Empty);
+                    feature.UserName = buffer.ToEncodedString(byteCount); 
                 }
 
-                _context.Channel.Write("password:");
+                _context.Channel.Write("password: ");
 
-                bytes = _context.Channel.InputStream.Read(buffer, 0, buffer.Length);
-                if (bytes > 0)
+                byteCount = _context.Channel.InputStream.Read(buffer, 0, buffer.Length);
+                if (byteCount > 0)
                 {
-                    var password = Encoding.UTF8.GetString(buffer, 0, buffer.Length).Replace(Environment.NewLine, string.Empty);
+                    var password = buffer.ToEncodedString(byteCount);
 
                     if (feature.UserName != null)
                     {
@@ -144,18 +166,29 @@ namespace Bytewizer.TinyCLR.Telnet
                             if (results.Succeeded)
                             {
                                 _context.Request.Authenticated = true;
+                                _logger.LoginSucceeded(_context);
                                 _context.Channel.WriteLine(string.Empty);
                                 return;
+                            }
+                            else
+                            {
+                                foreach (Exception error in results.Errors)
+                                {
+                                    _logger.LoginFailed(_context, error.Message);
+                                }
                             }
                         }
                     }
                 }
+
+                _logger.LoginFailed(_context, $"Unknown user name or invalid identity.");
 
                 _context.Channel.WriteLine("Logon failure: Unknown user name or bad password.");
                 _context.Channel.WriteLine(string.Empty);
             }
             else
             {
+                // if authentication is not added to the pipeline allow unscure access.
                 _context.Request.Authenticated = true;
             }
         }

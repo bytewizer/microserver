@@ -22,7 +22,7 @@
         /// <param name="message">The control message to write to the response.</param>
         public static void WriteLine(this TelnetResponse response, string message)
         {
-            response.Message = message + "\r\n";
+            response.Message = message + "\r\n\r\n";
         }
     }
 }

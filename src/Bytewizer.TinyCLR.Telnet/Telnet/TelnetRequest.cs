@@ -1,7 +1,7 @@
 ﻿namespace Bytewizer.TinyCLR.Telnet
 {
     /// <summary>
-    /// Represents the incoming side of an individual Telnet request.
+    /// Represents the incoming side of an individual telnet request.
     /// </summary>
     public class TelnetRequest
     {
@@ -29,6 +29,14 @@
         {
             Command.Clear();
             Authenticated = false;
+        }
+
+        /// <summary>
+        /// Gets the response code.
+        /// </summary>
+        public override string ToString()
+        {
+            return $"{Command}";
         }
     }
 }

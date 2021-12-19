@@ -4,17 +4,19 @@ using System.Collections;
 
 namespace Bytewizer.TinyCLR.Telnet
 {
-    internal class CommandEndpointProvider
+    public class CommandEndpointProvider
     {
         private readonly Hashtable _endpoints;
+        private readonly Hashtable _commands;
         private readonly CommandDelegateFactory _commandFactory;
 
-        public CommandEndpointProvider()
+        public CommandEndpointProvider(Assembly[] assemblies)
         {
             _commandFactory = new CommandDelegateFactory();
             _endpoints = new Hashtable();
+            _commands = new Hashtable();
             
-            GetAssemblies();
+            GetAssemblies(assemblies);
         }
 
         public Hashtable GetEndpoints()
@@ -22,27 +24,14 @@ namespace Bytewizer.TinyCLR.Telnet
             return _endpoints;
         }
 
-        public bool TryGetEndpoint(string pattern, out RouteEndpoint endpoint)
+        public Hashtable GetCommands()
         {
-            endpoint = default;
-
-            if (_endpoints == null)
-            {
-                return false;
-            }
-
-            if (_endpoints.Contains(pattern))
-            {
-                endpoint = (RouteEndpoint)_endpoints[pattern];
-                return true;
-            }
-
-            return false;
+            return _commands;
         }
 
-        private void GetAssemblies()
+        private void GetAssemblies(Assembly[] assemblies)
         {
-            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+            foreach (var assembly in assemblies)
             {
                 GetAssemblies(assembly);
             }
@@ -64,6 +53,12 @@ namespace Bytewizer.TinyCLR.Telnet
 
         private void MapCommandActions(Type type)
         {
+            var command = type.Name.Replace("Command", string.Empty).ToLower();
+            //var instance = (Command)Activator.CreateInstance(type);
+            //var description = instance?.Description ?? string.Empty;
+
+            _commands.Add(command, string.Empty);
+
             foreach (MethodInfo method in type.GetMethods())
             {
                 if (type.IsAbstract || type.IsNotPublic)
@@ -71,14 +66,13 @@ namespace Bytewizer.TinyCLR.Telnet
 
                 if (method.ReturnType.Equals(typeof(IActionResult)))
                 {
-                    var controller = type.Name.Replace("Command", string.Empty).ToLower();
                     var action = method.Name.ToLower();
-                    var uri = $"{controller}/{action}";
+                    var route = $"{command}/{action}";
 
                     var requestDelegate = _commandFactory.CreateRequestDelegate(type, method);
-                    var endpoint = new RouteEndpoint(requestDelegate, uri, null, $"/{uri}");
+                    var endpoint = new RouteEndpoint(requestDelegate, route, null, command);
 
-                    _endpoints.Add(uri, endpoint);
+                    _endpoints.Add(route, endpoint);
                 }
             }
         }

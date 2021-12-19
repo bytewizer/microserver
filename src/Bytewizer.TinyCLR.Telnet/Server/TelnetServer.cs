@@ -15,7 +15,7 @@ namespace Bytewizer.TinyCLR.Telnet
     {
         private readonly ILogger _logger;
         private readonly ContextPool _contextPool;
-        private readonly TelnetServerOptions _ftpOptions;
+        private readonly TelnetServerOptions _telnetOptions;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TelnetServer"/> class.
@@ -49,7 +49,7 @@ namespace Bytewizer.TinyCLR.Telnet
             _options = options;
             _contextPool = new ContextPool();
             _logger = loggerFactory.CreateLogger("Bytewizer.TinyCLR.Telnet");
-            _ftpOptions = _options as TelnetServerOptions;
+            _telnetOptions = _options as TelnetServerOptions;
 
             SetListener();
         }
@@ -59,7 +59,7 @@ namespace Bytewizer.TinyCLR.Telnet
             _options.Listen(23);
             _options.Pipeline(app =>
             {
-                app.Use(new TelnetMiddleware(_logger, _ftpOptions));
+                app.Use(new TelnetMiddleware(_logger, _telnetOptions));
             });
 
             configure(_options as TelnetServerOptions);

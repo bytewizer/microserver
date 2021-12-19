@@ -1,4 +1,4 @@
-﻿using Bytewizer.TinyCLR.Identity;
+﻿using System.Collections;
 
 namespace Bytewizer.TinyCLR.Telnet.Features
 {
@@ -6,17 +6,16 @@ namespace Bytewizer.TinyCLR.Telnet.Features
     /// A feature interface for this session. Use <see cref="TelnetContext.Features"/>
     /// to access an instance associated with the current request.
     /// </summary>
-    public class SessionFeature 
+    public class EndpointFeature 
     {
         /// <summary>
-        /// Gets or sets security information for the current request.
+        /// Gets or sets command endpoint for the current request.
         /// </summary>
-        public IIdentityProvider IdentityProvider { get; set; }
+        public Hashtable Endpoints { get; set; }
 
         /// <summary>
-        /// Gets or sets a login user name.
+        /// Gets or sets command for the current request.
         /// </summary>
-        public string UserName { get; set; }
-
+        public Hashtable Commands { get; set; }
     }
 }

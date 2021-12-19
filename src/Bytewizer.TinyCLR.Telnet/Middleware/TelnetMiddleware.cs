@@ -2,12 +2,7 @@
 using Bytewizer.TinyCLR.Sockets;
 using Bytewizer.TinyCLR.Pipeline;
 
-using Parameters = System.Collections.Hashtable;
-
 using Bytewizer.TinyCLR.Telnet.Features;
-using System;
-using System.Diagnostics;
-using System.Collections;
 
 namespace Bytewizer.TinyCLR.Telnet
 {
@@ -16,10 +11,15 @@ namespace Bytewizer.TinyCLR.Telnet
         private readonly ILogger _logger;
         private readonly TelnetServerOptions _telnetOptions;
 
+        private readonly CommandEndpointProvider _endpointProvider;
+
         public TelnetMiddleware(ILogger logger, TelnetServerOptions options)
         {
             _logger = logger;
             _telnetOptions = options;
+            _endpointProvider = new CommandEndpointProvider(options.Assemblies);
+
+            _logger.EndpointRoutes(_endpointProvider);
         }
 
         protected override void Invoke(TelnetContext context, RequestDelegate next)
@@ -37,8 +37,16 @@ namespace Bytewizer.TinyCLR.Telnet
                 return;
             }
 
-            var feature = new SessionFeature();
-            context.Features.Set(typeof(SessionFeature), feature);
+            // Set features objects
+            var sessionFeature = new SessionFeature();
+            context.Features.Set(typeof(SessionFeature), sessionFeature);
+
+            var endpointFeature = new EndpointFeature()
+            {
+                Endpoints = _endpointProvider.GetEndpoints(),
+                Commands = _endpointProvider.GetCommands(),
+            };
+            context.Features.Set(typeof(EndpointFeature), endpointFeature);
 
             next(context);
 

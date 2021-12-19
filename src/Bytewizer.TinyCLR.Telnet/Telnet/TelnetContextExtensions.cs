@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections;
 
 using Bytewizer.TinyCLR.Telnet.Features;
-
 
 namespace Bytewizer.TinyCLR.Telnet
 {
@@ -11,55 +11,64 @@ namespace Bytewizer.TinyCLR.Telnet
     public static class HttpContextExtensions
     {
         /// <summary>
-        /// Extension method for getting the <see cref="Endpoint"/> for the current request.
+        /// Extension method for getting the commands for the current request.
         /// </summary>
         /// <param name="context">The <see cref="TelnetContext"/> context.</param>
-        public static Endpoint GetEndpoint(this TelnetContext context)
+        public static Hashtable GetCommands(this TelnetContext context)
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
-            var endpointFeature = (SessionFeature)context.Features.Get(typeof(SessionFeature));
+            var endpointFeature = (EndpointFeature)context.Features.Get(typeof(EndpointFeature));
 
-            return endpointFeature?.Endpoint;
+            return endpointFeature?.Commands;
         }
 
         /// <summary>
-        /// Extension method for setting the <see cref="Endpoint"/> for the current request.
+        /// Extension method for getting the endpoints for the current request.
         /// </summary>
         /// <param name="context">The <see cref="TelnetContext"/> context.</param>
-        /// <param name="endpoint">The <see cref="Endpoint"/>.</param>
-        public static void SetEndpoint(this TelnetContext context, Endpoint endpoint)
+        public static Hashtable GetEndpoints(this TelnetContext context)
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
-            var feature = (SessionFeature)context.Features.Get(typeof(SessionFeature));
+            var endpointFeature = (EndpointFeature)context.Features.Get(typeof(EndpointFeature));
 
-            if (endpoint != null)
+            return endpointFeature?.Endpoints;
+        }
+
+        /// <summary>
+        /// Extension method for getting the <see cref="RouteEndpoint"/> for the current request.
+        /// </summary>
+        /// <param name="context">The <see cref="TelnetContext"/> context.</param>
+        public static bool TryGetEndpoint(this TelnetContext context, string pattern, out RouteEndpoint endpoint)
+        {
+            if (context == null)
             {
-                if (feature == null)
-                {
-                    feature = new SessionFeature();
-                    context.Features.Set(typeof(SessionFeature),feature);
-                }
-
-                feature.Endpoint = endpoint;
+                throw new ArgumentNullException(nameof(context));
             }
-            else
+
+            var endpointFeature = (EndpointFeature)context.Features.Get(typeof(EndpointFeature));
+
+            endpoint = default;
+
+            if (endpointFeature.Endpoints == null)
             {
-                if (feature == null)
-                {
-                    // No endpoint to set and no feature on context. Do nothing
-                    return;
-                }
-
-                feature.Endpoint = null;
+                return false;
             }
+
+            if (endpointFeature.Endpoints.Contains(pattern))
+            {
+                endpoint = (RouteEndpoint)endpointFeature.Endpoints[pattern];
+                return true;
+            }
+
+            return false;
         }
     }
 }

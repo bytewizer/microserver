@@ -10,12 +10,12 @@ namespace Bytewizer.TinyCLR.Telnet
     /// </summary>
     internal static class ArgumentParser
     {
-        
+
         /// <summary>
         /// Parse a argument string into its component key and value parts.
         /// </summary>
-        /// <param name="arguments">The raw argument string value.</param>
-
+        /// <param name="args">The raw argument string value.</param>
+        /// <param name="parserCallback">The raw argument string value.</param>
         public static Hashtable ParseArguments(ArrayList args, CallbackAction parserCallback = null)
         {
             Hashtable options = new Hashtable();

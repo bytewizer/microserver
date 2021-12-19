@@ -3,7 +3,7 @@
 namespace Bytewizer.TinyCLR.Telnet
 {
     /// <summary>
-    /// Represents the outgoing side of an individual Telnet request.
+    /// Represents the outgoing side of an individual telnet request.
     /// </summary>
     public class TelnetResponse 
     {
@@ -13,7 +13,7 @@ namespace Bytewizer.TinyCLR.Telnet
         public string Message { get; set; }
 
         /// <summary>
-        /// Gets the response code.
+        /// Gets the response message.
         /// </summary>
         public override string ToString()
         {

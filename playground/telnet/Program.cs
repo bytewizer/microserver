@@ -1,7 +1,7 @@
 ﻿using Bytewizer.TinyCLR.Telnet;
 using Bytewizer.TinyCLR.Sockets;
 using Bytewizer.TinyCLR.Logging;
-using Bytewizer.TinyCLR.Identity;
+using GHIElectronics.TinyCLR.Pins;
 using Bytewizer.TinyCLR.Logging.Debug;
 
 using GHIElectronics.TinyCLR.Devices.Network;
@@ -21,22 +21,14 @@ namespace Bytewizer.Playground.Telnet
 
             _loggerFactory.AddDebug(LogLevel.Trace);
 
-            var user = new IdentityUser("bsmith");
-            var identityProvider = new IdentityProvider();
-
-            identityProvider.Create(user, "password");
-
+            StatusProvider.Initialize(SC20260.GpioPin.PH6);
             _telnetServer = new TelnetServer(_loggerFactory, options =>
             {
                 options.Pipeline(app =>
                 {
-                    //app.UseAuthentication(new AuthenticationOptions
-                    //{
-                    //    IdentityProvider = identityProvider
-                    //});
-                    app.UseCommands();
+                    //app.UseAuthentication("bsmith", "password");
                 });
-            });          
+            });
         }  
             
         private static void NetworkAddressChanged(

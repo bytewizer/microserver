@@ -48,11 +48,10 @@ namespace Bytewizer.TinyCLR.Telnet
         /// Splits the <paramref name="buffer"/> into the name and its arguments.
         /// </summary>
         /// <param name="buffer">The command to split into name and arguments.</param>
-        /// <param name="offset">The position in the data buffer at which to begin sending data.</param>
         /// <param name="count">The number of bytes to parse.</param>
-        public static TelnetCommand Parse(byte[] buffer, int offset, int count)
+        public static TelnetCommand Parse(byte[] buffer, int count)
         {
-            var command = Encoding.UTF8.GetString(buffer, offset, count).Replace(Environment.NewLine, string.Empty);
+            var command = buffer.ToEncodedString(count);
 
             if (string.IsNullOrEmpty(command.Trim()))
             {
