@@ -11,7 +11,7 @@ namespace Bytewizer.TinyCLR.Http
     /// </summary>
     public class EndpointMiddleware : Middleware
     {
-        //private readonly ILogger _logger;
+        private readonly ILogger _logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EndpointMiddleware"/> class.
@@ -27,7 +27,7 @@ namespace Bytewizer.TinyCLR.Http
         /// <param name="loggerFactory">The factory used to create loggers.</param>
         public EndpointMiddleware(ILoggerFactory loggerFactory)
         {
-            //_logger = loggerFactory.CreateLogger("Bytewizer.TinyCLR.Http");
+            _logger = loggerFactory.CreateLogger("Bytewizer.TinyCLR.Http");
         }
 
         /// <inheritdoc/>

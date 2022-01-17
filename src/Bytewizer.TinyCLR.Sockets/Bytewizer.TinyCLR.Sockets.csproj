@@ -43,11 +43,7 @@
   <ItemGroup>
     <Compile Include="Channel\LoggerStream.cs" />
     <Compile Include="Extensions\DiagnosticsLoggerExtensions.cs" />
-    <Compile Include="Extensions\StreamExtensions.cs" />
     <Compile Include="Server\ServerLimits.cs" />
-    <Compile Include="Features\FeatureCollection.cs" />
-    <Compile Include="Features\FeatureValue.cs" />
-    <Compile Include="Features\IFeatureCollection.cs" />
     <Compile Include="Sockets\SocketErrorHandler.cs" />
     <Compile Include="Sockets\DisconnectedHandler.cs" />
     <Compile Include="Sockets\ConnectedHandler.cs" />
@@ -57,7 +53,6 @@
     <Compile Include="Listeners\UdpListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Channel\ConnectionInfo.cs" />
-    <Compile Include="Server\IServer.cs" />
     <Compile Include="Server\IServerOptions.cs" />
     <Compile Include="Sockets\SocketContext.cs" />
     <Compile Include="Sockets\ISocketContext.cs" />
@@ -70,18 +65,13 @@
     <Compile Include="Listeners\SocketListener.cs" />
     <Compile Include="Listeners\SocketListenerOptions.cs" />
     <Compile Include="Sockets\SocketListenerOptionsExtensions.cs" />
-    <Compile Include="Threading\ThreadPool\ThreadPool.cs" />
-    <Compile Include="Threading\ThreadPool\ThreadPoolItem.cs" />
-    <Compile Include="Threading\ThreadPool\ThreadPoolThread.cs" />
-    <Compile Include="Threading\ThreadPool\UnhandledThreadPoolExceptionDelegate.cs" />
-    <Compile Include="Threading\ThreadPool\WaitCallback.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Bytewizer.TinyCLR.Logging.Abstractions">
-      <Version>2.1.7-preview.107</Version>
+      <Version>2.1.7-preview.110</Version>
     </PackageReference>
     <PackageReference Include="Bytewizer.TinyCLR.Pipeline">
-      <Version>2.1.7-preview.107</Version>
+      <Version>2.1.7-preview.110</Version>
     </PackageReference>
     <PackageReference Include="GHIElectronics.TinyCLR.Core">
       <Version>2.1.0</Version>

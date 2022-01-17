@@ -1,37 +1,50 @@
-﻿using Bytewizer.TinyCLR.Telnet;
-using Bytewizer.TinyCLR.Sockets;
+﻿using Bytewizer.TinyCLR.Sockets;
 using Bytewizer.TinyCLR.Logging;
-using GHIElectronics.TinyCLR.Pins;
+using Bytewizer.TinyCLR.Terminal;
 using Bytewizer.TinyCLR.Logging.Debug;
 
 using GHIElectronics.TinyCLR.Devices.Network;
+using System.Threading;
 
-namespace Bytewizer.Playground.Telnet
+namespace Bytewizer.Playground.Terminal
 {
     internal class Program
     {
-        private static IServer _telnetServer;
+        private static TelnetServer _telnetServer;
+
+        private static ConsoleServer _consoleServer;
         private static readonly ILoggerFactory _loggerFactory = new LoggerFactory();
 
         static void Main()
         {
             StorageProvider.Initialize();
             NetworkProvider.InitializeEthernet();
+            
             NetworkProvider.Controller.NetworkAddressChanged += NetworkAddressChanged;
 
             _loggerFactory.AddDebug(LogLevel.Information);
 
-            StatusProvider.Initialize(SC20260.GpioPin.PH6);
-            
             _telnetServer = new TelnetServer(_loggerFactory, options =>
             {
                 options.Pipeline(app =>
                 {
-                    app.UseAuthentication("bsmith", "password");
+                    //app.UseIpFiltering("192.168.1.0/24");
+                    //app.UseAuthentication("bsmith", "password");
+                    app.UseAutoMapping();
                 });
             });
-        }  
-            
+
+            _consoleServer = new ConsoleServer(_loggerFactory, options =>
+            {
+                //options.Pipeline(app =>
+                //{
+
+                //});
+            });
+            _consoleServer.Start();
+
+        }
+
         private static void NetworkAddressChanged(
            NetworkController sender,
            NetworkAddressChangedEventArgs e)

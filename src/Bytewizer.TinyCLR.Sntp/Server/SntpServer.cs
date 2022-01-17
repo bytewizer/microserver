@@ -4,13 +4,14 @@ using System.Threading;
 
 using Bytewizer.TinyCLR.Sockets;
 using Bytewizer.TinyCLR.Logging;
+using Bytewizer.TinyCLR.Hosting;
 
 namespace Bytewizer.TinyCLR.Sntp
 {
     /// <summary>
     /// Represents an implementation of the <see cref="SntpServer"/> for creating web servers.
     /// </summary>
-    public class SntpServer : IServer
+    public class SntpServer : IServerService
     {
         private Timer _pollingTimer;
         private readonly int _pollingDelay = 1000;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Sockets;
 
+using Bytewizer.TinyCLR.Hosting;
 using Bytewizer.TinyCLR.Logging;
 using Bytewizer.TinyCLR.Sockets.Channel;
 using Bytewizer.TinyCLR.Sockets.Listener;
@@ -10,7 +11,7 @@ namespace Bytewizer.TinyCLR.Sockets
     /// <summary>
     /// Represents a base implementation of <see cref="SocketService"/> which uses <see cref="SocketListener"/> for serving requests.
     /// </summary>
-    public abstract class SocketService : IServer
+    public abstract class SocketService : IServerService
     {
         /// <summary>
         /// The logger used to write messages.

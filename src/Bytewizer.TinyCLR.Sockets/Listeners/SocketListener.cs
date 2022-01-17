@@ -72,8 +72,8 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
                 return true;
             }
 
-            ThreadPool.SetMinThreads(_options.MaxThreads);
-            ThreadPool.SetMaxThreads(_options.MaxThreads);
+            //ThreadPool.SetMinThreads(_options.MaxThreads); // Move these options to hosting
+            //ThreadPool.SetMaxThreads(_options.MaxThreads);
 
             lock (_lock)
             {
@@ -85,7 +85,6 @@ namespace Bytewizer.TinyCLR.Sockets.Listener
                     _listenSocket = new Socket(AddressFamily.InterNetwork, _options.SocketType, _options.ProtocolType);
                     _listenSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, _options.ReuseAddress);
                     _listenSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, _options.KeepAlive);
-
                     _listenSocket.SendTimeout = _options.SendTimeout;
                     _listenSocket.ReceiveTimeout = _options.ReceiveTimeout;
 

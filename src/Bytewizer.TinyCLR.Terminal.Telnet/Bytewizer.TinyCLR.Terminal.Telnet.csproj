@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{372012BB-CAA0-4FEC-9EF4-1A5540E582EA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Bytewizer.TinyCLR.Terminal.Telnet</RootNamespace>
+    <AssemblyName>Bytewizer.TinyCLR.Terminal.Telnet</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A1948822-69DD-4150-919B-F3F42EFB71CC};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <LangVersion>9</LangVersion>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Description>Terminal server library built for TinyCLR IoT devices.</Description>
+    <PackageTags>ghi tinyclr tinyclros sitcore iot telnet-server telnet</PackageTags>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Bytewizer.TinyCLR.Terminal.Telnet.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Channel\SecureShellReader.cs" />
+    <Compile Include="Channel\TerminalStream.cs" />
+    <Compile Include="Extensions\DiagnosticsLoggerExtensions.cs" />
+    <Compile Include="Middleware\TelnetMiddleware.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Server\TelnetServer.cs" />
+    <Compile Include="Server\TelnetServerOptions.cs" />
+    <Compile Include="Server\TelnetServerOptionsDelegate.cs" />
+    <Compile Include="Terminal\TelnetSession.cs" />
+    <Compile Include="Terminal\TelnetContext.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="GHIElectronics.TinyCLR.Core">
+      <Version>2.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="GHIElectronics.TinyCLR.IO">
+      <Version>2.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="NuGet.Build.Tasks.Pack">
+      <Version>6.0.0</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bytewizer.TinyCLR.Sockets\Bytewizer.TinyCLR.Sockets.csproj">
+      <Project>{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}</Project>
+      <Name>Bytewizer.TinyCLR.Sockets</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bytewizer.TinyCLR.Terminal\Bytewizer.TinyCLR.Terminal.csproj">
+      <Project>{24448889-E8AE-4939-BA1A-0A9E5B051484}</Project>
+      <Name>Bytewizer.TinyCLR.Terminal</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

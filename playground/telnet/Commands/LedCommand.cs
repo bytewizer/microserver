@@ -1,15 +1,16 @@
-﻿using System.Text;
+﻿using System.Collections;
 
-using Bytewizer.TinyCLR.Telnet;
+using Bytewizer.TinyCLR.Terminal;
 
+using GHIElectronics.TinyCLR.Pins;
 using GHIElectronics.TinyCLR.Devices.Gpio;
 
-namespace Bytewizer.Playground.Telnet.Commands
+namespace Bytewizer.Playground.Terminal.Commands
 {
     /// <summary>
-    /// Implements the <c>led</c> telnet command.
+    /// Implements the <c>led</c> terminal command.
     /// </summary>
-    public class LedCommand : Command
+    public class LedCommand : ServerCommand
     {
         private readonly StatusLed _led;
 
@@ -22,6 +23,17 @@ namespace Bytewizer.Playground.Telnet.Commands
         /// </summary>
         public LedCommand()
         {
+            StatusProvider.Initialize(SC20260.GpioPin.PH6);
+
+            Description = "Blink an led providing a visual status";
+            HelpCommands = new ArrayList()
+            {
+                { "led" },
+                { "led off" },
+                { "led on [--interval=0]"},
+                { "led blink [--timeon=100] [--timeoff=100] [--interval=0]" }
+            };
+
             _led = StatusProvider.Led;
         }
 
@@ -92,20 +104,12 @@ namespace Bytewizer.Playground.Telnet.Commands
             _led.Blink(_timeOn, _timeOff, _interval);
             return new EmptyResult();
         }
-
-        public IActionResult Help()
-        {
-            var sb = new StringBuilder();
-            sb.AppendLine("Available Commands:");
-            sb.AppendLine();
-            sb.AppendLine(" led");
-            sb.AppendLine(" led help");
-            sb.AppendLine(" led off");
-            sb.AppendLine(" led on [--interval=0]");
-            sb.AppendLine(" led blink [--timeon=100] [--timeoff=100] [--interval=0]");
-            sb.AppendLine();
-
-            return new ResponseResult(sb.ToString()) { NewLine = false };
-        }
     }
 }
+
+
+//sb.AppendLine(" led");
+//sb.AppendLine(" led help");
+//sb.AppendLine(" led off");
+//sb.AppendLine(" led on [--interval=0]");
+//sb.AppendLine(" led blink [--timeon=100] [--timeoff=100] [--interval=0]");

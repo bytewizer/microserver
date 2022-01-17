@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Diagnostics;
 using Bytewizer.TinyCLR.Logging;
 
 namespace Bytewizer.TinyCLR.Sockets.Channel
@@ -11,8 +11,8 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
         private readonly Stream _stream;
         private readonly ILogger _logger;
 
-        private readonly EventId _readEvent = new EventId(112, "Stream Read");
-        private readonly EventId _writeEvent = new EventId(113, "Stream Write");
+        private readonly EventId _readEvent = new EventId(1000, "Stream Read");
+        private readonly EventId _writeEvent = new EventId(1100, "Stream Write");
 
 
         /// <summary>
@@ -112,7 +112,6 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
 
         /// <summary>
         /// Sets the position within the resource object.
-        /// This method is not supported and always throws a <see cref="NotSupportedException"/> execption.
         /// </summary>
         /// <param name="offset">A byte offset relative to the <b>origin</b> parameter.</param>
         /// <param name="origin">A value of type <see cref="SeekOrigin"/> indicating the reference point used to obtain the new position.</param>
@@ -123,7 +122,6 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
 
         /// <summary>
         /// Sets the length of the current resource object. 
-        /// This method is not supported and always throws a <see cref="NotSupportedException"/> execption.
         /// </summary>
         /// <param name="value">The desired length of the current stream in bytes.</param>
         public override void SetLength(long value)
@@ -133,7 +131,6 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
 
         /// <summary>
         /// Writes a sequence of bytes to the resource object and advances the current position within this stream by the number of bytes written.
-        /// This method is not supported and always throws a <see cref="NotSupportedException"/> execption.
         /// </summary>
         /// <param name="buffer">An array of bytes. This method copies count bytes from buffer to the current stream.</param>
         /// <param name="offset">The zero-based byte offset in buffer at which to begin copying bytes to the current stream.</param>

@@ -3,7 +3,7 @@ using System.Threading;
 
 using GHIElectronics.TinyCLR.Devices.Gpio;
 
-namespace Bytewizer.Playground.Telnet
+namespace Bytewizer.Playground.Terminal
 {
     public abstract class GpioLed : IDisposable
     {

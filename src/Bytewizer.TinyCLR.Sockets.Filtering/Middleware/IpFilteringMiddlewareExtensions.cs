@@ -2,18 +2,18 @@
 
 using Bytewizer.TinyCLR.Pipeline.Builder;
 
-namespace Bytewizer.Playground.Sockets
+namespace Bytewizer.TinyCLR.Sockets.Filtering
 {
-    public static class HttpResponseExtensions
+    public static class IpFilteringExtensions
     {
-        public static void UseIpFiltering(this IApplicationBuilder builder, string cidr)
+        public static IApplicationBuilder UseIpFiltering(this IApplicationBuilder builder, string cidr)
         {
             if (builder == null)
             {
                 throw new ArgumentNullException(nameof(builder));
             }
 
-            builder.Use(new IpFilteringMiddleware(cidr));
+            return builder.Use(new IpFilteringMiddleware(cidr));
         }
     }
 }

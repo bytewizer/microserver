@@ -1,5 +1,6 @@
 ﻿using System;
 
+using Bytewizer.TinyCLR.Hosting;
 using Bytewizer.TinyCLR.Sockets;
 using Bytewizer.TinyCLR.Logging;
 using Bytewizer.TinyCLR.Pipeline;
@@ -12,7 +13,7 @@ namespace Bytewizer.TinyCLR.Http
     /// <summary>
     /// Represents an implementation of the <see cref="HttpServer"/> for creating web servers.
     /// </summary>
-    public class HttpServer : SocketService, IServer
+    public class HttpServer : SocketService, IServerService
     {
         private readonly ILogger _logger;
         private readonly ContextPool _contextPool;

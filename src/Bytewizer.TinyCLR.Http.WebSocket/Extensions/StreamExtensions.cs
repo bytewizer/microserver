@@ -84,21 +84,21 @@ namespace Bytewizer.TinyCLR
             }
         }
 
-        internal static void CopyTo(this Stream source, Stream destination, int bufferLength)
-        {
-            var buffer = new byte[bufferLength];
+        //internal static void CopyTo(this Stream source, Stream destination, int bufferLength)
+        //{
+        //    var buffer = new byte[bufferLength];
 
-            while (true)
-            {
-                int nread = source.Read(buffer, 0, bufferLength);
-                if (nread <= 0)
-                {
-                    break;
-                }
+        //    while (true)
+        //    {
+        //        int nread = source.Read(buffer, 0, bufferLength);
+        //        if (nread <= 0)
+        //        {
+        //            break;
+        //        }
 
-                destination.Write(buffer, 0, nread);
-            }
-        }
+        //        destination.Write(buffer, 0, nread);
+        //    }
+        //}
 
     }
 }

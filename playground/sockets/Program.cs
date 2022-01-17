@@ -8,6 +8,7 @@ using Bytewizer.Playground.Sockets.Properties;
 
 using GHIElectronics.TinyCLR.Devices.Network;
 using System.Net;
+using Bytewizer.TinyCLR.Sockets.Filtering;
 
 namespace Bytewizer.Playground.Sockets
 {

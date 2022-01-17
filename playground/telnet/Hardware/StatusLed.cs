@@ -1,4 +1,4 @@
-﻿namespace Bytewizer.Playground.Telnet
+﻿namespace Bytewizer.Playground.Terminal
 {
     public class StatusLed : GpioLed
     {

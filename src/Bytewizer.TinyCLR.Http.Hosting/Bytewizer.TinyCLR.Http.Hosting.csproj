@@ -56,7 +56,13 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Bytewizer.TinyCLR.Core">
-      <Version>2.1.7-preview.106</Version>
+      <Version>2.1.7-preview.109</Version>
+    </PackageReference>
+    <PackageReference Include="Bytewizer.TinyCLR.Cryptography">
+      <Version>2.1.7-preview.109</Version>
+    </PackageReference>
+    <PackageReference Include="Bytewizer.TinyCLR.Pipeline">
+      <Version>2.1.7-preview.109</Version>
     </PackageReference>
     <PackageReference Include="GHIElectronics.TinyCLR.Core">
       <Version>2.1.0</Version>

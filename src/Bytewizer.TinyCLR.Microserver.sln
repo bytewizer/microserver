@@ -31,8 +31,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Sockets",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Hosting", "Bytewizer.TinyCLR.Http.Hosting\Bytewizer.TinyCLR.Http.Hosting.csproj", "{1250B032-4D8E-46CB-AB8F-BDF2AD829C76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Hosting", "Bytewizer.TinyCLR.Hosting\Bytewizer.TinyCLR.Hosting.csproj", "{449E7C7C-05EE-4224-A8A0-121662C21324}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Ftp", "Bytewizer.TinyCLR.Ftp\Bytewizer.TinyCLR.Ftp.csproj", "{A3819878-1D41-4369-A436-D36181AACEF3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.PageBuilder", "Bytewizer.TinyCLR.Http.PageBuilder\Bytewizer.TinyCLR.Http.PageBuilder.csproj", "{8A73C390-EB11-421E-BF6D-63E283A97458}"
@@ -45,7 +43,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Ftp.Authe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Sockets.Filtering", "Bytewizer.TinyCLR.Sockets.Filtering\Bytewizer.TinyCLR.Sockets.Filtering.csproj", "{96BF04C6-3A7E-4085-96A8-40199E9B9C3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Telnet", "Bytewizer.TinyCLR.Telnet\Bytewizer.TinyCLR.Telnet.csproj", "{24448889-E8AE-4939-BA1A-0A9E5B051484}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Terminal", "Bytewizer.TinyCLR.Terminal\Bytewizer.TinyCLR.Terminal.csproj", "{24448889-E8AE-4939-BA1A-0A9E5B051484}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Terminal.Ansi", "Bytewizer.TinyCLR.Terminal.Ansi\Bytewizer.TinyCLR.Terminal.Ansi.csproj", "{372012BB-CAA0-4FEC-9EF4-2F5540E582EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Terminal.Authentication", "Bytewizer.TinyCLR.Terminal.Authentication\Bytewizer.TinyCLR.Terminal.Authentication.csproj", "{372012BB-CAA0-4FEC-9EF4-2F5560E582EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Terminal.Ssh", "Bytewizer.TinyCLR.Terminal.Ssh\Bytewizer.TinyCLR.Terminal.Ssh.csproj", "{372012BB-CAA0-4FEC-9EF4-2A5540E582EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Terminal.Console", "Bytewizer.TinyCLR.Terminal.Console\Bytewizer.TinyCLR.Terminal.Console.csproj", "{6AFA12AF-F71B-4A48-8A39-BCEB497A77A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Terminal.Telnet", "Bytewizer.TinyCLR.Terminal.Telnet\Bytewizer.TinyCLR.Terminal.Telnet.csproj", "{372012BB-CAA0-4FEC-9EF4-1A5540E582EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -109,10 +117,6 @@ Global
 		{1250B032-4D8E-46CB-AB8F-BDF2AD829C76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1250B032-4D8E-46CB-AB8F-BDF2AD829C76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1250B032-4D8E-46CB-AB8F-BDF2AD829C76}.Release|Any CPU.Build.0 = Release|Any CPU
-		{449E7C7C-05EE-4224-A8A0-121662C21324}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{449E7C7C-05EE-4224-A8A0-121662C21324}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{449E7C7C-05EE-4224-A8A0-121662C21324}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{449E7C7C-05EE-4224-A8A0-121662C21324}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A3819878-1D41-4369-A436-D36181AACEF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A3819878-1D41-4369-A436-D36181AACEF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3819878-1D41-4369-A436-D36181AACEF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -141,6 +145,26 @@ Global
 		{24448889-E8AE-4939-BA1A-0A9E5B051484}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24448889-E8AE-4939-BA1A-0A9E5B051484}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24448889-E8AE-4939-BA1A-0A9E5B051484}.Release|Any CPU.Build.0 = Release|Any CPU
+		{372012BB-CAA0-4FEC-9EF4-2F5540E582EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{372012BB-CAA0-4FEC-9EF4-2F5540E582EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{372012BB-CAA0-4FEC-9EF4-2F5540E582EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{372012BB-CAA0-4FEC-9EF4-2F5540E582EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{372012BB-CAA0-4FEC-9EF4-2F5560E582EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{372012BB-CAA0-4FEC-9EF4-2F5560E582EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{372012BB-CAA0-4FEC-9EF4-2F5560E582EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{372012BB-CAA0-4FEC-9EF4-2F5560E582EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{372012BB-CAA0-4FEC-9EF4-2A5540E582EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{372012BB-CAA0-4FEC-9EF4-2A5540E582EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{372012BB-CAA0-4FEC-9EF4-2A5540E582EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{372012BB-CAA0-4FEC-9EF4-2A5540E582EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AFA12AF-F71B-4A48-8A39-BCEB497A77A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AFA12AF-F71B-4A48-8A39-BCEB497A77A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AFA12AF-F71B-4A48-8A39-BCEB497A77A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AFA12AF-F71B-4A48-8A39-BCEB497A77A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{372012BB-CAA0-4FEC-9EF4-1A5540E582EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{372012BB-CAA0-4FEC-9EF4-1A5540E582EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{372012BB-CAA0-4FEC-9EF4-1A5540E582EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{372012BB-CAA0-4FEC-9EF4-1A5540E582EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

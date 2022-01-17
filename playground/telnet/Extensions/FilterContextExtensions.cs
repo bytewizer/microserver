@@ -1,6 +1,6 @@
-﻿using Bytewizer.TinyCLR.Telnet;
+﻿using Bytewizer.TinyCLR.Terminal;
 
-namespace Bytewizer.Playground.Telnet
+namespace Bytewizer.Playground.Terminal
 {
     /// <summary>
     /// Extension methods for <see cref="ActionExecutingContext"/> related to routing.
@@ -13,8 +13,9 @@ namespace Bytewizer.Playground.Telnet
         /// <param name="context">The <see cref="ActionExecutingContext"/> context.</param>
         public static int GetArgumentOrDefault(this ActionExecutingContext filterContext, string key, int defaultValue)
         {
-            if (filterContext.Arguments.TryGetValue(key, out string value))
+            if (filterContext.Arguments.Contains(key))
             {
+                var value = (string)filterContext.Arguments[key];
                 if (!int.TryParse(value, out int number))
                 {
                     filterContext.Result = new ResponseResult($"An error occurred parsing the --{value} flag.");

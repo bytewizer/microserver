@@ -1,13 +1,6 @@
-﻿using System;
-using System.IO;
-using System.Net;
-using System.Diagnostics;
+﻿using Bytewizer.TinyCLR.Pipeline;
 
-using Bytewizer.TinyCLR.Sockets;
-using Bytewizer.TinyCLR.Pipeline;
-
-
-namespace Bytewizer.Playground.Sockets
+namespace Bytewizer.TinyCLR.Sockets.Filtering
 {
     public class IpFilteringMiddleware : Middleware
     {

@@ -45,11 +45,11 @@ namespace Bytewizer.Playground.Http
                                  "<style>body { background-color: #68829E } h1 { font-size:2cm; text-align: center; color: #505160;}</style></head>" +
                                  "<body><h1>" + DateTime.Now.Ticks.ToString() + "</h1></body></html>";
 
-                            var tom = context.Request.ReadFromUrlEncoded();
-                            if (tom == null)
-                            {
-                                throw new Exception();
-                            }
+                            //var tom = context.Request.ReadFromUrlEncoded();
+                            //if (tom == null)
+                            //{
+                            //    throw new Exception();
+                            //}
 
                             //Debug.WriteLine(context.Request.ToString());
 

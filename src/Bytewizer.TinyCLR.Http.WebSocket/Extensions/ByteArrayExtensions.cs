@@ -7,32 +7,32 @@ namespace Bytewizer.TinyCLR
     /// </summary>
     public static class ByteArrayExtensions
     {
-        /// <summary>
-        /// Reverses the sequence of the elements in the entire one-dimensional Array.
-        /// </summary>
-        /// <param name="array">The one-dimensional Array to reverse.</param>
-        public static byte[] Reverse(this byte[] array)
-        {
-            return array.Reverse(0, array.Length - 1);
-        }
+        ///// <summary>
+        ///// Reverses the sequence of the elements in the entire one-dimensional Array.
+        ///// </summary>
+        ///// <param name="array">The one-dimensional Array to reverse.</param>
+        //public static byte[] Reverse(this byte[] array)
+        //{
+        //    return array.Reverse(0, array.Length - 1);
+        //}
 
-        /// <summary>
-        /// Reverses the sequence of a subset of the elements in the one-dimensional Array.
-        /// </summary>
-        /// <param name="array">The one-dimensional Array to reverse.</param>
-        /// <param name="startIndex">The starting index of the section to reverse.</param>
-        /// <param name="length">The number of elements in the section to reverse.</param>
-        public static byte[] Reverse(this byte[] array, int startIndex, int length)
-        {
-            for (; startIndex < length; startIndex++, length--)
-            {
-                var temp = array[startIndex];
-                array[startIndex] = array[length];
-                array[length] = temp;
-            }
+        ///// <summary>
+        ///// Reverses the sequence of a subset of the elements in the one-dimensional Array.
+        ///// </summary>
+        ///// <param name="array">The one-dimensional Array to reverse.</param>
+        ///// <param name="startIndex">The starting index of the section to reverse.</param>
+        ///// <param name="length">The number of elements in the section to reverse.</param>
+        //public static byte[] Reverse(this byte[] array, int startIndex, int length)
+        //{
+        //    for (; startIndex < length; startIndex++, length--)
+        //    {
+        //        var temp = array[startIndex];
+        //        array[startIndex] = array[length];
+        //        array[length] = temp;
+        //    }
 
-            return array;
-        }
+        //    return array;
+        //}
 
         /// <summary>
         /// Converts the order of elements in the specified byte array to

@@ -47,6 +47,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Bytewizer.TinyCLR.Logging.Abstractions">
+      <Version>2.1.7-preview.110</Version>
+    </PackageReference>
     <PackageReference Include="GHIElectronics.TinyCLR.Core">
       <Version>2.1.0</Version>
     </PackageReference>

@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Threading;
+
+using Bytewizer.TinyCLR.Hosting;
 using Bytewizer.TinyCLR.Logging;
 using Bytewizer.TinyCLR.Pipeline;
 using Bytewizer.TinyCLR.Sockets.Channel;
@@ -10,7 +11,7 @@ namespace Bytewizer.TinyCLR.Sockets
     /// <summary>
     /// Represents an implementation of the <see cref="SocketServer"/> for creating network servers.
     /// </summary>
-    public class SocketServer : SocketService, IServer
+    public class SocketServer : SocketService, IServerService
     {
         private readonly ILogger _logger;
         private readonly ContextPool _contextPool = new ContextPool();

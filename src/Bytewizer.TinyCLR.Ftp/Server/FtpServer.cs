@@ -3,16 +3,16 @@
 using Bytewizer.TinyCLR.Sockets;
 using Bytewizer.TinyCLR.Logging;
 using Bytewizer.TinyCLR.Pipeline;
+using Bytewizer.TinyCLR.Hosting;
 using Bytewizer.TinyCLR.Sockets.Channel;
 using Bytewizer.TinyCLR.Sockets.Listener;
-using System.Net;
 
 namespace Bytewizer.TinyCLR.Ftp
 {
     /// <summary>
     /// Represents an implementation of the <see cref="FtpServer"/> for creating web servers.
     /// </summary>
-    public class FtpServer : SocketService, IServer
+    public class FtpServer : SocketService, IServerService
     {
         private readonly ILogger _logger;
         private readonly ContextPool _contextPool;

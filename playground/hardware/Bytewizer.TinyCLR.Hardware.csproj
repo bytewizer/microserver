@@ -75,6 +75,9 @@
     <PackageReference Include="Bytewizer.TinyCLR.Identity.Abstractions">
       <Version>2.1.7-preview.107</Version>
     </PackageReference>
+    <PackageReference Include="Bytewizer.TinyCLR.Logging.Abstractions">
+      <Version>2.1.7-preview.110</Version>
+    </PackageReference>
     <PackageReference Include="GHIElectronics.TinyCLR.Core">
       <Version>2.1.0</Version>
     </PackageReference>

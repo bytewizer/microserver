@@ -59,14 +59,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Bytewizer.TinyCLR.Core">
-      <Version>2.1.7-preview.107</Version>
-    </PackageReference>
     <PackageReference Include="Bytewizer.TinyCLR.Logging.Abstractions">
-      <Version>2.1.7-preview.107</Version>
-    </PackageReference>
-    <PackageReference Include="Bytewizer.TinyCLR.Pipeline">
-      <Version>2.1.7-preview.107</Version>
+      <Version>2.1.7-preview.110</Version>
     </PackageReference>
     <PackageReference Include="GHIElectronics.TinyCLR.Devices.Storage">
       <Version>2.1.0</Version>

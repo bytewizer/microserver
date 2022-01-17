@@ -51,8 +51,8 @@
     <PackageReference Include="Bytewizer.TinyCLR.Identity.Abstractions">
       <Version>2.1.7-preview.107</Version>
     </PackageReference>
-    <PackageReference Include="Bytewizer.TinyCLR.Pipeline">
-      <Version>2.1.7-preview.107</Version>
+    <PackageReference Include="Bytewizer.TinyCLR.Logging.Abstractions">
+      <Version>2.1.7-preview.110</Version>
     </PackageReference>
     <PackageReference Include="GHIElectronics.TinyCLR.Core">
       <Version>2.1.0</Version>
@@ -67,10 +67,6 @@
     <ProjectReference Include="..\Bytewizer.TinyCLR.Ftp\Bytewizer.TinyCLR.Ftp.csproj">
       <Project>{A3819878-1D41-4369-A436-D36181AACEF3}</Project>
       <Name>Bytewizer.TinyCLR.Ftp</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Bytewizer.TinyCLR.Sockets\Bytewizer.TinyCLR.Sockets.csproj">
-      <Project>{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}</Project>
-      <Name>Bytewizer.TinyCLR.Sockets</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
