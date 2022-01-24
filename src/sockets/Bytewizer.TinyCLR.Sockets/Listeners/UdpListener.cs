@@ -4,10 +4,17 @@ using System.Threading;
 using System.Net.Sockets;
 using System.Diagnostics;
 
+#if NanoCLR
+using Bytewizer.NanoCLR.Sockets.Channel;
+using Bytewizer.NanoCLR.Sockets.Extensions;
+
+namespace Bytewizer.NanoCLR.Sockets.Listener
+#else
 using Bytewizer.TinyCLR.Sockets.Channel;
 using Bytewizer.TinyCLR.Sockets.Extensions;
 
 namespace Bytewizer.TinyCLR.Sockets.Listener
+#endif
 {
     /// <summary>
     /// Represents an implementation of the <see cref="SocketListener"/> which listens for remote UDP clients.

@@ -2,9 +2,15 @@
 using System.Net.Sockets;
 using System.Security.Cryptography.X509Certificates;
 
+#if NanoCLR
+using Bytewizer.NanoCLR.Sockets.Listener;
+
+namespace Bytewizer.NanoCLR.Sockets
+#else
 using Bytewizer.TinyCLR.Sockets.Listener;
 
 namespace Bytewizer.TinyCLR.Sockets
+#endif
 {
     /// <summary>
     /// Extension methods for <see cref="SocketListenerOptions"/> that configures <see cref="SocketListener"/> for a given endpoint.

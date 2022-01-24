@@ -1,4 +1,8 @@
-﻿namespace Bytewizer.TinyCLR.Sockets
+﻿#if NanoCLR
+namespace Bytewizer.NanoCLR.Sockets
+#else
+namespace Bytewizer.TinyCLR.Sockets
+#endif
 {
     /// <summary>
     /// Represents configuration limits of server specific features.

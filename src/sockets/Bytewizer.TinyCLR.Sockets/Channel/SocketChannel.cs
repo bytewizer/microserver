@@ -3,10 +3,18 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Net.Sockets;
-using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
 
+
+#if NanoCLR
+using System.Net.Security;
+
+namespace Bytewizer.NanoCLR.Sockets.Channel
+#else
+using System.Security.Authentication;
+
 namespace Bytewizer.TinyCLR.Sockets.Channel
+#endif
 {
     /// <summary>
     /// Represents a socket channel between two end points.
@@ -62,7 +70,12 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
         /// <param name="endpoint">The remote endpoint of the connected socket. </param>
         public void Assign(Socket socket, byte[] buffer, EndPoint endpoint)
         {
+
+#if NanoCLR
+            Assign(socket, new MemoryStream(buffer), null);
+#else
             Assign(socket, new MemoryStream(buffer, false), null);
+#endif
             Connection.Assign(socket, endpoint);
         }
 
@@ -210,7 +223,7 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
         /// <param name="text">A <see cref="string"/> that contains data to be UTF8 encoded and sent.</param>
         public int WriteLine(string text)
         {
-            return Write($"{text}{Environment.NewLine}");
+            return Write($"{text}\n\r");
         }
 
         /// <summary>

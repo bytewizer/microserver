@@ -2,9 +2,16 @@
 using System.IO;
 using System.Text;
 using System.Diagnostics;
+
+#if NanoCLR
+using Bytewizer.NanoCLR.Logging;
+
+namespace Bytewizer.NanoCLR.Sockets.Channel
+#else
 using Bytewizer.TinyCLR.Logging;
 
 namespace Bytewizer.TinyCLR.Sockets.Channel
+#endif
 {
     public class LoggerStream : Stream
     {       

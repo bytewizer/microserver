@@ -1,5 +1,14 @@
 ﻿using System;
 
+#if NanoCLR
+using Bytewizer.NanoCLR.Hosting;
+using Bytewizer.NanoCLR.Logging;
+using Bytewizer.NanoCLR.Pipeline;
+using Bytewizer.NanoCLR.Sockets.Channel;
+using Bytewizer.NanoCLR.Sockets.Listener;
+
+namespace Bytewizer.NanoCLR.Sockets
+#else
 using Bytewizer.TinyCLR.Hosting;
 using Bytewizer.TinyCLR.Logging;
 using Bytewizer.TinyCLR.Pipeline;
@@ -7,6 +16,7 @@ using Bytewizer.TinyCLR.Sockets.Channel;
 using Bytewizer.TinyCLR.Sockets.Listener;
 
 namespace Bytewizer.TinyCLR.Sockets
+#endif
 {
     /// <summary>
     /// Represents an implementation of the <see cref="SocketServer"/> for creating network servers.

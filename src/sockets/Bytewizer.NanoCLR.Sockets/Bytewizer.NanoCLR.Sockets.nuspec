@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <authors>Microcompiler</authors>
+    <description>Middleware pipeline library built for .NET nanoFramework IoT devices.</description>
+    <repository type="git" url="https://github.com/bytewizer/runtime.git"/>
+    <copyright>Bytewizer. All rights reserved.</copyright>
+    <license type="file">LICENSE.md</license>
+    <icon>images\package-logo.png</icon>
+    <tags>nanoframework nanoclr iot</tags>
+    <dependencies>    
+      <dependency id="nanoFramework.CoreLibrary" version="1.11.7" />
+      <dependency id="nanoFramework.System.Collections" version="1.3.0" />
+      <dependency id="nanoFramework.System.Text" version="1.1.2" />
+	  <dependency id="Bytewizer.NanoCLR.Core" version="2.1.7" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src=".\bin\$configuration$\$id$.dll" target="lib" />
+    <file src=".\bin\$configuration$\$id$.xml" target="lib" />
+    <file src=".\bin\$configuration$\$id$.pe" target="lib" />
+    <file src=".\bin\$configuration$\$id$.pdb" target="lib" />
+    <file src=".\bin\$configuration$\$id$.pdbx" target="lib" />
+    <file src="..\..\..\LICENSE.md" target="" />
+    <file src="..\..\..\images\package-logo.png" target="images\" />
+  </files>
+</package>

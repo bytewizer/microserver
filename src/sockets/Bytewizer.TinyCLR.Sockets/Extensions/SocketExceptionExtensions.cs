@@ -1,6 +1,10 @@
 ﻿using System.Net.Sockets;
 
+#if NanoCLR
+namespace Bytewizer.NanoCLR.Sockets.Extensions
+#else
 namespace Bytewizer.TinyCLR.Sockets.Extensions
+#endif
 {
     /// <summary>
     /// Contains extension methods for <see cref="SocketException"/>.

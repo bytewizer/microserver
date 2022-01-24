@@ -1,9 +1,17 @@
 ﻿using System;
 using System.Diagnostics;
+
+#if NanoCLR
+using Bytewizer.NanoCLR.Logging;
+using Bytewizer.NanoCLR.Sockets.Channel;
+
+namespace Bytewizer.NanoCLR.Sockets
+#else
 using Bytewizer.TinyCLR.Logging;
 using Bytewizer.TinyCLR.Sockets.Channel;
 
 namespace Bytewizer.TinyCLR.Sockets
+#endif
 {
 //#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 

@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Net.Sockets;
 using System.Net.Security;
-using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
 
+#if NanoCLR
+namespace Bytewizer.NanoCLR.Sockets.Channel
+#else
+using System.Security.Authentication;
+
 namespace Bytewizer.TinyCLR.Sockets.Channel
+#endif
 {
     /// <summary>
     /// Represents an authenticated ssl stream builder for server side applications.

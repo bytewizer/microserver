@@ -1,11 +1,19 @@
 ﻿using System;
 using System.Net;
 
+#if NanoCLR
+using Bytewizer.NanoCLR.Pipeline;
+using Bytewizer.NanoCLR.Pipeline.Builder;
+using Bytewizer.NanoCLR.Sockets.Listener;
+
+namespace Bytewizer.NanoCLR.Sockets
+#else
 using Bytewizer.TinyCLR.Pipeline;
 using Bytewizer.TinyCLR.Pipeline.Builder;
 using Bytewizer.TinyCLR.Sockets.Listener;
 
 namespace Bytewizer.TinyCLR.Sockets
+#endif
 {
     /// <summary>
     /// Represents configuration options of server specific features.

@@ -1,4 +1,8 @@
-﻿namespace Bytewizer.TinyCLR.Sockets
+﻿#if NanoCLR
+namespace Bytewizer.NanoCLR.Sockets
+#else
+namespace Bytewizer.TinyCLR.Sockets
+#endif
 {
     /// <summary>
     /// Represents an options method to configure <see cref="SocketServer"/> specific features.

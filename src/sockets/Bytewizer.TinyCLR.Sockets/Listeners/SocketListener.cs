@@ -3,9 +3,15 @@ using System.Net;
 using System.Threading;
 using System.Net.Sockets;
 
+#if NanoCLR
+using Bytewizer.NanoCLR.Sockets.Channel;
+
+namespace Bytewizer.NanoCLR.Sockets.Listener
+#else
 using Bytewizer.TinyCLR.Sockets.Channel;
 
 namespace Bytewizer.TinyCLR.Sockets.Listener
+#endif
 {
     /// <summary>
     /// Represents an implementation of the <see cref="SocketListener"/> which listens for remote clients.

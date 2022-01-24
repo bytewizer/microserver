@@ -1,6 +1,10 @@
 ﻿using System;
 
+#if NanoCLR
+namespace Bytewizer.NanoCLR.Sockets
+#else
 namespace Bytewizer.TinyCLR.Sockets
+#endif
 {
     /// <summary>
     /// A delegate which is executed when the socket has and error.

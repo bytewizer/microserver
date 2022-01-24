@@ -2,7 +2,11 @@
 using System.Net;
 using System.Net.Sockets;
 
+#if NanoCLR
+namespace Bytewizer.NanoCLR.Sockets.Channel
+#else
 namespace Bytewizer.TinyCLR.Sockets.Channel
+#endif
 {
     /// <summary>
     /// Represents a socket connection between two end points.
@@ -62,7 +66,7 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
         /// <param name="socket">The connected socket for channel.</param>
         internal void Assign(Socket socket)
         {
-            Id = DateTime.Now.Ticks.ToString(); //TODO: Switch to Guid - GHI Github issue #476,
+            Id = DateTime.UtcNow.Ticks.ToString(); //TODO: Switch to Guid - GHI Github issue #476,
             LocalEndpoint = socket.LocalEndPoint;
             RemoteEndpoint = socket.RemoteEndPoint;
         }
@@ -74,7 +78,7 @@ namespace Bytewizer.TinyCLR.Sockets.Channel
         /// <param name="endpoint">The remote endpoint of the connected socket. </param>
         internal void Assign(Socket socket, EndPoint endpoint)
         {
-            Id = DateTime.Now.Ticks.ToString(); //TODO: Switch to Guid - GHI Github issue #476,
+            Id = DateTime.UtcNow.Ticks.ToString(); //TODO: Switch to Guid - GHI Github issue #476,
             LocalEndpoint = socket.LocalEndPoint;
             RemoteEndpoint = endpoint;
         }

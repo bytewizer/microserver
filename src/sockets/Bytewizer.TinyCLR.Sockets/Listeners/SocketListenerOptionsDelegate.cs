@@ -1,4 +1,8 @@
-﻿namespace Bytewizer.TinyCLR.Sockets.Listener
+﻿#if NanoCLR
+namespace Bytewizer.NanoCLR.Sockets.Listener
+#else
+namespace Bytewizer.TinyCLR.Sockets.Listener
+#endif
 {
     /// <summary>
     /// Represents an options method to configure <see cref="SocketListener"/> specific features.

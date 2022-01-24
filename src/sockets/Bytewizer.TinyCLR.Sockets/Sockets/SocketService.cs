@@ -1,12 +1,25 @@
 ﻿using System;
 using System.Net.Sockets;
 
+
+
+
+
+#if NanoCLR
+using Bytewizer.NanoCLR.Hosting;
+using Bytewizer.NanoCLR.Logging;
+using Bytewizer.NanoCLR.Sockets.Channel;
+using Bytewizer.NanoCLR.Sockets.Listener;
+
+namespace Bytewizer.NanoCLR.Sockets
+#else
 using Bytewizer.TinyCLR.Hosting;
 using Bytewizer.TinyCLR.Logging;
 using Bytewizer.TinyCLR.Sockets.Channel;
 using Bytewizer.TinyCLR.Sockets.Listener;
 
 namespace Bytewizer.TinyCLR.Sockets
+#endif
 {
     /// <summary>
     /// Represents a base implementation of <see cref="SocketService"/> which uses <see cref="SocketListener"/> for serving requests.
