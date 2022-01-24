@@ -3,57 +3,67 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http", "Bytewizer.TinyCLR.Http\Bytewizer.TinyCLR.Http.csproj", "{EB778176-633A-4997-A683-2C891C5DB436}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http", "http\Bytewizer.TinyCLR.Http\Bytewizer.TinyCLR.Http.csproj", "{EB778176-633A-4997-A683-2C891C5DB436}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Authentication", "Bytewizer.TinyCLR.Http.Authentication\Bytewizer.TinyCLR.Http.Authentication.csproj", "{A94B42E0-7FCC-448F-9645-6732ABA96F28}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Authentication", "http\Bytewizer.TinyCLR.Http.Authentication\Bytewizer.TinyCLR.Http.Authentication.csproj", "{A94B42E0-7FCC-448F-9645-6732ABA96F28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Cookies", "Bytewizer.TinyCLR.Http.Cookies\Bytewizer.TinyCLR.Http.Cookies.csproj", "{C560DE7A-02F3-4FB0-BD59-9C96138BD502}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Cookies", "http\Bytewizer.TinyCLR.Http.Cookies\Bytewizer.TinyCLR.Http.Cookies.csproj", "{C560DE7A-02F3-4FB0-BD59-9C96138BD502}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Cors", "Bytewizer.TinyCLR.Http.Cors\Bytewizer.TinyCLR.Http.Cors.csproj", "{43458F16-E5CE-4731-BAB3-EF9B60D26A28}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Cors", "http\Bytewizer.TinyCLR.Http.Cors\Bytewizer.TinyCLR.Http.Cors.csproj", "{43458F16-E5CE-4731-BAB3-EF9B60D26A28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Diagnostics", "Bytewizer.TinyCLR.Http.Diagnostics\Bytewizer.TinyCLR.Http.Diagnostics.csproj", "{5FADD03F-72E0-4A6A-81F7-FE4FA44FCB36}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Diagnostics", "http\Bytewizer.TinyCLR.Http.Diagnostics\Bytewizer.TinyCLR.Http.Diagnostics.csproj", "{5FADD03F-72E0-4A6A-81F7-FE4FA44FCB36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Json", "Bytewizer.TinyCLR.Http.Json\Bytewizer.TinyCLR.Http.Json.csproj", "{EA9A543B-DA2A-46C1-9E69-47C87DB94DBA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Json", "http\Bytewizer.TinyCLR.Http.Json\Bytewizer.TinyCLR.Http.Json.csproj", "{EA9A543B-DA2A-46C1-9E69-47C87DB94DBA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Mvc", "Bytewizer.TinyCLR.Http.Mvc\Bytewizer.TinyCLR.Http.Mvc.csproj", "{15C6A7FC-1C29-471B-B57A-08D61C58FA08}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Mvc", "http\Bytewizer.TinyCLR.Http.Mvc\Bytewizer.TinyCLR.Http.Mvc.csproj", "{15C6A7FC-1C29-471B-B57A-08D61C58FA08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.ResourceManager", "Bytewizer.TinyCLR.Http.ResourceManager\Bytewizer.TinyCLR.Http.ResourceManager.csproj", "{4F2FCDC6-179E-45AC-A95A-360A02D05E15}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.ResourceManager", "http\Bytewizer.TinyCLR.Http.ResourceManager\Bytewizer.TinyCLR.Http.ResourceManager.csproj", "{4F2FCDC6-179E-45AC-A95A-360A02D05E15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.StaticFiles", "Bytewizer.TinyCLR.Http.StaticFiles\Bytewizer.TinyCLR.Http.StaticFiles.csproj", "{2DD3D5AB-D849-4898-B6E9-1A49683955B2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.StaticFiles", "http\Bytewizer.TinyCLR.Http.StaticFiles\Bytewizer.TinyCLR.Http.StaticFiles.csproj", "{2DD3D5AB-D849-4898-B6E9-1A49683955B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.StaticFiles.Blazor", "Bytewizer.TinyCLR.Http.StaticFiles.Blazor\Bytewizer.TinyCLR.Http.StaticFiles.Blazor.csproj", "{DAB5B7A6-A97E-46B3-8A56-200C1163C7F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.StaticFiles.Blazor", "http\Bytewizer.TinyCLR.Http.StaticFiles.Blazor\Bytewizer.TinyCLR.Http.StaticFiles.Blazor.csproj", "{DAB5B7A6-A97E-46B3-8A56-200C1163C7F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.StaticFiles.Resources", "Bytewizer.TinyCLR.Http.StaticFiles.Resources\Bytewizer.TinyCLR.Http.StaticFiles.Resources.csproj", "{659DD6F5-1932-4159-8A4C-F4409362032A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.StaticFiles.Resources", "http\Bytewizer.TinyCLR.Http.StaticFiles.Resources\Bytewizer.TinyCLR.Http.StaticFiles.Resources.csproj", "{659DD6F5-1932-4159-8A4C-F4409362032A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Sntp", "Bytewizer.TinyCLR.Sntp\Bytewizer.TinyCLR.Sntp.csproj", "{CA1A8602-FAD6-4678-BFDC-2FCBA8768A2C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Sntp", "sntp\Bytewizer.TinyCLR.Sntp\Bytewizer.TinyCLR.Sntp.csproj", "{CA1A8602-FAD6-4678-BFDC-2FCBA8768A2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Sockets", "Bytewizer.TinyCLR.Sockets\Bytewizer.TinyCLR.Sockets.csproj", "{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Sockets", "sockets\Bytewizer.TinyCLR.Sockets\Bytewizer.TinyCLR.Sockets.csproj", "{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Hosting", "Bytewizer.TinyCLR.Http.Hosting\Bytewizer.TinyCLR.Http.Hosting.csproj", "{1250B032-4D8E-46CB-AB8F-BDF2AD829C76}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.Hosting", "http\Bytewizer.TinyCLR.Http.Hosting\Bytewizer.TinyCLR.Http.Hosting.csproj", "{1250B032-4D8E-46CB-AB8F-BDF2AD829C76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Ftp", "Bytewizer.TinyCLR.Ftp\Bytewizer.TinyCLR.Ftp.csproj", "{A3819878-1D41-4369-A436-D36181AACEF3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Ftp", "ftp\Bytewizer.TinyCLR.Ftp\Bytewizer.TinyCLR.Ftp.csproj", "{A3819878-1D41-4369-A436-D36181AACEF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.PageBuilder", "Bytewizer.TinyCLR.Http.PageBuilder\Bytewizer.TinyCLR.Http.PageBuilder.csproj", "{8A73C390-EB11-421E-BF6D-63E283A97458}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.PageBuilder", "http\Bytewizer.TinyCLR.Http.PageBuilder\Bytewizer.TinyCLR.Http.PageBuilder.csproj", "{8A73C390-EB11-421E-BF6D-63E283A97458}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.TcpClient", "Bytewizer.TinyCLR.TcpClient\Bytewizer.TinyCLR.TcpClient.csproj", "{96BF04C6-3A7E-4065-96A8-40199E9B9C3B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.TcpClient", "sockets\Bytewizer.TinyCLR.TcpClient\Bytewizer.TinyCLR.TcpClient.csproj", "{96BF04C6-3A7E-4065-96A8-40199E9B9C3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.WebSockets", "Bytewizer.TinyCLR.Http.WebSocket\Bytewizer.TinyCLR.Http.WebSockets.csproj", "{968603C1-8EA5-4E4B-B5BE-4943CEFFB04E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.WebSockets", "http\Bytewizer.TinyCLR.Http.WebSocket\Bytewizer.TinyCLR.Http.WebSockets.csproj", "{968603C1-8EA5-4E4B-B5BE-4943CEFFB04E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Ftp.Authentication", "Bytewizer.TinyCLR.Ftp.Authentication\Bytewizer.TinyCLR.Ftp.Authentication.csproj", "{372012BB-CAA0-4FEF-9EF4-2F5560E582EA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Ftp.Authentication", "ftp\Bytewizer.TinyCLR.Ftp.Authentication\Bytewizer.TinyCLR.Ftp.Authentication.csproj", "{372012BB-CAA0-4FEF-9EF4-2F5560E582EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Sockets.Filtering", "Bytewizer.TinyCLR.Sockets.Filtering\Bytewizer.TinyCLR.Sockets.Filtering.csproj", "{96BF04C6-3A7E-4085-96A8-40199E9B9C3B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Sockets.Filtering", "sockets\Bytewizer.TinyCLR.Sockets.Filtering\Bytewizer.TinyCLR.Sockets.Filtering.csproj", "{96BF04C6-3A7E-4085-96A8-40199E9B9C3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Terminal", "Bytewizer.TinyCLR.Terminal\Bytewizer.TinyCLR.Terminal.csproj", "{24448889-E8AE-4939-BA1A-0A9E5B051484}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Terminal", "terminal\Bytewizer.TinyCLR.Terminal\Bytewizer.TinyCLR.Terminal.csproj", "{24448889-E8AE-4939-BA1A-0A9E5B051484}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Terminal.Ansi", "Bytewizer.TinyCLR.Terminal.Ansi\Bytewizer.TinyCLR.Terminal.Ansi.csproj", "{372012BB-CAA0-4FEC-9EF4-2F5540E582EA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Terminal.Ansi", "terminal\Bytewizer.TinyCLR.Terminal.Ansi\Bytewizer.TinyCLR.Terminal.Ansi.csproj", "{372012BB-CAA0-4FEC-9EF4-2F5540E582EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Terminal.Authentication", "Bytewizer.TinyCLR.Terminal.Authentication\Bytewizer.TinyCLR.Terminal.Authentication.csproj", "{372012BB-CAA0-4FEC-9EF4-2F5560E582EA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Terminal.Authentication", "terminal\Bytewizer.TinyCLR.Terminal.Authentication\Bytewizer.TinyCLR.Terminal.Authentication.csproj", "{372012BB-CAA0-4FEC-9EF4-2F5560E582EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Terminal.Ssh", "Bytewizer.TinyCLR.Terminal.Ssh\Bytewizer.TinyCLR.Terminal.Ssh.csproj", "{372012BB-CAA0-4FEC-9EF4-2A5540E582EA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Terminal.Ssh", "terminal\Bytewizer.TinyCLR.Terminal.Ssh\Bytewizer.TinyCLR.Terminal.Ssh.csproj", "{372012BB-CAA0-4FEC-9EF4-2A5540E582EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Terminal.Console", "Bytewizer.TinyCLR.Terminal.Console\Bytewizer.TinyCLR.Terminal.Console.csproj", "{6AFA12AF-F71B-4A48-8A39-BCEB497A77A2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Terminal.Console", "terminal\Bytewizer.TinyCLR.Terminal.Console\Bytewizer.TinyCLR.Terminal.Console.csproj", "{6AFA12AF-F71B-4A48-8A39-BCEB497A77A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Terminal.Telnet", "Bytewizer.TinyCLR.Terminal.Telnet\Bytewizer.TinyCLR.Terminal.Telnet.csproj", "{372012BB-CAA0-4FEC-9EF4-1A5540E582EA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Terminal.Telnet", "terminal\Bytewizer.TinyCLR.Terminal.Telnet\Bytewizer.TinyCLR.Terminal.Telnet.csproj", "{372012BB-CAA0-4FEC-9EF4-1A5540E582EA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FTP", "FTP", "{E506E051-B145-487B-9E6F-027ABF7E0C59}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HTTP", "HTTP", "{247B9CBD-CA7B-4330-89A1-B24AC80D26B5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SNTP", "SNTP", "{69BDBB15-A91D-4412-A2DB-D909563D96AD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SOCKETS", "SOCKETS", "{CBF5BFFD-BCFE-4642-BBA9-27A18056EE59}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TERMINAL", "TERMINAL", "{B5606FE6-49F5-452B-85CE-D31B65384D51}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -168,6 +178,34 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EB778176-633A-4997-A683-2C891C5DB436} = {247B9CBD-CA7B-4330-89A1-B24AC80D26B5}
+		{A94B42E0-7FCC-448F-9645-6732ABA96F28} = {247B9CBD-CA7B-4330-89A1-B24AC80D26B5}
+		{C560DE7A-02F3-4FB0-BD59-9C96138BD502} = {247B9CBD-CA7B-4330-89A1-B24AC80D26B5}
+		{43458F16-E5CE-4731-BAB3-EF9B60D26A28} = {247B9CBD-CA7B-4330-89A1-B24AC80D26B5}
+		{5FADD03F-72E0-4A6A-81F7-FE4FA44FCB36} = {247B9CBD-CA7B-4330-89A1-B24AC80D26B5}
+		{EA9A543B-DA2A-46C1-9E69-47C87DB94DBA} = {247B9CBD-CA7B-4330-89A1-B24AC80D26B5}
+		{15C6A7FC-1C29-471B-B57A-08D61C58FA08} = {247B9CBD-CA7B-4330-89A1-B24AC80D26B5}
+		{4F2FCDC6-179E-45AC-A95A-360A02D05E15} = {247B9CBD-CA7B-4330-89A1-B24AC80D26B5}
+		{2DD3D5AB-D849-4898-B6E9-1A49683955B2} = {247B9CBD-CA7B-4330-89A1-B24AC80D26B5}
+		{DAB5B7A6-A97E-46B3-8A56-200C1163C7F0} = {247B9CBD-CA7B-4330-89A1-B24AC80D26B5}
+		{659DD6F5-1932-4159-8A4C-F4409362032A} = {247B9CBD-CA7B-4330-89A1-B24AC80D26B5}
+		{CA1A8602-FAD6-4678-BFDC-2FCBA8768A2C} = {69BDBB15-A91D-4412-A2DB-D909563D96AD}
+		{CECB4A63-1460-4721-96B1-7FCCEC0FAF84} = {CBF5BFFD-BCFE-4642-BBA9-27A18056EE59}
+		{1250B032-4D8E-46CB-AB8F-BDF2AD829C76} = {247B9CBD-CA7B-4330-89A1-B24AC80D26B5}
+		{A3819878-1D41-4369-A436-D36181AACEF3} = {E506E051-B145-487B-9E6F-027ABF7E0C59}
+		{8A73C390-EB11-421E-BF6D-63E283A97458} = {247B9CBD-CA7B-4330-89A1-B24AC80D26B5}
+		{96BF04C6-3A7E-4065-96A8-40199E9B9C3B} = {CBF5BFFD-BCFE-4642-BBA9-27A18056EE59}
+		{968603C1-8EA5-4E4B-B5BE-4943CEFFB04E} = {247B9CBD-CA7B-4330-89A1-B24AC80D26B5}
+		{372012BB-CAA0-4FEF-9EF4-2F5560E582EA} = {E506E051-B145-487B-9E6F-027ABF7E0C59}
+		{96BF04C6-3A7E-4085-96A8-40199E9B9C3B} = {CBF5BFFD-BCFE-4642-BBA9-27A18056EE59}
+		{24448889-E8AE-4939-BA1A-0A9E5B051484} = {B5606FE6-49F5-452B-85CE-D31B65384D51}
+		{372012BB-CAA0-4FEC-9EF4-2F5540E582EA} = {B5606FE6-49F5-452B-85CE-D31B65384D51}
+		{372012BB-CAA0-4FEC-9EF4-2F5560E582EA} = {B5606FE6-49F5-452B-85CE-D31B65384D51}
+		{372012BB-CAA0-4FEC-9EF4-2A5540E582EA} = {B5606FE6-49F5-452B-85CE-D31B65384D51}
+		{6AFA12AF-F71B-4A48-8A39-BCEB497A77A2} = {B5606FE6-49F5-452B-85CE-D31B65384D51}
+		{372012BB-CAA0-4FEC-9EF4-1A5540E582EA} = {B5606FE6-49F5-452B-85CE-D31B65384D51}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {06235DE9-4345-408B-9522-E418507B461F}

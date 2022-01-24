@@ -4,21 +4,21 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4F2FCDC6-179E-45AC-A95A-360A02D05E15}</ProjectGuid>
+    <ProjectGuid>{372012BB-CAA0-4FEC-9EF4-1A5540E582EA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bytewizer.TinyCLR.Http.ResourceManager</RootNamespace>
-    <AssemblyName>Bytewizer.TinyCLR.Http.ResourceManager</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <RootNamespace>Bytewizer.TinyCLR.Terminal.Telnet</RootNamespace>
+    <AssemblyName>Bytewizer.TinyCLR.Terminal.Telnet</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A1948822-69DD-4150-919B-F3F42EFB71CC};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    <LangVersion>9</LangVersion>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup>
-    <Description>Hypertext Transfer Protocol (Http) embedded resource file serving extension library built for TinyCLR IoT devices.</Description>
-    <PackageTags>ghi tinyclr tinyclros sitcore iot http-server http https</PackageTags>
+    <Description>Terminal server library built for TinyCLR IoT devices.</Description>
+    <PackageTags>ghi tinyclr tinyclros sitcore iot telnet-server telnet</PackageTags>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -28,7 +28,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Bytewizer.TinyCLR.Http.ResourceManager.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\Bytewizer.TinyCLR.Terminal.Telnet.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,24 +37,24 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Bytewizer.TinyCLR.Http.ResourceManager.xml</DocumentationFile>
-    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Http\HttpContextExtensions.cs" />
-    <Compile Include="Http\HttpResponseExtensions.cs" />
-    <Compile Include="Http\ResourceStream.cs" />
-    <Compile Include="Middleware\Features\IResourceManagerFeature.cs" />
-    <Compile Include="Middleware\Features\ResourceManagerFeature.cs" />
-    <Compile Include="Middleware\ResourceMiddleware.cs" />
-    <Compile Include="Middleware\UseResourcesExtensions.cs" />
+    <Compile Include="Channel\SecureShellReader.cs" />
+    <Compile Include="Channel\TerminalStream.cs" />
+    <Compile Include="Extensions\DiagnosticsLoggerExtensions.cs" />
+    <Compile Include="Middleware\TelnetMiddleware.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Server\TelnetServer.cs" />
+    <Compile Include="Server\TelnetServerOptions.cs" />
+    <Compile Include="Server\TelnetServerOptionsDelegate.cs" />
+    <Compile Include="Terminal\TelnetSession.cs" />
+    <Compile Include="Terminal\TelnetContext.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Bytewizer.TinyCLR.Logging.Abstractions">
-      <Version>2.1.7-preview.110</Version>
-    </PackageReference>
     <PackageReference Include="GHIElectronics.TinyCLR.Core">
+      <Version>2.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="GHIElectronics.TinyCLR.IO">
       <Version>2.1.0</Version>
     </PackageReference>
     <PackageReference Include="NuGet.Build.Tasks.Pack">
@@ -64,13 +64,13 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bytewizer.TinyCLR.Http\Bytewizer.TinyCLR.Http.csproj">
-      <Project>{EB778176-633A-4997-A683-2C891C5DB436}</Project>
-      <Name>Bytewizer.TinyCLR.Http</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Bytewizer.TinyCLR.Sockets\Bytewizer.TinyCLR.Sockets.csproj">
+    <ProjectReference Include="..\..\sockets\Bytewizer.TinyCLR.Sockets\Bytewizer.TinyCLR.Sockets.csproj">
       <Project>{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}</Project>
       <Name>Bytewizer.TinyCLR.Sockets</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bytewizer.TinyCLR.Terminal\Bytewizer.TinyCLR.Terminal.csproj">
+      <Project>{24448889-E8AE-4939-BA1A-0A9E5B051484}</Project>
+      <Name>Bytewizer.TinyCLR.Terminal</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

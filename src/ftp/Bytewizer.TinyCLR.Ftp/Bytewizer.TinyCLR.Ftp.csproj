@@ -123,11 +123,11 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bytewizer.TinyCLR.Sockets\Bytewizer.TinyCLR.Sockets.csproj">
+    <ProjectReference Include="..\..\sockets\Bytewizer.TinyCLR.Sockets\Bytewizer.TinyCLR.Sockets.csproj">
       <Project>{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}</Project>
       <Name>Bytewizer.TinyCLR.Sockets</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bytewizer.TinyCLR.TcpClient\Bytewizer.TinyCLR.TcpClient.csproj">
+    <ProjectReference Include="..\..\sockets\Bytewizer.TinyCLR.TcpClient\Bytewizer.TinyCLR.TcpClient.csproj">
       <Project>{96BF04C6-3A7E-4065-96A8-40199E9B9C3B}</Project>
       <Name>Bytewizer.TinyCLR.TcpClient</Name>
     </ProjectReference>

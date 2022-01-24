@@ -184,7 +184,6 @@ namespace Bytewizer.TinyCLR.Terminal.Channel
         /// Writes a new response to the connected socket channel.
         /// </summary>
         /// <param name="buffer">A <see cref="byte"/> array that contains data to be sent.</param>
-        /// <returns>The number of bytes sent to the <see cref="Socket"/>.</returns>
         public int Write(byte[] buffer)
         {
             if (buffer.Length <= 0)
