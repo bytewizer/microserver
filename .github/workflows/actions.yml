@@ -81,8 +81,6 @@ jobs:
         -p:VersionSuffix=preview.${{ steps.info.outputs.build }}
         -p:Configuration=${env:CONFIGURATION}
         -p:ContinuousIntegrationBuild=true
-        -p:DebugType="embedded"
-        -p:Deterministic=true
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v2.3.1
