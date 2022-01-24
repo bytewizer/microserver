@@ -55,7 +55,7 @@ jobs:
       working-directory: src
       run: >- 
         nuget restore Bytewizer.NanoCLR.Microserver.sln -verbosity ${env:VERBOSITY}
-        
+
     - name: Build and pack TinyCLR libraries
       working-directory: src
       run: >- 
@@ -70,7 +70,7 @@ jobs:
         -p:DebugType="embedded"
         -p:Deterministic=true
 
-      - name: Build and pack NanoCLR libraries
+    - name: Build and pack NanoCLR libraries
       working-directory: src
       run: >- 
         msbuild Bytewizer.NanoCLR.Microserver.sln -t:pack -verbosity:${env:VERBOSITY}
