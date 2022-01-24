@@ -11,28 +11,28 @@ Microserver is a modular embedded server built for TinyCLR OS IoT devices.  Be s
 
 Build modular tcp/udp service with an extendable pipeline and SSL transport security.
 
-* <a href="https://github.com/bytewizer/microserver/tree/develop/src/sockets">TCP Client</a>
-* <a href="https://github.com/bytewizer/microserver/tree/develop/src/sockets">TCP/UDP Socket Server</a>
-* <a href="https://github.com/bytewizer/microserver/tree/develop/src/terminal">Telnet Server</a>
-* <a href="https://github.com/bytewizer/microserver/tree/develop/src/ftp">File Transfer Protocol (FTP) Server</a>
-* <a href="https://github.com/bytewizer/microserver/tree/develop/src/sntp">Simple Network Time Protocol (SNTP) Server</a>
+* [TCP Client](https://github.com/bytewizer/microserver/tree/develop/src/sockets)
+* [TCP/UDP Socket Server](https://github.com/bytewizer/microserver/tree/develop/src/sockets)
+* [Telnet Server](https://github.com/bytewizer/microserver/tree/develop/src/terminal)
+* [File Transfer Protocol (FTP) Server](https://github.com/bytewizer/microserver/tree/develop/src/ftp)
+* [Simple Network Time Protocol (SNTP) Server](https://github.com/bytewizer/microserver/tree/develop/src/sntp)
 
 ## Web Services
 
 Create a modular web services including middleware, moduler routing, digest authentication, controllers, action results, view engine, storage / resource file serving, default file routing, JSON integration, and websockets.
 
-* <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Http">HTTP Server</a>
-* <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Diagnostics">Diagnostics</a> 
-* <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Authentication">Authentication</a>
-* <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Cookies">Cookie Support</a>
-* <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.ResourceManager">Resource Manager Handling</a>
-* <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.PageBuilder">Html Response Builder</a>
-* <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.StaticFiles">Static File Handling</a>
-* <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.StaticFiles.Blazor">Blazor File Serving</a>  
-* <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.StaticFiles.Resources">Embedded Resource File Serving</a>
-* <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Mvc">Model-View-Controllers (MVC)</a> 
-* <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Json">JavaScript Object Notation (JSON)</a>
-* <a href="https://github.com/bytewizer/microserver/tree/develop/src/Bytewizer.TinyCLR.Http.Cors">Cross-origin Resource Sharing (CORS)</a>
+* [HTTP Server](https://github.com/bytewizer/microserver/tree/develop/src/http)
+* [Diagnostics](https://github.com/bytewizer/microserver/tree/develop/src/http/Bytewizer.TinyCLR.Http.Diagnostics) 
+* [Authentication](https://github.com/bytewizer/microserver/tree/develop/src/http/Bytewizer.TinyCLR.Http.Authentication)
+* [Cookie Support](https://github.com/bytewizer/microserver/tree/develop/src/http/Bytewizer.TinyCLR.Http.Cookies)
+* [Resource Manager Handling](https://github.com/bytewizer/microserver/tree/develop/src/http/Bytewizer.TinyCLR.Http.ResourceManager)
+* [Html Response Builder](https://github.com/bytewizer/microserver/tree/develop/src/http/Bytewizer.TinyCLR.Http.PageBuilder)
+* [Static File Handling](https://github.com/bytewizer/microserver/tree/develop/src/http/Bytewizer.TinyCLR.Http.StaticFiles)
+* [Blazor File Serving](https://github.com/bytewizer/microserver/tree/develop/src/http/Bytewizer.TinyCLR.Http.StaticFiles.Blazor)  
+* [Embedded Resource File Serving](https://github.com/bytewizer/microserver/tree/develop/src/http/Bytewizer.TinyCLR.Http.StaticFiles.Resources)
+* [Model-View-Controllers (MVC)](https://github.com/bytewizer/microserver/tree/develop/src/http/Bytewizer.TinyCLR.Http.Mvc) 
+* [JavaScript Object Notation (JSON)](https://github.com/bytewizer/microserver/tree/develop/src/http/Bytewizer.TinyCLR.Http.Json)
+* [Cross-origin Resource Sharing (CORS)](https://github.com/bytewizer/microserver/tree/develop/src/http/Bytewizer.TinyCLR.Http.Cors)
 
 ## Runtime libraries
 This  <a href="https://github.com/bytewizer/runtime">repo</a> contains several runtime libraries built for TinyCLR OS. These libraries provide implementations for logging, middleware and dependency injection.
