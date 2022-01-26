@@ -43,15 +43,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Http.Json\Bytewizer.TinyCLR.Http.Json.csproj">
+    <ProjectReference Include="..\..\src\http\Bytewizer.TinyCLR.Http.Json\Bytewizer.TinyCLR.Http.Json.csproj">
       <Project>{EA9A543B-DA2A-46C1-9E69-47C87DB94DBA}</Project>
       <Name>Bytewizer.TinyCLR.Http.Json</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Http\Bytewizer.TinyCLR.Http.csproj">
+    <ProjectReference Include="..\..\src\http\Bytewizer.TinyCLR.Http\Bytewizer.TinyCLR.Http.csproj">
       <Project>{EB778176-633A-4997-A683-2C891C5DB436}</Project>
       <Name>Bytewizer.TinyCLR.Http</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Sockets\Bytewizer.TinyCLR.Sockets.csproj">
+    <ProjectReference Include="..\..\src\sockets\Bytewizer.TinyCLR.Sockets\Bytewizer.TinyCLR.Sockets.csproj">
       <Project>{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}</Project>
       <Name>Bytewizer.TinyCLR.Sockets</Name>
     </ProjectReference>

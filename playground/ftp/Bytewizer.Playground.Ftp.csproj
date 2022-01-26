@@ -43,6 +43,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Bytewizer.TinyCLR.Core">
+      <Version>2.1.7</Version>
+    </PackageReference>
     <PackageReference Include="Bytewizer.TinyCLR.Identity">
       <Version>2.1.7-preview.107</Version>
     </PackageReference>
@@ -60,11 +63,11 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Ftp\Bytewizer.TinyCLR.Ftp.csproj">
+    <ProjectReference Include="..\..\src\ftp\Bytewizer.TinyCLR.Ftp\Bytewizer.TinyCLR.Ftp.csproj">
       <Project>{A3819878-1D41-4369-A436-D36181AACEF3}</Project>
       <Name>Bytewizer.TinyCLR.Ftp</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Sockets\Bytewizer.TinyCLR.Sockets.csproj">
+    <ProjectReference Include="..\..\src\sockets\Bytewizer.TinyCLR.Sockets\Bytewizer.TinyCLR.Sockets.csproj">
       <Project>{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}</Project>
       <Name>Bytewizer.TinyCLR.Sockets</Name>
     </ProjectReference>

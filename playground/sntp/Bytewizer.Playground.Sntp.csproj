@@ -41,11 +41,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Sntp\Bytewizer.TinyCLR.Sntp.csproj">
+    <ProjectReference Include="..\..\src\sntp\Bytewizer.TinyCLR.Sntp\Bytewizer.TinyCLR.Sntp.csproj">
       <Project>{CA1A8602-FAD6-4678-BFDC-2FCBA8768A2C}</Project>
       <Name>Bytewizer.TinyCLR.Sntp</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Sockets\Bytewizer.TinyCLR.Sockets.csproj">
+    <ProjectReference Include="..\..\src\sockets\Bytewizer.TinyCLR.Sockets\Bytewizer.TinyCLR.Sockets.csproj">
       <Project>{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}</Project>
       <Name>Bytewizer.TinyCLR.Sockets</Name>
     </ProjectReference>

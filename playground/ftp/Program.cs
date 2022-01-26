@@ -3,6 +3,7 @@
 using Bytewizer.TinyCLR.Ftp;
 using Bytewizer.TinyCLR.Sockets;
 using Bytewizer.TinyCLR.Identity;
+using Bytewizer.TinyCLR.Hosting;
 using Bytewizer.TinyCLR.Logging;
 using Bytewizer.TinyCLR.Logging.Debug;
 
@@ -10,11 +11,12 @@ using GHIElectronics.TinyCLR.Devices.Network;
 using Bytewizer.Playground.Ftp.Properties;
 using System.Security.Cryptography.X509Certificates;
 
+
 namespace Bytewizer.Playground.Ftp
 {
     internal class Program
     {
-        private static IServer _ftpServer;
+        private static IServerService _ftpServer;
         private static readonly ILoggerFactory _loggerFactory = new LoggerFactory();
 
         static void Main()

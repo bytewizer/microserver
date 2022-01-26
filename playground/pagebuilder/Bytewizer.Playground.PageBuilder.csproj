@@ -45,19 +45,19 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Http.PageBuilder\Bytewizer.TinyCLR.Http.PageBuilder.csproj">
+    <ProjectReference Include="..\..\src\http\Bytewizer.TinyCLR.Http.PageBuilder\Bytewizer.TinyCLR.Http.PageBuilder.csproj">
       <Project>{8A73C390-EB11-421E-BF6D-63E283A97458}</Project>
       <Name>Bytewizer.TinyCLR.Http.PageBuilder</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Http.ResourceManager\Bytewizer.TinyCLR.Http.ResourceManager.csproj">
+    <ProjectReference Include="..\..\src\http\Bytewizer.TinyCLR.Http.ResourceManager\Bytewizer.TinyCLR.Http.ResourceManager.csproj">
       <Project>{4F2FCDC6-179E-45AC-A95A-360A02D05E15}</Project>
       <Name>Bytewizer.TinyCLR.Http.ResourceManager</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Http\Bytewizer.TinyCLR.Http.csproj">
+    <ProjectReference Include="..\..\src\http\Bytewizer.TinyCLR.Http\Bytewizer.TinyCLR.Http.csproj">
       <Project>{EB778176-633A-4997-A683-2C891C5DB436}</Project>
       <Name>Bytewizer.TinyCLR.Http</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Sockets\Bytewizer.TinyCLR.Sockets.csproj">
+    <ProjectReference Include="..\..\src\sockets\Bytewizer.TinyCLR.Sockets\Bytewizer.TinyCLR.Sockets.csproj">
       <Project>{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}</Project>
       <Name>Bytewizer.TinyCLR.Sockets</Name>
     </ProjectReference>

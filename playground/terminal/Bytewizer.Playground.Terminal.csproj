@@ -58,23 +58,23 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Sockets\Bytewizer.TinyCLR.Sockets.csproj">
+    <ProjectReference Include="..\..\src\sockets\Bytewizer.TinyCLR.Sockets\Bytewizer.TinyCLR.Sockets.csproj">
       <Project>{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}</Project>
       <Name>Bytewizer.TinyCLR.Sockets</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Terminal.Ansi\Bytewizer.TinyCLR.Terminal.Ansi.csproj">
+    <ProjectReference Include="..\..\src\terminal\Bytewizer.TinyCLR.Terminal.Ansi\Bytewizer.TinyCLR.Terminal.Ansi.csproj">
       <Project>{372012BB-CAA0-4FEC-9EF4-2F5540E582EA}</Project>
       <Name>Bytewizer.TinyCLR.Terminal.Ansi</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Terminal.Console\Bytewizer.TinyCLR.Terminal.Console.csproj">
+    <ProjectReference Include="..\..\src\terminal\Bytewizer.TinyCLR.Terminal.Console\Bytewizer.TinyCLR.Terminal.Console.csproj">
       <Project>{6AFA12AF-F71B-4A48-8A39-BCEB497A77A2}</Project>
       <Name>Bytewizer.TinyCLR.Terminal.Console</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Terminal.Telnet\Bytewizer.TinyCLR.Terminal.Telnet.csproj">
+    <ProjectReference Include="..\..\src\terminal\Bytewizer.TinyCLR.Terminal.Telnet\Bytewizer.TinyCLR.Terminal.Telnet.csproj">
       <Project>{372012BB-CAA0-4FEC-9EF4-1A5540E582EA}</Project>
       <Name>Bytewizer.TinyCLR.Terminal.Telnet</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Terminal\Bytewizer.TinyCLR.Terminal.csproj">
+    <ProjectReference Include="..\..\src\terminal\Bytewizer.TinyCLR.Terminal\Bytewizer.TinyCLR.Terminal.csproj">
       <Project>{24448889-E8AE-4939-BA1A-0A9E5B051484}</Project>
       <Name>Bytewizer.TinyCLR.Terminal</Name>
     </ProjectReference>

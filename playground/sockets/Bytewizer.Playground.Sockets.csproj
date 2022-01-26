@@ -47,11 +47,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Sockets.Filtering\Bytewizer.TinyCLR.Sockets.Filtering.csproj">
+    <ProjectReference Include="..\..\src\sockets\Bytewizer.TinyCLR.Sockets.Filtering\Bytewizer.TinyCLR.Sockets.Filtering.csproj">
       <Project>{96BF04C6-3A7E-4085-96A8-40199E9B9C3B}</Project>
       <Name>Bytewizer.TinyCLR.Sockets.Filtering</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Sockets\Bytewizer.TinyCLR.Sockets.csproj">
+    <ProjectReference Include="..\..\src\sockets\Bytewizer.TinyCLR.Sockets\Bytewizer.TinyCLR.Sockets.csproj">
       <Project>{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}</Project>
       <Name>Bytewizer.TinyCLR.Sockets</Name>
     </ProjectReference>

@@ -66,15 +66,15 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\microserver\src\Bytewizer.TinyCLR.Http\Bytewizer.TinyCLR.Http.csproj">
+    <ProjectReference Include="..\..\..\microserver\src\http\Bytewizer.TinyCLR.Http\Bytewizer.TinyCLR.Http.csproj">
       <Project>{EB778176-633A-4997-A683-2C891C5DB436}</Project>
       <Name>Bytewizer.TinyCLR.Http</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\microserver\src\Bytewizer.TinyCLR.Sockets\Bytewizer.TinyCLR.Sockets.csproj">
+    <ProjectReference Include="..\..\..\microserver\src\sockets\Bytewizer.TinyCLR.Sockets\Bytewizer.TinyCLR.Sockets.csproj">
       <Project>{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}</Project>
       <Name>Bytewizer.TinyCLR.Sockets</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Bytewizer.TinyCLR.Hosting\Bytewizer.TinyCLR.Hosting.csproj">
+    <ProjectReference Include="..\..\src\hosting\Bytewizer.TinyCLR.Hosting\Bytewizer.TinyCLR.Hosting.csproj">
       <Project>{449E7C7C-05EE-4224-A8A0-121662C21324}</Project>
       <Name>Bytewizer.TinyCLR.Hosting</Name>
     </ProjectReference>

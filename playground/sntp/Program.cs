@@ -2,17 +2,18 @@
 using System.Text;
 
 using Bytewizer.TinyCLR.Sntp;
-using Bytewizer.TinyCLR.Sockets;
+using Bytewizer.TinyCLR.Hosting;
 using Bytewizer.TinyCLR.Logging;
 using Bytewizer.TinyCLR.Logging.Debug;
 
 using GHIElectronics.TinyCLR.Devices.Network;
 
+
 namespace Bytewizer.Playground.Sntp
 {
     class Program
     {
-        private static IServer _server;
+        private static IServerService _server;
         private static ILogger _logger;
         private static readonly ILoggerFactory _loggerFactory = new LoggerFactory();
 
