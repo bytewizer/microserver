@@ -1,12 +1,12 @@
 using System;
 using System.Net;
 
-namespace Bytewizer.TinyCLR.Sockets
+namespace Bytewizer.TinyCLR.Sockets.Filtering
 {
     /// <summary>
     /// Type to represent a CIDR notation (e.g. "120.30.24.123/20").
     /// </summary>
-    public sealed class CidrNotation
+    internal sealed class CidrNotation
     {
         /// <summary>
         /// The IP address part of the CIDR notation.

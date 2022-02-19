@@ -2,20 +2,16 @@
 using System.Security.Cryptography.X509Certificates;
 
 using Bytewizer.TinyCLR.Sockets;
-using Bytewizer.TinyCLR.Logging;
-using Bytewizer.TinyCLR.Logging.Debug;
 using Bytewizer.Playground.Sockets.Properties;
 
 using GHIElectronics.TinyCLR.Devices.Network;
-using System.Net;
-using Bytewizer.TinyCLR.Sockets.Filtering;
 
 namespace Bytewizer.Playground.Sockets
 {
     class Program
     {
         private static SocketServer _server;
-        private static readonly ILoggerFactory loggerFactory = new LoggerFactory();
+
 
         static void Main()
         {
@@ -24,8 +20,6 @@ namespace Bytewizer.Playground.Sockets
             NetworkProvider.InitializeEthernet();
             NetworkProvider.Controller.NetworkAddressChanged += NetworkAddressChanged;
 
-            loggerFactory.AddDebug(LogLevel.Trace);
-
             byte[] servercert = Resources.GetBytes(Resources.BinaryResources.ServerCert);
 
             var X509cert = new X509Certificate(servercert)
@@ -33,7 +27,7 @@ namespace Bytewizer.Playground.Sockets
                 PrivateKey = Resources.GetBytes(Resources.BinaryResources.ServerKey)
             };
 
-            _server = new SocketServer(loggerFactory, options =>
+            _server = new SocketServer(options =>
             {
                 options.Listen(443, listener =>
                 {

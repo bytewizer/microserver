@@ -33,7 +33,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Ftp", "ft
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.PageBuilder", "http\Bytewizer.TinyCLR.Http.PageBuilder\Bytewizer.TinyCLR.Http.PageBuilder.csproj", "{8A73C390-EB11-421E-BF6D-63E283A97458}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.TcpClient", "sockets\Bytewizer.TinyCLR.TcpClient\Bytewizer.TinyCLR.TcpClient.csproj", "{96BF04C6-3A7E-4065-96A8-40199E9B9C3B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Sockets.TcpClient", "sockets\Bytewizer.TinyCLR.Sockets.TcpClient\Bytewizer.TinyCLR.Sockets.TcpClient.csproj", "{96BF04C6-3A7E-4065-96A8-40199E9B9C3B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Ftp.Authentication", "ftp\Bytewizer.TinyCLR.Ftp.Authentication\Bytewizer.TinyCLR.Ftp.Authentication.csproj", "{372012BB-CAA0-4FEF-9EF4-2F5560E582EA}"
 EndProject
@@ -60,6 +60,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SOCKETS", "SOCKETS", "{CBF5BFFD-BCFE-4642-BBA9-27A18056EE59}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TERMINAL", "TERMINAL", "{B5606FE6-49F5-452B-85CE-D31B65384D51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Sockets.UdpClient", "sockets\Bytewizer.TinyCLR.Sockets.UdpClient\Bytewizer.TinyCLR.Sockets.UdpClient.csproj", "{96BF04C6-3A7E-4065-96A8-50199E8B9C3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -163,6 +165,10 @@ Global
 		{372012BB-CAA0-4FEC-9EF4-1A5540E582EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{372012BB-CAA0-4FEC-9EF4-1A5540E582EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{372012BB-CAA0-4FEC-9EF4-1A5540E582EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96BF04C6-3A7E-4065-96A8-50199E8B9C3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96BF04C6-3A7E-4065-96A8-50199E8B9C3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96BF04C6-3A7E-4065-96A8-50199E8B9C3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96BF04C6-3A7E-4065-96A8-50199E8B9C3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -192,6 +198,7 @@ Global
 		{372012BB-CAA0-4FEC-9EF4-2A5540E582EA} = {B5606FE6-49F5-452B-85CE-D31B65384D51}
 		{6AFA12AF-F71B-4A48-8A39-BCEB497A77A2} = {B5606FE6-49F5-452B-85CE-D31B65384D51}
 		{372012BB-CAA0-4FEC-9EF4-1A5540E582EA} = {B5606FE6-49F5-452B-85CE-D31B65384D51}
+		{96BF04C6-3A7E-4065-96A8-50199E8B9C3B} = {CBF5BFFD-BCFE-4642-BBA9-27A18056EE59}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {06235DE9-4345-408B-9522-E418507B461F}

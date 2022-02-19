@@ -64,8 +64,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Bytewizer.TinyCLR.Core, Version=2.1.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bytewizer.TinyCLR.Core.2.1.7-preview.110\lib\net452\Bytewizer.TinyCLR.Core.dll</HintPath>
+    <Reference Include="Bytewizer.TinyCLR.Core, Version=2.1.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bytewizer.TinyCLR.Core.2.1.10-preview.124\lib\net452\Bytewizer.TinyCLR.Core.dll</HintPath>
     </Reference>
     <Reference Include="Bytewizer.TinyCLR.Identity, Version=2.1.7.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Bytewizer.TinyCLR.Identity.2.1.7-preview.107\lib\net452\Bytewizer.TinyCLR.Identity.dll</HintPath>
@@ -73,11 +73,11 @@
     <Reference Include="Bytewizer.TinyCLR.Identity.Abstractions, Version=2.1.7.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Bytewizer.TinyCLR.Identity.Abstractions.2.1.7-preview.107\lib\net452\Bytewizer.TinyCLR.Identity.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Bytewizer.TinyCLR.Logging.Abstractions, Version=2.1.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bytewizer.TinyCLR.Logging.Abstractions.2.1.7-preview.110\lib\net452\Bytewizer.TinyCLR.Logging.Abstractions.dll</HintPath>
+    <Reference Include="Bytewizer.TinyCLR.Logging.Abstractions, Version=2.1.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bytewizer.TinyCLR.Logging.Abstractions.2.1.10-preview.124\lib\net452\Bytewizer.TinyCLR.Logging.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Bytewizer.TinyCLR.Pipeline, Version=2.1.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bytewizer.TinyCLR.Pipeline.2.1.7-preview.110\lib\net452\Bytewizer.TinyCLR.Pipeline.dll</HintPath>
+    <Reference Include="Bytewizer.TinyCLR.Pipeline, Version=2.1.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bytewizer.TinyCLR.Pipeline.2.1.10-preview.124\lib\net452\Bytewizer.TinyCLR.Pipeline.dll</HintPath>
     </Reference>
     <Reference Include="GHIElectronics.TinyCLR.Cryptography, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GHIElectronics.TinyCLR.Cryptography.2.1.0\lib\net452\GHIElectronics.TinyCLR.Cryptography.dll</HintPath>

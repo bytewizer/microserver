@@ -39,7 +39,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Extensions\ArrayExtensions.cs" />
     <Compile Include="Middleware\AutoMappingMiddleware.cs" />
     <Compile Include="Middleware\EndpointMiddleware.cs" />
     <Compile Include="Middleware\AutoMappingMiddlewareExtensions.cs" />
@@ -90,13 +89,13 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Bytewizer.TinyCLR.Identity.Abstractions">
-      <Version>2.1.7-preview.107</Version>
+      <Version>2.1.10-preview.124</Version>
     </PackageReference>
     <PackageReference Include="Bytewizer.TinyCLR.Logging.Abstractions">
-      <Version>2.1.7-preview.110</Version>
+      <Version>2.1.10-preview.124</Version>
     </PackageReference>
     <PackageReference Include="Bytewizer.TinyCLR.Pipeline">
-      <Version>2.1.7-preview.110</Version>
+      <Version>2.1.10-preview.124</Version>
     </PackageReference>
     <PackageReference Include="GHIElectronics.TinyCLR.Core">
       <Version>2.1.0</Version>

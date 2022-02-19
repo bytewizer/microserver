@@ -2,7 +2,7 @@
 
 using Bytewizer.TinyCLR.Pipeline.Builder;
 
-namespace Bytewizer.TinyCLR.Sockets.Filtering
+namespace Bytewizer.TinyCLR.Sockets
 {
     public static class IpFilteringExtensions
     {

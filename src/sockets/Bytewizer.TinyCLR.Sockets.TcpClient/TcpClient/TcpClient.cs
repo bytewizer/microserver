@@ -1,8 +1,4 @@
-﻿using System;
-using System.Net;
-using System.Net.Sockets;
-
-namespace Bytewizer.TinyCLR.Sockets
+﻿namespace System.Net.Sockets
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="TcpClient"/> class.

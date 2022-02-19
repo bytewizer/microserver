@@ -64,8 +64,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.Playground.PageBu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.PageBuilder", "..\src\http\Bytewizer.TinyCLR.Http.PageBuilder\Bytewizer.TinyCLR.Http.PageBuilder.csproj", "{8A73C390-EB11-421E-BF6D-63E283A97458}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.TcpClient", "..\src\sockets\Bytewizer.TinyCLR.TcpClient\Bytewizer.TinyCLR.TcpClient.csproj", "{96BF04C6-3A7E-4065-96A8-40199E9B9C3B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.Playground.WebSocket", "websocket\Bytewizer.Playground.WebSocket.csproj", "{395CAB3E-5CC1-4B73-9883-1EA0114896D0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Http.WebSockets", "..\src\http\Bytewizer.TinyCLR.Http.WebSocket\Bytewizer.TinyCLR.Http.WebSockets.csproj", "{968603C1-8EA5-4E4B-B5BE-4943CEFFB04E}"
@@ -89,6 +87,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Terminal.Telnet", "..\src\terminal\Bytewizer.TinyCLR.Terminal.Telnet\Bytewizer.TinyCLR.Terminal.Telnet.csproj", "{372012BB-CAA0-4FEC-9EF4-1A5540E582EA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Terminal.Console", "..\src\terminal\Bytewizer.TinyCLR.Terminal.Console\Bytewizer.TinyCLR.Terminal.Console.csproj", "{6AFA12AF-F71B-4A48-8A39-BCEB497A77A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Sockets.TcpClient", "..\src\sockets\Bytewizer.TinyCLR.Sockets.TcpClient\Bytewizer.TinyCLR.Sockets.TcpClient.csproj", "{96BA04C6-3A7E-4065-96A8-40199E9B9C3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bytewizer.TinyCLR.Sockets.UdpClient", "..\src\sockets\Bytewizer.TinyCLR.Sockets.UdpClient\Bytewizer.TinyCLR.Sockets.UdpClient.csproj", "{96BF04C6-3A7E-4065-96A8-50199E8B9C3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -242,10 +244,6 @@ Global
 		{8A73C390-EB11-421E-BF6D-63E283A97458}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A73C390-EB11-421E-BF6D-63E283A97458}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A73C390-EB11-421E-BF6D-63E283A97458}.Release|Any CPU.Build.0 = Release|Any CPU
-		{96BF04C6-3A7E-4065-96A8-40199E9B9C3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{96BF04C6-3A7E-4065-96A8-40199E9B9C3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{96BF04C6-3A7E-4065-96A8-40199E9B9C3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{96BF04C6-3A7E-4065-96A8-40199E9B9C3B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{395CAB3E-5CC1-4B73-9883-1EA0114896D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{395CAB3E-5CC1-4B73-9883-1EA0114896D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{395CAB3E-5CC1-4B73-9883-1EA0114896D0}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
@@ -300,6 +298,14 @@ Global
 		{6AFA12AF-F71B-4A48-8A39-BCEB497A77A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6AFA12AF-F71B-4A48-8A39-BCEB497A77A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6AFA12AF-F71B-4A48-8A39-BCEB497A77A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96BA04C6-3A7E-4065-96A8-40199E9B9C3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96BA04C6-3A7E-4065-96A8-40199E9B9C3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96BA04C6-3A7E-4065-96A8-40199E9B9C3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96BA04C6-3A7E-4065-96A8-40199E9B9C3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96BF04C6-3A7E-4065-96A8-50199E8B9C3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96BF04C6-3A7E-4065-96A8-50199E8B9C3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96BF04C6-3A7E-4065-96A8-50199E8B9C3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96BF04C6-3A7E-4065-96A8-50199E8B9C3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

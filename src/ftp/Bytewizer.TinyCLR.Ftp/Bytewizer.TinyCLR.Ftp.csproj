@@ -105,10 +105,10 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Bytewizer.TinyCLR.Identity.Abstractions">
-      <Version>2.1.7-preview.107</Version>
+      <Version>2.1.10-preview.124</Version>
     </PackageReference>
     <PackageReference Include="Bytewizer.TinyCLR.Logging.Abstractions">
-      <Version>2.1.7-preview.110</Version>
+      <Version>2.1.10-preview.124</Version>
     </PackageReference>
     <PackageReference Include="GHIElectronics.TinyCLR.Core">
       <Version>2.1.0</Version>
@@ -123,13 +123,13 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\sockets\Bytewizer.TinyCLR.Sockets.TcpClient\Bytewizer.TinyCLR.Sockets.TcpClient.csproj">
+      <Project>{96BA04C6-3A7E-4065-96A8-40199E9B9C3B}</Project>
+      <Name>Bytewizer.TinyCLR.Sockets.TcpClient</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\sockets\Bytewizer.TinyCLR.Sockets\Bytewizer.TinyCLR.Sockets.csproj">
       <Project>{CECB4A63-1460-4721-96B1-7FCCEC0FAF84}</Project>
       <Name>Bytewizer.TinyCLR.Sockets</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\sockets\Bytewizer.TinyCLR.TcpClient\Bytewizer.TinyCLR.TcpClient.csproj">
-      <Project>{96BF04C6-3A7E-4065-96A8-40199E9B9C3B}</Project>
-      <Name>Bytewizer.TinyCLR.TcpClient</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

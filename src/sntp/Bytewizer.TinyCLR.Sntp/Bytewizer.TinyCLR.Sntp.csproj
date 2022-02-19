@@ -65,7 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Bytewizer.TinyCLR.Logging.Abstractions">
-      <Version>2.1.7-preview.110</Version>
+      <Version>2.1.10-preview.124</Version>
     </PackageReference>
     <PackageReference Include="GHIElectronics.TinyCLR.Devices.Rtc">
       <Version>2.1.0</Version>

@@ -1,13 +1,14 @@
 ﻿using Bytewizer.TinyCLR.Pipeline;
+using Bytewizer.TinyCLR.Sockets.Filtering;
 
-namespace Bytewizer.TinyCLR.Sockets.Filtering
+namespace Bytewizer.TinyCLR.Sockets
 {
     public class IpFilteringMiddleware : Middleware
     {
         private readonly CidrNotation _cidr;
 
         public IpFilteringMiddleware(string cidr)
-        {
+        {         
             _cidr = CidrNotation.Parse(cidr);
         }
 

@@ -4,11 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{96BF04C6-3A7E-4065-96A8-40199E9B9C3B}</ProjectGuid>
+    <ProjectGuid>{96BF04C6-3A7E-4065-96A8-50199E8B9C3B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bytewizer.TinyCLR.Http.TcpClient</RootNamespace>
-    <AssemblyName>Bytewizer.TinyCLR.TcpClient</AssemblyName>
+    <RootNamespace>Bytewizer.TinyCLR.Sockets</RootNamespace>
+    <AssemblyName>Bytewizer.TinyCLR.Sockets.UdpClient</AssemblyName>
+    <LangVersion>latest</LangVersion>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A1948822-69DD-4150-919B-F3F42EFB71CC};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -17,8 +18,8 @@
     </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup>
-    <Description>Hypertext Transfer Protocol (Http) JavaScript Object Notation (Json) extension library built for TinyCLR IoT devices.</Description>
-    <PackageTags>ghi tinyclr tinyclros sitcore iot http-server http https json</PackageTags>
+    <Description>UDP client library built for TinyCLR IoT devices.</Description>
+    <PackageTags>ghi tinyclr tinyclros udpclient sitcore iot http-server http https json</PackageTags>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -28,7 +29,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Bytewizer.TinyCLR.TcpClient.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\Bytewizer.TinyCLR.Sockets.UdpClient.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,17 +38,15 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Bytewizer.TinyCLR.TcpClient.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\Bytewizer.TinyCLR.Sockets.UdpClient.xml</DocumentationFile>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TcpClient\TcpClient.cs" />
+    <Compile Include="UdpClient\MulticastOption.cs" />
+    <Compile Include="UdpClient\UdpClient.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Bytewizer.TinyCLR.Logging.Abstractions">
-      <Version>2.1.7-preview.110</Version>
-    </PackageReference>
     <PackageReference Include="GHIElectronics.TinyCLR.Core">
       <Version>2.1.0</Version>
     </PackageReference>
