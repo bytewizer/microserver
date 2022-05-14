@@ -62,18 +62,6 @@ jobs:
         -p:DebugType="embedded"
         -p:Deterministic=true
 
-    - name: Build and pack NanoCLR libraries
-      working-directory: src
-      run: >- 
-        msbuild Bytewizer.NanoCLR.Microserver.sln -t:pack -verbosity:${env:VERBOSITY}
-        -p:PackageOutputPath=\builds\artifacts
-        -p:BuildNumber="${{ steps.info.outputs.build }}"
-        -p:Copyright="${{ steps.info.outputs.copyright }}"
-        -p:VersionPrefix="2.1.7"
-        -p:VersionSuffix=preview.${{ steps.info.outputs.build }}
-        -p:Configuration=${env:CONFIGURATION}
-        -p:ContinuousIntegrationBuild=true
-
     - name: Upload build artifacts
       uses: actions/upload-artifact@v2.3.1
       with:
