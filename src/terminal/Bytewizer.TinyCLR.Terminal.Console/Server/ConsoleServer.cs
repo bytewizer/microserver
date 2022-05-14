@@ -156,7 +156,7 @@ namespace Bytewizer.TinyCLR.Terminal
 
                 return true;
             }
-            catch (Exception ex)
+            catch ()
             {
                 //_logger.StoppingService(_listener.ActivePort, ex);
                 return false;

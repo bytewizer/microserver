@@ -12,7 +12,7 @@ namespace Bytewizer.TinyCLR.Http
     /// </summary>
     public class WebSocketMiddleware : Middleware
     {
-        private readonly ArrayList _allowedOrigins;
+        //private readonly ArrayList _allowedOrigins;
         private readonly WebSocketOptions _options;
 
         /// <summary>

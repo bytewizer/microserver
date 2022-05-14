@@ -12,30 +12,16 @@ namespace Bytewizer.Playground.Sockets
     {
         private static SocketServer _server;
 
-
         static void Main()
-        {
-            
+        {        
             StorageProvider.Initialize();
             NetworkProvider.InitializeEthernet();
             NetworkProvider.Controller.NetworkAddressChanged += NetworkAddressChanged;
 
-            byte[] servercert = Resources.GetBytes(Resources.BinaryResources.ServerCert);
-
-            var X509cert = new X509Certificate(servercert)
-            {
-                PrivateKey = Resources.GetBytes(Resources.BinaryResources.ServerKey)
-            };
-
             _server = new SocketServer(options =>
             {
-                options.Listen(443, listener =>
-                {
-                    listener.UseTls(X509cert);
-                });
                 options.Pipeline(app =>
                 {
-                    app.UseIpFiltering("192.168.1.0/24");
                     app.UseHttpResponse();
                 });
             });

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\GHIElectronics.TinyCLR.Core.2.1.0\build\net452\GHIElectronics.TinyCLR.Core.props" Condition="Exists('..\packages\GHIElectronics.TinyCLR.Core.2.1.0\build\net452\GHIElectronics.TinyCLR.Core.props')" />
+  <Import Project="..\packages\GHIElectronics.TinyCLR.Core.2.2.0\build\net452\GHIElectronics.TinyCLR.Core.props" Condition="Exists('..\packages\GHIElectronics.TinyCLR.Core.2.2.0\build\net452\GHIElectronics.TinyCLR.Core.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,12 +9,13 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>Bytewizer.Playground.Blazor</RootNamespace>
     <AssemblyName>Bytewizer.Playground.Blazor</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <ProjectTypeGuids>{A1948822-69DD-4150-919B-F3F42EFB71CC};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -78,28 +79,28 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Bytewizer.TinyCLR.Core, Version=2.1.10.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bytewizer.TinyCLR.Core.2.1.10-preview.124\lib\net452\Bytewizer.TinyCLR.Core.dll</HintPath>
+      <HintPath>..\packages\Bytewizer.TinyCLR.Core.2.1.10\lib\net48\Bytewizer.TinyCLR.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Bytewizer.TinyCLR.Identity, Version=2.1.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bytewizer.TinyCLR.Identity.2.1.7-preview.107\lib\net452\Bytewizer.TinyCLR.Identity.dll</HintPath>
+    <Reference Include="Bytewizer.TinyCLR.Identity, Version=2.1.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bytewizer.TinyCLR.Identity.2.1.10\lib\net48\Bytewizer.TinyCLR.Identity.dll</HintPath>
     </Reference>
-    <Reference Include="Bytewizer.TinyCLR.Identity.Abstractions, Version=2.1.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bytewizer.TinyCLR.Identity.Abstractions.2.1.7-preview.107\lib\net452\Bytewizer.TinyCLR.Identity.Abstractions.dll</HintPath>
+    <Reference Include="Bytewizer.TinyCLR.Identity.Abstractions, Version=2.1.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bytewizer.TinyCLR.Identity.Abstractions.2.1.10\lib\net48\Bytewizer.TinyCLR.Identity.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Bytewizer.TinyCLR.Logging.Abstractions, Version=2.1.10.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bytewizer.TinyCLR.Logging.Abstractions.2.1.10-preview.124\lib\net452\Bytewizer.TinyCLR.Logging.Abstractions.dll</HintPath>
+      <HintPath>..\packages\Bytewizer.TinyCLR.Logging.Abstractions.2.1.10\lib\net48\Bytewizer.TinyCLR.Logging.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Bytewizer.TinyCLR.Pipeline, Version=2.1.10.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bytewizer.TinyCLR.Pipeline.2.1.10-preview.124\lib\net452\Bytewizer.TinyCLR.Pipeline.dll</HintPath>
+      <HintPath>..\packages\Bytewizer.TinyCLR.Pipeline.2.1.10\lib\net48\Bytewizer.TinyCLR.Pipeline.dll</HintPath>
     </Reference>
-    <Reference Include="GHIElectronics.TinyCLR.Cryptography, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GHIElectronics.TinyCLR.Cryptography.2.1.0\lib\net452\GHIElectronics.TinyCLR.Cryptography.dll</HintPath>
+    <Reference Include="GHIElectronics.TinyCLR.Cryptography, Version=2.2.0.4000, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GHIElectronics.TinyCLR.Cryptography.2.2.0\lib\net452\GHIElectronics.TinyCLR.Cryptography.dll</HintPath>
     </Reference>
-    <Reference Include="GHIElectronics.TinyCLR.Data.Json, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GHIElectronics.TinyCLR.Data.Json.2.1.0\lib\net452\GHIElectronics.TinyCLR.Data.Json.dll</HintPath>
+    <Reference Include="GHIElectronics.TinyCLR.Data.Json, Version=2.2.0.4000, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GHIElectronics.TinyCLR.Data.Json.2.2.0\lib\net452\GHIElectronics.TinyCLR.Data.Json.dll</HintPath>
     </Reference>
-    <Reference Include="GHIElectronics.TinyCLR.IO, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GHIElectronics.TinyCLR.IO.2.1.0\lib\net452\GHIElectronics.TinyCLR.IO.dll</HintPath>
+    <Reference Include="GHIElectronics.TinyCLR.IO, Version=2.2.0.4000, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GHIElectronics.TinyCLR.IO.2.2.0\lib\net452\GHIElectronics.TinyCLR.IO.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -107,6 +108,6 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\GHIElectronics.TinyCLR.Core.2.1.0\build\net452\GHIElectronics.TinyCLR.Core.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\GHIElectronics.TinyCLR.Core.2.1.0\build\net452\GHIElectronics.TinyCLR.Core.props'))" />
+    <Error Condition="!Exists('..\packages\GHIElectronics.TinyCLR.Core.2.2.0\build\net452\GHIElectronics.TinyCLR.Core.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\GHIElectronics.TinyCLR.Core.2.2.0\build\net452\GHIElectronics.TinyCLR.Core.props'))" />
   </Target>
 </Project>

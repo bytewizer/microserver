@@ -42,20 +42,12 @@ jobs:
     
     - name: Setup nuget
       uses: nuget/setup-nuget@v1.0.5
-
-    - name: Setup nanoFramework
-      uses: nanoframework/nanobuild@v1.4     
     
     - name: Restore TinyCLR project
       working-directory: src
       run: >- 
         nuget restore Bytewizer.TinyCLR.Microserver.sln -verbosity ${env:VERBOSITY}
     
-    - name: Restore NanoCLR project
-      working-directory: src
-      run: >- 
-        nuget restore Bytewizer.NanoCLR.Microserver.sln -verbosity ${env:VERBOSITY}
-
     - name: Build and pack TinyCLR libraries
       working-directory: src
       run: >- 

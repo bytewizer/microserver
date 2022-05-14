@@ -1,4 +1,4 @@
-# UdpClient
+# UDP Client
 
 Provides simple methods for connecting, sending, and receiving stream data over a network.
 

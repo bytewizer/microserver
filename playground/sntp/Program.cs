@@ -20,7 +20,7 @@ namespace Bytewizer.Playground.Sntp
         static void Main()
         {
             ClockProvider.Initialize();
-            NetworkProvider.InitializeWiFiClick();
+            NetworkProvider.InitializeEthernet();
             NetworkProvider.Controller.NetworkAddressChanged += NetworkAddressChanged;
 
             _loggerFactory.AddDebug(LogLevel.Debug);
