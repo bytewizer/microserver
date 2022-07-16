@@ -69,19 +69,19 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Bytewizer.TinyCLR.Logging.Abstractions">
-      <Version>2.1.10</Version>
+      <Version>2.1.11</Version>
     </PackageReference>
     <PackageReference Include="Bytewizer.TinyCLR.Pipeline">
-      <Version>2.1.10</Version>
+      <Version>2.1.11</Version>
     </PackageReference>
     <PackageReference Include="GHIElectronics.TinyCLR.Core">
-      <Version>2.2.0</Version>
+      <Version>2.2.0.4200</Version>
     </PackageReference>
     <PackageReference Include="GHIElectronics.TinyCLR.Networking">
-      <Version>2.2.0</Version>
+      <Version>2.2.0.4200</Version>
     </PackageReference>
     <PackageReference Include="NuGet.Build.Tasks.Pack">
-      <Version>6.2.0</Version>
+      <Version>6.2.1</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>

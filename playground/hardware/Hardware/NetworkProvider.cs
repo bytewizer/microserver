@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Threading;
 
 using GHIElectronics.TinyCLR.Pins;
+using GHIElectronics.TinyCLR.Devices.I2c;
 using GHIElectronics.TinyCLR.Devices.Spi;
 using GHIElectronics.TinyCLR.Devices.Gpio;
 using GHIElectronics.TinyCLR.Devices.Network;
@@ -46,7 +47,7 @@ namespace Bytewizer.Playground
 
                 var networkInterfaceSetting = new EthernetNetworkInterfaceSettings
                 {
-                    MacAddress = new byte[] { 0x00, 0x8D, 0xB4, 0x49, 0xAD, 0xBD },
+                    MacAddress = GetMacAddress(),
 
                     DhcpEnable = true,
                     DynamicDnsEnable = true,
@@ -257,6 +258,27 @@ namespace Bytewizer.Playground
             }
         }
 
+        private static byte[] GetMacAddress()
+        {
+            var i2cController = I2cController.FromName(SC20100.I2cBus.I2c1);
+            var i2cSettings = new I2cConnectionSettings(0x50);
+            var i2cDevice = i2cController.GetDevice(i2cSettings);
+
+            // Microchip 24AA025E48T EUI-48 Node Address
+            var writeBuffer = new byte[1] { 0xFA }; // node address value start location
+            var readBuffer = new byte[6]; // EUI-48 6-byte size
+
+            try
+            {
+                i2cDevice.WriteRead(writeBuffer, readBuffer);
+            }
+            catch
+            {
+                readBuffer = new byte[6] { 0x00, 0x8D, 0xB4, 0x49, 0xAD, 0xBD };
+            }
+
+            return readBuffer;
+        }
         public static string Info(NetworkController controller)
         {
             var ipProperties = controller.GetIPProperties();
